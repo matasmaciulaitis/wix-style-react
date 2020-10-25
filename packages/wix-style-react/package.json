@@ -11,6 +11,15 @@
     "./dist/**/*.global.scss",
     "./src/**/*.scss"
   ],
+  "wix": {
+    "artifact": {
+      "groupId": "com.wixpress.restaurants",
+      "artifactId": "wix-style-react",
+      "targets": {
+        "npm": true
+      }
+    }
+  },
   "files": [
     "dist",
     "src",
