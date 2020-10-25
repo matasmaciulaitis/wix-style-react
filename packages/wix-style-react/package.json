@@ -14,10 +14,7 @@
   "wix": {
     "artifact": {
       "groupId": "com.wixpress.restaurants",
-      "artifactId": "wix-style-react",
-      "targets": {
-        "npm": true
-      }
+      "artifactId": "wix-style-react"
     }
   },
   "files": [
