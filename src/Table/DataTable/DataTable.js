@@ -22,6 +22,7 @@ export const DataTableHeader = props => {
     leftShadowVisible,
     rightShadowVisible,
     stickyColumns,
+    layout,
   } = props;
 
   const wrapWithHorizontalScroll = table => (
@@ -43,7 +44,12 @@ export const DataTableHeader = props => {
         [styles.tableHeaderScrollContent]: horizontalScroll,
       })}
     >
-      <table style={{ width: props.width }} className={styles.table}>
+      <table
+        style={{ width: props.width }}
+        className={classNames(styles.table, {
+          [styles.fixedLayout]: layout === 'fixed',
+        })}
+      >
         <TableHeader {...props} />
       </table>
     </div>
