@@ -46,6 +46,7 @@ class DataTableAutoLayoutExample extends React.Component {
               render: row => <span>{row.longText}</span>,
             },
           ]}
+          layout="auto"
         />
       </div>
     );
