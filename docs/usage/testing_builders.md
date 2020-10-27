@@ -1,9 +1,14 @@
-1. Import the testkit as described under `Testing` section.
+1. Import the testkit as described under `Testkit` section:
 ```js
 import { ListItemSelectTestkit } from 'wix-style-react/dist/testkit';
 ```
 
-2. Render the desired builder within the `<DropdownLayout/>`. Don't forget to provide `dataHook` and `id`.
+2. Import the desired builder:
+```js
+import { listItemSelectBuilder } from 'wix-style-react';
+```
+
+3. Render the desired builder within the `<DropdownLayout/>`. Don't forget to provide `dataHook` and `id`.
 ```js
       const dataHook = 'select-builder';
       const title = 'section title';
@@ -17,16 +22,17 @@ import { ListItemSelectTestkit } from 'wix-style-react/dist/testkit';
       const { driver } = render(<DropdownLayout visible options={options} />);
 ```
 
-3. Use the `getOptionElementById` driver method of the `DropdownLayout` driver to get the option native element:
+4. Use the `getOptionElementById` method of the `DropdownLayout` driver to get the option native element:
 ```js
 const wrapper = await driver.getOptionElementById(0);
 ```
-4. Initialize the suitable testkit:
+
+5. Initialize the suitable testkit:
 ```js
 const testkit = ListItemSelectTestkit({ wrapper, dataHook });
 ```
 
-5. Use the desired testkit method:
+6. Use the desired testkit method:
 ```js
 const listItemSelectTitle = await testkit.getTitle();
 ```
