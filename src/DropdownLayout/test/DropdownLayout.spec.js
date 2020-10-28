@@ -11,6 +11,7 @@ import {
 } from '../../../test/utils/react';
 import { mount } from 'enzyme';
 import { dropdownLayoutTestkitFactory } from '../../../testkit/enzyme';
+import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 
 describe('DropdownLayout', () => {
   describe('[sync]', () => {
@@ -281,39 +282,95 @@ describe('DropdownLayout', () => {
       });
     });
 
-    it('should render a function option with the rendered item props', async () => {
-      const selectedId = 0;
-      const unSelectedId = 1;
+    describe('option- render function ', () => {
+      it('should be rendered with the option state', async () => {
+        const customRenderFunction = ({ id, disabled }) => ({
+          disabled,
+          value: jest.fn(),
+          id,
+        });
 
-      const optionsWithFuncValues = [
-        {
-          id: 0,
-          value: ({ selected }) => (
-            <div>option {selected ? 'selected' : 'not selected'}</div>
+        const options = [
+          customRenderFunction({ id: 0 }),
+          customRenderFunction({ id: 1 }),
+          customRenderFunction({ id: 2, disabled: true }),
+        ];
+
+        const driver = createDriver(
+          <DropdownLayout visible options={options} />,
+        );
+
+        await driver.clickAtOption(0);
+
+        expect(options[0].value).toHaveBeenCalledWith({
+          selected: true,
+          disabled: undefined,
+          hovered: false,
+        });
+
+        expect(options[1].value).toHaveBeenCalledWith({
+          selected: false,
+          disabled: undefined,
+          hovered: false,
+        });
+
+        await driver.mouseEnterAtOption(1);
+
+        expect(options[1].value).toHaveBeenCalledWith({
+          selected: false,
+          disabled: undefined,
+          hovered: true,
+        });
+
+        expect(options[2].value).toHaveBeenCalledWith({
+          selected: false,
+          disabled: true,
+          hovered: false,
+        });
+      });
+
+      it('should be rendered correctly within DropdownLayout options', async () => {
+        const selectedId = 0;
+        const unSelectedId = 1;
+
+        const selectedTitle = 'Custom Option 1';
+        const unSelectedTitle = 'Custom Option 2';
+
+        const customBuilderFunction = ({ id, dataHook, title, disabled }) => ({
+          id,
+          disabled,
+          overrideStyle: true,
+          value: ({ disabled, selected, hovered }) => (
+            <div data-hook={dataHook}>
+              {selected ? `${title} selected` : `${title} not selected`}
+            </div>
           ),
-        },
-        {
-          id: 1,
-          value: ({ selected }) => (
-            <div>option {selected ? 'selected' : 'not selected'}</div>
-          ),
-        },
-      ];
+        });
 
-      const driver = createDriver(
-        <DropdownLayout
-          visible
-          options={optionsWithFuncValues}
-          selectedId={selectedId}
-        />,
-      );
+        const options = [
+          customBuilderFunction({
+            id: selectedId,
+            dataHook: 'custom-builder-1',
+            title: selectedTitle,
+          }),
+          customBuilderFunction({
+            id: unSelectedId,
+            dataHook: 'custom-builder-2',
+            title: unSelectedTitle,
+          }),
+        ];
 
-      expect(await driver.optionContentAt(selectedId)).toEqual(
-        'option selected',
-      );
-      expect(await driver.optionContentAt(unSelectedId)).toEqual(
-        'option not selected',
-      );
+        const { driver } = render(
+          <DropdownLayout selectedId={selectedId} visible options={options} />,
+        );
+
+        expect(await driver.optionContentAt(selectedId)).toEqual(
+          `${selectedTitle} selected`,
+        );
+        expect(await driver.optionContentAt(unSelectedId)).toEqual(
+          `${unSelectedTitle} not selected`,
+        );
+      });
     });
 
     it('should select the chosen value', async () => {
