@@ -521,6 +521,38 @@ class DropdownLayout extends React.PureComponent {
     );
   }
 
+  _compareOptions = (currentOptions, prevOptions) => {
+    if (currentOptions.length !== prevOptions.length) {
+      return false;
+    }
+    for (let i = 0; i < prevOptions.length; i++) {
+      if (
+        currentOptions[i].id !== prevOptions[i].id ||
+        currentOptions[i].value !== prevOptions[i].value ||
+        currentOptions[i].disabled !== prevOptions[i].disabled ||
+        currentOptions[i].linkTo !== prevOptions[i].linkTo ||
+        currentOptions[i].overrideStyle !== prevOptions[i].overrideStyle ||
+        currentOptions[i].label !== prevOptions[i].label ||
+        currentOptions[i].isSelectable !== prevOptions[i].isSelectable
+      ) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  componentDidUpdate = prevProps => {
+    if (!this._compareOptions(this.props.options, prevProps.options)) {
+      this.setState({
+        selectedId:
+          (this._isSelectableId(this.props.selectedId) &&
+            this.props.selectedId) ||
+          (this._isSelectableId(this.props.selectedId) &&
+            this.props.selectedId),
+      });
+    }
+  };
+
   render() {
     const {
       options,
