@@ -8,6 +8,9 @@
   "AddressInput": {
     "path": "src/AddressInput"
   },
+  "AddressInputOption": {
+    "path": "src/AddressInputOption"
+  },
   "Animate": {
     "path": "src/Animate"
   },
