@@ -17,6 +17,7 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import AddressInputOption from '..';
+import * as examples from './examples';
 
 const example = config => baseExample({ components: allComponents, ...config });
 
@@ -27,7 +28,11 @@ export default {
   component: AddressInputOption,
   componentPath: '..',
 
-  componentProps: {},
+  componentProps: {
+    mainLabel: 'main label',
+    secondaryLabel: 'secondary label',
+    suffix: 'suffix',
+  },
 
   exampleProps: {
     // Put here presets of props, for more info:
@@ -57,9 +62,21 @@ export default {
 
           example({
             title: 'Simple Usage',
-            text: 'A simple example with compact preview',
-            source:
-              '<AddressInputOption mainLabel="text" secondaryLabel="secondary text"/>',
+            text: 'A basic example',
+            source: examples.basicExample,
+          }),
+
+          example({
+            title: 'Option Layout',
+            text: 'Addresses can be displayed in a single line or double lines',
+            source: examples.optionLayout,
+          }),
+
+          example({
+            title: 'Affixes',
+            text:
+              'Component has prefix and suffix areas. Default prefix is location icon.',
+            source: examples.Affixes,
           }),
         ],
       }),

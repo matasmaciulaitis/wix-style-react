@@ -6,6 +6,9 @@ export * from './Accordion';
 export { default as AddItem } from './AddItem';
 export * from './AddItem';
 
+export { default as AddressInputOption } from './AddressInputOption';
+export * from './AddressInputOption';
+
 export { default as AnnouncementModalLayout } from './AnnouncementModalLayout';
 export * from './AnnouncementModalLayout';
 
