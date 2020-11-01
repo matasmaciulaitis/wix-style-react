@@ -21,6 +21,7 @@ class InputWithTags extends React.Component {
     this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputBlur = this.handleInputBlur.bind(this);
 
+    this.rootRef = React.createRef();
     this.state = { inputValue: '', inputHasFocus: false };
   }
 
@@ -40,8 +41,15 @@ class InputWithTags extends React.Component {
     this.props.onFocus && this.props.onFocus(e);
   }
 
+  scrollContainerToTop = () => {
+    if (this.rootRef.current) {
+      this.rootRef.current.scrollTop = 0;
+    }
+  };
+
   handleInputBlur(e) {
-    this.state.inputHasFocus && this.setState({ inputHasFocus: false });
+    this.state.inputHasFocus &&
+      this.setState({ inputHasFocus: false }, this.scrollContainerToTop);
     this.props.onBlur && this.props.onBlur(e);
   }
 
@@ -110,6 +118,7 @@ class InputWithTags extends React.Component {
         style={{ maxHeight }}
         onClick={this.handleClick}
         data-hook={this.props.dataHook}
+        ref={this.rootRef}
       >
         {onReorder ? (
           <SortableList
