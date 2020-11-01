@@ -1,1 +1,1 @@
-export { default } from './AddressInputOption.js';
+export { default, addressInputOptionBuilder } from './AddressInputOption.js';
