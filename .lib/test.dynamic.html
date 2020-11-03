@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="dist-dynamic/main.js"></script>
+    <script src="lib.dynamic.context.js"></script>
+    <script>
+      function App() {
+        const {
+          Button,
+          Slider,
+          Calendar,
+          Checkbox,
+          ColorPicker,
+        } = React.useContext(WSRComponents);
+
+        return React.createElement('div', {}, [
+          React.createElement(Button, {}, 'Click'),
+          React.createElement(Slider, {}),
+          React.createElement(Calendar, {}),
+          React.createElement(Checkbox, {}),
+          React.createElement(ColorPicker, {}),
+        ]);
+      }
+
+      const componentLoaders = {
+        Button: wsr.Button,
+        Slider: wsr.Slider,
+        Calendar: wsr.Calendar,
+        Checkbox: wsr.Checkbox,
+        ColorPicker: wsr.ColorPicker,
+      };
+
+      ReactDOM.render(
+        React.createElement(
+          WSRComponents.Root,
+          { componentLoaders },
+          React.createElement(App, {}),
+        ),
+        app,
+      );
+    </script>
+  </body>
+</html>
