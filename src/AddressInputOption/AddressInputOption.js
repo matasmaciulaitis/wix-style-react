@@ -16,7 +16,7 @@ class AddressInputOption extends React.PureComponent {
       <Box display="flex" margin="auto">
         <Text>{mainLabel}</Text>
         {secondaryLabel && (
-          <Box margin-left="6px">
+          <Box marginLeft="6px">
             <Text light secondary weight="thin">
               {secondaryLabel}
             </Text>
@@ -35,16 +35,24 @@ class AddressInputOption extends React.PureComponent {
       mainLabel,
       suffix,
       prefix,
+      ...restProps
     } = this.props;
 
     return (
       <ListItemSelect
         dataHook={dataHook}
         className={className}
-        subtitle={optionLayout === 'single-line' ? null : secondaryLabel}
+        subtitle={
+          optionLayout === 'single-line' ? null : (
+            <Text light secondary weight="thin">
+              {secondaryLabel}
+            </Text>
+          )
+        }
         title={optionLayout === 'single-line' ? this._renderTitle() : mainLabel}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
+        {...restProps}
       />
     );
   }
