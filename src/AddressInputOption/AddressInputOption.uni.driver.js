@@ -1,37 +1,27 @@
-import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
-import { dataHooks } from './constants';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
+import { DATA_ATTR } from './constants';
+import listItemSelectDriverFactory from '../ListItemSelect/ListItemSelect.uni.driver';
 
 export const addressInputOptionDriverFactory = (base, body) => {
   return {
     ...baseUniDriverFactory(base, body),
 
-    /**
-     * Gets the current count
-     * @returns {Promise<string>}
-     */
-    getCountText: () =>
-      findByHook(base, dataHooks.addressInputOptionCount).text(),
+    /** Get prefix */
+    getPrefix: async () =>
+      await listItemSelectDriverFactory(base, body).getPrefix(),
 
-    /**
-     * Clicks the button
-     * @param {number} times Times to click
-     * @returns {Promise<void>}
-     */
-    clickButtonTimes: async times => {
-      const buttonElement = findByHook(
-        base,
-        dataHooks.addressInputOptionButton,
-      );
-      for (let i = 0; i < times; i++) {
-        await buttonElement.click();
-      }
-    },
+    /** Get title Text */
+    getMainLabel: async () =>
+      await listItemSelectDriverFactory(base, body).getTitle(),
 
-    /**
-     * Gets the button text
-     * @returns {Promise<string>}
-     */
-    getButtonText: () =>
-      findByHook(base, dataHooks.addressInputOptionButton).text(),
+    /** Get subtitle Text */
+    getSecondaryLabel: async () =>
+      await listItemSelectDriverFactory(base, body).getSubtitle(),
+
+    /** Get suffix */
+    getSuffix: async () =>
+      await listItemSelectDriverFactory(base, body).getSubtitle(),
+
+    getOptionLayout: async () => await base.attr(DATA_ATTR.OPTION_LAYOUT),
   };
 };

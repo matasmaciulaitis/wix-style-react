@@ -5,7 +5,7 @@ import ListItemSelect from '../ListItemSelect';
 import Text from '../Text';
 import Box from '../Box';
 import { st, classes } from './AddressInputOption.st.css';
-import { dataHooks } from './constants';
+import { DATA_ATTR, OPTION_LAYOUT } from './constants';
 import LocationIcon from 'wix-ui-icons-common/Location';
 
 /** This component is responsible of transforming a given prediction object and display-props into a valid address option according to the UX guidelines. */
@@ -43,15 +43,20 @@ class AddressInputOption extends React.PureComponent {
         dataHook={dataHook}
         className={className}
         subtitle={
-          optionLayout === 'single-line' ? null : (
+          optionLayout === OPTION_LAYOUT.SINGLE_LINE ? null : (
             <Text light secondary weight="thin">
               {secondaryLabel}
             </Text>
           )
         }
-        title={optionLayout === 'single-line' ? this._renderTitle() : mainLabel}
+        title={
+          optionLayout === OPTION_LAYOUT.SINGLE_LINE
+            ? this._renderTitle()
+            : mainLabel
+        }
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
+        {...{ [DATA_ATTR.OPTION_LAYOUT]: optionLayout }}
         {...restProps}
       />
     );
@@ -70,23 +75,27 @@ export const addressInputOptionBuilder = ({
   size,
   ellipsis,
   dataHook,
+  optionLayout,
+  onClick,
 }) => ({
   id,
   disabled,
   overrideStyle: true,
-  displayLabel,
+  label: displayLabel,
   value: ({ selected, hovered, ...rest }) => (
     <AddressInputOption
+      optionLayout={optionLayout}
       dataHook={dataHook}
       className={className}
       prefix={prefix}
-      title={mainLabel}
-      subtitle={secondaryLabel}
+      mainLabel={mainLabel}
+      secondaryLabel={secondaryLabel}
       suffix={suffix}
       size={size}
       ellipsis={ellipsis}
       selected={selected}
       highlighted={hovered}
+      onClick={onClick}
       {...rest}
     />
   ),
@@ -111,7 +120,10 @@ AddressInputOption.propTypes = {
   secondaryLabel: PropTypes.string,
 
   /** Determines the options layout to display*/
-  optionLayout: PropTypes.oneOf(['single-line', 'double-line']),
+  optionLayout: PropTypes.oneOf([
+    OPTION_LAYOUT.SINGLE_LINE,
+    OPTION_LAYOUT.DOUBLE_LINE,
+  ]),
 
   /** Shows the default location icon next to the option, can receive alternative prefix node or a `false` value to hide it.*/
   prefix: PropTypes.node,
@@ -133,7 +145,7 @@ AddressInputOption.propTypes = {
 };
 
 AddressInputOption.defaultProps = {
-  optionLayout: 'single-line',
+  optionLayout: OPTION_LAYOUT.SINGLE_LINE,
   prefix: <LocationIcon />,
 };
 

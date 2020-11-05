@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { OPTION_LAYOUT } from './constants'
 
 export interface AddressInputOptionProps {
   dataHook?: string;
@@ -6,7 +7,7 @@ export interface AddressInputOptionProps {
   displayLabel?: string;
   mainLabel?: string;
   secondaryLabel?: string;
-  optionLayout?: string;
+  optionLayout?: AddressInputOptionLayout;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   selected?: boolean;
@@ -14,6 +15,8 @@ export interface AddressInputOptionProps {
   highlighted?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
+
+export type AddressInputOptionLayout = 'single-line' | 'double-line';
 
 export const addressInputOptionBuilder: (data: {
   id: string | number;
