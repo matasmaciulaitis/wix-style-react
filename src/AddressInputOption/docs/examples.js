@@ -7,14 +7,14 @@ export const optionLayout = `
     <Cell>
       <AddressInputOption
         mainLabel="main label"
-        secondaryLabel="secondary label in one line"
+        secondaryLabel="one line layout"
       />
     </Cell>
     <Cell>
       <AddressInputOption
         optionLayout="double-line"
         mainLabel="main label"
-        secondaryLabel="secondary label in a new line"
+        secondaryLabel="double line layout"
       />
     </Cell>
   </Layout>

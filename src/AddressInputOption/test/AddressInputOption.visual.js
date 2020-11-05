@@ -3,17 +3,27 @@ import { storiesOf } from '@storybook/react';
 import AddressInputOption from '../AddressInputOption';
 
 const commonProps = {
-  // use for repeated props across the tests (e.g. {buttonText: 'example'})
+  mainLabel: 'address input option',
 };
 
 const tests = [
   {
-    describe: 'sanity', // prop name (e.g. size)
+    describe: '',
     its: [
       {
-        it: 'default', // prop variation (e.g. small)
+        it: 'default',
+      },
+      {
+        it: 'single-line layout',
         props: {
-          // the simulation (e.g. {size: "small"})
+          secondaryLabel: 'secondary labal',
+        },
+      },
+      {
+        it: 'double-line layout',
+        props: {
+          secondaryLabel: 'secondary labal',
+          optionLayout: 'double-line',
         },
       },
     ],
