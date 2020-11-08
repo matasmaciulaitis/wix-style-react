@@ -33,3 +33,26 @@ export const Affixes = `
     />
   </Layout>;
 `;
+
+export const builderExample = `
+<Box height="120">
+  <DropdownLayout
+    visible
+    inContainer
+    options={[
+      addressInputOptionBuilder({
+        id: 0,
+        secondaryLabel: 'secondary label 1',
+        mainLabel: 'main label 1',
+      }),
+      addressInputOptionBuilder({
+        id: 1,
+        secondaryLabel: 'secondary label 2',
+        mainLabel: 'main label 2',
+        optionLayout: 'double-line'
+      }),
+      {id: 2, value: 'label 3' },
+    ]}
+  />
+</Box>
+`;

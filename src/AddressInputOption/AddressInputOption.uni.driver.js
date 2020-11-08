@@ -27,18 +27,5 @@ export const addressInputOptionDriverFactory = (base, body) => {
     /** Get suffix */
     getSuffix: async () =>
       await (await listItemSelectDriverFactory(base, body)).getSuffix(),
-
-    getOptionLayout: async () => {
-      const secondaryLabelElement = await base.$(
-        `[data-hook="${DATA_HOOKS.SECONDARY_LABEL}"]`,
-      );
-      if (await secondaryLabelElement.exists()) {
-        return (await (
-          await listItemSelectDriverFactory(base, body)
-        ).getSubtitle())
-          ? 'double-line'
-          : 'single-line';
-      }
-    },
   };
 };
