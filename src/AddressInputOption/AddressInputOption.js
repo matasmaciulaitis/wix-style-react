@@ -4,20 +4,24 @@ import PropTypes from 'prop-types';
 import ListItemSelect from '../ListItemSelect';
 import Text from '../Text';
 import Box from '../Box';
-import { st, classes } from './AddressInputOption.st.css';
-import { DATA_ATTR, OPTION_LAYOUT } from './constants';
+import { OPTION_LAYOUT, DATA_HOOKS } from './constants';
 import LocationIcon from 'wix-ui-icons-common/Location';
 
 /** This component is responsible of transforming a given prediction object and display-props into a valid address option according to the UX guidelines. */
 class AddressInputOption extends React.PureComponent {
   _renderTitle = () => {
-    const { mainLabel, secondaryLabel } = this.props;
+    const { mainLabel, secondaryLabel, optionLayout } = this.props;
     return (
       <Box display="flex" margin="auto">
-        <Text>{mainLabel}</Text>
-        {secondaryLabel && (
+        <Text dataHook={DATA_HOOKS.MAIN_LABEL}>{mainLabel}</Text>
+        {secondaryLabel && optionLayout === OPTION_LAYOUT.SINGLE_LINE && (
           <Box marginLeft="6px">
-            <Text light secondary weight="thin">
+            <Text
+              dataHook={DATA_HOOKS.SECONDARY_LABEL}
+              light
+              secondary
+              weight="thin"
+            >
               {secondaryLabel}
             </Text>
           </Box>
@@ -43,20 +47,21 @@ class AddressInputOption extends React.PureComponent {
         dataHook={dataHook}
         className={className}
         subtitle={
-          optionLayout === OPTION_LAYOUT.SINGLE_LINE ? null : (
-            <Text light secondary weight="thin">
+          optionLayout === OPTION_LAYOUT.DOUBLE_LINE &&
+          secondaryLabel && (
+            <Text
+              dataHook={DATA_HOOKS.SECONDARY_LABEL}
+              light
+              secondary
+              weight="thin"
+            >
               {secondaryLabel}
             </Text>
           )
         }
-        title={
-          optionLayout === OPTION_LAYOUT.SINGLE_LINE
-            ? this._renderTitle()
-            : mainLabel
-        }
+        title={this._renderTitle()}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
-        {...{ [DATA_ATTR.OPTION_LAYOUT]: optionLayout }}
         {...restProps}
       />
     );
@@ -120,10 +125,7 @@ AddressInputOption.propTypes = {
   secondaryLabel: PropTypes.string,
 
   /** Determines the options layout to display*/
-  optionLayout: PropTypes.oneOf([
-    OPTION_LAYOUT.SINGLE_LINE,
-    OPTION_LAYOUT.DOUBLE_LINE,
-  ]),
+  optionLayout: PropTypes.oneOf(['single-line', 'double-line']),
 
   /** Shows the default location icon next to the option, can receive alternative prefix node or a `false` value to hide it.*/
   prefix: PropTypes.node,
@@ -145,7 +147,7 @@ AddressInputOption.propTypes = {
 };
 
 AddressInputOption.defaultProps = {
-  optionLayout: OPTION_LAYOUT.SINGLE_LINE,
+  optionLayout: 'single-line',
   prefix: <LocationIcon />,
 };
 
