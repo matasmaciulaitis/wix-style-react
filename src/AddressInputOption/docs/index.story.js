@@ -54,7 +54,11 @@ export default {
               'This component is responsible of transforming a given prediction object and display-props into a valid address option according to the UX guidelines.',
           }),
 
-          importExample(),
+          importExample(`
+// Use directly
+import { AddressInputOption } from 'wix-style-react';
+// Or use a builder
+import { addressInputOptionBuilder } from 'wix-style-react';`),
 
           divider(),
 
@@ -77,6 +81,12 @@ export default {
             text:
               'Component has prefix and suffix areas. Default prefix is location icon.',
             source: examples.Affixes,
+          }),
+
+          example({
+            title: 'builder example',
+            text: 'AddressInputOption can be created using builders.',
+            source: examples.builderExample,
           }),
         ],
       }),

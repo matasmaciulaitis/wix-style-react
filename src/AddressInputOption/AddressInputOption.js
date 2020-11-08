@@ -12,15 +12,18 @@ class AddressInputOption extends React.PureComponent {
   _renderTitle = () => {
     const { mainLabel, secondaryLabel, optionLayout } = this.props;
     return (
-      <Box display="flex" margin="auto">
-        <Text dataHook={DATA_HOOKS.MAIN_LABEL}>{mainLabel}</Text>
+      <Box margin="auto">
+        <Text ellipsis dataHook={DATA_HOOKS.MAIN_LABEL}>
+          {mainLabel}
+        </Text>
         {secondaryLabel && optionLayout === OPTION_LAYOUT.SINGLE_LINE && (
-          <Box marginLeft="6px">
+          <Box marginLeft="6px" overflow="hidden">
             <Text
               dataHook={DATA_HOOKS.SECONDARY_LABEL}
               light
               secondary
               weight="thin"
+              ellipsis
             >
               {secondaryLabel}
             </Text>
@@ -54,6 +57,7 @@ class AddressInputOption extends React.PureComponent {
               light
               secondary
               weight="thin"
+              ellipsis
             >
               {secondaryLabel}
             </Text>
@@ -62,6 +66,7 @@ class AddressInputOption extends React.PureComponent {
         title={this._renderTitle()}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
+        ellipsis
         {...restProps}
       />
     );
