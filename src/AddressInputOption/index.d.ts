@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { OPTION_LAYOUT } from './constants'
 
 export interface AddressInputOptionProps {
   dataHook?: string;
