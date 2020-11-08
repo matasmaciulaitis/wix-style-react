@@ -1,5 +1,5 @@
 import { BaseUniDriver } from 'wix-ui-test-utils/unidriver';
-import { AddressInputOptionLayout } from './AddressInputOption.d.ts';
+import { AddressInputOptionLayout } from '.';
 
 export interface AddressInputOptionUniDriver extends BaseUniDriver {
   getPrefix(): Promise<BaseUniDriver>;
