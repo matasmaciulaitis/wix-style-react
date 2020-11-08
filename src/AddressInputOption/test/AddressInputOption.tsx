@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AddressInputOption from '..';
+import AddressInputOption, { addressInputOptionBuilder } from '..';
 import { addressInputOptionTestkitFactory } from '../../../testkit';
 import { addressInputOptionTestkitFactory as addressInputOptionEnzymeTestkitFactory } from '../../../testkit/enzyme';
 import { addressInputOptionTestkitFactory as addressInputOptionPuppeteerTestkitFactory } from '../../../testkit/puppeteer';
@@ -10,12 +10,35 @@ function addressInputOptionWithMandatoryProps() {
   return <AddressInputOption />;
 }
 
+function addressInputOptionBuilderWithAllProps() {
+  const { disabled, id, overrideOptionStyle, value } = addressInputOptionBuilder({
+    id: '1',
+    dataHook: 'data-hook',
+    className: 'cls',
+    disabled: true,
+    prefix: <div />,
+    secondaryLabel: 'secondary label',
+    suffix: <div />,
+    mainLabel: 'main label',
+    optionLayout: 'double-line',
+    displayLabel: 'display label',
+    onClick: ()=>{},
+  });
+}
+
 function addressInputOptionWithAllProps() {
   return (
     <AddressInputOption
-      dataHook="dataHook"
-      className="className"
-      buttonText="buttonText"
+      className="some-class"
+      dataHook="hi"
+      disabled
+      onClick={event => {}}
+      prefix={<div />}
+      secondaryLabel="secondary label"
+      suffix={<div />}
+      mainLabel="main label"
+      optionLayout='double-line'
+      displayLabel='display label'
     />
   );
 }
