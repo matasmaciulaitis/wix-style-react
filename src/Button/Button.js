@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
+import { ButtonNext } from 'wix-ui-core';
 import Ellipsis from '../common/Ellipsis';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 import { generateDataAttr } from '../utils/generateDataAttr';

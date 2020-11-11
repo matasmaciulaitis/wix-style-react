@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable';
+import { withFocusable } from 'wix-ui-core/hocs';
 import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 
 import { st, classes } from './SidebarSectionItem.st.css';

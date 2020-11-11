@@ -7,7 +7,7 @@ import { st, classes } from './SidebarBackButton.st.css';
 import { SidebarContext } from '../Sidebar/SidebarAPI';
 import { sidebarSkins } from '../Sidebar/constants';
 
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 /**  button with an animated back arrow */
 class SidebarBackButton extends React.PureComponent {

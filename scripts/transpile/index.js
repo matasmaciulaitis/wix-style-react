@@ -24,10 +24,6 @@ const tasks = [
     task: () => require('./tasks/patch-ssr-stylable'),
     description: '.st.css patch ssr',
   },
-  {
-    task: () => require('./tasks/replace-stylable-imports'),
-    description: '.st.css /dist/src => /dist/es/src',
-  },
 ];
 
 const STEPS = tasks.length;

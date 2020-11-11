@@ -1,6 +1,6 @@
 :import {
-  -st-from: 'wix-ui-core/dist/src/components/tooltip/Tooltip.st.css';
-  -st-default: Tooltip;
+  -st-from: 'wix-ui-core/index.st.css';
+  -st-named: Tooltip;
 }
 
 :import {
@@ -24,7 +24,7 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+  -st-from: "wix-ui-core/popover-named-parts/index.st.css";
   -st-named: arrow, withArrow, popoverContent;
 }
 

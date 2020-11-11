@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ToggleSwitch as CoreToggleSwitch } from 'wix-ui-core/dist/src/components/toggle-switch';
+import { ToggleSwitch as CoreToggleSwitch } from 'wix-ui-core';
 import ToggleOff from 'wix-ui-icons-common/system/ToggleOff';
 import ToggleOn from 'wix-ui-icons-common/system/ToggleOn';
 import ToggleOffSmall from 'wix-ui-icons-common/system/ToggleOffSmall';

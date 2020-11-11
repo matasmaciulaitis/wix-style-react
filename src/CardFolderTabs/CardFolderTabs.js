@@ -4,7 +4,7 @@ import Text from '../Text';
 import { dataHooks } from './constants';
 import Tab from './Tab';
 import { st, classes, vars } from './CardFolderTabs.st.css';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 const tabButton = ({
   className,

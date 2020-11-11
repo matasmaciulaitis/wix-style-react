@@ -1,5 +1,5 @@
 import React from 'react';
-import { CircularProgressBar as CoreCircularProgressBar } from 'wix-ui-core/dist/src/components/circular-progress-bar';
+import { CircularProgressBar as CoreCircularProgressBar } from 'wix-ui-core';
 import CircleLoaderCheck from 'wix-ui-icons-common/system/CircleLoaderCheck';
 import CircleLoaderCheckSmall from 'wix-ui-icons-common/system/CircleLoaderCheckSmall';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';

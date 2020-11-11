@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { st, classes } from './LinearProgressBar.st.css';
-import { LinearProgressBar as CoreLinearProgressBar } from 'wix-ui-core/dist/src/components/linear-progress-bar';
+import { LinearProgressBar as CoreLinearProgressBar } from 'wix-ui-core';
 import ToggleOn from 'wix-ui-icons-common/system/ToggleOn';
 import StatusIndicator from '../StatusIndicator';
 import { dataHooks } from './constants';

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Tooltip as CoreTooltip } from 'wix-ui-core/dist/src/components/tooltip';
+import { Tooltip as CoreTooltip } from 'wix-ui-core';
 import RawText from '../Text/RawText';
 import { st, classes } from './Tooltip.st.css';
 import { dataHooks, TIMEOUT } from './constants';

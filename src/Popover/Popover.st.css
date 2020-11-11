@@ -4,8 +4,12 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
-  -st-default: Popover;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover;
+}
+
+:import {
+  -st-from: "wix-ui-core/popover-named-parts/index.st.css";
   -st-named: arrow, withArrow;
 }
 

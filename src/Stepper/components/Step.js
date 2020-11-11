@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 
 import Text from '../../Text';
@@ -68,7 +68,6 @@ class Step extends React.PureComponent {
       number,
       text,
       className,
-      ...otherProps
     } = this.props;
     const { isHovered, transitionSequence } = this.state;
     const isClickable = this._isClickable();

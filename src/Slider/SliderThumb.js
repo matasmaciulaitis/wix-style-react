@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { st, classes } from './SliderThumb.st.css';
 import { dataHooks } from './constants';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 class SliderThumb extends PureComponent {
   render() {

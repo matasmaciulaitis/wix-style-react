@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Pagination as CorePagination } from 'wix-ui-core/dist/src/components/pagination';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { Pagination as CorePagination } from 'wix-ui-core';
+import { withFocusable } from 'wix-ui-core/hocs';
 import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
 import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 

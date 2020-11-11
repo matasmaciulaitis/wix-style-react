@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable';
+import { withFocusable } from 'wix-ui-core/hocs';
 import { generateDataAttr } from '../utils/generateDataAttr';
 import { SKIN, TYPE, SIZE } from './constants';
 import { st, classes } from './Badge.st.css';

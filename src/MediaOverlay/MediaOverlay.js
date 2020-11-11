@@ -1,7 +1,7 @@
 import React from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import PropTypes from 'prop-types';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 import Content from './Content';
 import DragHandle from './DragHandle';

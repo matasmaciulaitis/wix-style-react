@@ -6,7 +6,7 @@ import LinkedInIcon from 'wix-ui-icons-common/system/SocialButtonLinkedIn';
 import PinterestIcon from 'wix-ui-icons-common/system/SocialButtonPinterest';
 import YoutubeIcon from 'wix-ui-icons-common/system/SocialButtonYoutube';
 import TwitterIcon from 'wix-ui-icons-common/system/SocialButtonTwitter';
-import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
+import { ButtonNext } from 'wix-ui-core';
 
 import Text from '../Text';
 import { st, classes } from './SocialButton.st.css';

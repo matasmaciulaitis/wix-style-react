@@ -4,7 +4,7 @@ import CheckboxChecked from 'wix-ui-icons-common/system/CheckboxChecked';
 import CheckboxIndeterminate from 'wix-ui-icons-common/system/CheckboxIndeterminate';
 import { st, classes } from './Checkbox.st.css';
 import Text from '../Text';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 import { generateID } from '../utils/generateId';
 import Tooltip from '../Tooltip';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 import { st, classes } from '../RadioGroup.st.css';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 import Text from '../../Text';
 import { dataHooks } from './constants';
 

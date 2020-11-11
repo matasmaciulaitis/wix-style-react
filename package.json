@@ -310,9 +310,7 @@
         "error",
         {
           "patterns": [
-            "wix-ui-core/*",
-            "!wix-ui-core/dist",
-            "!wix-ui-core/drivers"
+            "wix-ui-core/dist/src/components"
           ],
           "paths": [
             {

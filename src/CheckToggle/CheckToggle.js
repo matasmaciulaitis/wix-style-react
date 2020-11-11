@@ -4,7 +4,7 @@ import { st, classes } from './CheckToggle.st.css';
 import { dataHooks } from './constants';
 import Tooltip from '../Tooltip';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 import ConfirmSmall from 'wix-ui-icons-common/ConfirmSmall';
 import Confirm from 'wix-ui-icons-common/Confirm';
 

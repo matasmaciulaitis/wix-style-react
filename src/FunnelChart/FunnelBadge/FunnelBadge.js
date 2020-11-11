@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Tooltip from '../../Tooltip';
 import Heading from '../../Heading';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 
 import { st, classes } from './FunnelBadge.st.css';
 import { dataHooks } from '../constants';

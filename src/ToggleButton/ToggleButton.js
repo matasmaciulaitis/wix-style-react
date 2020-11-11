@@ -1,7 +1,7 @@
 import React, { cloneElement, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { ButtonNext } from 'wix-ui-core';
+import { withFocusable } from 'wix-ui-core/hocs';
 import { st, classes } from './ToggleButton.st.css';
 import Tooltip from '../Tooltip';
 import Text from '../Text';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
+import { ButtonNext } from 'wix-ui-core';
 import PropTypes from 'prop-types';
 import Proportion from '../Proportion';
 

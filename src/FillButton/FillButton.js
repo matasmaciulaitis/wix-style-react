@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 import IconAdd from 'wix-ui-icons-common/Add';
 import IconAddSmall from 'wix-ui-icons-common/AddSmall';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';

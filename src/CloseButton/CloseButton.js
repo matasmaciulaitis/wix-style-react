@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 import { generateDataAttr } from '../utils/generateDataAttr';
-import { ButtonNext } from 'wix-ui-core/dist/src/components/button-next';
+import { ButtonNext } from 'wix-ui-core';
 import Close from 'wix-ui-icons-common/system/Close';
 import CloseLarge from 'wix-ui-icons-common/system/CloseLarge';
 import { SIZES } from './constants';

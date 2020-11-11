@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import { withFocusable } from 'wix-ui-core/hocs';
 import SortByArrowUp from 'wix-ui-icons-common/system/SortByArrowUp';
 import SortByArrowDown from 'wix-ui-icons-common/system/SortByArrowDown';
 import InfoCircleSmall from 'wix-ui-icons-common/InfoCircleSmall';
