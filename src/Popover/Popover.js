@@ -46,7 +46,7 @@ class Popover extends React.Component {
   static Content = ContentElement;
 
   static propTypes = {
-    ...CorePopover.propTypes,
+    // ...CorePopover.propTypes, //TODO - this needs to be replaced with static propTypes not taken from core or fix AutoDocs
     dataHook: PropTypes.string,
 
     animate: PropTypes.bool,
