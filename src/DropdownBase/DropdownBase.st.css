@@ -1,10 +1,6 @@
 :import {
-  -st-from: "../Popover/Popover.st.css";
+  -st-from: "wix-ui-core/popover-proxy/index.st.css";
   -st-default: Popover;
-}
-
-:import {
-  -st-from: "wix-ui-core/popover-named-parts/index.st.css";
   -st-named: popoverContent;
 }
 

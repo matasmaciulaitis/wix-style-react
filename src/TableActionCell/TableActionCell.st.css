@@ -4,8 +4,8 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/index.st.css";
-  -st-named: Popover;
+  -st-from: "wix-ui-core/popover-proxy/index.st.css";
+  -st-default: Popover;
 }
 
 .root {
