@@ -106,7 +106,7 @@
 .root:size(small)::popover[data-placement*="right"] .arrow {
     display: none;
 }
-.root::popover[data-placement*="right"] .withArrow {
+.root::popover[data-placement*="right"].withArrow {
   padding-left: calc(value(contentArrowSize) - 2px);
 }
 
@@ -124,7 +124,7 @@
   display: none;
 }
 
-.root::popover[data-placement*="left"] .withArrow {
+.root::popover[data-placement*="left"].withArrow {
   padding-right: calc(value(contentArrowSize) - 2px);
 }
 
@@ -142,7 +142,7 @@
   display: none;
 }
 
-.root::popover[data-placement*="top"] .withArrow {
+.root::popover[data-placement*="top"].withArrow {
   padding-bottom: calc(value(contentArrowSize) - 2px);
 }
 
@@ -160,7 +160,7 @@
   display: none;
 }
 
-.root::popover[data-placement*="bottom"] .withArrow {
+.root::popover[data-placement*="bottom"].withArrow {
   padding-top: calc(value(contentArrowSize) - 2px);
 }
 

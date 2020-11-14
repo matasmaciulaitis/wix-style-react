@@ -6,7 +6,7 @@
 :import {
   -st-from: "wix-ui-core/popover-proxy/index.st.css";
   -st-default: Popover;
-  -st-named: arrow, withArrow;
+  -st-named: arrow, .withArrow ;
 }
 
 :import {
@@ -72,7 +72,7 @@
 /*
  * Right arrow
  */
-.root::popover[data-placement*="right"] withArrow{
+.root::popover[data-placement*="right"] .withArrow {
   padding-left: calc(value(contentArrowSize) - 2px);
 }
 
@@ -87,7 +87,7 @@
 /*
  * Left arrow
  */
-.root::popover[data-placement*="left"] withArrow{
+.root::popover[data-placement*="left"] .withArrow {
   padding-right: calc(value(contentArrowSize) - 2px);
 }
 
@@ -102,7 +102,7 @@
 /*
  * Top arrow
  */
-.root::popover[data-placement*="top"] withArrow{
+.root::popover[data-placement*="top"] .withArrow {
   padding-bottom: calc(value(contentArrowSize) - 2px);
 }
 
@@ -117,7 +117,7 @@
 /*
  * Bottom arrow
  */
-.root::popover[data-placement*="bottom"] withArrow{
+.root::popover[data-placement*="bottom"] .withArrow {
   padding-top: calc(value(contentArrowSize) - 2px);
 }
 
