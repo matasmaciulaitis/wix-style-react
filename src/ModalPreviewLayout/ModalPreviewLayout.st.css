@@ -9,8 +9,8 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/popover-proxy/index.st.css";
-  -st-named: arrow;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover_arrow;
 }
 
 :vars {
@@ -103,10 +103,10 @@
   background: value(D80);
 }
 
-.modalTooltip::popover .arrow {
+.modalTooltip::popover .Popover_arrow {
   border-color: transparent value(D80) value(D80) transparent;
 }
 
-.modalTooltip::popover[data-placement] .arrow {
+.modalTooltip::popover[data-placement] .Popover_arrow {
   border-color: transparent value(D80) value(D80) transparent;
 }

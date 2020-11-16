@@ -1,7 +1,6 @@
 :import {
-  -st-from: "wix-ui-core/popover-proxy/index.st.css";
-  -st-default: Popover;
-  -st-named: popoverContent;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover, Popover_popoverContent;
 }
 
 .root {
@@ -17,13 +16,13 @@
 }
 
 /* Reset width when the user define its own */
-.root:withWidth .popoverContent {
+.root:withWidth .Popover_popoverContent {
   min-width: inherit;
   width: inherit;
 }
 
 /* Add padding when an arrow is used */
-.root:withArrow::popover[data-placement*="top"] .popoverContent,
-.root:withArrow::popover[data-placement*="bottom"] .popoverContent {
+.root:withArrow::popover[data-placement*="top"] .Popover_popoverContent,
+.root:withArrow::popover[data-placement*="bottom"] .Popover_popoverContent {
   padding: 10px 0;
 }

@@ -9,8 +9,8 @@
 }
 
 :import {
-  -st-from: "wix-ui-core/popover-proxy/index.st.css";
-  -st-named: popoverContent;
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover_popoverContent;
 }
 
 :import {
@@ -22,10 +22,10 @@
   -st-extends: DropdownBase;
 }
 
-.root:withArrow::popover[data-placement*="top"] .popoverContent,
-.root:withArrow::popover[data-placement*="left"] .popoverContent,
-.root:withArrow::popover[data-placement*="right"] .popoverContent,
-.root:withArrow::popover[data-placement*="bottom"] .popoverContent {
+.root:withArrow::popover[data-placement*="top"] .Popover_popoverContent,
+.root:withArrow::popover[data-placement*="left"] .Popover_popoverContent,
+.root:withArrow::popover[data-placement*="right"] .Popover_popoverContent,
+.root:withArrow::popover[data-placement*="bottom"] .Popover_popoverContent {
   /* very important rule to make sure that width is defined by the text.
    * not supported in Edge yet.
    */
