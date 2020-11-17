@@ -20,6 +20,7 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
 9. Search `#wix-style-react` slack channel for similar problems.
 10. Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
 11. Create a GitHub issue choose the right template.
+12. Have you managed to resolved the issue? A contribution to our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article is welcome! Check out our [contribution guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) for more information.
 
 
 
