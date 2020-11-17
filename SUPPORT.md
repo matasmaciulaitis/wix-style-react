@@ -27,7 +27,7 @@ You can search through existing issues and pull requests to see if someone has r
 If it does not exist, please [open a github issue](https://github.com/wix/wix-style-react/issues/new/choose)
 
 #### New issue guidelines
-- Please begin the title with '<ComponentName/>' where appropriate, and use a succinct description that helps others find similar issues.
+- Please begin the title with `<ComponentName/>` where appropriate, and use a succinct description that helps others find similar issues.
   - `<FilePicker/>`- `<some feature>` doesn't work ❌
   - `<Table/>` - Add support for `<some feature>` ✅
 - Please don't group multiple topics in one issue – each issue should have its own github issue.
@@ -48,14 +48,16 @@ Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/int
 
 The current status of each Wix Style React version is as follows:
 
-- [Wix Style React v9](https://www.wix-style-react.com)  ✅ In active development.
-- [Wix Style React v8](https://wix-style-react-v8.now.sh)  ❌ Inactive.
-- [Wix Style React v7](https://wix-style-react-v7.now.sh)  ❌ Inactive.
-- [Wix Style React v6](https://wix-wix-style-react-v6.surge.sh)  ❌ Inactive.
+| Version        | Active / Inactive development |
+| ------------- |:-------------:|
+| [Wix Style React v9](https://www.wix-style-react.com)| ✅ Active |
+| [Wix Style React v8](https://wix-style-react-v8.now.sh)| ❌ Inactive |
+| [Wix Style React v7](https://wix-style-react-v7.now.sh)| ❌ Inactive |
+| [Wix Style React v6](https://wix-wix-style-react-v6.surge.sh)| ❌ Inactive |
 
 
-###  Upgrade from older versions
-**Read and follow our migration guides:**
+#####  Upgrade from older versions
+Read and follow our migration guides:
 
 - From 7.x to 8.x/9.x read [V8/V9 migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md)
 - From 6.x to 7.x read [V7 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v6-v7.md)
