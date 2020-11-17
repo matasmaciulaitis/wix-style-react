@@ -28,8 +28,9 @@ If it does not exist, please [open a github issue](https://github.com/wix/wix-st
 
 #### New issue guidelines
 - Please begin the title with `<ComponentName/>` where appropriate, and use a succinct description that helps others find similar issues.
-  - `<FilePicker/>`- `<some feature>` doesn't work ❌
-  - `<Table/>` - Add support for `<some feature>` ✅
+  - `<FilePicker/>`- `<some feature>` doesn't work ❌. [Example](https://github.com/wix/wix-style-react/issues/6202)
+  - `<Table/>` - Add support for `<some feature>` ✅ [Example](https://github.com/wix/wix-style-react/issues/5668)
+
 - Please don't group multiple topics in one issue – each issue should have its own github issue.
 - Please add a link with a recreation of the issue within our [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground):
     1. Edit the code snippet so that it demonstrate the issue.
