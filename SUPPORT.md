@@ -27,8 +27,6 @@ You can search through existing issues and pull requests to see if someone has r
 If it does not exist, please [open a github issue](https://github.com/wix/wix-style-react/issues/new/choose)
 
 #### New issue guidelines
-
-- Please follow the issue template.
 - Please begin the title with '<ComponentName/>' where appropriate, and use a succinct description that helps others find similar issues.
   - `<FilePicker/>`- `<some feature>` doesn't work ❌
   - `<Table/>` - Add support for `<some feature>` ✅
