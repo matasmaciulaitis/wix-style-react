@@ -18,7 +18,7 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
    We suggest placing `debugger` inside the story of your rebellious component. For example [Table story](https://github.com/wix/wix-style-react/blob/1b3e00fb624929927b3921905f8db8bdb011c427/src/Table/docs/index.story.js).
 8. Something is broken? Have you updated your Wix Style React version? Check the [change log](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) for breaking changes and the [migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md) for migrating to the latest Wix Style React version. Also, make sure that you don't use a lock file.
 9. Search `#wix-style-react` slack channel for similar problems.
-10. Consult with your Guild Masters (Organization WSR Expert / Heavy Users).
+10. Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
 11. Create a GitHub issue choose the right template.
 
 
