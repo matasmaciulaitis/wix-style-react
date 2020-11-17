@@ -16,19 +16,11 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
    It is very easy to run the storybook on your local machine.
    Instructions can be found [here](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md).
    We suggest placing `debugger` inside the story of your rebellious component. For example [Table story](https://github.com/wix/wix-style-react/blob/1b3e00fb624929927b3921905f8db8bdb011c427/src/Table/docs/index.story.js).
-8. Something is broken? Did you updated your WSR version? check changelog.md for breaking changes & migration.md - check if you use a lock file… (consult with Falcon CI team)
-9. create a GitHub issue choose the right template
-10. Search #wix-style-react for similar problems
-11. Consult with your Guild Masters (Organization WSR Expert / Heavy Users)
+8. Something is broken? Have you updated your Wix Style React version? Check the [change log](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) for breaking changes and the [migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md) for migrating to the latest Wix Style React version. Also, make sure that you don't use a lock file.
+9. Search `#wix-style-react` slack channel for similar problems.
+10. Consult with your Guild Masters (Organization WSR Expert / Heavy Users).
+11. Create a GitHub issue choose the right template.
 
-
-
-
-Did you tried to isolate the your code changes? we recommend using code sandbox (we should create a code sandbox ready example + a link on each component like in MUI)
-
-
-
-Contribute back to FAQ via PR - see contribution.md see what GH has to say about it
 
 
 ### GitHub ![github-mark](./docs/assets/GitHub-Mark-32px.png)
@@ -77,6 +69,3 @@ Read and follow our migration guides:
 - From 6.x to 7.x read [V7 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v6-v7.md)
 - From 5.x to 6.x read [V6 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v5-v6.md)
 - From 4.x to 5.x read [V5 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v4-v5.md)
-
-
-### Contribution
