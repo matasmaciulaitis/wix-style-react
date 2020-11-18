@@ -27,7 +27,7 @@ Here are few more steps which can help with troubleshooting an issue we struggle
 - Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
 - Create a new yoshi project and try to recreate the issue in a clean environment. This can be helpful in order to check whether it's an issue with the component, driver or the project we currently work on.
 - Check with your UX designer whether the desired spec was reviewed by Wix Style React UX team.
-- Consult with `#wix-style-ux` for UX related questions.
+- Consult with `#wix-style-ux` slack channel for UX related questions.
 
 ### GitHub ![github-mark](./docs/assets/GitHub-Mark-32px.png)
 
