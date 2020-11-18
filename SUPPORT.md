@@ -62,10 +62,10 @@ The current status of each Wix Style React version is as follows:
 
 | Version        | Active / Inactive development |
 | ------------- |:-------------:|
-| [Wix Style React v9](https://www.wix-style-react.com)| ✅ Active |
-| [Wix Style React v8](https://wix-style-react-v8.now.sh)| ❌ Inactive |
-| [Wix Style React v7](https://wix-style-react-v7.now.sh)| ❌ Inactive |
-| [Wix Style React v6](https://wix-wix-style-react-v6.surge.sh)| ❌ Inactive |
+| [Version 9](https://www.wix-style-react.com)| ✅ |
+| [Version 8](https://wix-style-react-v8.now.sh)| ❌ |
+| [Version 7](https://wix-style-react-v7.now.sh)| ❌ |
+| [Version 6](https://wix-wix-style-react-v6.surge.sh)| ❌ |
 
 
 #####  Upgrade from older versions
