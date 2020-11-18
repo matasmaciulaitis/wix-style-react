@@ -7,7 +7,7 @@ import Readme from '../../README.md';
 import Migration from '../../MIGRATION.md';
 import Contributing from '../../CONTRIBUTING.md';
 import TestingReadme from '../../docs/usage/testing.md';
-import Support from '../../SUPPORT.md';
+import SupportReadme from '../../SUPPORT.md';
 import UsageWithCreateStylableAppReadme from '../../docs/usage/usage-with-create-stylable-app.md';
 
 import ComponentsCheatsheet from './Cheatsheet/ComponentsCheatsheet';
@@ -45,6 +45,6 @@ storiesOf(Category.TESTING, module).add('Testing', () => (
 
 storiesOf(Category.SUPPORT, module).add('Support', () => (
   <div style={{ margin: '0 48px', width: '100%', maxWidth: 1161 }}>
-    <Markdown source={Support} />
+    <Markdown source={SupportReadme} />
   </div>
 ));
