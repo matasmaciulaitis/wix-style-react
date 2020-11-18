@@ -18,18 +18,27 @@ class AddressInputOption extends React.PureComponent {
         </Text>
         {secondaryLabel && optionLayout === OPTION_LAYOUT.SINGLE_LINE && (
           <Box marginLeft="6px" overflow="hidden">
-            <Text
-              dataHook={DATA_HOOKS.SECONDARY_LABEL}
-              light
-              secondary
-              weight="thin"
-              ellipsis
-            >
-              {secondaryLabel}
-            </Text>
+            {this._renderSecondaryLabel()}
           </Box>
         )}
       </Box>
+    );
+  };
+
+  _renderSecondaryLabel = () => {
+    const { secondaryLabel } = this.props;
+    return (
+      secondaryLabel && (
+        <Text
+          dataHook={DATA_HOOKS.SECONDARY_LABEL}
+          light
+          secondary
+          weight="thin"
+          ellipsis
+        >
+          {secondaryLabel}
+        </Text>
+      )
     );
   };
 
@@ -51,17 +60,7 @@ class AddressInputOption extends React.PureComponent {
         className={className}
         subtitle={
           optionLayout === OPTION_LAYOUT.DOUBLE_LINE &&
-          secondaryLabel && (
-            <Text
-              dataHook={DATA_HOOKS.SECONDARY_LABEL}
-              light
-              secondary
-              weight="thin"
-              ellipsis
-            >
-              {secondaryLabel}
-            </Text>
-          )
+          this._renderSecondaryLabel()
         }
         title={this._renderTitle()}
         suffix={<Box>{suffix}</Box>}
@@ -90,7 +89,7 @@ export const addressInputOptionBuilder = ({
 }) => ({
   id,
   disabled,
-  overrideStyle: true,
+  overrideOptionStyle: true,
   label: displayLabel,
   value: ({ selected, hovered, ...rest }) => (
     <AddressInputOption
