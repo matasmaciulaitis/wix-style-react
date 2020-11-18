@@ -4,7 +4,7 @@
 
 These are the recommended steps to troubleshoot issues when we struggle with a component or a testkit usage:
 1. Check whether there is an example that fits your scenario in [Wix Style React Storybook](https://www.wix-style-react.com).
-2. Check our [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) which includes a view of most of the library components inventory and links to the relevant documentation pages.
+2. Check out our [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) which includes a view of most of the library components inventory and links to the relevant documentation pages.
 3. Use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities.
 4. You may find an answer to your question in our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article.
 5. Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used and tested. Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
