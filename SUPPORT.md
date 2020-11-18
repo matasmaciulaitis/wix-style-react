@@ -17,7 +17,7 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
    Instructions can be found [here](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md).
    We suggest placing `debugger` inside the story of your rebellious component. For example [Table story](https://github.com/wix/wix-style-react/blob/1b3e00fb624929927b3921905f8db8bdb011c427/src/Table/docs/index.story.js).
 8. Something is broken? Have you updated your Wix Style React version? Check the [change log](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) for breaking changes and the [migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md) for migrating to the latest Wix Style React version. Also, make sure that you don't use a lock file.
-9. Create [a GitHub issue](####new-issue-guidelines).
+9. Create [a GitHub issue](####New-issue-guidelines).
 10. Have you managed to resolved the issue? A contribution to our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article is welcome! Check out our [contribution guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) for more information.
 
 
@@ -39,8 +39,8 @@ If it does not exist, please [open a github issue](https://github.com/wix/wix-st
 
 #### New issue guidelines
 - Please begin the title with `<ComponentName/>` where appropriate, and use a succinct description that helps others find similar issues.
-  - `<FilePicker/>`- `<some feature>` doesn't work ❌. [Example](https://github.com/wix/wix-style-react/issues/6202)
-  - `<Table/>` - Add support for `<some feature>` ✅ [Example](https://github.com/wix/wix-style-react/issues/5668)
+  - `<FilePicker/>`- `<some feature>` doesn't work ❌ [(Example)](https://github.com/wix/wix-style-react/issues/6202)
+  - `<Table/>` - Add support for `<some feature>` ✅ [(Example)](https://github.com/wix/wix-style-react/issues/5668)
 
 - Please don't group multiple topics in one issue – each issue should have its own github issue.
 - Please add a link with a recreation of the issue within our [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground):
