@@ -7,7 +7,7 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
 2. Check our [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) which includes a view of most of the library components inventory and links to the relevant documentation pages.
 3. Use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities.
 4. You may find an answer to your question in our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article.
-5. Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used / tested. Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
+5. Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used and tested. Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
 `src/ComponentName/test/...`.
 6. Strip down abilities until you get to the bottom of it. Saying we have for example the `<Table/>` component which does not work as we expect it to. All the above steps did not help us. The thing we would do is one of the two:
     - Take the most basic and clean table example and on top of it add your own feature in small parts.
@@ -17,11 +17,15 @@ These are the recommended steps to troubleshoot issues when we struggle with a c
    Instructions can be found [here](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md).
    We suggest placing `debugger` inside the story of your rebellious component. For example [Table story](https://github.com/wix/wix-style-react/blob/1b3e00fb624929927b3921905f8db8bdb011c427/src/Table/docs/index.story.js).
 8. Something is broken? Have you updated your Wix Style React version? Check the [change log](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) for breaking changes and the [migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md) for migrating to the latest Wix Style React version. Also, make sure that you don't use a lock file.
-9. Search `#wix-style-react` slack channel for similar problems.
-10. Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
-11. Create [a GitHub issue](####new-issue-guidelines).
-12. Have you managed to resolved the issue? A contribution to our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article is welcome! Check out our [contribution guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) for more information.
+9. Create [a GitHub issue](####new-issue-guidelines).
+10. Have you managed to resolved the issue? A contribution to our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article is welcome! Check out our [contribution guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) for more information.
 
+
+##### Wix Employees
+Here are few more steps which can help with troubleshooting an issue we struggle with:
+- Search `#wix-style-react` slack channel for similar problems.
+- Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
+- Create a new yoshi project and try to recreate the issue in a clean environment. This can be helpful in order to check whether it's an issue with the component, driver or the project we currently work on.
 
 
 ### GitHub ![github-mark](./docs/assets/GitHub-Mark-32px.png)
