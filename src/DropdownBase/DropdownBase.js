@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { st, classes } from './DropdownBase.st.css';
-
 import Popover, { placements } from '../Popover';
 import DropdownLayout from '../DropdownLayout';
 

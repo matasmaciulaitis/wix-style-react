@@ -11,6 +11,11 @@ export interface ThemeInterface {
     BaseModalLayout?: {
       HeloButton?: React.FC,
     },
+    CircularProgressBar?: {
+      small?: React.FC,
+      medium?: React.FC,
+      large?: React.FC,
+    },
     AddItemButton: {
       tiny: React.FC,
       small: React.FC,

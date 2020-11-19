@@ -132,10 +132,6 @@ export default class DatePicker extends React.PureComponent {
     // keyHandler(this.state.value);
   };
 
-  onClickOutside() {
-    this.closeCalendar();
-  }
-
   _renderInputWithRefForward = () =>
     React.forwardRef((props, ref) => this._renderInput({ ...props, ref }));
 

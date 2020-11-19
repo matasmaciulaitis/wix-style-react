@@ -16,6 +16,7 @@ export interface TimeInputProps {
   status?: InputStatus;
   hideStatusSuffix?: boolean;
   statusMessage?: React.ReactNode;
+  showSeconds?: boolean;
 }
 
 export default class TimeInput extends React.PureComponent<TimeInputProps> {}

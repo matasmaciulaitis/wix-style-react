@@ -1,5 +1,5 @@
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.protractor.driver';
-import popoverDriverFactory from '../Popover/Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover/Popover.uni.driver';
 import {
   isFocused,
   protractorUniTestkitFactoryCreator,

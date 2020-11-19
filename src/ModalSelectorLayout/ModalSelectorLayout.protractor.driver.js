@@ -5,7 +5,7 @@ import {
 import loaderDriverFactory from '../Loader/Loader.uni.driver';
 import textDriverFactory from '../Text/Text.protractor.driver';
 import searchDriverFactory from '../Search/Search.protractor.driver';
-import { dataHooks } from './ModalSelectorLayout.helpers';
+import { dataHooks } from '../SelectorList/SelectorList.helpers';
 import { buttonDriverFactory } from '../Button/Button.uni.driver';
 
 const loaderTestkitFactory = protractorUniTestkitFactoryCreator(

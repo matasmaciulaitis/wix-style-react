@@ -38,8 +38,6 @@ const options = {
   storyName: 'sanity',
 };
 
-storyOfAllPermutations(Story, ListItemAction, options);
-
 const EllipsisStory = props => (
   <div style={{ width: '250px' }}>
     <ListItemAction
@@ -69,8 +67,6 @@ const ellipsisOptions = {
   storyName: 'ellipsis',
 };
 
-storyOfAllPermutations(EllipsisStory, ListItemAction, ellipsisOptions);
-
 storiesOf('ListItemAction', module).add('builder', () => (
   <DropdownLayout
     visible
@@ -91,3 +87,19 @@ storiesOf('ListItemAction', module).add('builder', () => (
     ]}
   />
 ));
+
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  options.storyName = `${themeName ? `${themeName}|` : ''}${options.storyName}`;
+  options.testWithTheme = testWithTheme;
+  storyOfAllPermutations(Story, ListItemAction, options);
+
+  ellipsisOptions.storyName = `${themeName ? `${themeName}|` : ''}${
+    ellipsisOptions.storyName
+  }`;
+  ellipsisOptions.testWithTheme = testWithTheme;
+  storyOfAllPermutations(EllipsisStory, ListItemAction, ellipsisOptions);
+};
+
+runTests();

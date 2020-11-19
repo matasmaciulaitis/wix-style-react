@@ -20,9 +20,9 @@ export interface CustomModalLayoutProps extends BaseModalLayoutProps {
   height?: React.CSSProperties['height'];
   maxHeight?: React.CSSProperties['maxHeight'];
   removeContentPadding?: boolean;
-  showHeaderDivider?: boolean;
-  showFooterDivider?: boolean;
-  contentHideDividers?: boolean;
+  showHeaderDivider?: 'auto' | boolean;
+  showFooterDivider?: 'auto' | boolean;
+  hideContentDividers?: boolean;
 }
 
 declare const CustomModalLayout: React.FC<CustomModalLayoutProps>;

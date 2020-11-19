@@ -14,6 +14,7 @@ export interface TimeInputUniDriver extends BaseUniDriver {
   isRtl: () => Promise<boolean>;
   setValue: (text: string) => Promise<void>;
   blur: () => Promise<void>;
+  isShowSeconds: () => Promise<boolean>;
 
   // Status
   hasStatus: (status: StatusIndications) => Promise<boolean>;

@@ -5,7 +5,6 @@ import BadgeSelect from '..';
 import { badgeSelectPrivateUniDriverFactory } from '../BadgeSelect.private.uni.driver';
 import Box from '../../Box';
 import { snap, story, visualize } from 'storybook-snapper';
-import { storySettings } from '../../Carousel/docs/storySettings';
 
 const interactiveDataHook = 'interactive-badgeselect';
 

@@ -48,7 +48,7 @@ class SidebarBackButton extends React.PureComponent {
           return (
             <button
               className={st(
-                classes.BackButton,
+                classes.root,
                 {
                   lightSkin: skin === sidebarSkins.light,
                 },

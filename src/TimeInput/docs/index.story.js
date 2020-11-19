@@ -51,6 +51,7 @@ export default {
     disabled: false,
     disableAmPm: false,
     width: 'auto',
+    showSeconds: true,
   },
 
   exampleProps: {
@@ -111,6 +112,11 @@ export default {
             title: '24h mode',
             text: 'TimeInput supports 24h mode',
             source: examples.disableAmPm,
+          }),
+          example({
+            title: 'With seconds',
+            text: 'TimeInput supports showing seconds',
+            source: examples.showSeconds,
           }),
         ],
       }),

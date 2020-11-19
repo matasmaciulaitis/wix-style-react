@@ -1,32 +1,25 @@
 import React from 'react';
 import {
-  tab,
-  api,
-  title,
-  code as baseCode,
-  importExample,
-  playground,
-  testkit,
   header,
   tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  playground,
+  api,
+  testkit,
 } from 'wix-storybook-utils/Sections';
 
-import Carousel from '..';
-import { storySettings } from './storySettings';
-import {
-  InfoChild,
-  buttonSkinExample,
-  autoplayExample,
-  withoutDotsExample,
-  variableWidthExample,
-} from './examples';
+import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
+import Carousel from '..';
+import { InfoChild } from './examples';
 
-const code = config =>
-  baseCode({
-    components: allComponents,
-    ...config,
-  });
+const example = config => baseExample({ components: allComponents, ...config });
 
 const imagesExamples = [
   {
@@ -58,6 +51,7 @@ const childrenExamples = [
     label: 'Three nodes',
   },
 ];
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
@@ -69,6 +63,8 @@ export default {
     images: imagesExamples[0].value,
     infinite: true,
     autoplay: false,
+    controlsPosition: 'sides',
+    controlsSize: 'medium',
   }),
 
   exampleProps: {
@@ -80,41 +76,61 @@ export default {
 
   sections: [
     header({
-      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
-      sourceUrl:
-        'https://github.com/wix/wix-style-react/tree/master/src/Carousel/',
+      sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${Carousel.displayName}/`,
     }),
 
     tabs([
       tab({
         title: 'Description',
         sections: [
-          importExample("import { Carousel } from 'wix-style-react';"),
+          description({
+            title: 'Description',
+            text:
+              'The carousel component creates a slideshow for cycling through a series of content.',
+          }),
+
+          importExample(),
+
+          divider(),
 
           title('Examples'),
 
-          code({ title: 'Button Skin', source: buttonSkinExample }),
-          code({ title: 'Autoplay', source: autoplayExample }),
-          code({ title: 'Without Dots', source: withoutDotsExample }),
-          code({ title: 'Variable Width', source: variableWidthExample }),
+          example({
+            title: 'Autoplay',
+            text:
+              'The carousel is still by default, it can be set to Autoplay in order to change to the following slide each 3 seconds.',
+            source: examples.autoplayExample,
+          }),
+
+          example({
+            title: 'Controls Skin, Size and Position',
+            text: `
+Control arrows come in two skins: \`standard\` (default), \`inverted\` and \`light\`.\n
+And two sized: \`tiny\`, \`small\` and \`medium\` (default).\n
+They can be placed in one of these positions: \`sides\` (default), \`overlay\`, \`bottom\` or \`none\` to remove them completely.
+            `,
+            source: examples.controlsPositionExample,
+          }),
+
+          example({
+            title: 'Without Dots',
+            text: 'Pagination at the bottom can be removed.',
+            source: examples.withoutDotsExample,
+          }),
+
+          example({
+            title: 'Variable Width',
+            text:
+              'Set variableWidth to disable automatic slide width calculation. Use this prop when you want the carousel to show more than a single item simultaneously.',
+            source: examples.variableWidthExample,
+          }),
         ],
       }),
 
       ...[
-        {
-          title: 'API',
-          sections: [api()],
-        },
-
-        {
-          title: 'Testkit',
-          sections: [testkit()],
-        },
-
-        {
-          title: 'Playground',
-          sections: [playground()],
-        },
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
       ].map(tab),
     ]),
   ],

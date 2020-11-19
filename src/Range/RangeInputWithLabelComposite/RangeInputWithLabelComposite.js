@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './RangeInputWithLabelComposite.scss';
 import classNames from 'classnames';
 import FieldLabelAttributes from '../../FieldLabelAttributes/FieldLabelAttributes';
+import { DATA_HOOKS } from '../constants';
 
 class RangeInputWithLabelComposite extends PureComponent {
   state = {
@@ -49,7 +50,7 @@ class RangeInputWithLabelComposite extends PureComponent {
     const rangeType = children[1].type.displayName;
     const label =
       children.length === 3 ? (
-        <div className={styles.label}>
+        <div className={styles.label} data-hook={DATA_HOOKS.label}>
           {children[0]}
           {this.props.required || this.props.info || this.props.tooltip ? (
             <FieldLabelAttributes
@@ -101,7 +102,10 @@ class RangeInputWithLabelComposite extends PureComponent {
     return (
       <div data-hook={dataHook}>
         {label}
-        <div className={inputWrapperClassNames}>
+        <div
+          className={inputWrapperClassNames}
+          data-hook={DATA_HOOKS.inputWrapper}
+        >
           {React.cloneElement(
             firstInput,
             rangeType === 'DatePicker'

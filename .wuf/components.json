@@ -323,6 +323,9 @@
   "Page": {
     "path": "src/Page"
   },
+  "PageFooter": {
+    "path": "src/PageFooter"
+  },
   "PageHeader": {
     "path": "src/PageHeader"
   },
@@ -433,6 +436,9 @@
   },
   "Stepper": {
     "path": "src/Stepper"
+  },
+  "StyledNestableList": {
+    "path": "src/StyledNestableList"
   },
   "Swatches": {
     "path": "src/Swatches"

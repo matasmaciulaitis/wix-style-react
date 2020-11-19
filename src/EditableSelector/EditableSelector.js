@@ -12,16 +12,34 @@ import styles from './EditableSelector.scss';
 
 class EditableSelector extends React.PureComponent {
   static propTypes = {
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+    /** The editable selector's title */
     title: PropTypes.string,
+    /** Specifies the type of the toggle */
     toggleType: PropTypes.oneOf(['checkbox', 'radio']),
+    /** Text for the add new row button */
     newRowLabel: PropTypes.string,
+    /** Text for the edit button */
     editButtonText: PropTypes.string,
+    /** New option added callback function */
     onOptionAdded: PropTypes.func,
+    /** Option edited callback function */
     onOptionEdit: PropTypes.func,
+    /** Option deleted callback function */
     onOptionDelete: PropTypes.func,
+    /** Option toggled callback function */
     onOptionToggle: PropTypes.func,
-    options: PropTypes.array,
+    /** Array of objects:
+     * * `title` - the title of the option.
+     * * `isSelected` - whether this option is selected or not.
+     */
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        isSelected: PropTypes.bool,
+      }),
+    ),
   };
 
   static defaultProps = {
@@ -35,19 +53,19 @@ class EditableSelector extends React.PureComponent {
     editingRow: null,
   };
 
-  addNewRow = () => {
+  _addNewRow = () => {
     this.setState({ addingNewRow: true, editingRow: false });
   };
 
-  editItem = index => {
+  _editItem = index => {
     this.setState({ editingRow: index, addingNewRow: false });
   };
 
-  deleteItem = index => {
+  _deleteItem = index => {
     this.props.onOptionDelete && this.props.onOptionDelete({ index });
   };
 
-  onNewOptionApprove = ({ newTitle, index }) => {
+  _onNewOptionApprove = ({ newTitle, index }) => {
     if (this.state.addingNewRow) {
       this.props.onOptionAdded && this.props.onOptionAdded({ newTitle });
     } else {
@@ -59,24 +77,24 @@ class EditableSelector extends React.PureComponent {
     });
   };
 
-  onNewOptionCancel = () => {
+  _onNewOptionCancel = () => {
     this.setState({
       addingNewRow: false,
       editingRow: null,
     });
   };
 
-  onOptionToggle = id => {
+  _onOptionToggle = id => {
     this.props.onOptionToggle && this.props.onOptionToggle(id);
   };
 
-  renderInput = (title, index) => {
+  _renderInput = (title, index) => {
     return (
       <EditableRow
         key={index}
         dataHook="edit-row-wrapper"
-        onApprove={newTitle => this.onNewOptionApprove({ newTitle, index })}
-        onCancel={() => this.onNewOptionCancel()}
+        onApprove={newTitle => this._onNewOptionApprove({ newTitle, index })}
+        onCancel={() => this._onNewOptionCancel()}
         newOption={title}
       />
     );
@@ -102,7 +120,7 @@ class EditableSelector extends React.PureComponent {
         <div>
           {options.map((option, index) =>
             this.state.editingRow === index ? (
-              this.renderInput(option.title, index)
+              this._renderInput(option.title, index)
             ) : (
               <div
                 data-hook="editable-selector-row"
@@ -115,11 +133,11 @@ class EditableSelector extends React.PureComponent {
                   title={option.title}
                   isSelected={option.isSelected}
                   toggleType={toggleType}
-                  onToggle={id => this.onOptionToggle(id)}
+                  onToggle={id => this._onOptionToggle(id)}
                 />
                 <div className={styles.optionMenu}>
                   <IconButton
-                    onClick={() => this.deleteItem(index)}
+                    onClick={() => this._deleteItem(index)}
                     dataHook="delete-item"
                     type="button"
                     size="small"
@@ -131,7 +149,7 @@ class EditableSelector extends React.PureComponent {
                   </IconButton>
                   <div className={styles.editRow}>
                     <Button
-                      onClick={() => this.editItem(index)}
+                      onClick={() => this._editItem(index)}
                       dataHook="edit-item"
                       size="small"
                     >
@@ -143,12 +161,12 @@ class EditableSelector extends React.PureComponent {
             ),
           )}
         </div>
-        {this.state.addingNewRow && this.renderInput()}
+        {this.state.addingNewRow && this._renderInput()}
         <div className={styles.newRowButton}>
           <TextButton
             as="a"
             underline="none"
-            onClick={this.addNewRow}
+            onClick={this._addNewRow}
             prefixIcon={<Add className={styles.icon} />}
             dataHook="new-row-button-text"
           >

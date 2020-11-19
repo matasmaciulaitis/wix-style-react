@@ -88,6 +88,29 @@ const tests = [
     ],
   },
   {
+    describe: 'card style',
+    its: [
+      {
+        it: 'hideOverflow',
+        props: {
+          hideOverflow: true,
+        },
+      },
+      {
+        it: 'stretchVertically',
+        props: {
+          stretchVertically: true,
+        },
+      },
+      {
+        it: 'showShadow',
+        props: {
+          showShadow: true,
+        },
+      },
+    ],
+  },
+  {
     describe: 'content size',
     its: [
       {
@@ -135,28 +158,44 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(`Card${describe ? '/' + describe : ''}`, module).add(it, () => (
-      <div style={{ background: '#F0F4F7', padding: 30 }}>
-        <Container>
-          <Row>
-            <Col span={6}>
-              <Card controls={props.controls}>
-                <Card.Header
-                  title="Card header"
-                  subtitle={props.subtitle}
-                  suffix={props.suffix}
-                />
-                <Card.Divider />
-                <Card.Content size={props.contentSize}>
-                  {props.childrenContent ? props.childrenContent : 'sdf'}
-                </Card.Content>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    ));
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) => {
+    its.forEach(({ it, props }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}Card${
+          describe ? '/' + describe : ''
+        }`,
+        module,
+      ).add(it, () =>
+        testWithTheme(
+          <div style={{ background: '#F0F4F7', padding: 30 }}>
+            <Container>
+              <Row>
+                <Col span={6}>
+                  <Card
+                    controls={props.controls}
+                    hideOverflow={props.hideOverflow}
+                    stretchVertically={props.stretchVertically}
+                    showShadow={props.showShadow}
+                  >
+                    <Card.Header
+                      title="Card header"
+                      subtitle={props.subtitle}
+                      suffix={props.suffix}
+                    />
+                    <Card.Divider />
+                    <Card.Content size={props.contentSize}>
+                      {props.childrenContent ? props.childrenContent : 'sdf'}
+                    </Card.Content>
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
+          </div>,
+        ),
+      );
+    });
   });
-});
+};

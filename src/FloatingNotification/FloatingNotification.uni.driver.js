@@ -1,4 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { dataHooks } from './constants';
 
 export const floatingNotificationDriverFactory = base => {
@@ -12,42 +12,70 @@ export const floatingNotificationDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 
-    /** Click the button */
+    /** Clicks notification button
+     * @returns {Promise<void>}
+     */
     clickButton: async () => notificationButton.click(),
 
-    /** Get the button's text */
+    /** Get the notification button's text
+     * @returns {Promise<string>}
+     */
     getButtonLabel: async () => notificationButton.text(),
 
-    /** Click the text button */
+    /** Clicks the notification text button
+     * @returns {Promise<void>}
+     */
     clickTextButton: async () => notificationTextButton.click(),
 
-    /** Get the text button's text */
+    /** Get the notification text button's text
+     * @returns {Promise<string>}
+     */
     getTextButtonLabel: async () => notificationTextButton.text(),
 
-    /** Click the button */
+    /** Clicks the notification close button
+     * @returns {Promise<void>}
+     */
     clickCloseButton: async () => notificationCloseButton.click(),
 
-    /** get notification text */
+    /** Get the notification text
+     * @returns {Promise<string>}
+     */
     getText: async () => notificationText.text(),
 
-    /** get button tag name */
+    /** Checks whether button with passed tag name exists
+     * @param {keyof HTMLElementTagNameMap} as Tag name
+     * @returns {Promise<boolean>}
+     */
     isButtonAs: async as =>
       await base.$(`${as}[data-hook="${dataHooks.button}"]`).exists(),
 
-    /** get button href */
+    /** Get the notification button href attribute's value
+     * @returns {Promise<string | null>}
+     */
     getButtonHref: async () => notificationButton.attr('href'),
 
-    /** get button attribute by name */
+    /** Get the notification button attribute's value by name
+     * @param {string} attrName Attribute name
+     * @returns {Promise<string | null>}
+     */
     getButtonAttr: async attrName => notificationButton.attr(attrName),
 
-    /** get text button tag name */
+    /** Checks whether text button with passed tag name exists
+     * @param {keyof HTMLElementTagNameMap} as Tag name
+     * @returns {Promise<boolean>}
+     */
     isTextButtonAs: async as =>
       await base.$(`${as}[data-hook="${dataHooks.textButton}"]`).exists(),
 
-    /** get text button href */
+    /** Get the notification text button href attribute's value
+     * @returns {Promise<string | null>}
+     */
     getTextButtonHref: async () => notificationTextButton.attr('href'),
 
-    /** get text button attribute by name */
+    /** Get the notification text button attribute's value by name
+     * @param {string} attrName Attribute name
+     * @returns {Promise<string | null>}
+     */
     getTextButtonAttr: async attrName => notificationTextButton.attr(attrName),
   };
 };

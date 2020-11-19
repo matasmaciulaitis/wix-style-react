@@ -1,20 +1,20 @@
 import { storySettings } from './storySettings';
 import {
   tab,
-  code as baseCode,
   importExample,
   api,
   testkit,
   playground,
   header,
   tabs,
+  example as baseExample,
 } from 'wix-storybook-utils/Sections';
 import allComponents from '../../../stories/utils/allComponents';
 import * as examples from './examples';
 
 import { NumberInput } from 'wix-style-react';
 
-const code = config => baseCode({ components: allComponents, ...config });
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -40,14 +40,20 @@ export default {
         title: 'Description',
         sections: [
           importExample("import { NumberInput } from 'wix-style-react';"),
-          code({ title: 'Standard', source: examples.standard }),
-          code({ title: 'Error', source: examples.error }),
-          code({ title: 'Affix', source: examples.affix }),
-          code({ title: 'Icon Affix', source: examples.iconAffix }),
-          code({ title: 'Sizes', source: examples.sizes }),
-          code({ title: 'Rounded', source: examples.rounded }),
-          code({ title: 'Strict', source: examples.strict }),
-          code({
+          example({ title: 'Standard', source: examples.standard }),
+          example({ title: 'Error', source: examples.error }),
+          example({ title: 'Affix', source: examples.affix }),
+          example({ title: 'Icon Affix', source: examples.iconAffix }),
+          example({ title: 'Sizes', source: examples.sizes }),
+          example({ title: 'Rounded', source: examples.rounded }),
+          example({ title: 'Strict', source: examples.strict }),
+          example({
+            title: 'Hide Stepper',
+            text:
+              "In order to keep the component's functionality, another visual clue should be added, such as prefix or suffix.",
+            source: examples.stepper,
+          }),
+          example({
             title: 'Controlled',
             source: examples.controlled,
             autoRender: false,

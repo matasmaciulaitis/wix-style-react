@@ -43,8 +43,11 @@ class NestableList extends React.PureComponent {
     isRenderDraggingChildren: false,
     childrenProperty: 'children',
     childrenStyle: {},
+    renderPrefix: () => null,
+    renderAction: () => null,
     onUpdate: () => {},
     useDragHandle: false,
+    preventChangeDepth: false,
     maxDepth: Infinity,
     threshold: 30,
   };
@@ -110,23 +113,29 @@ class NestableList extends React.PureComponent {
     const {
       dataHook,
       renderItem,
+      readOnly,
       childrenProperty,
       childrenStyle,
+      renderAction,
       isRenderDraggingChildren,
       useDragHandle,
       maxDepth,
+      preventChangeDepth,
       threshold,
       theme,
+      renderPrefix,
     } = this.props;
-
     return (
       <div data-hook={dataHook}>
         <NestableListContext.Provider
           value={{
             useDragHandle,
             maxDepth,
+            preventChangeDepth,
             threshold,
+            readOnly,
             renderItem,
+            renderPrefix,
             moveItem: this.moveItem,
             dropItem: this.dropItem,
             onDragStart: this.onDragStart,
@@ -135,7 +144,9 @@ class NestableList extends React.PureComponent {
         >
           <div>
             <Container
+              treeDepth={1}
               items={items}
+              renderAction={renderAction}
               parentPosition={[]}
               childrenProperty={childrenProperty}
               childrenStyle={childrenStyle}

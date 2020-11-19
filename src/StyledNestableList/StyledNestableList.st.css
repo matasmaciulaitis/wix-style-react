@@ -1,0 +1,91 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D80;
+}
+
+.root {
+  background-color: value(D80);
+}
+
+.item {
+  border: 1px solid value(D60);
+  border-right: none;
+  margin-top: -1px;
+  width: 100%;
+}
+
+.actionItem {
+  margin-left: 84px;
+  width: auto;
+}
+
+.rootAction {
+  border-left: none;
+  border-bottom: none;
+  margin-left: 0;
+}
+
+.lastItem {
+}
+.haveChildren {
+}
+.rootItem.firstItem {
+  border-top: none;
+}
+
+.rootItem {
+  border-left: none;
+}
+
+.arrowContainer {
+  position: relative;
+}
+
+.verticalArrow {
+  position: absolute;
+  transform: translateX(-100%);
+  left: -24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.horizontalArrow {
+  margin-left: -1px;
+}
+
+.lastItemVerticalArrow {
+  height: calc(50% - 4px);
+  border-left: 1px solid value(D60);
+  align-items: flex-end;
+}
+
+.lastItemVerticalArrow .horizontalArrow {
+  transform: translateY(100%);
+}
+
+.previewArrows {
+  visibility: hidden;
+}
+
+.draggablePlaceholder {
+  background-color: value(D60);
+}
+
+.draggablePlaceholder > * {
+  visibility: hidden;
+}
+
+.draggablePreview {
+  border-left: 1px solid value(D60);
+  border-right: 1px solid value(D60);
+}
+
+.childArrow {
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  left: -48px;
+  background-color: value(D60);
+}

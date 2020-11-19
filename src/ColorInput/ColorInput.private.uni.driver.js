@@ -2,7 +2,7 @@ import { colorInputDriverFactory as publicDriverFactory } from './ColorInput.uni
 import { swatchesPrivateDriverFactory } from '../Swatches/test/Swatches.private.uni.driver';
 import DATA_HOOKS from './DataHooks';
 import inputUniDriverFactory from '../Input/Input.uni.driver';
-import popoverDriverFactory from '../Popover/Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover/Popover.uni.driver';
 
 export const colorInputPrivateDriverFactory = (base, body) => {
   const swatchesHook = `[data-hook="${DATA_HOOKS.COLOR_PICKER_SWATCHES}"]`;

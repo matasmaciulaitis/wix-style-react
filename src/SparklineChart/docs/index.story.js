@@ -46,6 +46,7 @@ export default {
     highlightedStartingIndex: 4,
     width: 400,
     height: 80,
+    onHover: index => `Point at index ${index} is hovered!`,
   },
 
   exampleProps: {

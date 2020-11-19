@@ -1,6 +1,6 @@
-import { dataHooks } from './constants';
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { tooltipDriverFactory } from '../Tooltip/Tooltip.uni.driver';
+import { dataHooks } from './constants';
 
 export const fillButtonDriverFactory = (base, body) => {
   const tooltipTestkit = tooltipDriverFactory(base, body);
@@ -8,11 +8,17 @@ export const fillButtonDriverFactory = (base, body) => {
 
   return {
     ...baseUniDriverFactory(base),
-    /** checks whether the component exists in the DOM */
-    exists: () => base.exists(),
-    /** clicks on trigger element */
+
+    /**
+     * clicks on trigger element
+     * @return {Promise<void>}
+     */
     click: () => base.$(byHook(dataHooks.button)).click(),
-    /** hovers on the element and fetches tooltip text */
+
+    /**
+     * Gets the tooltip text
+     * @return {Promise<string>}
+     */
     getTooltipText: () => tooltipTestkit.getTooltipText(),
   };
 };

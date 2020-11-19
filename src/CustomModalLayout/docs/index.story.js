@@ -21,6 +21,7 @@ import BasicExample from '!raw-loader!./examples/BasicExample';
 import FootnoteExample from '!raw-loader!./examples/FootnoteExample';
 import ModalExample from '!raw-loader!./examples/ModalExample';
 import PageExample from '!raw-loader!./examples/PageExample';
+import PersistentDividersExample from '!raw-loader!./examples/PersistentDividersExample';
 import TableExample from '!raw-loader!./examples/TableExample';
 import MarketingExample from '!raw-loader!./examples/MarketingExample';
 import HelpButtonExample from '!raw-loader!./examples/HelpButtonExample';
@@ -104,6 +105,12 @@ export default {
             source: ModalExample,
           }),
           example({
+            title: 'Persistent Dividers Example',
+            text:
+              'If you need the header or footer dividers to always show, you can use the `showHeaderDivider` and `showFooterDivider` props',
+            source: PersistentDividersExample,
+          }),
+          example({
             title: 'Table example - No content padding',
             text:
               'A simple example with a table as the content and without content padding',
@@ -115,7 +122,7 @@ export default {
             source: HelpButtonExample,
           }),
           example({
-            title: 'Marketing Layout example',
+            title: 'Marketing Layout Example',
             text: 'A custom modal example with a marketing layout',
             source: MarketingExample,
           }),

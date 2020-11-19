@@ -14,6 +14,10 @@ export interface SparklineChartProps {
   height?: number;
   highlightedStartingIndex?: number;
   getTooltipContent?: (index: number) => React.ReactNode;
+  onHover?: (index: number) => void;
+  animationDuration?: number;
 }
 
-export default class SparklineChart extends React.PureComponent<SparklineChartProps>{ }
+export default class SparklineChart extends React.PureComponent<
+  SparklineChartProps
+> {}

@@ -1,21 +1,24 @@
-import { storySettings } from './storySettings';
 import icons from '../../../stories/utils/icons-for-story';
 import {
   tab,
+  tabs,
   api,
   testkit,
-  code as baseCode,
   description,
   playground,
   importExample,
+  example as baseExample,
+  title,
+  header,
 } from 'wix-storybook-utils/Sections';
 
+import { storySettings } from './storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import FloatingNotification from '..';
 import { TYPES } from '../constants';
 import * as examples from './examples';
 
-const code = config => baseCode({ components: allComponents, ...config });
+const example = config => baseExample({ components: allComponents, ...config });
 
 const trashLabel = { label: 'Trash' };
 const linkProps = {
@@ -58,48 +61,51 @@ export default {
   },
 
   sections: [
-    tab({
-      title: 'Description',
-      sections: [
-        description(
-          'Displays simple and temporary messages or destructive events',
-        ),
+    header(),
 
-        importExample({
-          source: "import { FloatingNotification } from 'wix-style-react';",
-        }),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description(
+            'Displays simple and temporary messages or destructive events',
+          ),
 
-        code({
-          title: `Notification types`,
-          source: examples.types,
-        }),
+          importExample(),
 
-        code({
-          title: `All options`,
-          source: examples.options,
-        }),
+          title('Examples'),
 
-        code({
-          title: `Set buttons as anchors with href`,
-          source: examples.href,
-        }),
+          example({
+            title: 'Notification types',
+            source: examples.types,
+          }),
 
-        code({
-          title: `Defining the width`,
-          source: examples.fullWidth,
-        }),
+          example({
+            title: 'All options',
+            source: examples.options,
+          }),
 
-        code({
-          title: `fullWidth prop`,
-          source: examples.fullWidthProp,
-        }),
-      ],
-    }),
+          example({
+            title: 'Set buttons as anchors with href',
+            source: examples.href,
+          }),
 
-    ...[
-      { title: 'API', sections: [api()] },
-      { title: 'Testkit', sections: [testkit()] },
-      { title: 'Playground', sections: [playground()] },
-    ].map(tab),
+          example({
+            title: 'Defining the width',
+            source: examples.fullWidth,
+          }),
+
+          example({
+            title: 'fullWidth prop',
+            source: examples.fullWidthProp,
+          }),
+        ],
+      }),
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };

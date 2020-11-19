@@ -140,20 +140,29 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) =>
-  storiesOf(`SidebarSectionItem`, module).add(describe, () => (
-    <React.Fragment>
-      {its.map(({ props }) => (
-        <Box backgroundColor="D70">
-          {skins.map(skin => (
-            <Box direction="vertical" marginBottom={5} marginRight={5}>
-              <SidebarContext.Provider value={{ getSkin: () => skin }}>
-                <SidebarSectionItem {...props} />
-              </SidebarContext.Provider>
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) =>
+    storiesOf(
+      `${themeName ? `${themeName}|` : ''}SidebarSectionItem`,
+      module,
+    ).add(describe, () =>
+      testWithTheme(
+        <React.Fragment>
+          {its.map(({ props }) => (
+            <Box backgroundColor="D70">
+              {skins.map(skin => (
+                <Box direction="vertical" marginBottom={5} marginRight={5}>
+                  <SidebarContext.Provider value={{ getSkin: () => skin }}>
+                    <SidebarSectionItem {...props} />
+                  </SidebarContext.Provider>
+                </Box>
+              ))}
             </Box>
           ))}
-        </Box>
-      ))}
-    </React.Fragment>
-  )),
-);
+        </React.Fragment>,
+      ),
+    ),
+  );
+};

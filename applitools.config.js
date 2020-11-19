@@ -8,6 +8,6 @@ try {
 
 module.exports = applitoolsConfig({
   config: merge(privateConfig, {
-    concurrency: 20,
+    concurrency: 60,
   }),
 });

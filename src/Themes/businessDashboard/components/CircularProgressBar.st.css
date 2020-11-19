@@ -5,7 +5,7 @@
 
 :import {
   -st-from: "../foundations/colors.st.css";
-  -st-named: B05;
+  -st-named: A2, A4, D10, D60;
 }
 
 .root {
@@ -13,35 +13,56 @@
   position: relative;
 }
 
-.root::progressBar::foreArc path {
-  stroke: value(B05);
+.root::progressBar {
+  display: block;
 }
 
-.root::progressBar::progressIndicator {
+.root::progressBar::backArc {
+    stroke: value(D60);
+}
+
+.root::progressBar::foreArc {
+    stroke: value(A2);
+}
+
+.root::progressBar:success::foreArc {
+    stroke: value(A4);
+}
+
+.root::progressBar::statusIndicator {
+  color: value(A2);
+}
+
+.root::progressBar::label, .root::progressBar::progressIndicator {
   position: absolute;
-  height: inherit;
-  margin-top: 0px;
+  margin: 0;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: value(D10);
 }
 
-.root::progressBar:success::progressIndicator {
+.root::progressBar:success::label, .root::progressBar:success::progressIndicator {
   display: none;
 }
 
-.root::progressBar:error::progressIndicator {
+.root::progressBar:error::label, .root::progressBar:error::progressIndicator {
   display: none;
 }
 
-.root::progressBar:size(small)::progressIndicator {
-  font-size: 12px;
-  top: calc(50% - 6px);
+.root::progressBar:size(medium) {
+  height: 56px;
+  width: 56px;
 }
 
-.root::progressBar:size(medium)::progressIndicator {
-  font-size: 16px;
-  top: calc(50% - 8px);
+/* TODO - requires a change in wix-ui-core to remove inline sizes */
+.root::progressBar:size(medium)::arcsContainer {
+  height: 56px !important;
+  width: 56px !important;
 }
 
-.root::progressBar:size(large)::progressIndicator {
-  top: calc(50% - 12px);
-  font-size: 24px;
+.root::progressBar:size(medium)::label, .root::progressBar:size(medium)::progressIndicator {
+  font-size: 14px;
 }

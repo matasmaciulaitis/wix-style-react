@@ -29,6 +29,7 @@ const RawText = React.forwardRef(
       maxWidth,
       zIndex,
       showTooltip,
+      listStyle,
       ...rest
     },
     ref,
@@ -42,6 +43,7 @@ const RawText = React.forwardRef(
       skin,
       light,
       weight,
+      'list-style': listStyle,
     };
     const styleDataAttributes = getStyleDataAttributes(styleAttributes);
 
@@ -107,6 +109,7 @@ RawText.defaultProps = {
   light: false,
   weight: 'thin',
   tagName: 'span',
+  listStyle: 'checkmark',
 };
 
 export default RawText;

@@ -15,7 +15,7 @@ export const enterRichTextValue = async (base, value) => {
   } else if (contentElement.type === 'protractor') {
     await nativeElement.sendKeys(value);
   } else if (contentElement.type === 'puppeteer') {
-    await contentElement.enterValue(value);
+    await contentElement.enterValue(value, { shouldClear: false });
   } else {
     throw new Error('unsupported adapter');
   }

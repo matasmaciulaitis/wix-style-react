@@ -18,11 +18,9 @@ const modalDriverFactory = ({ element }) => {
     element: () => element,
     /** true when the module is open */
     isOpen,
-    /** true if theme <arg> exists in the modal */
-    isThemeExist: theme => !!getPortal().querySelector(`.${theme}`),
     getChildBySelector: selector => getPortal().querySelector(selector),
     /** true if the modal is scrollable */
-    isScrollable: () => !getPortal().classList.contains('portalNonScrollable'),
+    isScrollable: () => !!getPortal().querySelector('[data-scrollable]'),
     closeButtonExists: () => !!getCloseButton(),
     /** click on the modal overlay (helpful for testing if the modal is dismissed) */
     clickOnOverlay: () => {

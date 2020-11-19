@@ -3,15 +3,18 @@ import RawText from './RawText';
 import PropTypes from 'prop-types';
 import { st, classes } from './Text.st.css';
 import Ellipsis, { extractEllipsisProps } from '../common/Ellipsis';
+import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 
-const TextWithEllipsis = ({ className, ...props }) => {
+const TextWithEllipsis = ({ className, tooltipProps, ...props }) => {
   const { ellipsisProps, componentProps } = extractEllipsisProps(props);
   return (
     <Ellipsis
       {...ellipsisProps}
+      {...tooltipProps}
       wrapperClassName={st(classes.root, {
         size: props.size,
         weight: props.weight,
+        listStyle: props.listStyle,
       })}
       render={({ ref, ellipsisClasses, ellipsisInlineStyle }) => (
         <RawText
@@ -59,6 +62,9 @@ TextWithEllipsis.propTypes = {
     'disabled',
     'primary',
   ]),
+
+  /** set list items style */
+  listStyle: PropTypes.oneOf(['checkmark', 'circle']),
 
   /** make the text color lighter */
   light: PropTypes.bool,
@@ -125,6 +131,9 @@ TextWithEllipsis.propTypes = {
 
   /** align tooltip content */
   textAlign: PropTypes.oneOf(['start', 'center']),
+
+  /** Properties for tooltip */
+  tooltipProps: PropTypes.shape(TooltipCommonProps),
 };
 
 TextWithEllipsis.defaultProps = {

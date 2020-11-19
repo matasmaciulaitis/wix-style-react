@@ -1,13 +1,14 @@
-import { baseUniDriverFactory } from '../../test/utils/unidriver';
+import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
 import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 import { testkit } from 'wix-ui-core/dist/src/components/popover/Popover.uni.driver';
-import popoverCommonDriverFactory from '../Popover/Popover.common.uni.driver';
+import popoverCommonDriverFactory from '../Popover/Popover.common.driver';
+import { DATA_HOOKS } from '../DropdownLayout/DataAttr';
 
 export const dropdownBaseDriverFactory = (base, body) => {
   const byDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
   const getTargetElement = dataHook => byDataHook(dataHook);
   const getContentElement = async () =>
-    popoverCommonDriverFactory(base, body).getContentElement();
+      popoverCommonDriverFactory(base, body).getContentElement();
 
   const createDropdownLayoutDriver = async () =>
     dropdownLayoutDriverFactory(
@@ -43,22 +44,24 @@ export const dropdownBaseDriverFactory = (base, body) => {
     optionsCount: async () =>
       (await createDropdownLayoutDriver()).optionsLength(),
 
-    optionContentAt: async id => {
+    optionContentAt: async position => {
       const dropdownLayoutDriver = await createDropdownLayoutDriver();
-      const options = await dropdownLayoutDriver.options();
+      const optionsDrivers = await dropdownLayoutDriver.options();
+      const optionElement = await optionsDrivers[position].element();
+      const option = await findByHook(optionElement, DATA_HOOKS.OPTION);
 
       /*
-      Option content can be
-      1. node - <div>some text</div>
-      2. text - some text
-       */
-      const nodeContent = options[id].element().$$(':first-child');
+         Option content can be
+         1. node - <div>some text</div>
+         2. text - some text
+      */
+      const nodeContent = option.$$(':first-child');
       const contentIsNode = (await nodeContent.count()) > 0;
       if (contentIsNode) {
         // eslint-disable-next-line no-restricted-properties
         return await nodeContent.get(0).getNative();
       } else {
-        return options[id].element().text();
+        return option.text();
       }
     },
 

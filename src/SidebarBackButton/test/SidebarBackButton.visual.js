@@ -14,11 +14,19 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it }) => {
-    storiesOf(
-      `SidebarBackButton${describe ? '/' + describe : ''}`,
-      module,
-    ).add(it, () => <SidebarBackButton>Go Back</SidebarBackButton>);
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) => {
+    its.forEach(({ it }) => {
+      storiesOf(
+        `${themeName ? `${themeName}|` : ''}SidebarBackButton${
+          describe ? '/' + describe : ''
+        }`,
+        module,
+      ).add(it, () =>
+        testWithTheme(<SidebarBackButton>Go Back</SidebarBackButton>),
+      );
+    });
   });
-});
+};

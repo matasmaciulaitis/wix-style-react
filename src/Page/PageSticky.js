@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PageContext } from './PageContext';
-import s from './Page.scss';
-import classNames from 'classnames';
+import { st, classes } from './Page.st.css';
 
 export const PageSticky = ({ children, className, style, ...props }) => {
   return (
@@ -11,11 +10,11 @@ export const PageSticky = ({ children, className, style, ...props }) => {
       {({ stickyStyle }) => {
         let result;
         if (typeof children === 'function') {
-          result = children({ style: style, className: s.sticky });
+          result = children({ style: style, className: classes.sticky });
         } else {
           result = (
             <div
-              className={classNames(s.sticky, className)}
+              className={st(classes.sticky, {}, className)}
               style={{ ...stickyStyle, ...style }}
               {...props}
             >

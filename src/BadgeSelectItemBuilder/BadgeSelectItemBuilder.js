@@ -1,58 +1,76 @@
 import React from 'react';
 import { st, classes } from './BadgeSelectItem.st.css';
 import PropTypes from 'prop-types';
-import Text from '../Text/Text';
+import ListItemSelect from '../ListItemSelect';
 
 const BadgeOption = props => {
-  const { skin, text, subtitle, selected, ellipsis } = props;
+  const {
+    dataHook,
+    skin,
+    text,
+    subtitle,
+    ellipsis,
+    selected,
+    highlighted,
+    disabled,
+    className,
+  } = props;
+
+  const prefix = <div className={st(classes.marker, { skin })} />;
+
   return (
-    <div className={st(classes.root, { skin })}>
-      <div className={classes.marker} />
-      <div className={classes.textWrapper}>
-        <Text
-          size="small"
-          skin="standard"
-          tagName="span"
-          weight="normal"
-          light={selected}
-          ellipsis={ellipsis}
-        >
-          {text}
-        </Text>
-        {subtitle && (
-          <Text size="tiny" secondary={!selected} ellipsis={ellipsis} light>
-            {subtitle}
-          </Text>
-        )}
-      </div>
-    </div>
+    <ListItemSelect
+      className={className}
+      title={text}
+      ellipsis={ellipsis}
+      dataHook={dataHook}
+      prefix={prefix}
+      selected={selected}
+      highlighted={highlighted}
+      disabled={disabled}
+      subtitle={subtitle}
+    />
   );
 };
 
 BadgeOption.propTypes = {
+  dataHook: PropTypes.string,
+  className: PropTypes.string,
   text: PropTypes.node.isRequired,
   subtitle: PropTypes.string,
   skin: PropTypes.string.isRequired,
   ellipsis: PropTypes.bool,
   selected: PropTypes.bool,
+  highlighted: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
+
+export default BadgeOption;
 
 export const badgeSelectItemBuilder = ({
   id,
+  className,
   text,
   skin,
   subtitle,
   ellipsis,
+  disabled,
+  dataHook,
 }) => ({
-  overrideStyle: true,
   id,
-  value: ({ selected }) => (
+  disabled,
+  overrideOptionStyle: true,
+  value: ({ selected, hovered, disabled }) => (
     <BadgeOption
+      dataHook={dataHook}
+      className={className}
       skin={skin}
       text={text}
       subtitle={subtitle}
-      selected={selected}
       ellipsis={ellipsis}
+      selected={selected}
+      highlighted={hovered}
+      disabled={disabled}
     />
   ),
 });

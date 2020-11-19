@@ -5,13 +5,11 @@ import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 
 import Popover from '../Popover';
 import IconButton from '../../IconButton';
-import popoverUniDriverFactory from '../Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover.uni.driver';
 
 const dataHook = 'storybook-popover';
 
-const popoverUniTestkitFactory = uniTestkitFactoryCreator(
-  popoverUniDriverFactory,
-);
+const popoverUniTestkitFactory = uniTestkitFactoryCreator(popoverDriverFactory);
 
 const createDriver = () =>
   popoverUniTestkitFactory({

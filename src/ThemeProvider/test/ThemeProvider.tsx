@@ -2,7 +2,9 @@ import * as React from 'react';
 import ThemeProvider from '..';
 import { theme } from '../../Themes/floatingPanels';
 import Close from 'wix-ui-icons-common/system/Close';
-import AddItemMedium from "wix-ui-icons-common/system/AddItemMedium";
+import AddItemMedium from 'wix-ui-icons-common/system/AddItemMedium';
+import CircleLoaderCheck from 'wix-ui-icons-common/system/CircleLoaderCheck';
+import CircleLoaderCheckSmall from 'wix-ui-icons-common/system/CircleLoaderCheckSmall';
 
 function themeProviderWithMandatoryProps() {
   return <ThemeProvider />;
@@ -20,6 +22,11 @@ function themeProviderWithAllProps() {
             small: Close,
             medium: Close,
             large: Close,
+          },
+          CircularProgressBar: {
+            small: CircleLoaderCheckSmall,
+            medium: CircleLoaderCheck,
+            large: CircleLoaderCheck
           },
           BaseModalLayout: {
             HeloButton: Close,

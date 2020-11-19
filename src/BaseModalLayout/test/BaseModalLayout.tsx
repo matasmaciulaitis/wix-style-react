@@ -22,16 +22,17 @@ function baseModalLayoutWithAllProps() {
       <BaseModalLayout.Header
         className={'cls-header'}
         dataHook={'dh-header'}
-        showHeaderDivider={false}
         title={'title-header'}
         subtitle={'subtitle-header'}
         titleAppearance={'H2'}
+        showHeaderDivider
       />
       <BaseModalLayout.Content
         className={'cls-content'}
         dataHook={'fh-content'}
         content={'content'}
-        contentHideDividers={false}
+        hideTopScrollDivider={false}
+        hideBottomScrollDivider={false}
         scrollProps={{
           onScrollChanged: () => {},
           onScrollAreaChanged: () => {},
@@ -48,8 +49,8 @@ function baseModalLayoutWithAllProps() {
         secondaryButtonOnClick={() => {}}
         actionsSize={'large'}
         sideActions={<div />}
-        showFooterDivider={false}
         theme={'standard'}
+        showFooterDivider
       />
       <BaseModalLayout.Footnote
         className={'cls-footnote'}

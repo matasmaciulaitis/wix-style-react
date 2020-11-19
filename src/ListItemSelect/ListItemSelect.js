@@ -151,13 +151,16 @@ class ListItemSelect extends React.PureComponent {
 
         <Box
           display="grid"
-          margin={subtitle ? '9px 6px' : '6px'}
-          className={classes.title}
+          className={st(classes.titleWrapper, { subtitle: Boolean(subtitle) })}
           direction="vertical"
           lineHeight="initial"
           fontSize="initial"
         >
-          <Text dataHook={dataHooks.TITLE} {...textProps}>
+          <Text
+            className={classes.title}
+            dataHook={dataHooks.TITLE}
+            {...textProps}
+          >
             {title}
           </Text>
           {subtitle && (

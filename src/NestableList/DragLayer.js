@@ -44,7 +44,6 @@ class CustomDragLayer extends Component {
       'dragging-nestable-item',
       theme && theme.item,
     );
-
     return (
       <div style={childrenStyle}>
         {items.map((item, i) => (
@@ -56,7 +55,12 @@ class CustomDragLayer extends Component {
               depth,
               connectDragSource: defaultConnectDragSource,
             })}
-            {this.renderChildren(item[childrenProperty], depth + 1)}
+            {!item.isCollapsed &&
+              this.renderChildren(
+                item[childrenProperty],
+                depth + 1,
+                item.isCollapsed,
+              )}
           </div>
         ))}
       </div>
@@ -98,6 +102,7 @@ class CustomDragLayer extends Component {
             connectDragSource: defaultConnectDragSource,
           })}
           {isRenderDraggingChildren &&
+            !item.data.isCollapsed &&
             this.renderChildren(item.data[childrenProperty], 2)}
         </div>
       </div>

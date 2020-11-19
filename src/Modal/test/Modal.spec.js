@@ -188,20 +188,6 @@ describe('Modal', () => {
       });
     });
 
-    describe('theme', () => {
-      it('should set the theme by default to "blue"', async () => {
-        const { driver } = render(<Modal {...props} />);
-        expect(await driver.isThemeExist('blue')).toBe(true);
-      });
-
-      it('should allowing setting the theme', async () => {
-        props.theme = 'green';
-        const { driver } = render(<Modal {...props} />);
-        expect(await driver.isThemeExist('green')).toBe(true);
-        expect(await driver.isThemeExist('blue')).toBe(false);
-      });
-    });
-
     describe('scrollable', () => {
       it('should be set to true by default', async () => {
         const { driver } = render(<Modal {...props} />);

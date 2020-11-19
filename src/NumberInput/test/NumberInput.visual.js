@@ -25,6 +25,7 @@ const options = {
     'readOnly',
     { name: 'prefix', values: [undefined, <Input.Affix>#</Input.Affix>] },
     { name: 'suffix', values: [undefined, <Input.Affix>#</Input.Affix>] },
+    'hideStepper',
   ],
   skipUndefinedValue: true,
 };

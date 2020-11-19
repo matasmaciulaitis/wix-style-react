@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import defaultCss from './main.scss';
+import { st, classes } from './Sidebar.st.css';
 import { SidebarItem } from './SidebarItem';
 import { SidebarPersistentHeader } from './SidebarPersistentHeader';
 import { SidebarPersistentFooter } from './SidebarPersistentFooter';
@@ -205,33 +204,36 @@ class Sidebar extends Component {
   }
 
   render() {
-    const css = { ...defaultCss, ...this.props.classNames };
+    const { isHidden, skin } = this.props;
+    const css = { ...classes, ...this.props.classNames };
 
-    const sliderClasses = classNames({
-      [css.sliderOutToLeft]: this.state.drivenInChildren.length !== 0,
-      [css.sliderInFromLeft]:
-        this.state.drivenInChildren.length === 0 &&
-        this.state.drivenOutChildren.length !== 0,
-      [css.slider]: true,
-      [css.light]: this.props.skin === sidebarSkins.light,
+    const sliderClasses = st(
+      css.slider,
+      {
+        skin,
+      },
+      this.state.drivenInChildren.length !== 0 && css.sliderOutToLeft,
+      this.state.drivenInChildren.length === 0 &&
+        this.state.drivenOutChildren.length !== 0 &&
+        css.sliderInFromLeft,
+    );
+
+    const sliderOutToRightClasses = st(
+      css.slider,
+      !this.props.isHidden && css.sliderOutToRight,
+    );
+    const sliderInFromRightClasses = st(
+      css.slider,
+      !this.props.isHidden && css.sliderInFromRight,
+    );
+
+    const rootClasses = st(css.sideBar || classes.root, {
+      hidden: isHidden,
+      skin,
     });
 
-    const sliderOutToRightClasses = classNames(css.slider, {
-      [css.sliderOutToRight]: !this.props.isHidden,
-    });
-    const sliderInFromRightClasses = classNames(css.slider, {
-      [css.sliderInFromRight]: !this.props.isHidden,
-    });
-
-    const rootClasses = classNames({
-      [css.sideBar]: true,
-      [css.hiddenSideBar]: this.props.isHidden,
-      [css.light]: this.props.skin === sidebarSkins.light,
-    });
-
-    const gradientClasses = classNames({
-      [css.gradient]: this.state.isScrollbarDisplayed,
-      [css.light]: this.props.skin === sidebarSkins.light,
+    const gradientClasses = st(classes.gradient, {
+      skin,
     });
 
     return (
@@ -239,7 +241,7 @@ class Sidebar extends Component {
         <div className={rootClasses} data-hook={this.props.dataHook}>
           {this.state.persistentTopChildren}
 
-          <div className={css.content}>
+          <div className={st(css.content)}>
             {this.state.drivenInChildren.length === 0 &&
               this.state.drivenOutChildren.length !== 0 && (
                 <div

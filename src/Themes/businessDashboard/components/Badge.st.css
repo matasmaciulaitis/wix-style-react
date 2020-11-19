@@ -1,0 +1,13 @@
+:import {
+  -st-from: "../../../Badge/Badge.st.css";
+  -st-default: Badge;
+}
+
+.root {
+  -st-extends: Badge;
+}
+
+.root {
+  border-radius: 2px;
+  padding: 2px 8px 2px 8px;
+}

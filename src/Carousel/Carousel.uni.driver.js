@@ -1,4 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 
 // It turns out that react-slick duplicates the children, so we ditch the cloned nodes
 const withoutClonedNodes = (selector = '') =>
@@ -7,8 +7,23 @@ const withoutClonedNodes = (selector = '') =>
 export const carouselUniDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
+
+    /**
+     * Checks whether the carousel is loading
+     * @return {Promise<boolean>}
+     */
     isLoading: async () => (await base.$$('[data-hook="loader"]').count()) > 0,
+
+    /**
+     * Gets children list elements
+     * @return {UniDriverList}
+     */
     getChildren: () => base.$$(withoutClonedNodes()).map(child => child),
+
+    /**
+     * Get a list of the carousel images
+     * @return {Promise<Array<string | null>>}
+     */
     getImages: () =>
       base
         .$$(withoutClonedNodes('[data-hook="carousel-img"]'))

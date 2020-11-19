@@ -36,6 +36,18 @@ describe('Search', () => {
     describe('Controlled', () => {
       const ControlledSearch = makeControlled(Search);
 
+      const ControlledSearchOnBlur = ({ valueOnBlur }) => {
+        const [value, setValue] = React.useState('fox');
+
+        return (
+          <Search
+            expandable
+            value={value}
+            onBlur={() => setValue(valueOnBlur)}
+          />
+        );
+      };
+
       it('should show search options if initial value passed and down-key pressed', async () => {
         const driver = createDriver(
           <ControlledSearch value="the" options={options} />,
@@ -196,6 +208,38 @@ describe('Search', () => {
         expect(await driver.dropdownLayoutDriver.optionContentAt(0)).toContain(
           'The',
         );
+      });
+
+      it('should collapse when out of focus if value in onBlur() is set to empty', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="" />,
+        );
+        await inputDriver.click();
+        await inputDriver.enterText('fox');
+        await inputDriver.blur();
+        expect(await inputDriver.getText()).toEqual('');
+        expect(await driver.isCollapsed()).toBe(true);
+      });
+
+      it('should not collapse when out of focus if value is set to custom in onBlur()', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="wix" />,
+        );
+        await inputDriver.click();
+        await inputDriver.enterText('');
+        await inputDriver.blur();
+        expect(await inputDriver.getText()).toEqual('wix');
+        expect(await driver.isCollapsed()).toBe(false);
+      });
+
+      it('should not collapse when clicked onClear() if value is set to custom in onBlur()', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="wix" />,
+        );
+
+        await inputDriver.clickClear();
+        expect(await inputDriver.getText()).toEqual('fox');
+        expect(await driver.isCollapsed()).toBe(false);
       });
 
       describe('Clearing input', () => {

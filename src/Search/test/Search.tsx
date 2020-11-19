@@ -94,6 +94,7 @@ function SearchWithAllProps() {
       visible
       withArrow
       overflow="scroll"
+      highlight
       options={[
         {
           value: 'a',

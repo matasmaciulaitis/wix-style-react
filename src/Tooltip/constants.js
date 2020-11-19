@@ -3,3 +3,8 @@ export const dataHooks = {
 };
 
 export const TIMEOUT = { enter: 100, exit: 150 };
+
+export const SIZES = {
+  small: 'small',
+  medium: 'medium',
+};

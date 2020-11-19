@@ -36,6 +36,7 @@ export default {
     error: false,
     errorLabel: '',
     showProgressIndication: false,
+    label: undefined,
   },
 
   exampleProps: {
@@ -87,6 +88,12 @@ export default {
             title: 'Progress Indication',
             description: 'Displaying a progress indicator in percentage.',
             source: examples.progressIndication,
+          }),
+
+          code({
+            title: 'Label',
+            description: 'Displaying a textual label',
+            source: examples.label,
           }),
 
           code({

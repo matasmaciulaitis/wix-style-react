@@ -1,8 +1,23 @@
-/* eslint-disable no-console */
-import React from 'react';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
 
-import FilePicker from '..';
 import { storySettings } from './storySettings';
+import FilePicker from '..';
+import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -20,24 +35,39 @@ export default {
     onChange: file => file.name,
   },
 
-  examples: (
-    <div style={{ marginBottom: '100px' }}>
-      <div style={{ marginBottom: '30px' }}>
-        <FilePicker
-          dataHook="story-filepicker"
-          supportedFormats=".png, .pdf"
-          onChange={file => console.log(file.name)}
-        />
-      </div>
+  sections: [
+    header(),
 
-      <FilePicker
-        dataHook="story-filepicker2"
-        supportedFormats=".png, .pdf"
-        onChange={file => console.log(file.name)}
-        mainLabel="FilePicker with error"
-        error
-        errorMessage="File is too large"
-      />
-    </div>
-  ),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description(
+            'Component that opens system browser dialog for choosing files to upload',
+          ),
+
+          importExample(),
+
+          divider(),
+
+          title('Examples'),
+
+          example({
+            title: 'Simple Usage',
+            source: examples.simple,
+          }),
+          example({
+            title: 'FilePicker with error',
+            source: examples.filePickerWithError,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

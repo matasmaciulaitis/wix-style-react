@@ -1,5 +1,4 @@
-import { SCROLL_TOP_THRESHOLD } from './constants';
-
+const scrollTopTreshold = 20;
 const titleElement = component =>
   component.$(`[data-hook="page-header-title"]`);
 const scrollableContentElement = component =>
@@ -18,10 +17,10 @@ const pageDriverFactory = component => {
     /** returns the driver element */
     element: () => component,
     /** Scroll content down, enough to minimize page header */
-    scrollDown: () => setContentScrollOffset(SCROLL_TOP_THRESHOLD + 1),
+    scrollDown: () => setContentScrollOffset(scrollTopTreshold + 1),
 
     /** scrolls up to maximised page */
-    scrollUp: () => setContentScrollOffset(SCROLL_TOP_THRESHOLD),
+    scrollUp: () => setContentScrollOffset(scrollTopTreshold),
 
     /** true if title exists */
     titleExists: () => titleElement(component).isPresent(),

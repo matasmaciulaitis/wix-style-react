@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { visualize, story, snap } from 'storybook-snapper';
 import SparklineChart from '../SparklineChart';
 
 const commonProps = {
@@ -45,11 +45,14 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(
-      `${SparklineChart.displayName}${describe ? '/' + describe : ''}`,
-      module,
-    ).add(it, () => <SparklineChart {...commonProps} {...props} />);
+visualize(SparklineChart.displayName, () => {
+  tests.forEach(({ describe, its }) => {
+    story(describe, () => {
+      its.map(({ it, props }) =>
+        snap(it, () => (
+          <SparklineChart {...commonProps} {...props} animationDuration={0} />
+        )),
+      );
+    });
   });
 });

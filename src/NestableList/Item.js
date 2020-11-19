@@ -1,10 +1,9 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowEqual from 'shallowequal';
 import { DragSource, DropTarget } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import itemTypes from './itemTypes';
-import { getValuesByKey } from './utils';
+import { getValuesByKey, hoverAboveItself } from './utils';
 import { NestableListContext } from './NestableListContext';
 import classNames from 'classnames';
 // keep track of horizontal mouse movement
@@ -93,7 +92,7 @@ const determineHorizontalPosition = ({ monitor, props, hoverNode }) => {
   // rect for entire component including children
   const hoverClientRect = hoverNode.getBoundingClientRect();
 
-  const isOverSelf = shallowEqual(prevPosition, hoverPosition);
+  const isOverSelf = hoverAboveItself(prevPosition, hoverPosition);
 
   // set mouse.lastX if it isn't set yet (first hover event)
   mouse.lastX = mouse.lastX || initialClientOffset.x;
@@ -133,6 +132,20 @@ const determineHorizontalPosition = ({ monitor, props, hoverNode }) => {
     }
   }
 
+  if (
+    props.preventChangeDepth &&
+    nextPosition.length - prevPosition.length === -1 // means that new parent is suitable for current dragged item
+  ) {
+    const isSameParent = nextPosition.every((position, depth) => {
+      return prevPosition[depth] === position;
+    });
+    if (!isSameParent) {
+      nextPosition = prevPosition.map((position, depth) => {
+        return nextPosition[depth] !== undefined ? nextPosition[depth] : 0;
+      });
+    }
+  }
+
   return nextPosition;
 };
 
@@ -144,13 +157,18 @@ const allowItemMove = ({
   props,
 }) => {
   // don't replace items with themselves
-  if (shallowEqual(prevPosition, nextPosition)) {
+  if (hoverAboveItself(prevPosition, nextPosition)) {
+    return;
+  }
+
+  // prevent drop if preventChangeDepth and depth is changed
+  if (props.preventChangeDepth && nextPosition.length !== prevPosition.length) {
     return;
   }
 
   const { position: hoverPosition } = props;
 
-  const isOverSelf = shallowEqual(prevPosition, hoverPosition);
+  const isOverSelf = hoverAboveItself(prevPosition, hoverPosition);
 
   const clientOffset = monitor.getClientOffset() || { x: 0, y: 0 };
 
@@ -281,20 +299,35 @@ class Item extends React.PureComponent {
       isRenderDraggingChildren,
       useDragHandle,
       renderItem,
+      renderPrefix,
       theme,
+      readOnly,
+      siblings,
     } = this.props;
 
     const shouldRenderChildren = !isPlaceholder || isRenderDraggingChildren;
-
     // params passed to renderItem callback
     const renderParams = {
       item,
+      siblings,
       isPlaceholder,
       isPreview: false,
+      connectDragSource: () => {},
       depth: position.length,
     };
 
     const classes = classNames('nestable-item', theme && theme.item);
+    const { draggable = true } = item;
+
+    if (!draggable || readOnly) {
+      return connectDropTarget(
+        <div className={classes} data-hook="nestable-item">
+          {renderPrefix(renderParams)}
+          {renderItem(renderParams)}
+          {shouldRenderChildren && children}
+        </div>,
+      );
+    }
 
     if (useDragHandle) {
       renderParams.connectDragSource = handle => {
@@ -306,6 +339,7 @@ class Item extends React.PureComponent {
 
       return connectDropTarget(
         <div className={classes} data-hook="nestable-item">
+          {renderPrefix(renderParams)}
           {renderItem(renderParams)}
           {shouldRenderChildren && children}
         </div>,
@@ -315,6 +349,7 @@ class Item extends React.PureComponent {
     return connectDropTarget(
       connectDragSource(
         <div className={classes} data-hook="nestable-item">
+          {renderPrefix(renderParams)}
           {renderItem(renderParams)}
           {shouldRenderChildren && children}
         </div>,

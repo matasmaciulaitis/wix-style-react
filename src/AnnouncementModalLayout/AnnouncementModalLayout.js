@@ -16,7 +16,7 @@ const AnnouncementModalLayout = ({ children, className, ...restProps }) => (
   >
     <BaseModalLayout.Illustration />
     <BaseModalLayout.Header titleAppearance={'H2'} />
-    <BaseModalLayout.Content contentHideDividers>
+    <BaseModalLayout.Content hideTopScrollDivider hideBottomScrollDivider>
       {children}
     </BaseModalLayout.Content>
     <BaseModalLayout.Footer />

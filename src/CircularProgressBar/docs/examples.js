@@ -46,3 +46,17 @@ export const errors = `<Layout>
     <CircularProgressBar showProgressIndication error errorMessage="some error" value={20} />
   </Cell>
 </Layout>`;
+
+export const label = `<Layout>
+<Cell>
+  <CircularProgressBar error value={20} />
+</Cell>
+<Cell>
+  <Box height={54} width={54} backgroundColor="D10">
+     <CircularProgressBar light error value={20} />
+  </Box>
+</Cell>
+  <Cell>
+  <CircularProgressBar label="1/5" showProgressIndication error errorMessage="some error" value={20} />
+</Cell>
+</Layout>`;

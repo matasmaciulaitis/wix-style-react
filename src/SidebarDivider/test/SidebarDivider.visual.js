@@ -25,22 +25,30 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) =>
-  storiesOf(`SidebarDivider`, module).add(describe, () => (
-    <React.Fragment>
-      {its.map(({ props }) => (
-        <Box backgroundColor="D70">
-          {skins.map(skin => (
-            <Box direction="vertical" marginBottom={5} marginRight={5}>
-              <div style={{ width: '228px' }}>
-                <SidebarContext.Provider value={{ getSkin: () => skin }}>
-                  <SidebarDivider {...props} />
-                </SidebarContext.Provider>
-              </div>
-            </Box>
-          ))}
-        </Box>
-      ))}
-    </React.Fragment>
-  )),
-);
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) =>
+    storiesOf(`${themeName ? `${themeName}|` : ''}SidebarDivider`, module).add(
+      describe,
+      () =>
+        testWithTheme(
+          <React.Fragment>
+            {its.map(({ props }) => (
+              <Box backgroundColor="D70">
+                {skins.map(skin => (
+                  <Box direction="vertical" marginBottom={5} marginRight={5}>
+                    <div style={{ width: '228px' }}>
+                      <SidebarContext.Provider value={{ getSkin: () => skin }}>
+                        <SidebarDivider {...props} />
+                      </SidebarContext.Provider>
+                    </div>
+                  </Box>
+                ))}
+              </Box>
+            ))}
+          </React.Fragment>,
+        ),
+    ),
+  );
+};

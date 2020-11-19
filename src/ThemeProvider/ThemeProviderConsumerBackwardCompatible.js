@@ -21,13 +21,16 @@ import { ThemeContext } from './ThemeContext';
  * It will be removed in the future once a <ThemeProvider/> will be required on the top of any theme, including the default one.
  * This will assist in creating smaller bundle size for themes that would override the default icons. */
 export const ThemeProviderConsumerBackwardCompatible = ({
-  defaultIcons,
+  defaultIcons = {},
   ...rest
 }) => (
   <ThemeContext.Consumer>
     {context => (
       <ThemeContext.Provider
-        value={{ icons: { ...defaultIcons, ...(context && context.icons) } }}
+        value={{
+          icons: { ...defaultIcons, ...(context && context.icons) },
+          className: context && context.className,
+        }}
       >
         <ThemeContext.Consumer {...rest} />
       </ThemeContext.Provider>

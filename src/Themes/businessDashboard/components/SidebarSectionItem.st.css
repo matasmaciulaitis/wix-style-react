@@ -1,0 +1,50 @@
+:import {
+  -st-from: "../../../SidebarSectionItem/SidebarSectionItem.st.css";
+  -st-default: SidebarSectionItem;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: sidebarBackgroundColor, selectedBackgroundColor, hoveredBackgroundColor, disabledBackgroundColor, disabledTextColor;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: bold;
+}
+
+.root {
+  -st-extends: SidebarSectionItem;
+}
+
+/* Basic */
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+}
+
+/* Selected */
+
+.root:skin(dark):selected {
+  background-color: value(selectedBackgroundColor);
+}
+
+.root:skin(dark):selected .text {
+  -st-mixin: bold;
+}
+
+/* Hovered */
+
+.root:hover, .root:hover:selected:not(:disabled) {
+  background-color: value(hoveredBackgroundColor);
+}
+
+/* Disabled */
+
+.root:disabled {
+  background-color: value(disabledBackgroundColor);
+}
+
+.root:disabled::text {
+  color: value(disabledTextColor);
+}

@@ -150,3 +150,5 @@ class ControlledNumberInput extends React.PureComponent {
 }
 render(<ControlledNumberInput />);
 `;
+
+export const stepper = `<NumberInput hideStepper prefix={<Input.Affix>$</Input.Affix>} placeholder="0" />`;

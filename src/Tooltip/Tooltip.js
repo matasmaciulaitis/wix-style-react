@@ -6,6 +6,7 @@ import { st, classes } from './Tooltip.st.css';
 import { dataHooks, TIMEOUT } from './constants';
 import { FontUpgradeContext } from '../FontUpgrade/context';
 import FontUpgrade from '../FontUpgrade';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 
 /**
  * Next Tooltip
@@ -87,26 +88,24 @@ class Tooltip extends React.PureComponent {
     const textSize = size === 'small' ? 'tiny' : 'small';
     return (
       <FontUpgradeContext.Consumer>
-        {({ active }) => {
-          return (
-            <div style={{ textAlign }}>
-              <FontUpgrade active={!!active}>
-                {typeof content === 'string' ? (
-                  <RawText
-                    dataHook={dataHooks.tooltipText}
-                    size={textSize}
-                    weight="normal"
-                    light
-                  >
-                    {content}
-                  </RawText>
-                ) : (
-                  content
-                )}
-              </FontUpgrade>
-            </div>
-          );
-        }}
+        {({ active }) => (
+          <div style={{ textAlign }}>
+            <FontUpgrade active={!!active}>
+              {typeof content === 'string' ? (
+                <RawText
+                  dataHook={dataHooks.tooltipText}
+                  size={textSize}
+                  weight="normal"
+                  light
+                >
+                  {content}
+                </RawText>
+              ) : (
+                content
+              )}
+            </FontUpgrade>
+          </div>
+        )}
       </FontUpgradeContext.Consumer>
     );
   };
@@ -125,23 +124,28 @@ class Tooltip extends React.PureComponent {
     } = this.props;
 
     return (
-      <CoreTooltip
-        {...rest}
-        data-hook={dataHook}
-        className={st(classes.root, { size }, className)}
-        content={this._renderContent()}
-        hideDelay={exitDelay}
-        showDelay={enterDelay}
-        disabled={
-          disabled === undefined
-            ? children.props && children.props.disabled
-            : disabled
-        }
-        showArrow
-        timeout={TIMEOUT}
-      >
-        {children}
-      </CoreTooltip>
+      <ThemeProviderConsumerBackwardCompatible>
+        {({ className: themeClassName }) => (
+          <CoreTooltip
+            {...rest}
+            data-hook={dataHook}
+            data-size={size}
+            className={st(classes.root, { size }, className, themeClassName)}
+            content={this._renderContent()}
+            hideDelay={exitDelay}
+            showDelay={enterDelay}
+            disabled={
+              disabled === undefined
+                ? children.props && children.props.disabled
+                : disabled
+            }
+            showArrow
+            timeout={TIMEOUT}
+          >
+            {children}
+          </CoreTooltip>
+        )}
+      </ThemeProviderConsumerBackwardCompatible>
     );
   }
 }

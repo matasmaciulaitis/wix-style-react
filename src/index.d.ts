@@ -488,4 +488,11 @@ export { default as CardFolderTabs } from './CardFolderTabs';
 export * from './CardFolderTabs';
 
 export { default as StackedBarChart } from './StackedBarChart';
+
+export { default as PageFooter } from './PageFooter';
+export * from './PageFooter';
+
+export { default as StyledNestableList } from './StyledNestableList';
+export * from './StyledNestableList';
+
 export * from './StackedBarChart';

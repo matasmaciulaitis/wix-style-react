@@ -3,34 +3,48 @@ import LockLocked from 'wix-ui-icons-common/LockLocked';
 import LockUnlocked from 'wix-ui-icons-common/LockUnlocked';
 import {
   tab,
-  code,
   description,
   importExample,
+  example as baseExample,
   api,
   header,
   tabs,
   testkit,
   playground,
+  divider,
+  title,
 } from 'wix-storybook-utils/Sections';
 import { storySettings } from '../test/storySettings';
 import SegmentedToggle from '..';
+import allComponents from '../../../stories/utils/allComponents';
 import * as examples from './examples';
-import { Layout, Cell } from 'wix-style-react';
 
-const BasicExample = () => (
-  <Layout>
-    <Cell span={4}>
-      <SegmentedToggle defaultSelected="locked">
-        <SegmentedToggle.Button value="locked" prefixIcon={<LockLocked />}>
-          Locked
-        </SegmentedToggle.Button>
-        <SegmentedToggle.Button value="unlocked" prefixIcon={<LockUnlocked />}>
-          Unlocked
-        </SegmentedToggle.Button>
-      </SegmentedToggle>
-    </Cell>
-  </Layout>
-);
+const example = config => baseExample({ components: allComponents, ...config });
+
+const exampleChildren = [
+  {
+    label: 'Button mode',
+    value: [
+      <SegmentedToggle.Button value="locked" prefixIcon={<LockLocked />}>
+        Locked
+      </SegmentedToggle.Button>,
+      <SegmentedToggle.Button value="unlocked" prefixIcon={<LockUnlocked />}>
+        Very long fancy and hardly fitting tab
+      </SegmentedToggle.Button>,
+    ],
+  },
+  {
+    label: 'Icon mode',
+    value: [
+      <SegmentedToggle.Icon value="locked" tooltipText="Locked">
+        <LockLocked />
+      </SegmentedToggle.Icon>,
+      <SegmentedToggle.Icon value="unlocked" tooltipText="Unlocked">
+        <LockUnlocked />
+      </SegmentedToggle.Icon>,
+    ],
+  },
+];
 
 export default {
   category: storySettings.category,
@@ -41,23 +55,14 @@ export default {
 
   componentProps: {
     defaultSelected: 'locked',
-    children: [
-      <SegmentedToggle.Button value="locked" prefixIcon={<LockLocked />}>
-        Locked
-      </SegmentedToggle.Button>,
-      <SegmentedToggle.Button value="unlocked" prefixIcon={<LockUnlocked />}>
-        Very long fancy and hardly fitting tab
-      </SegmentedToggle.Button>,
-    ],
+    children: exampleChildren[0].value,
   },
 
+  exampleProps: { children: exampleChildren },
+
   sections: [
-    header({
-      component: <BasicExample />,
-      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
-      sourceUrl:
-        'https://github.com/wix/wix-style-react/tree/master/src/SegmentedToggle/SegmentedToggle.js',
-    }),
+    header(),
+
     tabs([
       tab({
         title: 'Description',
@@ -65,69 +70,43 @@ export default {
           description(
             `SegmentedToggle is a view group containing typically three or more buttons that can be toggled on and off. These buttons visibly change to indicate whether an option is active or inactive.`,
           ),
-          importExample({
-            source: "import { SegmentedToggle } from 'wix-style-react';",
-          }),
+          importExample(),
+
+          divider(),
 
           description({
             title: `Usage`,
             text: `Component includes compound components: Button and Icon. Make sure to pass prop "value" to compound components to enable selection control.`,
           }),
 
-          description({
-            title: `Text & Prefix`,
-            text: `Icon accompanied by text make information easier to find and scan.`,
-          }),
+          title('Examples'),
 
-          code({
+          example({
+            title: 'Text & Prefix',
+            text:
+              'Icon accompanied by text make information easier to find and scan.',
             source: examples.textAndIcon,
-            components: { SegmentedToggle, LockLocked, Layout, Cell },
           }),
-
-          description({
-            title: `Text`,
-            text: `Simple usecase where prefix icon is not an option.`,
-          }),
-
-          code({
+          example({
+            title: 'Text',
+            text: 'Simple usecase where prefix icon is not an option.',
             source: examples.text,
-            components: { SegmentedToggle, LockLocked, Layout, Cell },
           }),
-
-          description({
-            title: `Icon`,
-            text: `Icon only option is mostly used in narrow places. This option provides additional tooltip on hover in order to inform users on icons meaning.`,
-          }),
-
-          code({
+          example({
+            title: 'Icon',
+            text:
+              'Icon only option is mostly used in narrow places. This option provides additional tooltip on hover in order to inform users on icons meaning.',
             source: examples.icon,
-            components: {
-              SegmentedToggle,
-              LockLocked,
-              LockUnlocked,
-              Layout,
-              Cell,
-            },
           }),
-
-          description({
-            title: `Controlled mode`,
+          example({
+            title: 'Controlled mode',
             text: `Controlled mode can be enabled by passing 'selected' prop`,
-          }),
-
-          code({
             source: examples.controlled,
-            components: { SegmentedToggle, LockLocked, Layout, Cell },
           }),
-
-          description({
-            title: `Disabled`,
-            text: `All component children can be disabled by passing disabled prop.`,
-          }),
-
-          code({
+          example({
+            title: 'Disabled',
+            text: `All component children can be disabled by passing 'disabled' prop.`,
             source: examples.disabled,
-            components: { SegmentedToggle, LockLocked, Layout, Cell },
           }),
         ],
       }),

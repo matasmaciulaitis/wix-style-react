@@ -67,6 +67,8 @@ class AutoCompleteWithLabel extends React.PureComponent {
     native: PropTypes.bool,
     /** Value of rendered child input */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    /** Set the max height of the dropdownLayout in pixels */
+    maxHeightPixels: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -112,6 +114,7 @@ class AutoCompleteWithLabel extends React.PureComponent {
       placeholder,
       native,
       onBlur,
+      maxHeightPixels,
     } = this.props;
     const { value } = this._isInputControlled() ? this.props : this.state;
     const predicate = this.state.isEditing
@@ -159,6 +162,7 @@ class AutoCompleteWithLabel extends React.PureComponent {
             }
             options={filteredOptions}
             native={native}
+            maxHeightPixels={maxHeightPixels}
           />
         </LabelledElement>
         {status === Input.StatusError && statusMessage && (

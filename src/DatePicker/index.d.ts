@@ -24,4 +24,8 @@ export interface DatePickerProps extends CalendarProps {
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-export default class DatePicker extends React.PureComponent<DatePickerProps> {}
+export default class DatePicker extends React.PureComponent<DatePickerProps> {
+  openCalendar: () => void;
+  closeCalendar: () => void;
+  makeInputFocusable: () => void;
+}

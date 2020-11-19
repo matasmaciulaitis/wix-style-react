@@ -52,14 +52,16 @@ const Heading = props => {
 Heading.displayName = 'Heading';
 
 Heading.propTypes = {
+  /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
-  /** any nodes to be rendered (usually text nodes) */
+
+  /** Any nodes to be rendered (usually text nodes) */
   children: PropTypes.any,
 
-  /** is the text has dark or light skin */
+  /** Has dark or light skin */
   light: PropTypes.bool,
 
-  /** typography of the heading */
+  /** Typography of the heading */
   appearance: PropTypes.oneOf(Object.keys(APPEARANCES)),
 
   ...EllipsisCommonProps,

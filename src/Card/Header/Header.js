@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { classes } from './Header.st.css';
+import { st, classes } from './Header.st.css';
 import Heading from '../../Heading';
 import Text from '../../Text';
 import { DataHooks } from './hooks';
@@ -29,41 +29,36 @@ class Header extends React.PureComponent {
   };
 
   render() {
-    const { dataHook, title, subtitle, suffix } = this.props;
+    const { dataHook, title, subtitle, suffix, className } = this.props;
 
     return (
-      <div data-hook={dataHook}>
-        <div className={classes.wrapper}>
-          <div className={classes.titleWrapper}>
-            {isString(title) ? (
-              <Heading
-                dataHook={DataHooks.title}
-                appearance="H3"
-                children={title}
-              />
-            ) : (
-              <span data-hook={DataHooks.title}>{title}</span>
-            )}
-
-            {subtitle && isString(subtitle) ? (
-              <Text
-                dataHook={DataHooks.subtitle}
-                children={subtitle}
-                secondary
-              />
-            ) : (
-              <span data-hook={DataHooks.subtitle}>{subtitle}</span>
-            )}
-          </div>
-
-          {suffix && (
-            <div
-              data-hook={DataHooks.suffix}
-              className={classes.suffix}
-              children={suffix}
+      <div data-hook={dataHook} className={st(classes.root, className)}>
+        <div className={classes.titleWrapper}>
+          {isString(title) ? (
+            <Heading
+              dataHook={DataHooks.title}
+              appearance="H3"
+              children={title}
+              className={classes.title}
             />
+          ) : (
+            <span data-hook={DataHooks.title}>{title}</span>
+          )}
+
+          {subtitle && isString(subtitle) ? (
+            <Text dataHook={DataHooks.subtitle} children={subtitle} secondary />
+          ) : (
+            <span data-hook={DataHooks.subtitle}>{subtitle}</span>
           )}
         </div>
+
+        {suffix && (
+          <div
+            data-hook={DataHooks.suffix}
+            className={classes.suffix}
+            children={suffix}
+          />
+        )}
       </div>
     );
   }

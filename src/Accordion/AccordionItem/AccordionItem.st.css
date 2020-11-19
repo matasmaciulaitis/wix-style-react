@@ -1,6 +1,6 @@
 :import {
   -st-from: "../../Foundation/stylable/colors.st.css";
-  -st-named: B60,B10,D10,D60,D80;
+  -st-named: B60, B10, D10, D60, D80;
 }
 
 :import {
@@ -9,9 +9,8 @@
 }
 
 .root {
-  -st-states: hover, disabled, open, skin( enum( standard, light )), hideShadow ;
+  -st-states: hover, disabled, open, skin(enum(standard, light)), hideShadow ;
   overflow: hidden;
-  background-color: transparent;
 }
 
 .header {

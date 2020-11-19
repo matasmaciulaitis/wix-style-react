@@ -54,7 +54,7 @@ function customModalLayoutWithAllProps() {
       maxHeight={500}
       showHeaderDivider
       showFooterDivider
-      contentHideDividers
+      hideContentDividers
     />
   );
 }

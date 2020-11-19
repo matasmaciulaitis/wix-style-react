@@ -33,7 +33,6 @@ function ModalWithAllProps() {
       shouldCloseOnOverlayClick
       shouldDisplayCloseButton
       zIndex={1}
-      theme="blue"
     />
   );
 }

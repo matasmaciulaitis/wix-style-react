@@ -24,7 +24,7 @@
 }
 
 :vars {
-  option_height: 35px;
+  option_height: 36px;
   big_option_height: 47px;
   top-arrow-size: 8px;
   arrowUpShadow: 3px 3px 8px rgba(0, 0, 0, .1);
@@ -125,14 +125,6 @@
   padding: 0;
 }
 
-.option:itemHeight(small):not(:overrideStyle){
-  min-height: value(option_height);
-}
-
-.option:itemHeight(big):not(:overrideStyle){
-  min-height: value(big_option_height);
-}
-
 .option:disabled {
   color: value(D50);
   cursor: default;
@@ -160,6 +152,20 @@
 .option:selected:hovered {
   background-color: value(THEME-COLOR-20);
   color: value(D80);
+}
+
+.selectableOption{
+  -st-states: itemHeight(enum(big, small));
+}
+
+.selectableOption:itemHeight(small){
+  min-height: value(option_height);
+}
+
+.selectableOption:itemHeight(big){
+  min-height: value(big_option_height);
+  display: flex;
+  align-items: center;
 }
 
 .arrow {

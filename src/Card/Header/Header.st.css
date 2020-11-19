@@ -1,4 +1,9 @@
-.wrapper {
+:import {
+  -st-from: "../../Heading/Heading.st.css";
+  -st-default: Heading;
+}
+
+.root {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,4 +18,8 @@
 
 .titleWrapper {
   min-width: 0;
+}
+
+.title {
+  -st-extends: Heading;
 }

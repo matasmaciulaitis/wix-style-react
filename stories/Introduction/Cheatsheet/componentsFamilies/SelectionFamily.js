@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import {
-  NotDeveloped,
   FamilyStructure,
   SingleComponentSideBySide,
   singleComponentSizes,
@@ -26,6 +25,7 @@ import { Category } from '../../../storiesHierarchy';
 import {
   Dropdown,
   MultiSelectCheckbox,
+  CheckToggle,
   Checkbox,
   FacesRatingBar,
   RadioGroup,
@@ -356,17 +356,49 @@ class SliderExample extends PureComponent {
 }
 
 const CheckToggleExample = () => {
+  const [checkedMedium, setCheckedMedium] = useState(false);
+  const [checkedSuccessMedium, setCheckedSuccessMedium] = useState(true);
+  const [checkedStandart, setCheckedStandart] = useState(false);
+  const [checkedSuccess, setCheckedSuccess] = useState(true);
+
+  const tooltipContent = checked => (checked ? 'Checked' : 'Unchecked');
+
   const symbol = selectionSymbols.checkToggle;
   const components = selectionSymbolsToComponents[symbol];
 
   const singleComponentProps = {
     name: symbol,
-    componentsNames: components,
+    componentsNames: createLinkedComponentsNames(components),
   };
 
   return (
     <SingleComponentSideBySide {...singleComponentProps}>
-      <NotDeveloped />
+      <Layout>
+        <CheckToggle
+          size="medium"
+          checked={checkedMedium}
+          onChange={() => setCheckedMedium(!checkedMedium)}
+          tooltipContent={tooltipContent(checkedMedium)}
+        />
+        <CheckToggle
+          skin="success"
+          size="medium"
+          checked={checkedSuccessMedium}
+          onChange={() => setCheckedSuccessMedium(!checkedSuccessMedium)}
+          tooltipContent={tooltipContent(checkedSuccessMedium)}
+        />
+        <CheckToggle
+          checked={checkedStandart}
+          onChange={() => setCheckedStandart(!checkedStandart)}
+          tooltipContent={tooltipContent(checkedStandart)}
+        />
+        <CheckToggle
+          skin="success"
+          checked={checkedSuccess}
+          onChange={() => setCheckedSuccess(!checkedSuccess)}
+          tooltipContent={tooltipContent(checkedSuccess)}
+        />
+      </Layout>
     </SingleComponentSideBySide>
   );
 };

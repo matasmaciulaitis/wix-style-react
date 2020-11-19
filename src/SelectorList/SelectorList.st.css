@@ -1,3 +1,8 @@
-.searchInput {
-  margin: 30px 30px 12px;
+.subheaderWrapper {
+  -st-states: withSearch;
+  padding: 30px 30px 12px;
+}
+
+.subheaderWrapper:withSearch .subtitleWrapper {
+  margin-bottom: 18px;
 }

@@ -1,21 +1,30 @@
-import React from 'react';
-import Heading from '..';
-
-import CodeExample from 'wix-storybook-utils/CodeExample';
-
-import EllipsisExample from './ExampleEllipsis';
-import EllipsisExampleRaw from '!raw-loader!./ExampleEllipsis';
-
-import TypographyExample from './ExampleTypography';
-import TypographyExampleRaw from '!raw-loader!./ExampleTypography';
+import {
+  header,
+  tabs,
+  tab,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  playground,
+  api,
+  testkit,
+  description,
+} from 'wix-storybook-utils/Sections';
 
 import { storySettings } from './storySettings';
+import Heading from '..';
+import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
+
   component: Heading,
-  componentPath: '../Heading.js',
+  componentPath: '..',
 
   componentProps: {
     children: 'Hey there, good looking',
@@ -24,15 +33,39 @@ export default {
     ellipsis: false,
   },
 
-  examples: (
-    <div>
-      <CodeExample title="Ellipsis Example" code={EllipsisExampleRaw}>
-        <EllipsisExample />
-      </CodeExample>
+  exampleProps: {},
 
-      <CodeExample title="Typography Example" code={TypographyExampleRaw}>
-        <TypographyExample />
-      </CodeExample>
-    </div>
-  ),
+  sections: [
+    header(),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description('Headings are texts to be used for titles or subtitles.'),
+
+          importExample(),
+
+          divider(),
+
+          title('Examples'),
+
+          example({
+            title: 'Ellipsis',
+            source: examples.ellipsis,
+          }),
+          example({
+            title: 'Typography',
+            source: examples.typography,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

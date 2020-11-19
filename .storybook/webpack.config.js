@@ -1,6 +1,6 @@
 const merge = require('lodash/merge');
 const path = require('path');
-const wixStorybookConfig = require('yoshi/config/webpack.config.storybook');
+const { decorateStorybookConfig } = require('yoshi-flow-library/storybook');
 
 const makeTestkitTemplate = platform =>
   `import { <%= component.displayName %>Testkit } from 'wix-style-react/dist/testkit${platform}';`;
@@ -10,12 +10,7 @@ To learn how to initialize and use testkits, see <a href="/?path=/story/introduc
 `;
 
 module.exports = ({ config }) => {
-  config.module.rules[0].use[0].loader = require.resolve('babel-loader');
-  config.plugins.find(
-    plugin => plugin.constructor.name === 'ProgressPlugin',
-  ).handler = () => undefined;
-
-  const newConfig = wixStorybookConfig(config);
+  const newConfig = decorateStorybookConfig(config);
 
   return merge(newConfig, {
     context: path.resolve(__dirname, '..', 'src'),

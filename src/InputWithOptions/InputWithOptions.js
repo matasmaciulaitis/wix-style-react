@@ -504,6 +504,7 @@ InputWithOptions.propTypes = {
   dropdownOffsetLeft: PropTypes.string,
   /** Controls whether to show options if input is empty */
   showOptionsIfEmptyInput: PropTypes.bool,
+  /** Mark in bold word parts based on search pattern */
   highlight: PropTypes.bool,
   /** Indicates whether to render using the native select element */
   native: PropTypes.bool,

@@ -7,8 +7,14 @@ function CardWithMandatoryProps() {
 
 function CardWithAllProps() {
   return (
-    <Card className="cls" dataHook="hook" hideOverflow stretchVertically>
-      content..
+    <Card
+      className="cls"
+      dataHook="hook"
+      hideOverflow
+      stretchVertically
+      showShadow
+    >
+      content...
     </Card>
   );
 }

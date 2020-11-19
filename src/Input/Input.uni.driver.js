@@ -1,5 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { ReactBase } from '../../test/utils/unidriver';
+import { baseUniDriverFactory, ReactBase } from '../../test/utils/unidriver';
 import DATA_ATTR from './DataAttr';
 import { statusIndicatorDriverFactory } from '../StatusIndicator/StatusIndicator.uni.driver';
 import { dataHooks } from './constants';

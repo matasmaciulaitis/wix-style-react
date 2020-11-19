@@ -7,6 +7,7 @@
 | mouseEnter()     | -         | `Promise<void>`    | mouse over the target element                     |
 | mouseLeave()     | -         | `Promise<void>`    | mouse leaves the target element                   |
 | getTooltipText() | -         | `Promise<string>`  | returns tooltips content value in string          |
+| hasSize(size)    | boolean   | `Promise<boolean>` | returns true if tooltip has a given size          |
 
 ### ReactTestUtils Example
 

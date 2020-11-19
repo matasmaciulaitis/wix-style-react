@@ -6,16 +6,16 @@ import {
   api,
   testkit,
   importExample,
-  code as baseCode,
+  example as baseExample,
   header,
   tabs,
+  divider,
+  title,
 } from 'wix-storybook-utils/Sections';
 
 import Thumbnail from '../Thumbnail';
-import { Layout, Cell } from '../../Layout';
 
 import * as examples from './examples';
-import exampleControlled from '!raw-loader!./exampleControlled';
 import thumbnailReadme from '../README.md';
 import allComponents from '../../../stories/utils/allComponents';
 
@@ -24,8 +24,8 @@ const sizes = [
   { value: 300, label: '300' },
 ];
 
-const code = config =>
-  baseCode({
+const example = config =>
+  baseExample({
     components: allComponents,
     ...config,
   });
@@ -55,11 +55,11 @@ export default {
       { label: 'Tiny', value: 'tiny' },
     ],
     backgroundImage: [
+      { label: 'On', value: false },
       {
-        label: 'On',
+        label: 'Off',
         value: examples.getImageUrl(500, 500),
       },
-      { label: 'Off', value: false },
     ],
     image: [
       {
@@ -87,7 +87,12 @@ export default {
         title: 'Description',
         sections: [
           description(thumbnailReadme),
-          importExample("import { Thumbnail } from 'wix-style-react';"),
+
+          importExample(),
+
+          divider(),
+
+          title('Examples'),
 
           ...[
             {
@@ -118,14 +123,11 @@ export default {
               title: 'Disabled',
               source: examples.disabledWithImage,
             },
-          ].map(code),
-
-          code({
-            title: 'Controlled Thumbnail',
-            source: exampleControlled,
-            components: { Thumbnail, Layout, Cell },
-            autoRender: false,
-          }),
+            {
+              title: 'Controlled Thumbnail',
+              source: examples.controlled,
+            },
+          ].map(example),
         ],
       }),
 

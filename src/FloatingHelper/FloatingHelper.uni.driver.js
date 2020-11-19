@@ -14,15 +14,31 @@ const floatingHelperUniDriverFactory = (base, body) => {
     );
 
   return {
-    ...closablePopoverUniDriver,
-    /** check whether the helper has a close button */
+    ...closablePopoverUniDriverFactory(base, body),
+
+    /**
+     * Check whether the helper has a close button
+     * @return {Promise<boolean>}
+     */
     hasCloseButton: async () => (await closeButton()).exists(),
-    /** click the close button */
+
+    /**
+     * Clicks the close button
+     * @return {Promise<void>}
+     */
     clickCloseButton: async () => (await closeButton()).click(),
-    /** Get the driver for the helper's content */
+
+    /**
+     * Gets the driver for the helper's content
+     * @return {Promise<any>}
+     */
     getHelperContentDriver: () =>
       floatingHelperContentUniDriverFactory(base, body),
-    /** Get width of content's root element */
+
+    /**
+     * Gets the width of the content root element
+     * @return {Promise<string>}
+     */
     getWidth: async () => (await contentWrapper()).style.width,
   };
 };

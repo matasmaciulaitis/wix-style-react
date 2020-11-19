@@ -72,6 +72,7 @@
     width: 12px;
 }
 
+.root .progressBar::label,
 .root .progressBar::progressIndicator {
     color: value(D20);
   -st-mixin: heading-h6;

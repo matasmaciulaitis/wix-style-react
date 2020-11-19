@@ -42,88 +42,116 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       createOptionDriver(optionElementAt(position)),
     );
 
+  const options = () => values(optionElements.childNodes);
+
   return {
+    /** @deprecated */
     classes: () => optionElementsContainer.className,
+
     clickAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.click(optionElementAt(position)),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.click();
+      }),
+
     clickAtOptionWithValue: value => {
-      const option = values(optionElements.childNodes).find(
-        _option => _option.innerHTML === value,
-      );
-      option && ReactTestUtils.Simulate.click(option);
+      for (const _option of options()) {
+        const optionDriver = createOptionDriver(_option);
+        if (optionDriver.content() === value) {
+          return optionDriver.click();
+        }
+      }
     },
     exists: () => !!element,
+
+    /** @deprecated deprecated prop */
     hasTopArrow: () =>
       !!element.querySelector(`[data-hook="${DATA_HOOKS.TOP_ARROW}"]`),
+
+    /** @deprecated deprecated prop */
     isDown: () =>
       contentContainer.getAttribute(DATA_DIRECTION) ===
       DROPDOWN_LAYOUT_DIRECTIONS.DOWN,
+
+    /** @deprecated deprecated prop */
+    isUp: () =>
+      contentContainer.getAttribute(DATA_DIRECTION) ===
+      DROPDOWN_LAYOUT_DIRECTIONS.UP,
+
     isLinkOption: position =>
-      optionElementAt(position).tagName.toLowerCase() === 'a',
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isLink();
+      }),
+
     isOptionADivider: position =>
       doIfOptionExists(position, () => {
-        const option = optionElementAt(position);
-        const divider = option.querySelector(
-          `[data-hook="${OPTION_DATA_HOOKS.DIVIDER}"]`,
-        );
-        return !!divider;
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isDivider();
       }),
+
     isOptionExists: optionText =>
       [].filter.call(
         optionElements.childNodes,
         opt => opt.textContent === optionText,
       ).length > 0,
+
     /** returns if an option is hovered. notice that it checks by index and __not__ by id */
     isOptionHovered: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.HOVERED),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isHovered();
+      }),
+
     isOptionSelected: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.SELECTED),
-      ),
-    isOptionHoveredWithGlobalClassName: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.HOVERED_GLOBAL),
-      ),
-    isOptionSelectedWithGlobalClassName: position =>
-      doIfOptionExists(position, () =>
-        optionElementAt(position).hasAttribute(DATA_OPTION.SELECTED_GLOBAL),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.isSelected();
+      }),
+
+    /** @deprecated */
     isOptionHeightSmall: position =>
       doIfOptionExists(
         position,
         () =>
           optionElementAt(position).getAttribute(DATA_OPTION.SIZE) === 'small',
       ),
+
+    /** @deprecated */
     isOptionHeightBig: position =>
       doIfOptionExists(
         position,
         () =>
           optionElementAt(position).getAttribute(DATA_OPTION.SIZE) === 'big',
       ),
+
     isShown: () => contentContainer.hasAttribute(DATA_SHOWN),
-    isUp: () =>
-      contentContainer.getAttribute(DATA_DIRECTION) ===
-      DROPDOWN_LAYOUT_DIRECTIONS.UP,
+
+    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
+
+    mouseEnterAtOption: position =>
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.mouseEnter();
+      }),
+
+    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
+
+    /** @deprecated deprecated prop */
     mouseClickOutside: () =>
       document.body.dispatchEvent(
         new Event('mouseup', { cancelable: true, bubbles: true }),
       ),
-    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
-    mouseEnterAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseEnter(optionElementAt(position)),
-      ),
-    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
+
     mouseLeaveAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseLeave(optionElementAt(position)),
-      ),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.mouseLeave();
+      }),
+
     /** @deprecated Use optionDriver*/
     optionAt: optionElementAt,
+
     /** @deprecated This should be a private method since the hook include internal parts ('dropdown-divider-{id}, dropdown-item-{id})') */
     optionByHook: hook => {
       const option = optionElements.querySelector(`[data-hook=${hook}]`);
@@ -132,13 +160,20 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       }
       return createOptionDriver(option);
     },
+
     optionById(optionId) {
       return this.optionByHook(`dropdown-item-${optionId}`);
     },
+
     optionContentAt: position =>
-      doIfOptionExists(position, () => optionElementAt(position).textContent),
+      doIfOptionExists(position, () => {
+        const optionDriver = getOptionDriver(position);
+        return optionDriver.content();
+      }),
+
     /** Get option driver given an option index */
     optionDriver: createOptionDriver,
+
     /** Get an array of all options including dividers (drivers) */
     options: () => {
       const drivers = [];
@@ -147,8 +182,15 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       }
       return drivers;
     },
-    optionsContent: () =>
-      values(optionElements.childNodes).map(option => option.textContent),
+
+    optionsContent: () => {
+      const contentArray = [];
+      for (const option of options()) {
+        const optionDriver = createOptionDriver(option);
+        contentArray.push(optionDriver.content());
+      }
+      return contentArray;
+    },
 
     markedOption: async () => {
       const hoveredOption = optionElements.querySelector(
@@ -159,7 +201,7 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       );
     },
 
-    optionsLength: () => optionsLength(),
+    optionsLength,
     /** @deprecated should be private */
     optionsScrollTop: () => optionElements.scrollTop,
     pressDownKey: () =>
@@ -182,10 +224,6 @@ const createOptionDriver = option => ({
   mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
   isHovered: () => option.hasAttribute(DATA_OPTION.HOVERED),
   isSelected: () => option.hasAttribute(DATA_OPTION.SELECTED),
-  isHoveredWithGlobalClassName: () =>
-    option.hasAttribute(DATA_OPTION.HOVERED_GLOBAL),
-  isSelectedWithGlobalClassName: () =>
-    option.hasAttribute(DATA_OPTION.SELECTED_GLOBAL),
   content: () => option.textContent,
   click: () => ReactTestUtils.Simulate.click(option),
   isDivider: () => {
@@ -195,6 +233,7 @@ const createOptionDriver = option => ({
     return !!divider;
   },
   isDisabled: () => option.hasAttribute(DATA_OPTION.DISABLED),
+  isLink: () => option.tagName.toLowerCase() === 'a',
 });
 
 export default dropdownLayoutDriverFactory;

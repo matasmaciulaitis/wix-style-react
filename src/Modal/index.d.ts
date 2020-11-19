@@ -5,7 +5,6 @@ export interface ModalProps {
   isOpen: boolean;
   borderRadius?: number;
   contentLabel?: string;
-  theme?: ModalTheme;
   zIndex?: number;
   shouldCloseOnOverlayClick?: boolean;
   shouldDisplayCloseButton?: boolean;
@@ -26,7 +25,6 @@ export interface ModalProps {
 
 export default class Modal extends React.PureComponent<ModalProps> {}
 
-export type ModalTheme = 'blue' | 'red' | 'green' | 'white';
 export type ModalHorizontalPostion = 'start' | 'center' | 'end';
 export type ModalVerticalPosition = 'start' | 'center' | 'end';
 export type ModalOverlayPosition =

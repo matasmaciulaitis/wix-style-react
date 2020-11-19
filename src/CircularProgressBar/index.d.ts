@@ -6,6 +6,7 @@ export interface CircularProgressBarProps {
   errorMessage?: string;
   light?: boolean;
   showProgressIndication?: boolean;
+  label?: string;
   size?: CircularProgressBarSize;
   value?: number | string;
   dataHook?: string;

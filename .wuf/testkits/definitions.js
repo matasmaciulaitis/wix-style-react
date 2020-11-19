@@ -398,7 +398,6 @@ module.exports = {
     enzymeLegacyTestkit: true,
     protractorLegacyTestkit: true,
     noPuppeteerTestkit: true,
-    noUnidriver: true,
   },
 
   ColorPicker: {
@@ -514,8 +513,6 @@ module.exports = {
     vanillaLegacyTestkit: true,
     enzymeLegacyTestkit: true,
     protractorLegacyTestkit: true,
-    noPuppeteerTestkit: true,
-    noUnidriver: true,
   },
 
   AutoCompleteWithLabel: {

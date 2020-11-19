@@ -5,7 +5,7 @@
 
 :import {
   -st-from: '../foundations/colors.st.css';
-  -st-named: B10, D30;
+  -st-named: B05, B10, D10, D20, D30, D80, D10-30, D10-40, D80-70;
 }
 
 :import {
@@ -16,14 +16,27 @@
 .root {
   -st-extends: TextButton;
   color: value(B10);
+  align-items: flex-start;
 }
 
 .root:hover {
-  color: value(B10);
+  color: value(B05);
 }
 
 .root:active {
-  color: value(B10);
+  color: value(B05);
+}
+
+.root:disabled {
+  color: value(D10-40);
+}
+
+.root::prefix {
+  padding-right: 4px;
+}
+
+.root::suffix {
+  padding-left: 4px;
 }
 
 /****** Weights ******/
@@ -54,13 +67,52 @@
 .root:size(tiny) {
   line-height: 16px;
   height: 16px;
+  font-size: 12px;
+  align-items: center;
 }
+
 .root:size(small) {
   line-height: 20px;
   height: 20px;
+  align-items: center;
 }
 
-/* Disabled */
-.root:skin(disabled) {
-  color: value(D30);
+/* Skin: light */
+
+.root:skin(light) {
+  color: value(D80);
+}
+
+.root:skin(light):disabled {
+  color: value(D80-70);
+}
+
+/* Skin: dark */
+
+.root:skin(dark) {
+  color: value(D10);
+}
+
+.root:skin(dark):hover {
+  color: value(D10);
+}
+
+.root:skin(dark):active {
+  color: value(D10);
+}
+
+.root:skin(dark):disabled {
+  color: value(D10-40);
+}
+
+.root:skin(dark):weight(thin) {
+  color: value(D20);
+}
+
+.root:skin(dark):weight(thin):hover {
+  color: value(D20);
+}
+
+.root:skin(dark):weight(thin):active {
+  color: value(D20);
 }

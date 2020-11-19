@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import IconButton from '../../IconButton/IconButton';
+
+const skinPriorityMap = {
+  standard: 'secondary',
+  inverted: 'primary',
+  light: 'primary',
+  transparent: 'primary',
+  premium: 'primary',
+};
 
 const SliderArrow = ({
   dataHook,
-  arrowSize = 'medium',
+  arrowSize,
   buttonSkin,
   icon,
   className,
@@ -19,7 +26,7 @@ const SliderArrow = ({
         skin={buttonSkin}
         size={arrowSize}
         disabled={isDisabled}
-        priority="secondary"
+        priority={skinPriorityMap[buttonSkin]}
       >
         {icon}
       </IconButton>

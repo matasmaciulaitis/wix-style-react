@@ -38,6 +38,7 @@ export type SelectorListCommonProps = {
   onSelect?: (item: SelectorListItem) => void;
   initialAmountToLoad?: number;
   children?: SelectorListRenderProp;
+  subtitle?: React.ReactNode;
 };
 
 export default class SelectorList extends React.PureComponent<

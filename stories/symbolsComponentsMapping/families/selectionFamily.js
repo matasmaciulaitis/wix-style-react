@@ -45,7 +45,7 @@ export const selectionSymbolsToComponents = {
     componentsNames.Slider,
   ],
 
-  [selectionSymbols.checkToggle]: [],
+  [selectionSymbols.checkToggle]: [componentsNames.CheckToggle],
 
   [selectionSymbols.starsRatingBar]: [
     sharedComponentsNames.FormField,

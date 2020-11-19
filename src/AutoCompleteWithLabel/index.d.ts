@@ -23,6 +23,7 @@ export interface AutoCompleteWithLabelProps {
   disabled?: boolean;
   className?: string;
   maxLength?: number;
+  maxHeightPixels?: string | number;
   placeholder?: string;
   onSelect?: (option: DropdownLayoutValueOption) => void;
   native?: boolean;

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
-
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
-
 import { StringUtils } from '../utils/StringUtils';
-import styles from './Search.scss';
+import { st, classes } from './Search.st.css';
 import Input from '../Input/Input';
 
 // because lodash debounce is not compatible with jest timeout mocks
@@ -41,6 +37,9 @@ class Search extends Component {
 
     /** onChange debounce in milliseconds */
     debounceMs: PropTypes.number,
+
+    /** Mark in bold word parts based on search pattern */
+    highlight: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,6 +50,7 @@ class Search extends Component {
     expandWidth: '100%',
     debounceMs: 0,
     onChange: () => {},
+    highlight: true,
   };
 
   constructor(props) {
@@ -124,7 +124,7 @@ class Search extends Component {
       stateChanges.inputValue = '';
     }
 
-    if (expandable && !collapsed) {
+    if (expandable && !collapsed && this._currentValue === '') {
       stateChanges.collapsed = true;
       this.searchInput.input.blur();
     }
@@ -153,8 +153,9 @@ class Search extends Component {
     onFocus && onFocus(event);
   };
 
-  _onBlur = event => {
+  _onBlur = async event => {
     const { onBlur } = this.props;
+    onBlur && (await onBlur(event));
 
     if (!this.state.collapsed && this.props.expandable) {
       const value = this._currentValue();
@@ -165,8 +166,6 @@ class Search extends Component {
         });
       }
     }
-
-    onBlur && onBlur(event);
   };
 
   _onWrapperClick = () => {
@@ -188,16 +187,15 @@ class Search extends Component {
   };
 
   render() {
-    const { defaultValue, dataHook, expandWidth, ...restProps } = this.props;
+    const {
+      defaultValue,
+      dataHook,
+      expandWidth,
+      highlight,
+      ...restProps
+    } = this.props;
     const { expandable, size } = restProps;
     const { collapsed, inputValue } = this.state;
-
-    const wrapperClasses = classNames({
-      [styles.expandableStyles]: expandable,
-      [styles.collapsed]: collapsed && expandable,
-      [styles.expanded]: !collapsed && expandable,
-      [styles.small]: size === 'small',
-    });
 
     const contentStyle =
       expandable && !collapsed ? { width: expandWidth } : undefined;
@@ -205,11 +203,17 @@ class Search extends Component {
     return (
       <div
         data-hook={dataHook}
-        className={wrapperClasses}
+        className={st(classes.root, {
+          expandable,
+          expanded: expandable && collapsed,
+          size,
+        })}
         onClick={this._onWrapperClick}
         onMouseDown={this._onWrapperMouseDown}
+        data-expandable={expandable || null}
+        data-collapsed={(expandable && collapsed) || null}
       >
-        <div className={styles.content} style={contentStyle}>
+        <div className={classes.content} style={contentStyle}>
           <InputWithOptions
             {...restProps}
             value={inputValue}
@@ -228,7 +232,7 @@ class Search extends Component {
             onChange={this._onChange}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
-            highlight
+            highlight={highlight}
           />
         </div>
       </div>

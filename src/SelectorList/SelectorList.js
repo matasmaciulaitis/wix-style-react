@@ -4,9 +4,10 @@ import SelectorListContent from './Content';
 
 import Box from '../Box';
 import Search from '../Search';
+import Text from '../Text';
 import ToggleAllCheckbox from './ToggleAllCheckbox';
 import { dataHooks } from './SelectorList.helpers';
-import { classes } from './SelectorList.st.css';
+import { st, classes } from './SelectorList.st.css';
 
 /**
  * Use this component when needed to select one / multiple items having complex descriptions.
@@ -114,6 +115,9 @@ export default class SelectorList extends React.PureComponent {
 
     /** amount of items to load on initial render or after search */
     initialAmountToLoad: PropTypes.number,
+
+    /** Fixed text displayed above the list */
+    subtitle: PropTypes.node,
   };
 
   static defaultProps = {
@@ -143,13 +147,10 @@ export default class SelectorList extends React.PureComponent {
   _renderList = () => {
     const {
       dataHook,
-      searchPlaceholder,
       emptyState,
       renderNoResults,
-      withSearch,
       height,
       maxHeight,
-      searchDebounceMs,
       imageSize,
       imageShape,
       multiple,
@@ -185,7 +186,7 @@ export default class SelectorList extends React.PureComponent {
       searchValue,
     };
 
-    const shouldRenderSearch = isLoaded && !isEmpty && withSearch;
+    const shouldRenderSubheader = isLoaded && !isEmpty;
 
     return (
       <Box
@@ -197,10 +198,39 @@ export default class SelectorList extends React.PureComponent {
           maxHeight,
         }}
       >
-        {shouldRenderSearch && (
+        {shouldRenderSubheader && this._renderSubheader()}
+        <SelectorListContent {...contentProps} />
+      </Box>
+    );
+  };
+
+  _renderSubheader = () => {
+    const {
+      subtitle,
+      withSearch,
+      searchDebounceMs,
+      searchPlaceholder,
+    } = this.props;
+    const { searchValue } = this.state;
+
+    return (
+      <div
+        className={st(classes.subheaderWrapper, {
+          withSearch,
+        })}
+      >
+        {subtitle && (
+          <div className={classes.subtitleWrapper}>
+            {typeof subtitle === 'string' ? (
+              <Text dataHook={dataHooks.subtitle}>{subtitle}</Text>
+            ) : (
+              subtitle
+            )}
+          </div>
+        )}
+        {withSearch && (
           <Search
             dataHook={dataHooks.search}
-            className={classes.searchInput}
             placeholder={searchPlaceholder}
             onChange={this._onSearchChange}
             onClear={this._onClear}
@@ -208,8 +238,7 @@ export default class SelectorList extends React.PureComponent {
             value={searchValue}
           />
         )}
-        <SelectorListContent {...contentProps} />
-      </Box>
+      </div>
     );
   };
 

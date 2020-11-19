@@ -1,12 +1,12 @@
 import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
 import { badgeUniDriverFactory } from '../Badge/Badge.uni.driver';
-import popoverUniDriverFactory from '../Popover/Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover/Popover.uni.driver';
 import * as DATA_ATTR from './DataAttr';
 import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 import { CommonDriver } from 'wix-ui-core/dist/src/components/popover/Popover.common.uni.driver';
 
 export const badgeSelectUniDriverFactory = (base, body) => {
-  const popoverDriver = popoverUniDriverFactory(base, body);
+  const popoverDriver = popoverDriverFactory(base, body);
   const badgeDriver = badgeUniDriverFactory(
     findByHook(base, DATA_ATTR.DATA_BADGE),
   );

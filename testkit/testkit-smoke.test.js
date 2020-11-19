@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { render, cleanup } from '@testing-library/react';
 
 import {
   isEnzymeTestkitExists,
@@ -35,7 +34,7 @@ const DRIVER_ASSERTS = {
     describe('Enzyme testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
 
-      it(`${name} should pass sanity test`, () =>
+      it(`Enzyme testkit exists (deprecated) - <${name}/>`, () =>
         expect(
           isEnzymeTestkitExists(
             React.createElement(component, props),
@@ -50,7 +49,7 @@ const DRIVER_ASSERTS = {
   vanilla: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should pass sanity test`, () =>
+      it(`ReactTestUtils testkit exists (deprecated) - <${name}/>`, () =>
         expect(
           isTestkitExists(
             React.createElement(component, props),
@@ -59,29 +58,6 @@ const DRIVER_ASSERTS = {
           ),
         ).toBe(true));
     });
-
-    /* this test used to be skipped.
-     * intentionally commenting to prevent skipped test notification noise
-    describe('ReactTestUtils update dataHook', () => {
-      attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should have an updated dataHook`, () => {
-        const hook1 = 'my-data-hook-1';
-        const hook2 = 'my-data-hook-2';
-        const { rerender, container } = render(
-          React.createElement(component, { ...props, dataHook: hook1 }),
-        );
-        expect(
-          !!container.querySelector(`[data-hook="${hook1}"]`),
-        ).toBeTruthy();
-
-        rerender(React.createElement(component, { ...props, dataHook: hook2 }));
-        expect(
-          !!container.querySelector(`[data-hook="${hook2}"]`),
-        ).toBeTruthy();
-        cleanup();
-      });
-    });
-    */
   },
 };
 
@@ -89,11 +65,11 @@ const UNIDRIVER_ASSERTS = {
   enzyme: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('Enzyme unidriver testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should pass sanity test`, () =>
+      it(`Enzyme testkit exists - <${name}/>`, () =>
         expect(
           isUniEnzymeTestkitExists(
             React.createElement(component, props),
-            enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
+            enzymeTestkitFactories[`${name}Testkit`],
             mount,
             { dataHookPropName: DATA_HOOK_PROP_NAME },
           ),
@@ -104,36 +80,53 @@ const UNIDRIVER_ASSERTS = {
   vanilla: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils unidriver testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should pass sanity test`, () =>
+      it(`ReactTestUtils testkit exists - <${name}/>`, () =>
         expect(
           isUniTestkitExists(
             React.createElement(component, props),
-            reactTestUtilsTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
+            reactTestUtilsTestkitFactories[`${name}Testkit`],
             { dataHookPropName: DATA_HOOK_PROP_NAME },
           ),
         ).resolves.toBe(true));
     });
   },
+
+  initialize: ({ name, beforeAllHook, afterAllHook }) => {
+    // Checks that unidriver can initialize even when the element is not found
+    describe('Unidriver can initialize', () => {
+      attachHooks(beforeAllHook, afterAllHook);
+      it(`Testkit initialize - <${name}/>`, async () => {
+        const factory = reactTestUtilsTestkitFactories[`${name}Testkit`];
+        const testkit = factory({
+          wrapper: document.createElement('div'),
+          dataHook: 'non-existing-data-hook',
+        });
+        expect(await testkit.exists()).toBe(false);
+      });
+    });
+  },
 };
 
 const EXPORT_ASSERTS = {
-  enzyme: name => {
+  enzyme: (name, noUnidriver) => {
+    const testkit = noUnidriver
+      ? `${lowerFirst(name)}TestkitFactory`
+      : `${name}Testkit`;
     describe('Enzyme testkit exports', () => {
-      it(`should contain ${name}`, () =>
-        expect(
-          typeof enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
-        ).toBe('function'));
+      it(`Enzyme testkit exported - <${name}/>`, () =>
+        expect(typeof enzymeTestkitFactories[testkit]).toBe('function'));
     });
   },
 
-  vanilla: name => {
+  vanilla: (name, noUnidriver) => {
+    const testkit = noUnidriver
+      ? `${lowerFirst(name)}TestkitFactory`
+      : `${name}Testkit`;
     describe('ReactTestUtils testkit exports', () => {
-      it(`should contain ${name}`, () =>
-        expect(
-          typeof reactTestUtilsTestkitFactories[
-            `${lowerFirst(name)}TestkitFactory`
-          ],
-        ).toBe('function'));
+      it(`ReactTestUtils testkit exported - <${name}/>`, () =>
+        expect(typeof reactTestUtilsTestkitFactories[testkit]).toBe(
+          'function',
+        ));
     });
   },
 };
@@ -155,16 +148,21 @@ Object.keys({
   };
 
   if (!definition.skipSanityTest) {
-    const sanityAsserts =
-      definition.vanillaLegacyTestkit || definition.enzymeLegacyTestkit
-        ? DRIVER_ASSERTS
-        : UNIDRIVER_ASSERTS;
+    const sanityAsserts = definition.noUnidriver
+      ? DRIVER_ASSERTS
+      : UNIDRIVER_ASSERTS;
 
     Object.keys(sanityAsserts).forEach(driver => sanityAsserts[driver](config));
   }
 
   if (!definition.noTestkit) {
-    EXPORT_ASSERTS.vanilla(name);
-    EXPORT_ASSERTS.enzyme(name);
+    EXPORT_ASSERTS.vanilla(
+      definition.exportName || name,
+      definition.noUnidriver,
+    );
+    EXPORT_ASSERTS.enzyme(
+      definition.exportName || name,
+      definition.noUnidriver,
+    );
   }
 });

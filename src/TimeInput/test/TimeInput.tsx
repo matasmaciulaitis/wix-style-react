@@ -28,6 +28,7 @@ function TimeInputWithAllProps() {
       hideStatusSuffix
       status="error"
       statusMessage="message"
+      showSeconds
     />
   );
 }

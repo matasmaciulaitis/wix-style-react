@@ -9,6 +9,7 @@ export interface CardProps {
   controls?: React.ReactNode;
   stretchVertically?: boolean;
   hideOverflow?: boolean;
+  showShadow?: boolean;
   dataHook?: string;
   className?: string;
 }

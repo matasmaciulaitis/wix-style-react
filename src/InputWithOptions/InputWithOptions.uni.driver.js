@@ -1,6 +1,6 @@
 import { testkit as inputUniDriverFactory } from '../Input/Input.uni.driver';
 import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
-import popoverDriverFactory from '../Popover/Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover/Popover.uni.driver';
 import { CommonDriver } from 'wix-ui-core/dist/src/components/popover/Popover.common.uni.driver';
 import { ReactBase } from '../../test/utils/unidriver';
 import { dropdownLayoutDriverProxy } from './InputWithOptions.proxy.driver';

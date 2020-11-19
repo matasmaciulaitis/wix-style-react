@@ -44,14 +44,20 @@ const blockOfTests = [
   },
 ];
 
-visualize('IconButton', () => {
-  blockOfTests.forEach(({ it, render }) => {
-    snap(it, render);
-  });
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(`${themeName ? `${themeName}|` : ''}IconButton`, () => {
+    blockOfTests.forEach(({ it, render }) => {
+      snap(it, render);
+    });
 
-  tests.forEach(({ describe, its }) => {
-    story(describe, () => {
-      its.map(({ it, props }) => snap(it, () => <IconButton {...props} />));
+    tests.forEach(({ describe, its }) => {
+      story(describe, () => {
+        its.map(({ it, props }) =>
+          snap(it, () => testWithTheme(<IconButton {...props} />)),
+        );
+      });
     });
   });
-});
+};

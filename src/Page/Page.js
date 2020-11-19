@@ -1,27 +1,13 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { ResizeSensor } from 'css-element-queries';
-import s from './Page.scss';
+import { st, classes, stVars } from './Page.st.css';
 import { PageContext } from './PageContext';
 import PageHeader from '../PageHeader';
 import Content from './Content';
 import Tail from './Tail';
 import { PageSticky } from './PageSticky';
-
-import {
-  PAGE_SIDE_PADDING_PX,
-  PAGE_BOTTOM_PADDING_PX,
-  BACKGROUND_COVER_CONTENT_PX,
-  MINIMIZED_HEADER_WRAPPER_HEIGHT_PX,
-  MINIMIZED_HEADER_WRAPPER_WITH_TAIL_HEIGHT_PX,
-  HEADER_BOTTOM_PADDING_PX,
-} from './constants';
-import {
-  mainContainerMinWidthPx as GRID_MIN_WIDTH,
-  mainContainerMaxWidthPx as GRID_MAX_WIDTH,
-} from '../Grid/constants';
 import ScrollableContainer from '../common/ScrollableContainer';
 import { ScrollableContainerCommonProps } from '../common/PropTypes/ScrollableContainerCommon';
 
@@ -60,8 +46,8 @@ import { ScrollableContainerCommonProps } from '../common/PropTypes/ScrollableCo
 
 class Page extends React.PureComponent {
   static defaultProps = {
-    minWidth: GRID_MIN_WIDTH,
-    maxWidth: GRID_MAX_WIDTH,
+    minWidth: parseInt(stVars.mainContainerMinWidth, 10),
+    maxWidth: parseInt(stVars.mainContainerMaxWidth, 10),
     scrollProps: {},
   };
 
@@ -170,8 +156,8 @@ class Page extends React.PureComponent {
     }
 
     return this._hasTail()
-      ? MINIMIZED_HEADER_WRAPPER_WITH_TAIL_HEIGHT_PX
-      : MINIMIZED_HEADER_WRAPPER_HEIGHT_PX;
+      ? parseInt(stVars.minimizedHeaderWrapperWithTailHeightPx, 10)
+      : parseInt(stVars.minimizedHeaderWrapperHeightPx, 10);
   }
 
   _getMinimizationDiff() {
@@ -273,16 +259,23 @@ class Page extends React.PureComponent {
     const contentFullScreen = PageContent && PageContent.props.fullScreen;
 
     const { className, horizontalScroll, ...rest } = props;
-    const mergedClassNames = classNames(className, s.contentHorizontalLayout, {
-      [s.contentFullWidth]: contentFullScreen,
-      [s.horizontalScroll]: horizontalScroll,
-    });
 
     const pageDimensionsStyle = this._getPageDimensionsStyle();
     const style = contentFullScreen ? null : pageDimensionsStyle;
 
     return (
-      <div className={mergedClassNames} style={style} {...rest}>
+      <div
+        className={st(
+          classes.contentHorizontalLayout,
+          {
+            contentFullWidth: contentFullScreen,
+            horizontalScroll,
+          },
+          className,
+        )}
+        style={style}
+        {...rest}
+      >
         {props.children}
       </div>
     );
@@ -298,9 +291,7 @@ class Page extends React.PureComponent {
         <div
           data-hook={dataHook}
           key={dataHook}
-          className={classNames(s.headerWrapper, {
-            [s.minimized]: minimized,
-          })}
+          className={st(classes.headerWrapper, { minimized })}
           ref={ref => {
             this.headerWrapperRef = ref;
           }}
@@ -320,9 +311,9 @@ class Page extends React.PureComponent {
     return (
       <div
         data-hook="page-header-container"
-        className={classNames(s.pageHeaderContainer, {
-          [s.minimized]: minimized,
-          [s.hasTail]: this._hasTail(),
+        className={st(classes.pageHeaderContainer, {
+          minimized,
+          hasTail: this._hasTail(),
         })}
         ref={ref => (this.headerContainerRef = ref)}
         onWheel={event => {
@@ -345,8 +336,8 @@ class Page extends React.PureComponent {
     } = this.props;
     return (
       <ScrollableContainer
-        className={classNames(s.scrollableContainer, {
-          [s.hasTail]: this._hasTail(),
+        className={st(classes.scrollableContainer, {
+          hasTail: this._hasTail(),
         })}
         dataHook="page-scrollable-content"
         data-class="page-scrollable-content"
@@ -386,17 +377,17 @@ class Page extends React.PureComponent {
 
     const backgroundHeight = `${headerContainerHeight -
       tailHeight +
-      (this._hasTail() ? 0 : BACKGROUND_COVER_CONTENT_PX)}px`;
+      (this._hasTail() ? 0 : parseInt(stVars.backgroundCoverContentPx, 10))}px`;
 
     if (this._hasBackgroundImage()) {
       return (
         <div
-          className={s.imageBackgroundContainer}
+          className={classes.imageBackgroundContainer}
           style={{ height: backgroundHeight }}
           data-hook="page-background-image"
         >
           <div
-            className={s.imageBackground}
+            className={classes.imageBackground}
             style={{ backgroundImage: `url(${this.props.backgroundImageUrl})` }}
           />
         </div>
@@ -407,7 +398,11 @@ class Page extends React.PureComponent {
       return (
         <div
           data-hook="page-gradient-class-name"
-          className={`${s.gradientBackground} ${this.props.gradientClassName}`}
+          className={st(
+            classes.gradientBackground,
+            {},
+            this.props.gradientClassName,
+          )}
           style={{ height: backgroundHeight }}
         />
       );
@@ -423,7 +418,7 @@ class Page extends React.PureComponent {
         <div
           data-hook={dataHook}
           key={dataHook}
-          className={s.tail}
+          className={classes.tail}
           ref={r => (this.pageHeaderTailRef = r)}
         >
           {PageTail}
@@ -441,14 +436,16 @@ class Page extends React.PureComponent {
 
     const { pageHeight } = this.state;
 
-    const pageContentMarginTop = tailHeight ? HEADER_BOTTOM_PADDING_PX : 0;
+    const pageContentMarginTop = tailHeight
+      ? parseInt(stVars.headerBottomPadding, 10)
+      : 0;
 
     const stretchToHeight =
       pageHeight -
       headerWrapperHeight -
       tailHeight -
       pageContentMarginTop -
-      PAGE_BOTTOM_PADDING_PX;
+      parseInt(stVars.pageBottomPadding, 10);
 
     return (
       <PageContext.Provider
@@ -460,14 +457,14 @@ class Page extends React.PureComponent {
         }}
       >
         {this._renderContentHorizontalLayout({
-          className: s.contentContainer,
+          className: classes.contentContainer,
           horizontalScroll: this.props.horizontalScroll,
           children: (
             <div
               style={{
                 minHeight: `${stretchToHeight}px`,
               }}
-              className={s.contentFloating}
+              className={classes.contentFloating}
             >
               {PageFixedContent && (
                 <PageSticky data-hook="page-fixed-content">
@@ -488,14 +485,14 @@ class Page extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={classNames(s.pageWrapper, className)}
+        className={st(classes.root, {}, className)}
         style={{ zIndex, height }}
       >
         <div
           data-hook="page"
-          className={s.page}
+          className={classes.page}
           style={{
-            minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
+            minWidth: minWidth + 2 * parseInt(stVars.pageSidePadding, 10),
           }}
           ref={ref => (this.pageRef = ref)}
         >

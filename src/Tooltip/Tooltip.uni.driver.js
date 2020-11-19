@@ -23,5 +23,12 @@ export const tooltipDriverFactory = (base, body) => {
 
     /** Clicks outside the tooltip element in order to dismiss it */
     clickOutside: coreTooltipDriver.clickOutside,
+
+    /**
+     * Checks whether tooltip has a given size
+     * @param {boolean} sizeName The tooltip size
+     * @return {Promise<boolean>}
+     */
+    hasSize: async sizeName => (await base.attr(`data-size`)) === sizeName,
   };
 };

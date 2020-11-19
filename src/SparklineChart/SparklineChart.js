@@ -14,20 +14,17 @@ const LINE_WIDTH = 2;
 const AREA_MASK_ID = 'areaMaskId';
 const TOOLTIP_ELEMENT_RADIUS = 4;
 const DEFAULT_COLOR = colors.A1;
-const TRANSITION_DURATION = 300;
 
 /** SparklineChart */
 class SparklineChart extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { highlightedStartingIndex } = props;
 
     this.randomComponentId = Math.random().toString();
     this.chartContext = {};
 
     this.svgRef = React.createRef(null);
     this.componentRef = React.createRef(null);
-    this.enableHighlightedAreaEffect = highlightedStartingIndex > 0;
 
     this.state = {
       hoveredLabel: null,
@@ -128,6 +125,7 @@ class SparklineChart extends React.PureComponent {
 
   _drawSparkline = () => {
     const { width, height, data } = this.chartContext;
+    const { onHover } = this.props;
     const labels = this._getLabels(data);
 
     const container = select(this.svgRef.current);
@@ -157,9 +155,22 @@ class SparklineChart extends React.PureComponent {
             ? afterDate
             : beforeDate;
 
+        if (
+          typeof onHover === 'function' &&
+          !this._areDatesEqual(closestDate, this.state.hoveredLabel)
+        ) {
+          const labelIndex = labels.indexOf(closestDate);
+          onHover(labelIndex);
+        }
         this.setState({ hoveredLabel: closestDate });
       });
   };
+
+  _areDatesEqual(date1, date2) {
+    const date1Time = date1 && date1.getTime();
+    const date2Time = date2 && date2.getTime();
+    return date1Time === date2Time;
+  }
 
   _getLineColorId(dataSet, componentId) {
     return `${componentId}color`;
@@ -252,10 +263,11 @@ class SparklineChart extends React.PureComponent {
   };
 
   _updateComponent = (container, className, fncUpdater) => {
+    const { animationDuration } = this.props;
     container
       .select(className)
       .transition()
-      .duration(TRANSITION_DURATION)
+      .duration(animationDuration)
       .ease(easeQuadIn)
       .attr('d', fncUpdater);
   };
@@ -312,6 +324,7 @@ class SparklineChart extends React.PureComponent {
       yCoordinate:
         context.yScale(currentHoveredValue) - TOOLTIP_ELEMENT_RADIUS / 2,
     };
+    const enableHighlightedAreaEffect = highlightedStartingIndex > 0;
 
     return (
       <div
@@ -341,7 +354,7 @@ class SparklineChart extends React.PureComponent {
               x2={`${innerWidth}px`}
               y2={'0px'}
             >
-              {this.enableHighlightedAreaEffect && [
+              {enableHighlightedAreaEffect && [
                 <stop
                   key={0}
                   offset="0"
@@ -437,8 +450,16 @@ SparklineChart.propTypes = {
 
   /** Tooltip content (JSX) getter function.  */
   getTooltipContent: PropTypes.func,
+
+  /** callback when graph is hovered*/
+  onHover: PropTypes.func,
+
+  /** Sets the duration of the animation in milliseconds */
+  animationDuration: PropTypes.number,
 };
 
-SparklineChart.defaultProps = {};
+SparklineChart.defaultProps = {
+  animationDuration: 300,
+};
 
 export default SparklineChart;

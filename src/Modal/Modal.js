@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
-import classnames from 'classnames';
 import X from 'wix-ui-icons-common/X';
 import defaultTo from 'lodash/defaultTo';
-import styles from './Modal.scss';
+import { st, classes } from './Modal.st.css';
 import { flexPositions } from './constants';
 import { ZIndex } from '../ZIndex';
 import { FontUpgradeContext } from '../FontUpgrade/context';
@@ -22,7 +21,6 @@ class Modal extends React.PureComponent {
     borderRadius: PropTypes.number,
     /** a11y: The value of contentLabel is set as an aria-label on the modal element. This helps assistive technology, like screen readers, to add a label to an element that would otherwise be anonymous */
     contentLabel: PropTypes.string,
-    theme: PropTypes.oneOf(['blue', 'red', 'green', 'white']),
     children: PropTypes.any,
     /** z-index of the modal overlay */
     zIndex: PropTypes.number,
@@ -60,7 +58,6 @@ class Modal extends React.PureComponent {
 
   static defaultProps = {
     borderRadius: 0,
-    theme: 'blue',
     shouldCloseOnOverlayClick: false,
     shouldDisplayCloseButton: false,
     horizontalPosition: 'center',
@@ -83,7 +80,6 @@ class Modal extends React.PureComponent {
       borderRadius,
       zIndex,
       scrollable,
-      theme,
       isOpen,
       shouldCloseOnOverlayClick,
       shouldDisplayCloseButton,
@@ -138,15 +134,6 @@ class Modal extends React.PureComponent {
       },
     };
 
-    const modalClasses = `${styles.modal} ${styles[theme]}`;
-    const portalClassName = classnames(
-      styles.portal,
-      {
-        [styles.portalNonScrollable]: !scrollable,
-      },
-      `portal-${dataHook}`,
-    );
-
     if (appElement) {
       ReactModal.setAppElement(appElement);
     } else {
@@ -159,13 +146,17 @@ class Modal extends React.PureComponent {
           {({ active }) => {
             return (
               <ReactModal
-                portalClassName={portalClassName}
+                portalClassName={st(
+                  classes.portal,
+                  { scrollable },
+                  `portal portal-${dataHook}`,
+                )}
                 isOpen={isOpen}
                 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
                 onRequestClose={onRequestClose}
                 onAfterOpen={onAfterOpen}
                 style={modalStyles}
-                className={modalClasses}
+                className={classes.modal}
                 contentLabel={contentLabel}
                 closeTimeoutMS={closeTimeoutMS}
                 parentSelector={parentSelector}
@@ -175,8 +166,9 @@ class Modal extends React.PureComponent {
                     shouldDisplayCloseButton &&
                     this.renderCloseButton()}
                   <div
+                    data-scrollable={scrollable || null}
                     id={CHILDREN_WRAPPER_DIV_ID}
-                    className={styles.childrenContainer}
+                    className={classes.childrenContainer}
                     onClick={this.handleOverlayClick}
                   >
                     {children}
@@ -205,7 +197,7 @@ class Modal extends React.PureComponent {
     return (
       <div
         onClick={this.props.onRequestClose}
-        className={styles.closeButton}
+        className={classes.closeButton}
         data-hook="modal-close-button"
       >
         <X size="18px" />
