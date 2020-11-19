@@ -29,7 +29,8 @@ Here are few more steps which can help with troubleshooting an issue we struggle
 - Check with your UX designer whether the desired spec was reviewed by Wix Style React UX team.
 - Consult with `#wix-style-ux` slack channel for UX related questions.
 
-### GitHub ![github-mark](./docs/assets/GitHub-Mark-32px.png)
+### GitHub ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)
+https://raw.githubusercontent.com/i-saumitra/Voice-controlled-MP3-Player/master/
 
 We use GitHub issues as a bug and feature request tracker.
 If you think you have found a bug, or have a new feature idea- please start by making sure it hasn't already been [reported or fixed](https://github.com/wix/wix-style-react/issues).
@@ -45,8 +46,8 @@ If it does not exist, please [open a github issue](https://github.com/wix/wix-st
 - Please don't group multiple topics in one issue – each issue should have its own github issue.
 - Please add a link with a recreation of the issue within our [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground):
     1. Edit the code snippet so that it demonstrate the issue.
-    2. Click ![save-button](./docs/assets/playgroundSaveButton.png) (located on the top right side of the code editor).
-    3. Copy the generated link to the issue description ![github-mark](./docs/assets/generatedLink.png)
+    2. Click ![save-button](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/playgroundSaveButton.png) (located on the top right side of the code editor).
+    3. Copy the generated link to the issue description ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
     4. Fill in all the other issue template sections
 
 
