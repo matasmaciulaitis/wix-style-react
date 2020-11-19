@@ -126,9 +126,18 @@ const config = {
     libraryTarget: 'umd',
   },
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    // Wix: 'Wix',
+    // react: {
+    //   amd: 'react',
+    //   commonjs: 'react',
+    //   commonjs2: 'react',
+    //   root: 'React',
+    // },
+    // 'react-dom': {
+    //   amd: 'reactDOM',
+    //   commonjs: 'react-dom',
+    //   commonjs2: 'react-dom',
+    //   root: 'ReactDOM',
+    // },
   },
   module: {
     rules: [
