@@ -41,7 +41,8 @@ const getStyleLoaders = (
           loader: 'yoshi-style-dependencies/style-loader',
           options: {
             // Reuses a single `<style></style>` element
-            singleton: true,
+            injectType: 'singletonStyleTag',
+            // singleton: true,
           },
         },
         {
