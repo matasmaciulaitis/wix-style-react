@@ -107,12 +107,6 @@ export default {
           // }),
         ],
       }),
-
-      ...[
-        { title: 'API', sections: [api()] },
-        { title: 'Testkit', sections: [testkit()] },
-        { title: 'Playground', sections: [playground()] },
-      ].map(tab),
     ]),
   ],
 };
