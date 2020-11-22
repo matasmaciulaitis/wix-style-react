@@ -8,13 +8,12 @@ import {
   title,
   divider,
   example as baseExample,
-  playground,
-  api,
-  testkit,
   columns,
   table,
 } from 'wix-storybook-utils/Sections';
 import LinkTo from '@storybook/addon-links/react';
+import * as examples from './examples';
+import TestingBuilders from '!raw-loader!./builders.md';
 
 import { storySettings } from './storySettings';
 import allComponents from '../utils/allComponents';
@@ -87,24 +86,33 @@ export default {
                   >{`<ListItemEditable/>`}</LinkTo>,
                   'An internal editable component which is used to build dropdown or menu like components.',
                 ],
+                // TODO: should fix the link then having proper story page for <BadgeSelectItem/>. Jira: https://jira.wixpress.com/browse/DSM-878
                 [
                   <LinkTo
-                    kind={Category.COMPONENTS}
-                    story="BadgeSelect"
+                    kind={Category.WIP}
+                    story="badgeselectitembuilder"
                   >{`<BadgeSelectItem/>`}</LinkTo>,
                   'An internal component which is used to build dropdown or menu like components.',
                 ],
+                // TODO: add here AddressInputOption when available.
               ],
             }),
           ]),
 
           title('Examples'),
 
-          // example({
-          //   title: 'Simple Usage',
-          //   text: 'A simple example with compact preview',
-          //   source: '<<%= ComponentName %> buttonText="Hello World!"/>',
-          // }),
+          example({
+            title: 'Builders usage example',
+            text: 'Builders should be used within `DropdownLayout`',
+            source: examples.buildersExample,
+          }),
+
+          title('Motivation'),
+
+          description({
+            title: 'Testing with builders usage',
+            text: TestingBuilders,
+          }),
         ],
       }),
     ]),
