@@ -11,7 +11,7 @@ function addressInputOptionWithMandatoryProps() {
 }
 
 function addressInputOptionBuilderWithAllProps() {
-  const { disabled, id, overrideOptionStyle, value } = addressInputOptionBuilder({
+  const { disabled, id, overrideOptionStyle, value, label } = addressInputOptionBuilder({
     id: '1',
     dataHook: 'data-hook',
     className: 'cls',

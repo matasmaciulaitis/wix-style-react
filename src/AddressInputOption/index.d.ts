@@ -24,18 +24,16 @@ export const addressInputOptionBuilder: (data: {
   mainLabel?: string;
   secondaryLabel?: string;
   suffix?: React.ReactNode;
-  selected?: boolean;
   disabled?: boolean;
   dataHook?: string;
   optionLayout?: AddressInputOptionLayout;
   displayLabel?: string;
-  highlighted?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }) => {
   id: string | number;
   disabled: boolean | undefined;
   overrideOptionStyle: true;
-  displayLabel?: string;
+  label?: string;
   value: (props?: Partial<AddressInputOptionProps>) => React.ReactNode;
 };
 

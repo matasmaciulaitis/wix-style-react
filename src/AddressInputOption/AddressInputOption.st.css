@@ -1,0 +1,7 @@
+.root{
+  -st-states: optionLayout(enum(single-line, double-line));
+}
+
+.root:optionLayout(single-line) .secondaryLabel{
+  margin-left: 6px;
+}

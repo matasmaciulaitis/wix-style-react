@@ -6,5 +6,4 @@ export interface AddressInputOptionUniDriver extends BaseUniDriver {
   getMainLabel(): Promise<string>;
   getSecondaryLabel(): Promise<string>;
   getSuffix(): Promise<BaseUniDriver>;
-  getOptionLayout(): Promise<AddressInputOptionLayout>;
 }
