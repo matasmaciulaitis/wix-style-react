@@ -24,6 +24,7 @@ require('../src/BarChart/docs/index.story');
 require('../src/Box/docs/index.story');
 require('../src/Breadcrumbs/docs/index.story');
 require('../src/BrowserPreviewWidget/docs/index.story');
+require('./Builders/index.story.js');
 require('../src/Button/docs/index.story');
 require('../src/Calendar/docs/index.story');
 require('../src/CalendarPanel/docs/index.story');
