@@ -484,6 +484,9 @@ export * from './FunnelChart';
 export { default as AddressInput } from './AddressInput';
 export * from './AddressInput';
 
+export { default as AutocompleteProvider } from './AutocompleteProvider';
+export * from './AutocompleteProvider';
+
 export { default as SparklineChart } from './SparklineChart';
 export * from './SparklineChart';
 

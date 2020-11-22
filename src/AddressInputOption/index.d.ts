@@ -17,7 +17,7 @@ export interface AddressInputOptionProps {
 
 export type AddressInputOptionLayout = 'single-line' | 'double-line';
 
-export const addressInputOptionBuilder: (data: {
+export interface AddressInputOptionBuilderData {
   id: string | number;
   className?: string;
   prefix?: React.ReactNode;
@@ -29,13 +29,20 @@ export const addressInputOptionBuilder: (data: {
   optionLayout?: AddressInputOptionLayout;
   displayLabel?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
-}) => {
+}
+
+export interface AddressInputOptionBuilderReturn {
   id: string | number;
   disabled: boolean | undefined;
   overrideOptionStyle: true;
   label?: string;
   value: (props?: Partial<AddressInputOptionProps>) => React.ReactNode;
-};
+}
 
-export default class AddressInputOption extends React.PureComponent<AddressInputOptionProps>{}
+export const addressInputOptionBuilder: (
+  data: AddressInputOptionBuilderData,
+) => AddressInputOptionBuilderReturn;
 
+export default class AddressInputOption extends React.PureComponent<
+  AddressInputOptionProps
+> {}

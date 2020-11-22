@@ -190,6 +190,7 @@ export { default as SparklineChart } from './SparklineChart';
 export { default as FailWhale } from './FailWhale';
 export { default as AreaChart } from './AreaChart';
 export { default as AddressInput } from './AddressInput';
+export { default as AutocompleteProvider } from './AutocompleteProvider';
 export { default as StackedBarChart } from './StackedBarChart';
 export { default as CardFolderTabs } from './CardFolderTabs';
 export { default as PageFooter } from './PageFooter';

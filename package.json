@@ -236,6 +236,7 @@
     "slick-carousel": "^1.8.1",
     "wix-animations": "^1.0.403",
     "wix-eventually": "^2.3.0",
+    "wix-places": "github:gendeld/wix-places#with-providers",
     "wix-ui-core": "^3.0.151",
     "wix-ui-icons-common": "^2.0.294",
     "wix-ui-test-utils": "^1.0.177",
