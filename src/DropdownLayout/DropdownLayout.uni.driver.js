@@ -52,6 +52,17 @@ export const dropdownLayoutDriverFactory = base => {
     return onSuccess();
   };
 
+  const optionById = optionId => this.optionByHook(`dropdown-item-${optionId}`);
+
+  const optionByHook = async hook => {
+    const option = optionsElement().$(`[data-hook=${hook}]`);
+    if (!(await option.exists())) {
+      throw new Error(`an option with data-hook ${hook} was not found`);
+    }
+
+    return createOptionDriver(option);
+  };
+
   const getOptionDriver = position =>
     doIfOptionExists(position, async () =>
       createOptionDriver(await optionElementAt(position)),
@@ -184,22 +195,13 @@ export const dropdownLayoutDriverFactory = base => {
 
     // This should be a private method since the hook include internal parts ('dropdown-divider-{id}, dropdown-item-{id})') */
     /** @deprecated */
-    optionByHook: async hook => {
-      const option = optionsElement().$(`[data-hook=${hook}]`);
-      if (!(await option.exists())) {
-        throw new Error(`an option with data-hook ${hook} was not found`);
-      }
-
-      return createOptionDriver(option);
-    },
+    optionByHook,
 
     /**
      * Get Option by id
      * @returns {Promise<any>}
      */
-    optionById(optionId) {
-      return this.optionByHook(`dropdown-item-${optionId}`);
-    },
+    optionById,
 
     optionContentAt: position =>
       doIfOptionExists(position, async () => {
