@@ -4,7 +4,6 @@ import ListItemEditable, { listItemEditableBuilder } from '../ListItemEditable';
 import { listItemEditablePrivateDriverFactory } from './ListItemEditable.private.uni.driver';
 import DropdownLayout from '../../DropdownLayout';
 import { dropdownLayoutDriverFactory } from '../../DropdownLayout/DropdownLayout.uni.driver';
-import { findByHook } from '../../../test/utils/unidriver';
 
 describe('ListItemEditable', () => {
   const render = createRendererWithUniDriver(
@@ -185,33 +184,29 @@ describe('ListItemEditable', () => {
     });
   });
 
-  // describe('builder', () => {
-  //   const render = createRendererWithUniDriver(
-  //     dropdownLayoutDriverFactory,
-  //   );
-  //
-  //   it('should render ListItemEditable within DropdownLayout', async ()=> {
-  //     const dataHook = 'test-list-item-editable';
-  //     const { driver } = render(
-  //       <DropdownLayout options={[
-  //         listItemEditableBuilder({
-  //           id: 1,
-  //           dataHook,
-  //           onApprove: val => console.log(val),
-  //           onCancel: () => console.log('cancel'),
-  //           cancelButtonTooltipContent: 'Cancel',
-  //           approveButtonTooltipContent: 'Approve',
-  //         }),
-  //       ]}/>,
-  //     );
-  //
-  //     const wrapper = await driver.getOptionElementById(1);
-  //     // const t = await findByHook(wrapper,dataHook);
-  //
-  //
-  //
-  //
-  //
-  //   });
-  // })
+  describe('builder', () => {
+    const render = createRendererWithUniDriver(dropdownLayoutDriverFactory);
+
+    it('should render ListItemEditable within DropdownLayout', async () => {
+      const dataHook = 'test-list-item-editable';
+
+      const { driver } = render(
+        <DropdownLayout
+          visible
+          options={[
+            listItemEditableBuilder({
+              id: 1,
+              dataHook,
+              onApprove: () => {},
+              onCancel: () => {},
+              cancelButtonTooltipContent: 'Cancel',
+              approveButtonTooltipContent: 'Approve',
+            }),
+          ]}
+        />,
+      );
+
+      expect(await driver.exists()).toBe(true);
+    });
+  });
 });
