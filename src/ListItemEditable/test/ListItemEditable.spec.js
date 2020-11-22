@@ -1,16 +1,17 @@
 import React from 'react';
 import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
-import ListItemEditable from '../ListItemEditable';
+import ListItemEditable, { listItemEditableBuilder } from '../ListItemEditable';
 import { listItemEditablePrivateDriverFactory } from './ListItemEditable.private.uni.driver';
+import DropdownLayout from '../../DropdownLayout';
+import { dropdownLayoutDriverFactory } from '../../DropdownLayout/DropdownLayout.uni.driver';
+import { findByHook } from '../../../test/utils/unidriver';
 
 describe('ListItemEditable', () => {
   const render = createRendererWithUniDriver(
     listItemEditablePrivateDriverFactory,
   );
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 
   it('should render', async () => {
     const { driver } = render(
@@ -183,4 +184,34 @@ describe('ListItemEditable', () => {
       expect(await driver.getStatusMessage()).toBe(test.statusMessage);
     });
   });
+
+  // describe('builder', () => {
+  //   const render = createRendererWithUniDriver(
+  //     dropdownLayoutDriverFactory,
+  //   );
+  //
+  //   it('should render ListItemEditable within DropdownLayout', async ()=> {
+  //     const dataHook = 'test-list-item-editable';
+  //     const { driver } = render(
+  //       <DropdownLayout options={[
+  //         listItemEditableBuilder({
+  //           id: 1,
+  //           dataHook,
+  //           onApprove: val => console.log(val),
+  //           onCancel: () => console.log('cancel'),
+  //           cancelButtonTooltipContent: 'Cancel',
+  //           approveButtonTooltipContent: 'Approve',
+  //         }),
+  //       ]}/>,
+  //     );
+  //
+  //     const wrapper = await driver.getOptionElementById(1);
+  //     // const t = await findByHook(wrapper,dataHook);
+  //
+  //
+  //
+  //
+  //
+  //   });
+  // })
 });

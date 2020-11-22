@@ -52,8 +52,6 @@ export const dropdownLayoutDriverFactory = base => {
     return onSuccess();
   };
 
-  const optionById = optionId => this.optionByHook(`dropdown-item-${optionId}`);
-
   const optionByHook = async hook => {
     const option = optionsElement().$(`[data-hook=${hook}]`);
     if (!(await option.exists())) {
@@ -62,6 +60,8 @@ export const dropdownLayoutDriverFactory = base => {
 
     return createOptionDriver(option);
   };
+
+  const optionById = optionId => optionByHook(`dropdown-item-${optionId}`);
 
   const getOptionDriver = position =>
     doIfOptionExists(position, async () =>
@@ -202,6 +202,13 @@ export const dropdownLayoutDriverFactory = base => {
      * @returns {Promise<any>}
      */
     optionById,
+
+    /** getOptionElement by id Promise<any> */
+    getOptionElementById: async id => {
+      const option = await optionById(id);
+      const optionElement = await option.element();
+      return optionElement.getNative(); // eslint-disable-line no-restricted-properties
+    },
 
     optionContentAt: position =>
       doIfOptionExists(position, async () => {
