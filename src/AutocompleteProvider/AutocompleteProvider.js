@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import usePlacesAutocomplete from 'wix-places';
 import atlasProvider from 'wix-places/Atlas';
 import { addressInputOptionBuilder } from '../AddressInputOption/AddressInputOption';
@@ -9,9 +9,9 @@ const AutocompleteProvider = ({
 }) => {
   const {
     suggestions: { data, loading },
-    ready,
     setValue,
   } = usePlacesAutocomplete({ provider: atlasProvider });
+
   const options = useMemo(
     () =>
       data.map(
@@ -31,7 +31,15 @@ const AutocompleteProvider = ({
       ),
     [data, getOptionProps],
   );
-  return children({ ready, options, loading, setValue });
+  const onChange = useCallback(
+    event => {
+      setValue(event.target.value);
+    },
+    [setValue],
+  );
+  const status = loading ? 'loading' : undefined;
+
+  return children({ options, onChange, status });
 };
 
 export default AutocompleteProvider;
