@@ -72,7 +72,8 @@ import { addressInputOptionBuilder } from 'wix-style-react';`),
 
           example({
             title: 'Option Layout',
-            text: 'Addresses can be displayed in a single line or double lines',
+            text:
+              'Addresses can be displayed as a single line (default) or double lines',
             source: examples.optionLayout,
           }),
 
@@ -84,9 +85,10 @@ import { addressInputOptionBuilder } from 'wix-style-react';`),
           }),
 
           example({
-            title: 'builder example',
-            text: 'AddressInputOption can be created using builders.',
-            source: examples.builderExample,
+            title: 'Advanced example',
+            text:
+              'All properties work together and can be combined in various ways. It can be rendered as standalone or as part of dropdown using builders.',
+            source: examples.advancedExample,
           }),
         ],
       }),

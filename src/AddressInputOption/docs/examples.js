@@ -7,6 +7,7 @@ export const optionLayout = `
     <Cell>
       <AddressInputOption
         mainLabel="main label"
+        optionLayout="single-line"
         secondaryLabel="one line layout"
       />
     </Cell>
@@ -23,6 +24,9 @@ export const optionLayout = `
 export const Affixes = `
   <Layout cols={1}>
     <AddressInputOption
+      mainLabel="default behavior"
+    />
+    <AddressInputOption
       prefix={false}
       mainLabel="No prefix"
     />
@@ -34,25 +38,33 @@ export const Affixes = `
   </Layout>;
 `;
 
-export const builderExample = `
-<Box height="120">
-  <DropdownLayout
-    visible
-    inContainer
-    options={[
-      addressInputOptionBuilder({
-        id: 0,
-        secondaryLabel: 'secondary label 1',
-        mainLabel: 'main label 1',
-      }),
-      addressInputOptionBuilder({
-        id: 1,
-        secondaryLabel: 'secondary label 2',
-        mainLabel: 'main label 2',
-        optionLayout: 'double-line'
-      }),
-      {id: 2, value: 'label 3' },
-    ]}
-  />
-</Box>
+export const advancedExample = `
+<DropdownLayout
+  visible
+  inContainer
+  selectedId={0}
+  options={[
+    addressInputOptionBuilder({
+      id: 0,
+      secondaryLabel: 'secondary label 1',
+      mainLabel: 'main label 1',
+      prefix: <Icons.Toolbox />,
+      suffix: "suffix",
+    }),
+    addressInputOptionBuilder({
+      id: 1,
+      secondaryLabel: 'secondary label 2',
+      mainLabel: 'main label 2',
+      optionLayout: 'double-line'
+    }),
+    {id: 2, value: 'label 3' },
+    addressInputOptionBuilder({
+      id: 3,
+      secondaryLabel: 'secondary label 3',
+      mainLabel: 'main label 3 - disabled',
+      optionLayout: 'double-line',
+      disabled: true,
+    }),
+  ]}
+/>
 `;

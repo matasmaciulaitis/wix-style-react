@@ -6,35 +6,42 @@ import Text from '../Text';
 import Box from '../Box';
 import { OPTION_LAYOUT, DATA_HOOKS } from './constants';
 import LocationIcon from 'wix-ui-icons-common/Location';
+import { st, classes } from './AddressInputOption.st.css';
 
 /** This component is responsible of transforming a given prediction object and display-props into a valid address option according to the UX guidelines. */
 class AddressInputOption extends React.PureComponent {
   _renderTitle = () => {
-    const { mainLabel, secondaryLabel, optionLayout } = this.props;
+    const { mainLabel, optionLayout, disabled, selected } = this.props;
     return (
-      <Box margin="auto">
-        <Text ellipsis dataHook={DATA_HOOKS.MAIN_LABEL}>
-          {mainLabel}
+      <Box>
+        <Text ellipsis>
+          <Text
+            disabled={disabled}
+            dataHook={DATA_HOOKS.MAIN_LABEL}
+            skin={disabled ? 'disabled' : 'standard'}
+            light={selected}
+          >
+            {mainLabel}
+          </Text>
+          {optionLayout === OPTION_LAYOUT.SINGLE_LINE &&
+            this._renderSecondaryLabel()}
         </Text>
-        {secondaryLabel && optionLayout === OPTION_LAYOUT.SINGLE_LINE && (
-          <Box marginLeft="6px" overflow="hidden">
-            {this._renderSecondaryLabel()}
-          </Box>
-        )}
       </Box>
     );
   };
 
   _renderSecondaryLabel = () => {
-    const { secondaryLabel } = this.props;
+    const { secondaryLabel, disabled, selected } = this.props;
     return (
       secondaryLabel && (
         <Text
           dataHook={DATA_HOOKS.SECONDARY_LABEL}
-          light
-          secondary
+          light={!disabled}
+          secondary={!selected}
           weight="thin"
-          ellipsis
+          className={classes.secondaryLabel}
+          disabled={disabled}
+          skin={disabled ? 'disabled' : 'standard'}
         >
           {secondaryLabel}
         </Text>
@@ -57,7 +64,7 @@ class AddressInputOption extends React.PureComponent {
     return (
       <ListItemSelect
         dataHook={dataHook}
-        className={className}
+        className={st(classes.root, { optionLayout }, className)}
         subtitle={
           optionLayout === OPTION_LAYOUT.DOUBLE_LINE &&
           this._renderSecondaryLabel()
@@ -65,7 +72,6 @@ class AddressInputOption extends React.PureComponent {
         title={this._renderTitle()}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
-        ellipsis
         {...restProps}
       />
     );
