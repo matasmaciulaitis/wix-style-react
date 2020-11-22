@@ -18,6 +18,7 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import AddressInputOption from '..';
 import * as examples from './examples';
+import ToolBoxIcon from 'wix-ui-icons-common/Location';
 
 const example = config => baseExample({ components: allComponents, ...config });
 
@@ -35,8 +36,7 @@ export default {
   },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    prefix: <ToolBoxIcon />,
   },
 
   sections: [
