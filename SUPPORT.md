@@ -10,8 +10,9 @@
   * [Resources](###resources)
 - [Debugging Strategies and Reporting an issue](##debugging-strategies-and-reporting-an-issue)
   * [Debugging Strategies](###debugging-strategies)
-  * [New issue guidelines](###new-issue-guidelines)
+  * [Reporting an issue](###reporting-an-issue)
     + [Have you managed to resolve the issue?](####have-you-managed-to-resolve-the-issue?)
+  * [Wix Employees](###wix-employees)
 - [Supported versions](##supported-versions)
   * [Upgrade from older versions](###upgrade-from-older-versions)
 
@@ -45,36 +46,30 @@ The components inventory is displayed at the [Cheetsheet](https://www.wix-style-
 New to Wix Style React? It's easy to learn if you know where to start!
 Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/introduction-getting-started--getting-started) page.
 
-
 ## Debugging Strategies and Reporting an issue
 
 ### Debugging Strategies
-Strip down abilities until you get to the bottom of it. Saying we have for example the `<Table/>` component which does not work as we expect it to. All the above steps did not help us. The thing we would do is one of the two:
-- Take the most basic and clean table example and on top of it add your own feature in small parts.
-- Take your current code which does not work and strip it's features slowly, one by one, until you reach to the point where things are working, then slowly add them back again so you will be able to find the root cause of the problem.
+There are two recommended strategies to better understand the root cause of an issue:
+- Using the most basic and clean example and on top of it adding your own feature in small parts.
+- Taking your current code and strip it's features slowly, one by one, until you reach to the point where things work. Than, slowly add them back again so you are able to find the what causes the issue.
 
-### New issue guidelines ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)
-We use GitHub issues as a bug and feature request tracker.
+### Reporting an issue ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)
+We use GitHub issues as bugs and feature requests tracker.
 If you think you have found a bug, or have a new feature idea- please start by making sure it hasn't already been [reported or fixed](https://github.com/wix/wix-style-react/issues).
 You can search through existing issues and pull requests to see if someone has reported a similar issue to yours.
 
 If it does not exist, please follow the following guidelines:
-
 - Click [here](https://github.com/wix/wix-style-react/issues/new/choose) to choose the relevant issue template.
 - Please begin the title with `<ComponentName/>` where appropriate, and use a succinct description that helps others find similar issues.
   - `<FilePicker/>`- `<some feature>` doesn't work ❌ [(Example)](https://github.com/wix/wix-style-react/issues/6202)
   - `<Table/>` - Add support for `<some feature>` ✅ [(Example)](https://github.com/wix/wix-style-react/issues/5668)
 
 - Please don't group multiple topics in one issue – each issue should have its own github issue.
-- Please add a link with a recreation of the issue within our [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground):
-    1. Edit the code snippet so that it demonstrate the issue.
-    2. Click ![save-button](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/playgroundSaveButton.png) (located on the top right side of the code editor).
-    3. Copy the generated link to the issue description ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
-    4. Fill in all the other issue template sections
+- Please add a link with a recreation of the issue within our [Playground](###playground).
 
 #### Have you managed to resolve the issue?
 - ✅ A contribution to our [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article is welcome! Check out our [contribution guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) for more information.
-- ❌ Create [a GitHub issue](####New-issue-guidelines).
+- ❌ Create [a GitHub issue](####reporting-an-issue).
 
 ### Wix Employees
 Here are few more steps which can help with troubleshooting an issue we struggle with:
@@ -84,7 +79,6 @@ Here are few more steps which can help with troubleshooting an issue we struggle
 - Create a new yoshi project and try to recreate the issue in a clean environment. This can be helpful in order to check whether it's an issue with the component, driver or the project we currently work on.
 - Check with your UX designer whether the desired spec was reviewed by Wix Style React UX team.
 - Consult with `#wix-style-ux` slack channel for UX related questions.
-
 
 ## Supported versions
 
