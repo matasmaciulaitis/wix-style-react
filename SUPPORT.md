@@ -17,7 +17,7 @@
   * [Upgrade from older versions](###upgrade-from-older-versions)
 
 
-## Introduction
+## Introduction ℹ️
 Each component has a story page that describes all the "interesting" states in which a component supports.
 A story page has one or more of the following sections:
 - **Description:** Contains a short description of the component usage, an example of how to import it and examples of common usages and features.
@@ -25,28 +25,28 @@ A story page has one or more of the following sections:
 - **Testkit:** Contains an import examples and API description of the component testkit.
 - **Playground:** A graphical UI to interact with a component's arguments dynamically, without needing to code. It creates a code snippet which can be used in your application.
 
-### Components and Testkit Usage
+### Components and Testkit Usage 🎉
 Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used and tested.
 Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
 `src/ComponentName/test/...`.
 
-### Frequently Asked Questions
+### Frequently Asked Questions ❓
 You may find an answer to your question at the [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article.
 
-### Playground
+### Playground 🏀
 You can use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities. In order to share your code snippet with others, follow the following steps:
 1. Edit the code snippet.
 2. Click ![save-button](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/playgroundSaveButton.png) which located on the top right side of the code editor.
 3. A generated url will be generated which can be shared with others. ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
 
-### Cheatsheet
+### Cheatsheet 👋🏻
 The components inventory is displayed at the [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) page which contains examples and links to the relevant documentation pages.
 
 ### Resources 📖
 New to Wix Style React? It's easy to learn if you know where to start!
 Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/introduction-getting-started--getting-started) page.
 
-## Debugging Strategies and Reporting an issue
+## Debugging Strategies and Reporting an issue 🧐
 
 ### Debugging Strategies
 There are two recommended strategies to better understand the root cause of an issue:
@@ -80,7 +80,7 @@ Here are few more steps which can help with troubleshooting an issue we struggle
 - Check with your UX designer whether the desired spec was reviewed by Wix Style React UX team.
 - Consult with `#wix-style-ux` slack channel for UX related questions.
 
-## Supported versions
+## Supported versions 🧷
 
 The current status of each Wix Style React version is as follows:
 
