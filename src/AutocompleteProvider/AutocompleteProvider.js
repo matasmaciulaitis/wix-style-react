@@ -10,6 +10,7 @@ const AutocompleteProvider = ({
   const {
     suggestions: { data, loading },
     setValue,
+    clearSuggestions,
   } = usePlacesAutocomplete({ provider: atlasProvider });
 
   const options = useMemo(
@@ -39,7 +40,7 @@ const AutocompleteProvider = ({
   );
   const status = loading ? 'loading' : undefined;
 
-  return children({ options, onChange, status });
+  return children({ options, onChange, onClear: clearSuggestions, status });
 };
 
 export default AutocompleteProvider;

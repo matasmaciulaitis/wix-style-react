@@ -6,7 +6,7 @@ import {
 } from '../AddressInputOption';
 
 export interface AutocompleteProviderRenderArgs
-  extends Pick<AddressInputProps, 'onChange' | 'status'> {
+  extends Pick<AddressInputProps, 'onChange' | 'onClear' | 'status'> {
   options: AddressInputOptionBuilderReturn[];
 }
 
