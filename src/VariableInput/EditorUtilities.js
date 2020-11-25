@@ -96,7 +96,7 @@ const convertToString = ({ editorState, prefix, suffix }) => {
         const entity = rawJS.entityMap[entityRange.key.toString()].data;
         const placeholder = prefix + entity.value + suffix;
         baseString.splice(
-          entityRange.offset + indexOffset,
+          entityRange.offset + indexOffset + 1,
           entityRange.length,
           placeholder,
         );
