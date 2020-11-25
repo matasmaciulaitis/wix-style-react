@@ -4,51 +4,11 @@ import PropTypes from 'prop-types';
 import ListItemSelect from '../ListItemSelect';
 import Text from '../Text';
 import Box from '../Box';
-import { OPTION_LAYOUT, DATA_HOOKS } from './constants';
 import LocationIcon from 'wix-ui-icons-common/Location';
 import { st, classes } from './AddressInputOption.st.css';
 
 /** This component is responsible of transforming a given prediction object and display-props into a valid address option according to the UX guidelines. */
 class AddressInputOption extends React.PureComponent {
-  _renderTitle = () => {
-    const { mainLabel, optionLayout, disabled, selected } = this.props;
-    return (
-      <Box>
-        <Text ellipsis>
-          <Text
-            disabled={disabled}
-            dataHook={DATA_HOOKS.MAIN_LABEL}
-            skin={disabled ? 'disabled' : 'standard'}
-            light={selected}
-          >
-            {mainLabel}
-          </Text>
-          {optionLayout === OPTION_LAYOUT.SINGLE_LINE &&
-            this._renderSecondaryLabel()}
-        </Text>
-      </Box>
-    );
-  };
-
-  _renderSecondaryLabel = () => {
-    const { secondaryLabel, disabled, selected } = this.props;
-    return (
-      secondaryLabel && (
-        <Text
-          dataHook={DATA_HOOKS.SECONDARY_LABEL}
-          light={!disabled}
-          secondary={!selected}
-          weight="thin"
-          className={classes.secondaryLabel}
-          disabled={disabled}
-          skin={disabled ? 'disabled' : 'standard'}
-        >
-          {secondaryLabel}
-        </Text>
-      )
-    );
-  };
-
   render() {
     const {
       dataHook,
@@ -58,20 +18,36 @@ class AddressInputOption extends React.PureComponent {
       mainLabel,
       suffix,
       prefix,
+      disabled,
+      selected,
       ...restProps
     } = this.props;
+
+    const textProps = {
+      tagName: 'div',
+      ellipsis: true,
+      showDelay: 300,
+      skin: disabled ? 'disabled' : 'standard',
+      light: selected,
+    };
+
+    const secondaryTextProps = {
+      ...textProps,
+      light: !disabled,
+      secondary: !selected,
+    };
 
     return (
       <ListItemSelect
         dataHook={dataHook}
         className={st(classes.root, { optionLayout }, className)}
-        subtitle={
-          optionLayout === OPTION_LAYOUT.DOUBLE_LINE &&
-          this._renderSecondaryLabel()
-        }
-        title={this._renderTitle()}
+        subtitle={<Text {...secondaryTextProps}>{secondaryLabel}</Text>}
+        title={<Text {...textProps}>{mainLabel}</Text>}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
+        ellipsis
+        disabled={disabled}
+        selected={selected}
         {...restProps}
       />
     );

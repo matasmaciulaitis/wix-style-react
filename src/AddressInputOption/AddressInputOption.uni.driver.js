@@ -1,5 +1,4 @@
 import { baseUniDriverFactory } from '../../test/utils/unidriver';
-import { DATA_HOOKS } from './constants';
 import { listItemSelectDriverFactory } from '../ListItemSelect/ListItemSelect.uni.driver';
 
 export const addressInputOptionDriverFactory = (base, body) => {
@@ -12,17 +11,11 @@ export const addressInputOptionDriverFactory = (base, body) => {
 
     /** Get main label Text */
     getMainLabel: async () =>
-      await base.$(`[data-hook="${DATA_HOOKS.MAIN_LABEL}"]`).text(),
+      await listItemSelectDriverFactory(base, body).getTitle(),
 
     /** Get secondary label Text */
-    getSecondaryLabel: async () => {
-      const secondaryLabelElement = await base.$(
-        `[data-hook="${DATA_HOOKS.SECONDARY_LABEL}"]`,
-      );
-      if (await secondaryLabelElement.exists()) {
-        return secondaryLabelElement.text();
-      }
-    },
+    getSecondaryLabel: async () =>
+      await listItemSelectDriverFactory(base, body).getSubtitle(),
 
     /** Get suffix */
     getSuffix: async () =>

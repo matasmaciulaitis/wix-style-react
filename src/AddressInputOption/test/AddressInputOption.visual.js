@@ -42,12 +42,21 @@ const tests = [
         },
       },
       {
-        it: 'long main label and secondary label',
+        it: 'long main label and secondary label ans single line layout',
+        props: {
+          mainLabel: 'this is a long text that has an ellipsis at some point',
+          secondaryLabel:
+            'this is a long text that has an ellipsis at some point',
+        },
+      },
+      {
+        it: 'long main label and secondary label and double line layout',
         props: {
           mainLabel:
             'this is a long text that will eventually have an ellipsis at some point',
           secondaryLabel:
             'this is a long text that will eventually have an ellipsis at some point',
+          optionLayout: 'double-line',
         },
       },
     ],

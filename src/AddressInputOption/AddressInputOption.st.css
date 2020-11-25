@@ -1,7 +1,20 @@
-.root{
-  -st-states: optionLayout(enum(single-line, double-line));
+:import {
+  -st-from: "../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
 }
 
-.root:optionLayout(single-line) .secondaryLabel{
-  margin-left: 6px;
+.root{
+  -st-states: optionLayout(enum(single-line, double-line));
+  -st-extends: ListItemSelect;
+}
+
+.root:optionLayout(single-line)::titleWrapper{
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.root:optionLayout(single-line)::title{
+  margin-right: 6px;
+  flex-shrink: 0;
 }
