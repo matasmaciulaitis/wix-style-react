@@ -47,7 +47,7 @@ The components inventory is displayed at the [Cheetsheet](https://www.wix-style-
 New to Wix Style React? It's easy to learn if you know where to start!
 Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/introduction-getting-started--getting-started) page.
 
-## Debugging Strategies and Reporting an issue 🧐
+## Handling Issues 🧐
 
 ### Debugging Strategies
 There are two recommended strategies to better understand the root cause of an issue:
