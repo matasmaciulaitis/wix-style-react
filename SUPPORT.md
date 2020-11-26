@@ -2,7 +2,7 @@
 
 ## Table of Content
 
-- [Introduction](##introduction)
+- [Component Documentation](##component-documentation)
   * [Components and Testkit Usage](###omponents-and-testkit-usage)
   * [Frequently Asked Questions](###frequently-asked-questions)
   * [Playground](###playground)
