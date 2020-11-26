@@ -26,9 +26,10 @@ A story page has one or more of the following sections:
 - **Playground:** A graphical UI to interact with a component's arguments dynamically, without needing to code. It creates a code snippet which can be used in your application.
 
 ### Components and Testkit Usage 🎉
-Each component within the library is tested with our on drivers. This is a great way to document the proper usage of the component and drivers. You can learn from the tests on how the component should properly used and tested.
-Checkout the [sourcecode](https://github.com/wix/wix-style-react). Each component's tests files are listed under:
-`src/ComponentName/test/...`.
+A component should be treated as a black box, so in order to help you test it within your code, we provide a set of utility functions called `testkit`.
+For a detailed guide how to use a testkit refer to our [Testing guide](https://github.com/wix/wix-style-react/blob/master/docs/usage/testing.md)
+Moreover, if you want to see specific examples, our tests are available and well documented under:
+`src/ComponentName/test/<ComponentName>.spec.js`
 
 ### Frequently Asked Questions ❓
 You may find an answer to your question at the [Frequently Asked Questions](https://github.com/wix/wix-style-react/tree/master/docs/FAQ#frequently-asked-questions) article.
