@@ -96,12 +96,17 @@ const convertToString = ({ editorState, prefix, suffix }) => {
         const entity = rawJS.entityMap[entityRange.key.toString()].data;
         const placeholder = prefix + entity.value + suffix;
         baseString.splice(
-          entityRange.offset + indexOffset + 1,
+          entityRange.offset + indexOffset,
           entityRange.length,
+          ' ',
+          ' ',
           placeholder,
+          ' ',
+          ' ',
         );
         indexOffset += 1 - entityRange.length;
       });
+      // console.log(baseString);
       return baseString.join('');
     })
     .join('\n');
