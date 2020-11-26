@@ -50,9 +50,17 @@ Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/int
 ## Handling Issues 🧐
 
 ### Debugging Strategies
-There are two recommended strategies to better understand the root cause of an issue:
-- Using the most basic and clean example and on top of it adding your own feature in small parts.
-- Taking your current code and strip it's features slowly, one by one, until you reach to the point where things work. Than, slowly add them back again so you are able to find the what causes the issue.
+When you run into an issue, don't panic, we have some recommendations how to solve it:
+- Look for similar working examples in our documentation and try to find perhaps you missed something.
+- Try to isolate the problem, comment out wrappers and other features gradually until you find the source of the problem.
+- Verify that the latest version of wsr is installed (in node_modules, not package.json)
+- Try to find whether there are external CSS that might override parts of our components.
+
+If you **suspect** the issue you encountered is related to the component itself, before you report an issue try to verify by:
+- Recreate the issue in our playground.
+- Pin wsr to a prior version to see if there's no issue there.
+
+Once you're absolutely sure the issue is ours, please let us know through the channel or by reporting an issue.
 
 ### Reporting an issue ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)
 We use GitHub issues as bugs and feature requests tracker.
