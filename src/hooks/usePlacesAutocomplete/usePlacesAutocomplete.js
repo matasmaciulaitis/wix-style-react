@@ -58,7 +58,7 @@ const usePlacesAutocomplete = ({
 
       setFetchState(state => ({ ...state, loading: true }));
 
-      const { predictions: newPredictions } = await fetchPredictions(
+      const newPredictions = await fetchPredictions(
         val,
         requestOptionsRef.current,
         clientOptionsRef.current,
@@ -66,7 +66,7 @@ const usePlacesAutocomplete = ({
 
       // Don't update state if new fetch request has been initiated or if component was unmounted
       if (!checkUnmounted() && requestId === predictionsRequestId.current) {
-        setFetchState({ loading: true, predictions: newPredictions });
+        setFetchState({ loading: false, predictions: newPredictions });
       }
     }, debounceMs),
   );
