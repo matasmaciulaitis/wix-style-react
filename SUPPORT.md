@@ -8,7 +8,7 @@
   * [Playground](###playground)
   * [Cheatsheet](###cheatsheet)
   * [Resources](###resources)
-- [Debugging Strategies and Reporting an issue](##debugging-strategies-and-reporting-an-issue)
+- [Handling Issues](##handling-issues)
   * [Debugging Strategies](###debugging-strategies)
   * [Reporting an issue](###reporting-an-issue)
     + [Have you managed to resolve the issue?](####have-you-managed-to-resolve-the-issue?)
@@ -17,8 +17,8 @@
   * [Upgrade from older versions](###upgrade-from-older-versions)
 
 
-## Introduction ℹ️
-Each component has a story page that describes all the "interesting" states in which a component supports.
+## Component Documentation ℹ️
+Each component has a story page that describes all the interesting states in which a component supports.
 A story page has one or more of the following sections:
 - **Description:** Contains a short description of the component usage, an example of how to import it and examples of common usages and features.
 - **API:** Detailed section with all the props names, types, default values, required values and descriptions.
@@ -26,8 +26,8 @@ A story page has one or more of the following sections:
 - **Playground:** A graphical UI to interact with a component's arguments dynamically, without needing to code. It creates a code snippet which can be used in your application.
 
 ### Components and Testkit Usage 🎉
-A component should be treated as a black box, so in order to help you test it within your code, we provide a set of utility functions called `testkit`.
-For a detailed guide how to use a testkit refer to our [Testing guide](https://github.com/wix/wix-style-react/blob/master/docs/usage/testing.md)
+A component should be treated as a black box. In order to help you with testing it within your code, we provide a set of utility functions called `testkit`.
+For a detailed guide how to use a testkit refer to our [Testing guide](https://www.wix-style-react.com/?path=/story/introduction-testing--testing)
 Moreover, if you want to see specific examples, our tests are available and well documented under:
 `src/ComponentName/test/<ComponentName>.spec.js`
 
@@ -38,7 +38,7 @@ You may find an answer to your question at the [Frequently Asked Questions](http
 You can use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities. In order to share your code snippet with others, follow the following steps:
 1. Edit the code snippet.
 2. Click ![save-button](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/playgroundSaveButton.png) which located on the top right side of the code editor.
-3. A generated url will be generated which can be shared with others. ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
+3. A generated url will be created and can be shared with others. ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
 
 ### Cheatsheet 👋🏻
 The components inventory is displayed at the [Cheetsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) page which contains examples and links to the relevant documentation pages.
@@ -50,15 +50,15 @@ Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/int
 ## Handling Issues 🧐
 
 ### Debugging Strategies
-When you run into an issue, don't panic, we have some recommendations how to solve it:
-- Look for similar working examples in our documentation and try to find perhaps you missed something.
+When you run into an issue, don't panic 🤗. We have some recommendations how to solve it:
+- Look for similar working examples in our documentation and try to find perhaps you've missed something.
 - Try to isolate the problem, comment out wrappers and other features gradually until you find the source of the problem.
-- Verify that the latest version of wsr is installed (in node_modules, not package.json)
-- Try to find whether there are external CSS that might override parts of our components.
+- Verify that the latest version of Wix Style React is installed (in `node_modules`, not `package.json`).
+- Try to find whether there is external CSS that might override parts of our components.
 
-If you **suspect** the issue you encountered is related to the component itself, before you report an issue try to verify by:
+If you **suspect** the issue you encountered is related to the component or testkit, before you report an issue, try to verify it by:
 - Recreate the issue in our playground.
-- Pin wsr to a prior version to see if there's no issue there.
+- Pin Wix Style React version to a prior one, in order to see if there's no issue there. Note that you can check out the [CHANGELOG](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) to view the changes of each released version.
 
 Once you're absolutely sure the issue is ours, please let us know through the channel or by reporting an issue.
 
@@ -85,7 +85,7 @@ Here are few more steps which can help with troubleshooting an issue we struggle
 - Debug storybook on your local machine. You can place a `debugger` inside the story of your rebellious component.
 - Search `#wix-style-react` slack channel for similar problems.
 - Consult with your Guild Masters (Organization Wix Style React Expert / Heavy Users).
-- Create a new yoshi project and try to recreate the issue in a clean environment. This can be helpful in order to check whether it's an issue with the component, driver or the project we currently work on.
+- Create a new yoshi project and try to recreate the issue in a clean environment. This can be helpful in order to check whether it's an issue with the component, testkit or the project you currently work on.
 - Check with your UX designer whether the desired spec was reviewed by Wix Style React UX team.
 - Consult with `#wix-style-ux` slack channel for UX related questions.
 
