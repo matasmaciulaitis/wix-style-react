@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
 import useLatest from '../useLatest';
+import useCheckUnmounted from '../useCheckUnmounted';
 
 const defaultInit = () => ({ ready: true });
 
@@ -30,6 +31,7 @@ const usePlacesAutocomplete = ({
   const [fetchState, setFetchState] = useState(initialFetchState);
   const { ready, clientOptions } = useInit(initOptions); // Initialize client
   const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
+  const checkUnmounted = useCheckUnmounted();
 
   /** We want the `setValue` callback to have zero dependencies (to avoid rer-enders),
    * so we make latest options available through refs */
@@ -41,8 +43,11 @@ const usePlacesAutocomplete = ({
     [],
   );
 
-  const getPredictions = useRef(
+  const getPredictionsRef = useRef(
     debounce(async val => {
+      if (checkUnmounted()) {
+        return;
+      }
       // Increase request id counter
       const requestId = ++predictionsRequestId.current;
 
@@ -59,8 +64,8 @@ const usePlacesAutocomplete = ({
         clientOptionsRef.current,
       );
 
-      // Don't update state if new fetch request has been initiated
-      if (requestId === predictionsRequestId.current) {
+      // Don't update state if new fetch request has been initiated or if component was unmounted
+      if (!checkUnmounted() && requestId === predictionsRequestId.current) {
         setFetchState({ loading: true, predictions: newPredictions });
       }
     }, debounceMs),
@@ -68,7 +73,10 @@ const usePlacesAutocomplete = ({
 
   const setValue = useCallback((newValue, shouldFetchData = true) => {
     _setValue(newValue);
-    if (shouldFetchData) getPredictions(newValue);
+    if (shouldFetchData) {
+      const getPredictions = getPredictionsRef.current;
+      getPredictions(newValue);
+    }
   }, []);
 
   const { loading, predictions } = fetchState;
