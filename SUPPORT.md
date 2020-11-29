@@ -3,7 +3,7 @@
 ## Table of Content
 
 - [Component Documentation](##component-documentation)
-  * [Components and Testkit Usage](###omponents-and-testkit-usage)
+  * [Components and Testkit Usage](###components-and-testkit-usage)
   * [Frequently Asked Questions](###frequently-asked-questions)
   * [Playground](###playground)
   * [Cheatsheet](###cheatsheet)
