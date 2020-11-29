@@ -3,22 +3,18 @@ export const basicExample = `
 `;
 
 export const optionLayout = `
-  <Layout>
-    <Cell>
-      <AddressInputOption
-        mainLabel="main label"
-        optionLayout="single-line"
-        secondaryLabel="single line layout"
-      />
-    </Cell>
-    <Cell>
-      <AddressInputOption
-        optionLayout="double-line"
-        mainLabel="main label"
-        secondaryLabel="double line layout"
-      />
-    </Cell>
-  </Layout>
+<Layout cols={1}>
+  <AddressInputOption
+    mainLabel="main label"
+    optionLayout="single-line"
+    secondaryLabel="single line layout"
+  />
+  <AddressInputOption
+    optionLayout="double-line"
+    mainLabel="main label"
+    secondaryLabel="double line layout"
+  />
+</Layout>
 `;
 
 export const Affixes = `

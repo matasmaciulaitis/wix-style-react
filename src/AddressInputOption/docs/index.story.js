@@ -33,9 +33,6 @@ export default {
     mainLabel: 'main label',
     secondaryLabel: 'secondary label',
     suffix: 'suffix',
-  },
-
-  exampleProps: {
     prefix: <ToolBoxIcon />,
   },
 
