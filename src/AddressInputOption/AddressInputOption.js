@@ -26,7 +26,6 @@ class AddressInputOption extends React.PureComponent {
     const textProps = {
       tagName: 'div',
       ellipsis: true,
-      showDelay: 300,
       skin: disabled ? 'disabled' : 'standard',
       light: selected,
     };

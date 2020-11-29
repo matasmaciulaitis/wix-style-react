@@ -3,7 +3,8 @@ import { storiesOf } from '@storybook/react';
 import AddressInputOption, {
   addressInputOptionBuilder,
 } from '../AddressInputOption';
-import { AddressInput, Box } from '../..';
+import { DropdownLayout, Box } from '../..';
+import ToolBoxIcon from 'wix-ui-icons-common/Location';
 
 const commonProps = {
   mainLabel: 'address input option',
@@ -15,6 +16,7 @@ const tests = [
     its: [
       {
         it: 'default',
+        props: {},
       },
       {
         it: 'single-line layout',
@@ -71,13 +73,6 @@ const tests = [
         },
       },
       {
-        it: 'selected with suffix',
-        props: {
-          suffix: 'suffix',
-          selected: true,
-        },
-      },
-      {
         it: 'no prefix',
         props: { prefix: false },
       },
@@ -88,52 +83,30 @@ const tests = [
     ],
   },
   {
-    describe: 'select and highlight',
+    describe: 'option state',
     its: [
       {
         it: 'selected',
-        props: { selected: true },
+        props: { selected: true, secondaryLabel: 'This is a nice subtitle' },
       },
       {
         it: 'highlighted',
-        props: { highlighted: true },
+        props: { highlighted: true, secondaryLabel: 'This is a nice subtitle' },
       },
       {
         it: 'selected and highlighted',
-        props: { selected: true, highlighted: true },
-      },
-
-      {
-        it: 'selected with secondary label',
         props: {
           selected: true,
+          highlighted: true,
           secondaryLabel: 'This is a nice subtitle',
         },
       },
-    ],
-  },
-  {
-    describe: 'disabled',
-    its: [
       {
         it: 'disabled',
         props: {
           disabled: true,
-        },
-      },
-      {
-        it: 'disabled with double line layout',
-        props: {
-          disabled: true,
-          secondaryLabel: 'secondary labal',
+          secondaryLabel: 'secondary label',
           optionLayout: 'double-line',
-        },
-      },
-      {
-        it: 'disabled with single line layout',
-        props: {
-          disabled: true,
-          secondaryLabel: 'secondary labal',
         },
       },
     ],
@@ -156,22 +129,29 @@ tests.forEach(({ describe, its }) => {
 storiesOf(`${AddressInputOption.displayName}/builder`, module).add(
   'builder',
   () => (
-    <AddressInput
+    <DropdownLayout
+      visible
+      inContainer
+      selectedId={0}
       options={[
         addressInputOptionBuilder({
           id: 0,
           mainLabel: 'option 1',
           secondaryLabel: 'subtitle 1',
+          suffix: 'suffix',
         }),
         addressInputOptionBuilder({
           id: 1,
+          disabled: true,
           mainLabel: 'option 2',
           secondaryLabel: 'subtitle 2',
+          prefix: <ToolBoxIcon />,
         }),
         addressInputOptionBuilder({
           id: 2,
           mainLabel: 'option 3',
           secondaryLabel: 'subtitle 3',
+          optionLayout: 'double line',
         }),
       ]}
     />

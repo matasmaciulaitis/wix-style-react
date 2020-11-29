@@ -53,7 +53,6 @@ export const advancedExample = `
       mainLabel: 'main label 2',
       optionLayout: 'double-line'
     }),
-    {id: 2, value: 'label 3' },
     addressInputOptionBuilder({
       id: 3,
       secondaryLabel: 'secondary label 3',

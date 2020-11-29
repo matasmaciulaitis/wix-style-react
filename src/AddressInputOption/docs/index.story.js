@@ -15,6 +15,7 @@ import {
 
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import SectionHelper from '../../SectionHelper';
 
 import AddressInputOption from '..';
 import * as examples from './examples';
@@ -34,6 +35,7 @@ export default {
     secondaryLabel: 'secondary label',
     suffix: 'suffix',
     prefix: <ToolBoxIcon />,
+    optionLayout: 'single-line',
   },
 
   sections: [
@@ -58,6 +60,14 @@ import { AddressInputOption } from 'wix-style-react';
 import { addressInputOptionBuilder } from 'wix-style-react';`),
 
           divider(),
+          description({
+            text: (
+              <SectionHelper title="WARNING">
+                This component is work in progress, please don't use this
+                component unless you were instructed to by wsr team.
+              </SectionHelper>
+            ),
+          }),
 
           title('Examples'),
 

@@ -131,6 +131,13 @@ export default {
                   >{`<BadgeSelectItem/>`}</LinkTo>,
                   'An internal component which is used to build dropdown or menu like components.',
                 ],
+                [
+                  <LinkTo
+                    kind={Category.COMPONENTS}
+                    story="AddressInputOption"
+                  >{`<AddressInputOption/>`}</LinkTo>,
+                  'An internal component which is used to build dropdown or menu like components.',
+                ],
               ],
             }),
           ]),
