@@ -25,6 +25,7 @@ export interface BoxProps
   minHeight?: BoxCssSizingProperty;
   maxHeight?: BoxCssSizingProperty;
   height?: BoxCssSizingProperty;
+  flexWrap?: BoxCssFlexWrap;
 }
 
 declare const Box: React.SFC<BoxProps>;
@@ -45,5 +46,7 @@ export type BoxVerticalAlignment =
   | 'space-between';
 
 export type BoxSpacing = 'tiny' | 'small' | 'medium' | 'large';
+
+export type BoxCssFlexWrap = 'wrap' | 'nowrap' | 'wrap-reverse';
 
 type BoxCssSizingProperty = BoxSpacing | Spacing | string | number;
