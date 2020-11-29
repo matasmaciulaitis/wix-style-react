@@ -7,6 +7,7 @@ const NON_COMPONENT_FOLDER = [
   'dnd-styles',
   'assets',
   'clients',
+  'hooks',
   'mixins',
   'common',
   'FieldLabelAttributes',
