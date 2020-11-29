@@ -133,7 +133,7 @@ export default {
                 ],
                 [
                   <LinkTo
-                    kind={Category.COMPONENTS}
+                    kind={Category.WIP}
                     story="AddressInputOption"
                   >{`<AddressInputOption/>`}</LinkTo>,
                   'An internal component which is used to build dropdown or menu like components.',
