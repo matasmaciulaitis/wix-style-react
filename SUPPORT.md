@@ -2,7 +2,7 @@
 
 ## Table of Content
 
-*   [Component Documentation ℹ️](#component-documentation-️)
+*   [Component Documentation ℹ️](#component-documentation-ℹ%EF%B8%8F)
 
     *   [Components and Testkit Usage 🎉](#components-and-testkit-usage-)
     *   [Frequently Asked Questions ❓](#frequently-asked-questions-)
