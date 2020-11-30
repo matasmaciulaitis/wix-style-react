@@ -1,7 +1,7 @@
 import { Prediction } from '@wix/ambassador-wix-atlas-service-web/http';
 import { AutocompleteClient } from './autocompleteClient';
 
-export type SetValue = (val: string, shouldFetchData?: boolean) => void;
+export type SetValue = (value: string, shouldFetchData?: boolean) => void;
 
 export interface UsePlacesAutocompleteReturn {
   value: string;

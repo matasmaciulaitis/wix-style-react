@@ -27,23 +27,34 @@ const usePlacesAutocomplete = ({
   /** input default value (default: '') */
   defaultValue = '',
 }) => {
-  const [value, _setValue] = useState(defaultValue);
-  const [fetchState, setFetchState] = useState(initialFetchState);
   const { ready, clientOptions } = useInit(initOptions); // Initialize client
-  const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
-  const checkUnmounted = useCheckUnmounted();
 
-  /** We want the `setValue` callback to have zero dependencies (to avoid rer-enders),
-   * so we make latest options available through refs */
-  const requestOptionsRef = useLatest(requestOptions);
-  const clientOptionsRef = useLatest(clientOptions);
+  const [value, _setValue] = useState(defaultValue);
+  const [
+    {
+      /** whether fetch request is ongoing */
+      loading,
+      /** array of prediction results */
+      predictions,
+    },
+    setFetchState,
+  ] = useState(initialFetchState);
 
   const clearPredictions = useCallback(
     () => setFetchState(initialFetchState),
     [],
   );
 
-  const getPredictionsRef = useRef(
+  const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
+  const checkUnmounted = useCheckUnmounted(); // checks whether component has been unmounted
+
+  /** We want the `getPredictions` callback to have zero dependencies (to avoid re-renders),
+   * so we make latest options available through refs */
+  const requestOptionsRef = useLatest(requestOptions);
+  const clientOptionsRef = useLatest(clientOptions);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getPredictions = useCallback(
     debounce(async val => {
       if (checkUnmounted()) {
         return;
@@ -69,19 +80,36 @@ const usePlacesAutocomplete = ({
         setFetchState({ loading: false, predictions: newPredictions });
       }
     }, debounceMs),
+    [],
   );
 
-  const setValue = useCallback((newValue, shouldFetchData = true) => {
-    _setValue(newValue);
-    if (shouldFetchData) {
-      const getPredictions = getPredictionsRef.current;
-      getPredictions(newValue);
-    }
-  }, []);
+  // Set input value to state and get predictions from client
+  const setValue = useCallback(
+    (newValue, shouldFetchData = true) => {
+      _setValue(newValue);
+      if (shouldFetchData) {
+        getPredictions(newValue);
+      }
+    },
+    [getPredictions],
+  );
 
-  const { loading, predictions } = fetchState;
-
-  return { value, setValue, ready, loading, predictions, clearPredictions };
+  return {
+    /** value of input */
+    value,
+    /** (value: string, shouldFetchData?: boolean) => void
+     * receives a new input value and
+     * fetches new predictions from client if shouldFetchData is true */
+    setValue,
+    /** whether client is ready to receive requests */
+    ready,
+    /** whether fetch request is ongoing */
+    loading,
+    /** array of prediction results */
+    predictions,
+    /** function that clears predictions array and sets loading state to false */
+    clearPredictions,
+  };
 };
 
 export default usePlacesAutocomplete;
