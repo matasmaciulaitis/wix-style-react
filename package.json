@@ -133,7 +133,6 @@
     "@types/react-dom": "^16.9.9",
     "@ui-autotools/registry": "^5.0.0",
     "@ui-autotools/sanity": "^5.0.1",
-    "@wix/ambassador-wix-atlas-service-web": "^1.0.129",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",

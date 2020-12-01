@@ -12,19 +12,35 @@ export interface UsePlacesAutocompleteReturn {
   clearPredictions: () => void;
 }
 export interface UsePlacesAutocompleteProps<
+  Prediction,
   RequestOptions,
   InitOptions = any,
   ClientOptions = any
 > {
-  client: AutocompleteClient<RequestOptions, InitOptions, ClientOptions>;
+  client: AutocompleteClient<
+    Prediction,
+    RequestOptions,
+    InitOptions,
+    ClientOptions
+  >;
   initOptions?: InitOptions;
   requestOptions?: RequestOptions;
   debounce?: number;
   defaultValue?: string;
 }
 
-declare const usePlacesAutocomplete: <RequestOptions>(
-  args?: UsePlacesAutocompleteProps<RequestOptions>,
+declare const usePlacesAutocomplete: <
+  Prediction,
+  RequestOptions,
+  InitOptions = any,
+  ClientOptions = any
+>(
+  args?: UsePlacesAutocompleteProps<
+    Prediction,
+    RequestOptions,
+    InitOptions,
+    ClientOptions
+  >,
 ) => UsePlacesAutocompleteReturn;
 
 export default usePlacesAutocomplete;

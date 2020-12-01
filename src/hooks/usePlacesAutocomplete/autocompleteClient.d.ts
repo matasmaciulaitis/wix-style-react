@@ -1,6 +1,8 @@
-import { Prediction } from '@wix/ambassador-wix-atlas-service-web/http';
-
-export type FetchPredictions<RequestOptions, ClientOptions = any> = (
+export type FetchPredictions<
+  Prediction,
+  RequestOptions,
+  ClientOptions = any
+> = (
   value: string,
   requestOptions: RequestOptions,
   clientOptions: ClientOptions,
@@ -17,10 +19,11 @@ export type InitializerHook<InitOptions, ClientOptions = any> = (
 };
 
 export interface AutocompleteClient<
+  Prediction,
   RequestOptions,
   InitOptions = any,
   ClientOptions = any
 > {
-  fetchPredictions: FetchPredictions<RequestOptions, ClientOptions>;
+  fetchPredictions: FetchPredictions<Prediction, RequestOptions, ClientOptions>;
   useInit?: InitializerHook<InitOptions, ClientOptions>;
 }
