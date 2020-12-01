@@ -1,19 +1,22 @@
 import eyes from 'eyes.it';
-import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
+import {
+  waitForVisibilityOf,
+  protractorTestkitFactoryCreator,
+} from 'wix-ui-test-utils/protractor';
+import { createTestStoryUrl } from '../../../../test/utils/storybook-helpers';
 import { storySettings, testStories } from './storySettings';
-import inputUniDriverFactory from '../Input/Input.uni.driver';
+import inputDriver from '../../../Input/Input.protractor.driver';
 
 describe('useCopyClipboard', () => {
   const storyUrl = createTestStoryUrl({
     ...storySettings,
     testName: testStories.useCopyClipboard,
   });
-  const inputDriverCopy = inputUniDriverFactory({
-    dataHook: storySettings.inputDriverCopy,
+  const inputDriverCopy = protractorTestkitFactoryCreator(inputDriver)({
+    dataHook: storySettings.dataHookInputCopy,
   });
-  const inputDriverPaste = inputUniDriverFactory({
-    dataHook: storySettings.inputDriverPaste,
+  const inputDriverPaste = protractorTestkitFactoryCreator(inputDriver)({
+    dataHook: storySettings.dataHookInputPaste,
   });
 
   beforeEach(done => {

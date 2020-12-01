@@ -3,8 +3,8 @@ import { Category } from '../../../../stories/storiesHierarchy';
 export const storySettings = {
   category: Category.COMPONENTS,
   storyName: 'useCopyClipboard',
-  dataHookInputCopy: 'storybook-range-input',
-  dataHookInputPaste: 'storybook-range-date',
+  dataHookInputCopy: 'storybook-input-copy',
+  dataHookInputPaste: 'storybook-input-paste',
 };
 
 export const testStories = {

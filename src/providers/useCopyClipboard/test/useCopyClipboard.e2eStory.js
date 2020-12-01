@@ -4,9 +4,12 @@ import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../../../stories/storiesHierarchy';
 import { testStories, storySettings } from './storySettings';
 import { Layout, Cell, Input, TextButton } from '../../../index';
-import useCopyClipboard from '..';
+import useCopyClipboard from '../useCopyClipboard';
 
-const kind = getTestStoryKind(storySettings);
+const kind = getTestStoryKind({
+  category: storySettings.category,
+  storyName: storySettings.storyName,
+});
 
 const CopyClipboard = () => {
   const [value, setValue] = useState('https://www.wix.com');
@@ -20,6 +23,7 @@ const CopyClipboard = () => {
           onChange={event => {
             setValue(event.target.value);
           }}
+          dataHook={storySettings.dataHookInputCopy}
           onInputClicked={() => copyToClipboard()}
           suffix={
             <Input.Affix>
@@ -29,7 +33,10 @@ const CopyClipboard = () => {
         />
       </Cell>
       <Cell>
-        <Input onChange={() => {}} />
+        <Input
+          onChange={() => {}}
+          dataHook={storySettings.dataHookInputPaste}
+        />
       </Cell>
     </Layout>
   );
