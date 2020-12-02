@@ -1,4 +1,3 @@
-import eyes from 'eyes.it';
 import {
   waitForVisibilityOf,
   protractorTestkitFactoryCreator,
@@ -27,7 +26,7 @@ describe('useCopyClipboard', () => {
     ).then(done);
   });
 
-  eyes.it('should copy text to clipboard', async () => {
+  it('should copy text to clipboard', async () => {
     await inputDriverCopy.clickClear('');
     await inputDriverCopy.enterText('https://www.wix.com/about/us');
     await inputDriverCopy.click();
