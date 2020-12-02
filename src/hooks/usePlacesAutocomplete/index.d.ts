@@ -1,46 +1,21 @@
-import { Prediction } from '@wix/ambassador-wix-atlas-service-web/http';
 import { AutocompleteClient } from './autocompleteClient';
 
-export type SetValue = (value: string, shouldFetchData?: boolean) => void;
+export type UpdatePredictions = (value: string) => void;
 
-export interface UsePlacesAutocompleteReturn {
-  value: string;
-  setValue: SetValue;
-  ready: boolean;
-  loading: boolean;
+export interface UsePlacesAutocompleteReturn<Prediction> {
   predictions: Prediction[];
+  loading: boolean;
+  updatePredictions: UpdatePredictions;
   clearPredictions: () => void;
 }
-export interface UsePlacesAutocompleteProps<
-  Prediction,
-  RequestOptions,
-  InitOptions = any,
-  ClientOptions = any
-> {
-  client: AutocompleteClient<
-    Prediction,
-    RequestOptions,
-    InitOptions,
-    ClientOptions
-  >;
-  initOptions?: InitOptions;
-  requestOptions?: RequestOptions;
+export interface UsePlacesAutocompleteProps<Prediction, RequestOptions> {
+  client: AutocompleteClient<Prediction, RequestOptions>;
   debounce?: number;
   defaultValue?: string;
 }
 
-declare const usePlacesAutocomplete: <
-  Prediction,
-  RequestOptions,
-  InitOptions = any,
-  ClientOptions = any
->(
-  args?: UsePlacesAutocompleteProps<
-    Prediction,
-    RequestOptions,
-    InitOptions,
-    ClientOptions
-  >,
-) => UsePlacesAutocompleteReturn;
+declare const usePlacesAutocomplete: <Prediction, RequestOptions>(
+  args?: UsePlacesAutocompleteProps<Prediction, RequestOptions>,
+) => UsePlacesAutocompleteReturn<Prediction>;
 
 export default usePlacesAutocomplete;

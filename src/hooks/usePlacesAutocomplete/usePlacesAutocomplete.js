@@ -1,9 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import debounce from 'lodash/debounce';
+import useIsMounted from '../useIsMounted';
 import useLatest from '../useLatest';
-import useCheckUnmounted from '../useCheckUnmounted';
-
-const defaultInit = () => ({ ready: true });
 
 const initialFetchState = {
   loading: false,
@@ -14,22 +12,13 @@ const initialFetchState = {
 const usePlacesAutocomplete = ({
   /** client: connects and sends requests to location service (Atlas / Google)
    * contains: {
-   *  fetchPredictions: A pure function that fetches predictions from service given input value
-   *  useInit (optional): A hook used to initialize connection to location service
+   *  fetchPredictions: A function that fetches predictions from service given input value
+   *  ready: is client ready to receive requests
    * } */
-  client: { fetchPredictions, useInit = defaultInit },
-  /** options to be passed to client init hook */
-  initOptions,
-  /** options to be passed to client's fetchPredictions function */
-  requestOptions,
+  client,
   /** fetch predictions debounce in milliseconds (default: 200) */
   debounceMs = 200,
-  /** input default value (default: '') */
-  defaultValue = '',
 }) => {
-  const { ready, clientOptions } = useInit(initOptions); // Initialize client
-
-  const [value, _setValue] = useState(defaultValue);
   const [
     {
       /** whether fetch request is ongoing */
@@ -46,67 +35,53 @@ const usePlacesAutocomplete = ({
   );
 
   const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
-  const checkUnmounted = useCheckUnmounted(); // checks whether component has been unmounted
+  const isMounted = useIsMounted(); // checks whether component is still mounted
 
-  /** We want the `getPredictions` callback to have zero dependencies (to avoid re-renders),
-   * so we make latest options available through refs */
-  const requestOptionsRef = useLatest(requestOptions);
-  const clientOptionsRef = useLatest(clientOptions);
+  /** We want the `getPredictions` callback to have zero dependencies (to avoid re-renders and unpredictable debouncing),
+   * so we make client available through ref */
+  const clientRef = useLatest(client);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getPredictions = useCallback(
-    debounce(async val => {
-      if (checkUnmounted()) {
+  const updatePredictions = useCallback(
+    debounce(async (value, requestOptions) => {
+      const { ready, fetchPredictions } = clientRef.current;
+      if (!ready || !isMounted()) {
         return;
       }
       // Increase request id counter
       const requestId = ++predictionsRequestId.current;
 
-      if (!val) {
+      if (!value) {
         clearPredictions();
         return;
       }
 
       setFetchState(state => ({ ...state, loading: true }));
 
-      const newPredictions = await fetchPredictions(
-        val,
-        requestOptionsRef.current,
-        clientOptionsRef.current,
-      );
+      const newPredictions = await fetchPredictions(value, requestOptions);
 
-      // Don't update state if new fetch request has been initiated or if component was unmounted
-      if (!checkUnmounted() && requestId === predictionsRequestId.current) {
+      // check if no new fetch request has been initiated
+      const isMostRecentRequest = requestId === predictionsRequestId.current;
+
+      if (isMounted() && isMostRecentRequest) {
         setFetchState({ loading: false, predictions: newPredictions });
       }
     }, debounceMs),
     [],
   );
 
-  // Set input value to state and get predictions from client
-  const setValue = useCallback(
-    (newValue, shouldFetchData = true) => {
-      _setValue(newValue);
-      if (shouldFetchData) {
-        getPredictions(newValue);
-      }
-    },
-    [getPredictions],
-  );
-
   return {
-    /** value of input */
-    value,
-    /** (value: string, shouldFetchData?: boolean) => void
-     * receives a new input value and
-     * fetches new predictions from client if shouldFetchData is true */
-    setValue,
-    /** whether client is ready to receive requests */
-    ready,
-    /** whether fetch request is ongoing */
-    loading,
     /** array of prediction results */
     predictions,
+    /** whether fetch request is ongoing */
+    loading,
+    /** (value: string, requestOptions?: RequestOptions) => void
+     * fetches predictions for given value from client (debounced)
+     * and sets results to prediction state.
+     *
+     * Can also receive requestOptions,
+     * which are client specific options to pass to the request */
+    updatePredictions,
     /** function that clears predictions array and sets loading state to false */
     clearPredictions,
   };
