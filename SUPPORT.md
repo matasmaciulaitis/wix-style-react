@@ -27,7 +27,7 @@
 ## Component Documentation ℹ️
 
 Each component has a story page that describes all the interesting states that are supported.
-A story page has one or more of the following sections:
+A story page has one or more of the following tabs:
 
 *   **Description:** Contains a short description of the component usage, an example of how to import it and examples of common usages and features.
 *   **API:** Detailed section with all the props names, types, default values, required values and descriptions.
