@@ -39,7 +39,7 @@ A story page has one or more of the following sections:
 A component should be treated as a black box. In order to help you with testing it within your code, we provide a set of utility functions called `testkit`.
 For a detailed guide how to use a testkit, refer to our [Testing guide](https://www.wix-style-react.com/?path=/story/introduction-testing--testing).
 Moreover, if you want to see specific examples, our tests are available and well documented under:
-`src/ComponentName/test/<ComponentName>.spec.js`
+`src/<ComponentName>/test/<ComponentName>.spec.js`
 
 ### Frequently Asked Questions ❓
 
