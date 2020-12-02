@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
+import { sleep } from 'wix-ui-test-utils/react-helpers';
 import usePlacesAutocomplete from './usePlacesAutocomplete';
 
 // Lodash debounce doesn't play nicely with jest fake timers
@@ -13,9 +14,6 @@ const debounceFn = (callback, delay = 250) => {
   };
 };
 jest.useFakeTimers();
-
-const wait = milliseconds =>
-  new Promise(resolve => setTimeout(resolve, milliseconds));
 
 const flushPromises = () => new Promise(resolve => setImmediate(resolve));
 
@@ -55,7 +53,7 @@ describe('usePlacesAutocomplete', () => {
   it('should return loading state', async () => {
     const fetchDelay = 100;
     const fetchPredictionsFn = async () => {
-      await wait(fetchDelay);
+      await sleep(fetchDelay);
       return mockPredictions;
     };
     const client = { fetchPredictions: fetchPredictionsFn, ready: true };
