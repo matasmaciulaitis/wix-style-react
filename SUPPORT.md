@@ -68,7 +68,7 @@ Check out the [Getting Started](https://www.wix-style-react.com/?path=/story/int
 
 When you run into an issue, don't panic 🤗. We have some recommendations how to solve it:
 
-*   Look for similar working examples in our documentation and try to find perhaps you've missed something.
+*   Look for similar working examples in our documentation and try to find if perhaps you've missed something.
 *   Try to isolate the problem, comment out wrappers and other features gradually until you find the source of the problem.
 *   Verify that the latest version of Wix Style React is installed (in `node_modules`, not `package.json`).
 *   Try to find whether there is external CSS that might override parts of our components.
