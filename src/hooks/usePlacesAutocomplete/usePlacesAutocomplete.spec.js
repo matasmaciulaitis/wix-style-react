@@ -1,11 +1,8 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { useEffect, useState } from 'react';
-import debounce from 'lodash/debounce';
 import usePlacesAutocomplete from './usePlacesAutocomplete';
 
 // Lodash debounce doesn't play nicely with jest fake timers
-jest.mock('lodash/debounce');
-debounce.mockImplementation((callback, delay = 250) => {
+const debounceFn = (callback, delay = 250) => {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
@@ -14,7 +11,7 @@ debounce.mockImplementation((callback, delay = 250) => {
       callback(...args);
     }, delay);
   };
-});
+};
 jest.useFakeTimers();
 
 const wait = milliseconds =>
@@ -44,52 +41,16 @@ describe('usePlacesAutocomplete', () => {
   };
   const fetchPredictions = () =>
     new Promise(resolve => resolve(mockPredictions));
-  const useInit = () => ({ ready: true });
 
   const mockClient = {
     fetchPredictions,
-    useInit,
+    ready: true,
   };
 
   const renderHelper = props =>
-    renderHook(() => usePlacesAutocomplete({ client: mockClient, ...props }))
-      .result;
-
-  it('should initialize client', () => {
-    const useInitFn = jest.fn(useInit);
-    const client = {
-      fetchPredictions,
-      useInit: useInitFn,
-    };
-    renderHelper({ client });
-    expect(useInitFn).toHaveBeenCalled();
-  });
-
-  it('should pass initOptions to client init hook', async () => {
-    const useInitFn = jest.fn(useInit);
-    const initOptions = { authToken: 'some-token' };
-    const client = {
-      fetchPredictions,
-      useInit: useInitFn,
-    };
-    renderHelper({ client, initOptions });
-    expect(useInitFn).toHaveBeenCalledWith(initOptions);
-  });
-
-  it('should return ready state', () => {
-    const useInitFn = () => {
-      const [ready, setReady] = useState(false);
-      useEffect(() => {
-        setTimeout(() => setReady(true), 200);
-      }, []);
-      return { ready };
-    };
-    const client = { fetchPredictions, useInit: useInitFn };
-    const result = renderHelper({ client });
-    expect(result.current.ready).toBe(false);
-    act(() => jest.advanceTimersByTime(200));
-    expect(result.current.ready).toBe(true);
-  });
+    renderHook(() =>
+      usePlacesAutocomplete({ client: mockClient, debounceFn, ...props }),
+    ).result;
 
   it('should return loading state', async () => {
     const fetchDelay = 100;
@@ -97,10 +58,10 @@ describe('usePlacesAutocomplete', () => {
       await wait(fetchDelay);
       return mockPredictions;
     };
-    const client = { fetchPredictions: fetchPredictionsFn, useInit };
+    const client = { fetchPredictions: fetchPredictionsFn, ready: true };
     const result = renderHelper({ client });
     expect(result.current.loading).toEqual(false);
-    act(() => result.current.setValue('test'));
+    act(() => result.current.updatePredictions('test'));
     act(() => jest.advanceTimersByTime(defaultDebounceMs));
     expect(result.current.loading).toEqual(true);
     await act(async () => {
@@ -114,82 +75,41 @@ describe('usePlacesAutocomplete', () => {
   it('should return predictions data', async () => {
     const result = renderHelper();
     expect(result.current.predictions).toEqual([]);
-    act(() => result.current.setValue('test'));
+    act(() => result.current.updatePredictions('test'));
     await act(() => waitForDebounce());
     expect(result.current.predictions).toBe(mockPredictions);
   });
 
-  describe('setValue', () => {
-    it('should change value', async () => {
-      const result = renderHelper();
-      expect(result.current.value).toBe('');
-      act(() => result.current.setValue('test'));
-      expect(result.current.value).toBe('test');
-    });
+  describe('updatePredictions', () => {
     it('should call fetchPredictions with new value', async () => {
       const fetchPredictionsFn = jest.fn(fetchPredictions);
       const client = {
         fetchPredictions: fetchPredictionsFn,
-        useInit,
+        ready: true,
       };
       const result = renderHelper({ client });
-      act(() => result.current.setValue('test'));
+      act(() => result.current.updatePredictions('test'));
       await act(() => waitForDebounce());
-      expect(fetchPredictionsFn).toHaveBeenCalledWith(
-        'test',
-        undefined,
-        undefined,
-      );
+      expect(fetchPredictionsFn).toHaveBeenCalledWith('test', undefined);
     });
-    it('should call fetchPrediction with requestOptions from props', async () => {
+    it('should call fetchPrediction with requestOptions from arguments', async () => {
       const fetchPredictionsFn = jest.fn(fetchPredictions);
       const client = {
         fetchPredictions: fetchPredictionsFn,
-        useInit,
+        ready: true,
       };
       const requestOptions = { languageCode: 'he' };
-      const result = renderHelper({ client, requestOptions });
-      act(() => result.current.setValue('test'));
-      await act(() => waitForDebounce());
-      expect(fetchPredictionsFn).toHaveBeenCalledWith(
-        'test',
-        requestOptions,
-        undefined,
-      );
-    });
-    it('should call fetchPrediction with options from client', async () => {
-      const fetchPredictionsFn = jest.fn(fetchPredictions);
-      const clientOptions = { gMaps: {} };
-      const client = {
-        fetchPredictions: fetchPredictionsFn,
-        useInit: () => ({ ready: true, clientOptions }),
-      };
       const result = renderHelper({ client });
-      act(() => result.current.setValue('test'));
+      act(() => result.current.updatePredictions('test', requestOptions));
       await act(() => waitForDebounce());
-      expect(fetchPredictionsFn).toHaveBeenCalledWith(
-        'test',
-        undefined,
-        clientOptions,
-      );
-    });
-    it('should not call fetchPredictions when shouldFetchData is false', async () => {
-      const fetchPredictionsFn = jest.fn(fetchPredictions);
-      const client = {
-        fetchPredictions: fetchPredictionsFn,
-        useInit,
-      };
-      const result = renderHelper({ client });
-      act(() => result.current.setValue('test', false));
-      await act(() => waitForDebounce());
-      expect(fetchPredictionsFn).not.toHaveBeenCalled();
+      expect(fetchPredictionsFn).toHaveBeenCalledWith('test', requestOptions);
     });
   });
 
   describe('clearPredictions', () => {
     it('should clear predictions', async () => {
       const result = renderHelper();
-      act(() => result.current.setValue('test'));
+      act(() => result.current.updatePredictions('test'));
       await act(() => waitForDebounce());
       expect(result.current.predictions).toBe(mockPredictions);
       act(() => result.current.clearPredictions());
@@ -204,19 +124,19 @@ describe('usePlacesAutocomplete', () => {
         const fetchPredictionsFn = jest.fn(fetchPredictions);
         const client = {
           fetchPredictions: fetchPredictionsFn,
-          useInit,
+          ready: true,
         };
         const result = renderHelper({ client, debounceMs });
 
-        act(() => result.current.setValue('t'));
+        act(() => result.current.updatePredictions('t'));
         jest.advanceTimersByTime(10);
-        act(() => result.current.setValue('te'));
+        act(() => result.current.updatePredictions('te'));
         jest.advanceTimersByTime(10);
-        act(() => result.current.setValue('tes'));
+        act(() => result.current.updatePredictions('tes'));
         jest.advanceTimersByTime(10);
-        act(() => result.current.setValue('test'));
+        act(() => result.current.updatePredictions('test'));
         await act(() => waitForDebounce());
-        act(() => result.current.setValue('blah'));
+        act(() => result.current.updatePredictions('blah'));
         await act(() => waitForDebounce());
 
         expect(fetchPredictionsFn).toHaveBeenCalledTimes(2);
@@ -224,20 +144,12 @@ describe('usePlacesAutocomplete', () => {
           1,
           'test',
           undefined,
-          undefined,
         );
         expect(fetchPredictionsFn).toHaveBeenNthCalledWith(
           2,
           'blah',
           undefined,
-          undefined,
         );
-      });
-    });
-    describe('defaultValue', () => {
-      it('should set default input value', () => {
-        const result = renderHelper({ defaultValue: 'test' });
-        expect(result.current.value).toBe('test');
       });
     });
   });
