@@ -30,6 +30,10 @@ const CopyClipboard = () => {
               <TextButton>Click on input to copy</TextButton>
             </Input.Affix>
           }
+          clearButton
+          onClear={() => {
+            setValue('');
+          }}
         />
       </Cell>
       <Cell>

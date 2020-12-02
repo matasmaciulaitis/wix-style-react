@@ -28,6 +28,8 @@ describe('useCopyClipboard', () => {
   });
 
   eyes.it('should copy text to clipboard', async () => {
+    await inputDriverCopy.clickClear('');
+    await inputDriverCopy.enterText('https://www.wix.com/about/us');
     await inputDriverCopy.click();
     await inputDriverPaste.click();
     await browser
@@ -36,6 +38,8 @@ describe('useCopyClipboard', () => {
         protractor.Key.chord(protractor.Key.SHIFT, protractor.Key.INSERT),
       )
       .perform();
-    expect(await inputDriverPaste.getText()).toBe('https://www.wix.com');
+    expect(await inputDriverPaste.getText()).toBe(
+      'https://www.wix.com/about/us',
+    );
   });
 });
