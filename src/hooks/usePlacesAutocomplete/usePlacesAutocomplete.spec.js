@@ -35,8 +35,8 @@ const mockPredictions = [
 ];
 
 describe('usePlacesAutocomplete', () => {
-  const waitForDebounce = async () => {
-    jest.advanceTimersByTime(defaultDebounceMs);
+  const waitForTimeout = async timeoutMs => {
+    jest.advanceTimersByTime(timeoutMs);
     await flushPromises();
   };
   const fetchPredictions = () =>
@@ -62,12 +62,9 @@ describe('usePlacesAutocomplete', () => {
     const result = renderHelper({ client });
     expect(result.current.loading).toEqual(false);
     act(() => result.current.updatePredictions('test'));
-    act(() => jest.advanceTimersByTime(defaultDebounceMs));
+    await act(() => waitForTimeout(defaultDebounceMs));
     expect(result.current.loading).toEqual(true);
-    await act(async () => {
-      jest.advanceTimersByTime(fetchDelay);
-      await flushPromises();
-    });
+    await act(() => waitForTimeout(fetchDelay));
     expect(result.current.loading).toEqual(false);
     expect(result.current.predictions).toBe(mockPredictions);
   });
@@ -76,7 +73,7 @@ describe('usePlacesAutocomplete', () => {
     const result = renderHelper();
     expect(result.current.predictions).toEqual([]);
     act(() => result.current.updatePredictions('test'));
-    await act(() => waitForDebounce());
+    await act(() => waitForTimeout(defaultDebounceMs));
     expect(result.current.predictions).toBe(mockPredictions);
   });
 
@@ -89,7 +86,7 @@ describe('usePlacesAutocomplete', () => {
       };
       const result = renderHelper({ client });
       act(() => result.current.updatePredictions('test'));
-      await act(() => waitForDebounce());
+      await act(() => waitForTimeout(defaultDebounceMs));
       expect(fetchPredictionsFn).toHaveBeenCalledWith('test', undefined);
     });
     it('should call fetchPrediction with requestOptions from arguments', async () => {
@@ -101,7 +98,7 @@ describe('usePlacesAutocomplete', () => {
       const requestOptions = { languageCode: 'he' };
       const result = renderHelper({ client });
       act(() => result.current.updatePredictions('test', requestOptions));
-      await act(() => waitForDebounce());
+      await act(() => waitForTimeout(defaultDebounceMs));
       expect(fetchPredictionsFn).toHaveBeenCalledWith('test', requestOptions);
     });
   });
@@ -110,7 +107,7 @@ describe('usePlacesAutocomplete', () => {
     it('should clear predictions', async () => {
       const result = renderHelper();
       act(() => result.current.updatePredictions('test'));
-      await act(() => waitForDebounce());
+      await act(() => waitForTimeout(defaultDebounceMs));
       expect(result.current.predictions).toBe(mockPredictions);
       act(() => result.current.clearPredictions());
       expect(result.current.predictions).toEqual([]);
@@ -135,9 +132,9 @@ describe('usePlacesAutocomplete', () => {
         act(() => result.current.updatePredictions('tes'));
         jest.advanceTimersByTime(10);
         act(() => result.current.updatePredictions('test'));
-        await act(() => waitForDebounce());
+        await act(() => waitForTimeout(defaultDebounceMs));
         act(() => result.current.updatePredictions('blah'));
-        await act(() => waitForDebounce());
+        await act(() => waitForTimeout(defaultDebounceMs));
 
         expect(fetchPredictionsFn).toHaveBeenCalledTimes(2);
         expect(fetchPredictionsFn).toHaveBeenNthCalledWith(
