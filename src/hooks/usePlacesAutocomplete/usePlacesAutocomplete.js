@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import debounce from 'lodash/debounce';
+import _debounce from 'lodash/debounce';
 import useIsMounted from '../useIsMounted';
 import useLatest from '../useLatest';
 
@@ -16,6 +16,9 @@ const usePlacesAutocomplete = ({
    *  ready: is client ready to receive requests
    * } */
   client,
+  /** (callback: Function, debounceMs: number) => Function
+   * allow passing a custom debounce function (default: lodash debounce) */
+  debounceFn = _debounce,
   /** fetch predictions debounce in milliseconds (default: 200) */
   debounceMs = 200,
 }) => {
@@ -43,7 +46,7 @@ const usePlacesAutocomplete = ({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updatePredictions = useCallback(
-    debounce(async (value, requestOptions) => {
+    debounceFn(async (value, requestOptions) => {
       const { ready, fetchPredictions } = clientRef.current;
       if (!ready || !isMounted()) {
         return;
