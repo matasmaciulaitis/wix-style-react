@@ -1,10 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import AddressInput from '../AddressInput';
+import { addressInputOptionBuilder } from '../AddressInputOption/AddressInputOption';
 import usePlacesAutocomplete from '../hooks/usePlacesAutocomplete';
 import useAtlasClient from '../hooks/usePlacesAutocomplete/useAtlasClient';
-
-// TODO: build addressInputOptionBuilder (mai)
-const addressInputOptionBuilder = options => ({});
 
 const AtlasAddressInput = ({ onChange, ...props }) => {
   const client = useAtlasClient();
@@ -13,17 +11,19 @@ const AtlasAddressInput = ({ onChange, ...props }) => {
     () =>
       predictions.map(prediction =>
         addressInputOptionBuilder({
-          someAttribute: prediction.description,
-          anotherAttribute: prediction.textStructure.mainText,
+          id: prediction.placeId,
+          mainLabel: prediction.textStructure.mainText,
+          secondaryLabel: prediction.textStructure.secondaryText,
+          displayLabel: prediction.description,
         }),
       ),
     [predictions],
   );
   const _onChange = useCallback(
-    event => {
-      updatePredictions(event.target.value);
+    value => {
+      updatePredictions(value);
       if (onChange) {
-        onChange(event);
+        onChange(value);
       }
     },
     [updatePredictions, onChange],
