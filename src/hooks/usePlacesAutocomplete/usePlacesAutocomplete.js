@@ -32,10 +32,11 @@ const usePlacesAutocomplete = ({
     setFetchState,
   ] = useState(initialFetchState);
 
-  const clearPredictions = useCallback(
-    () => setFetchState(initialFetchState),
-    [],
-  );
+  const clearPredictions = useCallback(() => {
+    // Increase request id counter
+    predictionsRequestId.current++;
+    setFetchState(initialFetchState);
+  }, []);
 
   const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
   const isMounted = useIsMounted(); // checks whether component is still mounted
@@ -51,13 +52,14 @@ const usePlacesAutocomplete = ({
       if (!ready || !isMounted()) {
         return;
       }
-      // Increase request id counter
-      const requestId = ++predictionsRequestId.current;
 
       if (!value) {
         clearPredictions();
         return;
       }
+
+      // Increase request id counter
+      const requestId = ++predictionsRequestId.current;
 
       setFetchState(state => ({ ...state, loading: true }));
 
