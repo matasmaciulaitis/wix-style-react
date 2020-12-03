@@ -63,13 +63,22 @@ const usePlacesAutocomplete = ({
 
       setFetchState(state => ({ ...state, loading: true }));
 
-      const newPredictions = await fetchPredictions(value, requestOptions);
+      let newPredictions;
+      try {
+        newPredictions = await fetchPredictions(value, requestOptions);
+      } catch {
+        // failed to fetch predictions
+      } finally {
+        // check if no new fetch request has been initiated
+        const isMostRecentRequest = requestId === predictionsRequestId.current;
 
-      // check if no new fetch request has been initiated
-      const isMostRecentRequest = requestId === predictionsRequestId.current;
-
-      if (isMounted() && isMostRecentRequest) {
-        setFetchState({ loading: false, predictions: newPredictions });
+        if (isMounted() && isMostRecentRequest) {
+          setFetchState(state => ({
+            loading: false,
+            // set new predictions if fetched properly, else keep current predictions
+            predictions: newPredictions || state.predictions,
+          }));
+        }
       }
     }, debounceMs),
     [],
