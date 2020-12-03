@@ -30,17 +30,11 @@ class AddressInputOption extends React.PureComponent {
       light: selected,
     };
 
-    const secondaryTextProps = {
-      ...textProps,
-      light: !disabled,
-      secondary: !selected,
-    };
-
     return (
       <ListItemSelect
         dataHook={dataHook}
         className={st(classes.root, { optionLayout }, className)}
-        subtitle={<Text {...secondaryTextProps}>{secondaryLabel}</Text>}
+        subtitle={secondaryLabel}
         title={<Text {...textProps}>{mainLabel}</Text>}
         suffix={<Box>{suffix}</Box>}
         prefix={<Box>{prefix}</Box>}
@@ -105,10 +99,10 @@ AddressInputOption.propTypes = {
   /** The secondary part of the address, will be displayed at the end of the line with lighter style or at the bottom line when lineStyle=’’double-line”*/
   secondaryLabel: PropTypes.string,
 
-  /** Determines the options layout to display*/
+  /** Whether to display `mainLabel` and `secondaryLabel` side by side (`single-line`) or one under the other (`double-line`)*/
   optionLayout: PropTypes.oneOf(['single-line', 'double-line']),
 
-  /** Shows the default location icon next to the option, can receive alternative prefix node or a `false` value to hide it.*/
+  /** Shows provided node before option. Displays location icon by default.*/
   prefix: PropTypes.node,
 
   /** Will show the provided node as the option suffix. */

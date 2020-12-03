@@ -87,18 +87,27 @@ const tests = [
     its: [
       {
         it: 'selected',
-        props: { selected: true, secondaryLabel: 'This is a nice subtitle' },
+        props: {
+          selected: true,
+          secondaryLabel: 'This is a nice label',
+          suffix: 'suffix',
+        },
       },
       {
         it: 'highlighted',
-        props: { highlighted: true, secondaryLabel: 'This is a nice subtitle' },
+        props: {
+          highlighted: true,
+          secondaryLabel: 'This is a nice label',
+          suffix: 'suffix',
+        },
       },
       {
         it: 'selected and highlighted',
         props: {
           selected: true,
           highlighted: true,
-          secondaryLabel: 'This is a nice subtitle',
+          secondaryLabel: 'This is a nice label',
+          suffix: 'suffix',
         },
       },
       {
@@ -107,6 +116,7 @@ const tests = [
           disabled: true,
           secondaryLabel: 'secondary label',
           optionLayout: 'double-line',
+          suffix: 'suffix',
         },
       },
     ],

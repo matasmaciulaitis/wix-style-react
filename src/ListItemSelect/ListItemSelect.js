@@ -160,6 +160,7 @@ class ListItemSelect extends React.PureComponent {
           </Text>
           {subtitle && (
             <Text
+              className={classes.subtitle}
               dataHook={dataHooks.SUBTITLE}
               secondary
               {...secondaryTextProps}
