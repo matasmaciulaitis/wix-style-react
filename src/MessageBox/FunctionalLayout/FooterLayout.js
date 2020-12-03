@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Button from '../../Button';
-import * as styles from './FooterLayout.scss';
+import styles from './FooterLayout.scss';
 
 const buttonSkinByTheme = {
   blue: 'standard',
