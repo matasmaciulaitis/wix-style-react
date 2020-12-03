@@ -155,6 +155,7 @@
     "jest-yoshi-preset": "4.87.0",
     "lint-staged": "^7.3.0",
     "mkdirp": "^0.5.5",
+    "node-fetch": "^2.6.1",
     "ora": "^3.4.0",
     "progress": "^2.0.3",
     "prompts": "^1.2.1",
@@ -402,5 +403,10 @@
         }
       }
     ]
+  },
+  "optionalDependencies": {
+    "@wix/ambassador": "^4.0.0",
+    "@wix/ambassador-testkit": "^5.0.316",
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.0"
   }
 }
