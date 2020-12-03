@@ -73,14 +73,21 @@ const tests = [
   },
 ];
 
-export const runTests = () => {
-  visualize(TrendIndicator.displayName, () => {
-    tests.forEach(({ describe, its }) => {
-      story(describe, () => {
-        its.map(({ it, props }) =>
-          snap(it, () => <TrendIndicator {...commonProps} {...props} />),
-        );
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(
+    `${themeName ? `${themeName}|` : ''}${TrendIndicator.displayName}`,
+    () => {
+      tests.forEach(({ describe, its }) => {
+        story(describe, () => {
+          its.map(({ it, props }) =>
+            snap(it, () =>
+              testWithTheme(<TrendIndicator {...commonProps} {...props} />),
+            ),
+          );
+        });
       });
-    });
-  });
+    },
+  );
 };

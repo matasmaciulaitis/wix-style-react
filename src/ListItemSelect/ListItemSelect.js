@@ -124,7 +124,6 @@ class ListItemSelect extends React.PureComponent {
       tagName: 'div',
       size,
       ellipsis,
-      showDelay: 300,
       skin: disabled ? 'disabled' : 'standard',
       weight: checkbox ? 'thin' : 'normal',
       light: selected && !checkbox,
@@ -161,6 +160,7 @@ class ListItemSelect extends React.PureComponent {
           </Text>
           {subtitle && (
             <Text
+              className={classes.subtitle}
               dataHook={dataHooks.SUBTITLE}
               secondary
               {...secondaryTextProps}

@@ -12,7 +12,8 @@ A PR title should be composed like so:
 ```
 <ComponentName/> - What I did there
 ```
-If the change is in the testkit, you may add `[Testkit]` to the title.
+If the change is relevant only to Testkit/Docs/Types, you may add `[Testkit]`/`[Docs]`/`[Types]` to the title.
+Also, feel free to use labels to help us categorize your PR better.
 
 ### Sign commits
 ##### Motivation:
@@ -28,6 +29,8 @@ This way we can prevent attackers to use spoofed addresses.
 
 More information on [signing commits](https://docs.github.com/en/github/authenticating-to-github/signing-commits)
 
+_Note:_ A PR that comes from a forked repository is **not valid** and will be treated as **unsigned** by the CI.
+
 ##### FAQ:
 
 Q: I'm getting the following error:
@@ -37,6 +40,13 @@ fatal: failed to write commit object
 ```
 A: Tell your local git client about your newly generated PGP key [instructions here](https://docs.github.com/en/github/authenticating-to-github/telling-git-about-your-signing-key).
 
+Q: I'm getting the following error:
+```bash
+The user "xxx" that created this commit is not a member of the repository's organization ("wix"), PR is dangerous, will not run this build.
+```
+A: Make sure your PR comes from a
+ **cloned** repository and not a **forked** one. If you need more help, let us know.
+
 Q: I'm not a wix employee, can I contribute to wix-style-react without signing my commits?
 
-A: Sure! after you commit, a maintainer will check your code and verify it for you.
+A: Sure! Just let us know in the description of the PR, a maintainer will check your code and verify it for you.

@@ -146,6 +146,11 @@
   -st-default: Modal;
 }
 
+:import {
+  -st-from: "../../TrendIndicator/TrendIndicator.st.css";
+  -st-default: TrendIndicator;
+}
+
 /* Overrides */
 :import {
   -st-from: "./components/Button.st.css";
@@ -287,6 +292,11 @@
   -st-default: ModalOverrides;
 }
 
+:import {
+  -st-from: "./components/TrendIndicator.st.css";
+  -st-default: TrendIndicatorOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -365,6 +375,9 @@
   }
   EmptyState {
     -st-mixin: EmptyStateOverrides();
+  }
+  TrendIndicator {
+    -st-mixin: TrendIndicatorOverrides();
   }
 }
 

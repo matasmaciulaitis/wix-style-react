@@ -1,8 +1,11 @@
 import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
-import Box from '../Box';
-import { spacingUnit } from '../../spacing';
+import Box, {
+  formatSingleSpacingValue,
+  formatComplexSpacingValue,
+} from '../Box';
+import { stVars } from '../../Foundation/stylable/spacing.st.css';
 import { boxPrivateDriverFactory } from '../Box.private.uni.driver';
 
 describe('Box', () => {
@@ -129,7 +132,7 @@ describe('Box', () => {
 
   describe('formatSpacingValue function', () => {
     it('should render with padding when passing a numeric value', async () => {
-      const expectedPadding = `${spacingUnit}px`;
+      const expectedPadding = `${parseInt(stVars.Spacing)}px`;
       const children = <span>Children</span>;
       const driver = createDriver(<Box padding={1}>{children}</Box>);
 
@@ -137,7 +140,7 @@ describe('Box', () => {
     });
 
     it('should render with padding when passing a predefined spacing value', async () => {
-      const expectedPadding = `${spacingUnit * 2}px`;
+      const expectedPadding = `${parseInt(stVars.Spacing) * 2}px`;
       const children = <span>Children</span>;
       const driver = createDriver(<Box padding="small">{children}</Box>);
 
@@ -145,7 +148,9 @@ describe('Box', () => {
     });
 
     it('should render with padding when passing space-separated values', async () => {
-      const expectedPadding = `${spacingUnit * 3}px ${spacingUnit * 3}px`;
+      const expectedPadding = `${parseInt(stVars.Spacing) * 3}px ${parseInt(
+        stVars.Spacing,
+      ) * 3}px`;
       const children = <span>Children</span>;
       const driver = createDriver(
         <Box padding={expectedPadding}>{children}</Box>,
@@ -153,13 +158,29 @@ describe('Box', () => {
 
       expect(await driver.getStyle()).toContain(`padding: ${expectedPadding}`);
     });
+  });
 
-    it('should render with padding when passing a spacing token', async () => {
-      const expectedPadding = `${spacingUnit * 3}px`;
-      const children = <span>Children</span>;
-      const driver = createDriver(<Box padding="SP3">{children}</Box>);
+  describe('format single spacing value of padding/margin', () => {
+    it('should fomat padding when passing a single spacing token', async () => {
+      const expectedPadding = `${stVars.SP3}`;
 
-      expect(await driver.getStyle()).toContain(`padding: ${expectedPadding}`);
+      expect(await formatSingleSpacingValue('SP3')).toBe(expectedPadding);
+    });
+  });
+
+  describe('format complex spacing value of padding/margin', () => {
+    it('should fomat padding when passing a space-separated spacing tokens', async () => {
+      const expectedPadding = `${stVars.SP2} ${stVars.SP5}`;
+
+      expect(await formatComplexSpacingValue('SP2 SP5')).toBe(expectedPadding);
+    });
+    it('should fomat padding when passing mixed space-separated spacing tokens', async () => {
+      const expectedPadding = `${stVars.SP2} 3px ${parseInt(stVars.Spacing) *
+        4}px ${parseInt(stVars.Spacing) * 5}px`;
+
+      expect(await formatComplexSpacingValue('SP2 3px large 5')).toBe(
+        expectedPadding,
+      );
     });
   });
 

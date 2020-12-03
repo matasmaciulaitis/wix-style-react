@@ -118,3 +118,7 @@
 :global([dir="rtl"]) .suffix {
   margin: auto auto auto 0;
 }
+
+.subtitle{
+  -st-extends: Text;
+}

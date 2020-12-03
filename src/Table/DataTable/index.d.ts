@@ -52,6 +52,9 @@ export type DataTableRowDataHookFn<RowData = RowDataDefaultType> = (
 ) => string;
 export type DataTableSkin = 'standard' | 'neutral';
 export type DataTableRowVerticalPadding = 'medium' | 'large';
+export interface PopoverPropsWithContent extends PopoverCommonProps {
+  content?: React.ReactNode
+}
 export type DataTableColumn<RowData = RowDataDefaultType> = {
   title: React.ReactNode;
   render: (row: RowData, rowNum: number) => React.ReactNode;
@@ -60,7 +63,7 @@ export type DataTableColumn<RowData = RowDataDefaultType> = {
   sortable?: boolean;
   sortDescending?: boolean;
   style?: React.CSSProperties;
-  infoTooltipProps?: PopoverCommonProps;
+  infoTooltipProps?: PopoverPropsWithContent;
   align?: DataTableColumnAlign;
   stickyActionCell?: boolean;
 };

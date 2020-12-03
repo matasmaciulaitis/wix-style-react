@@ -4,7 +4,7 @@ import { storySettings } from './storySettings';
 import { Container, Row, Col } from '../../src/Grid';
 import Text from '../../src/Text';
 import Box from '../../src/Box';
-import { spacingTokens } from '../../src/spacing';
+import { stVars } from '../../src/Foundation/stylable/spacing.st.css';
 
 export default {
   category: storySettings.category,
@@ -22,19 +22,23 @@ export default {
       </Text>
       <Box width="120px" marginTop="SP9">
         <Container fluid>
-          {Object.entries(spacingTokens).map(([name, value]) => (
-            <Row>
-              <Col span={5}>
-                <Text size="medium">{name}</Text>
-              </Col>
-              <Col span={3}>
-                <Text>=</Text>
-              </Col>
-              <Col span={4}>
-                <Text secondary>{value}</Text>
-              </Col>
-            </Row>
-          ))}
+          {Object.entries(stVars)
+            .filter(([key]) => key.startsWith('SP'))
+            .map(([name]) => (
+              <Row>
+                <Col span={5}>
+                  <Text size="medium">{name}</Text>
+                </Col>
+                <Col span={3}>
+                  <Text>=</Text>
+                </Col>
+                <Col span={4}>
+                  <Text secondary>
+                    {`${parseInt(name.substr(2)) * parseInt(stVars.Spacing)}px`}
+                  </Text>
+                </Col>
+              </Row>
+            ))}
         </Container>
       </Box>
     </div>,

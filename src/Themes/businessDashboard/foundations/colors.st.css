@@ -31,6 +31,7 @@
   D80-70: calc_rgba(value(D80), 0.7);
 
   /* Success */
+  G10: #51B77B;
   G20: #00A849;
   /* Destructive */
   R20: #F1695F;

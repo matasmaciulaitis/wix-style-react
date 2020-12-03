@@ -155,18 +155,28 @@ describe('Tag', () => {
       expect(await driver.isClickable()).toBe(true);
     });
 
-    it('should change color on hover when not disabled', async () => {
-      const driver = createDriver(<Tag id={id}>{label}</Tag>);
+    it('should change color on hover when not disable and have onClick handler', async () => {
+      const driver = createDriver(
+        <Tag id={id} onClick={() => void 0}>
+          {label}
+        </Tag>,
+      );
 
       expect(await driver.isHoverable()).toBe(true);
     });
 
     it('should not change color on hover when disabled', async () => {
       const driver = createDriver(
-        <Tag id={id} disabled>
+        <Tag id={id} onClick={() => void 0} disabled>
           {label}
         </Tag>,
       );
+
+      expect(await driver.isHoverable()).toBe(false);
+    });
+
+    it('should not change color on hover when there is no onClick handler', async () => {
+      const driver = createDriver(<Tag id={id}>{label}</Tag>);
 
       expect(await driver.isHoverable()).toBe(false);
     });

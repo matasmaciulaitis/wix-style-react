@@ -10,6 +10,7 @@ require('./Playground/Playground.story');
 // Components API
 require('../src/Accordion/docs/index.story');
 require('../src/AddItem/docs/index.story');
+require('../src/AddressInputOption/docs/index.story');
 require('../src/Animate/docs/index.story');
 require('../src/AnnouncementModalLayout/docs/index.story');
 require('../src/AreaChart/docs/index.story');
@@ -19,7 +20,7 @@ require('../src/AutoCompleteWithLabel/docs/index.story');
 require('../src/Avatar/docs/index.story');
 require('../src/Badge/docs/index.story');
 require('../src/BadgeSelect/docs/index.story');
-require('../src/BadgeSelectItem/docs');
+require('../src/BadgeSelectItem/docs/index.story');
 require('../src/BarChart/docs/index.story');
 require('../src/Box/docs/index.story');
 require('../src/Breadcrumbs/docs/index.story');
