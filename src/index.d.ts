@@ -487,6 +487,9 @@ export * from './FunnelChart';
 export { default as AddressInput } from './AddressInput';
 export * from './AddressInput';
 
+export { default as AtlasAddressInput } from './AtlasAddressInput';
+export * from './AtlasAddressInput';
+
 export { default as SparklineChart } from './SparklineChart';
 export * from './SparklineChart';
 
