@@ -63,6 +63,20 @@ export default {
             text: 'A simple example with compact preview',
             source: examples.simple,
           }),
+
+          example({
+            title: 'With dynamic value',
+            text:
+              'Component that changes value to be copied to clipboard and shows state of clipboard',
+            source: examples.dynamicValue,
+          }),
+
+          example({
+            title: 'With reset interval',
+            text:
+              'Component that resets state of copied to clipboard after specific interval',
+            source: examples.withResetInterval,
+          }),
         ],
       }),
 

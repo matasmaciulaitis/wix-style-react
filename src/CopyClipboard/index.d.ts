@@ -4,9 +4,12 @@ export interface CopyClipboardProps {
   dataHook?: string;
   className?: string;
   buttonText?: string;
-  children: Function; 
-  onCopy?: Function;
   value: string;
+  children: Function;
+  onCopy?: Function;
+  resetInterval?: number;
 }
 
-export default class CopyClipboard extends React.PureComponent<CopyClipboardProps>{}
+export default class CopyClipboard extends React.PureComponent<
+  CopyClipboardProps
+> {}
