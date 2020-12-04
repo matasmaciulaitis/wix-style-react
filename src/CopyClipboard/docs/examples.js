@@ -60,7 +60,7 @@ class MyComponent extends React.Component {
     const { inputText } = this.state;
 
     return ( 
-      <CopyClipboard value={inputText} resetTimeout={'500'}>
+      <CopyClipboard value={inputText} resetTimeout={500}>
         {({ isCopied, copyToClipboard }) => (
           <Layout>
             <Cell>
