@@ -56,10 +56,10 @@ function useCopyClipboard({ value, onCopy, resetInterval }) {
         }
         if (newContainer) document.body.removeChild(newContainer.current);
       }
-      // Toggle selection is needed in case user has selected an item on the page on the time of executing copying to clipboard
       reselectPrevious();
     };
 
+    // Toggle selection returs a function that can be used to restore user selection afterwards copy command
     const reselectPrevious = toggleSelection();
     const container = newContainer.current;
     registerCopyEvent();
