@@ -1,7 +1,7 @@
 export interface useCopyClipboardProps {
   value: string;
   onCopy?: Function;
-  resetIterval?: number;
+  resetTimeout?: number;
 }
 
 export interface useCopyClipboardReturn {

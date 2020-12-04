@@ -10,14 +10,14 @@ import { toggleSelection } from './toggleSelection';
 
 /**
  * A custom hook for copying to clipboard. Returns copying to clipboard status and function to initiate copying to clipboard
- * @param {Object} props -  an object for value, onCopy, and resetInerval props
+ * @param {Object} props -  an object for value, onCopy, and resetTimeout props
  * @param {string} props.value -  a string that should be copied to clipboard
  * @param {function} [props.onCopy] - an optional parameter to apply additional logic when copying to clipboard
- * @param {number} [props.resetInterval] - an optional parameter to set interval which after copying to clipboard will reset status
+ * @param {number} [props.resetTimeout] - an optional parameter to set interval which after copying to clipboard will reset status
  * @return {Clipboard}
  */
 
-function useCopyClipboard({ value, onCopy, resetInterval }) {
+function useCopyClipboard({ value, onCopy, resetTimeout }) {
   const [isCopied, setCopied] = useState(null);
   const range = document.createRange();
   const newContainer = useRef(document.createElement('span'));
@@ -73,13 +73,13 @@ function useCopyClipboard({ value, onCopy, resetInterval }) {
 
   useEffect(() => {
     let timeout;
-    if (isCopied && resetInterval) {
-      timeout = setTimeout(reset, resetInterval);
+    if (isCopied && resetTimeout) {
+      timeout = setTimeout(reset, resetTimeout);
     }
     return () => {
       clearTimeout(timeout);
     };
-  }, [isCopied, resetInterval]);
+  }, [isCopied, resetTimeout]);
 
   useEffect(() => () => setCopied(null), [value]);
 

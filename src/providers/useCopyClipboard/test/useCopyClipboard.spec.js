@@ -48,7 +48,7 @@ describe('useCopyClipboard', () => {
     const { result } = renderHook(() =>
       useCopyClipboard({
         value: 'https://www.wix.com',
-        resetInterval: 100,
+        resetTimeout: 100,
       }),
     );
     await act(async () => {
