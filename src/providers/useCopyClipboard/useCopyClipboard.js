@@ -42,9 +42,12 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
     };
 
     const copy = () => {
+      // Toggle selection returs a function that can be used to restore user selection afterwards copy command
+      reselectPrevious = toggleSelection();
       range.selectNodeContents(newContainer.current);
       selection.addRange(range);
       setCopied(document.execCommand('copy'));
+      reselectPrevious();
     };
 
     const cleanup = () => {
@@ -56,11 +59,9 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
         }
         if (newContainer) document.body.removeChild(newContainer.current);
       }
-      reselectPrevious();
     };
 
-    // Toggle selection returs a function that can be used to restore user selection afterwards copy command
-    const reselectPrevious = toggleSelection();
+    let reselectPrevious = toggleSelection();
     registerCopyEvent();
     copy();
     cleanup();
