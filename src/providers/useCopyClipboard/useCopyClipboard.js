@@ -39,7 +39,6 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
         }
       });
       document.body.appendChild(container);
-      return container;
     };
 
     const copy = () => {
