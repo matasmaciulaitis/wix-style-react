@@ -50,7 +50,7 @@ class MyComponent extends React.Component {
 }
 `;
 
-export const withResetInterval = `
+export const withresetTimeout = `
 class MyComponent extends React.Component {
   state = {
     inputText: 'https://www.wix.com',
@@ -60,7 +60,7 @@ class MyComponent extends React.Component {
     const { inputText } = this.state;
 
     return ( 
-      <CopyClipboard value={inputText} resetInterval={'500'}>
+      <CopyClipboard value={inputText} resetTimeout={'500'}>
         {({ isCopied, copyToClipboard }) => (
           <Layout>
             <Cell>

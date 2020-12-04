@@ -75,7 +75,7 @@ export default {
             title: 'With reset interval',
             text:
               'Component that resets state of copied to clipboard after specific interval',
-            source: examples.withResetInterval,
+            source: examples.withresetTimeout,
           }),
         ],
       }),

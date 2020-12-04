@@ -5,11 +5,11 @@ import { dataHooks } from './constants';
 import useCopyClipboard from '../providers/useCopyClipboard';
 
 function CopyClipboard(props) {
-  const { dataHook, className, children, value, onCopy, resetInterval } = props;
+  const { dataHook, className, children, value, onCopy, resetTimeout } = props;
   const { isCopied, copyToClipboard } = useCopyClipboard({
     value,
     onCopy,
-    resetInterval,
+    resetTimeout,
   });
   const targetRef = React.createRef();
 
@@ -44,7 +44,7 @@ CopyClipboard.propTypes = {
   value: PropTypes.string,
 
   /** Interval after which state of whether value was copied is reset */
-  resetInterval: PropTypes.number,
+  resetTimeout: PropTypes.number,
 };
 
 CopyClipboard.defaultProps = {
