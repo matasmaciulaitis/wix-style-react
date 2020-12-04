@@ -35,6 +35,7 @@ const javascriptFiles = [
   ['ComposerHeader.bundle.min.js', 42],
   ['ComposerSidebar.bundle.min.js', 43],
   ['ContactItemBuilder.bundle.min.js', 56],
+  ['CopyClipboard.bundle.min.js', 10],
   ['CounterBadge.bundle.min.js', 38],
   ['CustomModalLayout.bundle.min.js', 51],
   ['DatePicker.bundle.min.js', 132],

@@ -113,6 +113,9 @@
       "docs/index.story.js"
     ]
   },
+  "CopyClipboard": {
+    "path": "src/CopyClipboard"
+  },
   "CounterBadge": {
     "path": "src/CounterBadge"
   },

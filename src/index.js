@@ -194,3 +194,4 @@ export { default as CardFolderTabs } from './CardFolderTabs';
 export { default as PageFooter } from './PageFooter';
 export { default as StyledNestableList } from './StyledNestableList';
 export { default as TrendIndicator } from './TrendIndicator';
+export { default as CopyClipboard } from './CopyClipboard';

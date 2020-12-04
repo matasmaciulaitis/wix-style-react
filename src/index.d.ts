@@ -498,6 +498,10 @@ export * from './PageFooter';
 export { default as StyledNestableList } from './StyledNestableList';
 
 export { default as TrendIndicator } from './TrendIndicator';
+
+export { default as CopyClipboard } from './CopyClipboard';
+export * from './CopyClipboard';
+
 export * from './TrendIndicator';
 
 export * from './StyledNestableList';
