@@ -25,6 +25,7 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
 
   const copyToClipboard = useCallback(() => {
     const registerCopyEvent = () => {
+      const container = newContainer.current;
       container.style.all = 'unset';
       container.textContent = value;
       container.style.whiteSpace = 'pre';
@@ -61,7 +62,6 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
 
     // Toggle selection returs a function that can be used to restore user selection afterwards copy command
     const reselectPrevious = toggleSelection();
-    const container = newContainer.current;
     registerCopyEvent();
     copy();
     cleanup();
