@@ -80,7 +80,7 @@ function useCopyClipboard({ value, onCopy, resetInterval }) {
     };
   }, [isCopied, resetInterval]);
 
-  useEffect(() => () => setCopied(false), [value]);
+  useEffect(() => () => setCopied(null), [value]);
 
   return { isCopied, copyToClipboard, reset };
 }
