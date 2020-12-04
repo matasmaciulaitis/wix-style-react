@@ -2,6 +2,7 @@
  * Function that deselects current selection
  * @return {function} returns a function that can be used to reselect previous selection
  */
+
 export function toggleSelection() {
   const selection = document.getSelection();
   if (!selection.rangeCount) {

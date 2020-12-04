@@ -33,9 +33,7 @@ describe('useCopyClipboard', () => {
     await inputDriverPaste.click();
     await browser
       .actions()
-      .sendKeys(
-        protractor.Key.chord(protractor.Key.SHIFT, protractor.Key.INSERT),
-      )
+      .sendKeys(protractor.Key.chord(protractor.Key.COMMAND, 'v'))
       .perform();
     expect(await inputDriverPaste.getText()).toBe(
       'https://www.wix.com/about/us',

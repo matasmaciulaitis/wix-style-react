@@ -16,16 +16,49 @@ describe('useCopyClipboard', () => {
       addRange: () => {},
       removeRange: () => {},
     });
-    document.execCommand = jest.fn();
+    document.execCommand = jest.fn(() => true);
   });
 
-  it('should call copy command', () => {
+  it('should call copy command', async () => {
     const { result } = renderHook(() =>
-      useCopyClipboard('https://www.wix.com'),
+      useCopyClipboard({ value: 'https://www.wix.com' }),
     );
-    act(() => {
-      result.current.copyToClipboard();
+    await act(async () => {
+      (await result.current).copyToClipboard();
     });
     expect(document.execCommand).toHaveBeenCalledWith('copy');
+  });
+
+  it('should reset state manually when reset function called', async () => {
+    const { result } = renderHook(() =>
+      useCopyClipboard({ value: 'https://www.wix.com' }),
+    );
+    await act(async () => {
+      (await result.current).copyToClipboard();
+    });
+    expect((await result.current).isCopied).toBe(true);
+    await act(async () => {
+      (await result.current).reset();
+    });
+    expect((await result.current).isCopied).toBe(null);
+  });
+
+  it('should reset state after set initial interval', async () => {
+    jest.useFakeTimers();
+    const { result } = renderHook(() =>
+      useCopyClipboard({
+        value: 'https://www.wix.com',
+        resetInterval: 100,
+      }),
+    );
+    await act(async () => {
+      (await result.current).copyToClipboard();
+    });
+    expect((await result.current).isCopied).toBe(true);
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      jest.runAllTimers();
+    });
+    expect((await result.current).isCopied).toBe(null);
   });
 });

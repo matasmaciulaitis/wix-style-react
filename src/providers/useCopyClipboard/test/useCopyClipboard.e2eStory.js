@@ -13,8 +13,7 @@ const kind = getTestStoryKind({
 
 const CopyClipboard = () => {
   const [value, setValue] = useState('https://www.wix.com');
-  const { copyToClipboard } = useCopyClipboard(value);
-
+  const { copyToClipboard } = useCopyClipboard({ value });
   return (
     <Layout>
       <Cell>
