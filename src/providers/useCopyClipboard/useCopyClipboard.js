@@ -73,7 +73,7 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
   useEffect(() => {
     let timeout;
     if (isCopied && resetTimeout) {
-      timeout = setTimeout(reset, resetTimeout);
+      timeout = setTimeout(() => reset(), resetTimeout);
     }
     return () => {
       clearTimeout(timeout);
