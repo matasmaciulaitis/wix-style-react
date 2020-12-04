@@ -27,6 +27,7 @@ function useCopyClipboard({ value, onCopy, resetInterval }) {
     const registerCopyEvent = () => {
       container.style.all = 'unset';
       container.textContent = value;
+      container.style.whiteSpace = 'pre';
       container.style.MozUserSelect = 'text';
       container.style.msUserSelect = 'text';
       container.style.userSelect = 'text';
