@@ -23,7 +23,7 @@ const CopyClipboard = () => {
             setValue(event.target.value);
           }}
           dataHook={storySettings.dataHookInputCopy}
-          onInputClicked={() => copyToClipboard()}
+          onInputClicked={copyToClipboard}
           suffix={
             <Input.Affix>
               <TextButton>Click on input to copy</TextButton>
