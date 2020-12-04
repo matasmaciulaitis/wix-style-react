@@ -31,9 +31,12 @@ describe('useCopyClipboard', () => {
     await inputDriverCopy.enterText('https://www.wix.com/about/us');
     await inputDriverCopy.click();
     await inputDriverPaste.click();
+    // protractor.Key.COMMAND + 'v' does not work on macOS browsers, alternative added that works on all Windows, Linux and macOS
     await browser
       .actions()
-      .sendKeys(protractor.Key.chord(protractor.Key.COMMAND, 'v'))
+      .sendKeys(
+        protractor.Key.chord(protractor.Key.SHIFT, protractor.Key.INSERT),
+      )
       .perform();
     expect(await inputDriverPaste.getText()).toBe(
       'https://www.wix.com/about/us',
