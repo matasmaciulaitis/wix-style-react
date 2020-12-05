@@ -50,7 +50,7 @@ class MyComponent extends React.Component {
 }
 `;
 
-export const withresetTimeout = `
+export const withResetTimeout = `
 class MyComponent extends React.Component {
   state = {
     inputText: 'https://www.wix.com',
