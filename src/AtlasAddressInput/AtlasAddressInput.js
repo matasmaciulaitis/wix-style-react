@@ -20,10 +20,10 @@ const AtlasAddressInput = ({ baseUrl, onChange, ...props }) => {
     [predictions],
   );
   const _onChange = useCallback(
-    value => {
-      updatePredictions(value);
+    event => {
+      updatePredictions(event.target.value);
       if (onChange) {
-        onChange(value);
+        onChange(event);
       }
     },
     [updatePredictions, onChange],
