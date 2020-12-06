@@ -1,18 +1,15 @@
 import * as React from 'react';
-import {
-  DropdownLayoutOption,
-  DropdownLayoutValueOption,
-} from '../DropdownLayout';
+import { AddressInputOption } from '../AddressInputOption';
 
 export interface AddressInputProps {
   dataHook?: string;
   className?: string;
   clearButton?: boolean;
   initialValue?: string;
-  onSelect?: (value: DropdownLayoutValueOption) => void;
+  onSelect?: (option: AddressInputOption) => void;
   debounceDuration?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  options?: DropdownLayoutOption[];
+  options?: AddressInputOption[];
   onClear?: () => void;
   status?: 'loading' | 'error' | 'warning';
   roundInput?: boolean;
