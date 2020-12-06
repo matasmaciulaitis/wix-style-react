@@ -14,7 +14,7 @@
 
     *   [Debugging Strategies](#debugging-strategies)
 
-    *   [Reporting an issue ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)](#reporting-an-issue-github-mark)
+    *   [Reporting an issue ![github-mark](/docs/assets/GitHub-Mark-32px.png)](#reporting-an-issue-github-mark)
 
         *   [Have you managed to resolve the issue?](#have-you-managed-to-resolve-the-issue)
 
@@ -50,8 +50,8 @@ You may find an answer to your question at the [Frequently Asked Questions](http
 You can use the [Playground](https://www.wix-style-react.com/?path=/story/introduction-playground--playground) to easily test the component abilities. In order to share your code snippet with others, follow the following steps:
 
 1.  Edit the code snippet.
-2.  Click ![save-button](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/playgroundSaveButton.png) which located on the top right side of the code editor.
-3.  A generated url will be created and can be shared with others. ![generated-link](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/generatedLink.png)
+2.  Click ![save-button](/docs/assets/playgroundSaveButton.png) which located on the top right side of the code editor.
+3.  A generated url will be created and can be shared with others. ![generated-link](/docs/assets/generatedLink.png)
 
 ### Cheatsheet 👋🏻
 
@@ -80,7 +80,7 @@ If you **suspect** the issue you encountered is related to the component or test
 
 Once you're absolutely sure the issue is ours, please let us know through the channel or by reporting an issue.
 
-### Reporting an issue ![github-mark](https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/GitHub-Mark-32px.png)
+### Reporting an issue ![github-mark](/docs/assets/GitHub-Mark-32px.png)
 
 We use GitHub issues as bugs and feature requests tracker.
 If you think you have found a bug, or have a new feature idea- please start by making sure it hasn't already been [reported or fixed](https://github.com/wix/wix-style-react/issues).
