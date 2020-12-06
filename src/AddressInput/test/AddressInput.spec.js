@@ -1,6 +1,7 @@
 import React from 'react';
 import Sinon from 'sinon';
 import { createRendererWithUniDriver, cleanup } from '../../../test/utils/unit';
+import { addressInputOptionBuilder } from '../../AddressInputOption/AddressInputOption';
 
 import AddressInput from '../AddressInput';
 import { addressInputPrivateDriverFactory } from './AddressInput.private.uni.driver';
@@ -43,7 +44,12 @@ describe(AddressInput.displayName, () => {
   });
 
   it('should invoke onSelect', async () => {
-    const option = { id: 0, value: 'First' };
+    const option = addressInputOptionBuilder({
+      id: '1',
+      displayLabel: 'Hello world!',
+      mainLabel: 'Hello',
+      secondaryLabel: 'world!',
+    });
     const props = {
       onSelect: Sinon.spy(),
       options: [option],
@@ -53,5 +59,6 @@ describe(AddressInput.displayName, () => {
     await driver.clickAtOption(0);
 
     expect(props.onSelect.calledWith(option)).toEqual(true);
+    expect(await driver.getInputValue()).toEqual(option.label);
   });
 });

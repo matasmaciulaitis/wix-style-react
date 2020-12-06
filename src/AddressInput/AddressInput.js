@@ -15,28 +15,27 @@ class AddressInput extends React.PureComponent {
     };
   }
 
-  _onChange = value => {
-    const { onChange } = this.props;
-    onChange && onChange(value);
-  };
-
-  _debouncedOnChange = debounce(this._onChange, this.props.debounceDuration, {
-    leading: true,
-  });
-
-  _onInputChange = ({ target: { value } }) => {
-    this.setState({
-      inputValue: value,
+  _debouncedOnChange =
+    this.props.onChange &&
+    debounce(this.props.onChange, this.props.debounceDuration, {
+      leading: true,
     });
-    this._debouncedOnChange(value);
+
+  _onChange = event => {
+    this.setState({
+      inputValue: event.target.value,
+    });
+    if (this._debouncedOnChange) {
+      this._debouncedOnChange(event);
+    }
   };
 
-  _onSelect = value => {
+  _onSelect = option => {
     const { onSelect } = this.props;
     this.setState({
-      inputValue: value.value, // TODO we need to extract `displayLabel` from `value` here once we will implement <AddressInput.Option/>
+      inputValue: option.label,
     });
-    onSelect && onSelect(value);
+    onSelect && onSelect(option);
   };
 
   _onClear = () => {
@@ -68,7 +67,7 @@ class AddressInput extends React.PureComponent {
         dataHook={dataHook}
         className={className}
         clearButton={clearButton}
-        onChange={this._onInputChange}
+        onChange={this._onChange}
         size={size}
         options={options}
         onSelect={this._onSelect}
