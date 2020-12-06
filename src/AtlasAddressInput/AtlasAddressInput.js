@@ -5,7 +5,7 @@ import usePlacesAutocomplete from '../hooks/usePlacesAutocomplete';
 import useAtlasClient from '../hooks/usePlacesAutocomplete/useAtlasClient';
 
 const AtlasAddressInput = ({ baseUrl, onChange, ...props }) => {
-  const client = useAtlasClient(baseUrl);
+  const client = useAtlasClient({ baseUrl });
   const { predictions, updatePredictions } = usePlacesAutocomplete({ client });
   const options = useMemo(
     () =>
