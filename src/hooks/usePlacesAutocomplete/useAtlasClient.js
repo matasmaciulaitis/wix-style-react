@@ -1,18 +1,27 @@
+import { useCallback, useMemo } from 'react';
 import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 
-const autocompleteService = WixAtlasServiceWeb(
-  'https://bo.wix.com/wix-atlas-service-web',
-).AutocompleteServiceV1();
+const useAtlasClient = ({
+  baseUrl = 'https://www.wix.com/wix-atlas-service-web',
+}) => {
+  const autocompleteService = useMemo(
+    () => WixAtlasServiceWeb(baseUrl).AutocompleteServiceV1(),
+    [baseUrl],
+  );
 
-const fetchPredictions = async (value, requestOptions) => {
-  const { predictions } = await autocompleteService().getPredictions({
-    ...requestOptions,
-    input: value,
-  });
+  const fetchPredictions = useCallback(
+    async (value, requestOptions) => {
+      const { predictions } = await autocompleteService().getPredictions({
+        ...requestOptions,
+        input: value,
+      });
 
-  return predictions;
+      return predictions;
+    },
+    [autocompleteService],
+  );
+
+  return { fetchPredictions, ready: true };
 };
-
-const useAtlasClient = () => ({ fetchPredictions, ready: true });
 
 export default useAtlasClient;
