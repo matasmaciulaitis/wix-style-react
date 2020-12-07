@@ -4,9 +4,14 @@ import { addressInputOptionBuilder } from '../AddressInputOption/AddressInputOpt
 import usePlacesAutocomplete from '../hooks/usePlacesAutocomplete';
 import useAtlasClient from '../hooks/usePlacesAutocomplete/useAtlasClient';
 
-const AtlasAddressInput = ({ baseUrl, onChange, ...props }) => {
+const AtlasAddressInput = ({ baseUrl, onChange, onClear, ...props }) => {
   const client = useAtlasClient({ baseUrl });
-  const { predictions, updatePredictions } = usePlacesAutocomplete({ client });
+  const {
+    predictions,
+    updatePredictions,
+    clearPredictions,
+  } = usePlacesAutocomplete({ client });
+
   const options = useMemo(
     () =>
       predictions.map(prediction =>
@@ -19,6 +24,7 @@ const AtlasAddressInput = ({ baseUrl, onChange, ...props }) => {
       ),
     [predictions],
   );
+
   const _onChange = useCallback(
     event => {
       updatePredictions(event.target.value);
@@ -28,8 +34,21 @@ const AtlasAddressInput = ({ baseUrl, onChange, ...props }) => {
     },
     [updatePredictions, onChange],
   );
+  const _onClear = useCallback(() => {
+    clearPredictions();
+    if (onClear) {
+      onClear();
+    }
+  }, [clearPredictions, onClear]);
 
-  return <AddressInput options={options} onChange={_onChange} {...props} />;
+  return (
+    <AddressInput
+      options={options}
+      onChange={_onChange}
+      onClear={_onClear}
+      {...props}
+    />
+  );
 };
 
 export default AtlasAddressInput;
