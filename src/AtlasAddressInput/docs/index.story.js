@@ -59,7 +59,7 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example.',
-            source: `<AtlasAddressInput />`,
+            source: `<AtlasAddressInput baseUrl="http://localhost:3000/" />`,
           }),
         ],
       }),

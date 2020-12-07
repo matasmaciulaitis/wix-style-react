@@ -8,7 +8,6 @@ import {
   title,
   divider,
   example as baseExample,
-  code as baseCode,
   playground,
   api,
   testkit,
@@ -16,11 +15,11 @@ import {
 
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
 
 import AddressInput from '..';
 
 const example = config => baseExample({ components: allComponents, ...config });
-const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -61,10 +60,7 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example.',
-            source: `<AddressInput options={[
-              { id: 0, value: 'First option' },
-              { id: 1, value: 'Second option' },
-            ]} />`,
+            source: examples.simple,
           }),
         ],
       }),

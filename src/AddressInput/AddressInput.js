@@ -15,18 +15,21 @@ class AddressInput extends React.PureComponent {
     };
   }
 
-  _debouncedOnChange =
-    this.props.onChange &&
-    debounce(this.props.onChange, this.props.debounceDuration, {
-      leading: true,
-    });
+  // _debouncedOnChange =
+  //   this.props.onChange &&
+  //   debounce(this.props.onChange, this.props.debounceDuration, {
+  //     leading: true,
+  //   });
 
   _onChange = event => {
     this.setState({
       inputValue: event.target.value,
     });
-    if (this._debouncedOnChange) {
-      this._debouncedOnChange(event);
+    // if (this._debouncedOnChange) {
+    //   this._debouncedOnChange(event);
+    // }
+    if (this.props.onChange) {
+      this.props.onChange(event);
     }
   };
 

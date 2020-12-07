@@ -5,9 +5,7 @@ import {
   aGetPredictionsResponse,
   aPrediction,
 } from '@wix/ambassador-wix-atlas-service-web/builders';
-import useAtlasClient from './useAtlasClient';
-
-const baseUrl = 'https://bo.wix.com/wix-atlas-service-web';
+import useAtlasClient, { BASE_ATLAS_URL } from './useAtlasClient';
 
 describe('useAtlasClient', () => {
   const ambassadorTestkit = new AmbassadorTestkit();
@@ -18,7 +16,10 @@ describe('useAtlasClient', () => {
     const response = aGetPredictionsResponse()
       .withPredictions(predictions)
       .build();
-    const atlasStub = ambassadorTestkit.createStub(WixAtlasServiceWeb, baseUrl);
+    const atlasStub = ambassadorTestkit.createStub(
+      WixAtlasServiceWeb,
+      BASE_ATLAS_URL,
+    );
     atlasStub
       .AutocompleteServiceV1()
       .getPredictions.when({ input: 'Paris' })

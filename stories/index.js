@@ -214,6 +214,7 @@ require('../src/MessageBox/docs');
 
 // Internal
 require('../src/AddressInput/docs/index.story');
+require('../src/AtlasAddressInput/docs/index.story');
 require('../src/LabelledElement/docs/index.story');
 
 // Editor-X

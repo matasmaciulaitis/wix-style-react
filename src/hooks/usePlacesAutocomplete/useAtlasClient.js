@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 
-const useAtlasClient = ({
-  baseUrl = 'https://www.wix.com/wix-atlas-service-web',
-} = {}) => {
+export const BASE_ATLAS_URL = 'https://www.wix.com/wix-atlas-service-web';
+
+const useAtlasClient = ({ baseUrl = BASE_ATLAS_URL } = {}) => {
   const autocompleteService = useMemo(
     () => WixAtlasServiceWeb(baseUrl).AutocompleteServiceV1(),
     [baseUrl],
