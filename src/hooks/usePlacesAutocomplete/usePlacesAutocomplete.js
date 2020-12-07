@@ -41,7 +41,7 @@ const usePlacesAutocomplete = ({
   const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
   const isMounted = useIsMounted(); // checks whether component is still mounted
 
-  /** We want the `getPredictions` callback to have zero dependencies (to avoid re-renders and unpredictable debouncing),
+  /** We want the `updatePredictions` callback to have zero dependencies (to avoid re-renders and unpredictable debouncing),
    * so we make client available through ref */
   const clientRef = useLatest(client);
 

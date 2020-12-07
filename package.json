@@ -407,6 +407,6 @@
   "optionalDependencies": {
     "@wix/ambassador": "^4.0.0",
     "@wix/ambassador-testkit": "^5.0.316",
-    "@wix/ambassador-wix-atlas-service-web": "^1.0.0"
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.135"
   }
 }
