@@ -43,7 +43,7 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
 
     const copy = () => {
       // Toggle selection returs a function that can be used to restore user selection afterwards copy command
-      reselectPrevious = toggleSelection();
+      const reselectPrevious = toggleSelection();
       range.selectNodeContents(newContainer.current);
       selection.addRange(range);
       setCopied(document.execCommand('copy'));
@@ -61,7 +61,6 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
       }
     };
 
-    let reselectPrevious = toggleSelection();
     registerCopyEvent();
     copy();
     cleanup();
