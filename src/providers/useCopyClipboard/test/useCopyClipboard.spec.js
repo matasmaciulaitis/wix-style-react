@@ -15,6 +15,7 @@ describe('useCopyClipboard', () => {
     document.getSelection = () => ({
       addRange: () => {},
       removeRange: () => {},
+      removeAllRanges: () => {},
     });
     document.execCommand = jest.fn(() => true);
   });

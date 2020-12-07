@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { toggleSelection } from './toggleSelection';
+import { createToggleSelection } from './createToggleSelection';
 
 /**
  * @typedef {Object} Clipboard
@@ -42,12 +42,12 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
     };
 
     const copy = () => {
-      // Toggle selection returs a function that can be used to restore user selection afterwards copy command
-      const reselectPrevious = toggleSelection();
+      const { unselectCurrent, selectPrevious } = createToggleSelection();
+      unselectCurrent();
       range.selectNodeContents(newContainer.current);
       selection.addRange(range);
       setCopied(document.execCommand('copy'));
-      reselectPrevious();
+      selectPrevious();
     };
 
     const cleanup = () => {
@@ -60,7 +60,6 @@ function useCopyClipboard({ value, onCopy, resetTimeout }) {
         if (newContainer) document.body.removeChild(newContainer.current);
       }
     };
-
     registerCopyEvent();
     copy();
     cleanup();
