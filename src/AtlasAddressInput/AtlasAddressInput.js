@@ -16,7 +16,7 @@ const AtlasAddressInput = ({ baseUrl, onChange, onClear, ...props }) => {
     () =>
       predictions.map(prediction =>
         addressInputOptionBuilder({
-          id: prediction.placeId,
+          id: prediction.searchId,
           mainLabel: prediction.textStructure.mainText,
           secondaryLabel: prediction.textStructure.secondaryText,
           displayLabel: prediction.description,

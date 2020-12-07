@@ -24,7 +24,7 @@ const mockPredictions = [
     description: 'Paris, France',
     distanceInMeters: 5000,
     matchedSubstrings: [],
-    placeId: 'test',
+    searchId: 'test',
     textStructure: {
       mainText: 'Paris',
       secondaryText: 'France',
