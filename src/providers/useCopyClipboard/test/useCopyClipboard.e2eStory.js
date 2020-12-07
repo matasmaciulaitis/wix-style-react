@@ -13,7 +13,11 @@ const kind = getTestStoryKind({
 
 const CopyClipboard = () => {
   const [value, setValue] = useState('https://www.wix.com');
-  const { copyToClipboard } = useCopyClipboard({ value });
+  const [onCopyState, setOnCopyState] = useState(null);
+  const { copyToClipboard } = useCopyClipboard({
+    value,
+    onCopy: () => setOnCopyState(true),
+  });
   return (
     <Layout>
       <Cell>
@@ -39,6 +43,13 @@ const CopyClipboard = () => {
         <Input
           onChange={() => {}}
           dataHook={storySettings.dataHookInputPaste}
+        />
+      </Cell>
+      <Cell>
+        <Input
+          prefix={<Input.Affix>onCopy:</Input.Affix>}
+          dataHook={storySettings.dataHookInputOnCopy}
+          value={onCopyState ? onCopyState : 'null'}
         />
       </Cell>
     </Layout>

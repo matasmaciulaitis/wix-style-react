@@ -5,6 +5,7 @@ export const storySettings = {
   storyName: 'useCopyClipboard',
   dataHookInputCopy: 'storybook-input-copy',
   dataHookInputPaste: 'storybook-input-paste',
+  dataHookInputOnCopy: 'storybook-input-on-copy',
 };
 
 export const testStories = {

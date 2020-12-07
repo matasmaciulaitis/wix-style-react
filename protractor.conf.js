@@ -4,7 +4,7 @@ const {
 
 module.exports.config = {
   ...baseProtractorConfig,
-  specs: ['test/**/*.e2e.js', 'src/**/*.e2e.js'],
+  specs: ['test/**/*.e2e.js', 'src/**/useCopyClipboard.e2e.js'],
   jasmineNodeOpts: { defaultTimeoutInterval: 120000 },
   onPrepare() {
     browser.ignoreSynchronization = true;

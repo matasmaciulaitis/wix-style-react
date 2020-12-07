@@ -17,6 +17,9 @@ describe('useCopyClipboard', () => {
   const inputDriverPaste = protractorTestkitFactoryCreator(inputDriver)({
     dataHook: storySettings.dataHookInputPaste,
   });
+  const inputDriverOnCopy = protractorTestkitFactoryCreator(inputDriver)({
+    dataHook: storySettings.dataHookInputOnCopy,
+  });
 
   beforeEach(done => {
     browser.get(storyUrl);
@@ -40,5 +43,13 @@ describe('useCopyClipboard', () => {
     expect(await inputDriverPaste.getText()).toBe(
       'https://www.wix.com/about/us',
     );
+  });
+
+  it('should invoke onCopy if provided', async () => {
+    expect(await inputDriverOnCopy.getText()).toBe('null');
+    await inputDriverCopy.clickClear('');
+    await inputDriverCopy.enterText('https://www.wix.com/about/us');
+    await inputDriverCopy.click();
+    expect(await inputDriverOnCopy.getText()).toBe('true');
   });
 });
