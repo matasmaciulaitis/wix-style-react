@@ -9,7 +9,7 @@ const useDebouncedCallback = (
    * Callback will be reevaluated when dependencies change -
    * (same as React's useCallback hook) */
   dependencies,
-  /** fetch predictions debounce in milliseconds (default: 200) */
+  /** debounce timeout in milliseconds (default: 200) */
   debounceMs = 200,
   /** (callback: Function, debounceMs: number) => Function
    * allow passing a custom debounce function (default: lodash debounce) */
