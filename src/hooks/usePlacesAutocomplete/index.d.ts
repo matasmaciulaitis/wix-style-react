@@ -13,8 +13,8 @@ export interface UsePlacesAutocompleteReturn<Prediction, RequestOptions> {
 }
 export interface UsePlacesAutocompleteProps<Prediction, RequestOptions> {
   client: AutocompleteClient<Prediction, RequestOptions>;
-  debounceFn?: (callback: Function, debounceMs: number) => Function;
   debounceMs?: number;
+  debounceFn?: (callback: Function, debounceMs: number) => Function;
 }
 
 declare const usePlacesAutocomplete: <Prediction, RequestOptions>(
