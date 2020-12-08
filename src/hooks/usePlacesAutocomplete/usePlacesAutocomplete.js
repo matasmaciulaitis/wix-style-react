@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import _debounce from 'lodash/debounce';
 import useIsMounted from '../useIsMounted';
-import useLatest from '../useLatest';
+import useDebouncedCallback from '../useDebouncedCallback/useDebouncedCallback';
 
 const initialFetchState = {
   loading: false,
@@ -16,11 +16,11 @@ const usePlacesAutocomplete = ({
    *  ready: is client ready to receive requests
    * } */
   client,
+  /** fetch predictions debounce in milliseconds (default: 200) */
+  debounceMs = 200,
   /** (callback: Function, debounceMs: number) => Function
    * allow passing a custom debounce function (default: lodash debounce) */
   debounceFn = _debounce,
-  /** fetch predictions debounce in milliseconds (default: 200) */
-  debounceMs = 200,
 }) => {
   const [
     {
@@ -41,14 +41,9 @@ const usePlacesAutocomplete = ({
   const predictionsRequestId = useRef(0); // id of latest request to avoid race conditions
   const isMounted = useIsMounted(); // checks whether component is still mounted
 
-  /** We want the `updatePredictions` callback to have zero dependencies (to avoid re-renders and unpredictable debouncing),
-   * so we make client available through ref */
-  const clientRef = useLatest(client);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const updatePredictions = useCallback(
-    debounceFn(async (value, requestOptions) => {
-      const { ready, fetchPredictions } = clientRef.current;
+  const updatePredictions = useDebouncedCallback(
+    async (value, requestOptions) => {
+      const { ready, fetchPredictions } = client;
       if (!ready || !isMounted()) {
         return;
       }
@@ -80,8 +75,10 @@ const usePlacesAutocomplete = ({
           }));
         }
       }
-    }, debounceMs),
-    [],
+    },
+    [client],
+    debounceMs,
+    debounceFn,
   );
 
   return {
