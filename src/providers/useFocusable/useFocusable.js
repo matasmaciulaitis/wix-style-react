@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  */
 const inputMethod = new (class {
   // Default is keyboard in case an element is focused programmatically.
-  method;
+  method = 'keyboard';
   subscribers = new Map();
 
   constructor() {
@@ -38,27 +38,26 @@ const inputMethod = new (class {
 const useFocusable = ({ disabled }) => {
   const [focus, setFocus] = useState(false);
   const [focusVisible, setFocusVisible] = useState(false);
-  const focusableRef = useRef();
-  const prevDisabledRef = useRef(disabled);
 
   const markAsFocused = useCallback(() => {
     setFocus(true);
     setFocusVisible(inputMethod.isKeyboard());
   }, []);
-
   const markAsBlurred = useCallback(() => {
     setFocus(false);
     setFocusVisible(false);
   }, []);
 
+  const $this = useRef();
   useEffect(() => {
     const subscribe = () =>
-      inputMethod.subscribe(focusableRef, () => {
+      inputMethod.subscribe($this, () => {
         if (inputMethod.isKeyboard()) {
           setFocusVisible(true);
         }
       });
-    const unsubscribe = () => inputMethod.unsubscribe(focusableRef);
+    const unsubscribe = () => inputMethod.unsubscribe($this);
+
     if (focus) {
       subscribe();
     } else {
@@ -67,6 +66,7 @@ const useFocusable = ({ disabled }) => {
     return () => unsubscribe();
   }, [focus]);
 
+  const prevDisabledRef = useRef(disabled);
   useEffect(() => {
     /*
       in case when button was focused and then become disabled,

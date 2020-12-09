@@ -3,17 +3,17 @@ import useFocusable from '../useFocusable';
 import { st, classes } from './FocusableComponent.st.css';
 
 const FocusableComponent = ({ disabled }) => {
-  const { focus, focusVisible, markFocused, markBlurred } = useFocusable({
+  const { focus, focusVisible, markAsFocused, markAsBlurred } = useFocusable({
     disabled,
   });
 
   return (
     <div
-      onFocus={markFocused}
-      onBlur={markBlurred}
+      onFocus={markAsFocused}
+      onBlur={markAsBlurred}
       className={st(classes.root, {
         focus,
-        focusVisible,
+        'focus-visible': focusVisible,
       })}
       data-hook="focusable-component"
     >

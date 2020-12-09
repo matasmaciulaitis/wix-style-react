@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import FocusableComponent from './test/FocusableComponent';
 import { focusableComponentDriverFactory } from './test/FocusableComponent.driver';
 import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
+import { act } from 'react-dom/test-utils';
 
 const FocusableComponentTestkit = uniTestkitFactoryCreator(
   focusableComponentDriverFactory,
@@ -51,13 +52,13 @@ describe('FocusableHOC', () => {
     it('should not have focus nor focus-visible [given] initial render', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      expectNotFocused(driver);
+      await expectNotFocused(driver);
     });
 
     it('should have focus and focus-visible [when] focused programatically', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.focus();
+      await act(async () => driver.focus());
       // Default input is keyboard
       expectKeyboardFocused(driver, 'after focus');
     });
@@ -65,8 +66,8 @@ describe('FocusableHOC', () => {
     it('should have focus and focus-visible [when] tabbed in', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.tabIn();
-      expectKeyboardFocused(driver, 'after focus');
+      await act(async () => driver.tabIn());
+      await expectKeyboardFocused(driver, 'after focus');
     });
 
     it('should have focus and focus-visible [when] tabbed in withot keyDown', async () => {
@@ -74,71 +75,28 @@ describe('FocusableHOC', () => {
       // url input, and we press tab. The keyDown is not fired.
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.focus();
-      await driver.fireKeyUp();
-      expectKeyboardFocused(driver, 'after focus');
+      await act(async () => {
+        await driver.focus();
+        await driver.fireKeyUp();
+      });
+      await expectKeyboardFocused(driver, 'after focus');
     });
 
     it('should not have focus nor focus-visible [when] blured programatically [given] keyboard focused', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.tabIn();
-      expectKeyboardFocused(driver, 'after focus');
+      await act(async () => driver.tabIn());
+      await expectKeyboardFocused(driver, 'after focus');
 
-      await driver.blur();
-      expectNotFocused(driver, 'after blur');
-    });
-
-    describe('Given `onFocus`', () => {
-      it('callback should not have focus nor focus-visible [when] keyboard focused', async () => {
-        const onFocus = () => ({});
-
-        const driver = createDriver(<FocusableComponent onFocus={onFocus} />);
-
-        await driver.tabIn();
-        expectNotFocused(driver);
-      });
-      it('callback with focus method calling should have focus and focus-visible [when] keyboard focused', async () => {
-        const onFocus = (event, triggers) => triggers.focus();
-
-        const driver = createDriver(<FocusableComponent onFocus={onFocus} />);
-
-        await driver.tabIn();
-        expectKeyboardFocused(driver, 'after focus');
-      });
-    });
-
-    describe('Given `onBlur`', () => {
-      it('callback should not blur focused component [when] keyboard focused', async () => {
-        const onBlur = () => ({});
-
-        const driver = createDriver(<FocusableComponent onBlur={onBlur} />);
-
-        await driver.tabIn();
-        expectKeyboardFocused(driver, 'after focus');
-
-        await driver.blur();
-        expectKeyboardFocused(driver, 'after focus');
-      });
-
-      it('callback with blur method calling should blur focused component [when] keyboard focused', async () => {
-        const onBlur = (event, triggers) => triggers.blur();
-
-        const driver = createDriver(<FocusableComponent onBlur={onBlur} />);
-
-        await driver.tabIn();
-        expectKeyboardFocused(driver, 'after focus');
-
-        await driver.blur();
-        expectNotFocused(driver);
-      });
+      await act(async () => driver.blur());
+      await expectNotFocused(driver, 'after blur');
     });
 
     it('should have focus but not focus-visible [when] clicked', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.click();
-      expectMouseFocused(driver, 'after click');
+      await act(async () => driver.click());
+      await expectMouseFocused(driver, 'after click');
     });
 
     /**
@@ -148,34 +106,34 @@ describe('FocusableHOC', () => {
     it('should have focus and focus-visible [when] focused [given] mouseDown and blur', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.click();
-      expectMouseFocused(driver, 'after click');
+      await act(async () => driver.click());
+      await expectMouseFocused(driver, 'after click');
 
-      await driver.blur();
-      expectNotFocused(driver, 'after blur');
+      await act(async () => driver.blur());
+      await expectNotFocused(driver, 'after blur');
 
-      await driver.tabIn();
-      expectKeyboardFocused(driver, 'after focus');
+      await act(async () => driver.tabIn());
+      await expectKeyboardFocused(driver, 'after focus');
     });
 
     it('should not be focused [when] tabbed out [given] focused by mouse', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.click();
-      expectMouseFocused(driver, 'after click');
+      await act(async () => driver.click());
+      await expectMouseFocused(driver, 'after click');
 
-      await driver.tabOut();
-      expectNotFocused(driver, 'after tab');
+      await act(async () => driver.tabOut());
+      await expectNotFocused(driver, 'after tab');
     });
 
     it('should have focus and focus-visible, when: any keyboard key pressed [given] focused by mouse', async () => {
       const driver = createDriver(<FocusableComponent />);
 
-      await driver.click();
-      expectMouseFocused(driver, 'after click');
+      await act(async () => driver.click());
+      await expectMouseFocused(driver, 'after click');
 
-      await driver.fireKeyDown();
-      expectKeyboardFocused(driver, 'after pressing space');
+      await act(async () => driver.fireKeyDown());
+      await expectKeyboardFocused(driver, 'after pressing space');
     });
   });
 });

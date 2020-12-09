@@ -1,6 +1,9 @@
 import { StylableDOMUtil } from '@stylable/dom-test-kit';
 import stylesheet from './FocusableComponent.st.css';
-import { baseUniDriverFactory } from '../../../../test/utils/unidriver';
+import {
+  ReactBase,
+  baseUniDriverFactory,
+} from '../../../../test/utils/unidriver';
 
 const stylableUtil = new StylableDOMUtil(stylesheet);
 
@@ -9,15 +12,14 @@ const hasFocusVisibleState = element =>
   stylableUtil.hasStyleState(element, 'focus-visible');
 
 export const focusableComponentDriverFactory = base => {
-  const focus = async () => (await base.getNative()).focus();
-  const blur = async () => (await base.getNative()).blur();
-  const fireMouseDown = async () =>
+  const reactBase = ReactBase(base);
+  const focus = async () => reactBase.focus();
+  const blur = async () => reactBase.blur();
+  const fireMouseDown = () =>
     window.dispatchEvent(new window.Event('mousedown'));
-  const fireMouseUp = async () =>
-    window.dispatchEvent(new window.Event('mouseup'));
-  const fireKeyDown = async () =>
-    window.dispatchEvent(new window.Event('keydown'));
-  const fireKeyUp = async () => window.dispatchEvent(new window.Event('keyup'));
+  const fireMouseUp = () => window.dispatchEvent(new window.Event('mouseup'));
+  const fireKeyDown = () => window.dispatchEvent(new window.Event('keydown'));
+  const fireKeyUp = () => window.dispatchEvent(new window.Event('keyup'));
   const tabOut = async () => {
     await fireKeyDown();
     await blur();
