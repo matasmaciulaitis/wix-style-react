@@ -10,6 +10,8 @@ Please create a pull request with the solution if it worth sharing.
 - [Usage issues](#%f0%9f%91%a8%e2%80%8d%f0%9f%8f%ab-usage-issues)
   - [How should I import a component properly?](#how-should-i-import-a-component-properly)
   - [I'm not sure which component to use to implement the desired spec](#i'm-not-sure-which-component-to-use-to-implement-the-desired-spec)
+  - [My build suddenly started to fail, what should I do?](#my-build-suddenly-started-to-fail,-what-should-i-do?)
+  - [I upgraded a major version and things started to break](#i-upgraded-a-major-version-and-things-started-to-break)
   - [The component I'm using does not look or behave as expected](#the-component-i'm-using-does-not-look-or-behave-as-expected)
   - [Making Server-Side-Rendering (SSR) work](#making-server-side-rendering-ssr-work)
   - [Components do not have styling in the first render of Server-Side-Rendering (SSR)](#components-do-not-have-styling-in-the-first-render-of-server-side-rendering-ssr)
@@ -42,6 +44,12 @@ import { Button } from 'wix-style-react';
 ### I'm not sure which component to use to implement the desired spec
 We recommend checking out our [cheatsheet](https://www.wix-style-react.com/?path=/story/introduction-cheatsheet--components-cheatsheet) page which includes a view of most of the library components inventory.
 Furthermore, it includes links to the components and ux stories. If you cannot find it there and you're unable to find it by the regular search, please contact us at #wix-style-ux or #wix-style-react channels.
+
+### My build suddenly started to fail, what should I do?
+Make sure that you use the most updated Wix Style React version. We recommend checking the [change log](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) for breaking changes and making sure that you don't use a lock file.
+
+### I upgraded a major version and things started to break
+We recommend following the detailed [migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md) to make sure that you've migrated to the latest Wix Style React version correctly.
 
 ### The component I'm using does not look or behave as expected
 Firstly, make sure that you use the component as described within the examples and API description. Should the issue persists,

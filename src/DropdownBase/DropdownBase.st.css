@@ -8,6 +8,11 @@
   -st-named: popoverContent;
 }
 
+:import {
+  -st-from: "../DropdownLayout/DropdownLayout.st.css";
+  -st-default: DropdownLayout;
+}
+
 .root {
   -st-extends: Popover;
   -st-states: withWidth, withArrow;
@@ -30,4 +35,8 @@
 .root:withArrow::popover[data-placement*="top"] .popoverContent,
 .root:withArrow::popover[data-placement*="bottom"] .popoverContent {
   padding: 10px 0;
+}
+
+.list {
+  -st-extends: DropdownLayout;
 }

@@ -1,71 +1,22 @@
 import React from 'react';
 import { snap, story, visualize } from 'storybook-snapper';
 import TrendIndicator from '../TrendIndicator';
+import { Cell, Layout } from '../../Layout';
+import Box from '../../Box';
 
 const commonProps = {};
 
 const tests = [
   {
-    describe: 'sanity',
+    describe: '',
     its: [
       {
-        it: 'value number',
-        props: {
-          value: 10,
-        },
+        it: 'sanity',
+        props: {},
       },
       {
-        it: 'value not a number',
+        it: 'inverted',
         props: {
-          value: NaN,
-        },
-      },
-    ],
-  },
-  {
-    describe: 'value',
-    its: [
-      {
-        it: 'positive',
-        props: {
-          value: 21,
-        },
-      },
-      {
-        it: 'negative',
-        props: {
-          value: -32,
-        },
-      },
-      {
-        it: 'neutral',
-        props: {
-          value: 0,
-        },
-      },
-    ],
-  },
-  {
-    describe: 'inverted',
-    its: [
-      {
-        it: 'positive',
-        props: {
-          value: 21,
-          inverted: true,
-        },
-      },
-      {
-        it: 'negative',
-        props: {
-          value: -32,
-          inverted: true,
-        },
-      },
-      {
-        it: 'neutral',
-        props: {
-          value: 0,
           inverted: true,
         },
       },
@@ -73,14 +24,35 @@ const tests = [
   },
 ];
 
-export const runTests = () => {
-  visualize(TrendIndicator.displayName, () => {
-    tests.forEach(({ describe, its }) => {
-      story(describe, () => {
-        its.map(({ it, props }) =>
-          snap(it, () => <TrendIndicator {...commonProps} {...props} />),
-        );
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(
+    `${themeName ? `${themeName}|` : ''}${TrendIndicator.displayName}`,
+    () => {
+      tests.forEach(({ describe, its }) => {
+        story(describe, () => {
+          its.map(({ it, props }) =>
+            snap(it, () =>
+              testWithTheme(
+                <Box width="200">
+                  <Layout cols={3} alignItems="center" justifyItems="center">
+                    <Cell span={1}>
+                      <TrendIndicator {...commonProps} {...props} value={-10} />
+                    </Cell>
+                    <Cell span={1}>
+                      <TrendIndicator {...commonProps} {...props} value={0} />
+                    </Cell>
+                    <Cell span={1}>
+                      <TrendIndicator {...commonProps} {...props} value={10} />
+                    </Cell>
+                  </Layout>
+                </Box>,
+              ),
+            ),
+          );
+        });
       });
-    });
-  });
+    },
+  );
 };

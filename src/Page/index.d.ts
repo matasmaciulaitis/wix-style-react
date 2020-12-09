@@ -28,6 +28,11 @@ export interface FixedContentProps {
 }
 declare const FixedContent: React.SFC<FixedContentProps>;
 
+export interface FixedFooterProps {
+  children: React.ReactElement;
+}
+declare const FixedFooter: React.SFC<FixedFooterProps>;
+
 export interface TailProps {
   children: React.ReactElement;
   minimized?: boolean;
@@ -50,4 +55,5 @@ export default class Page extends React.PureComponent<PageProps> {
   static FixedContent: typeof FixedContent;
   static Tail: typeof Tail;
   static Sticky: typeof Sticky;
+  static FixedFooter: typeof FixedFooter;
 }

@@ -1,4 +1,4 @@
-@st-global-custom-property --wsr-font-family, --wsr-font-weight-regular, --wsr-font-weight-bold;
+@st-global-custom-property --wsr-font-family, --wsr-font-weight-regular, --wsr-font-weight-medium, --wsr-font-weight-bold;
 
 /* Fonts */
 :vars {
@@ -43,7 +43,7 @@
 }
 
 .normal {
-  -st-mixin: weight-mixin(weight var(--wsr-font-weight-regular, 400));
+  -st-mixin: weight-mixin(weight var(--wsr-font-weight-medium, 400));
 }
 
 .bold {
@@ -104,14 +104,14 @@
 
 .heading-h3 {
   -st-mixin: font-mixin(family value(helveticanueu55)),
-    weight-mixin(weight var(--wsr-font-weight-regular, 400));
+    weight-mixin(weight var(--wsr-font-weight-medium, 400));
   font-size: 20px;
   line-height: 24px;
 }
 
 .heading-h4 {
   -st-mixin: font-mixin(family value(helveticanueu55)),
-    weight-mixin(weight var(--wsr-font-weight-regular, 400));
+    weight-mixin(weight var(--wsr-font-weight-medium, 400));
   font-size: 18px;
   line-height: 24px;
 }

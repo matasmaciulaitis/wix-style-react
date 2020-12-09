@@ -60,20 +60,6 @@ Enable font smoothing with browser specific css properties:
   }
   ```
 
-## Upgrade from older versions
-
-**Read and follow our migration guides:**
-
-- From 7.x to 8.x/9.x read [V8/V9 migration guide](https://github.com/wix/wix-style-react/blob/master/MIGRATION.md)
-- From 6.x to 7.x read [V7 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v6-v7.md)
-- From 5.x to 6.x read [V6 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v5-v6.md)
-- From 4.x to 5.x read [V5 migration guide](https://github.com/wix/wix-style-react/blob/version_7.x/docs/migration/v4-v5.md)
-
-**Older version Storybook:**
-
-- [V8 Storybook](https://wix-style-react-v8.now.sh)
-- [V7 Storybook](https://wix-style-react-v7.now.sh)
-- [V6 Storybook](https://wix-wix-style-react-v6.surge.sh/)
 
 ## 🚀 Usage
 
@@ -126,6 +112,9 @@ For any issues, check out our types [FAQ](https://github.com/wix/wix-style-react
 We welcome contributions to Wix-Style-React!
 
 Read our [contributing guide](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTING.md) and help us build or improve our components.
+
+## 🙋 Support
+Check out our [support guide](https://github.com/wix/wix-style-react/blob/master/SUPPORT.md)
 
 ## 📝 License
 

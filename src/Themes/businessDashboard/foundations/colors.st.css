@@ -24,6 +24,11 @@
   B60: #F8FAFF;
   D80: #FFFFFF;
 
+  /* Premium */
+  P00: #8E21B1;
+  P10: #AA4DC8;
+  P20: #CD68ED;
+
   /* With Opacity */
   D10-30: calc_rgba(value(D10), 0.3);
   D10-40: calc_rgba(value(D10), 0.4);
@@ -31,7 +36,8 @@
   D80-70: calc_rgba(value(D80), 0.7);
 
   /* Success */
-  G20: #00A849;
+  G10: #51B77B;
+  G20: #51B77B;
   /* Destructive */
   R20: #F1695F;
 

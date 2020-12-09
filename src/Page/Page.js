@@ -8,6 +8,7 @@ import PageHeader from '../PageHeader';
 import Content from './Content';
 import Tail from './Tail';
 import { PageSticky } from './PageSticky';
+import FixedFooter from './FixedFooter';
 import ScrollableContainer from '../common/ScrollableContainer';
 import { ScrollableContainerCommonProps } from '../common/PropTypes/ScrollableContainerCommon';
 
@@ -67,6 +68,7 @@ class Page extends React.PureComponent {
       headerWrapperHeight: 0,
       tailHeight: 0,
       scrollBarWidth: 0,
+      footerHeight: 0,
       minimized: false,
     };
   }
@@ -113,6 +115,7 @@ class Page extends React.PureComponent {
       headerWrapperHeight,
       tailHeight,
       pageHeight,
+      footerHeight,
       minimized,
     } = this.state;
 
@@ -130,18 +133,23 @@ class Page extends React.PureComponent {
       ? this.pageHeaderTailRef.offsetHeight
       : 0;
     const newPageHeight = this.pageRef ? this.pageRef.offsetHeight : 0;
+    const newFooterHeight = this.footerWrapperRef
+      ? this.footerWrapperRef.offsetHeight
+      : 0;
 
     if (
       headerContainerHeight !== newHeaderContainerHeight ||
       headerWrapperHeight !== newHeaderWrapperHeight ||
       tailHeight !== newTailHeight ||
-      pageHeight !== newPageHeight
+      pageHeight !== newPageHeight ||
+      footerHeight !== newFooterHeight
     ) {
       this.setState({
         headerContainerHeight: newHeaderContainerHeight,
         headerWrapperHeight: newHeaderWrapperHeight,
         tailHeight: newTailHeight,
         pageHeight: newPageHeight,
+        footerHeight: newFooterHeight,
       });
     }
   }
@@ -258,10 +266,11 @@ class Page extends React.PureComponent {
     const { PageContent } = this._getNamedChildren();
     const contentFullScreen = PageContent && PageContent.props.fullScreen;
 
-    const { className, horizontalScroll, ...rest } = props;
+    const { className, horizontalScroll, style, ...rest } = props;
 
-    const pageDimensionsStyle = this._getPageDimensionsStyle();
-    const style = contentFullScreen ? null : pageDimensionsStyle;
+    const pageDimensionsStyle = contentFullScreen
+      ? null
+      : this._getPageDimensionsStyle();
 
     return (
       <div
@@ -273,7 +282,7 @@ class Page extends React.PureComponent {
           },
           className,
         )}
-        style={style}
+        style={{ ...pageDimensionsStyle, ...style }}
         {...rest}
       >
         {props.children}
@@ -349,6 +358,7 @@ class Page extends React.PureComponent {
         {this._renderMinimizationPlaceholder()}
         {this._renderHeaderContainer()}
         {this._renderContentContainer()}
+        {this._renderFixedFooter()}
       </ScrollableContainer>
     );
   }
@@ -428,24 +438,10 @@ class Page extends React.PureComponent {
   }
 
   _renderContentContainer() {
+    const { footerHeight } = this.state;
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageContent, PageFixedContent } = childrenObject;
-
-    const { headerWrapperHeight, tailHeight } = this.state;
-
-    const { pageHeight } = this.state;
-
-    const pageContentMarginTop = tailHeight
-      ? parseInt(stVars.headerBottomPadding, 10)
-      : 0;
-
-    const stretchToHeight =
-      pageHeight -
-      headerWrapperHeight -
-      tailHeight -
-      pageContentMarginTop -
-      parseInt(stVars.pageBottomPadding, 10);
 
     return (
       <PageContext.Provider
@@ -458,14 +454,12 @@ class Page extends React.PureComponent {
       >
         {this._renderContentHorizontalLayout({
           className: classes.contentContainer,
+          style: {
+            paddingBottom: footerHeight || '48px',
+          },
           horizontalScroll: this.props.horizontalScroll,
           children: (
-            <div
-              style={{
-                minHeight: `${stretchToHeight}px`,
-              }}
-              className={classes.contentFloating}
-            >
+            <div className={classes.contentFloating}>
               {PageFixedContent && (
                 <PageSticky data-hook="page-fixed-content">
                   {React.cloneElement(PageFixedContent)}
@@ -478,6 +472,31 @@ class Page extends React.PureComponent {
       </PageContext.Provider>
     );
   }
+
+  _renderFixedFooter = () => {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { FixedFooter: FixedFooterChild, PageContent } = childrenObject;
+    const contentFullScreen = PageContent && PageContent.props.fullScreen;
+
+    const pageDimensionsStyle = contentFullScreen
+      ? null
+      : this._getPageDimensionsStyle();
+
+    if (FixedFooterChild) {
+      return (
+        <div
+          className={classes.fixedFooter}
+          ref={ref => {
+            this.footerWrapperRef = ref;
+          }}
+          style={pageDimensionsStyle}
+        >
+          {React.cloneElement(FixedFooterChild, {})}
+        </div>
+      );
+    }
+  };
 
   render() {
     const { dataHook, className, minWidth, zIndex, height } = this.props;
@@ -514,6 +533,7 @@ Page.Header = PageHeader;
 Page.Content = Content;
 Page.FixedContent = FixedContent; // TODO: deprecate, use Page.Sticky instead
 Page.Tail = Tail;
+Page.FixedFooter = FixedFooter;
 Page.Sticky = PageSticky;
 
 const allowedChildren = [
@@ -521,6 +541,7 @@ const allowedChildren = [
   Page.Content,
   Page.FixedContent,
   Page.Tail,
+  Page.FixedFooter,
 ];
 
 Page.propTypes = {
@@ -601,6 +622,10 @@ function getChildrenObject(children) {
       }
       case 'Page.Tail': {
         acc.PageTail = child;
+        break;
+      }
+      case 'Page.FixedFooter': {
+        acc.FixedFooter = child;
         break;
       }
       default: {

@@ -4,11 +4,6 @@
 }
 
 :import {
-  -st-from: '../../Foundation/stylable/typography.st.css';
-  -st-named: text-medium-normal, text-small-normal;
-}
-
-:import {
   -st-from: '../../Foundation/stylable/spacing.st.css';
   -st-named: spacing03, spacing12;
 }
@@ -28,7 +23,6 @@
 }
 
 .root:styleType(circle) {
-  -st-mixin: text-small-normal;
   border-radius: 50%;
   border: 1px solid value(B10);
   width: 30px;
@@ -43,7 +37,6 @@
 }
 
 .root:styleType(text) {
-  -st-mixin: text-medium-normal;
   min-width: 24px;
   margin-right: value(spacing03);
 }
@@ -54,7 +47,6 @@
 }
 
 /* completed style */
-
 .root:type(completed):styleType(text) {
   color: value(B10);
 }

@@ -4,7 +4,7 @@
 }
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: text-medium-normal, text-medium-bold, text-tiny-normal;
+  -st-named:  text-medium-thin, text-medium-normal, text-medium-bold, text-tiny-normal, text-tiny-thin;
 }
 :import {
   -st-from: '../AddItem/AddItem.st.css';
@@ -20,7 +20,7 @@
 }
 
 .root {
-  -st-states: dragging;
+  -st-states: isMadefor, dragging;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -109,8 +109,16 @@
   -st-mixin: text-medium-normal;
 }
 
+.root:isMadefor  .title{
+  -st-mixin: text-medium-thin;
+}
+
 .subtitle {
   -st-mixin: text-tiny-normal;
+}
+
+.root:isMadefor .subtitle {
+  -st-mixin: text-tiny-thin;
 }
 
 .title,

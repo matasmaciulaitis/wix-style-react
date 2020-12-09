@@ -14,6 +14,7 @@ export interface CellProps {
   children?: React.ReactNode;
   span?: number;
   vertical?: boolean;
+  rows?: number;
 }
 
 export const Layout: React.SFC<LayoutProps>;

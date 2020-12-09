@@ -563,6 +563,7 @@ class DropdownLayout extends React.PureComponent {
 
   render() {
     const {
+      className,
       options,
       visible,
       dropDirectionUp,
@@ -587,14 +588,18 @@ class DropdownLayout extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={st(classes.root, {
-          visible,
-          withArrow,
-          direction: dropDirectionUp
-            ? DROPDOWN_LAYOUT_DIRECTIONS.UP
-            : DROPDOWN_LAYOUT_DIRECTIONS.DOWN,
-          containerStyles: !inContainer,
-        })}
+        className={st(
+          classes.root,
+          {
+            visible,
+            withArrow,
+            direction: dropDirectionUp
+              ? DROPDOWN_LAYOUT_DIRECTIONS.UP
+              : DROPDOWN_LAYOUT_DIRECTIONS.DOWN,
+            containerStyles: !inContainer,
+          },
+          className,
+        )}
         tabIndex={tabIndex}
         onKeyDown={this._onKeyDown}
         onMouseEnter={onMouseEnter}
@@ -684,6 +689,8 @@ export function optionValidator(props, propName, componentName) {
 }
 
 DropdownLayout.propTypes = {
+  /** A single CSS class name to be appended to the root element. */
+  className: PropTypes.string,
   /** @deprecated */
   dropDirectionUp: PropTypes.bool,
   /** Scroll to the selected option on opening the dropdown */
@@ -737,7 +744,7 @@ DropdownLayout.propTypes = {
   selectedHighlight: PropTypes.bool,
   /** Whether the `<DropdownLayout/>` is in a container component. If `true`, some styles such as shadows, positioning and padding will be added the the component contentContainer. */
   inContainer: PropTypes.bool,
-  /** Set this prop for lacy loading of the dropdown layout items.*/
+  /** Set this prop for lazy loading of the dropdown layout items.*/
   infiniteScroll: PropTypes.bool,
   /** A callback called when more items are requested to be rendered. */
   loadMore: PropTypes.func,

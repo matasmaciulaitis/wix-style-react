@@ -8,7 +8,7 @@ import TextButton from '../../TextButton';
 import CloseButton from '../../CloseButton';
 import Button from '../../Button';
 
-import * as styles from './MessageBoxMarketerialLayout.scss';
+import styles from './MessageBoxMarketerialLayout.scss';
 import deprecationLog from '../../utils/deprecationLog';
 
 const buttonSkinByTheme = {

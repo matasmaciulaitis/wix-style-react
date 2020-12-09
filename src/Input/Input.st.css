@@ -12,7 +12,7 @@
 
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: text-small-normal, text-medium-normal;
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
 }
 
 :import {
@@ -23,7 +23,7 @@
 .root {
   -st-states: size(enum(small, medium, large)), hasFocus,
               status(enum(error, warning)), forceHover, readOnly,
-              disabled, roundInput,
+              disabled, roundInput, isMadefor,
               noLeftBorderRadius, noRightBorderRadius;
   -st-mixin: boxSizingMixin('border-box'), borderRadiusMixin(6px);
   position: relative;
@@ -65,6 +65,11 @@
   -st-mixin: text-small-normal;
 }
 
+.root:size(small):isMadefor,
+.root:size(small):isMadefor .input {
+  -st-mixin: text-small-thin;
+}
+
 .root:size(small) .input {
   padding: 5px 3px 5px 6px;
 }
@@ -74,6 +79,11 @@
   -st-mixin: text-medium-normal;
 }
 
+.root:size(medium):isMadefor,
+.root:size(medium):isMadefor .input {
+  -st-mixin: text-medium-thin;
+}
+
 .root:size(medium) .input {
   padding: 5px 3px 5px 6px;
 }
@@ -81,6 +91,11 @@
 .root:size(large),
 .root:size(large) .input {
   -st-mixin: text-medium-normal;
+}
+
+.root:size(large):isMadefor,
+.root:size(large):isMadefor .input {
+  -st-mixin: text-medium-thin;
 }
 
 .root:size(large) .input {

@@ -6,6 +6,7 @@ import CloseButton from '../CloseButton';
 import Text from '../Text';
 import noop from 'lodash/noop';
 import { dataHooks } from './Tag.helpers';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 const tagToTextSize = {
   tiny: 'tiny',
@@ -25,7 +26,7 @@ class Tag extends React.PureComponent {
     return thumb ? <span className={styles.thumb}>{thumb}</span> : null;
   }
 
-  _renderText() {
+  _renderText({ isMadefor }) {
     const { size, children, disabled, theme } = this.props;
 
     return (
@@ -35,7 +36,7 @@ class Tag extends React.PureComponent {
         secondary={theme !== 'dark'}
         ellipsis
         size={tagToTextSize[size]}
-        weight={size === 'tiny' ? 'thin' : 'normal'}
+        weight={isMadefor || size === 'tiny' ? 'thin' : 'normal'}
         dataHook={dataHooks.text}
       >
         {children}
@@ -87,7 +88,7 @@ class Tag extends React.PureComponent {
         [styles.withThumb]: thumb,
         [styles.disabled]: disabled,
         [styles.clickable]: onClick !== noop,
-        [styles.hoverable]: !disabled,
+        [styles.hoverable]: !disabled && onClick !== noop,
       },
     );
   }
@@ -96,17 +97,21 @@ class Tag extends React.PureComponent {
     const { id, onClick, maxWidth, dataHook } = this.props;
 
     return (
-      <span
-        className={this._getClassName()}
-        data-hook={dataHook}
-        id={id}
-        onClick={event => onClick(id, event)}
-        style={{ maxWidth: `${maxWidth}px` }}
-      >
-        {this._renderThumb()}
-        {this._renderText()}
-        {this._renderRemoveButton()}
-      </span>
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <span
+            className={this._getClassName()}
+            data-hook={dataHook}
+            id={id}
+            onClick={event => onClick(id, event)}
+            style={{ maxWidth: `${maxWidth}px` }}
+          >
+            {this._renderThumb()}
+            {this._renderText({ isMadefor })}
+            {this._renderRemoveButton()}
+          </span>
+        )}
+      </FontUpgradeContext.Consumer>
     );
   }
 }
@@ -145,6 +150,7 @@ Tag.propTypes = {
     'dark',
     'neutral',
     'light',
+    'lightOutlined',
   ]),
 
   /** An optional thumb to display as part of the Tag */

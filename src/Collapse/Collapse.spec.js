@@ -28,7 +28,12 @@ describe('Collapse', () => {
         />,
       );
 
-      expect(wrapper.children().prop('data-hook')).toEqual(hookForRoot);
+      expect(
+        wrapper
+          .children()
+          .getDOMNode()
+          .getAttribute('data-hook'),
+      ).toEqual(hookForRoot);
       expect(wrapper.find(`[data-hook="${hookOfChild}"]`).exists()).toBe(true);
     });
   });

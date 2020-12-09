@@ -4,7 +4,7 @@ import { OmitPolyfill } from '../common';
 import { ButtonProps, ButtonSize } from '../Button';
 
 export interface MessageModalLayoutProps extends BaseModalLayoutProps {
-  title?: string;
+  title?: string | React.ReactNode;
   content?: string | React.ReactNode;
   primaryButtonText?: string;
   primaryButtonProps?: OmitPolyfill<ButtonProps, 'dataHook'>;

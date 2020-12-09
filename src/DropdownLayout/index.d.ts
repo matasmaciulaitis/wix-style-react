@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface DropdownLayoutProps {
   dataHook?: string;
+  className?: string;
   dropDirectionUp?: boolean;
   focusOnSelectedOption?: boolean;
   onClose?: () => void;

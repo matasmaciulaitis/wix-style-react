@@ -8,8 +8,10 @@ class DropdownBase extends React.PureComponent {
   static displayName = 'DropdownBase';
 
   static propTypes = {
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
-
+    /** A css class to be applied to the component's root element */
+    className: PropTypes.string,
     /** A controlled prop to control whether the Popover should be opened*/
     open: PropTypes.bool,
     /** The Popover's placement */
@@ -124,6 +126,15 @@ class DropdownBase extends React.PureComponent {
 
     /** Scroll to the selected option on opening the dropdown */
     focusOnSelectedOption: PropTypes.bool,
+
+    /** Set this prop for lazy loading of the dropdown layout items.*/
+    infiniteScroll: PropTypes.bool,
+
+    /** A callback called when more items are requested to be rendered. */
+    loadMore: PropTypes.func,
+
+    /** Whether there are more items to be loaded. */
+    hasMore: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -339,13 +350,16 @@ class DropdownBase extends React.PureComponent {
       animate,
       className,
       focusOnSelectedOption,
+      infiniteScroll,
+      loadMore,
+      hasMore,
     } = this.props;
 
     const { open, selectedId } = this.state;
 
     return (
       <Popover
-        {...this.props}
+        {...this.props} // backward compatible for migration stylable 1 to stylable 3
         animate={animate}
         dataHook={dataHook}
         shown={open}
@@ -382,6 +396,7 @@ class DropdownBase extends React.PureComponent {
           >
             <DropdownLayout
               dataHook="dropdown-base-dropdownlayout"
+              className={classes.list}
               ref={r => (this._dropdownLayoutRef = r)}
               selectedId={selectedId}
               options={options}
@@ -393,6 +408,9 @@ class DropdownBase extends React.PureComponent {
               visible
               overflow={overflow}
               focusOnSelectedOption={focusOnSelectedOption}
+              infiniteScroll={infiniteScroll}
+              loadMore={loadMore}
+              hasMore={hasMore}
             />
           </div>
         </Popover.Content>

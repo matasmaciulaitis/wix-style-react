@@ -9,6 +9,11 @@
 }
 
 :import {
+  -st-from: '../../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-normal, text-medium-thin , text-small-normal,  text-small-thin;
+}
+
+:import {
   -st-from: "../../Foundation/stylable/spacing.st.css";
   -st-named: spacing06;
 }
@@ -26,6 +31,7 @@
 .root {
   -st-extends: Focusable;
   -st-states:
+    isMadefor,
     type(enum(normal, error, disabled, completed)),
     styleType(enum(circle, text)),
     selected,
@@ -60,6 +66,22 @@
 
 .root:styleType(circle):focus-visible .marker {
   box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:styleType(text) .marker {
+  -st-mixin: text-medium-normal;
+}
+
+.root:styleType(text):isMadefor .marker {
+  -st-mixin: text-medium-thin;
+}
+
+.root:styleType(circle) .marker {
+  -st-mixin: text-small-normal;
+}
+
+.root:styleType(circle):isMadefor .marker {
+  -st-mixin: text-small-thin;
 }
 
 .content {

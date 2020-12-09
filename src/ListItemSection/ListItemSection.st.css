@@ -9,7 +9,7 @@
 }
 
 .root {
-  -st-states: subheader, divider, whitespace;
+  -st-states: subheader, divider, whitespace, ellipsis, suffix;
   background-color: value(D80);
   display: flex;
   padding: 12px 24px 6px 24px;
@@ -43,34 +43,35 @@
   color: value(D20);
 }
 
-/* Suffix */
-.suffix {
-  -st-states: ellipsis;
-  margin: auto 0 0 auto;
-  padding-left: 6px;
-  flex-shrink: 0;
-  max-width: 30%;
+.titleWrapper {
+  width: 100%;
 }
 
-.suffix.suffix {
-  height: auto;
+.root:suffix .titleWrapper{
+  width: 70%;
+}
+
+.suffixWrapper {
+  width: 30%;
+  margin-left: 6px;
+  text-align: right;
+}
+
+:global([dir="rtl"]) .suffixWrapper {
+  margin-right: 6px;
+  text-align: left;
+}
+
+.suffix {
+  text-align: right;
+  height: auto !important;
 }
 
 :global([dir="rtl"]) .suffix {
-  margin: 0 auto 0 6px;
-  padding-left: 0;
-  padding-right: 6px;
+  text-align: left;
 }
 
-/* TODO - remove once https://github.com/wix/wix-style-react/issues/4612 is resolved */
-.suffix:ellipsis {
-  overflow: hidden;
+.root:not(:ellipsis)  .suffix {
+  white-space: normal;
 }
 
-.suffix:ellipsis span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* TODO - remove once https://github.com/wix/wix-style-react/issues/4612 is resolved */

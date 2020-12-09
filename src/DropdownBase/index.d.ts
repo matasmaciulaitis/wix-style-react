@@ -34,6 +34,9 @@ export interface DropdownBaseProps {
   fluid?: boolean;
   animate?: boolean;
   focusOnSelectedOption?: boolean;
+  infiniteScroll?: boolean;
+  loadMore?: (page: number) => void;
+  hasMore?: boolean;
 }
 
 export default class DropdownBase extends React.PureComponent<

@@ -11,6 +11,7 @@ function datePickerWithMandatoryProps() {
 function datePickerWithAllProps() {
   return (
     <DatePicker
+      className="datePicker"
       customInput="customInput"
       inputProps="{}"
       dateFormat="string | Function"

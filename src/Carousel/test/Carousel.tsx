@@ -27,6 +27,8 @@ function CarouselWithAllProps() {
       controlsPosition="sides"
       controlsStartEnd="disabled"
       showControlsShadow={false}
+      imagesPosition="center middle"
+      imagesFit="fill"
     />
   );
 }

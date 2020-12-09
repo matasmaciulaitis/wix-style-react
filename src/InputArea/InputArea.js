@@ -7,6 +7,7 @@ import isNaN from 'lodash/isNaN';
 import { st, classes } from './InputArea.st.css';
 import { dataAttr, dataHooks } from './constants';
 import { filterObject } from '../utils/filterObject';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 /**
  * General inputArea container
@@ -146,69 +147,74 @@ class InputArea extends React.PureComponent {
       );
 
     return (
-      <div
-        data-hook={dataHook}
-        className={st(
-          classes.root,
-          {
-            disabled,
-            size,
-            status,
-            hasFocus: forceFocus || this.state.focus,
-            forceHover,
-            resizable,
-            readOnly,
-          },
-          className,
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            data-hook={dataHook}
+            className={st(
+              classes.root,
+              {
+                isMadefor,
+                disabled,
+                size,
+                status,
+                hasFocus: forceFocus || this.state.focus,
+                forceHover,
+                resizable,
+                readOnly,
+              },
+              className,
+            )}
+            {...this._getDataAttr()}
+          >
+            {/* Input Area */}
+            <div className={classes.inputArea}>
+              <textarea
+                rows={rowsAttr}
+                maxLength={maxLength}
+                ref={ref => (this.textArea = ref)}
+                id={id}
+                name={name}
+                style={inlineStyle}
+                defaultValue={defaultValue}
+                disabled={disabled}
+                value={value}
+                required={required}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                onKeyDown={this._onKeyDown}
+                onChange={this._onChange}
+                onInput={onInput}
+                placeholder={placeholder}
+                tabIndex={tabIndex}
+                autoFocus={autoFocus}
+                onKeyUp={onKeyUp}
+                {...ariaAttribute}
+                readOnly={readOnly}
+              />
+
+              {/* Counter */}
+              {hasCounter && maxLength && (
+                <span className={classes.counter} data-hook="counter">
+                  {this.state.counter}/{maxLength}
+                </span>
+              )}
+            </div>
+
+            {/* Status Indicator */}
+            <div className={classes.status}>
+              {!!status && !disabled && (
+                <StatusIndicator
+                  dataHook={dataHooks.tooltip}
+                  status={status}
+                  message={statusMessage}
+                  tooltipPlacement={tooltipPlacement}
+                />
+              )}
+            </div>
+          </div>
         )}
-        {...this._getDataAttr()}
-      >
-        {/* Input Area */}
-        <div className={classes.inputArea}>
-          <textarea
-            rows={rowsAttr}
-            maxLength={maxLength}
-            ref={ref => (this.textArea = ref)}
-            id={id}
-            name={name}
-            style={inlineStyle}
-            defaultValue={defaultValue}
-            disabled={disabled}
-            value={value}
-            required={required}
-            onFocus={this._onFocus}
-            onBlur={this._onBlur}
-            onKeyDown={this._onKeyDown}
-            onChange={this._onChange}
-            onInput={onInput}
-            placeholder={placeholder}
-            tabIndex={tabIndex}
-            autoFocus={autoFocus}
-            onKeyUp={onKeyUp}
-            {...ariaAttribute}
-            readOnly={readOnly}
-          />
-
-          {/* Counter */}
-          {hasCounter && maxLength && (
-            <span className={classes.counter} data-hook="counter">
-              {this.state.counter}/{maxLength}
-            </span>
-          )}
-        </div>
-
-        {/* Status Indicator */}
-        <div className={classes.status}>
-          {!!status && !disabled && (
-            <StatusIndicator
-              dataHook={dataHooks.tooltip}
-              status={status}
-              message={statusMessage}
-              tooltipPlacement={tooltipPlacement}
-            />
-          )}
-        </div>
-      </div>
+      </FontUpgradeContext.Consumer>
     );
   }
 

@@ -21,6 +21,7 @@ import { runTests as BadgeTests } from '../../../Badge/test/Badge.visual';
 import { runTests as LoaderTests } from '../../../Loader/test/Loader.visual';
 import { runTests as InputTests } from '../../../Input/test/Input.visual';
 import { runTests as EmptyStateTests } from '../../../EmptyState/test/EmptyState.visual';
+import { runTests as TrendIndicator } from '../../../TrendIndicator/test/TrendIndicator.visual';
 import { ThemeProvider } from '../../..';
 
 const themeName = 'Business Dashboard';
@@ -53,3 +54,4 @@ BadgeTests({ themeName, testWithTheme });
 LoaderTests({ themeName, testWithTheme });
 InputTests({ themeName, testWithTheme });
 EmptyStateTests({ themeName, testWithTheme });
+TrendIndicator({ themeName, testWithTheme });

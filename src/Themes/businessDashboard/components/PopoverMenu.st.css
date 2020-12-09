@@ -21,6 +21,20 @@
   box-shadow: value(shadow10);
 }
 
+.root::popover[data-placement*="top"],
+.root::popover[data-placement*="left"],
+.root::popover[data-placement*="right"],
+.root::popover[data-placement*="bottom"] {
+  padding: 0;
+}
+
+.root:withArrow::popover[data-placement*="top"],
+.root:withArrow::popover[data-placement*="left"],
+.root:withArrow::popover[data-placement*="right"],
+.root:withArrow::popover[data-placement*="bottom"] {
+  padding: 6px 0;
+}
+
 .root:withArrow::popover[data-placement*="top"] .popoverContent,
 .root:withArrow::popover[data-placement*="left"] .popoverContent,
 .root:withArrow::popover[data-placement*="right"] .popoverContent,

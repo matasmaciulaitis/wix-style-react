@@ -53,6 +53,14 @@
   margin: auto;
 }
 
+.root :global(.slick-list .slick-track:not([style*="width"]) .slick-slide) {
+  visibility: hidden;
+}
+
+.root :global(.slick-list .slick-track[style*="width"] .slick-slide) {
+  visibility: visible;
+}
+
 .root:controlsPosition(sides) :global(.slick-list) {
   width: calc(100% - (2 * var(--arrow-size)) - value(horizontalSpacingSize));
 }
@@ -84,6 +92,11 @@
 
 .root :global(.slick-prev) {
   left: 0;
+}
+
+.imageContainer {
+  display: flex;
+  height: 100%;
 }
 
 .image {

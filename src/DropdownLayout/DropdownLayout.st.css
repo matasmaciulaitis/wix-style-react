@@ -23,6 +23,11 @@
   -st-named: defaultScrollBar;
 }
 
+:import {
+  -st-from: "../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
+}
+
 :vars {
   option_height: 36px;
   big_option_height: 47px;
@@ -156,6 +161,7 @@
 
 .selectableOption{
   -st-states: itemHeight(enum(big, small));
+  -st-extends: ListItemSelect;
 }
 
 .selectableOption:itemHeight(small){

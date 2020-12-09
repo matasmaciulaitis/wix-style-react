@@ -12,6 +12,7 @@ import {
   importExample,
   header,
   divider,
+  example as baseExample,
 } from 'wix-storybook-utils/Sections';
 
 import Page from '..';
@@ -31,6 +32,7 @@ import ChildrenReadme from './Children.md';
 
 import ExampleStickyTableWithGapRaw from '!raw-loader!./ExampleStickyTableWithGap';
 import ExampleVerticalScrollListenersRaw from '!raw-loader!./ExampleVerticalScrollListeners';
+import * as examples from './examples';
 
 const code = config =>
   baseCode({
@@ -38,6 +40,8 @@ const code = config =>
     compact: false,
     ...config,
   });
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
@@ -326,6 +330,20 @@ export default {
               compact: true,
             },
           ].map(code),
+
+          example({
+            title: 'Full page - non scrollable',
+            text:
+              'A full view of a non scrollable page with a header and a footer.',
+            source: examples.fullNotScrollableContent,
+          }),
+
+          example({
+            title: 'Full page - scrollable',
+            text:
+              'A full view of a scrollable page with a header and a footer.',
+            source: examples.fullScrollableContent,
+          }),
         ],
       }),
       ...[

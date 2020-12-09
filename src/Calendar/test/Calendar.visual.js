@@ -99,6 +99,47 @@ const tests = [
           await getDriver().clickOnPrevMonthButton();
         },
       },
+      {
+        it: 'FilterDate - Prior for today dates (includes today)',
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          filterDate: date => date <= new Date('2020/10/10'),
+        },
+      },
+      {
+        it: 'FilterDate - feature dates only (includes today)',
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          filterDate: date => date >= new Date('2020/10/10'),
+        },
+      },
+      {
+        it: 'Months dropdown',
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          showMonthDropdown: true,
+        },
+      },
+      {
+        it: 'Years dropdown',
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          showYearDropdown: true,
+        },
+      },
+      {
+        it: 'Months and years dropdown',
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          showMonthDropdown: true,
+          showYearDropdown: true,
+        },
+      },
     ],
   },
 ];

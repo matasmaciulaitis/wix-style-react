@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import range from '../../utils/operators/range';
+import { classes, st } from './YearDropdown.st.css';
+import range from '../../../utils/operators/range';
 import { setYear } from 'date-fns';
 
-import DatePickerDropdown from '../DatePickerDropdown';
+import DatePickerDropdown from '../../DatePickerDropdown';
 
 const optionsOf = items =>
   items.map((item, index) => ({ value: item, id: index }));
 
-const YearDropdown = ({ date, onChange }) => {
+const YearDropdown = ({ className, date, onChange }) => {
   const year = date.getFullYear();
   const [lowerLimit, upperLimit] = [1899, 2028];
   const years = optionsOf(
@@ -20,6 +21,7 @@ const YearDropdown = ({ date, onChange }) => {
   return (
     <DatePickerDropdown
       dataHook="datepicker-year-dropdown"
+      className={st(classes.root, className)}
       caption={selectedYear.value}
       options={years}
       selectedId={selectedYear.id}
@@ -29,6 +31,7 @@ const YearDropdown = ({ date, onChange }) => {
 };
 
 YearDropdown.propTypes = {
+  className: PropTypes.string,
   date: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 };

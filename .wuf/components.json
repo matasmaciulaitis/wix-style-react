@@ -36,10 +36,7 @@
     "path": "src/BadgeSelect"
   },
   "BadgeSelectItem": {
-    "path": "src/BadgeSelectItem",
-    "missingFiles": [
-      "docs/index.story.js"
-    ]
+    "path": "src/BadgeSelectItem"
   },
   "BarChart": {
     "path": "src/BarChart"

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { DragLayer } from 'react-dnd';
 import itemTypes from './itemTypes';
+import { Portal } from 'react-portal';
 
 const layerStyles = {
   position: 'fixed',
   pointerEvents: 'none',
+  zIndex: 100,
   left: 0,
   top: 0,
 };
@@ -87,25 +89,31 @@ class CustomDragLayer extends Component {
       'dragging-nestable-item',
       theme && theme.item,
     );
-
+    // portal is used because of position fixed and transform issue
     return (
-      <div style={layerStyles}>
-        <div
-          className={classes}
-          style={getItemStyles(this.props, item.clientRect, item.handleOffset)}
-        >
-          {renderItem({
-            item: item.data,
-            isPlaceholder: false,
-            isPreview: true,
-            depth: 1,
-            connectDragSource: defaultConnectDragSource,
-          })}
-          {isRenderDraggingChildren &&
-            !item.data.isCollapsed &&
-            this.renderChildren(item.data[childrenProperty], 2)}
+      <Portal>
+        <div style={layerStyles}>
+          <div
+            className={classes}
+            style={getItemStyles(
+              this.props,
+              item.clientRect,
+              item.handleOffset,
+            )}
+          >
+            {renderItem({
+              item: item.data,
+              isPlaceholder: false,
+              isPreview: true,
+              depth: 1,
+              connectDragSource: defaultConnectDragSource,
+            })}
+            {isRenderDraggingChildren &&
+              !item.data.isCollapsed &&
+              this.renderChildren(item.data[childrenProperty], 2)}
+          </div>
         </div>
-      </div>
+      </Portal>
     );
   }
 }

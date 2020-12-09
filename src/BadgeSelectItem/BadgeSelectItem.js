@@ -34,14 +34,23 @@ const BadgeSelectItem = props => {
 };
 
 BadgeSelectItem.propTypes = {
+  /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
+  /** A css class to be applied to the component's root element */
   className: PropTypes.string,
+  /** The text to be rendered within the badge. */
   text: PropTypes.node.isRequired,
+  /** The secondary text to be rendered within the badge. */
   subtitle: PropTypes.string,
+  /** The badge's skin. See the <Badge/> story for the full list of available skins. */
   skin: PropTypes.string.isRequired,
+  /** Should the text and subtitle get ellipsis with tooltip, or should it get broken into lines when it reaches the end of its container */
   ellipsis: PropTypes.bool,
+  /** If true, the item is selected */
   selected: PropTypes.bool,
+  /** If true, the item is highlighted */
   highlighted: PropTypes.bool,
+  /** If true, the item is disabled */
   disabled: PropTypes.bool,
 };
 

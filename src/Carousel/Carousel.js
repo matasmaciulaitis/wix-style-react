@@ -46,6 +46,18 @@ class Carousel extends React.Component {
     /** Array of objects where each contains the `src` of an image (in \<img src="your_src" /\>) */
     images: PropTypes.array,
 
+    /** Sets the images position */
+    imagesPosition: PropTypes.string,
+
+    /** Sets the images fit */
+    imagesFit: PropTypes.oneOf([
+      'fill',
+      'contain',
+      'cover',
+      'none',
+      'scale-down',
+    ]),
+
     /** Any element to render inside */
     children: PropTypes.node,
 
@@ -92,6 +104,8 @@ class Carousel extends React.Component {
     variableWidth: false,
     initialSlideIndex: 0,
     images: [],
+    imagesPosition: 'center top',
+    imagesFit: 'contain',
     buttonSkin: 'standard',
     controlsPosition: 'sides',
     controlsSize: 'medium',
@@ -224,13 +238,14 @@ class Carousel extends React.Component {
   };
 
   _renderImages = images => {
+    const { imagesPosition, imagesFit } = this.props;
     return images.map((image, index) => (
       <Proportion
         key={`${index}${image.src}`}
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
       >
         <div
-          style={{ height: '100%' }}
+          className={classes.imageContainer}
           data-hook={dataHooks.imagesContainer}
           data-is-loading={this._isLoading()}
         >
@@ -239,6 +254,11 @@ class Carousel extends React.Component {
             data-hook={dataHooks.carouselImage}
             className={classes.image}
             onLoad={() => this._onImageLoad()}
+            style={{
+              objectPosition: imagesPosition,
+              objectFit: imagesFit,
+              ...image.style,
+            }}
           />
         </div>
         {this._isLoading() && (

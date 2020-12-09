@@ -205,7 +205,7 @@ const decoratorFactory = ({ tag: { size, disabled } }) => {
             >
               {text}
             </Tag>
-            <span className={classes.textWrapper}> </span>
+            <span className={classes.textWrapper} />{' '}
           </span>
         );
       },

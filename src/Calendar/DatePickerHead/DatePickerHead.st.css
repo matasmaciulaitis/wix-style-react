@@ -3,6 +3,20 @@
   -st-named: THEME-COLOR-10, THEME-COLOR-40, THEME-COLOR-50, D80;
 }
 
+:import {
+  -st-from: '../../Foundation/stylable/easing.st.css';
+  -st-named: speed-fast-1;
+}
+
+:import {
+  -st-from: "./MonthDropdown/MonthDropdown.st.css";
+  -st-default: MonthDropdown;
+}
+
+:import {
+  -st-from: "./YearDropdown/YearDropdown.st.css";
+  -st-default: YearDropdown;
+}
 
 .root {
   display: flex;
@@ -18,6 +32,14 @@
   padding: 0 6px;
 }
 
+.monthDropdown {
+  -st-extends: MonthDropdown;
+}
+
+.yearDropdown {
+  -st-extends: YearDropdown;
+}
+
 .arrow {
   z-index: 1;
   width: 36px;
@@ -25,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 100ms;
+  transition: background-color value(speed-fast-1);
   border-radius: 50%;
 }
 

@@ -2,23 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { st, classes } from './Affix.st.css';
 import InputConsumer from '../InputConsumer';
+import { FontUpgradeContext } from '../../FontUpgrade/context';
 
 const Affix = ({ children, value }) => (
   <InputConsumer consumerCompName={Affix.displayName}>
     {({ size, inPrefix, inSuffix, roundInput, disabled, onInputClicked }) => (
-      <div
-        className={st(classes.root, {
-          size,
-          inPrefix,
-          inSuffix,
-          roundInput,
-          disabled,
-        })}
-        onClick={onInputClicked}
-        data-hook="custom-affix"
-      >
-        {value || children}
-      </div>
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            className={st(classes.root, {
+              isMadefor,
+              size,
+              inPrefix,
+              inSuffix,
+              roundInput,
+              disabled,
+            })}
+            onClick={onInputClicked}
+            data-hook="custom-affix"
+          >
+            {value || children}
+          </div>
+        )}
+      </FontUpgradeContext.Consumer>
     )}
   </InputConsumer>
 );

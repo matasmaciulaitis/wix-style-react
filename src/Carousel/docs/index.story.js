@@ -65,6 +65,8 @@ export default {
     autoplay: false,
     controlsPosition: 'sides',
     controlsSize: 'medium',
+    imagesPosition: 'center top',
+    imagesFit: 'contain',
   }),
 
   exampleProps: {
@@ -135,6 +137,24 @@ They can be placed in one of these positions: \`sides\` (default), \`overlay\`, 
             title: 'Controls on Start and End',
             text: `The carousel controls on the start and end of the carousel can be set to be \`hidden\` when not using infinite mode.`,
             source: examples.controlsStartEndHidden,
+          }),
+
+          example({
+            title: 'Images Position',
+            text:
+              "Specifies the position of the image inside its content box (default: 'center top'). First value controls the x-axis and the second value controls the y-axis. Can be a string (left, center, right, top, middle or bottom), or a number (in px or %).",
+            source: examples.imagesPositionExample,
+          }),
+
+          example({
+            title: 'Images Fit',
+            text: `Image can be set to fit the container in the following ways:\n
+\`contain\` (default) -  scaled to maintain its aspect ratio while fitting within the element’s content box. Scaled until one axis is filled.\n
+\`cover\` - sized to maintain its aspect ratio while filling the element’s entire content box. Scaled until both axes are filled.
+\`fill\` - sized to fill the element’s content box (doesn't maintain aspect ratio).\n
+\`none\` - keeps original image dimensions.\n
+\`scale-down\` - sized as if \`none\` or \`contain\` were specified, whichever would result in a smaller concrete object size.`,
+            source: examples.imagesFitExample,
           }),
         ],
       }),

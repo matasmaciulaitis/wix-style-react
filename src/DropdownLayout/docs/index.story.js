@@ -124,14 +124,13 @@ export default {
                   >{`<ListItemEditable/>`}</LinkTo>,
                   'An internal editable component which is used to build dropdown or menu like components.',
                 ],
-                // TODO:
-                // [
-                //   <LinkTo
-                //     kind={Category.COMPONENTS}
-                //     story="BadgeSelect"
-                //   >{`<BadgeSelect/>`}</LinkTo>,
-                //   'An internal component which is used to build dropdown or menu like components.',
-                // ],
+                [
+                  <LinkTo
+                    kind={Category.COMPONENTS}
+                    story="BadgeSelectItem"
+                  >{`<BadgeSelectItem/>`}</LinkTo>,
+                  'An internal component which is used to build dropdown or menu like components.',
+                ],
               ],
             }),
           ]),

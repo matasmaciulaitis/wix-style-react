@@ -220,10 +220,16 @@ class Sidebar extends Component {
 
     const sliderOutToRightClasses = st(
       css.slider,
+      {
+        skin,
+      },
       !this.props.isHidden && css.sliderOutToRight,
     );
     const sliderInFromRightClasses = st(
       css.slider,
+      {
+        skin,
+      },
       !this.props.isHidden && css.sliderInFromRight,
     );
 

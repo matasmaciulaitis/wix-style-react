@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Text from '../Text';
 import { st, classes } from './ListItemSelect.st.css';
-
+import { FontUpgradeContext } from '../FontUpgrade/context';
 import Checkbox from '../Checkbox';
 import Box from '../Box';
 import { dataHooks } from './constants';
@@ -80,34 +79,38 @@ class ListItemSelect extends React.PureComponent {
     } = this.props;
 
     return (
-      <div
-        className={st(
-          classes.root,
-          { checkbox, selected, highlighted, disabled },
-          className,
-        )}
-        data-hook={dataHook}
-        data-selected={selected}
-        onClick={disabled ? undefined : onClick}
-      >
-        {checkbox ? (
-          <Checkbox
-            dataHook={dataHooks.CHECKBOX}
-            className={classes.fullWidthContent}
-            size={size}
-            checked={selected}
-            disabled={disabled}
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            className={st(
+              classes.root,
+              { checkbox, selected, highlighted, disabled },
+              className,
+            )}
+            data-hook={dataHook}
+            data-selected={selected}
+            onClick={disabled ? undefined : onClick}
           >
-            {this._renderContent()}
-          </Checkbox>
-        ) : (
-          this._renderContent()
+            {checkbox ? (
+              <Checkbox
+                dataHook={dataHooks.CHECKBOX}
+                className={classes.fullWidthContent}
+                size={size}
+                checked={selected}
+                disabled={disabled}
+              >
+                {this._renderContent({ isMadefor })}
+              </Checkbox>
+            ) : (
+              this._renderContent({ isMadefor })
+            )}
+          </div>
         )}
-      </div>
+      </FontUpgradeContext.Consumer>
     );
   }
 
-  _renderContent() {
+  _renderContent({ isMadefor }) {
     const {
       checkbox,
       prefix,
@@ -126,7 +129,7 @@ class ListItemSelect extends React.PureComponent {
       ellipsis,
       showDelay: 300,
       skin: disabled ? 'disabled' : 'standard',
-      weight: checkbox ? 'thin' : 'normal',
+      weight: isMadefor || checkbox ? 'thin' : 'normal',
       light: selected && !checkbox,
     };
 

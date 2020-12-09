@@ -58,7 +58,9 @@ function tableWithAllProps() {
         {
           align: 'center',
           important: true,
-          infoTooltipProps: {},
+          infoTooltipProps: {
+            content: 'some content'
+          },
           render: (_row, _rowNum) => <span />,
           sortDescending: true,
           sortable: true,

@@ -10,7 +10,7 @@
 
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: text-tiny-normal, text-small-normal, text-medium-normal;
+  -st-named: text-tiny-normal, text-tiny-thin, text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
 }
 
 :import {
@@ -20,11 +20,16 @@
 
 .root {
   -st-states: size(enum(small, medium, large)),
-              focus, hasValue, noLabel, disabled,
+              focus, hasValue, noLabel, disabled, isMadefor,
               status(enum(error, warning));
   -st-mixin: boxSizingMixin('border-box');
   position: relative;
   align-items: center;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
 }
 
 .root input {
@@ -34,7 +39,7 @@
 
 .label {
   -st-extends: Text;
-  transition:all .2s ease-in-out;
+  transition: all .2s value(ease-8);
   position: absolute;
   top: 6px;
   padding: 0;
@@ -127,17 +132,27 @@
   -st-mixin: text-small-normal;
 }
 
+.root:size(small):isMadefor input {
+  -st-mixin: text-small-thin;
+}
+
 .root:size(medium) input,
 .root:size(large) input {
   -st-mixin: text-medium-normal;
 }
+
+.root:size(medium):isMadefor input,
+.root:size(large):isMadefor input {
+  -st-mixin: text-medium-thin;
+}
+
 
 /* Focus */
 .root:focus input,
 .root:hasValue input,
 .root:noLabel input {
   border-bottom: 0;
-  transition: opacity .3s ease-in-out;
+  transition: opacity .3s value(ease-8);
   opacity: 1;
 }
 
@@ -146,6 +161,12 @@
 .root:noLabel .label {
   -st-mixin: text-tiny-normal;
   top: -12px;
+}
+
+.root:focus:isMadefor .label,
+.root:hasValue:isMadefor .label,
+.root:noLabel:isMadefor .label {
+  -st-mixin: text-tiny-thin;
 }
 
 .root:focus .border::before,

@@ -11,6 +11,8 @@ export interface CarouselProps {
   dataHook?: string;
   className?: string;
   images?: CarouselImage[];
+  imagesPosition?: React.CSSProperties['objectPosition'];
+  imagesFit?: React.CSSProperties['objectFit'];
   buttonSkin?: IconButtonSkin;
   infinite?: boolean;
   autoplay?: boolean;

@@ -6,11 +6,11 @@ export const ExampleYearMonths = `class YearMonthsCalendarExample extends React.
         excludePastDates: true,
       };
     }
-  
+
     onChange(date) {
       this.setState({ date });
     }
-  
+
     render() {
       return (
         <Calendar
@@ -24,36 +24,36 @@ export const ExampleYearMonths = `class YearMonthsCalendarExample extends React.
   }`;
 
 export const ExampleStandard = `class ControlledCalendarExample extends React.Component {
-  
+
     state = {
       value: { from: new Date('2018/11/14'), to: new Date('2018/11/18') },
       excludePastDates: false,
-      twoMonths: false,
+      numOfMonths: 1,
       selectionMode: 'range',
     };
-    
+
     onChange = value => {
       this.setState({ value });
     }
-  
+
     onMonthChange = value => {
       this.setState({ month: value });
     }
-  
+
     toggleExclude = ()=> {
       this.setState(({ excludePastDates }) => ({
         excludePastDates: !excludePastDates,
       }));
     }
-  
+
     toggleSelectionMode = ()=> {
       this.setState({
         selectionMode: this.state.selectionMode === 'day' ? 'range' : 'day',
       });
     }
-  
+
     render() {
-      const {excludePastDates, value, month, selectionMode, twoMonths} = this.state
+      const {excludePastDates, value, month, selectionMode, numOfMonths} = this.state
       return (
         <div>
           <Calendar
@@ -63,7 +63,7 @@ export const ExampleStandard = `class ControlledCalendarExample extends React.Co
             value={value}
             month={month}
             selectionMode={selectionMode}
-            twoMonths={twoMonths}
+            numOfMonths={numOfMonths}
           />
           <div style={{ display: 'flex' }}>
             <ToggleSwitch

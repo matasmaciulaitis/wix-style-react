@@ -4,6 +4,7 @@ import { PopoverCommonProps } from '../common';
 
 export type DatePickerStatus = 'error' | 'warning' | 'loading';
 export interface DatePickerProps extends CalendarProps {
+  className?: string;
   customInput?: React.ReactNode;
   inputProps?: {};
   dateFormat?: string | Function;

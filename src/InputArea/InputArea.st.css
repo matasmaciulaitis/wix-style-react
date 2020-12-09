@@ -12,7 +12,7 @@
 
 :import {
   -st-from: '../Foundation/stylable/typography.st.css';
-  -st-named: text-small-normal, text-medium-normal;
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
 }
 
 :import {
@@ -21,7 +21,7 @@
 }
 
 .root {
-  -st-states: disabled, size(enum(small, medium, normal)), resizable,
+  -st-states: isMadefor, disabled, size(enum(small, medium, normal)), resizable,
     status(enum(error, warning, loading)), hasFocus, forceHover, readOnly;
 
   -st-mixin: boxSizingMixin('border-box');
@@ -66,10 +66,20 @@
   -st-mixin: text-small-normal;
 }
 
+.root:size(small):isMadefor textarea {
+  -st-mixin: text-small-thin;
+}
+
 .root,
 .root:size(medium) textarea,
 .root:size(normal) textarea {
   -st-mixin: text-medium-normal;
+}
+
+.root:isMadefor,
+.root:size(medium):isMadefor textarea,
+.root:size(normal):isMadefor textarea {
+  -st-mixin: text-medium-thin;
 }
 
 .root textarea::selection {

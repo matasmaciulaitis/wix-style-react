@@ -111,3 +111,91 @@ export const variableWidthExample = `
   <Box width="350px" height="100px" backgroundColor="blue" />
 </Carousel>
 `;
+
+export const imagesPositionExample = `
+<Carousel
+  imagesPosition="middle"
+  images={[
+    {
+      src:
+        'https://static.wixstatic.com/media/11062b_536b8e53eb3c4dcb9c22d6637f2151eb~mv2.jpg',
+    },
+    {
+      src:
+        'https://static.wixstatic.com/media/34e014437d48427abc101826cc1a06c5.jpg',
+    },
+    {
+      src:
+        'https://static.wixstatic.com/media/11062b_a958b47908bf413fb6eb65874c0ba2aa~mv2.jpeg',
+    },
+  ]}
+/>
+`;
+
+export const imagesFitExample = `
+() => {
+  const images = [
+    {
+      src:
+        'https://static.wixstatic.com/media/11062b_536b8e53eb3c4dcb9c22d6637f2151eb~mv2.jpg',
+    },
+    {
+      src:
+        'https://static.wixstatic.com/media/34e014437d48427abc101826cc1a06c5.jpg',
+    },
+    {
+      src:
+        'https://static.wixstatic.com/media/11062b_a958b47908bf413fb6eb65874c0ba2aa~mv2.jpeg',
+    },
+  ];
+  return (
+    <Layout>
+      <Cell span={6}>
+        <Box marginBottom="SP2">
+          <Heading appearance="H3">Contain</Heading>
+        </Box>
+        <Carousel
+          imagesFit="contain"
+          images={images}
+        />
+      </Cell>
+      <Cell span={6}>
+        <Box marginBottom="SP2">
+          <Heading appearance="H3">Cover</Heading>
+        </Box>
+        <Carousel
+          imagesFit="cover"
+          images={images}
+        />
+      </Cell>
+      <Cell span={6}>
+        <Box marginBottom="SP2">
+          <Heading appearance="H3">Fill</Heading>
+        </Box>
+        <Carousel
+          imagesFit="fill"
+          images={images}
+        />
+      </Cell>
+      <Cell span={6}>
+        <Box marginBottom="SP2">
+          <Heading appearance="H3">None</Heading>
+        </Box>
+        <Carousel
+          imagesFit="none"
+          images={images}
+        />
+      </Cell>
+      <Cell span={6}>
+        <Box marginBottom="SP2">
+          <Heading appearance="H3">Scale Down</Heading>
+        </Box>
+        <Carousel
+          imagesFit="scale-down"
+          images={images}
+        />
+      </Cell>
+    </Layout>
+  );
+}
+`;

@@ -47,6 +47,9 @@ function DropdownBaseWithAllProps() {
       animate
       fluid
       focusOnSelectedOption
+      infiniteScroll
+      loadMore={()=>{}}
+      hasMore
     />
   );
 }

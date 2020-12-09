@@ -21,7 +21,7 @@
 }
 
 .root {
-  -st-states: hidePlaceholder, disabled, hasError, hasWarning;
+  -st-states: hidePlaceholder, disabled, hasError, hasWarning, isMadefor;
   min-height: value(minHeight);
   min-width: value(minWidth);
   background-color: value(backgroundColor);
@@ -34,6 +34,10 @@
   pointer-events: none;
   color: value(D40);
   -st-mixin: text-medium-normal;
+}
+
+.root:isMadefor :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-medium-thin;
 }
 
 .root:disabled :global(.public-DraftEditorPlaceholder-root) {

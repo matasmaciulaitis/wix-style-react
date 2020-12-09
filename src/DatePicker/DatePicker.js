@@ -10,7 +10,7 @@ import DateInput from './DateInput';
 import { PopoverCommonProps } from '../common/PropTypes/PopoverCommon';
 import deprecationLog from '../utils/deprecationLog';
 
-import { classes } from './DatePicker.st.css';
+import { st, classes } from './DatePicker.st.css';
 import { dataHooks } from './constants';
 
 /**
@@ -182,6 +182,7 @@ export default class DatePicker extends React.PureComponent {
 
   render() {
     const {
+      className,
       showMonthDropdown,
       showYearDropdown,
       filterDate,
@@ -207,6 +208,7 @@ export default class DatePicker extends React.PureComponent {
 
     const calendarProps = {
       dataHook: dataHooks.datePickerCalendar,
+      className: classes.calendar,
       locale,
       showMonthDropdown,
       showYearDropdown,
@@ -223,7 +225,7 @@ export default class DatePicker extends React.PureComponent {
 
     return (
       <div
-        className={classes.root}
+        className={st(classes.root, className)}
         data-hook={dataHook}
         style={{ width: width }}
       >
@@ -260,6 +262,9 @@ export default class DatePicker extends React.PureComponent {
 
 DatePicker.propTypes = {
   ...Calendar.propTypes,
+
+  /** A single CSS class name to be appended to the root element. */
+  className: PropTypes.string,
 
   /** Can provide Input with your custom props. If you don't need a custom input element, and only want to pass props to the Input, then use inputProps prop. I think this is not in use outside of WSR, and can be deprecated. */
   customInput: PropTypes.node,

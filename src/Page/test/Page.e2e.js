@@ -149,14 +149,25 @@ describe('Page', () => {
       });
     });
 
-    describe('2. Stretch Vertically', () => {
+    describe('2. With Footer', () => {
       eyes.it('should not have scroll', async () => {
         await initTest({
-          storyUrl: testScrollStoryUrl('2. Stretch Vertically'),
+          storyUrl: testScrollStoryUrl('2. With Footer'),
           dataHook,
         });
         await privateDriver.scrollVertically(ENOUGH_SCROLL_TO_MINIMIZE);
         expect(await privateDriver.getVerticalScroll()).toBe(0);
+      });
+    });
+
+    describe('2. With Footer - scroll', () => {
+      eyes.it('should have scroll', async () => {
+        await initTest({
+          storyUrl: testScrollStoryUrl('2. With Footer - scroll'),
+          dataHook,
+        });
+        await privateDriver.scrollVertically(ENOUGH_SCROLL_TO_MINIMIZE);
+        expect(await privateDriver.getVerticalScroll()).toBe(200);
       });
     });
 

@@ -13,6 +13,11 @@
   -st-named: s5, s6, s7;
 }
 
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9, speed-fast-1;
+}
+
 .root {
   -st-extends:ButtonNext;
   -st-states: skin(string), size(string);
@@ -27,8 +32,8 @@
   border: none;
   outline: none;
 
-  transition-duration: 100ms;
-  transition-timing-function: linear;
+  transition-duration: value(speed-fast-1);
+  transition-timing-function: value(ease-9);
   transition-property: background-color, color, border-color;
 
   border-color: transparent;
