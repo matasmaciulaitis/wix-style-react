@@ -1,0 +1,9 @@
+.root {
+  -st-states: focus, focus-visible;
+}
+
+.root:focus {
+}
+
+.root:focus-visible {
+}
