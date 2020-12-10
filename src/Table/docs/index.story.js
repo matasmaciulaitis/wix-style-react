@@ -19,7 +19,7 @@ import compoundReadmeApi from './COMPOUND_README.API.md';
 import contextReadmeApi from './CONTEXT_README.API.md';
 import testkitReadme from './README.TESTKIT.md';
 
-import TableExampleRaw from '!raw-loader!./examples/TableExample';
+import TableStructureExample from '!raw-loader!./examples/TableExample';
 import TableRowDetailsExampleRaw from '!raw-loader!./examples/TableRowDetailsExample';
 import TableSkinNeutralExample from '!raw-loader!./examples/TableSkinNeutralExample';
 import TableToolbarExampleRaw from '!raw-loader!./examples/TableToolbarExample';
@@ -125,9 +125,8 @@ export default {
 
           ...[
             {
-              title: 'Plain Example',
-              description: 'A basic table with data.',
-              source: TableExampleRaw,
+              title: 'Structure',
+              source: TableStructureExample,
               compact: true,
             },
             {
