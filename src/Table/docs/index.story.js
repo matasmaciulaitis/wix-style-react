@@ -130,8 +130,9 @@ export default {
               compact: true,
             },
             {
-              title: 'Table Skin',
-              description: 'Supports standard and neutral.',
+              title: 'Skin',
+              description:
+                'Component supports two skins: standard and neutral.',
               source: TableSkinNeutralExample,
               compact: true,
             },
