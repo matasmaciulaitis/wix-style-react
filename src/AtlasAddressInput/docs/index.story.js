@@ -20,6 +20,7 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import AtlasAddressInput from '..';
 
+// We've set up a mock Atlas api in Storybook middleware file
 const BASE_URL = '/api/';
 const MockAtlasAddressInput = props => (
   <AtlasAddressInput baseUrl={BASE_URL} {...props} />
