@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import AddressInput from '../AddressInput';
 import { addressInputOptionBuilder } from '../AddressInputOption/AddressInputOption';
 import usePlacesAutocomplete from '../hooks/usePlacesAutocomplete';
@@ -49,6 +50,12 @@ const AtlasAddressInput = ({ baseUrl, onChange, onClear, ...props }) => {
       {...props}
     />
   );
+};
+
+AtlasAddressInput.propTypes = {
+  ...AddressInput.propTypes,
+  /** Custom domain for WixAtlasServiceWeb to retreive predictions from  */
+  baseUrl: PropTypes.string,
 };
 
 export default AtlasAddressInput;

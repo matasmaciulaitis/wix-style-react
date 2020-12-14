@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
-import debounce from 'lodash/debounce';
 import Input from '../Input';
 
 /** AddressInput */
@@ -15,19 +14,10 @@ class AddressInput extends React.PureComponent {
     };
   }
 
-  // _debouncedOnChange =
-  //   this.props.onChange &&
-  //   debounce(this.props.onChange, this.props.debounceDuration, {
-  //     leading: true,
-  //   });
-
   _onChange = event => {
     this.setState({
       inputValue: event.target.value,
     });
-    // if (this._debouncedOnChange) {
-    //   this._debouncedOnChange(event);
-    // }
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -54,7 +44,6 @@ class AddressInput extends React.PureComponent {
   };
 
   render() {
-    const { inputValue } = this.state;
     const {
       dataHook,
       className,
@@ -63,7 +52,11 @@ class AddressInput extends React.PureComponent {
       clearButton,
       options,
       status,
+      value: controlledValue,
     } = this.props;
+    const { inputValue } = this.state;
+
+    const value = controlledValue !== undefined ? controlledValue : inputValue;
 
     return (
       <InputWithOptions
@@ -74,7 +67,7 @@ class AddressInput extends React.PureComponent {
         size={size}
         options={options}
         onSelect={this._onSelect}
-        value={inputValue}
+        value={value}
         onClear={this._onClear}
         status={status}
         menuArrow={false}
@@ -105,13 +98,13 @@ AddressInput.propTypes = {
   /** The initial input value */
   initialValue: PropTypes.string,
 
+  /** Controlled mode - value to display */
+  value: PropTypes.string,
+
   /** Handler for address selection changes */
   onSelect: PropTypes.func,
 
-  /** The debounce wait time for input changes. 0 to cancel debounce (useful when you already have a debounced api call) */
-  debounceDuration: PropTypes.number,
-
-  /** Debounced handler for input changes */
+  /** Handler for input changes */
   onChange: PropTypes.func,
 
   /** The list of options to render. When the option is an {optionProps}, the <AddressInput.Option/> component will be rendered on behalf of the user. */

@@ -12,13 +12,19 @@ import {
   api,
   testkit,
 } from 'wix-storybook-utils/Sections';
+import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 
+import * as examples from './examples';
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
 import AtlasAddressInput from '..';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const example = config =>
+  baseExample({
+    components: { ...allComponents, WixAtlasServiceWeb },
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
@@ -59,7 +65,15 @@ export default {
           example({
             title: 'Simple Usage',
             text: 'A simple example.',
-            source: `<AtlasAddressInput baseUrl="/api/" />`,
+            source: examples.simple,
+          }),
+
+          example({
+            title: 'Controlled',
+            text: `You can pass a \`value\` prop to control the value of input.\n
+Using the \`onSelect\` prop, we can fetch additional data based on selected place\n
+and set custom value on selection.`,
+            source: examples.controlled,
           }),
         ],
       }),

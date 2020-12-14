@@ -6,7 +6,10 @@ export interface AddressInputProps {
   className?: string;
   clearButton?: boolean;
   initialValue?: string;
-  onSelect?: (option: AddressInputOption) => void;
+  onSelect?: (
+    option: AddressInputOption,
+    setInputValue: (value: string) => void,
+  ) => void;
   debounceDuration?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   options?: AddressInputOption[];

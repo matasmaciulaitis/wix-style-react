@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const {
   aListPredictionsResponse,
   aV2Prediction: aPrediction,
+  aV2GetPlaceResponse,
+  aV2Place: aPlace,
+  aCommonAddress,
 } = require('@wix/ambassador-wix-atlas-service-web/builders');
 
 const buildAtlasAutocompleteResponse = input => {
@@ -32,6 +35,20 @@ const buildAtlasAutocompleteResponse = input => {
   return response;
 };
 
+const buildAtlasPlaceResponse = id => {
+  const address = aCommonAddress()
+    .withPostalCode(`0651${id}`)
+    .build();
+  const place = aPlace()
+    .withPlaceId(id)
+    .withAddress(address)
+    .build();
+  const response = aV2GetPlaceResponse()
+    .withPlace(place)
+    .build();
+  return response;
+};
+
 const expressMiddleWare = function(router) {
   router.use(bodyParser.urlencoded({ extended: false }));
   router.use(bodyParser.json());
@@ -40,6 +57,13 @@ const expressMiddleWare = function(router) {
       query: { input },
     } = req;
     res.json(buildAtlasAutocompleteResponse(input));
+    res.end();
+  });
+  router.get('/api/v2/place', function(req, res) {
+    const {
+      query: { searchId },
+    } = req;
+    res.json(buildAtlasPlaceResponse(searchId));
     res.end();
   });
 };
