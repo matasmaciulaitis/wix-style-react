@@ -1,8 +1,7 @@
-export const simple = `<AtlasAddressInput baseUrl="/api/" />`;
+export const simple = `<AtlasAddressInput />`;
 export const controlled = `
 class MyAddressInput extends React.Component {
-  baseUrl = '/api/';
-  placesService = WixAtlasServiceWeb(this.baseUrl).PlacesServiceV2();
+  placesService = WixAtlasServiceWeb().PlacesServiceV2();
 
   state = {
     value: '',
@@ -20,13 +19,15 @@ class MyAddressInput extends React.Component {
     this.setState({ value: event.target.value });
   }
 
+  _onClear = () => this.setState({ value: '' });
+
   render() {
     const { value } = this.state;
 
     return (
       <AtlasAddressInput
-        baseUrl={this.baseUrl}
         onChange={this._onChange}
+        onClear={this._onClear}
         onSelect={this._setAddressPostalCode}
         value={value}
       />

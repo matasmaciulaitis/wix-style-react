@@ -20,9 +20,19 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import AtlasAddressInput from '..';
 
+const BASE_URL = '/api/';
+const MockAtlasAddressInput = props => (
+  <AtlasAddressInput baseUrl={BASE_URL} {...props} />
+);
+const MockWixAtlasServiceWeb = WixAtlasServiceWeb.bind(null, BASE_URL);
+
 const example = config =>
   baseExample({
-    components: { ...allComponents, WixAtlasServiceWeb },
+    components: {
+      ...allComponents,
+      AtlasAddressInput: MockAtlasAddressInput,
+      WixAtlasServiceWeb: MockWixAtlasServiceWeb,
+    },
     ...config,
   });
 
