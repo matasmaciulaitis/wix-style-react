@@ -18,6 +18,9 @@ Types of changes:
 ### Added
 - Add Atlas autocomplete client [#6377](https://github.com/wix/wix-style-react/pull/6377)
 
+### Fixed
+- `<Radio />` - fix stylable warning [#6394] (https://github.com/wix/wix-style-react/pull/6394)
+
 ## 9.53.0 - 2020-12-14
 ### Added
 - `<CustomModal/>` - Expose title typography [#6380](https://github.com/wix/wix-style-react/pull/6380)
