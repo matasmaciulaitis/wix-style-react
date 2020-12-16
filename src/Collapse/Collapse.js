@@ -1,33 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Animator } from 'wix-animations';
-
-// Returns the height of element including vertical margin
-export const getElementHeight = wrapper => element => {
-  const offsetTop = wrapper
-    ? element.getBoundingClientRect().y - wrapper.getBoundingClientRect().y
-    : 0;
-  const marginBottom = parseInt(
-    window.getComputedStyle(element).getPropertyValue('margin-bottom') || 0,
-    10,
-  );
-
-  return element.scrollHeight + offsetTop + marginBottom;
-};
+import ReactCollapse from '@kunukn/react-collapse';
 
 /** `<Collapse/>` component is used for hideable content.
  *
  * Easily create accordions or within `<Card/>` to collapse its `<Card.Content/>`.
  */
 const Collapse = ({ children, open, dataHook }) => {
-  const wrapperRef = useRef();
   return (
-    <div data-hook={dataHook} ref={wrapperRef}>
-      <Animator
-        show={open}
-        height={getElementHeight(wrapperRef.current)}
-        children={children}
-      />
+    <div data-hook={dataHook}>
+      <ReactCollapse isOpen={open} transition="height 300ms" overflowOnExpanded>
+        {state => state !== 'collapsed' && children}
+      </ReactCollapse>
     </div>
   );
 };

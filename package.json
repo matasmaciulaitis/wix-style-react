@@ -198,6 +198,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "@date-fns/upgrade": "^1.0.3",
+    "@kunukn/react-collapse": "^2.2.9",
     "@loadable/component": "^5.14.1",
     "@stylable/dom-test-kit": "^3.11.5",
     "@types/color": "^2.0.1",
