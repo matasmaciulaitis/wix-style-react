@@ -1,5 +1,3 @@
-import './stories.scss';
-
 function getStories() {
   const stories = [];
   if (global.self === global.top) {
