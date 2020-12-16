@@ -1,24 +1,20 @@
 import * as React from 'react';
-import { addDecorator, addParameters, configure } from '@storybook/react';
+
+import { create } from '@storybook/theming/create'; // need /create?!
+
+import { version } from '../package.json';
 import { withI18n } from 'storybook-addon-i18n';
 import MadeforToggle from './addons/MadeforToggle';
 import ThemeWSR from './addons/ThemeWSR';
-import { version } from '../package.json';
-import { create } from '@storybook/theming';
 
-function loadStories() {
-  require('./stories.scss');
-  require('../stories');
-}
-
+// Parameters
 const theme = create({
   base: 'light',
   brandTitle: `Wix Style React ${version}`,
   brandUrl: 'https://github.com/wix/wix-style-react',
 });
 
-// Parameters
-addParameters({
+export const parameters = {
   options: {
     theme,
     showPanel: false,
@@ -32,11 +28,11 @@ addParameters({
     providerLocaleKey: 'locale',
     getDirection: locale => locale.toLowerCase(),
   },
-});
+};
 
 // Decorators
-addDecorator(withI18n);
-addDecorator(MadeforToggle);
-addDecorator(ThemeWSR);
-
-configure(loadStories, module);
+export const decorators = [
+  withI18n,
+  MadeforToggle,
+  ThemeWSR
+];
