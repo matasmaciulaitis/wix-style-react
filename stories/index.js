@@ -43,7 +43,6 @@ require('../src/ColorInput/docs/index.story');
 require('../src/ColorPicker/docs/index.story');
 require('../src/ComposerHeader/docs/index.story');
 require('../src/ComposerSidebar/docs/index.story');
-require('../src/ContactItemBuilder/docs');
 require('../src/CopyClipboard/docs/index.story');
 require('../src/CounterBadge/docs/index.story');
 require('../src/CustomModalLayout/docs/index.story');
@@ -57,7 +56,6 @@ require('../src/Dropzone/docs/index.story');
 require('../src/EditableSelector/docs/index.story');
 require('../src/EditableTitle/docs/index.story');
 require('../src/EmptyState/docs/index.story');
-require('../src/EndorseContentLayout/docs');
 require('../src/FacesRatingBar/docs/index.story');
 require('../src/FeatureList/docs/index.story');
 require('../src/FilePicker/docs/index.story');
@@ -97,13 +95,11 @@ require('../src/MarketingLayout/docs/index.story');
 require('../src/MarketingPageLayout/docs/index.story');
 require('../src/MarketingPageLayoutContent/docs/index.story');
 require('../src/MediaOverlay/docs/index.story');
-require('../src/MessageBox/FunctionalLayout/docs/index.story');
 require('../src/MessageModalLayout/docs/index.story');
 require('../src/MobilePreviewWidget/docs/index.story');
 require('../src/Modal/docs/index.story');
 require('../src/ModalMobileLayout/docs/index.story');
 require('../src/ModalPreviewLayout/docs/index.story');
-require('../src/ModalSelectorLayout/docs/index.story');
 require('../src/MultiSelect/docs/index.story');
 require('../src/MultiSelectCheckbox/docs/index.story');
 require('../src/NoBorderInput/docs/index.story');
@@ -208,11 +204,6 @@ require('./Sidebar/index.story'); // 6.1 Sidebar
 require('./Tooltip/index.story'); // 7.1 Tooltip
 require('./PopoverMenu/index.story'); // 7.3 PopoverMenu
 
-// 9. Modals
-// require('../src/CustomModalLayout/docs/design.story'); // 9.3 Custom Modal (WIP)
-require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
-require('../src/MessageBox/docs');
-
 // Internal
 require('../src/AddressInput/docs/index.story');
 require('../src/LabelledElement/docs/index.story');
@@ -222,3 +213,13 @@ require('../src/Themes/editorX/docs');
 
 // BusinessDashboard
 require('../src/Themes/businessDashboard/docs');
+
+// Deprecated
+require('../src/ContactItemBuilder/docs');
+require('../src/EndorseContentLayout/docs');
+require('../src/MessageBox/FunctionalLayout/docs/index.story');
+require('../src/ModalSelectorLayout/docs/index.story');
+//    9. Modals
+//    require('../src/CustomModalLayout/docs/design.story'); // 9.3 Custom Modal (WIP)
+require('../src/MessageBox/docs');
+require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
