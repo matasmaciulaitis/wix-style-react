@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { create } from '@storybook/theming/create'; // need /create?!
+import { create } from '@storybook/theming/create';
 
 import { version } from '../package.json';
 import { withI18n } from 'storybook-addon-i18n';
