@@ -145,6 +145,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Highlighted Rows',
+              description:
+                'Rows can be highlighted according to a certain logic.',
+              source: TableHighlightedRowsExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Table with Toolbar',
               description:
                 'This is a basic table that implements a toolbar using `<Table.ToolbarContainer/>` - which receives the SelectionContext (`showSelection` is true in order to enable the selection). Notice that the whole table is wrapped by `<Card/>` so that the toolbar seems like part of the table. In addition, we render the main toolbar when there are no selected rows, and an actions toolbar when some rows are selected. ' +
@@ -212,13 +219,6 @@ export default {
               description:
                 'When `infiniteScroll` (see the previous example) and `showSelection` are set, and the data is not fully loaded yet (`hasMore` is `true`), and then the user clicks the bulk selection checkbox, by default only loaded items are selected. If `totalSelectableCount` is set, then when the bulk selection checkbox is clicked before all the data is loaded, the grid enters an "infinite bulk selection" mode. It assumes all items are selected, and it only keeps track of the items manually unselected by the user. Newly loaded items are being selected by default. `SelectionContext.selectedCount` will be updated based on the `totalSelectableCount` prop.',
               source: TableInfiniteScrollWithBulkSelectionExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with Highlighted Rows',
-              description:
-                'This example demonstrates how to highlight rows according to some logic.',
-              source: TableHighlightedRowsExampleRaw,
               compact: true,
             },
             {
