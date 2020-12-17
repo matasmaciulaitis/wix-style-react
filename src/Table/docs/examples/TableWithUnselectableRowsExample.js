@@ -3,11 +3,10 @@
 class TableWithUnselectableRowsExample extends React.Component {
   state = {
     data: [
-      { type: 'Folder', name: 'In Progress', unselectable: true },
-      { type: 'Folder', name: 'Premium', unselectable: true },
-      { type: 'Site', name: 'My Blog' },
-      { type: 'Site', name: 'My Events' },
-      { type: 'Site', name: 'My Bookings' },
+      { category: 'All posts', posts: '123 posts', unselectable: true },
+      { category: 'Business', posts: '76 posts' },
+      { category: 'Culture', posts: '342 posts' },
+      { category: 'History', posts: '1024 posts' },
     ],
   };
 
@@ -17,8 +16,9 @@ class TableWithUnselectableRowsExample extends React.Component {
         <Table
           data={this.state.data}
           columns={[
-            { title: 'Name', render: row => row.name },
-            { title: 'Type', render: row => row.type },
+            { title: 'Name', render: row => row.category },
+            { title: 'Type', render: row => row.posts },
+            { render: row => <TableActionCell secondaryActions={[{}]} /> },
           ]}
           showSelection
         />

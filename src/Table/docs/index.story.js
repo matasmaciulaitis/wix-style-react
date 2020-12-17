@@ -159,6 +159,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Unselectable Rows',
+              description:
+                'Restrict row selection by using `unselectable` prop.',
+              source: TableWithUnselectableRowsExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Table with Toolbar',
               description:
                 'This is a basic table that implements a toolbar using `<Table.ToolbarContainer/>` - which receives the SelectionContext (`showSelection` is true in order to enable the selection). Notice that the whole table is wrapped by `<Card/>` so that the toolbar seems like part of the table. In addition, we render the main toolbar when there are no selected rows, and an actions toolbar when some rows are selected. ' +
@@ -233,13 +240,6 @@ export default {
               description:
                 'This is an example of having a custom bulk selection checkbox in the table toolbar using the `<Table.BulkSelectionCheckbox>` component.',
               source: TableBulkSelectionCheckboxExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with unselectable rows',
-              description:
-                'You can make a table row unselectable (so no checkbox appears for it in the selection column) by setting `unselectable: true` for the row.',
-              source: TableWithUnselectableRowsExampleRaw,
               compact: true,
             },
           ].map(code),
