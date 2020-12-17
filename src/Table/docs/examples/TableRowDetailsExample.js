@@ -43,7 +43,6 @@ class TableRowDetailsExample extends React.Component {
             render: row =>
               row.expandable ? (
                 <TableActionCell
-                  dataHook="story-primary-blue"
                   primaryAction={{
                     text: !row.expanded ? 'Expand' : 'Collapse',
                     skin: 'inverted',
