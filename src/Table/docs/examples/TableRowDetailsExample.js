@@ -3,19 +3,29 @@
 class TableRowDetailsExample extends React.Component {
   state = {
     data: [
-      { firstName: 'Meghan', lastName: 'Bishop', expandable: true },
-      { firstName: 'Sara', lastName: 'Porter', expandable: false },
-      { firstName: 'Deborah', lastName: 'Rhodes', expandable: true },
-      { firstName: 'Walter', lastName: 'Jenning', expandable: true },
+      {
+        task: 'Upload New Collection Products',
+        date: '23 Sep 2020',
+        expandable: true,
+        expanded: false, 
+      },
+      { task: 'Q3 Sales Results Doc', date: '31 Oct 2020', expandable: false },
+      {
+        task: 'Staff Performace Reviews',
+        date: '12 Oct 2020',
+        expandable: true,
+        expanded: false,
+      },
+      { task: 'Budget Planning', date: '24 Nov 2020', expandable: true, expanded: false, },
     ],
   };
 
   renderRowDetails(row) {
-    if(row.expandable) {
+    if (row.expandable) {
       return (
         <Box padding="20px">
           <Text>
-            {`This is an expandible space where you see the row details for ${row.firstName} ${row.lastName}.`}
+            {`This is an expandable space where you see the row details for ${row.task} with a due date of ${row.date}.`}
           </Text>
         </Box>
       );
@@ -27,17 +37,21 @@ class TableRowDetailsExample extends React.Component {
       <Table
         data={this.state.data}
         columns={[
-          { title: 'First', render: row => row.firstName },
-          { title: 'Last', render: row => row.lastName },
+          { title: 'Task', render: row => row.task },
+          { title: 'Due Date', render: row => row.date },
           {
-            title: 'expandable',
             render: row =>
               row.expandable ? (
-                <Badge size="small">Expandable</Badge>
+                <TableActionCell
+                  dataHook="story-primary-blue"
+                  primaryAction={{
+                    text: !row.expanded ? 'Expand' : 'Collapse',
+                    skin: 'inverted',
+                    onClick: row.expanded = !row.expanded,
+                  }}
+                />
               ) : (
-                <Badge size="small" skin="danger">
-                  Not Expandable
-                </Badge>
+                ''
               ),
           },
         ]}

@@ -152,6 +152,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Expandable Rows',
+              description:
+                'Make the row expandable using `renderRowDetails` prop.',
+              source: TableRowDetailsExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Table with Toolbar',
               description:
                 'This is a basic table that implements a toolbar using `<Table.ToolbarContainer/>` - which receives the SelectionContext (`showSelection` is true in order to enable the selection). Notice that the whole table is wrapped by `<Card/>` so that the toolbar seems like part of the table. In addition, we render the main toolbar when there are no selected rows, and an actions toolbar when some rows are selected. ' +
@@ -191,13 +198,6 @@ export default {
               description:
                 'Horizontal scroll can be enabled by providing `horizontalScroll` prop and defining `width` prop for all table columns. Combined column size should exceed available table size. In addition, you can "sticky" a number of columns from the left using `stickyColumns` prop. Sticky columns will remain and will not scroll with the rest of table columns.',
               source: TableStickyScrollExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with Expandable Rows',
-              description:
-                'A table with expandable rows. A row is expandable using the `renderRowDetails` prop.',
-              source: TableRowDetailsExampleRaw,
               compact: true,
             },
             {
