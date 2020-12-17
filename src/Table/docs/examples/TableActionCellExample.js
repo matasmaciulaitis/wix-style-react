@@ -3,10 +3,10 @@
 class TableActionCellExample extends React.Component {
   state = {
     data: [
-      { firstName: 'Meghan', lastName: 'Bishop' },
-      { firstName: 'Sara', lastName: 'Porter' },
-      { firstName: 'Deborah', lastName: 'Rhodes' },
-      { firstName: 'Walter', lastName: 'Jenning' },
+      { member: 'Meghan Bishop', email: 'meghan.bishop@gmail.com' },
+      { member: 'Sara Porter', email: 's.porter@yahoo.com' },
+      { member: 'Deborah Rhodes', email: 'deborahmariarhodes@gmail.com' },
+      { member: 'Walter Jenning', email: 'walter.jenning@carrental.com' },
     ],
   };
 
@@ -15,8 +15,8 @@ class TableActionCellExample extends React.Component {
       <Table
         data={this.state.data}
         columns={[
-          { title: 'First', render: row => row.firstName },
-          { title: 'Last', render: row => row.lastName },
+          { title: 'Member', render: row => row.member },
+          { title: 'Email', render: row => row.email },
           {
             title: '',
             render: rowData => (
@@ -25,28 +25,28 @@ class TableActionCellExample extends React.Component {
                 primaryAction={{
                   text: 'Edit',
                   skin: 'standard',
-                  onClick: () => window.alert(`Editing ${rowData.firstName}`),
+                  onClick: () => window.alert(`Editing data of member ${rowData.member}`),
                 }}
                 secondaryActions={[
                   {
                     text: 'Star',
                     icon: <Icons.Star />,
-                    onClick: () => window.alert(`Starring ${rowData.firstName}`),
-                  },
-                  {
-                    text: 'Download',
-                    icon: <Icons.Download />,
-                    onClick: () => window.alert(`Downloading ${rowData.firstName}`),
+                    onClick: () => window.alert(`Starring data of member ${rowData.member}`),
                   },
                   {
                     text: 'Duplicate',
                     icon: <Icons.Duplicate />,
-                    onClick: () => window.alert(`Duplicating ${rowData.firstName}`),
+                    onClick: () => window.alert(`Duplicating data of member ${rowData.member}`),
+                  },
+                  {
+                    text: 'Download',
+                    icon: <Icons.Download />,
+                    onClick: () => window.alert(`Downloading data of member ${rowData.member}`),
                   },
                   {
                     text: 'Print',
                     icon: <Icons.Print />,
-                    onClick: () => window.alert(`Printing ${rowData.firstName}`),
+                    onClick: () => window.alert(`Printing data of member ${rowData.member}`),
                   },
                 ]}
                 // How many actions are visible, whereas the rest would be shown within a popover menu
