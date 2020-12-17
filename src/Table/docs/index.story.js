@@ -21,7 +21,7 @@ import testkitReadme from './README.TESTKIT.md';
 
 import TableStructureExample from '!raw-loader!./examples/TableExample';
 import TableRowDetailsExampleRaw from '!raw-loader!./examples/TableRowDetailsExample';
-import TableSkinNeutralExample from '!raw-loader!./examples/TableSkinNeutralExample';
+import TableSkinExample from '!raw-loader!./examples/TableSkinExample';
 import TableRowVerticalPaddingExample from '!raw-loader!./examples/TableRowVerticalPaddingExample';
 import TableToolbarExampleRaw from '!raw-loader!./examples/TableToolbarExample';
 import TableSubToolbarExampleRaw from '!raw-loader!./examples/TableSubToolbarExample';
@@ -134,7 +134,7 @@ export default {
               title: 'Skin',
               description:
                 'Component supports two skins: standard and neutral.',
-              source: TableSkinNeutralExample,
+              source: TableSkinExample,
               compact: true,
             },
             {

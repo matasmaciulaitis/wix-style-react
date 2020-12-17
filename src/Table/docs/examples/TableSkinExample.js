@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-class TableSkinNeutralExample extends React.Component {
+class TableSkinExample extends React.Component {
   state = {
     data: [{ item: 'Item 1' }, { item: 'Item 2' }, { item: 'Item 3' }],
   };
@@ -16,6 +16,9 @@ class TableSkinNeutralExample extends React.Component {
           >
             <Table.Content />
           </Table>
+          <Box align="center" padding="small">
+            <Text size="small">Standard Skin</Text>
+          </Box>
         </Cell>
         <Cell span={6}>
           <Table
@@ -25,9 +28,11 @@ class TableSkinNeutralExample extends React.Component {
           >
             <Table.Content />
           </Table>
+          <Box align="center" padding="small">
+            <Text size="small">Neutral Skin</Text>
+          </Box>
         </Cell>
       </Layout>
     );
   }
 }
-
