@@ -2,17 +2,16 @@
 
 class TableToolbarExample extends React.Component {
   data = [
-    { firstName: 'Meghan', lastName: 'Bishop', status: 'Single' },
-    { firstName: 'Sara', lastName: 'Porter', status: 'Married' },
-    { firstName: 'Deborah', lastName: 'Rhodes', status: "It's complicated" },
-    { firstName: 'Walter', lastName: 'Jenning', status: 'Married' },
-  ];
+      { name: 'Red Slippers', sku: 25232564, status: 'In Stock', price: '$14.00' },
+      { name: 'Velvet Hat', sku: 35246432, status: 'In Stock', price: '$29.00' },
+      { name: 'Silver Jeans', sku: 4864310, status: 'Out Of Stock', price: '$69.00' },
+      { name: 'Orange Socks', sku: 125156422, status: 'In Stock', price: '$7.00' },
+    ];
 
   filterOptions = [
     { id: '', value: 'All Statuses' },
-    { id: 'Single', value: 'Single' },
-    { id: 'Married', value: 'Married' },
-    { id: "It's complicated", value: "It's complicated" },
+    { id: 'In Stock', value: 'In Stock' },
+    { id: 'Out Of Stock', value: 'Out Of Stock' },
   ];
 
   state = {
@@ -22,12 +21,12 @@ class TableToolbarExample extends React.Component {
 
   _getFilteredData = () => {
     const { activeFilter, activeSearch } = this.state;
-    return this.data.filter(({ firstName, lastName, status }) => {
+    return this.data.filter(({ name, sku, status, price }) => {
       if (activeFilter && status !== activeFilter) {
         return false;
       }
 
-      const searchData = [firstName, lastName, status].join(' ').toLowerCase();
+      const searchData = [name, sku, status, price].join(' ').toLowerCase();
       const searchQuery = activeSearch.trim().toLowerCase();
       if (searchQuery && searchData.indexOf(searchQuery) === -1) {
         return false;
@@ -35,7 +34,7 @@ class TableToolbarExample extends React.Component {
 
       return true;
     });
-  }
+  };
 
   render() {
     const data = this._getFilteredData();
@@ -44,9 +43,10 @@ class TableToolbarExample extends React.Component {
         <Table
           data={data}
           columns={[
-            { title: 'First', render: row => row.firstName },
-            { title: 'Last', render: row => row.lastName },
-            { title: 'Status', render: row => row.status },
+            { title: 'Name', render: row => row.name },
+            { title: 'SKU', render: row => row.sku },
+            { title: 'Status', render: row => row.status},
+            { title: 'Status', render: row => row.price },
           ]}
           showSelection
         >
@@ -121,7 +121,9 @@ class TableToolbarExample extends React.Component {
           <Button
             skin="light"
             prefixIcon={<Icons.Upload />}
-            onClick={() => window.alert(`Exporting selectedIds=${getSelectedIds()}`)}
+            onClick={() =>
+              window.alert(`Exporting selectedIds=${getSelectedIds()}`)
+            }
           >
             Export
           </Button>
@@ -130,7 +132,9 @@ class TableToolbarExample extends React.Component {
           <Button
             skin="light"
             prefixIcon={<Icons.Duplicate />}
-            onClick={() => window.alert(`Duplicating selectedIds=${getSelectedIds()}`)}
+            onClick={() =>
+              window.alert(`Duplicating selectedIds=${getSelectedIds()}`)
+            }
           >
             Duplicate
           </Button>
@@ -139,7 +143,9 @@ class TableToolbarExample extends React.Component {
           <Button
             skin="light"
             prefixIcon={<Icons.Edit />}
-            onClick={() => window.alert(`Editing selectedIds=${props.getSelectedIds()}`)}
+            onClick={() =>
+              window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
+            }
           >
             Edit
           </Button>

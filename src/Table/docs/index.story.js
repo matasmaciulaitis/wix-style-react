@@ -195,10 +195,9 @@ export default {
               compact: true,
             },
             {
-              title: 'Table with Toolbar',
+              title: 'Toolbar',
               description:
-                'This is a basic table that implements a toolbar using `<Table.ToolbarContainer/>` - which receives the SelectionContext (`showSelection` is true in order to enable the selection). Notice that the whole table is wrapped by `<Card/>` so that the toolbar seems like part of the table. In addition, we render the main toolbar when there are no selected rows, and an actions toolbar when some rows are selected. ' +
-                'If you want to manually create the bulk selection ("Select All") UX in the table toolbar (or anywhere else), set `hideBulkSelectionCheckbox` prop and use `<Table.BulkSelectionCheckbox>` component to add bulk selection in another location (under `<Table>`) - see `Table with custom bulk selection checkbox` example.',
+                'Add a toolbar to the table using `<Table.ToolbarContainer/>`. Pass `SelectionContext` in order to enable selection. There are two types of a toolbar: main and actions toolbar. See `<TableToolbar/>` for more details.',
               source: TableToolbarExampleRaw,
               compact: true,
             },
