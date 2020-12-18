@@ -2,7 +2,46 @@
 
 class TableSubToolbarExample extends React.Component {
   state = {
-    data: this._simulateData(),
+    data: [
+      {
+        name: `Red Slippers`,
+        SKU: '0231664667',
+        price: '$14.00',
+        inventory: 'In Stock',
+        collectionId: 1,
+      },
+      {
+        name: `Velvet Hat`,
+        SKU: '0231664669',
+        price: '$23.00',
+        inventory: 'In Stock',
+        collectionId: 1,
+        filterId: 2,
+      },
+      {
+        name: `Silver Jeans`,
+        SKU: '0231664667',
+        price: '$69.00',
+        inventory: 'In Stock',
+        collectionId: 2,
+      },
+      {
+        name: `Orange Stocks`,
+        SKU: '0231664671',
+        price: '$9.00',
+        inventory: 'Out Of Stock',
+        collectionId: 2,
+        filterId: 1,
+      },
+      {
+        name: `Black T-shirts`,
+        SKU: '0231664672',
+        price: '$19.00',
+        inventory: 'In Stock',
+        collectionId: 2,
+        filterId: 1,
+      },
+    ],
     collectionId: 0,
     filterId: 0,
     searchTerm: '',
@@ -13,7 +52,7 @@ class TableSubToolbarExample extends React.Component {
     const filteredData = this._getFilteredData();
 
     return (
-      <Page height='600px'>
+      <Page height="600px">
         <Page.Header title="My Table" />
         <Page.Content>
           <Table
@@ -22,7 +61,9 @@ class TableSubToolbarExample extends React.Component {
               {
                 title: 'Name',
                 render: row => (
-                  <Highlighter match={this.state.searchTerm}>{row.name}</Highlighter>
+                  <Highlighter match={this.state.searchTerm}>
+                    {row.name}
+                  </Highlighter>
                 ),
                 width: '30%',
               },
@@ -43,7 +84,10 @@ class TableSubToolbarExample extends React.Component {
               },
             ]}
             onSelectionChange={selectedIds =>
-              console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
+              console.log(
+                'Table.onSelectionChange(): selectedIds=',
+                selectedIds,
+              )
             }
             showSelection
           >
@@ -55,15 +99,18 @@ class TableSubToolbarExample extends React.Component {
                 <Table.SubToolbar>
                   <TagList
                     tags={[
-                      { id: '1', children: 'In stock' },
-                      { id: '2', children: 'Out of stock' },
-                      { id: '3', children: 'Last 7 days' },
+                      { id: '1', children: 'In Stock' },
+                      { id: '2', children: 'Out Of Stock' },
                     ]}
-                    maxVisibleTags={3}
+                    maxVisibleTags={2}
                     actionButton={{ label: 'Clear All', onClick: () => {} }}
                   />
                 </Table.SubToolbar>
-                {filteredData.length ? <Table.Titlebar /> : this._renderEmptyState()}
+                {filteredData.length ? (
+                  <Table.Titlebar />
+                ) : (
+                  this._renderEmptyState()
+                )}
               </Card>
             </Page.Sticky>
             <Card>
@@ -75,59 +122,11 @@ class TableSubToolbarExample extends React.Component {
     );
   }
 
-  _simulateData() {
-    const initBaseData = setIndex => [
-      {
-        id: `${setIndex}-1`,
-        name: `Apple Towels ${setIndex}`,
-        SKU: '111222',
-        price: '$2.00',
-        inventory: 'In stock',
-        collectionId: 1,
-      },
-      {
-        id: `${setIndex}-2`,
-        name: `Cyan Towels ${setIndex}`,
-        SKU: '222333',
-        price: '$2.00',
-        inventory: 'In stock',
-        collectionId: 1,
-        filterId: 2,
-      },
-      {
-        id: `${setIndex}-3`,
-        name: `Marble Slippers ${setIndex}`,
-        SKU: '333444',
-        price: '$14.00',
-        inventory: 'In stock',
-        collectionId: 2,
-      },
-      {
-        id: `${setIndex}-4`,
-        name: `Red Slippers ${setIndex}`,
-        SKU: '444555',
-        price: '$14.00',
-        inventory: 'Out of stock',
-        collectionId: 2,
-        filterId: 1,
-      },
-    ];
-
-    // Creates five instances of the base data collection and concatenates them into an array
-    return [1, 2, 3, 4, 5].reduce((data, index) => data.concat(initBaseData(index)), []);
-  }
-
   _renderMainToolbar() {
-    const collectionOptions = [
-      { id: 0, value: 'All' },
-      { id: 1, value: 'Towels' },
-      { id: 2, value: 'Slippers' },
-    ];
-
     const filterOptions = [
-      { id: 0, value: 'All' },
-      { id: 1, value: 'Red' },
-      { id: 2, value: 'Cyan' },
+      { id: 0, value: 'In Stock, Out Of Stock' },
+      { id: 'In Stock', value: 'In Stock' },
+      { id: 'Out Of Stock', value: 'Out Of Stock' },
     ];
 
     return (
@@ -135,43 +134,25 @@ class TableSubToolbarExample extends React.Component {
         <TableToolbar>
           <TableToolbar.ItemGroup position="start">
             <TableToolbar.Item>
-              <TableToolbar.Label>
-                Product
-                <span style={{ width: '150px' }}>
-                  <Dropdown
-                    options={collectionOptions}
-                    selectedId={this.state.collectionId}
-                    onSelect={selectedOption => {
-                      this.setState({ collectionId: selectedOption.id });
-                    }}
-                    roundInput
-                  />
-                </span>
-              </TableToolbar.Label>
-            </TableToolbar.Item>
-            <TableToolbar.Item>
-              <TableToolbar.Label>
-                Color
-                <span style={{ width: '86px' }}>
-                  <Dropdown
-                    options={filterOptions}
-                    selectedId={this.state.filterId}
-                    onSelect={selectedOption => this.setState({ filterId: selectedOption.id })}
-                    roundInput
-                  />
-                </span>
-              </TableToolbar.Label>
-            </TableToolbar.Item>
-            <TableToolbar.Item>
-              <Checkbox
-                checked={this.state.inStock}
-                onChange={e => this.setState({ inStock: e.target.checked })}
-              >
-                In Stock only
-              </Checkbox>
+              <TableToolbar.Title>Products</TableToolbar.Title>
             </TableToolbar.Item>
           </TableToolbar.ItemGroup>
           <TableToolbar.ItemGroup position="end">
+            <TableToolbar.Item>
+              <TableToolbar.Label>
+                Status
+                <span style={{ width: '150px' }}>
+                  <Dropdown
+                    options={filterOptions}
+                    selectedId={this.state.filterId}
+                    onSelect={selectedOption =>
+                      this.setState({ filterId: selectedOption.id })
+                    }
+                    roundInput
+                  />
+                </span>
+              </TableToolbar.Label>
+            </TableToolbar.Item>
             <TableToolbar.Item>{this._renderSearch(false)}</TableToolbar.Item>
           </TableToolbar.ItemGroup>
         </TableToolbar>
@@ -179,14 +160,22 @@ class TableSubToolbarExample extends React.Component {
     );
   }
 
-
   _renderEmptyState = () => (
     <Table.EmptyState
       title="You haven't added any items yet"
       subtitle="Add items to your website so people can buy them"
-      image={<Box height={120} width={120} backgroundColor="#dfe5eb" borderRadius="50%" />}
+      image={
+        <Box
+          height={120}
+          width={120}
+          backgroundColor="#dfe5eb"
+          borderRadius="50%"
+        />
+      }
     >
-      <TextButton suffixIcon={<Icons.ExternalLink />}>Learn how to add items</TextButton>
+      <TextButton suffixIcon={<Icons.ExternalLink />}>
+        Learn how to add items
+      </TextButton>
     </Table.EmptyState>
   );
 
@@ -218,12 +207,12 @@ class TableSubToolbarExample extends React.Component {
       data = data.filter(row => row.collectionId === this.state.collectionId);
     }
 
-    if (this.state.filterId > 0) {
-      data = data.filter(row => row.filterId === this.state.filterId);
+    if (this.state.filterId !== 0) {
+      data = data.filter(row => row.inventory === this.state.filterId);
     }
 
     if (this.state.inStock) {
-      data = data.filter(row => row.inventory === 'In stock');
+      data = data.filter(row => row.inventory === 'In Stock');
     }
 
     if (this.state.searchTerm !== '') {

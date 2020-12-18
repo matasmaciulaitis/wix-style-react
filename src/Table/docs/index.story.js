@@ -209,9 +209,9 @@ export default {
               compact: true,
             },
             {
-              title: 'Table with Sub-Toolbar',
+              title: 'Sub-Toolbar',
               description:
-                'A Table can contain a sticky sub-toolbar, an area for additional actions such as displaying a tag list of filtered items.',
+                'Additional area to store content related to main toolbar actions. For example, a list of active filters.',
               source: TableSubToolbarExampleRaw,
               compact: true,
             },
