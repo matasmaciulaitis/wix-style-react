@@ -223,6 +223,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Infinite Scroll and Bulk Selection',
+              description:
+                'Sample table below has infiniteScroll and showSelection set. If user clicks the bulk selection checkbox when the data is not fully loaded yet (hasMore is true) only loaded items are selected by default. If user clicks the bulk selection checkbox when the data is not fully loaded yet, but the table has a `totalSelectableCount` set, then the grid enters an “infinite bulk selection” mode. It assumes all items are selected, and it only keeps track of the items manually unselected by the user. Newly loaded items are being selected by default. `SelectionContext.selectedCount` will be updated based on the `totalSelectableCount` prop.',
+              source: TableInfiniteScrollWithBulkSelectionExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Hidden Header',
               description: 'A table with hidden header.',
               source: TableHideHeaderExampleRaw,
@@ -240,13 +247,6 @@ export default {
               description:
                 'This example demonstrates how to render a table with sticky title and toolbar within `<Page/>`. Notice that `<Page/>` is practically responsible to render the title, using `<Page.Header/>` whereas `titleBarVisible` is false. Moreover, we use `<Page.Sticky/>` in order to stick the toolbar to top while scrolling.',
               source: TablePageExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with Infinite Scroll and Bulk Selection',
-              description:
-                'When `infiniteScroll` (see the previous example) and `showSelection` are set, and the data is not fully loaded yet (`hasMore` is `true`), and then the user clicks the bulk selection checkbox, by default only loaded items are selected. If `totalSelectableCount` is set, then when the bulk selection checkbox is clicked before all the data is loaded, the grid enters an "infinite bulk selection" mode. It assumes all items are selected, and it only keeps track of the items manually unselected by the user. Newly loaded items are being selected by default. `SelectionContext.selectedCount` will be updated based on the `totalSelectableCount` prop.',
-              source: TableInfiniteScrollWithBulkSelectionExampleRaw,
               compact: true,
             },
           ].map(code),
