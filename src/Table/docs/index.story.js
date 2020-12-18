@@ -202,6 +202,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Toolbar with Custom Bulk Selection Checkbox',
+              description:
+                'Bulk selection can be removed from the sorting header area with `hideBulkSelectionCheckbox` prop. This selection checkbox can be added to a toolbar using `<Table.BulkSelectionCheckbox/>` component.',
+              source: TableBulkSelectionCheckboxExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Table with Sub-Toolbar',
               description:
                 'A Table can contain a sticky sub-toolbar, an area for additional actions such as displaying a tag list of filtered items.',
@@ -240,13 +247,6 @@ export default {
               description:
                 'When `infiniteScroll` (see the previous example) and `showSelection` are set, and the data is not fully loaded yet (`hasMore` is `true`), and then the user clicks the bulk selection checkbox, by default only loaded items are selected. If `totalSelectableCount` is set, then when the bulk selection checkbox is clicked before all the data is loaded, the grid enters an "infinite bulk selection" mode. It assumes all items are selected, and it only keeps track of the items manually unselected by the user. Newly loaded items are being selected by default. `SelectionContext.selectedCount` will be updated based on the `totalSelectableCount` prop.',
               source: TableInfiniteScrollWithBulkSelectionExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with Custom Bulk Selection Checkbox',
-              description:
-                'This is an example of having a custom bulk selection checkbox in the table toolbar using the `<Table.BulkSelectionCheckbox>` component.',
-              source: TableBulkSelectionCheckboxExampleRaw,
               compact: true,
             },
           ].map(code),
