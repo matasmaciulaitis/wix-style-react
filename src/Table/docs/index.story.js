@@ -216,6 +216,13 @@ export default {
               compact: true,
             },
             {
+              title: 'Infinite Scroll',
+              description:
+                'Use `infiniteScroll` prop to load data to the table gradually. New pages are loaded automatically when the scrollbar reaches the end. Notice that the infinite scroll should listen to some scroll events (in order to determine when to render new items). In this example, we pass a container with limited height - but it could be any element that triggers scroll events.',
+              source: TableInfiniteScrollExampleRaw,
+              compact: true,
+            },
+            {
               title: 'Hidden Header',
               description: 'A table with hidden header.',
               source: TableHideHeaderExampleRaw,
@@ -233,13 +240,6 @@ export default {
               description:
                 'This example demonstrates how to render a table with sticky title and toolbar within `<Page/>`. Notice that `<Page/>` is practically responsible to render the title, using `<Page.Header/>` whereas `titleBarVisible` is false. Moreover, we use `<Page.Sticky/>` in order to stick the toolbar to top while scrolling.',
               source: TablePageExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with Infinite Scroll',
-              description:
-                'As opposed to pagination - infinite scroll means that new pages are loaded automatically when the scrollbar reaches to the end (assuming there is more data to load). The `infiniteScroll` prop instructs the table to not render all data on startup, but rather gradually. Notice that the infinite scroll should listen to some scroll events (in order to determine when to render new items). In this example, we pass a container with limited height - but it could be any element that triggers scroll events.',
-              source: TableInfiniteScrollExampleRaw,
               compact: true,
             },
             {
