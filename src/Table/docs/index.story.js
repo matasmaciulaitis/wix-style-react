@@ -37,6 +37,7 @@ import TableHighlightedRowsExampleRaw from '!raw-loader!./examples/TableHighligh
 import TableAlignedColumnsExampleRaw from '!raw-loader!./examples/TableAlignedColumnsExample';
 import TableVirtualizationExampleRaw from '!raw-loader!./examples/TableVirtualizationExample';
 import TableStickyScrollExampleRaw from '!raw-loader!./examples/TableStickyScrollExample';
+import TableImportantColumnExampleRaw from '!raw-loader!./examples/TableImportantColumnExample';
 
 const code = config =>
   baseCode({
@@ -177,6 +178,13 @@ export default {
               description:
                 'Cell content can be aligned horizontally with `align` prop (value set to either `start`, `center` or `end`). In case we want to align content vertically - it should be done within the render method explicitly.',
               source: TableAlignedColumnsExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Important Column',
+              description:
+                'Main column can be highlighted with an increased size text.',
+              source: TableImportantColumnExampleRaw,
               compact: true,
             },
             {
