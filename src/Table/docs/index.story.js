@@ -38,6 +38,7 @@ import TableAlignedColumnsExampleRaw from '!raw-loader!./examples/TableAlignedCo
 import TableVirtualizationExampleRaw from '!raw-loader!./examples/TableVirtualizationExample';
 import TableStickyScrollExampleRaw from '!raw-loader!./examples/TableStickyScrollExample';
 import TableImportantColumnExampleRaw from '!raw-loader!./examples/TableImportantColumnExample';
+import TableVerticalCellAlignmentExampleRaw from '!raw-loader!./examples/TableVerticalCellAlignmentExample';
 
 const code = config =>
   baseCode({
@@ -234,6 +235,13 @@ export default {
               description:
                 'This example shows the usage for displaying an empty state message. Notice that `<Card/>` and `<TableToolbar/>` are optional - we should use them as necessary.',
               source: TableEmptyStateExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Vertical Alignment in a Cell',
+              description:
+                'If we want to align cell content vertically it should be done within the render method explicitly.',
+              source: TableVerticalCellAlignmentExampleRaw,
               compact: true,
             },
             {
