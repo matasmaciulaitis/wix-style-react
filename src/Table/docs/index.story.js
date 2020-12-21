@@ -39,6 +39,7 @@ import TableVirtualizationExampleRaw from '!raw-loader!./examples/TableVirtualiz
 import TableStickyScrollExampleRaw from '!raw-loader!./examples/TableStickyScrollExample';
 import TableImportantColumnExampleRaw from '!raw-loader!./examples/TableImportantColumnExample';
 import TableVerticalCellAlignmentExampleRaw from '!raw-loader!./examples/TableVerticalCellAlignmentExample';
+import TablePaginationExampleRaw from '!raw-loader!./examples/TablePaginationExample';
 
 const code = config =>
   baseCode({
@@ -228,6 +229,13 @@ export default {
               description:
                 'Sample table below has infiniteScroll and showSelection set. If user clicks the bulk selection checkbox when the data is not fully loaded yet (hasMore is true) only loaded items are selected by default. If user clicks the bulk selection checkbox when the data is not fully loaded yet, but the table has a `totalSelectableCount` set, then the grid enters an “infinite bulk selection” mode. It assumes all items are selected, and it only keeps track of the items manually unselected by the user. Newly loaded items are being selected by default. `SelectionContext.selectedCount` will be updated based on the `totalSelectableCount` prop.',
               source: TableInfiniteScrollWithBulkSelectionExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Pagination',
+              description:
+                'Add `<Pagination/>` to the table to split up a large data set across multiple pages.',
+              source: TablePaginationExampleRaw,
               compact: true,
             },
             {
