@@ -25,7 +25,6 @@ import TableSkinExample from '!raw-loader!./examples/TableSkinExample';
 import TableRowVerticalPaddingExample from '!raw-loader!./examples/TableRowVerticalPaddingExample';
 import TableToolbarExampleRaw from '!raw-loader!./examples/TableToolbarExample';
 import TableSubToolbarExampleRaw from '!raw-loader!./examples/TableSubToolbarExample';
-import TableHideHeaderExampleRaw from '!raw-loader!./examples/TableHideHeaderExample';
 import TableBulkSelectionCheckboxExampleRaw from '!raw-loader!./examples/TableBulkSelectionCheckboxExample';
 import TableWithUnselectableRowsExampleRaw from '!raw-loader!./examples/TableWithUnselectableRowsExample';
 import TableEmptyStateExampleRaw from '!raw-loader!./examples/TableEmptyStateExample';
@@ -257,12 +256,6 @@ export default {
               description:
                 'This example demonstrates how to render a table with a sticky title and toolbar within `<Page/>`. Notice that `<Page/>` is practically responsible to render the title, using `<Page.Header/>` whereas titleBarVisible is false. Moreover, we use `<Page.Sticky/>` in order to stick the toolbar and sub-toolbar to the top while scrolling.',
               source: TablePageExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Hidden Header',
-              description: 'A table with hidden header.',
-              source: TableHideHeaderExampleRaw,
               compact: true,
             },
           ].map(code),
