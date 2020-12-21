@@ -39,6 +39,7 @@ import TableStickyScrollExampleRaw from '!raw-loader!./examples/TableStickyScrol
 import TableImportantColumnExampleRaw from '!raw-loader!./examples/TableImportantColumnExample';
 import TableVerticalCellAlignmentExampleRaw from '!raw-loader!./examples/TableVerticalCellAlignmentExample';
 import TablePaginationExampleRaw from '!raw-loader!./examples/TablePaginationExample';
+import TableWithAdvancedFiltersExampleRaw from '!raw-loader!./examples/TableWithAdvancedFiltersExample';
 
 const code = config =>
   baseCode({
@@ -256,6 +257,13 @@ export default {
               description:
                 'This example demonstrates how to render a table with a sticky title and toolbar within `<Page/>`. Notice that `<Page/>` is practically responsible to render the title, using `<Page.Header/>` whereas titleBarVisible is false. Moreover, we use `<Page.Sticky/>` in order to stick the toolbar and sub-toolbar to the top while scrolling.',
               source: TablePageExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Table with Advanced Filters',
+              description:
+                'When there are more than 3 filter options transfer them outside to a `<SidePanel/>`. Add a button to a toolbar which calls out that panel.',
+              source: TableWithAdvancedFiltersExampleRaw,
               compact: true,
             },
           ].map(code),
