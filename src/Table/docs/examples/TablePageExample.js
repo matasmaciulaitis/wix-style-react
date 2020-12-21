@@ -113,14 +113,16 @@ class TablePageExample extends React.Component {
                   }
                 </Table.ToolbarContainer>
                 <Table.SubToolbar>
-                  <TagList
-                    tags={[
-                      { id: '1', children: 'In Stock' },
-                      { id: '2', children: 'Out Of Stock' },
-                    ]}
-                    maxVisibleTags={2}
-                    actionButton={{ label: 'Clear All', onClick: () => {} }}
-                  />
+                  <FormField label="Filtered by:" labelPlacement="left">
+                    <TagList
+                      tags={[
+                        { id: '1', children: 'In Stock' },
+                        { id: '2', children: 'Out Of Stock' },
+                      ]}
+                      maxVisibleTags={2}
+                      actionButton={{ label: 'Clear All', onClick: () => {} }}
+                    />
+                  </FormField>
                 </Table.SubToolbar>
                 {filteredData.length ? (
                   <Table.Titlebar />

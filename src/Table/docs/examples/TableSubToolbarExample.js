@@ -52,8 +52,7 @@ class TableSubToolbarExample extends React.Component {
     const filteredData = this._getFilteredData();
 
     return (
-      <Page height="600px">
-        <Page.Header title="My Table" />
+      <Page height="400px">
         <Page.Content>
           <Table
             data={filteredData}
@@ -97,6 +96,7 @@ class TableSubToolbarExample extends React.Component {
                   {() => this._renderMainToolbar()}
                 </Table.ToolbarContainer>
                 <Table.SubToolbar>
+                <FormField label="Filtered by:" labelPlacement="left">
                   <TagList
                     tags={[
                       { id: '1', children: 'In Stock' },
@@ -105,6 +105,7 @@ class TableSubToolbarExample extends React.Component {
                     maxVisibleTags={2}
                     actionButton={{ label: 'Clear All', onClick: () => {} }}
                   />
+                  </FormField>
                 </Table.SubToolbar>
                 {filteredData.length ? (
                   <Table.Titlebar />

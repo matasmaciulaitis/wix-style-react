@@ -35,7 +35,7 @@ class TableBulkSelectionCheckboxExample extends React.Component {
       case 'ALL':
         return `All Elements Selected`;
       case 'NONE':
-        return 'Select All Elements';
+        return 'Select All';
       case 'SOME':
         return selectedCount === 1
           ? '1 Element Selected'

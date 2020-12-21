@@ -20,9 +20,9 @@ class TableExample extends React.Component {
           }))}
         >
           <TableToolbar>
-            <TableToolbar.Title>My Table</TableToolbar.Title>
+            <TableToolbar.Title>Toolbar</TableToolbar.Title>
           </TableToolbar>
-          <Table.SubToolbar>SubToolbar</Table.SubToolbar>
+          <Table.SubToolbar>Sub Toolbar</Table.SubToolbar>
           <Table.Content />
         </Table>
       </Card>
