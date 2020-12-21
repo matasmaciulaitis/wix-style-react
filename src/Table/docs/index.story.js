@@ -230,16 +230,16 @@ export default {
               compact: true,
             },
             {
-              title: 'Hidden Header',
-              description: 'A table with hidden header.',
-              source: TableHideHeaderExampleRaw,
-              compact: true,
-            },
-            {
-              title: 'Table with EmptyState',
+              title: 'Empty State',
               description:
                 'This example shows the usage for displaying an empty state message. Notice that `<Card/>` and `<TableToolbar/>` are optional - we should use them as necessary.',
               source: TableEmptyStateExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Hidden Header',
+              description: 'A table with hidden header.',
+              source: TableHideHeaderExampleRaw,
               compact: true,
             },
             {

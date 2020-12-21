@@ -8,16 +8,16 @@ class TableEmptyStateExample extends React.Component {
           <TableToolbar>
             <TableToolbar.ItemGroup>
               <TableToolbar.Item>
-                <TableToolbar.Title>My Table</TableToolbar.Title>
+                <TableToolbar.Title>Published</TableToolbar.Title>
               </TableToolbar.Item>
             </TableToolbar.ItemGroup>
           </TableToolbar>
           <Table.EmptyState
-            title="You haven't added any items yet"
-            subtitle="Add items to your website so people can buy them"
-            image={<Box height={120} width={120} backgroundColor="#dfe5eb" borderRadius="50%" />}
+            title="No Published Posts Yet"
+            subtitle="Once you publish posts, you'll see them here."
+            image={<Box height={120} width={120} backgroundColor="#dfe5eb" borderRadius="60px"/>}
           >
-            <TextButton suffixIcon={<Icons.ExternalLink />}>Learn how to add items</TextButton>
+            <TextButton prefixIcon={<Icons.Add />}>Create New Post</TextButton>
           </Table.EmptyState>
         </Table>
       </Card>
