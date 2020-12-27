@@ -10,6 +10,7 @@ import TextButton from '../TextButton';
 import EditableRow from './EditableRow/EditableRow';
 import { classes } from './EditableSelector.st.css';
 import { dataHooks } from './constants';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 class EditableSelector extends React.PureComponent {
   static propTypes = {
