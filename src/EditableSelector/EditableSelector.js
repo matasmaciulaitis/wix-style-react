@@ -8,7 +8,7 @@ import Button from '../Button';
 import IconButton from '../IconButton';
 import TextButton from '../TextButton';
 import EditableRow from './EditableRow/EditableRow';
-import { classes } from './EditableSelector.st.css';
+import { st, classes } from './EditableSelector.st.css';
 import { dataHooks } from './constants';
 import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
@@ -112,71 +112,84 @@ class EditableSelector extends React.PureComponent {
     } = this.props;
     let { options } = this.props;
     options = options || [];
+
     return (
-      <div data-hook={dataHook}>
-        {title && (
-          <div className={classes.title} data-hook={dataHooks.title}>
-            <Text weight="normal">{title}</Text>
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => (
+          <div
+            className={st(classes.root, { reducedSpacingAndImprovedLayout })}
+            data-hook={dataHook}
+          >
+            {title && (
+              <div className={classes.title} data-hook={dataHooks.title}>
+                <Text
+                  size={reducedSpacingAndImprovedLayout ? 'small' : undefined}
+                  weight="thin"
+                >
+                  {title}
+                </Text>
+              </div>
+            )}
+            <div>
+              {options.map((option, index) =>
+                this.state.editingRow === index ? (
+                  this._renderInput(option.title, index)
+                ) : (
+                  <div
+                    data-hook={dataHooks.row}
+                    className={classes.row}
+                    key={index}
+                  >
+                    <Selector
+                      dataHook={dataHooks.item}
+                      id={index}
+                      title={option.title}
+                      isSelected={option.isSelected}
+                      toggleType={toggleType}
+                      onToggle={id => this._onOptionToggle(id)}
+                      className={classes.editableSelectorItem}
+                    />
+                    <div className={classes.optionMenu}>
+                      <IconButton
+                        onClick={() => this._deleteItem(index)}
+                        dataHook={dataHooks.deleteItem}
+                        type="button"
+                        size="small"
+                        skin="inverted"
+                      >
+                        <span>
+                          <Delete />
+                        </span>
+                      </IconButton>
+                      <div className={classes.editRow}>
+                        <Button
+                          onClick={() => this._editItem(index)}
+                          dataHook={dataHooks.editItem}
+                          size="small"
+                        >
+                          {editButtonText}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+            {this.state.addingNewRow && this._renderInput()}
+            <div className={classes.newRowButton}>
+              <TextButton
+                as="a"
+                underline="none"
+                onClick={this._addNewRow}
+                prefixIcon={<Add className={classes.icon} />}
+                dataHook={dataHooks.newRowButtonText}
+              >
+                {newRowLabel}
+              </TextButton>
+            </div>
           </div>
         )}
-        <div>
-          {options.map((option, index) =>
-            this.state.editingRow === index ? (
-              this._renderInput(option.title, index)
-            ) : (
-              <div
-                data-hook={dataHooks.row}
-                className={classes.row}
-                key={index}
-              >
-                <Selector
-                  dataHook={dataHooks.item}
-                  id={index}
-                  title={option.title}
-                  isSelected={option.isSelected}
-                  toggleType={toggleType}
-                  onToggle={id => this._onOptionToggle(id)}
-                  className={classes.editableSelectorItem}
-                />
-                <div className={classes.optionMenu}>
-                  <IconButton
-                    onClick={() => this._deleteItem(index)}
-                    dataHook={dataHooks.deleteItem}
-                    type="button"
-                    size="small"
-                    skin="inverted"
-                  >
-                    <span>
-                      <Delete />
-                    </span>
-                  </IconButton>
-                  <div className={classes.editRow}>
-                    <Button
-                      onClick={() => this._editItem(index)}
-                      dataHook={dataHooks.editItem}
-                      size="small"
-                    >
-                      {editButtonText}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ),
-          )}
-        </div>
-        {this.state.addingNewRow && this._renderInput()}
-        <div className={classes.newRowButton}>
-          <TextButton
-            as="a"
-            underline="none"
-            onClick={this._addNewRow}
-            prefixIcon={<Add className={classes.icon} />}
-            dataHook={dataHooks.newRowButtonText}
-          >
-            {newRowLabel}
-          </TextButton>
-        </div>
-      </div>
+      </WixStyleReactContext.Consumer>
     );
   }
 }

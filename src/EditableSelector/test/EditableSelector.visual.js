@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import EditableSelector from '..';
 import { TOGGLE_TYPE } from '../constants';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const types = Object.values(TOGGLE_TYPE);
 
@@ -45,5 +46,20 @@ tests.forEach(({ describe, its }) => {
       `EditableSelector${describe ? '/' + describe : ''}`,
       module,
     ).add(it, () => <EditableSelector {...requiredProps} {...props} />);
+  });
+});
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(`Layout And Spacing| EditableSelector/${describe}`, module).add(
+      it,
+      () => (
+        <WixStyleReactProvider
+          features={{ reducedSpacingAndImprovedLayout: true }}
+        >
+          <EditableSelector {...requiredProps} {...props} />
+        </WixStyleReactProvider>
+      ),
+    );
   });
 });

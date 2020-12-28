@@ -7,6 +7,10 @@
     rowsMargin: 6px;
 }
 
+.root {
+  -st-states: reducedSpacingAndImprovedLayout;
+}
+
 .row {
     display: flex;
     align-items: center;
