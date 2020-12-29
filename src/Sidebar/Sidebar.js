@@ -63,13 +63,11 @@ class Sidebar extends Component {
     isScrollbarDisplayed: false,
   };
 
-  _handleOnScreenChildrenResize = () => {
+  _handleChildrenResize = () => {
     this._shouldAddGradient();
   };
 
-  childrenResizeObserver = new ResizeObserver(entries => {
-    this._handleOnScreenChildrenResize();
-  });
+  childrenResizeObserver = new ResizeObserver(this._handleChildrenResize);
 
   componentDidMount() {
     const {
