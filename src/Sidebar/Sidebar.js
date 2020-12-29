@@ -66,9 +66,10 @@ class Sidebar extends Component {
     this._shouldAddGradient();
   };
 
-  childrenOnScreenResizeObserver = new ResizeObserver(
-    this._handleOnScreenChildrenResize,
-  );
+  childrenOnScreenResizeObserver = new ResizeObserver(entries => {
+    // entries.forEach(entry => console.log('height: ', entry.contentRect.height));
+    this._handleOnScreenChildrenResize();
+  });
 
   componentDidMount() {
     this._shouldAddGradient();
