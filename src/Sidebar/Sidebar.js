@@ -49,7 +49,8 @@ class Sidebar extends Component {
 
   itemKey2Children = {};
   itemKey2ParentKey = {};
-  onScreenChildrenRef = React.createRef();
+  childrenContainerRef = React.createRef();
+  childrenContentRef = React.createRef();
 
   state = {
     persistentTopChildren: [],
@@ -66,23 +67,39 @@ class Sidebar extends Component {
     this._shouldAddGradient();
   };
 
-  childrenOnScreenResizeObserver = new ResizeObserver(entries => {
-    // entries.forEach(entry => console.log('height: ', entry.contentRect.height));
+  childrenResizeObserver = new ResizeObserver(entries => {
     this._handleOnScreenChildrenResize();
   });
 
   componentDidMount() {
-    this._shouldAddGradient();
-    this.childrenOnScreenResizeObserver.observe(
-      document.querySelector(
-        `[data-hook="${dataHooks.onScreenChildrenContent}"]`,
-      ),
-    );
+    const {
+      childrenResizeObserver,
+      childrenContainerRef,
+      childrenContentRef,
+    } = this;
+
+    if (childrenResizeObserver && childrenContainerRef.current) {
+      childrenResizeObserver.observe(childrenContainerRef.current);
+    }
+
+    if (childrenResizeObserver && childrenContentRef.current) {
+      childrenResizeObserver.observe(childrenContentRef.current);
+    }
   }
 
   componentWillUnmount() {
-    if (this.childrenOnScreenResizeObserver) {
-      this.childrenOnScreenResizeObserver.disconnect();
+    const {
+      childrenResizeObserver,
+      childrenContainerRef,
+      childrenContentRef,
+    } = this;
+
+    if (childrenResizeObserver && childrenContainerRef.current) {
+      childrenResizeObserver.unobserve(childrenContainerRef.current);
+    }
+
+    if (childrenResizeObserver && childrenContentRef.current) {
+      childrenResizeObserver.unobserve(childrenContentRef.current);
     }
   }
 
@@ -135,7 +152,7 @@ class Sidebar extends Component {
   };
 
   _shouldAddGradient() {
-    const { scrollHeight, clientHeight } = this.onScreenChildrenRef.current;
+    const { scrollHeight, clientHeight } = this.childrenContainerRef.current;
     this.setState({ isScrollbarDisplayed: scrollHeight > clientHeight });
   }
 
@@ -280,18 +297,18 @@ class Sidebar extends Component {
 
             <div
               className={sliderClasses}
-              ref={this.onScreenChildrenRef}
-              data-hook={dataHooks.onScreenChildrenContainer}
+              ref={this.childrenContainerRef}
+              data-hook={dataHooks.childrenContainer}
             >
-              <div data-hook={dataHooks.onScreenChildrenContent}>
+              <div ref={this.childrenContentRef}>
                 {this.state.onScreenChildren}
-                {this.state.isScrollbarDisplayed && (
-                  <div
-                    className={gradientClasses}
-                    data-hook={dataHooks.scrollBarGradient}
-                  />
-                )}
               </div>
+              {this.state.isScrollbarDisplayed && (
+                <div
+                  className={gradientClasses}
+                  data-hook={dataHooks.scrollBarGradient}
+                />
+              )}
             </div>
 
             {this.state.drivenInChildren.length !== 0 && (
