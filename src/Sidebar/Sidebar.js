@@ -62,8 +62,27 @@ class Sidebar extends Component {
     isScrollbarDisplayed: false,
   };
 
+  _handleOnScreenChildrenResize = () => {
+    this._shouldAddGradient();
+  };
+
+  childrenOnScreenResizeObserver = new ResizeObserver(
+    this._handleOnScreenChildrenResize,
+  );
+
   componentDidMount() {
     this._shouldAddGradient();
+    this.childrenOnScreenResizeObserver.observe(
+      document.querySelector(
+        `[data-hook="${dataHooks.onScreenChildrenContent}"]`,
+      ),
+    );
+  }
+
+  componentWillUnmount() {
+    if (this.childrenOnScreenResizeObserver) {
+      this.childrenOnScreenResizeObserver.disconnect();
+    }
   }
 
   _navigateTo = itemKey => {
@@ -261,15 +280,17 @@ class Sidebar extends Component {
             <div
               className={sliderClasses}
               ref={this.onScreenChildrenRef}
-              data-hook={dataHooks.onScreenChildren}
+              data-hook={dataHooks.onScreenChildrenContainer}
             >
-              {this.state.onScreenChildren}
-              {this.state.isScrollbarDisplayed && (
-                <div
-                  className={gradientClasses}
-                  data-hook={dataHooks.scrollBarGradient}
-                />
-              )}
+              <div data-hook={dataHooks.onScreenChildrenContent}>
+                {this.state.onScreenChildren}
+                {this.state.isScrollbarDisplayed && (
+                  <div
+                    className={gradientClasses}
+                    data-hook={dataHooks.scrollBarGradient}
+                  />
+                )}
+              </div>
             </div>
 
             {this.state.drivenInChildren.length !== 0 && (
