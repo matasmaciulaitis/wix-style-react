@@ -57,26 +57,33 @@ class StatisticsItem extends React.PureComponent {
     />
   );
 
-  _renderDescription = (description, subtitleContentInfo, size, alignItems) => {
+  _renderDescription = ({
+    description,
+    subtitleContentInfo,
+    size,
+    alignItems,
+    reducedSpacingAndImprovedLayout,
+  }) => {
     if (!description) {
       return null;
     }
 
+    const commonProps = {
+      ellipsis: true,
+      dataHook: DataHooks.description,
+      children: description,
+    };
+
     return (
       <div className={st(classes.description, { alignItems })}>
-        {size === SIZES.tiny ? (
-          <Text
-            ellipsis
-            size="small"
-            dataHook={DataHooks.description}
-            secondary
-          >
-            {description}
-          </Text>
+        {size === SIZES.large && reducedSpacingAndImprovedLayout ? (
+          <Heading {...commonProps} appearance="H5" />
         ) : (
-          <Heading ellipsis dataHook={DataHooks.description} appearance="H5">
-            {description}
-          </Heading>
+          <Text
+            {...commonProps}
+            size={reducedSpacingAndImprovedLayout ? 'medium' : 'small'}
+            secondary={size === SIZES.tiny}
+          />
         )}
         {subtitleContentInfo && (
           <Tooltip
@@ -153,12 +160,13 @@ class StatisticsItem extends React.PureComponent {
             {...attrs}
           >
             {this._renderValue(value, valueInShort, size)}
-            {this._renderDescription(
+            {this._renderDescription({
               description,
               descriptionInfo,
               size,
               alignItems,
-            )}
+              reducedSpacingAndImprovedLayout,
+            })}
             {this._renderPercents(percentage, invertedPercentage)}
             {children}
           </div>
