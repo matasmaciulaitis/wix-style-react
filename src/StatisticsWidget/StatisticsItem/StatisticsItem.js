@@ -1,7 +1,7 @@
 import React from 'react';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 import InfoCircleSmall from 'wix-ui-icons-common/InfoCircleSmall';
-
+import { WixStyleReactContext } from '../../WixStyleReactProvider/context';
 import Heading from '../../Heading';
 import Text from '../../Text';
 import Tooltip from '../../Tooltip';
@@ -134,25 +134,36 @@ class StatisticsItem extends React.PureComponent {
       onKeyDown: onClick ? this._getSpaceOrEnterHandler(onClick) : undefined,
       onClick,
       ...rest,
-      className: st(
-        classes.item,
-        { clickable: !!onClick, size, alignItems },
-        this.props.className,
-      ),
     };
 
     return (
-      <div {...attrs}>
-        {this._renderValue(value, valueInShort, size)}
-        {this._renderDescription(
-          description,
-          descriptionInfo,
-          size,
-          alignItems,
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => (
+          <div
+            className={st(
+              classes.item,
+              {
+                clickable: !!onClick,
+                size,
+                alignItems,
+                reducedSpacingAndImprovedLayout,
+              },
+              className,
+            )}
+            {...attrs}
+          >
+            {this._renderValue(value, valueInShort, size)}
+            {this._renderDescription(
+              description,
+              descriptionInfo,
+              size,
+              alignItems,
+            )}
+            {this._renderPercents(percentage, invertedPercentage)}
+            {children}
+          </div>
         )}
-        {this._renderPercents(percentage, invertedPercentage)}
-        {children}
-      </div>
+      </WixStyleReactContext.Consumer>
     );
   }
 }

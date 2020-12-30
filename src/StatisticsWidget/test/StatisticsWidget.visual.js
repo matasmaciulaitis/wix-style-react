@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StatisticsWidget from '../StatisticsWidget';
 import { SIZES } from '../constants';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const sizes = Object.values(SIZES);
 
@@ -418,6 +419,23 @@ tests.forEach(({ describe, its }) => {
         <div style={{ marginLeft: 100, marginTop: 100 }}>
           <StatisticsWidget {...props} />
         </div>
+      ),
+    );
+  });
+});
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(`Layout And Spacing| StatisticsWidget/${describe}`, module).add(
+      it,
+      () => (
+        <WixStyleReactProvider
+          features={{ reducedSpacingAndImprovedLayout: true }}
+        >
+          <div style={{ marginLeft: 100, marginTop: 100 }}>
+            <StatisticsWidget {...props} />
+          </div>
+        </WixStyleReactProvider>
       ),
     );
   });

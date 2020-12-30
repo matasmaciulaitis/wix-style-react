@@ -20,11 +20,13 @@
 
 :vars {
   gap: 30px;
+  paddingLarge: 18px 30px;
+  paddingTiny: 12px 24px;
 }
 
 .item {
   -st-extends: Focusable;
-  -st-states: clickable, size(enum(tiny, large)), alignItems(enum(start, center, end));
+  -st-states: reducedSpacingAndImprovedLayout, clickable, size(enum(tiny, large)), alignItems(enum(start, center, end));
   position: relative;
   display: flex;
   overflow: hidden;
@@ -39,8 +41,16 @@
   padding: 24px value(gap);
 }
 
+.item:size(tiny):reducedSpacingAndImprovedLayout {
+  padding: value(paddingTiny);
+}
+
 .item:size(large) {
   padding: value(gap);
+}
+
+.item:size(large):reducedSpacingAndImprovedLayout {
+  padding: value(paddingLarge);
 }
 
 .item:clickable {
