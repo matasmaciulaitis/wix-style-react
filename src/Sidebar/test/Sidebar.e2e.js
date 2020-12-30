@@ -3,8 +3,8 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../../test/utils/eyes-it';
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
-import { sidebarTestkitFactory } from '../../../testkit/protractor';
-import { storySettings } from './storySettings';
+import { SidebarTestkit } from '../../../testkit/protractor';
+import { storySettings } from '../docs/storySettings';
 
 const createStoryUrl = testName =>
   createTestStoryUrl({ ...storySettings, testName });
@@ -15,7 +15,7 @@ describe('Sidebar', () => {
   let driver;
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    driver = sidebarTestkitFactory({ dataHook });
+    driver = SidebarTestkit({ dataHook });
 
     await waitForVisibilityOf(await driver.element(), 'Cannot find Sidebar');
 
