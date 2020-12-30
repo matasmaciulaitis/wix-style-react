@@ -1,8 +1,5 @@
 import { browser } from 'protractor';
-import {
-  scrollToElement,
-  waitForVisibilityOf,
-} from 'wix-ui-test-utils/protractor';
+import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../../test/utils/eyes-it';
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
@@ -21,7 +18,6 @@ describe('Sidebar', () => {
     driver = sidebarTestkitFactory({ dataHook });
 
     await waitForVisibilityOf(await driver.element(), 'Cannot find Sidebar');
-    // await scrollToElement(await driver.element());
 
     return driver;
   };
