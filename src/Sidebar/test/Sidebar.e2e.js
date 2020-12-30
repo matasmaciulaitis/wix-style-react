@@ -3,8 +3,9 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../../test/utils/eyes-it';
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
-import { SidebarTestkit } from '../../../testkit/protractor';
+import { SidebarTestkit, ButtonTestkit } from '../../../testkit/protractor';
 import { storySettings } from '../docs/storySettings';
+import { dataHooks } from '../constants';
 
 const createStoryUrl = testName =>
   createTestStoryUrl({ ...storySettings, testName });
@@ -14,7 +15,7 @@ describe('Sidebar', () => {
   const eyes = eyesItInstance();
   let driver;
 
-  const createDriver = async (dataHook = storySettings.dataHook) => {
+  const createDriver = async (dataHook = storySettings.dataHooks.sidebar) => {
     driver = SidebarTestkit({ dataHook });
 
     await waitForVisibilityOf(await driver.element(), 'Cannot find Sidebar');
@@ -28,19 +29,21 @@ describe('Sidebar', () => {
       await createDriver();
     });
 
-    eyes.it.only(
+    eyes.it(
       'Should not show gradient when items list is smaller than list container',
-      async () => {},
+      async () => {
+        expect(driver.isGreadientDisplayed()).toBe(false);
+      },
     );
 
-    eyes.it(
-      'Should show gradient when items list is larger than list container',
-      async () => {},
-    );
+    it('Should show gradient when items list is larger than list container', async () => {
+      const buttonDriver = ButtonTestkit({
+        dataHook: storySettings.dataHooks.addItemButton,
+      });
+      await buttonDriver.click();
+      expect(driver.isGreadientDisplayed()).toBe(true);
+    });
 
-    eyes.it(
-      'Should show gradient when container is resized to ber smaller than items list',
-      async () => {},
-    );
+    it('Should show gradient when container is resized to be smaller than items list', async () => {});
   });
 });

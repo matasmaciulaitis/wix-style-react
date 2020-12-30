@@ -26,6 +26,12 @@ export const buttonDriverFactory = base => {
     isButtonDisabled: buttonNextDriver.isButtonDisabled,
 
     /**
+     * Clicks on the button
+     * @return {Promise<boolean>}
+     */
+    click: buttonNextDriver.click,
+
+    /**
      * Checks whether button has a given skin
      * @param {string} skinName The button skin
      * @return {Promise<boolean>}
