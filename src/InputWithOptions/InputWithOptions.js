@@ -158,7 +158,8 @@ class InputWithOptions extends Component {
           return {
             ...option,
             value:
-              option.value === DIVIDER_OPTION_VALUE ? (
+              option.value === DIVIDER_OPTION_VALUE ||
+              typeof option.value === 'function' ? (
                 option.value
               ) : (
                 <Highlighter
