@@ -27,7 +27,7 @@ export const buttonDriverFactory = base => {
 
     /**
      * Clicks on the button
-     * @return {Promise<boolean>}
+     * @return {Promise<void>}
      */
     click: buttonNextDriver.click,
 
