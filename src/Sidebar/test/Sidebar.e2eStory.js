@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { storySettings } from '../docs/storySettings';
+import { storySettings } from './storySettings';
 import Sidebar from '../Sidebar';
 import SidebarSectionItem from '../../SidebarSectionItem/SidebarSectionItem';
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
@@ -10,7 +10,7 @@ import Box from '../../Box';
 const SidebarWithState = () => {
   const [items, setItems] = useState(Array(5).fill('item'));
   return (
-    <Box dataHook={storySettings.dataHooks.divContainer} height="200px">
+    <Box dataHook={storySettings.dataHooks.boxContainer} height="200px">
       <Sidebar dataHook={storySettings.dataHooks.sidebar}>
         {items.map(item => {
           return <SidebarSectionItem>{item}</SidebarSectionItem>;

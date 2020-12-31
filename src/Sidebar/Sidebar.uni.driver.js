@@ -6,7 +6,7 @@ export const sidebarDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 
-    isGreadientDisplayed: async () => {
+    isGradientDisplayed: async () => {
       return findByHook(base, dataHooks.scrollBarGradient).exists();
     },
   };
