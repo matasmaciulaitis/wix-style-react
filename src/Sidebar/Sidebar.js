@@ -72,6 +72,8 @@ class Sidebar extends Component {
     new ResizeObserver(this._handleChildrenResize);
 
   componentDidMount() {
+    this._shouldAddGradient();
+
     const {
       childrenResizeObserver,
       childrenContainerRef,

@@ -1,4 +1,3 @@
-import { browser } from 'protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
