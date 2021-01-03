@@ -32,10 +32,11 @@ describe('Sidebar', () => {
       await buttonDriver.click();
     };
 
-    const resizeBoxHeight = () => {
-      return browser.executeScript(
-        `document.querySelector(\'[data-hook="${storySettings.dataHooks.boxContainer}"]\').style.height = "150px"`,
-      );
+    const clickSetHeightButton = async () => {
+      const buttonDriver = ButtonTestkit({
+        dataHook: storySettings.dataHooks.setBoxHeightButton,
+      });
+      await buttonDriver.click();
     };
 
     it('Should not show gradient when items list is smaller than list container', async () => {
@@ -48,7 +49,7 @@ describe('Sidebar', () => {
     });
 
     it('Should show gradient when container is resized to be smaller than items list', async () => {
-      resizeBoxHeight();
+      clickSetHeightButton();
       expect(driver.isGradientDisplayed()).toBe(true);
     });
   });

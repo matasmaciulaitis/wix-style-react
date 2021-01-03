@@ -7,6 +7,7 @@ export const storySettings = {
     sidebar: 'story-sidebar',
     addItemButton: 'add-item-button',
     boxContainer: 'box-container',
+    setBoxHeightButton: 'set-box-height-button',
   },
   testStoryNames: {
     GRADIENT: 'sidebar gradient',
