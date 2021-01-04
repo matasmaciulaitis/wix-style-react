@@ -82,9 +82,9 @@ export const bulkActionsToolbarExample = `
         </TableToolbar.Item>
         <TableToolbar.Divider />
         <TableToolbar.Item>
-          <Search
-            expandable
-          />
+          <Box align="right">
+            <Search expandable expandWidth="200px" />
+          </Box>
         </TableToolbar.Item>
       </TableToolbar.ItemGroup>
     </TableToolbar>

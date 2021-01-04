@@ -1,0 +1,69 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 21px 30px;
+  height: 78px;
+  width: 100%;
+}
+
+.itemGroup {
+  -st-states: position(enum(start, end));
+  display: flex;
+  align-items: center;
+}
+
+.itemGroup:position(start) {
+  justify-content: start;
+}
+
+.itemGroup:position(end) {
+  justify-content: end;
+}
+
+.item {
+  -st-states: layout(enum(button));
+}
+
+.item:not(:first-child), :global([dir="rtl"]).item:not(:last-child){
+  margin-left: 12px;
+}
+
+.item:not(:last-child), :global([dir="rtl"]) .item:not(:first-child) {
+  margin-right: 12px;
+}
+
+.item:layout(button){
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.item:layout(button):not(:first-child){
+  margin-left: 0;
+}
+
+.item:layout(button):not(:last-child){
+  margin-right: 6px;
+}
+
+.itemLabel {
+  display: flex;
+  align-items: center;
+}
+
+.itemLabel:not(:first-child), :global([dir="rtl"]) .itemLabel:not(:last-child) {
+  margin-left: 6px;
+}
+
+.itemLabel:not(:last-child), :global([dir="rtl"]) .itemLabel:not(:first-child) {
+  margin-right: 6px;
+}
+
+.itemLabel > *:not(:first-child), :global([dir="rtl"]) .itemLabel > *:not(:last-child) {
+  margin-left: 6px;
+}
+
+.itemLabel > *:not(:last-child), :global([dir="rtl"]) .itemLabel > *:not(:first-child) {
+  margin-right: 6px;
+}

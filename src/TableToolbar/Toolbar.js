@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import s from './Toolbar.scss';
+import { default as WixStyleReactDivider } from '../Divider';
+import { st, classes } from './Toolbar.st.css';
 import Text from '../Text';
 
-export const Toolbar = props => {
-  return <div className={s.toolbar}>{props.children}</div>;
-};
+export const Toolbar = ({ children }) => (
+  <div className={classes.toolbar}>{children}</div>
+);
 
 Toolbar.displayName = 'Toolbar';
 
@@ -14,17 +14,9 @@ Toolbar.propTypes = {
   children: PropTypes.any, // TODO: validate children are of type <ItemGroup>
 };
 
-export const ItemGroup = props => {
-  const classes = classNames([
-    s.itemGroup,
-    {
-      positionStart: props.position === 'start',
-      positionEnd: props.position === 'end',
-    },
-  ]);
-
-  return <div className={classes}>{props.children}</div>;
-};
+export const ItemGroup = ({ children, position }) => (
+  <div className={st(classes.itemGroup, { position })}>{children}</div>
+);
 
 ItemGroup.displayName = 'Toolbar.ItemGroup';
 
@@ -37,16 +29,9 @@ ItemGroup.defaultProps = {
   position: 'start',
 };
 
-export const Item = props => {
-  const classes = classNames([
-    s.item,
-    {
-      [s.layoutButton]: props.layout === 'button',
-    },
-  ]);
-
-  return <span className={classes}>{props.children}</span>;
-};
+export const Item = ({ children, layout }) => (
+  <span className={st(classes.item, { layout })}>{children}</span>
+);
 
 Item.displayName = 'Toolbar.Item';
 
@@ -59,15 +44,13 @@ Item.propTypes = {
  * Similar to the original WSR Label, but the label is displayed on the same line as the target element (and not above it).
  * TODO:; we might want to simply add this ability to the existing Label.
  */
-export const Label = props => {
-  return (
-    <Text tagName="label" {...props} className={s.itemLabel}>
-      {React.Children.toArray(props.children).map((c, index) => {
-        return typeof c === 'string' ? <span key={index}>{c}</span> : c;
-      })}
-    </Text>
-  );
-};
+export const Label = ({ children, ...rest }) => (
+  <Text tagName="label" {...rest} className={classes.itemLabel}>
+    {React.Children.toArray(children).map((c, index) =>
+      typeof c === 'string' ? <span key={index}>{c}</span> : c,
+    )}
+  </Text>
+);
 
 Label.displayName = 'Toolbar.Label';
 
@@ -75,9 +58,8 @@ Label.propTypes = {
   children: PropTypes.any,
 };
 
-export const Divider = () => {
-  return <span className={s.divider} />;
-};
+export const Divider = () => <WixStyleReactDivider direction="vertical" />;
+
 Divider.displayName = 'Toolbar.Divider';
 
 // Aliases for convenience
