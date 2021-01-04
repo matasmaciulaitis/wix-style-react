@@ -4,14 +4,11 @@ import { Toolbar, ItemGroup, Item, Label, Divider } from './Toolbar';
 import Heading from '../Heading';
 import Text from '../Text';
 
-export const Title = props => {
-  const { dataHook } = props;
-  return (
-    <Heading dataHook={dataHook} appearance="H3">
-      {props.children}
-    </Heading>
-  );
-};
+export const Title = ({ dataHook, children }) => (
+  <Heading dataHook={dataHook} appearance="H3">
+    {children}
+  </Heading>
+);
 
 Title.displayName = 'TableToolbar.Title';
 Title.propTypes = {
@@ -19,14 +16,12 @@ Title.propTypes = {
   dataHook: PropTypes.string,
 };
 
-export const SelectedCount = props => {
-  const { dataHook } = props;
-  return (
-    <Text dataHook={dataHook} weight="normal" size="medium">
-      {props.children}
-    </Text>
-  );
-};
+export const SelectedCount = ({ children, dataHook }) => (
+  <Text dataHook={dataHook} weight="normal" size="medium">
+    {children}
+  </Text>
+);
+
 SelectedCount.displayName = 'TableToolbar.SelectedCount';
 SelectedCount.propTypes = {
   children: PropTypes.node,
