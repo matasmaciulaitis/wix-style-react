@@ -1,9 +1,7 @@
 /* eslint-disable */
-class TableStickyScrollExample extends React.Component {
-  rowCount = 4;
-  columnCount = 20;
-  range = max => Array.from(Array(max).keys()).map(i => i + 1);
-  data = [
+
+() => {
+  const data = [
     {
       employee: 'Meghan Bishop',
       department: 'Berlin',
@@ -33,53 +31,64 @@ class TableStickyScrollExample extends React.Component {
       startDate: '21 Jun 2000',
     },
   ];
-  columnNames = Object.keys(this.data[0]);
-  columnTitles = ['Employee', 'Department', 'Email', 'Phone', 'Start Date'];
 
-  columns = this.range(this.columnCount)
-    .map((columnIndex, data) => ({
-      title: this.columnTitles[columnIndex - 1],
-      render: row => row[this.columnNames[columnIndex - 1]],
-      width: 300,
-    }))
-    .concat({
-      title: '',
-      width: 150,
+  const columnWidth = 300;
+
+  const columns = [
+    {
+      title: 'Employee',
+      render: row => row.employee,
+      width: columnWidth,
+    },
+    {
+      title: 'Department',
+      render: row => row.department,
+      width: columnWidth,
+    },
+    {
+      title: 'Email',
+      render: row => row.email,
+      width: columnWidth,
+    },
+    {
+      title: 'Phone',
+      render: row => row.phone,
+      width: columnWidth,
+    },
+    {
+      title: 'Start Date',
+      render: row => row.startDate,
+      width: columnWidth,
+    },
+    {
+      width: 30,
       stickyActionCell: true,
       render: () => (
         <TableActionCell
           primaryAction={{ text: 'Edit', onClick: () => null }}
           popoverMenuProps={{
             placement: 'top-end',
-            triggerElement: ({ toggle, open, close }) => (
-              <IconButton onClick={toggle} onMouseLeave={close} skin="inverted">
-                <Icons.More />
-              </IconButton>
-            ),
           }}
           secondaryActions={[
             {
               icon: <Icons.Star />,
-              onClick: () => null,
               text: 'Star',
             },
           ]}
         />
       ),
-    });
+    },
+  ];
 
-  render() {
-    return (
-      <Table
-        horizontalScroll
-        stickyColumns={2}
-        onRowClick={() => null}
-        showSelection
-        data={this.data}
-        columns={this.columns}
-      >
-        <Table.Content />
-      </Table>
-    );
-  }
-}
+  return (
+    <Table
+      horizontalScroll
+      stickyColumns={2}
+      showSelection
+      data={data}
+      columns={columns}
+    >
+      <Table.Content />
+    </Table>
+  );
+};
