@@ -14,10 +14,12 @@ class TableExample extends React.Component {
       <Card>
         <Table
           data={this.state.data}
-          columns={Array.from({ length: 4 }).map(x => ({
-            title: 'Column Name',
-            render: row => row.item,
-          }))}
+          columns={[
+            { title: 'Column Name', render: row => row.item },
+            { title: 'Column Name', render: row => row.item },
+            { title: 'Column Name', render: row => row.item },
+            { title: 'Column Name', render: row => row.item },
+          ]}
         >
           <TableToolbar>
             <TableToolbar.Title>Toolbar</TableToolbar.Title>
