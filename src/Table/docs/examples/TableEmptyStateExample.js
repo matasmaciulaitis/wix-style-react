@@ -1,7 +1,6 @@
 /* eslint-disable */
 
-class TableEmptyStateExample extends React.Component {
-  render() {
+() => {
     return (
       <Card>
         <Table>
@@ -22,5 +21,4 @@ class TableEmptyStateExample extends React.Component {
         </Table>
       </Card>
     );
-  }
 }
