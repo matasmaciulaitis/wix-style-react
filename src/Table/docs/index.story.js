@@ -176,7 +176,7 @@ export default {
               compact: true,
             },
             {
-              title: 'Column Alignment',
+              title: 'Column Alignment & Width',
               description:
                 'Cell content can be aligned horizontally with `align` prop (value set to either `start`, `center` or `end`). In case we want to align content vertically - it should be done within the render method explicitly.',
               source: TableAlignedColumnsExampleRaw,
