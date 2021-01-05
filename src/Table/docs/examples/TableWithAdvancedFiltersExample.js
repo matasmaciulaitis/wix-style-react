@@ -55,15 +55,6 @@ class TableWithAdvancedFiltersExample extends React.Component {
       display: 'block',
     };
   
-    image = (
-      <Box
-        height={120}
-        width={120}
-        backgroundColor="#dfe5eb"
-        borderRadius="60px"
-      />
-    );
-  
     openPanel = () => this.setState({ right: 0, display: 'block' });
   
     closePanel = () => this.setState({ right: -440, display: 'none' });
@@ -97,12 +88,10 @@ class TableWithAdvancedFiltersExample extends React.Component {
                   render: row => (
                     <Layout>
                       <Cell span={3}>
-                        <Box
+                        <Image
                           height={30}
                           width={30}
-                          backgroundColor="#dfe5eb"
                           borderRadius="30px"
-                          padding="SP2"
                         />
                       </Cell>
                       <Cell span={6} vertical>
