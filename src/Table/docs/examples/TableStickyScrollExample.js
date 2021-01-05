@@ -34,12 +34,13 @@
 
   const columnWidth = 300;
 
-  const primaryAction = { text: 'Edit', onClick: () => null };
-  
+  const primaryAction = { text: 'Edit', onClick: () => {} };
+
   const secondaryActions = [
     {
       icon: <Icons.Star />,
       text: 'Star',
+      onclick: () => {},
     },
   ];
 
@@ -70,22 +71,21 @@
       width: columnWidth,
     },
     {
-      width: 30,
-      stickyActionCell: true,
       render: () => (
         <TableActionCell
           primaryAction={primaryAction}
           secondaryActions={secondaryActions}
         />
       ),
+      stickyActionCell: true,
+      width: 30,
     },
   ];
 
   return (
     <Table
       horizontalScroll
-      stickyColumns={2}
-      showSelection
+      stickyColumns={1}
       data={data}
       columns={columns}
     >
