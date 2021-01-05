@@ -1,27 +1,46 @@
 /* eslint-disable */
 
-class TableToolbarExample extends React.Component {
-  data = [
-      { name: 'Red Slippers', sku: 25232564, status: 'In Stock', price: '$14.00' },
-      { name: 'Velvet Hat', sku: 35246432, status: 'In Stock', price: '$29.00' },
-      { name: 'Silver Jeans', sku: 4864310, status: 'Out Of Stock', price: '$69.00' },
-      { name: 'Orange Socks', sku: 125156422, status: 'In Stock', price: '$7.00' },
-    ];
+() => {
+  const data = [
+    {
+      name: 'Red Slippers',
+      sku: 25232564,
+      status: 'In Stock',
+      price: '$14.00',
+    },
+    { name: 'Velvet Hat', sku: 35246432, status: 'In Stock', price: '$29.00' },
+    {
+      name: 'Silver Jeans',
+      sku: 4864310,
+      status: 'Out Of Stock',
+      price: '$69.00',
+    },
+    {
+      name: 'Orange Socks',
+      sku: 125156422,
+      status: 'In Stock',
+      price: '$7.00',
+    },
+  ];
 
-  filterOptions = [
+  const columns = [
+    { title: 'Name', render: row => row.name },
+    { title: 'SKU', render: row => row.sku },
+    { title: 'Status', render: row => row.status },
+    { title: 'Status', render: row => row.price },
+  ];
+
+  const filterOptions = [
     { id: '', value: 'All Statuses' },
     { id: 'In Stock', value: 'In Stock' },
     { id: 'Out Of Stock', value: 'Out Of Stock' },
   ];
 
-  state = {
-    activeFilter: '',
-    activeSearch: '',
-  };
+  const [activeFilter, setActiveFilter] = React.useState('');
+  const [activeSearch, setActiveSearch] = React.useState('');
 
-  _getFilteredData = () => {
-    const { activeFilter, activeSearch } = this.state;
-    return this.data.filter(({ name, sku, status, price }) => {
+  const _getFilteredData = () => {
+    return data.filter(({ name, sku, status, price }) => {
       if (activeFilter && status !== activeFilter) {
         return false;
       }
@@ -36,44 +55,7 @@ class TableToolbarExample extends React.Component {
     });
   };
 
-  render() {
-    const data = this._getFilteredData();
-    return (
-      <Card>
-        <Table
-          data={data}
-          columns={[
-            { title: 'Name', render: row => row.name },
-            { title: 'SKU', render: row => row.sku },
-            { title: 'Status', render: row => row.status},
-            { title: 'Status', render: row => row.price },
-          ]}
-          showSelection
-        >
-          <Table.ToolbarContainer>
-            {selectionContext =>
-              selectionContext.selectedCount === 0
-                ? this._renderMainToolbar()
-                : this._renderActionsToolbar({ ...selectionContext })
-            }
-          </Table.ToolbarContainer>
-          <Table.Content />
-          {!data.length && (
-            <Table.EmptyState
-              subtitle={
-                <Text>
-                  {'There are no search results matching '}
-                  <Text weight="normal">{`"${this.state.activeSearch}"`}</Text>
-                </Text>
-              }
-            />
-          )}
-        </Table>
-      </Card>
-    );
-  }
-
-  _renderMainToolbar = () => {
+  const _renderMainToolbar = () => {
     return (
       <TableToolbar>
         <TableToolbar.ItemGroup position="start">
@@ -87,10 +69,10 @@ class TableToolbarExample extends React.Component {
               Filter by
               <div style={{ width: 175 }}>
                 <Dropdown
-                  options={this.filterOptions}
-                  selectedId={this.state.activeFilter}
+                  options={filterOptions}
+                  selectedId={activeFilter}
                   roundInput
-                  onSelect={({ id }) => this.setState({ activeFilter: id })}
+                  onSelect={({ id }) => setActiveFilter(id)}
                   popoverProps={{ appendTo: 'window' }}
                 />
               </div>
@@ -99,8 +81,8 @@ class TableToolbarExample extends React.Component {
           <TableToolbar.Item>
             <div style={{ width: 200 }}>
               <Search
-                value={this.state.activeSearch}
-                onChange={e => this.setState({ activeSearch: e.target.value })}
+                value={activeSearch}
+                onChange={event => setActiveSearch(event.target.value)}
               />
             </div>
           </TableToolbar.Item>
@@ -109,7 +91,7 @@ class TableToolbarExample extends React.Component {
     );
   };
 
-  _renderActionsToolbar = ({ selectedCount, getSelectedIds }) => (
+  const _renderActionsToolbar = ({ selectedCount, getSelectedIds }) => (
     <TableToolbar>
       <TableToolbar.ItemGroup position="start">
         <TableToolbar.Item>
@@ -154,11 +136,36 @@ class TableToolbarExample extends React.Component {
         <TableToolbar.Item>
           <Search
             expandable
-            value={this.state.activeSearch}
-            onChange={e => this.setState({ activeSearch: e.target.value })}
+            value={activeSearch}
+            onChange={event => setActiveSearch(event.target.value)}
           />
         </TableToolbar.Item>
       </TableToolbar.ItemGroup>
     </TableToolbar>
   );
-}
+
+  return (
+    <Card>
+      <Table data={_getFilteredData()} columns={columns} showSelection>
+        <Table.ToolbarContainer>
+          {selectionContext =>
+            selectionContext.selectedCount === 0
+              ? _renderMainToolbar()
+              : _renderActionsToolbar({ ...selectionContext })
+          }
+        </Table.ToolbarContainer>
+        <Table.Content />
+        {!data.length && (
+          <Table.EmptyState
+            subtitle={
+              <Text>
+                {'There are no search results matching '}
+                <Text weight="normal">{`"${activeSearch}"`}</Text>
+              </Text>
+            }
+          />
+        )}
+      </Table>
+    </Card>
+  );
+};
