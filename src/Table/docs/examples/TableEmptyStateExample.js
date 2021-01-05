@@ -14,7 +14,7 @@
           <Table.EmptyState
             title="No Published Posts Yet"
             subtitle="Once you publish posts, you'll see them here."
-            image={<Box height={120} width={120} backgroundColor="#dfe5eb" borderRadius="60px"/>}
+            image={<Image height={120} width={120} borderRadius="60px" />}
           >
             <TextButton prefixIcon={<Icons.Add />}>Create New Post</TextButton>
           </Table.EmptyState>
