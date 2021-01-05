@@ -16,7 +16,7 @@
 
   return (
     <Card>
-      <Table data={data} columns={columns} showSelection />
+      <Table showSelection data={data} columns={columns} />
     </Card>
   );
 };
