@@ -1,18 +1,23 @@
 /* eslint-disable */
 
 () => {
-  const data = [{ item: 'Item 1' }, { item: 'Item 2' }, { item: 'Item 3' }];
+  const data = (item) => [{ item: item }, { item: item }, { item: item }];
   const columns = [{ title: 'Column Name', render: row => row.item }];
   
   return (
     <Layout>
-      <Cell span={6}>
-        <Table rowVerticalPadding="medium" data={data} columns={columns}>
+      <Cell span={4}>
+        <Table rowVerticalPadding="small" data={data('Small')} columns={columns}>
           <Table.Content />
         </Table>
       </Cell>
-      <Cell span={6}>
-        <Table rowVerticalPadding="large" data={data} columns={columns}>
+      <Cell span={4}>
+        <Table rowVerticalPadding="medium" data={data('Medium')} columns={columns}>
+          <Table.Content />
+        </Table>
+      </Cell>
+      <Cell span={4}>
+        <Table rowVerticalPadding="large" data={data('Large')} columns={columns}>
           <Table.Content />
         </Table>
       </Cell>

@@ -143,7 +143,7 @@ export default {
             {
               title: 'Row Vertical Padding',
               description:
-                'Supports `medium` (default) and `large` padding sizes. Large padding should be used for short lists only.',
+                'Supports `small`, `medium` (default) and `large` padding sizes. Large padding should be used for short lists only.',
               source: TableRowVerticalPaddingExample,
               compact: true,
             },
