@@ -34,6 +34,15 @@
 
   const columnWidth = 300;
 
+  const primaryAction = { text: 'Edit', onClick: () => null };
+  
+  const secondaryActions = [
+    {
+      icon: <Icons.Star />,
+      text: 'Star',
+    },
+  ];
+
   const columns = [
     {
       title: 'Employee',
@@ -65,16 +74,8 @@
       stickyActionCell: true,
       render: () => (
         <TableActionCell
-          primaryAction={{ text: 'Edit', onClick: () => null }}
-          popoverMenuProps={{
-            placement: 'top-end',
-          }}
-          secondaryActions={[
-            {
-              icon: <Icons.Star />,
-              text: 'Star',
-            },
-          ]}
+          primaryAction={primaryAction}
+          secondaryActions={secondaryActions}
         />
       ),
     },
