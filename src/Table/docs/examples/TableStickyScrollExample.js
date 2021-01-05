@@ -40,7 +40,7 @@
     {
       icon: <Icons.Star />,
       text: 'Star',
-      onclick: () => {},
+      onClick: () => {},
     },
   ];
 
