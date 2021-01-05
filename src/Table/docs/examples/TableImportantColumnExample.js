@@ -27,20 +27,19 @@
       lastActivity: 'Sep 18, 2019',
     },
   ];
-  
+
+  const primaryAction = {
+    text: 'Edit',
+    onClick: () => {},
+  };
+
   const columns = [
     { title: 'Name', render: row => row.name, important: true },
     { title: 'Country', render: row => row.country },
     { title: 'Orders', render: row => row.orders },
     { title: 'Last Activity', render: row => row.lastActivity },
     {
-      render: () => (
-        <TableActionCell
-          primaryAction={{
-            skin: 'inverted',
-          }}
-        />
-      ),
+      render: () => <TableActionCell primaryAction={primaryAction} />,
     },
   ];
 
