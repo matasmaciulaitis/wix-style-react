@@ -8,7 +8,7 @@
     { name: 'Orange Socks', sku: 125156422, inStock: true, price: '$7.00' },
   ];
 
-  const InStock = ({ isInStock }) => (
+  const Status = ({ isInStock }) => (
     <Badge size="small" skin={isInStock ? 'success' : 'outlined'}>
       {isInStock ? 'In Stock' : 'Out Of Stock'}
     </Badge>
@@ -28,7 +28,7 @@
     },
     {
       title: 'Stock',
-      render: row => <InStock isInStock={row.inStock} />,
+      render: row => <Status isInStock={row.inStock} />,
       width: '20%',
       align: 'center',
     },
