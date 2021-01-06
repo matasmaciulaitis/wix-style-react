@@ -130,6 +130,8 @@ export default {
           ...[
             {
               title: 'Structure',
+              description:
+                '`<Table/>` consists of three main areas: toolbar, subtoolbar (optional) and list of items.',
               source: TableStructureExample,
               compact: true,
             },
