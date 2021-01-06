@@ -152,7 +152,7 @@ export default {
             {
               title: 'Highlighted Rows',
               description:
-                'Rows can be highlighted according to a certain logic.',
+                'Rows can be highlighted to draw attention to i.e. status change, new items on the list, etc.',
               source: TableHighlightedRowsExampleRaw,
               compact: true,
             },
