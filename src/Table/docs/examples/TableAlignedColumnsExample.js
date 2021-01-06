@@ -14,6 +14,19 @@
     </Badge>
   );
 
+  const secondaryAction = [
+    {
+      icon: <Icons.Duplicate />,
+      text: 'Duplicate',
+      onClick: () => {},
+    },
+    {
+      icon: <Icons.Delete />,
+      text: 'Delete',
+      onClick: () => {},
+    },
+  ]
+
   const columns = [
     {
       title: 'Name',
@@ -39,7 +52,7 @@
       align: 'end',
     },
     {
-      render: row => <TableActionCell secondaryActions={[{}]} />,
+      render: row => <TableActionCell secondaryActions={secondaryAction} />,
       width: '10%',
     },
   ];
