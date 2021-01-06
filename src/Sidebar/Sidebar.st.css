@@ -182,6 +182,10 @@
   animation-name: outToRight;
 }
 
+.childrenContent {
+  overflow: hidden;
+}
+
 .gradient {
   -st-states: skin(enum(dark, light));
 
