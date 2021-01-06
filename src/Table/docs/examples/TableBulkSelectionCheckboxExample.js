@@ -59,7 +59,7 @@
         <Table.ToolbarContainer>
           {({ selectedCount, bulkSelectionState }) => (
             <TableToolbar>
-              <TableToolbar.ItemGroup position="start">
+              <TableToolbar.ItemGroup>
                 <TableToolbar.Item>
                   <Table.BulkSelectionCheckbox>
                     <TableToolbar.SelectedCount>
