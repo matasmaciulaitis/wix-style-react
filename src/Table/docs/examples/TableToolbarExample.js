@@ -1,6 +1,9 @@
 /* eslint-disable */
 
 () => {
+  const [filterBy, setFilterBy] = React.useState('');
+  const [activeSearch, setActiveSearch] = React.useState('');
+
   const data = [
     {
       name: 'Red Slippers',
@@ -36,12 +39,9 @@
     { id: 'Out Of Stock', value: 'Out Of Stock' },
   ];
 
-  const [activeFilter, setActiveFilter] = React.useState('');
-  const [activeSearch, setActiveSearch] = React.useState('');
-
   const _getFilteredData = () => {
     return data.filter(({ name, sku, status, price }) => {
-      if (activeFilter && status !== activeFilter) {
+      if (filterBy && status !== filterBy) {
         return false;
       }
 
@@ -70,9 +70,9 @@
               <div style={{ width: 175 }}>
                 <Dropdown
                   options={filterOptions}
-                  selectedId={activeFilter}
+                  selectedId={filterBy}
                   roundInput
-                  onSelect={({ id }) => setActiveFilter(id)}
+                  onSelect={({ id }) => setFilterBy(id)}
                   popoverProps={{ appendTo: 'window' }}
                 />
               </div>
