@@ -257,7 +257,7 @@ In case of vertical alignment of content within cell - it should be done within 
               compact: true,
             },
             {
-              title: 'Table in Page',
+              title: 'Sticky Toolbar & Sub-toolbar',
               description:
                 'This example demonstrates how to render a table with a sticky title and toolbar within `<Page/>`. Notice that `<Page/>` is practically responsible to render the title, using `<Page.Header/>` whereas titleBarVisible is false. Moreover, we use `<Page.Sticky/>` in order to stick the toolbar and sub-toolbar to the top while scrolling.',
               source: TablePageExampleRaw,
