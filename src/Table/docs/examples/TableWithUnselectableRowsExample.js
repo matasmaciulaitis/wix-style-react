@@ -8,10 +8,23 @@
     { category: 'History', posts: '1024 posts' },
   ];
 
+  const secondaryActions = [
+    {
+      icon: <Icons.Rename />,
+      text: 'Rename',
+      onClick: () => {},
+    },
+    {
+      icon: <Icons.Delete />,
+      text: 'Delete',
+      onClick: () => {},
+    },
+  ];
+
   const columns = [
     { title: 'Name', render: row => row.category },
     { title: 'Type', render: row => row.posts },
-    { render: row => <TableActionCell secondaryActions={[{}]} /> },
+    { render: row => <TableActionCell secondaryActions={secondaryActions} /> },
   ];
 
   return (
