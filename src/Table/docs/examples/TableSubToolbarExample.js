@@ -1,50 +1,46 @@
 /* eslint-disable */
 
 () => {
+  const [filterId, setFilterId] = React.useState(0);
+  const [searchTerm, setSearchTerm] = React.useState('');
+    const [currentTags, setTags] = React.useState([
+    { id: 'In Stock', children: 'In Stock' },
+    { id: 'Out Of Stock', children: 'Out Of Stock' },
+  ]);
+  
   var data = [
     {
       name: `Red Slippers`,
       SKU: '0231664667',
       price: '$14.00',
       inventory: 'In Stock',
-      collectionId: 1,
     },
     {
       name: `Velvet Hat`,
       SKU: '0231664669',
       price: '$23.00',
       inventory: 'In Stock',
-      collectionId: 1,
-      filterId: 2,
     },
     {
       name: `Silver Jeans`,
       SKU: '0231664667',
       price: '$69.00',
       inventory: 'In Stock',
-      collectionId: 2,
     },
     {
       name: `Orange Stocks`,
       SKU: '0231664671',
       price: '$9.00',
       inventory: 'Out Of Stock',
-      collectionId: 2,
-      filterId: 1,
     },
     {
       name: `Black T-shirts`,
       SKU: '0231664672',
       price: '$19.00',
       inventory: 'In Stock',
-      collectionId: 2,
-      filterId: 1,
     },
   ];
-  const [collectionId, setCollectionId] = React.useState(0);
-  const [filterId, setFilterId] = React.useState(0);
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [inStock, setInStock] = React.useState(false);
+
   const columns = [
     {
       title: 'Name',
@@ -67,18 +63,14 @@
       width: '20%',
     },
   ];
-  const [currentTags, setTags] = React.useState([
-    { id: '1', children: 'In Stock' },
-    { id: '2', children: 'Out Of Stock' },
-  ]);
-
-  const _renderMainToolbar = () => {
-    const filterOptions = [
+  
+      const filterOptions = [
       { id: 0, value: 'In Stock, Out Of Stock' },
       { id: 'In Stock', value: 'In Stock' },
       { id: 'Out Of Stock', value: 'Out Of Stock' },
     ];
 
+  const _renderMainToolbar = () => {
     return (
       <Card>
         <TableToolbar>
@@ -128,10 +120,8 @@
   );
 
   const _clearSearch = () => {
-    setCollectionId(0);
     setFilterId(0);
     setSearchTerm('');
-    setInStock(false);
   };
 
   const _renderSearch = expandable => {
@@ -148,17 +138,10 @@
   };
 
   const _getFilteredData = () => {
-    if (collectionId > 0) {
-      data = data.filter(row => row.collectionId === collectionId);
-    }
-
     if (filterId !== 0) {
       data = data.filter(row => row.inventory === filterId);
     }
 
-    if (inStock) {
-      data = data.filter(row => row.inventory === 'In Stock');
-    }
 
     if (searchTerm !== '') {
       data = data.filter(row =>
