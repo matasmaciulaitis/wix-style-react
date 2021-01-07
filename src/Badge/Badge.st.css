@@ -67,7 +67,10 @@
 
 .prefix, .suffix {
   fill: currentColor;
-  flex-shrink: 0;
+  max-width: 24px;
+  max-height: 24px;
+  min-width: 18px;
+  min-height: 18px;
 }
 
 .BadgeStyle {
@@ -407,11 +410,13 @@
 /* size = medium */
 .root:size(medium) {
   padding: value(medium);
+  max-height: 24px;
 }
 
 /* size = small */
 .root:size(small) {
   padding: value(small);
+  max-height: 18px;
 }
 
 /* cursor = pointer */

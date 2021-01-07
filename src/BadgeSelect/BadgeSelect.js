@@ -123,7 +123,7 @@ class BadgeSelect extends React.Component {
             type={type}
             size={size}
             uppercase={uppercase}
-            suffixIcon={<ChevronDown viewBox="6 6 12 12" />}
+            suffixIcon={<ChevronDown viewBox="0 0 24 24" />}
             skin={this.state.selectedBadge.skin}
             onClick={this.toggleDropdown}
             dataHook={DATA_ATTR.DATA_BADGE}
