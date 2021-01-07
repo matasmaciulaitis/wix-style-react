@@ -67,7 +67,7 @@
           <TableToolbar.Item>
             <TableToolbar.Label>
               Filter by
-              <div style={{ width: 175 }}>
+              <Box width="175">
                 <Dropdown
                   options={filterOptions}
                   selectedId={filterBy}
@@ -75,16 +75,16 @@
                   onSelect={({ id }) => setFilterBy(id)}
                   popoverProps={{ appendTo: 'window' }}
                 />
-              </div>
+              </Box>
             </TableToolbar.Label>
           </TableToolbar.Item>
           <TableToolbar.Item>
-            <div style={{ width: 200 }}>
+            <Box width="200">
               <Search
                 value={activeSearch}
                 onChange={event => setActiveSearch(event.target.value)}
               />
-            </div>
+            </Box>
           </TableToolbar.Item>
         </TableToolbar.ItemGroup>
       </TableToolbar>
@@ -100,13 +100,7 @@
       </TableToolbar.ItemGroup>
       <TableToolbar.ItemGroup position="end">
         <TableToolbar.Item layout="button">
-          <Button
-            skin="light"
-            prefixIcon={<Icons.Upload />}
-            onClick={() =>
-              window.alert(`Exporting selectedIds=${getSelectedIds()}`)
-            }
-          >
+          <Button skin="light" prefixIcon={<Icons.Upload />} onClick={() => {}}>
             Export
           </Button>
         </TableToolbar.Item>
@@ -114,21 +108,13 @@
           <Button
             skin="light"
             prefixIcon={<Icons.Duplicate />}
-            onClick={() =>
-              window.alert(`Duplicating selectedIds=${getSelectedIds()}`)
-            }
+            onClick={() => {}}
           >
             Duplicate
           </Button>
         </TableToolbar.Item>
         <TableToolbar.Item layout="button">
-          <Button
-            skin="light"
-            prefixIcon={<Icons.Edit />}
-            onClick={() =>
-              window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
-            }
-          >
+          <Button skin="light" prefixIcon={<Icons.Edit />} onClick={() => {}}>
             Edit
           </Button>
         </TableToolbar.Item>
@@ -146,7 +132,7 @@
 
   return (
     <Card>
-      <Table data={_getFilteredData()} columns={columns} showSelection>
+      <Table showSelection data={_getFilteredData()} columns={columns}>
         <Table.ToolbarContainer>
           {selectionContext =>
             selectionContext.selectedCount === 0
