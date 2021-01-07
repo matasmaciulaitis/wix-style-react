@@ -1,6 +1,9 @@
 /* eslint-disable */
 
 () => {
+  const [activeSearch, setActiveSearch] = React.useState('');
+  const [selectedPage, setSelectedPage] = React.useState(8);
+
   const data = [
     {
       name: 'Red Slippers',
@@ -29,16 +32,6 @@
     { title: 'Status', render: row => row.status },
     { title: 'Status', render: row => row.price },
   ];
-
-  const filterOptions = [
-    { id: '', value: 'All Statuses' },
-    { id: 'In Stock', value: 'In Stock' },
-    { id: 'Out Of Stock', value: 'Out Of Stock' },
-  ];
-
-  const [activeFilter, setActiveFilter] = React.useState('');
-  const [activeSearch, setActiveSearch] = React.useState('');
-  const [selectedPage, setSelectedPage] = React.useState(8);
 
   const _generateData = count => {
     let generatedData = [];
@@ -81,12 +74,12 @@
         </TableToolbar.ItemGroup>
         <TableToolbar.ItemGroup position="end">
           <TableToolbar.Item>
-            <div style={{ width: 200 }}>
+            <Box style="200">
               <Search
                 value={activeSearch}
                 onChange={event => setActiveSearch(event.target.value)}
               />
-            </div>
+            </Box>
           </TableToolbar.Item>
         </TableToolbar.ItemGroup>
       </TableToolbar>
@@ -105,9 +98,7 @@
           <Button
             skin="light"
             prefixIcon={<Icons.Upload />}
-            onClick={() =>
-              window.alert(`Exporting selectedIds=${getSelectedIds()}`)
-            }
+            onClick={() => {}}
           >
             Export
           </Button>
@@ -116,9 +107,7 @@
           <Button
             skin="light"
             prefixIcon={<Icons.Duplicate />}
-            onClick={() =>
-              window.alert(`Duplicating selectedIds=${getSelectedIds()}`)
-            }
+            onClick={() => {}}
           >
             Duplicate
           </Button>
@@ -127,9 +116,7 @@
           <Button
             skin="light"
             prefixIcon={<Icons.Edit />}
-            onClick={() =>
-              window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
-            }
+            onClick={() => {}}
           >
             Edit
           </Button>
