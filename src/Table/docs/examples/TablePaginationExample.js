@@ -45,12 +45,10 @@
 
   const _getFilteredData = () => {
     return _generateData(2).filter(({ name, sku, status, price }) => {
-      if (activeFilter && status !== activeFilter) {
-        return false;
-      }
-
       const searchData = [name, sku, status, price].join(' ').toLowerCase();
+
       const searchQuery = activeSearch.trim().toLowerCase();
+
       if (searchQuery && searchData.indexOf(searchQuery) === -1) {
         return false;
       }
@@ -74,7 +72,7 @@
         </TableToolbar.ItemGroup>
         <TableToolbar.ItemGroup position="end">
           <TableToolbar.Item>
-            <Box style="200">
+            <Box width="200">
               <Search
                 value={activeSearch}
                 onChange={event => setActiveSearch(event.target.value)}
