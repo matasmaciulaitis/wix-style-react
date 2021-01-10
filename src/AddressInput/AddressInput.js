@@ -172,8 +172,7 @@ class AddressInput extends React.PureComponent {
         placeholder={placeholder}
         onOptionsShow={this._setDropdownOpen}
         onOptionsHide={this._setDropdownClosed}
-        // disable browser autofill (including in chrome)
-        autocomplete="off,chrome-off"
+        type="search"
       />
     );
   }
