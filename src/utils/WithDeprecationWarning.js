@@ -4,7 +4,7 @@ let config;
 
 try {
   config = require(`${path.resolve(process.cwd())}/wsr.config.js`);
-} catch (ex) {
+} catch (error) {
   config = {
     deprecationWarnings: {},
   };
