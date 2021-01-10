@@ -90,6 +90,14 @@ describe(AddressInput.displayName, () => {
     expect(await driver.getInputValue()).toEqual(mockOption.label);
   });
 
+  it('should pass autocomplete attribute to the wrapped input', async () => {
+    const props = {
+      autocomplete: 'email',
+    };
+    const { driver } = render(<AddressInput {...props} />);
+    expect(await driver.getInputAutocomplete()).toBe('email');
+  });
+
   describe('Dropdown', () => {
     it('should be empty when input is empty', async () => {
       const { driver } = render(<AddressInput />);

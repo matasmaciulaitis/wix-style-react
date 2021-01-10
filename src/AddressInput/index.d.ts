@@ -22,6 +22,7 @@ export interface AddressInputProps {
   size?: 'small' | 'medium' | 'large';
   placeholder?: string;
   noResultsText?: React.ReactNode;
+  autocomplete?: string;
 }
 
 export default class AddressInput extends React.PureComponent<AddressInputProps> {}

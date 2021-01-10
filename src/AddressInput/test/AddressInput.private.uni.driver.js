@@ -7,7 +7,10 @@ import { dataHooks as inputDataHooks } from '../../Input/constants';
 import { findByHook } from '../../../test/utils/unidriver';
 
 export const addressInputPrivateDriverFactory = (base, body) => {
-  const { dropdownLayoutDriver } = inputWithOptionsUniDriverFactory(base, body);
+  const {
+    dropdownLayoutDriver,
+    inputDriver,
+  } = inputWithOptionsUniDriverFactory(base, body);
 
   const loaderTestkit = () =>
     loaderUniDriverFactory(findByHook(base, dataHooks.loader));
@@ -42,5 +45,9 @@ export const addressInputPrivateDriverFactory = (base, body) => {
         return false;
       }
     },
+    /** Get input autocomplete attribute
+     * @returns {Promise<string>}
+     */
+    getInputAutocomplete: inputDriver.getAutocomplete,
   };
 };
