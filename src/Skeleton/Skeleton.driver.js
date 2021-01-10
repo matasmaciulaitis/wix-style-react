@@ -1,9 +1,11 @@
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const selector = element => hook =>
   element.querySelectorAll(`[data-hook="${hook}"]`);
 
-export default ({ element }) => {
+const skeletonDriverFactory = ({ element }) => {
+  WithDeprecationWarning();
   const byHook = selector(element);
 
   return {
@@ -35,3 +37,5 @@ export default ({ element }) => {
       element.getAttribute('data-alignment') === alignment,
   };
 };
+
+export default skeletonDriverFactory;

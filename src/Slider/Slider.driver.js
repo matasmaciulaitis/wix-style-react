@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const sliderDriverFactory = ({ element }) => {
+  WithDeprecationWarning(sliderDriverFactory);
+
   const $sliderHandles = () =>
     element.querySelectorAll(`[data-hook="${dataHooks.sliderHandle}"]`);
   const $sliderDots = () => element.querySelectorAll('.wsr-slider-dot');

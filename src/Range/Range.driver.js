@@ -1,7 +1,10 @@
 import inputDriverFactory from '../Input/Input.driver';
 import { DATA_HOOKS } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const rangeDriverFactory = ({ element }) => {
+  WithDeprecationWarning(rangeDriverFactory);
+
   const getElementByDataHook = dataHook =>
     element.querySelector(`[data-hook='${dataHook}']`);
 

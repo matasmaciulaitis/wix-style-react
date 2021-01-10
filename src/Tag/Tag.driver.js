@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { dataAttr, dataHooks } from './Tag.helpers';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const tagDriverFactory = ({ element }) => {
+  WithDeprecationWarning(tagDriverFactory);
+
   const getRemoveButton = () =>
     element.querySelector(`[data-hook="${dataHooks.removeButton}"]`);
   const getThumb = () =>

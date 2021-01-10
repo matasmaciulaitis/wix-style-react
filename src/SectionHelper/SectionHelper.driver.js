@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { Appearance } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const sectionHelperDriverFactory = ({ element }) => {
+  WithDeprecationWarning(sectionHelperDriverFactory);
+
   const hasAppearance = appearance => element.dataset.appearance === appearance;
   const byHook = hook => element.querySelector(`[data-hook="${hook}"]`);
   const getCloseButton = () => byHook('sectionhelper-close-btn');

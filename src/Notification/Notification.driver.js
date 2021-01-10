@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { dataHooks, THEMES, TYPE_POSITIONS_MAP } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const notificationDriverFactory = ({ element }) => {
+  WithDeprecationWarning(notificationDriverFactory);
+
   const getElementByDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
 

@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import dropdownBaseDriverFactory from '../DropdownBase/DropdownBase.legacy.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const calendarDriverFactory = ({ element }) => {
+  WithDeprecationWarning(calendarDriverFactory);
+
   const getCalendar = () => element.querySelector('.DayPicker');
   const getNthDay = n =>
     element.querySelectorAll(

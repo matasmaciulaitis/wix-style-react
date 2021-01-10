@@ -3,8 +3,11 @@ import calendarDriverFactory from '../Calendar/Calendar.driver';
 import popoverDriverFactory from '../Popover/Popover.driver';
 
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const datePickerDriverFactory = ({ element }) => {
+  WithDeprecationWarning(datePickerDriverFactory);
+
   const popoverElement = element.querySelector(
     `[data-hook=${dataHooks.datePickerPopover}]`,
   );

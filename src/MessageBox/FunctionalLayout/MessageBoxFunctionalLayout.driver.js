@@ -1,6 +1,9 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../../utils/WithDeprecationWarning';
 
 const messageBoxFunctionalLayoutDriverFactory = ({ element }) => {
+  WithDeprecationWarning(messageBoxFunctionalLayoutDriverFactory);
+
   const confirmationButton = () =>
     element.querySelector('[data-hook="confirmation-button"]');
   const cancellationButton = () =>

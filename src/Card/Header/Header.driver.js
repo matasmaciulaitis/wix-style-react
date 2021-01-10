@@ -1,6 +1,9 @@
 import { DataHooks } from './hooks';
+import { WithDeprecationWarning } from '../../utils/WithDeprecationWarning';
 
 const headerDriverFactory = ({ element }) => {
+  WithDeprecationWarning(headerDriverFactory);
+
   const title = () => element.querySelector(`[data-hook="${DataHooks.title}"]`);
   const subtitle = () =>
     element.querySelector(`[data-hook="${DataHooks.subtitle}"]`);

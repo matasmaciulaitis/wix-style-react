@@ -1,7 +1,10 @@
 import dataTableDriverFactory from './DataTable/DataTable.driver';
 import checkboxDriverFactory from '../Checkbox/Checkbox.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const tableDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(tableDriverFactory);
+
   const dataTableDriver = dataTableDriverFactory({
     element,
   });

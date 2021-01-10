@@ -1,6 +1,9 @@
 import { toggleSwitchDriverFactory as coreToggleSwitchDriverFactory } from 'wix-ui-core/drivers/vanilla';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const toggleSwitchDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(toggleSwitchDriverFactory);
+
   const coreToggleSwitchDriver = coreToggleSwitchDriverFactory({
     element,
     eventTrigger,

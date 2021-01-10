@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { THEMES, SIZES, DATA_HOOKS, DATA_ATTRIBUTES } from './constnats';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const breadcrumbsDriverFactory = ({ element }) => {
+  WithDeprecationWarning(breadcrumbsDriverFactory);
+
   const optionAt = position => element.childNodes[position];
 
   return {

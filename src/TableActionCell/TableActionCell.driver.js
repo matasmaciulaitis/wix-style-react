@@ -2,8 +2,11 @@ import { popoverMenuTestkitFactory } from '../../testkit';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { dataHooks } from './constants';
 import buttonDriverFactory from '../Button/Button.legacy.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const tableActionCellDriverFactory = ({ element, wrapper, eventTrigger }) => {
+  WithDeprecationWarning(tableActionCellDriverFactory);
+
   const visibleActions = () =>
     element.querySelectorAll(`[data-hook="${dataHooks.visibleAction}"]`);
 

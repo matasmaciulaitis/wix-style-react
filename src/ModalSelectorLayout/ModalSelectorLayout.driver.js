@@ -7,6 +7,7 @@ import textDriverFactory from '../Text/Text.driver';
 import { dataHooks } from '../SelectorList/SelectorList.helpers';
 import checkboxDriverFactory from '../Checkbox/Checkbox.driver';
 import buttonDriverFactory from '../Button/Button.legacy.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 const loaderTestkitFactory = testkitFactoryCreator(loaderDriverFactory);
@@ -15,6 +16,8 @@ const searchTestkitFactory = testkitFactoryCreator(searchDriverFactory);
 const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactory);
 
 const modalSelectorLayoutDriverFactory = ({ element }) => {
+  WithDeprecationWarning(modalSelectorLayoutDriverFactory);
+
   const findInModalByDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
   const mainLoaderDriver = () =>

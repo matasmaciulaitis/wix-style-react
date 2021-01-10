@@ -1,7 +1,10 @@
 import inputDriverFactory from '../Input/Input.driver';
 import DataHooks from './dataHooks';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const noBorderInputDriverFactory = ({ element, wrapper }) => {
+  WithDeprecationWarning(noBorderInputDriverFactory);
+
   const inputDriver = inputDriverFactory({
     element,
     wrapper,

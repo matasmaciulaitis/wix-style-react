@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { DataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 export const colorPickerDriverFactory = ({ element }) => {
+  WithDeprecationWarning(colorPickerDriverFactory);
+
   return {
     exists: () => !!element,
     confirm: () =>

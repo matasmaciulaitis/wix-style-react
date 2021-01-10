@@ -1,6 +1,9 @@
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const multiSelectCheckboxDriverFactory = ({ element }) => {
+  WithDeprecationWarning(multiSelectCheckboxDriverFactory);
+
   const {
     driver,
     inputDriver,

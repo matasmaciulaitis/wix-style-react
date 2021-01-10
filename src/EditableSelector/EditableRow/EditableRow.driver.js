@@ -1,6 +1,9 @@
 import inputDriverFactory from '../../Input/Input.driver';
+import { WithDeprecationWarning } from '../../utils/WithDeprecationWarning';
 
 const editableRowDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(editableRowDriverFactory);
+
   const find = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
 
   const inputDriver = () =>

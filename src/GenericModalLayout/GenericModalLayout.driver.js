@@ -1,8 +1,10 @@
 import { isClassExists } from '../../test/utils';
 
-export default ({ element }) => {
+const genericModalLayoutDriverFactory = ({ element }) => {
   return {
     exists: () => !!element,
     isFullscreen: () => isClassExists(element, 'fullscreenContainer'),
   };
 };
+
+export default genericModalLayoutDriverFactory;

@@ -1,8 +1,11 @@
 import selectorDriverFactory from '../Selector/Selector.driver';
 import editableRowDriverFactory from './EditableRow/EditableRow.driver';
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const editableSelectorDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(editableSelectorDriverFactory);
+
   const newRowButton = () =>
     element.querySelector('[data-hook="new-row-button-text"]');
   const selectorRowDriver = index =>

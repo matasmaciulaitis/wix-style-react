@@ -4,8 +4,11 @@ import radioButtonDriverFactory from './RadioButton/RadioButton.driver';
 import { dataHooks } from './constants';
 import { dataHooks as radioButtonDataHooks } from './RadioButton/constants';
 import { classes } from './RadioGroup.st.css';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const radioGroupDriverFactory = ({ element }) => {
+  WithDeprecationWarning(radioGroupDriverFactory);
+
   const getRadios = () =>
     toArray(
       element.querySelectorAll(

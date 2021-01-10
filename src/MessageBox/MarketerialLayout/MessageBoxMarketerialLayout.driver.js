@@ -1,6 +1,9 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../../utils/WithDeprecationWarning';
 
 const messageBoxMarketerialLayoutDriverFactory = ({ element }) => {
+  WithDeprecationWarning(messageBoxMarketerialLayoutDriverFactory);
+
   const primaryButton = () =>
     element.querySelector('[data-hook="primary-button"]');
   const primaryButtonNode = () =>

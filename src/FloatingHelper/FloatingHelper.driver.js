@@ -1,8 +1,11 @@
 import { closablePopoverDriverFactory } from './ClosablePopover/ClosablePopover.driver';
 import { dataHooks } from './constants';
 import { floatingHelperContentDriverFactory } from './FloatingHelperContent/FloatingHelperContent.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const floatingHelperDriverFactory = ({ wrapper, element, eventTrigger }) => {
+  WithDeprecationWarning(floatingHelperDriverFactory);
+
   const closablePopoverDriver = closablePopoverDriverFactory({
     wrapper,
     element,

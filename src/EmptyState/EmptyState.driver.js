@@ -1,6 +1,8 @@
-import { isClassExists } from '../../test/utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const emptyStateDriverFactory = ({ element }) => {
+  WithDeprecationWarning(emptyStateDriverFactory);
+
   const byDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
 

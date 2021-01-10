@@ -9,8 +9,11 @@ import {
   OPTION_DATA_HOOKS,
   DATA_SELECTED_OPTION_ID,
 } from './DataAttr';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const dropdownLayoutDriverFactory = ({ element }) => {
+  WithDeprecationWarning(dropdownLayoutDriverFactory);
+
   const byDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
 

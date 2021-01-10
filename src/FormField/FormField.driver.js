@@ -1,8 +1,11 @@
 import { Simulate } from 'react-dom/test-utils';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const formFieldDriver = ({ element, dataHook }) => {
+  WithDeprecationWarning(formFieldDriver);
+
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const charactersCounter = () => byHook(dataHooks.counter);
 

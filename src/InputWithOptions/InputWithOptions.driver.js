@@ -1,8 +1,11 @@
 import inputDriverFactory from '../Input/Input.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import popoverDriverFactory from '../Popover/Popover.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const inputWithOptionsDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(inputWithOptionsDriverFactory);
+
   const dropdownLayoutSelector = `[data-hook="dropdown-layout-wrapper"]`;
   const inputWrapperSelector = '[data-input-parent]';
   const popoverTestkit = () => popoverDriverFactory({ element });

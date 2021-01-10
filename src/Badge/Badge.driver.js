@@ -1,4 +1,8 @@
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
+
 const badgeDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(badgeDriverFactory);
+
   return {
     /** checks if element exists */
     exists: () => !!element,

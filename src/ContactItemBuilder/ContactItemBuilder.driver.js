@@ -1,8 +1,11 @@
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import textDriverFactory from '../Text/Text.driver';
 import { dataHooks } from './ContactItemBuilderDataHooks';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const contactItemBuilderDriverFactory = ({ element }) => {
+  WithDeprecationWarning(contactItemBuilderDriverFactory);
+
   const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
   const titleDriver = textTestkitFactory({

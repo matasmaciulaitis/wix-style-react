@@ -1,6 +1,9 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const modalDriverFactory = ({ element }) => {
+  WithDeprecationWarning(modalDriverFactory);
+
   const getPortal = () => {
     const dataHook = element && element.getAttribute('data-hook');
     return dataHook

@@ -1,6 +1,9 @@
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const searchDriverFactory = args => {
+  WithDeprecationWarning(searchDriverFactory);
+
   const { element } = args;
 
   const inputWithOptionsDriver = inputWithOptionsDriverFactory({

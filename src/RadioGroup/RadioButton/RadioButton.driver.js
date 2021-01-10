@@ -1,7 +1,10 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../../utils/WithDeprecationWarning';
 
 const radioButtonDriverFactory = ({ element }) => {
+  WithDeprecationWarning(radioButtonDriverFactory);
+
   const getByDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
   const radioWrapper = () => getByDataHook(dataHooks.RadioButtonWrapper);

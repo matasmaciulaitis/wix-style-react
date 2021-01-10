@@ -1,6 +1,9 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const tabsDriverFactory = ({ element }) => {
+  WithDeprecationWarning(tabsDriverFactory);
+
   const findFirst = query => element.querySelector(query);
   const getItemsContainer = () => findFirst('ul');
   const getItems = () => [...getItemsContainer().childNodes];

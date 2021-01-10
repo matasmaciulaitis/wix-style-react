@@ -1,26 +1,33 @@
 import { isClassExists } from '../../test/utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
-export default ({ element }) => ({
-  /** fulfilled if element in the DOM */
-  exists: () => !!element,
-  hasClass: className => isClassExists(element, className),
+const pageDriverFactory = ({ element }) => {
+  WithDeprecationWarning(pageDriverFactory);
 
-  /** true if header background image exist */
-  backgroundImageExists: () =>
-    !!element.querySelector('[data-hook="page-background-image"]'),
+  return {
+    /** fulfilled if element in the DOM */
+    exists: () => !!element,
+    hasClass: className => isClassExists(element, className),
 
-  /** true if gradient class name exist */
-  gradientClassNameExists: () =>
-    !!element.querySelector('[data-hook="page-gradient-class-name"]'),
+    /** true if header background image exist */
+    backgroundImageExists: () =>
+      !!element.querySelector('[data-hook="page-background-image"]'),
 
-  /** true if title exist in DOM */
-  tailExists: () => !!element.querySelector('[data-hook="page-tail"]'),
+    /** true if gradient class name exist */
+    gradientClassNameExists: () =>
+      !!element.querySelector('[data-hook="page-gradient-class-name"]'),
 
-  /** return container height */
-  gradientContainerHeight: () =>
-    element.querySelector('[data-hook="page-gradient-class-name"]').style
-      .height,
+    /** true if title exist in DOM */
+    tailExists: () => !!element.querySelector('[data-hook="page-tail"]'),
 
-  /** returns html in a string form */
-  getPageHtml: () => element.innerHTML,
-});
+    /** return container height */
+    gradientContainerHeight: () =>
+      element.querySelector('[data-hook="page-gradient-class-name"]').style
+        .height,
+
+    /** returns html in a string form */
+    getPageHtml: () => element.innerHTML,
+  };
+};
+
+export default pageDriverFactory;

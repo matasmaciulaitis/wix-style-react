@@ -1,4 +1,8 @@
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
+
 const filePickerDriverFactory = ({ element }) => {
+  WithDeprecationWarning(filePickerDriverFactory);
+
   const error = element.querySelector(`[data-hook=filePicker-error]`);
   const input = element.querySelector(`[data-hook="file-upload-input"]`);
   const subLabel = element.querySelector(`[data-hook="sub-label"]`);

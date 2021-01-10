@@ -1,4 +1,8 @@
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
+
 const headingDriverFactory = factoryParams => {
+  WithDeprecationWarning(headingDriverFactory);
+
   const { element } = factoryParams;
 
   return {

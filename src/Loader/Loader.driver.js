@@ -1,10 +1,13 @@
 import { isClassExists } from '../../test/utils';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const getTextElement = element =>
   element.querySelector(`[data-hook="loader-text"]`);
 
 const loaderDriverFactory = ({ element }) => {
+  WithDeprecationWarning(loaderDriverFactory);
+
   const tooltipTestkit = tooltipTestkitFactory({
     wrapper: element,
     dataHook: `loader-tooltip`,

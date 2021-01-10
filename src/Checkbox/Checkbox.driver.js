@@ -3,8 +3,11 @@ import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/To
 import textDriverFactory from '../Text/Text.driver';
 import { dataHooks } from './constants';
 import * as DATA_ATTR from './DataAttr';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(checkboxDriverFactory);
+
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const input = () => element.querySelector('input');
   const checkbox = () => element.querySelector(dataHooks.box);

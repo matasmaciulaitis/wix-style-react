@@ -1,8 +1,11 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { dataAttr, dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const inputAreaDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(inputAreaDriverFactory);
+
   const textArea = () => element.querySelector('textarea');
   const name = () => textArea().getAttribute('name');
   const counterSelector = '[data-hook="counter"]';

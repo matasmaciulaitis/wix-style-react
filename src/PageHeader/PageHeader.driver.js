@@ -13,7 +13,7 @@ const actionBarElement = element =>
 const backButtonElement = element =>
   element.querySelector(`[data-hook="${dataHooks.backButton}"]`);
 
-export default ({ element }) => ({
+const pageHeaderDriverFactory = ({ element }) => ({
   hasClass: className => isClassExists(element, className),
   titleText: () => titleElement(element).textContent,
   isTitleExists: () => !!titleElement(element),
@@ -26,3 +26,5 @@ export default ({ element }) => ({
   clickBackButton: () =>
     ReactTestUtils.Simulate.click(backButtonElement(element)),
 });
+
+export default pageHeaderDriverFactory;

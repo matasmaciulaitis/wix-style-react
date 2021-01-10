@@ -1,8 +1,11 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
 import tagDriverFactory from '../Tag/Tag.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const multiSelectDriverFactory = ({ element, wrapper, eventTrigger }) => {
+  WithDeprecationWarning(multiSelectDriverFactory);
+
   const {
     driver,
     inputDriver,

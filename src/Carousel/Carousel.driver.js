@@ -1,6 +1,9 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
-export const carouselDriverFactory = ({ element }) => {
+const carouselDriverFactory = ({ element }) => {
+  WithDeprecationWarning(carouselDriverFactory);
+
   // It turns out that react-slick duplicates the children, so we ditch the cloned nodes
   const withoutClonedNodes = (selector = '') =>
     `.slick-slide:not(.slick-cloned) ${selector}`;
@@ -30,3 +33,5 @@ export const carouselDriverFactory = ({ element }) => {
     },
   };
 };
+
+export default carouselDriverFactory;

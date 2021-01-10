@@ -2,7 +2,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { iconButtonTestkitFactory } from 'wix-style-react/dist/testkit';
 import { isClassExists } from '../../test/utils';
 
-import { carouselDriverFactory as publicDriver } from './Carousel.driver';
+import carouselDriverFactory from './Carousel.driver';
 
 export default ({ element }) => {
   const arrowButtonDriver = direction =>
@@ -12,7 +12,7 @@ export default ({ element }) => {
     });
 
   return {
-    ...publicDriver({ element }),
+    ...carouselDriverFactory({ element }),
     hasClass: className => isClassExists(element, className),
     getCurrentImageIndex: () => {
       const currentSlide = element.querySelector('[aria-hidden="false"]');

@@ -2,8 +2,11 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { dataHooks } from './constants';
 import DATA_ATTR from './DataAttr';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const inputDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(inputDriverFactory);
+
   const input = element && element.querySelector('input');
   const clearButton =
     element && element.querySelector(`[data-hook=input-clear-button]`);

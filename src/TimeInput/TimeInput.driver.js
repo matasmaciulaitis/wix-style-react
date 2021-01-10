@@ -3,10 +3,13 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import inputDriverFactory from '../Input/Input.driver';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
 const timeInputDriverFactory = ({ element }) => {
+  WithDeprecationWarning(timeInputDriverFactory);
+
   const input = () =>
     inputTestkitFactory({ wrapper: element, dataHook: dataHooks.input });
   const inputTicker = () => tickerTestkitFactory({ wrapper: element });

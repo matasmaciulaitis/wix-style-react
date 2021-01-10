@@ -1,10 +1,12 @@
 import badgeDriverFactory from '../Badge/Badge.driver';
 import * as DATA_ATTR from './DataAttr';
-
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import popoverDriverFactory from '../Popover/Popover.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const badgeSelectDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(badgeSelectDriverFactory);
+
   const popoverDriver = popoverDriverFactory({ element, eventTrigger });
 
   return {

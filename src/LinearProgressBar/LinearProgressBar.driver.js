@@ -3,8 +3,11 @@ import {
   tooltipDriverFactory as coreTooltipDriverFactory,
 } from 'wix-ui-core/drivers/vanilla';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const linearProgressBarDriverFactory = ({ element, eventTrigger, wrapper }) => {
+  WithDeprecationWarning(linearProgressBarDriverFactory);
+
   const getElementByDataHook = dataHook =>
     element.querySelector(`[data-hook='${dataHook}']`);
   const createTooltipDriver = () =>

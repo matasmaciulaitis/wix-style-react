@@ -4,6 +4,8 @@ import { dataHooks } from './constants';
 import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const addItemDriverFactory = ({ element, eventTrigger }) => {
+  WithDeprecationWarning(addItemDriverFactory);
+
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const tooltipTestkit = tooltipTestkitFactory({
     wrapper: element,
@@ -37,4 +39,4 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
   };
 };
 
-export default WithDeprecationWarning(addItemDriverFactory);
+export default addItemDriverFactory;

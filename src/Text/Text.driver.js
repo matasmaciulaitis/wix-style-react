@@ -1,4 +1,8 @@
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
+
 const textDriverFactory = ({ element }) => {
+  WithDeprecationWarning(textDriverFactory);
+
   return {
     exists: () => !!element,
     getTagName: () => element.tagName.toLowerCase(),

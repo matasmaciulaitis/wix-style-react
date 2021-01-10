@@ -2,8 +2,11 @@ import addItemDriverFactory from '../AddItem/AddItem.driver';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 import { dataAttributes, dataHooks } from './constants';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const imageViewerDriverFactory = ({ element, wrapper, eventTrigger }) => {
+  WithDeprecationWarning(imageViewerDriverFactory);
+
   const byHook = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
 
   const hasDataAttribute = (dataAttr, el) =>

@@ -2,10 +2,13 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import { isClassExists } from '../../test/utils';
 import textDriverFactory from '../Text/Text.driver';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
 const selectorDriverFactory = ({ element }) => {
+  WithDeprecationWarning(selectorDriverFactory);
+
   const toggleInput = () => element.querySelector('[data-hook="toggle"] input');
   const image = () => element.querySelector('[data-hook="selector-image"]');
   const titleTextDriver = () =>
