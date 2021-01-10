@@ -1,9 +1,10 @@
 import textDriverFactory from '../Text/Text.driver';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 import { dataHooks } from './constants';
+import { WithDeprecationWarning } from '../utils/WithDeprecationWarning';
 
 const addItemDriverFactory = ({ element, eventTrigger }) => {
-  const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
+  const byHook = (hook) => element.querySelector(`[data-hook*="${hook}"]`);
   const tooltipTestkit = tooltipTestkitFactory({
     wrapper: element,
     dataHook: dataHooks.itemTooltip,
@@ -36,4 +37,4 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
   };
 };
 
-export default addItemDriverFactory;
+export default WithDeprecationWarning(addItemDriverFactory);
