@@ -30,7 +30,6 @@ function addressInputWithAllProps() {
       size="small"
       placeholder="write something"
       noResultsText="nothing to see here"
-      autocomplete="on"
     />
   );
 }

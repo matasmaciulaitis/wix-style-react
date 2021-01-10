@@ -140,7 +140,6 @@ class AddressInput extends React.PureComponent {
       disabled,
       onBlur,
       statusMessage,
-      autocomplete,
     } = this.props;
     const value = this._getInputValue();
     const status = this._getStatus();
@@ -173,7 +172,8 @@ class AddressInput extends React.PureComponent {
         placeholder={placeholder}
         onOptionsShow={this._setDropdownOpen}
         onOptionsHide={this._setDropdownClosed}
-        autocomplete={autocomplete}
+        // disable browser autofill (including in chrome)
+        autocomplete="off,chrome-off"
       />
     );
   }
@@ -232,9 +232,6 @@ AddressInput.propTypes = {
 
   /** Text to show in dropdown when no results found */
   noResultsText: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-
-  /** Sets value of autocomplete attribute (consult the [HTML spec](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete) for possible values  */
-  autocomplete: PropTypes.string,
 };
 
 AddressInput.defaultProps = {

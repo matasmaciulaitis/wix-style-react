@@ -33,7 +33,6 @@ function addressInputWithAllProps() {
       optionSuffix={<span />}
       debounceFn={(callback, debounceMs) => callback}
       debounceMs={500}
-      autocomplete="on"
     />
   );
 }

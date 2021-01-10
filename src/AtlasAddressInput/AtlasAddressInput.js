@@ -154,9 +154,6 @@ AtlasAddressInput.propTypes = {
 
   /**  Will show the provided node as the option suffix. */
   optionSuffix: PropTypes.node,
-
-  /** Sets value of autocomplete attribute (consult the [HTML spec](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete) for possible values  */
-  autocomplete: PropTypes.string,
 };
 
 export default AtlasAddressInput;
