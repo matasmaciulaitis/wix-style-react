@@ -5,7 +5,7 @@ const selector = element => hook =>
   element.querySelectorAll(`[data-hook="${hook}"]`);
 
 const skeletonDriverFactory = ({ element }) => {
-  WithDeprecationWarning();
+  WithDeprecationWarning(skeletonDriverFactory);
   const byHook = selector(element);
 
   return {
