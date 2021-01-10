@@ -315,5 +315,58 @@ describe('multiSelectCheckbox', () => {
       await dropdownLayoutDriver.clickAtOption(0);
       expect(onDeselect).toHaveBeenCalledWith(options[0].id, options[0]);
     });
+
+    it('should getLabels', async () => {
+      const selectedOptions = [options[0].id, options[1].id];
+      const onDeselect = jest.fn();
+      const { driver } = createDriver(
+        <MultiSelectCheckbox
+          options={options}
+          selectedOptions={selectedOptions}
+          onDeselect={onDeselect}
+        />,
+      );
+
+      expect(await driver.getLabels()).toEqual([
+        options[0].value,
+        options[1].value,
+      ]);
+    });
+
+    it('should getLabels with delimiter', async () => {
+      const selectedOptions = [options[0].id, options[1].id];
+      const onDeselect = jest.fn();
+      const delimiter = '.';
+      const { driver } = createDriver(
+        <MultiSelectCheckbox
+          options={options}
+          selectedOptions={selectedOptions}
+          onDeselect={onDeselect}
+          delimiter={delimiter}
+        />,
+      );
+
+      expect(await driver.getLabels(delimiter)).toEqual([
+        options[0].value,
+        options[1].value,
+      ]);
+    });
+
+    it('should getLabelAt with delimiter', async () => {
+      const selectedOptions = [options[0].id, options[1].id];
+      const onDeselect = jest.fn();
+      const delimiter = '.';
+
+      const { driver } = createDriver(
+        <MultiSelectCheckbox
+          options={options}
+          selectedOptions={selectedOptions}
+          onDeselect={onDeselect}
+          delimiter={delimiter}
+        />,
+      );
+
+      expect(await driver.getLabelAt(1, delimiter)).toEqual(selectedOptions[1]);
+    });
   }
 });

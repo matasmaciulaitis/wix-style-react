@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SelectedDaysType} from '../CalendarPanel';
+import { SelectedDaysType } from '../CalendarPanel';
 
 export interface CalendarPanelFooterProps {
   dataHook?: string;
@@ -12,9 +12,7 @@ export interface CalendarPanelFooterProps {
   dateToString: (selectedDays: SelectedDaysType) => string;
 }
 
-export default class CalendarPanelFooter extends React.Component<
-  CalendarPanelFooterProps
-> {}
+export default class CalendarPanelFooter extends React.Component<CalendarPanelFooterProps> {}
 
 export interface CalendarPanelFooterItem {
   title?: React.ReactNode;

@@ -97,10 +97,10 @@ const tests = [
           selectionArea: 'always',
         },
         radioButtonProps: {
-          '2': {
+          2: {
             content: '2nd content',
           },
-          '3': {
+          3: {
             content: '3rd content',
           },
         },

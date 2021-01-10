@@ -39,9 +39,7 @@ export type ModalSelectorLayoutCommonProps = {
   sideActions?: React.ReactNode;
 };
 
-export default class ModalSelectorLayout extends React.PureComponent<
-  ModalSelectorLayoutProps
-> {}
+export default class ModalSelectorLayout extends React.PureComponent<ModalSelectorLayoutProps> {}
 
 export type ModalSelectorLayoutDatasourceFn = (
   searchQuery: string,

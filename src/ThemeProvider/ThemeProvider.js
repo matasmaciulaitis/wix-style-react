@@ -28,7 +28,9 @@ class ThemeProvider extends React.PureComponent {
         style={this._parseTheme(theme)}
         data-hook={dataHook}
       >
-        <ThemeContext.Provider value={{ icons: theme.icons }}>
+        <ThemeContext.Provider
+          value={{ icons: theme.icons, className: theme.className }}
+        >
           {theme.componentWrapper
             ? theme.componentWrapper({ children })
             : children}

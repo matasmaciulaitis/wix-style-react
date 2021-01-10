@@ -137,33 +137,6 @@ describe('StatisticsWidget', () => {
 
         expect(percentage).toBe(12);
       });
-
-      describe('Reverted percentage', () => {
-        it('should be false when unset', async () => {
-          const { driver } = render(<StatisticsWidget {...data} />);
-          const isInverted = await driver.isPercentageInverted(0);
-
-          expect(isInverted).toBe(false);
-        });
-
-        it('should be false when set to false', async () => {
-          data.items[0].invertedPercentage = false;
-
-          const { driver } = render(<StatisticsWidget {...data} />);
-          const isInverted = await driver.isPercentageInverted(0);
-
-          expect(isInverted).toBe(false);
-        });
-
-        it('should be true when set to true', async () => {
-          data.items[0].invertedPercentage = true;
-
-          const { driver } = render(<StatisticsWidget {...data} />);
-          const isInverted = await driver.isPercentageInverted(0);
-
-          expect(isInverted).toBe(true);
-        });
-      });
     });
 
     it('should replace undefined value with dash', async () => {

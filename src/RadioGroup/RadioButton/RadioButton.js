@@ -30,6 +30,12 @@ class RadioButton extends React.PureComponent {
     /** optional node to be rendered under label. Clicking it will not trigger `onChange` */
     content: PropTypes.node,
     className: PropTypes.string,
+
+    /** Selection area skin emphasises the style of the clickable area for selectionArea ('hover' or 'always'),  filled (default) means selectionArea has backgound, outlined means selectionArea has outline */
+    selectionAreaSkin: PropTypes.oneOf(['filled', 'outlined']),
+
+    /** Selection area padding emphasises the padding of the clickable area, empty means default padding, not empty overrides the default padding*/
+    selectionAreaPadding: PropTypes.string,
   };
 
   static defaultProps = {
@@ -40,7 +46,9 @@ class RadioButton extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.id = uniqueId();
+
+    const prefix = props.name && `${props.name}_`;
+    this.id = uniqueId(prefix);
   }
 
   render() {
@@ -60,6 +68,7 @@ class RadioButton extends React.PureComponent {
       focusableOnFocus,
       focusableOnBlur,
       className,
+      selectionAreaPadding,
     } = this.props;
 
     return (
@@ -93,34 +102,39 @@ class RadioButton extends React.PureComponent {
             data-hook={dataHooks.RadioButtonLabel}
             style={{ lineHeight }}
             htmlFor={this.id}
-            className={classnames({
-              [classes.vcenter]: vAlign === 'center',
-            })}
+            className={classes.label}
           >
             <div
-              style={{ height: lineHeight }}
-              className={classes.radioButtonWrapper}
-              data-hook={dataHooks.RadioButtonRadio}
+              className={classnames(classes.labelInner, {
+                [classes.vcenter]: vAlign === 'center',
+              })}
+              style={{ padding: selectionAreaPadding }}
             >
               <div
-                className={classnames(classes.radio, {
-                  [classes.radioButtonChecked]: checked,
-                })}
-              />
-            </div>
-
-            {children && (
-              <Text
-                className={classes.children}
-                data-hook={dataHooks.RadioButtonChildren}
-                tagName="div"
-                size="medium"
-                weight="thin"
-                secondary
+                style={{ height: lineHeight }}
+                className={classes.radioButtonWrapper}
+                data-hook={dataHooks.RadioButtonRadio}
               >
-                {children}
-              </Text>
-            )}
+                <div
+                  className={classnames(classes.radio, {
+                    [classes.radioButtonChecked]: checked,
+                  })}
+                />
+              </div>
+
+              {children && (
+                <Text
+                  className={classes.children}
+                  data-hook={dataHooks.RadioButtonChildren}
+                  tagName="div"
+                  size="medium"
+                  weight="thin"
+                  secondary
+                >
+                  {children}
+                </Text>
+              )}
+            </div>
           </label>
         </div>
         {content && (

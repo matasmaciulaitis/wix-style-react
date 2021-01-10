@@ -37,11 +37,28 @@ describe(FunnelChart.displayName, () => {
       const driver = render(<FunnelChart data={dataExample} />).driver;
       expect(await driver.exists()).toBe(true);
       expect(await driver.getItemsCount()).toBe(3);
-      expect(await driver.getValueAt(0)).toBe('1K');
+      expect(await driver.getValueAt(0)).toBe('1000');
       expect(await driver.getLabelAt(0)).toBe('visits');
       expect(await driver.getValueAt(1)).toBe('800');
       expect(await driver.getLabelAt(1)).toBe('views');
       expect(await driver.getValueAt(2)).toBe('400');
+      expect(await driver.getLabelAt(2)).toBe('cart');
+    });
+
+    it('should render 3 items with display values and values', async () => {
+      const dataValues = [
+        { value: 2000, label: 'visits', displayValue: '2K' },
+        { value: 300000, label: 'views', displayValue: '300K' },
+        { value: 150, label: 'cart' },
+      ];
+      const driver = render(<FunnelChart data={dataValues} />).driver;
+      expect(await driver.exists()).toBe(true);
+      expect(await driver.getItemsCount()).toBe(3);
+      expect(await driver.getValueAt(0)).toBe('2K');
+      expect(await driver.getLabelAt(0)).toBe('visits');
+      expect(await driver.getValueAt(1)).toBe('300K');
+      expect(await driver.getLabelAt(1)).toBe('views');
+      expect(await driver.getValueAt(2)).toBe('150');
       expect(await driver.getLabelAt(2)).toBe('cart');
     });
 

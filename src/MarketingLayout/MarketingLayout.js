@@ -6,9 +6,14 @@ import { Layout, Cell } from '../Layout';
 import Proportion from '../Proportion';
 import { SIZES } from './constants';
 import { st, classes } from './MarketingLayout.st.css';
-import colors from '../colors.scss';
+import { stVars as colorsStVars } from '../Foundation/stylable/colors.st.css';
 
 const cellSpansBySize = {
+  [SIZES.tiny]: {
+    image: 3,
+    spacer: 1,
+    content: 8,
+  },
   [SIZES.small]: {
     image: 2,
     spacer: 1,
@@ -27,6 +32,7 @@ const cellSpansBySize = {
 };
 
 const imagePlaceholderAspectRatioBySize = {
+  [SIZES.tiny]: 1,
   [SIZES.small]: 1,
   [SIZES.medium]: 282 / 188,
   [SIZES.large]: 360 / 240,
@@ -45,7 +51,9 @@ class MarketingLayout extends React.PureComponent {
     /** Image area background color. Can be a keyword from color palette or any supported CSS color value (Hex, RGB, etc.) */
     imageBackgroundColor: PropTypes.string,
     /** Size of the marketing layout. */
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
+    /** Alignment of the content of the marketing layout. */
+    alignItems: PropTypes.oneOf(['center', 'stretch']),
     /** Invert marketing layout (with image displayed on the left). */
     inverted: PropTypes.bool,
     /** Marketing layout actions. */
@@ -54,11 +62,18 @@ class MarketingLayout extends React.PureComponent {
     title: PropTypes.node,
     /** Description as a string or custom element. */
     description: PropTypes.node,
+    /** Add a badge to the layout. */
+    badge: PropTypes.node,
+    /** Show spacing of a badge in the layout. If a badge was given it will be hidden,
+     * if no badge was given there will be spacing as if there is a hidden badge. */
+    hiddenBadge: PropTypes.bool,
   };
 
   static defaultProps = {
     size: SIZES.small,
+    alignItems: 'center',
     inverted: false,
+    hiddenBadge: false,
   };
 
   _renderSpacerCell = span => <Cell key="spacer" span={span} />;
@@ -82,7 +97,7 @@ class MarketingLayout extends React.PureComponent {
               className={classes.imageBackground}
               style={{
                 backgroundColor:
-                  colors[imageBackgroundColor] || imageBackgroundColor,
+                  colorsStVars[imageBackgroundColor] || imageBackgroundColor,
               }}
             />
           )}
@@ -99,14 +114,23 @@ class MarketingLayout extends React.PureComponent {
   };
 
   _renderContentCell = span => {
-    const { size, actions, title, description } = this.props;
+    const {
+      size,
+      actions,
+      title,
+      description,
+      badge,
+      hiddenBadge,
+    } = this.props;
     return (
       <Cell key="content" span={span}>
+        {badge && !hiddenBadge && <div className={classes.badge}>{badge}</div>}
         <Content
           size={size}
           actions={actions}
           title={title}
           description={description}
+          badge={badge}
         />
       </Cell>
     );
@@ -131,6 +155,9 @@ class MarketingLayout extends React.PureComponent {
   render() {
     const {
       size,
+      badge,
+      hiddenBadge,
+      alignItems,
       inverted,
       actions,
       dataHook,
@@ -141,6 +168,9 @@ class MarketingLayout extends React.PureComponent {
       <div
         className={st(classes.root, {
           size,
+          badge: !!badge,
+          hiddenBadge,
+          alignItems,
           inverted,
           withActions: !!actions,
           withImageBackground: !!imageBackgroundColor,

@@ -3,6 +3,9 @@ import {
   findByHookAtIndex,
 } from '../../test/utils/unidriver';
 import { dataHooks } from './constants';
+import { sleep } from 'wix-ui-test-utils/react-helpers';
+
+const ANIMATION_TIME = 350;
 
 const accordionDriverFactory = (base, body) => ({
   ...baseUniDriverFactory(base),
@@ -42,20 +45,28 @@ const accordionDriverFactory = (base, body) => ({
    * @param {number} idx Item index
    * @returns {Promise<void>}
    */
-  clickToggleButtonAt: idx =>
-    findByHookAtIndex(base, dataHooks.item, idx)
+  clickToggleButtonAt: async idx => {
+    await findByHookAtIndex(base, dataHooks.item, idx)
       .$('[data-hook="toggle-accordion-wrapper"]')
-      .click(),
+      .click();
+
+    // Wait for animation to finish
+    return await sleep(ANIMATION_TIME);
+  },
 
   /**
    * Clicks item at index
    * @param {number} idx Item index
    * @returns {Promise<void, number>}
    */
-  clickItemAt: idx =>
-    findByHookAtIndex(base, dataHooks.item, idx)
+  clickItemAt: async idx => {
+    await findByHookAtIndex(base, dataHooks.item, idx)
       .$('[data-hook="header"]')
-      .click(),
+      .click();
+
+    // Wait for animation to finish
+    return await sleep(ANIMATION_TIME);
+  },
 
   /**
    * Gets toggle button label at item index

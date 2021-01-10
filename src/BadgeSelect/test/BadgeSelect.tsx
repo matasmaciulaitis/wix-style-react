@@ -1,5 +1,6 @@
 import * as React from 'react';
-import BadgeSelect, { BadgeSelectOption } from '..';
+import BadgeSelect  from '..';
+import BadgeSelectItem from '../../BadgeSelectItem';
 import { badgeSelectTestkitFactory } from '../../../testkit';
 import { badgeTestkitFactory as badgeSelectEnzymeTestkitFactory } from '../../../testkit/enzyme';
 import { mount } from 'enzyme';
@@ -45,5 +46,5 @@ function testInstanceMethods() {
   instance.hideDropdown();
   instance.showDropdown();
   instance.toggleDropdown();
-  const option: BadgeSelectOption = instance.getSelectedOption({});
+  const option: BadgeSelectItem = instance.getSelectedOption({});
 }

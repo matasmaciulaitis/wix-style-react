@@ -19,7 +19,7 @@ function LayoutWithAllProps() {
       alignItems="center"
       justifyItems="center"
     >
-      <Cell span={12} vertical>
+      <Cell span={12} vertical rows={1}>
         <Layout gap="30px">
           <Cell />
         </Layout>

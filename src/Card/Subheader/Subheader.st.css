@@ -4,22 +4,28 @@
 }
 
 
-.container {
+.root {
+  -st-states: skin(enum(standard, neutral)), reducedSpacingAndImprovedLayout;
   display: flex;
   align-items: center;
   min-height: 48px;
   justify-content: space-between;
-  padding: 11px 30px;
+  padding: 12px 30px;
   box-sizing: border-box;
 }
 
-.standard {
+.root:reducedSpacingAndImprovedLayout{
+  min-height: 42px;
+  padding: 9px 30px;
+}
+
+.root:skin(standard) {
   background-color: value(B50);
   border-top: 1px value(B30) solid;
   border-bottom: 1px value(B30) solid;
 }
 
-.neutral {
+.root:skin(neutral) {
   background-color: value(D10-03);
   border-top: 1px value(D60) solid;
   border-bottom: 1px value(D60) solid;

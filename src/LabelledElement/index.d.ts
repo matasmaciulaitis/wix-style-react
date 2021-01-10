@@ -6,6 +6,4 @@ export interface LabelledElementProps {
   value?: string;
 }
 
-export default class LabelledElement extends React.Component<
-  LabelledElementProps
-> {}
+export default class LabelledElement extends React.Component<LabelledElementProps> {}

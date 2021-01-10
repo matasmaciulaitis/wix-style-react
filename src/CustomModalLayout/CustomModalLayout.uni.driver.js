@@ -3,8 +3,10 @@ import { baseModalLayoutDriverFactory } from '../BaseModalLayout/BaseModalLayout
 export const customModalLayoutDriverFactory = base => {
   return {
     ...baseModalLayoutDriverFactory(base),
-
-    /** Returns if the modal content has padding */
+    /**
+     * Checks whether the modal content has padding
+     * @returns {Promise<boolean>}
+     * */
     hasContentPadding: async () =>
       (await base.attr('data-contentpadding')) === 'true',
   };

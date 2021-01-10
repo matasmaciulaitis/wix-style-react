@@ -9,7 +9,7 @@ import {
   title,
   columns,
   divider,
-  code as baseCode,
+  example as baseExample,
   playground,
   api,
   testkit,
@@ -19,11 +19,11 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import * as examples from './examples';
 
-const code = config => baseCode({ components: allComponents, ...config });
+const example = config => baseExample({ components: allComponents, ...config });
 
 export default {
   category: storySettings.category,
-  storyName: 'CircularProgressBar',
+  storyName: storySettings.storyName,
 
   component: CircularProgressBar,
   componentPath: '..',
@@ -36,6 +36,7 @@ export default {
     error: false,
     errorLabel: '',
     showProgressIndication: false,
+    label: undefined,
   },
 
   exampleProps: {
@@ -77,25 +78,31 @@ export default {
 
           title('Examples'),
 
-          code({
+          example({
             title: 'Sizes',
             description: 'Appear in all different sizes.',
             source: examples.sizes,
           }),
 
-          code({
+          example({
             title: 'Progress Indication',
             description: 'Displaying a progress indicator in percentage.',
             source: examples.progressIndication,
           }),
 
-          code({
+          example({
+            title: 'Label',
+            description: 'Displaying a textual label',
+            source: examples.label,
+          }),
+
+          example({
             title: 'Themes',
             description: 'Appear in all different themes.',
             source: examples.themes,
           }),
 
-          code({
+          example({
             title: 'Error',
             description: 'Error state',
             source: examples.errors,

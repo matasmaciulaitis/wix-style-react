@@ -9,8 +9,9 @@
 }
 
 .root:global(.slick-dots) {
-   position: static;
-   margin-top: 24px;
+  position: static;
+  margin-top: 24px;
+  height: 4px;
 }
 
 .root:global(.slick-dots) :global(li.slick-active) {

@@ -1,7 +1,6 @@
-import s from './PageHeader.scss';
+import { st, classes } from './PageHeader.st.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
 import Breadcrumbs from '../Breadcrumbs';
 import Text from '../Text';
@@ -125,19 +124,15 @@ export default class PageHeader extends React.PureComponent {
     const _title = getTitle(title, minimized);
 
     return (
-      <div
-        className={classNames(s.headerContainer, className)}
-        data-hook={dataHook}
-      >
-        <div className={s.header}>
+      <div className={st(classes.root, {}, className)} data-hook={dataHook}>
+        <div className={classes.header}>
           <div>
             {this._animateComponent(
               breadcrumbsExists || minimized,
               !breadcrumbsExists,
               <div
-                className={classNames(s.breadcrumbsContainer, {
-                  [s.absolute]: !breadcrumbsExists,
-                  [s.minimized]: minimized,
+                className={st(classes.breadcrumbsContainer, {
+                  withoutBreadcrumbs: !breadcrumbsExists,
                 })}
                 data-hook={dataHooks.breadcrumbs}
               >
@@ -145,57 +140,42 @@ export default class PageHeader extends React.PureComponent {
               </div>,
             )}
           </div>
-          <div
-            className={classNames(s.titleContainer, {
-              [s.minimized]: minimized,
-            })}
-          >
+          <div className={st(classes.titleContainer, { minimized })}>
             {showBackButton &&
               onBackClicked &&
               this._animateComponent(
                 !minimized,
                 !breadcrumbsExists,
-                <div
-                  className={classNames(s.backButton, {
-                    [s.minimized]: minimized,
-                    [s.darkTheme]: isDarkTheme(hasBackgroundImage, minimized),
+                <IconButton
+                  className={st(classes.titleBackButton, {
+                    darkTheme: isDarkTheme(hasBackgroundImage, minimized),
                   })}
+                  dataHook={dataHooks.backButton}
+                  onClick={onBackClicked}
                 >
-                  <IconButton
-                    dataHook={dataHooks.backButton}
-                    onClick={onBackClicked}
-                  >
-                    <ChevronLeft className={s.backButtonIcon} />
-                  </IconButton>
-                </div>,
+                  <ChevronLeft className={classes.titleBackButtonIcon} />
+                </IconButton>,
               )}
-            <div className={s.titleColumn}>
+            <div className={classes.titleColumn}>
               {title &&
                 this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
-                  <div
-                    className={classNames(s.title, {
-                      [s.minimized]: minimized,
-                    })}
-                    data-hook={dataHooks.title}
+                  <Heading
+                    appearance={'H1'}
+                    className={classes.title}
+                    dataHook={dataHooks.title}
+                    ellipsis={typeof _title === 'string'}
+                    light={isDarkTheme(hasBackgroundImage, minimized)}
                   >
-                    <Heading
-                      ellipsis={typeof _title === 'string'}
-                      light={isDarkTheme(hasBackgroundImage, minimized)}
-                    >
-                      {_title}
-                    </Heading>
-                  </div>,
+                    {_title}
+                  </Heading>,
                 )}
               {subtitle &&
                 this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
-                  <div
-                    className={classNames({ [s.minimized]: minimized })}
-                    data-hook={dataHooks.subtitle}
-                  >
+                  <div data-hook={dataHooks.subtitle}>
                     <Text
                       ellipsis={typeof subtitle === 'string'}
                       light={isDarkTheme(hasBackgroundImage, minimized)}
@@ -212,9 +192,9 @@ export default class PageHeader extends React.PureComponent {
         </div>
         {actionsBar && (
           <div
-            className={classNames(s.actionsBar, {
-              [s.minimized]: minimized,
-              [s.withBreadcrumbs]: breadcrumbsExists,
+            className={st(classes.actionsBar, {
+              minimized,
+              withBreadcrumbs: breadcrumbsExists,
             })}
             data-hook={dataHooks.actionBar}
           >
@@ -227,9 +207,7 @@ export default class PageHeader extends React.PureComponent {
     );
   }
 }
-
 PageHeader.displayName = 'Page.Header';
-
 PageHeader.propTypes = {
   /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,

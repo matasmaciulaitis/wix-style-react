@@ -10,9 +10,7 @@ export interface BreadcrumbsProps {
   theme?: BreadcrumbsTheme;
 }
 
-export default class Breadcrumbs extends React.PureComponent<
-  BreadcrumbsProps
-> {}
+export default class Breadcrumbs extends React.PureComponent<BreadcrumbsProps> {}
 
 export type BreadcrumbsItem = {
   id: string | number;

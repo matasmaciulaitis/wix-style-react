@@ -1,32 +1,25 @@
 import React from 'react';
 import {
-  tab,
-  api,
-  title,
-  code as baseCode,
-  importExample,
-  playground,
-  testkit,
   header,
   tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  playground,
+  api,
+  testkit,
 } from 'wix-storybook-utils/Sections';
 
-import Carousel from '..';
-import { storySettings } from './storySettings';
-import {
-  InfoChild,
-  buttonSkinExample,
-  autoplayExample,
-  withoutDotsExample,
-  variableWidthExample,
-} from './examples';
+import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
+import * as examples from './examples';
+import Carousel from '..';
+import { InfoChild } from './examples';
 
-const code = config =>
-  baseCode({
-    components: allComponents,
-    ...config,
-  });
+const example = config => baseExample({ components: allComponents, ...config });
 
 const imagesExamples = [
   {
@@ -58,6 +51,7 @@ const childrenExamples = [
     label: 'Three nodes',
   },
 ];
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
@@ -69,6 +63,10 @@ export default {
     images: imagesExamples[0].value,
     infinite: true,
     autoplay: false,
+    controlsPosition: 'sides',
+    controlsSize: 'medium',
+    imagesPosition: 'center top',
+    imagesFit: 'contain',
   }),
 
   exampleProps: {
@@ -80,41 +78,91 @@ export default {
 
   sections: [
     header({
-      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
-      sourceUrl:
-        'https://github.com/wix/wix-style-react/tree/master/src/Carousel/',
+      sourceUrl: `https://github.com/wix/wix-style-react/tree/master/src/${Carousel.displayName}/`,
     }),
 
     tabs([
       tab({
         title: 'Description',
         sections: [
-          importExample("import { Carousel } from 'wix-style-react';"),
+          description({
+            title: 'Description',
+            text:
+              'The carousel component creates a slideshow for cycling through a series of content.',
+          }),
+
+          importExample(),
+
+          divider(),
 
           title('Examples'),
 
-          code({ title: 'Button Skin', source: buttonSkinExample }),
-          code({ title: 'Autoplay', source: autoplayExample }),
-          code({ title: 'Without Dots', source: withoutDotsExample }),
-          code({ title: 'Variable Width', source: variableWidthExample }),
+          example({
+            title: 'Autoplay',
+            text:
+              'The carousel is still by default, it can be set to Autoplay in order to change to the following slide each 3 seconds.',
+            source: examples.autoplayExample,
+          }),
+
+          example({
+            title: 'Controls Skin, Size and Position',
+            text: `
+Control arrows come in two skins: \`standard\` (default), \`inverted\` and \`light\`.\n
+And two sized: \`tiny\`, \`small\` and \`medium\` (default).\n
+They can be placed in one of these positions: \`sides\` (default), \`overlay\`, \`bottom\` or \`none\` to remove them completely.
+            `,
+            source: examples.controlsPositionExample,
+          }),
+
+          example({
+            title: 'Controls Shadow',
+            text: `Display a shadow behind the carousel controls by using the \`showControlsShadow\` flag.`,
+            source: examples.controlsShadowExample,
+          }),
+
+          example({
+            title: 'Without Dots',
+            text: 'Pagination at the bottom can be removed.',
+            source: examples.withoutDotsExample,
+          }),
+
+          example({
+            title: 'Variable Width',
+            text:
+              'Set variableWidth to disable automatic slide width calculation. Use this prop when you want the carousel to show more than a single item simultaneously.',
+            source: examples.variableWidthExample,
+          }),
+
+          example({
+            title: 'Controls on Start and End',
+            text: `The carousel controls on the start and end of the carousel can be set to be \`hidden\` when not using infinite mode.`,
+            source: examples.controlsStartEndHidden,
+          }),
+
+          example({
+            title: 'Images Position',
+            text:
+              "Specifies the position of the image inside its content box (default: 'center top'). First value controls the x-axis and the second value controls the y-axis. Can be a string (left, center, right, top, middle or bottom), or a number (in px or %).",
+            source: examples.imagesPositionExample,
+          }),
+
+          example({
+            title: 'Images Fit',
+            text: `Image can be set to fit the container in the following ways:\n
+\`contain\` (default) -  scaled to maintain its aspect ratio while fitting within the element’s content box. Scaled until one axis is filled.\n
+\`cover\` - sized to maintain its aspect ratio while filling the element’s entire content box. Scaled until both axes are filled.
+\`fill\` - sized to fill the element’s content box (doesn't maintain aspect ratio).\n
+\`none\` - keeps original image dimensions.\n
+\`scale-down\` - sized as if \`none\` or \`contain\` were specified, whichever would result in a smaller concrete object size.`,
+            source: examples.imagesFitExample,
+          }),
         ],
       }),
 
       ...[
-        {
-          title: 'API',
-          sections: [api()],
-        },
-
-        {
-          title: 'Testkit',
-          sections: [testkit()],
-        },
-
-        {
-          title: 'Playground',
-          sections: [playground()],
-        },
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
       ].map(tab),
     ]),
   ],

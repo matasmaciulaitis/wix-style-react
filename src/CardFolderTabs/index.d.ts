@@ -8,8 +8,6 @@ export interface CardFolderTabsProps {
   maxTabWidth?: React.CSSProperties['maxWidth'];
 }
 
-export default class CardFolderTabs extends React.PureComponent<
-  CardFolderTabsProps
-> {
+export default class CardFolderTabs extends React.PureComponent<CardFolderTabsProps> {
   static Tab: (props?: CardFolderTabProps) => React.ReactElement;
 }

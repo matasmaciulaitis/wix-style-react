@@ -1,6 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import TableListItem from '../TableListItem';
+import TableListItem, { VERTICAL_PADDING } from '../TableListItem';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
+
+const sizes = Object.values(VERTICAL_PADDING);
 
 const commonProps = {
   options: [
@@ -35,6 +38,19 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'vertical padding',
+    its: sizes.map(verticalPadding => ({
+      it: verticalPadding,
+      props: {
+        verticalPadding,
+        checkbox: true,
+        draggable: true,
+        showDivider: true,
+        options: [{ value: 'Personal Finance' }],
+      },
+    })),
+  },
 ];
 
 tests.forEach(({ describe, its }) => {
@@ -43,5 +59,20 @@ tests.forEach(({ describe, its }) => {
       `${TableListItem.displayName}${describe ? '/' + describe : ''}`,
       module,
     ).add(it, () => <TableListItem {...commonProps} {...props} />);
+  });
+});
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(
+      `Layout And Spacing| ${TableListItem.displayName}/${describe}`,
+      module,
+    ).add(it, () => (
+      <WixStyleReactProvider
+        features={{ reducedSpacingAndImprovedLayout: true }}
+      >
+        <TableListItem {...commonProps} {...props} />
+      </WixStyleReactProvider>
+    ));
   });
 });

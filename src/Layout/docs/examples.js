@@ -135,3 +135,53 @@ export const justifyItems = `
   </Cell>
 </Layout>
 `;
+
+export const cellRows = `
+<Layout rowHeight="1fr">
+  <Cell span={4} rows={2}>
+    <Card stretchVertically>
+      <Card.Content>
+        <Box align="center">
+          <Avatar size="size48" name="1" />
+        </Box>
+      </Card.Content>
+    </Card>
+  </Cell>
+  <Cell span={4}>
+    <Card>
+      <Card.Content>
+        <Box align="center">
+          <Avatar size="size48" name="2" />
+        </Box>
+      </Card.Content>
+    </Card>
+  </Cell>
+  <Cell span={4}>
+    <Card>
+      <Card.Content>
+        <Box align="center">
+          <Avatar size="size48" name="3" />
+        </Box>
+      </Card.Content>
+    </Card>
+  </Cell>
+  <Cell span={4}>
+    <Card>
+      <Card.Content>
+        <Box align="center">
+          <Avatar size="size48" name="4" />
+        </Box>
+      </Card.Content>
+    </Card>
+  </Cell>
+  <Cell span={4}>
+    <Card>
+      <Card.Content>
+        <Box align="center">
+          <Avatar size="size48" name="5" />
+        </Box>
+      </Card.Content>
+    </Card>
+  </Cell>
+</Layout>
+`;

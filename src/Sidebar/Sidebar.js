@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import defaultCss from './main.scss';
+import { st, classes } from './Sidebar.st.css';
 import { SidebarItem } from './SidebarItem';
 import { SidebarPersistentHeader } from './SidebarPersistentHeader';
 import { SidebarPersistentFooter } from './SidebarPersistentFooter';
@@ -48,23 +47,64 @@ class Sidebar extends Component {
     isHidden: false,
   };
 
-  itemKey2Children = {};
-  itemKey2ParentKey = {};
-  onScreenChildrenRef = React.createRef();
+  constructor(props) {
+    super(props);
 
-  state = {
-    persistentTopChildren: [],
-    drivenOutChildren: [],
-    onScreenChildren: [],
-    drivenInChildren: [],
-    persistentBottomChildren: [],
-    selectedKey: '',
-    lastSelectedKey: '',
-    isScrollbarDisplayed: false,
+    this.itemKey2Children = {};
+    this.itemKey2ParentKey = {};
+    this.childrenContainerRef = React.createRef();
+    this.childrenContentRef = React.createRef();
+    this.state = {
+      persistentTopChildren: [],
+      drivenOutChildren: [],
+      onScreenChildren: [],
+      drivenInChildren: [],
+      persistentBottomChildren: [],
+      selectedKey: '',
+      lastSelectedKey: '',
+      isScrollbarDisplayed: false,
+    };
+    this.childrenResizeObserver =
+      'ResizeObserver' in window &&
+      new ResizeObserver(this._handleChildrenResize);
+  }
+
+  _handleChildrenResize = () => {
+    this._shouldAddGradient();
   };
 
   componentDidMount() {
     this._shouldAddGradient();
+
+    const {
+      childrenResizeObserver,
+      childrenContainerRef,
+      childrenContentRef,
+    } = this;
+
+    if (childrenResizeObserver && childrenContainerRef.current) {
+      childrenResizeObserver.observe(childrenContainerRef.current);
+    }
+
+    if (childrenResizeObserver && childrenContentRef.current) {
+      childrenResizeObserver.observe(childrenContentRef.current);
+    }
+  }
+
+  componentWillUnmount() {
+    const {
+      childrenResizeObserver,
+      childrenContainerRef,
+      childrenContentRef,
+    } = this;
+
+    if (childrenResizeObserver && childrenContainerRef.current) {
+      childrenResizeObserver.unobserve(childrenContainerRef.current);
+    }
+
+    if (childrenResizeObserver && childrenContentRef.current) {
+      childrenResizeObserver.unobserve(childrenContentRef.current);
+    }
   }
 
   _navigateTo = itemKey => {
@@ -116,7 +156,7 @@ class Sidebar extends Component {
   };
 
   _shouldAddGradient() {
-    const { scrollHeight, clientHeight } = this.onScreenChildrenRef.current;
+    const { scrollHeight, clientHeight } = this.childrenContainerRef.current;
     this.setState({ isScrollbarDisplayed: scrollHeight > clientHeight });
   }
 
@@ -205,33 +245,42 @@ class Sidebar extends Component {
   }
 
   render() {
-    const css = { ...defaultCss, ...this.props.classNames };
+    const { isHidden, skin } = this.props;
+    const css = { ...classes, ...this.props.classNames };
 
-    const sliderClasses = classNames({
-      [css.sliderOutToLeft]: this.state.drivenInChildren.length !== 0,
-      [css.sliderInFromLeft]:
-        this.state.drivenInChildren.length === 0 &&
-        this.state.drivenOutChildren.length !== 0,
-      [css.slider]: true,
-      [css.light]: this.props.skin === sidebarSkins.light,
+    const sliderClasses = st(
+      css.slider,
+      {
+        skin,
+      },
+      this.state.drivenInChildren.length !== 0 && css.sliderOutToLeft,
+      this.state.drivenInChildren.length === 0 &&
+        this.state.drivenOutChildren.length !== 0 &&
+        css.sliderInFromLeft,
+    );
+
+    const sliderOutToRightClasses = st(
+      css.slider,
+      {
+        skin,
+      },
+      !this.props.isHidden && css.sliderOutToRight,
+    );
+    const sliderInFromRightClasses = st(
+      css.slider,
+      {
+        skin,
+      },
+      !this.props.isHidden && css.sliderInFromRight,
+    );
+
+    const rootClasses = st(css.sideBar || classes.root, {
+      hidden: isHidden,
+      skin,
     });
 
-    const sliderOutToRightClasses = classNames(css.slider, {
-      [css.sliderOutToRight]: !this.props.isHidden,
-    });
-    const sliderInFromRightClasses = classNames(css.slider, {
-      [css.sliderInFromRight]: !this.props.isHidden,
-    });
-
-    const rootClasses = classNames({
-      [css.sideBar]: true,
-      [css.hiddenSideBar]: this.props.isHidden,
-      [css.light]: this.props.skin === sidebarSkins.light,
-    });
-
-    const gradientClasses = classNames({
-      [css.gradient]: this.state.isScrollbarDisplayed,
-      [css.light]: this.props.skin === sidebarSkins.light,
+    const gradientClasses = st(classes.gradient, {
+      skin,
     });
 
     return (
@@ -239,7 +288,7 @@ class Sidebar extends Component {
         <div className={rootClasses} data-hook={this.props.dataHook}>
           {this.state.persistentTopChildren}
 
-          <div className={css.content}>
+          <div className={st(css.content)}>
             {this.state.drivenInChildren.length === 0 &&
               this.state.drivenOutChildren.length !== 0 && (
                 <div
@@ -252,10 +301,15 @@ class Sidebar extends Component {
 
             <div
               className={sliderClasses}
-              ref={this.onScreenChildrenRef}
-              data-hook={dataHooks.onScreenChildren}
+              ref={this.childrenContainerRef}
+              data-hook={dataHooks.childrenContainer}
             >
-              {this.state.onScreenChildren}
+              <div
+                className={st(css.childrenContent)}
+                ref={this.childrenContentRef}
+              >
+                {this.state.onScreenChildren}
+              </div>
               {this.state.isScrollbarDisplayed && (
                 <div
                   className={gradientClasses}

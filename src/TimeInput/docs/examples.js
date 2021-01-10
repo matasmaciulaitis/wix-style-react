@@ -4,6 +4,8 @@ export const disabled = `<TimeInput disabled />`;
 
 export const disableAmPm = `<TimeInput disableAmPm />`;
 
+export const showSeconds = `<TimeInput showSeconds />`;
+
 export const status = `
 <Layout>
   <Cell>

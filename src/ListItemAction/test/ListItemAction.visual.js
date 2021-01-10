@@ -38,8 +38,6 @@ const options = {
   storyName: 'sanity',
 };
 
-storyOfAllPermutations(Story, ListItemAction, options);
-
 const EllipsisStory = props => (
   <div style={{ width: '250px' }}>
     <ListItemAction
@@ -69,25 +67,38 @@ const ellipsisOptions = {
   storyName: 'ellipsis',
 };
 
-storyOfAllPermutations(EllipsisStory, ListItemAction, ellipsisOptions);
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  options.themeName = themeName;
+  options.testWithTheme = testWithTheme;
+  storyOfAllPermutations(Story, ListItemAction, options);
 
-storiesOf('ListItemAction', module).add('builder', () => (
-  <DropdownLayout
-    visible
-    selectedId={1}
-    options={[
-      listItemActionBuilder({
-        id: 0,
-        title: 'option 1',
-      }),
-      listItemActionBuilder({
-        id: 1,
-        title: 'option 2',
-      }),
-      listItemActionBuilder({
-        id: 2,
-        title: 'option 3',
-      }),
-    ]}
-  />
-));
+  ellipsisOptions.themeName = themeName;
+  ellipsisOptions.testWithTheme = testWithTheme;
+  storyOfAllPermutations(EllipsisStory, ListItemAction, ellipsisOptions);
+
+  storiesOf(`${themeName ? `${themeName}|` : ''}ListItemAction`, module).add(
+    'builder',
+    () => (
+      <DropdownLayout
+        visible
+        selectedId={1}
+        options={[
+          listItemActionBuilder({
+            id: 0,
+            title: 'option 1',
+          }),
+          listItemActionBuilder({
+            id: 1,
+            title: 'option 2',
+          }),
+          listItemActionBuilder({
+            id: 2,
+            title: 'option 3',
+          }),
+        ]}
+      />
+    ),
+  );
+};

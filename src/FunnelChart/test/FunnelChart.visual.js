@@ -4,7 +4,7 @@ import FunnelChart from '../FunnelChart';
 
 const commonProps = {
   data: [
-    { value: 1000, label: 'visits' },
+    { value: 1000, label: 'visits', displayValue: '1K' },
     { value: 800, label: 'views' },
     { value: 400, label: 'cart' },
   ],
@@ -30,7 +30,10 @@ const tests = [
       {
         it: 'last item value is zero',
         props: {
-          data: [...commonProps.data, { value: 0, label: 'checkout' }],
+          data: [
+            ...commonProps.data,
+            { value: 0, label: 'checkout', displayValue: '-' },
+          ],
         },
       },
     ],

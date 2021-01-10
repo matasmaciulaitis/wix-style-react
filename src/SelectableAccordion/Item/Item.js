@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { WixStyleReactContext } from '../../WixStyleReactProvider/context';
 import Checkbox from '../../Checkbox';
 import ToggleSwitch from '../../ToggleSwitch';
 import RadioGroup from '../../RadioGroup';
@@ -10,7 +10,6 @@ import Collapse from '../../Collapse';
 import Divider from '../../Divider';
 import { dataHooks, TYPES } from '../constants';
 import { isString } from '../../utils/StringUtils';
-
 import { st, classes } from './Item.st.css';
 
 export default class SelectableAccordionItem extends React.PureComponent {
@@ -35,6 +34,9 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
     /** A callback which is invoked every time the selection of the item is changed */
     onChange: PropTypes.func,
+
+    /** Extra space on top and bottom of selectable accordion item */
+    verticalPadding: PropTypes.oneOf(['medium', 'small', 'tiny']),
   };
 
   static defaultProps = {
@@ -83,16 +85,26 @@ export default class SelectableAccordionItem extends React.PureComponent {
     return selector;
   }
 
-  _renderTitle() {
+  _renderTitle({ reducedSpacingAndImprovedLayout }) {
     const { title } = this.props;
 
-    return isString(title) ? (
-      <Heading ellipsis appearance="H4">
-        {title}
-      </Heading>
-    ) : (
-      title
-    );
+    if (isString(title)) {
+      if (reducedSpacingAndImprovedLayout) {
+        return (
+          <Text weight="normal" size="medium">
+            {title}
+          </Text>
+        );
+      } else {
+        return (
+          <Heading ellipsis appearance="H4">
+            {title}
+          </Heading>
+        );
+      }
+    } else {
+      return title;
+    }
   }
 
   _renderContent() {
@@ -121,39 +133,47 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   render() {
     const { hovered } = this.state;
-    const { open } = this.props;
+    const { open, verticalPadding } = this.props;
 
     return (
-      <div
-        data-hook={dataHooks.item}
-        data-state={open ? 'open' : 'collapsed'}
-        className={st(classes.item, { hovered: !open && hovered })}
-      >
-        <div
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onClick={this._onChange}
-          className={classes.selector}
-        >
-          {this._renderSelector()}
-        </div>
-        <div
-          data-hook={dataHooks.itemHeader}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onClick={this._onChange}
-          className={classes.header}
-        >
-          {this._renderTitle()}
-          {this._renderSubtitle()}
-        </div>
-        <div className={classes.content}>
-          <Collapse open={open}>
-            <div className={classes.inner}>{this._renderContent()}</div>
-          </Collapse>
-          <Divider className={classes.divider} />
-        </div>
-      </div>
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => (
+          <div
+            data-hook={dataHooks.item}
+            data-state={open ? 'open' : 'collapsed'}
+            className={st(classes.item, {
+              hovered: !open && hovered,
+              verticalPadding,
+              reducedSpacingAndImprovedLayout,
+            })}
+          >
+            <div
+              onMouseEnter={this._onMouseEnter}
+              onMouseLeave={this._onMouseLeave}
+              onClick={this._onChange}
+              className={classes.selector}
+            >
+              {this._renderSelector()}
+            </div>
+            <div
+              data-hook={dataHooks.itemHeader}
+              onMouseEnter={this._onMouseEnter}
+              onMouseLeave={this._onMouseLeave}
+              onClick={this._onChange}
+              className={classes.header}
+            >
+              {this._renderTitle({ reducedSpacingAndImprovedLayout })}
+              {this._renderSubtitle()}
+            </div>
+            <div className={classes.content}>
+              <Collapse open={open}>
+                <div className={classes.inner}>{this._renderContent()}</div>
+              </Collapse>
+              <Divider className={classes.divider} />
+            </div>
+          </div>
+        )}
+      </WixStyleReactContext.Consumer>
     );
   }
 }

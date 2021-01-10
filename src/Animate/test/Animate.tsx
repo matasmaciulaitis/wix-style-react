@@ -15,11 +15,10 @@ function animateWithAllProps() {
     <Animate
       dataHook="dataHook"
       children={<div/>}
-      active
       onStart={() => {}}
       onEnd={() => {}}
-      loop
       delay={500}
+      className='some-class'
     />
   );
 }

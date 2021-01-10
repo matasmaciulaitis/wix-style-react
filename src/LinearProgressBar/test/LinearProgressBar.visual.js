@@ -1,34 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LinearProgressBar from '../LinearProgressBar';
-import { storySettings } from './storySettings';
-import { linearProgressBarTestkitFactory } from '../../../testkit';
 import { SKINS } from '../constants';
 import { Layout, Cell } from '../../Layout';
 import Box from '../../Box';
-
-const { dataHook } = storySettings;
-
-const createLinearProgressBarDriver = dataHook =>
-  linearProgressBarTestkitFactory({
-    wrapper: document.body,
-    dataHook,
-  });
-
-class InteractiveEyeTest extends React.PureComponent {
-  componentDidMount() {
-    this.props.componentDidMount();
-  }
-
-  render() {
-    const props = this.props;
-    return (
-      <Box padding="40px">
-        <LinearProgressBar dataHook={dataHook} {...props} />
-      </Box>
-    );
-  }
-}
 
 const tests = [
   {
@@ -116,27 +91,6 @@ const tests = [
   },
 ];
 
-const interactiveTests = [
-  {
-    describe: 'Tooltip',
-    its: [
-      {
-        it: 'displayed on icon hover when error progress indication exist',
-        props: {
-          value: 20,
-          showProgressIndication: true,
-          error: true,
-          errorMessage: 'some error message',
-        },
-        componentDidMount: async () => {
-          const driver = createLinearProgressBarDriver(dataHook);
-          await driver.getTooltipErrorMessage();
-        },
-      },
-    ],
-  },
-];
-
 export const runTests = (
   { themeName, testWithTheme } = { testWithTheme: i => i },
 ) => {
@@ -157,38 +111,10 @@ export const runTests = (
           >
             <Layout>
               <Cell>
-                <LinearProgressBar dataHook={dataHook} {...props} />
+                <LinearProgressBar {...props} />
               </Cell>
               <Cell>
-                <LinearProgressBar
-                  dataHook={dataHook}
-                  {...props}
-                  skin={SKINS.success}
-                />
-              </Cell>
-            </Layout>
-          </Box>,
-        ),
-      );
-    });
-  });
-
-  interactiveTests.forEach(({ describe, its }) => {
-    its.forEach(({ it, props, componentDidMount }) => {
-      storiesOf(
-        `${themeName ? `${themeName}|` : ''}LinearProgressBar${
-          describe ? '/' + describe : ''
-        }`,
-        module,
-      ).add(it, () =>
-        testWithTheme(
-          <Box>
-            <Layout>
-              <Cell>
-                <InteractiveEyeTest
-                  {...props}
-                  componentDidMount={componentDidMount}
-                />
+                <LinearProgressBar {...props} skin={SKINS.success} />
               </Cell>
             </Layout>
           </Box>,
@@ -197,5 +123,3 @@ export const runTests = (
     });
   });
 };
-
-runTests();

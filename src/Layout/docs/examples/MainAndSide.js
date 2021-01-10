@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../styles.scss';
+import { style, classes } from '../styles.st.css';
 
 import { Layout, Cell, Card } from 'wix-style-react';
 
 export default () => (
-  <div className={styles.exampleContainer}>
+  <div className={style(classes.exampleContainer)}>
     <Layout>
       <Cell span={8}>
         <Section title="Main Content" height="450px" />

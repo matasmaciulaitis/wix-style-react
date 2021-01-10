@@ -91,6 +91,12 @@ describe('AddItem', () => {
         const { driver } = render(renderAddItem(props));
         expect(await driver.tooltipElementExists()).toEqual(true);
       });
+
+      it('should show the correct tooltip content [when] `theme` image prop is passed', async () => {
+        const props = { tooltipContent: 'content', theme: 'image' };
+        const { driver } = render(renderAddItem(props));
+        expect(await driver.getTooltipContent()).toEqual('content');
+      });
     });
   }
 });

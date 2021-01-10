@@ -10,5 +10,4 @@ export interface StatisticsWidgetUniDriver extends BaseUniDriver {
   getDescriptionInfo: (index: number) => Promise<string>;
   getChildren: (index: number, hook: string) => UniDriver;
   getPercentage: (index: number) => Promise<number | null>;
-  isPercentageInverted: (index: number) => Promise<boolean>;
 }

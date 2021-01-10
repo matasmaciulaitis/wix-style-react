@@ -4,6 +4,4 @@ type FloatingPanelsProps = ThemeInterface & {
   mainColor?: string;
 };
 
-export function theme(
-  FloatingPanelsProps: FloatingPanelsProps,
-): ThemeInterface;
+export function theme(FloatingPanelsProps: FloatingPanelsProps): ThemeInterface;

@@ -17,16 +17,19 @@ function addressInputWithAllProps() {
       className="className"
       clearButton
       initialValue="address"
-      onSelect={value => {}}
-      debounceDuration={200}
+      value="address"
+      disabled
+      onSelect={option => {}}
       onChange={value => {}}
       options={[{ id: 0, value: 'value' }]}
       onClear={() => {}}
-      status="warning"
-      roundInput
-      optionsLayout="single-line"
-      showOptionsIcons
+      onBlur={() => {}}
+      status="loading"
+      statusMessage="error!"
+      roundInput={false}
       size="small"
+      placeholder="write something"
+      noResultsText="nothing to see here"
     />
   );
 }

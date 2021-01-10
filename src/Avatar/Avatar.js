@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import { avatarShapes, dataHooks } from './constants';
@@ -76,7 +75,7 @@ class Avatar extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={classNames(className, classes.externalContainer)}
+        className={st(className, classes.externalContainer)}
       >
         <FontUpgradeContext.Consumer>
           {({ active }) => (
@@ -111,7 +110,7 @@ class Avatar extends React.PureComponent {
                     initialsLimit: sizeNumber < 30 ? 1 : undefined,
                     'data-hook': dataHooks.avatarCore,
                   }}
-                  className={classNames(
+                  className={st(
                     classes.avatar,
                     classes[`color${capitalize(calculatedColor)}`],
                   )}
@@ -120,17 +119,11 @@ class Avatar extends React.PureComponent {
               {renderLoader && [
                 <div
                   key="overlay"
-                  className={classNames(
-                    classes.loaderContainer,
-                    classes.overlay,
-                  )}
+                  className={st(classes.loaderContainer, classes.overlay)}
                 />,
                 <div
                   key="loader"
-                  className={classNames(
-                    classes.loaderContainer,
-                    classes.loader,
-                  )}
+                  className={st(classes.loaderContainer, classes.loader)}
                 >
                   <Loader dataHook={dataHooks.loader} size="tiny" />
                 </div>,

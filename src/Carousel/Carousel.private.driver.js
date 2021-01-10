@@ -25,14 +25,6 @@ export default ({ element }) => {
         .querySelectorAll('[data-hook="carousel-img"]')
         .forEach(img => ReactTestUtils.Simulate.load(img));
     },
-    clickPrevious: () => {
-      const prevButton = element.querySelector('[data-hook="prev-button"]');
-      ReactTestUtils.Simulate.click(prevButton);
-    },
-    clickNext: () => {
-      const nextButton = element.querySelector('[data-hook="next-button"]');
-      ReactTestUtils.Simulate.click(nextButton);
-    },
     mouseOver: () => {
       const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOver(imageContainer);

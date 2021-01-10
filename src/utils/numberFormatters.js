@@ -4,6 +4,7 @@ import { format } from 'd3-format';
 const SI_SYMBOL = ['', 'K', 'M', 'B'];
 
 const formatNumber = format(',');
+
 const formatNumberToPrecision = (value = 0, precision = 0) =>
   formatNumber(parseFloat(parseFloat(value).toFixed(precision)));
 

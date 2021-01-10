@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { storiesOf } from '@storybook/react';
 import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import ColorPicker from '../index';
 import { colorPickerUniDriverFactory } from '../ColorPicker.uni.driver';
 import { snap, visualize } from 'storybook-snapper';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const dataHook = 'interactive';
 
@@ -86,6 +86,24 @@ tests.forEach(({ describe, its }) => {
           componentDidMount={componentDidMount}
           onDone={done}
         />
+      ));
+    });
+  });
+});
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props, componentDidMount }) => {
+    visualize(`Layout And Spacing| ColorPicker/${describe}`, () => {
+      snap(it, done => (
+        <WixStyleReactProvider
+          features={{ reducedSpacingAndImprovedLayout: true }}
+        >
+          <ColorPickerWrapper
+            {...props}
+            componentDidMount={componentDidMount}
+            onDone={done}
+          />
+        </WixStyleReactProvider>
       ));
     });
   });

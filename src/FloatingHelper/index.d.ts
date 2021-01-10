@@ -6,9 +6,7 @@ import {
 } from 'wix-ui-core/dist/src/components/popover/Popover.d';
 import { MoveByOffset } from '../common';
 
-export default class FloatingHelper extends React.PureComponent<
-  FloatingHelperProps
-> {
+export default class FloatingHelper extends React.PureComponent<FloatingHelperProps> {
   open: () => void;
   close: () => void;
   static Content: typeof FloatingHelperContent;

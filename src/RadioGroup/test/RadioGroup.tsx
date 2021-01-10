@@ -20,10 +20,13 @@ function RadioGroupWithAllProps() {
       lineHeight="10px"
       onChange={_value => {}}
       selectionArea="always"
+      selectionAreaSkin="filled"
+      selectionAreaPadding= "10px"
       spacing="20px"
       type="button"
       vAlign="center"
       value={1}
+      name="radioGroup"
     >
       <RadioGroup.Radio
         checked
@@ -34,6 +37,8 @@ function RadioGroupWithAllProps() {
         name="name"
         onChange={_value => {}}
         selectionArea="always"
+        selectionAreaSkin="filled"
+        selectionAreaPadding= "10px"
         style={{ paddingTop: '10px' }}
         tabIndex={1}
         type="button"

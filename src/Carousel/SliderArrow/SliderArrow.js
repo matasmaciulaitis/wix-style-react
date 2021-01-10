@@ -1,25 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import IconButton from '../../IconButton/IconButton';
+import { classes } from '../Carousel.st.css';
+
+const skinPriorityMap = {
+  standard: 'secondary',
+  inverted: 'primary',
+  light: 'primary',
+  transparent: 'primary',
+  premium: 'primary',
+};
 
 const SliderArrow = ({
   dataHook,
-  arrowSize = 'medium',
+  arrowSize,
   buttonSkin,
   icon,
   className,
+  controlsStartEnd,
   ...remainingProps
 }) => {
-  const isDisabled = className.includes('slick-disabled');
+  const isControlOnEdge = className.includes('slick-disabled');
 
-  return (
+  return isControlOnEdge && controlsStartEnd === 'hidden' ? null : (
     <div {...remainingProps} data-hook={dataHook} className={className}>
       <IconButton
+        className={classes.controls}
         skin={buttonSkin}
         size={arrowSize}
-        disabled={isDisabled}
-        priority="secondary"
+        disabled={isControlOnEdge}
+        priority={skinPriorityMap[buttonSkin]}
       >
         {icon}
       </IconButton>

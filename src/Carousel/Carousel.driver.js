@@ -1,3 +1,5 @@
+import ReactTestUtils from 'react-dom/test-utils';
+
 export const carouselDriverFactory = ({ element }) => {
   // It turns out that react-slick duplicates the children, so we ditch the cloned nodes
   const withoutClonedNodes = (selector = '') =>
@@ -17,6 +19,14 @@ export const carouselDriverFactory = ({ element }) => {
           withoutClonedNodes('[data-hook="carousel-img"]'),
         ),
       ].map(img => img.src);
+    },
+    clickPrevious: () => {
+      const prevButton = element.querySelector('[data-hook="prev-button"]');
+      ReactTestUtils.Simulate.click(prevButton);
+    },
+    clickNext: () => {
+      const nextButton = element.querySelector('[data-hook="next-button"]');
+      ReactTestUtils.Simulate.click(nextButton);
     },
   };
 };

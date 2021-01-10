@@ -19,6 +19,7 @@ const getDroppedItemMock = (item, overrides) => ({
     width: 0,
   },
   data: item,
+  groupName: 'test_id',
   depth: 1,
   handleOffset: { x: 0, y: 0 },
   id: item.id,
@@ -79,7 +80,9 @@ describe('NestableList', () => {
     driver.reorder({ removedId: '1', addedId: '1' });
     expect(onUpdate).toBeCalledWith({
       items,
-      item: getDroppedItemMock(items[0], {}),
+      item: getDroppedItemMock(items[0], {
+        dragged: false,
+      }),
     });
   });
 
@@ -110,6 +113,7 @@ describe('NestableList', () => {
       item: getDroppedItemMock(items[1], {
         prevIndex: 1,
         prevPosition: [1],
+        dragged: true,
       }),
     });
   });
@@ -175,6 +179,7 @@ describe('NestableList', () => {
     expect(onUpdate).toBeCalledWith({
       items: [{ ...items[0], children: [items[1]] }],
       item: getDroppedItemMock(items[1], {
+        dragged: true,
         position: [0, 0],
         prevIndex: 1,
         prevPosition: [1],
@@ -210,7 +215,11 @@ describe('NestableList', () => {
 
     expect(onUpdate).toBeCalledWith({
       items,
-      item: getDroppedItemMock(items[1], { index: 1, position: [1] }),
+      item: getDroppedItemMock(items[1], {
+        index: 1,
+        position: [1],
+        dragged: false,
+      }),
     });
   });
 
@@ -250,6 +259,7 @@ describe('NestableList', () => {
         {
           prevIndex: 0,
           prevPosition: [1, 0],
+          dragged: true,
         },
       ),
     });

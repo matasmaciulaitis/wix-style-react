@@ -28,10 +28,7 @@ export default component => {
       await actions.unHoverHandle({ index });
 
       const handle = sliderHandle(index);
-      await browser
-        .actions()
-        .mouseMove(handle)
-        .perform();
+      await browser.actions().mouseMove(handle).perform();
     },
 
     dragHandle: async ({ index, offset }) => {

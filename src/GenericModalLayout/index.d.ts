@@ -8,6 +8,4 @@ export interface GenericModalLayoutProps {
   fullscreen?: boolean;
 }
 
-export default class GenericModalLayout extends React.PureComponent<
-  GenericModalLayoutProps
-> {}
+export default class GenericModalLayout extends React.PureComponent<GenericModalLayoutProps> {}

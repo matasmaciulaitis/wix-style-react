@@ -2,11 +2,11 @@ import { addItemUniDriverFactory as publicDriverFactory } from '../AddItem.uni.d
 import { tooltipDriverFactory } from '../../Tooltip/Tooltip.uni.driver';
 import { dataHooks } from '../constants';
 
-export const addItemPrivateUniDriverFactory = base => {
+export const addItemPrivateUniDriverFactory = (base, body) => {
   const tooltipSelector = `[data-hook*="${dataHooks.itemTooltip}"]`;
   const tooltipDriver = tooltipDriverFactory(base.$(tooltipSelector));
   return {
-    ...publicDriverFactory(base),
+    ...publicDriverFactory(base, body),
     tooltipElementExists: () => tooltipDriver.exists(),
     mouseEnter: () => tooltipDriver.mouseEnter(),
     getTooltipText: () => tooltipDriver.getTooltipText(),

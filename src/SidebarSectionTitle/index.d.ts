@@ -5,6 +5,4 @@ export interface SidebarSectionTitleProps {
   children: React.ReactNode;
 }
 
-export default class SidebarSectionTitle extends React.PureComponent<
-  SidebarSectionTitleProps
-> {}
+export default class SidebarSectionTitle extends React.PureComponent<SidebarSectionTitleProps> {}

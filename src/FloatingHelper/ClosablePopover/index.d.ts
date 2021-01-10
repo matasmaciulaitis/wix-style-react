@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-export default class ClosablePopover extends React.PureComponent<
-  ClosablePopoverProps
-> {
+export default class ClosablePopover extends React.PureComponent<ClosablePopoverProps> {
   open: () => void;
   close: () => void;
 }

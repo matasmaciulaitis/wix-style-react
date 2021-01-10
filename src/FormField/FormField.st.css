@@ -24,11 +24,11 @@
 }
 
 .root:labelPlacement(right) {
-  flex-direction: row;
+  flex-flow: row nowrap;
 }
 
 .root:labelPlacement(left) {
-  flex-direction: row-reverse;
+  flex-flow: row-reverse nowrap;
 }
 
 .root:labelAlignment(middle) {

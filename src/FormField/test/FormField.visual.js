@@ -4,6 +4,7 @@ import FormField from '../FormField';
 import Input from '../../Input';
 import InputArea from '../../InputArea';
 import ToggleSwitch from '../../ToggleSwitch';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const testGroups = [
   {
@@ -159,6 +160,26 @@ const testGroups = [
       },
     ],
   },
+  {
+    describe: 'Label Placement',
+    tests: [
+      {
+        describe: 'should render',
+        labelPlacements: ['top', 'right', 'left'],
+        its: [
+          {
+            label: 'Label',
+            children: [<Input />],
+          },
+          {
+            label:
+              'A long label should not be wrapped when placement is left/right',
+            children: [<Input />],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 testGroups.forEach(group => {
@@ -176,3 +197,26 @@ testGroups.forEach(group => {
     ));
   });
 });
+
+testGroups.forEach(group =>
+  group.tests.forEach(test => {
+    storiesOf(`Layout And Spacing| FormField/${group.describe}`, module).add(
+      test.describe,
+      () => (
+        <WixStyleReactProvider
+          features={{ reducedSpacingAndImprovedLayout: true }}
+        >
+          <div style={{ width: 500, padding: 50 }}>
+            {test.its.map(props =>
+              (test.labelPlacements || ['top']).map(labelPlacement => (
+                <div style={{ padding: 15 }}>
+                  <FormField labelPlacement={labelPlacement} {...props} />
+                </div>
+              )),
+            )}
+          </div>
+        </WixStyleReactProvider>
+      ),
+    );
+  }),
+);

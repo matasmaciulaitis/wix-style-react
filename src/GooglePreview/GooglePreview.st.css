@@ -10,14 +10,19 @@
 
 :vars {
   googlePreivewBlue: #1a0dab;
-  googlePreivewGreen: #006621;
+  googlePreivewBlack: #202124;
 }
 
 .root {
+  -st-states: transparent;
   padding: 12px;
   border: solid 1px value(D60);
   background-color: value(D80);
   box-sizing: border-box;
+}
+.root:transparent {
+  border-color: transparent;
+  background-color: transparent;
 }
 
 .googlePreviewTitle {
@@ -36,16 +41,8 @@
 }
 
 .googlePreviewUrl:size(tiny):weight(thin) {
-  color: value(googlePreivewGreen);
+  color: value(googlePreivewBlack);
   font-family: Arial;
-}
-
-.googlePreviewDescriptionContainer {
-  /* TODO - multiline ellipsis is required instead */
-  display: block;
-  max-height: 35px;
-  overflow: hidden;
-  white-space: pre-wrap;
 }
 
 .googlePreviewDescription {

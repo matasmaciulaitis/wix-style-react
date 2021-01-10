@@ -11,7 +11,7 @@ const datePickerDriverFactory = component => {
   const getInput = () => component.$('input');
   const getCalendar = () => component.$('.DayPicker');
   const getNthAvailableDay = n =>
-    component.$$('[role="gridcell"]:not([class*="outside"])').get(n);
+    component.$$('[role="gridcell"][aria-disabled="false"]').get(n);
   const getYearDropdown = () =>
     component.$('[data-hook="datepicker-year-dropdown-button"]');
   const getNthYear = n =>

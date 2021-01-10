@@ -5,7 +5,7 @@
 
 :import {
   -st-from: "../foundations/colors.st.css";
-  -st-named: G20, D60;
+  -st-named: G20, D60, B10;
 }
 
 .root {
@@ -19,5 +19,13 @@
 }
 
 .root:skin(success)::barBackground {
+  background: value(D60);
+}
+
+.root:skin(standard)::barForeground {
+  background: value(B10);
+}
+
+.root:skin(standard)::barBackground {
   background: value(D60);
 }

@@ -25,4 +25,5 @@ export type TagTheme =
   | 'warning'
   | 'dark'
   | 'neutral'
-  | 'light';
+  | 'light'
+  | 'lightOutlined';

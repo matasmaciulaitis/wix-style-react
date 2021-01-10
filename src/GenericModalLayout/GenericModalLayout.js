@@ -28,11 +28,15 @@ export default class GenericModalLayout extends React.PureComponent {
 }
 
 GenericModalLayout.propTypes = {
-  /** applied as data-hook HTML attribute that can be used to create driver in testing */
+  /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
+  /** Any node to be rendered */
   header: PropTypes.node,
+  /** Any node to be rendered */
   content: PropTypes.node,
+  /** Any node to be rendered */
   footer: PropTypes.node,
+  /** Is modal layout in fullscreen */
   fullscreen: PropTypes.bool,
 };
 

@@ -15,7 +15,7 @@
 }
 
 :import {
-  -st-from: "../Sidebar/main.st.css";
+  -st-from: "../Sidebar/Sidebar.st.css";
   -st-named: sidebarWidth
 }
 

@@ -44,12 +44,14 @@ export interface InputUniDriver extends BaseUniDriver {
   keyUp: () => Promise<void>;
   keyDown: (eventData: SyntheticEventData) => Promise<void>;
   paste: () => Promise<void>;
+  wheel: () => Promise<void>;
   trigger(value: 'focus'): Promise<void>;
   trigger(value: 'blur'): Promise<void>;
   trigger(value: 'keyUp'): Promise<void>;
   trigger(value: 'paste'): Promise<void>;
   trigger(value: 'change'): Promise<void>;
   trigger(value: 'keyDown', event: SyntheticEventData): Promise<void>;
+  trigger(value: 'wheel'): Promise<void>;
   isFocus: () => Promise<boolean>;
   hasHelp: () => Promise<boolean>;
   clickUnit: () => Promise<void>;
@@ -58,7 +60,7 @@ export interface InputUniDriver extends BaseUniDriver {
   clickMenuArrow: () => Promise<void>;
   hasMenuArrow: () => Promise<boolean>;
   isRTL: () => Promise<boolean>;
-  getCursorLocation: () => Promise<any>;
+  getCursorLocation: () => Promise<number>;
   clearText: () => Promise<void>;
   clickOutside: () => boolean;
 

@@ -36,6 +36,19 @@ export default {
     },
   },
 
+  BounceAnimation: {
+    props: {
+      children: <div />,
+    },
+  },
+
+  BadgeSelectItem: {
+    props: {
+      skin: 'general',
+      text: 'Badge 1',
+    },
+  },
+
   AudioPlayer: {
     props: {
       src: 'example.mp3',
@@ -814,6 +827,37 @@ export default {
           xxx
         </CardFolderTabs.Tab>
       ),
+    },
+  },
+
+  TrendIndicator: {
+    props: {
+      value: 0,
+    },
+  },
+
+  CopyClipboard: {
+    props: {
+      value: 'https://www.wix.com',
+      children: ({ copyToClipboard }) => <button onClick={copyToClipboard} />,
+    },
+  },
+
+  AnalyticsSummaryCard: {
+    props: {
+      percentage: 0,
+      chartData: [
+        {
+          label: new Date(),
+          value: 0,
+        },
+      ],
+    },
+  },
+  AnalyticsLayout: {
+    props: {
+      items: [],
+      children: () => null,
     },
   },
 };

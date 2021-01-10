@@ -8,17 +8,17 @@ export type ListItemActionWithAsProp<T> =
   | ListItemActionGenericProps<T>
   | ListItemActionAsComponentProps<T>;
 
-type ListItemActionAsButtonProps<T> = React.ButtonHTMLAttributes<
-  HTMLButtonElement
-> &
+type ListItemActionAsButtonProps<
+  T
+> = React.ButtonHTMLAttributes<HTMLButtonElement> &
   T & {
     as?: 'button';
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
   };
 
-type ListItemActionAsAnchorProps<T> = React.AnchorHTMLAttributes<
-  HTMLAnchorElement
-> &
+type ListItemActionAsAnchorProps<
+  T
+> = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   T & {
     as: 'a';
     onClick?: React.MouseEventHandler<HTMLAnchorElement>;
@@ -50,16 +50,14 @@ export type ListItemActionProps = ListItemActionWithAsProp<{
   subtitle?: string;
 }>;
 
-export default class ListItemAction extends React.PureComponent<
-  ListItemActionProps
-> {}
+export default class ListItemAction extends React.PureComponent<ListItemActionProps> {}
 
 export type ListItemActionSkin = 'standard' | 'dark' | 'destructive';
 export type ListItemActionSize = 'small' | 'medium';
 
-export const listItemActionBuilder: <T extends Partial<
-  ListItemActionProps
->>(data: {
+export const listItemActionBuilder: <
+  T extends Partial<ListItemActionProps>
+>(data: {
   title: string;
   id: string | number;
   prefixIcon?: IconElement;

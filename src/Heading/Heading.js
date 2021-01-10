@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Ellipsis, { extractEllipsisProps } from '../common/Ellipsis';
 import { st, classes } from './Heading.st.css';
 import { EllipsisCommonProps } from '../common/PropTypes/EllipsisCommon';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 export const APPEARANCES = {
   H1: 'H1',
@@ -24,42 +25,48 @@ const Heading = props => {
   } = componentProps;
 
   return (
-    <Ellipsis
-      {...ellipsisProps}
-      wrapperClassName={st(classes.root, { appearance })}
-      render={({ ref, ellipsisClasses }) =>
-        React.createElement(
-          appearance.toLowerCase(),
-          {
-            ...headingProps,
-            ref,
-            'data-hook': dataHook,
-            className: st(
-              classes.root,
-              { light, appearance },
-              ellipsisClasses(props.className),
-            ),
-            'data-appearance': appearance,
-            'data-light': light,
-          },
-          children,
-        )
-      }
-    />
+    <WixStyleReactContext.Consumer>
+      {({ reducedSpacingAndImprovedLayout }) => (
+        <Ellipsis
+          {...ellipsisProps}
+          wrapperClassName={st(classes.root, { appearance })}
+          render={({ ref, ellipsisClasses }) =>
+            React.createElement(
+              appearance.toLowerCase(),
+              {
+                ...headingProps,
+                ref,
+                'data-hook': dataHook,
+                className: st(
+                  classes.root,
+                  { light, appearance, reducedSpacingAndImprovedLayout },
+                  ellipsisClasses(props.className),
+                ),
+                'data-appearance': appearance,
+                'data-light': light,
+              },
+              children,
+            )
+          }
+        />
+      )}
+    </WixStyleReactContext.Consumer>
   );
 };
 
 Heading.displayName = 'Heading';
 
 Heading.propTypes = {
+  /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
-  /** any nodes to be rendered (usually text nodes) */
+
+  /** Any nodes to be rendered (usually text nodes) */
   children: PropTypes.any,
 
-  /** is the text has dark or light skin */
+  /** Has dark or light skin */
   light: PropTypes.bool,
 
-  /** typography of the heading */
+  /** Typography of the heading */
   appearance: PropTypes.oneOf(Object.keys(APPEARANCES)),
 
   ...EllipsisCommonProps,

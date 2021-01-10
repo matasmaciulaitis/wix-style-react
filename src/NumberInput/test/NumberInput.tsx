@@ -67,6 +67,7 @@ function NumberInputOldWithAllProps() {
       type="text"
       value="value"
       withSelection
+      hideStepper
     />
   );
 }

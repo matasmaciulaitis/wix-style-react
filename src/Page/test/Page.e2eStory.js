@@ -18,6 +18,8 @@ import classNames from 'classnames';
 import { header, tail, fixedContent, content } from '../docs/PageChildren';
 import { storySettings } from '../docs/storySettings';
 import { LongTextContent } from '../docs/SomeContentComponent';
+import Button from '../../Button';
+import PageFooter from '../../PageFooter';
 
 const PageContainer = props => {
   return (
@@ -150,6 +152,7 @@ class PageWithScroll extends React.Component {
       contentHeight,
       withFixedContent,
       withFixedScrollBar,
+      withFooter,
     } = this.props;
 
     if (stretchVertically) {
@@ -185,6 +188,25 @@ class PageWithScroll extends React.Component {
               }}
             />
           </Page.Content>
+          {withFooter && (
+            <Page.FixedFooter>
+              <PageFooter divider>
+                <PageFooter.Start>
+                  <Button size="medium" skin="inverted">
+                    Go Back
+                  </Button>
+                </PageFooter.Start>
+                <PageFooter.End>
+                  <Box marginRight="SP2">
+                    <Button size="medium" priority="secondary">
+                      Skip
+                    </Button>
+                  </Box>
+                  <Button size="medium">Go Next</Button>
+                </PageFooter.End>
+              </PageFooter>
+            </Page.FixedFooter>
+          )}
         </Page>
       </PageContainer>
     );
@@ -205,9 +227,20 @@ class PageWithScroll extends React.Component {
     <PageWithScroll {...defaultProps} contentHeight={200} />
   ));
 
-  Stories.add(`${prefix(2)}Stretch Vertically`, () => (
-    <PageWithScroll {...defaultProps} stretchVertically />
-  ));
+  Stories.add(`${prefix(2)}With Footer`, () => {
+    return <PageWithScroll {...defaultProps} contentHeight={200} withFooter />;
+  });
+
+  Stories.add(`${prefix(2)}With Footer - scroll`, () => {
+    const arbitraryLong = PageWithScroll.Constants.pageHeight;
+    return (
+      <PageWithScroll
+        {...defaultProps}
+        extraScroll={arbitraryLong}
+        withFooter
+      />
+    );
+  });
 
   Stories.add(`${prefix(3)}Max Height No Scroll`, () => (
     // Small scroll - lower than the threshold that triggers minimization

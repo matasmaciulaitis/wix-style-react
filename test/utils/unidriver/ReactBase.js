@@ -54,6 +54,7 @@ export function ReactBase(base) {
   };
 
   const shouldBePrivate = {
+    wheel: async eventData => Simulate.wheel(await htmlElement(), eventData),
     keyUp: async eventData => Simulate.keyUp(await htmlElement(), eventData),
     keyDown: async eventData =>
       Simulate.keyDown(await htmlElement(), eventData),

@@ -16,6 +16,4 @@ export interface StackedBarChartProps {
   yAxisTickFormat?: (rawValue: string, parsedValue: string) => string;
 }
 
-export default class StackedBarChart extends React.PureComponent<
-  StackedBarChartProps
-> {}
+export default class StackedBarChart extends React.PureComponent<StackedBarChartProps> {}

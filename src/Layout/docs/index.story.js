@@ -14,12 +14,16 @@ import {
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import { Layout, Cell } from '..';
-import styles from './styles.scss';
+import { style, classes } from './styles.st.css';
 import * as examples from './examples';
 
 const example = config => baseExample({ components: allComponents, ...config });
 const GreyBox = ({ children, height }) => (
-  <div className={styles.greyBox} style={{ height }} children={children} />
+  <div
+    className={style(classes.greyBox)}
+    style={{ height }}
+    children={children}
+  />
 );
 GreyBox.displayName = 'GreyBox';
 
@@ -186,6 +190,14 @@ It supports all major CSS values, [read more here](https://developer.mozilla.org
             `,
             source: examples.justifyItems,
           }),
+
+          example({
+            title: 'Cell rows',
+            text: `
+Property \`rows\` for a \`Cell\` is used to determine how many rows the cell takes, in this example the first element takes 2 rows, the rest takes 1.
+            `,
+            source: examples.cellRows,
+          }),
         ],
       }),
 
@@ -197,12 +209,13 @@ It supports all major CSS values, [read more here](https://developer.mozilla.org
             description(
               `
               <h4>Props</h4>
-  | Name | Type | Default Value | Required | Description                                                                        |
-  | ---      | ---      | ---          | ---        | ---                                                                                |
+  | Name     | Type       | Default Value| Required   | Description                                                                        |
+  | ---      | ---        | ---          | ---        | ---                                                                                |
   | children | \`node\`   |              |            | any node to be rendered inside                                                     |
   | span     | \`number\` | 12           |            | how many columns should this cell occupy. Can be any number from 1 to 12 inclusive |
   | vertical | \`bool\`   |              |            | whether to align children vertically to the middle                                 |
-        `,
+  | rows     | \`number\` |              |            | how many rows should this cell occupy. |
+          `,
             ),
           ],
         },

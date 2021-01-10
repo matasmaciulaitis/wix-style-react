@@ -10,6 +10,4 @@ export interface LinearProgressBarProps {
   dataHook?: string;
 }
 
-export default class LinearProgressBar extends React.PureComponent<
-  LinearProgressBarProps
-> {}
+export default class LinearProgressBar extends React.PureComponent<LinearProgressBarProps> {}

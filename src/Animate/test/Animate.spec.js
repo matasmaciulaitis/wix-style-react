@@ -18,29 +18,10 @@ describe(Animate.displayName, () => {
     expect(await driver.exists()).toBe(true);
   });
 
-  describe('"delay" prop', () => {
-    it('animation should not be delayed when not specified  ', async () => {
-      const { driver } = render(<Animate {...requiredProps} />);
-      expect(await driver.getDelay()).toBeFalsy();
-    });
-
-    it('should convert a number to milliseconds when getting a number', async () => {
-      const delay = 500;
-      const { driver } = render(<Animate delay={delay} {...requiredProps} />);
-      expect(await driver.getDelay()).toBe(`${delay}ms`);
-    });
-
-    it('should apply delay when getting a string', async () => {
-      const delay = '200ms';
-      const { driver } = render(<Animate delay={delay} {...requiredProps} />);
-      expect(await driver.getDelay()).toBe(delay);
-    });
-  });
-
   describe('animation', () => {
     it('should fire onEnd callback when defined', async () => {
       const props = {
-        trigger: true,
+        active: true,
         onEnd: jest.fn(),
       };
 
@@ -53,7 +34,7 @@ describe(Animate.displayName, () => {
 
     it('should fire onStart callback when defined', async () => {
       const props = {
-        trigger: true,
+        active: true,
         onStart: jest.fn(),
       };
 

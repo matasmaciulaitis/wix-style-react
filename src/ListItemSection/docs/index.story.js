@@ -112,9 +112,18 @@ import { listItemSectionBuilder } from 'wix-style-react';
                     suffix="Suffix Action"
                   />
                   <ListItemSection
+                    title="Title area"
+                    suffix={<InfoIcon content="Tooltip content!" />}
+                  />
+                  <ListItemSection
                     type="subheader"
                     title="Title area"
                     suffix="Suffix Action"
+                  />
+                  <ListItemSection
+                    type="subheader"
+                    title="Title area"
+                    suffix={<InfoIcon content="Tooltip content!" />}
                   />
                 </Layout>
               `,

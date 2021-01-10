@@ -13,9 +13,9 @@ import {
   testkit,
 } from 'wix-storybook-utils/Sections';
 
-import { storySettings } from '../test/storySettings';
+import { storySettings } from './storySettings';
 import allComponents from '../../../stories/utils/allComponents';
-
+import { examples } from './examples';
 import GooglePreview from '..';
 
 const example = config => baseExample({ components: allComponents, ...config });
@@ -57,29 +57,8 @@ export default {
           importExample("import { GooglePreview } from 'wix-style-react'"),
 
           divider(),
-
           title('Examples'),
-
-          example({
-            title: 'Basic',
-            text: 'With all required fields',
-            source:
-              '<GooglePreview title="Site Name | a title of your site" previewUrl="www.site-name.com" description="a short description for a site"></GooglePreview>',
-          }),
-
-          example({
-            title: 'Multi-line description',
-            text: 'The description can grow up to two lines maximum',
-            source:
-              '<GooglePreview title="Site Name | a title of your site" previewUrl="www.site-name.com" description="a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site"></GooglePreview>',
-          }),
-
-          example({
-            title: 'No description',
-            text: 'The google preview can appear without a description',
-            source:
-              '<GooglePreview title="Site Name | a title of your site" previewUrl="www.site-name.com"></GooglePreview>',
-          }),
+          ...examples.map(example),
         ],
       }),
 

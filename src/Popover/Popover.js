@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { st, classes } from './Popover.st.css';
 import { FontUpgradeContext } from '../FontUpgrade/context';
 import FontUpgrade from '../FontUpgrade';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 
 export { placements } from './constants';
 /**
@@ -47,8 +48,10 @@ class Popover extends React.Component {
 
   static propTypes = {
     ...CorePopover.propTypes,
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
 
+    /** Adds enter and exit animation */
     animate: PropTypes.bool,
 
     /** The theme of the popover */
@@ -80,8 +83,9 @@ class Popover extends React.Component {
           child.type.displayName !== 'Popover.Content'
         ) {
           return new Error(
-            `Invalid children provided, unknown child <${child.type
-              .displayName || child.type}/> supplied`,
+            `Invalid children provided, unknown child <${
+              child.type.displayName || child.type
+            }/> supplied`,
           );
         }
 
@@ -103,13 +107,17 @@ class Popover extends React.Component {
       : undefined;
 
     return (
-      <CorePopover
-        disableClickOutsideWhenClosed
-        timeout={timeout}
-        data-hook={dataHook}
-        {...rest}
-        className={st(classes.root, { theme }, className)}
-      />
+      <ThemeProviderConsumerBackwardCompatible>
+        {({ className: themeClassName }) => (
+          <CorePopover
+            disableClickOutsideWhenClosed
+            timeout={timeout}
+            data-hook={dataHook}
+            {...rest}
+            className={st(classes.root, { theme }, className, themeClassName)}
+          />
+        )}
+      </ThemeProviderConsumerBackwardCompatible>
     );
   }
 }

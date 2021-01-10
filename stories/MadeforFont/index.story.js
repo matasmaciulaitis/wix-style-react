@@ -125,10 +125,6 @@ export default {
                   a={`If your application is rendered as a module in another host (e.g. Wix's Business Manager), then the font css should be added to the host only, and you should only apply the <FontUpgrade/> component yourself.`}
                 />
                 <QA
-                  q="After the migration, some font weight looks bolder"
-                  a={`That's because the Madefor font contains less weights than before. Previously there were "thin", "medium" and "bold" and from now on, only "medium" and "bold" ("thin" is merged with "medium"). Please go over the new styles with your UX.`}
-                />
-                <QA
                   q="Some texts didn't change to Madefor, what can I do?"
                   a={`Take a look at the font-family definition with chrome dev tools to trace the problem. Then fix it locally or let us know if it's a global problem.`}
                 />
@@ -141,15 +137,9 @@ export default {
             content={
               <div>
                 <QA
-                  q="How to move from 3 to 2 weights?"
-                  a={`For running text, we are moving from using 3 wights, to 2 weights.
-After moving to Madefor, Helvetica weight=“normal” and weight=“Thin” (Helvetica 55 & 45) will both be Madefor weight=“normal”.
-If you used Helvetica weight=“normal” (Helvetica 55) in order to emphasis text,
-You can now adjust the text to Madefor Bold.`}
+                  q="How to move from Helvetica to Madefor?"
+                  a={`After moving to Madefor, Helvetica 45 will be Madefor 'thin', Helvetica 55 will be Madefor 'normal' and Helvetica 65 will be Madefor 'bold'.`}
                 />
-                <Box marginBottom={3}>
-                  <Image src="madefor_example1.png" width="600px" />
-                </Box>
                 <QA
                   q="Madefor font is wider than Helvetica, it broke my line!"
                   a={`The wider font can cause line break, It can be less readable or visually less nice.

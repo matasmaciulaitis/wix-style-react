@@ -13,13 +13,14 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     element.querySelector(`[data-hook="${dataHooks.children}"]`);
 
   const labelTextDriver = () => textDriverFactory({ element: labelText() });
-
-  const getErrorMessage = async () => {
-    const tooltipTestkit = tooltipDriverFactory({
+  const tooltipDriver = () =>
+    tooltipDriverFactory({
       element: byHook(dataHooks.boxTooltip),
       eventTrigger,
     });
 
+  const getTooltipText = async () => {
+    const tooltipTestkit = tooltipDriver();
     try {
       tooltipTestkit.mouseEnter();
       const contentElement = tooltipTestkit.getContentElement();
@@ -28,6 +29,13 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     } catch (e) {
       throw new Error('Failed getting checkbox error message');
     }
+  };
+
+  const isTooltipEnabled = async () => {
+    const tooltipTestkit = tooltipDriver();
+    tooltipTestkit.mouseEnter();
+    const contentElement = tooltipTestkit.getContentElement();
+    return !!contentElement && !!contentElement.textContent;
   };
 
   return {
@@ -43,8 +51,10 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     isIndeterminate: () =>
       element.getAttribute(DATA_ATTR.DATA_CHECK_TYPE) ===
       DATA_ATTR.CHECK_TYPES.INDETERMINATE,
+    isTooltipEnabled: isTooltipEnabled,
     hasError: () => element.getAttribute(DATA_ATTR.DATA_HAS_ERROR) === 'true',
-    getErrorMessage,
+    getErrorMessage: getTooltipText,
+    getTooltipContent: getTooltipText,
     getLabel: () => labelTextDriver().getText(),
     getLabelSize: () => labelTextDriver().getSize(),
   };

@@ -6,8 +6,10 @@ import Checkbox from '../Checkbox';
 import Box from '../Box';
 import DragHandle from 'wix-ui-icons-common/system/DragAndDropLarge';
 import DragHandleDisabled from 'wix-ui-icons-common/system/DragAndDropLockedLarge';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 export const VERTICAL_PADDING = {
+  tiny: 'tiny',
   small: 'small',
   medium: 'medium',
 };
@@ -34,75 +36,94 @@ const TableListItem = ({
   checked,
   onCheckboxChange,
   draggable,
+  focused,
+  onBlur,
   dragDisabled,
   showDivider,
+  onKeyUp,
   onClick,
+  dragging,
   className,
   dataHook,
 }) => {
   const DragHandleIcon = dragDisabled ? DragHandleDisabled : DragHandle;
+  const ref = React.useRef();
+  React.useEffect(() => {
+    if (ref.current && focused) {
+      ref.current.focus();
+    }
+  }, [ref, focused]);
   return (
-    <div
-      onClick={onClick}
-      className={st(
-        classes.root,
-        {
-          draggable: draggable && !dragDisabled,
-          checked: checkbox && checked,
-          showDivider,
-          clickable: !!onClick,
-          ...{ verticalPadding },
-        },
-        className,
-      )}
-      data-hook={dataHook}
-    >
-      <Box>
-        {draggable && (
-          <div
-            className={st(classes.dragHandle, {
-              disabled: dragDisabled,
-            })}
-            data-hook={dataHooks.tableListItemDragHandle}
-          >
-            <DragHandleIcon />
-          </div>
-        )}
-        {checkbox && (
-          <div
-            className={classes.checkbox}
-            data-hook={dataHooks.tableListItemCheckboxContainer}
-            onClick={onCheckboxChange}
-          >
-            <Checkbox
-              checked={checked}
-              disabled={checkboxDisabled}
-              dataHook={dataHooks.tableListItemCheckbox}
-            />
-          </div>
-        )}
-        <Box
-          className={classes.optionsContainer}
-          style={{
-            gridTemplateColumns: getWidthStyle(options),
-          }}
-          verticalAlign="middle"
-          dataHook={dataHooks.tableListItemOptionsContainer}
+    <WixStyleReactContext.Consumer>
+      {({ reducedSpacingAndImprovedLayout }) => (
+        <div
+          onClick={onClick}
+          className={st(
+            classes.root,
+            {
+              draggable: draggable && !dragDisabled,
+              dragging,
+              checked: checkbox && checked,
+              showDivider,
+              clickable: !!onClick,
+              reducedSpacingAndImprovedLayout,
+              verticalPadding,
+            },
+            className,
+          )}
+          data-hook={dataHook}
         >
-          {options.map(({ value, align }, index) => (
+          <Box>
+            {draggable && (
+              <div
+                tabIndex={onKeyUp ? 0 : undefined}
+                ref={ref}
+                onBlur={onBlur}
+                onKeyUp={onKeyUp}
+                className={st(classes.dragHandle, {
+                  disabled: dragDisabled,
+                })}
+                data-hook={dataHooks.tableListItemDragHandle}
+              >
+                <DragHandleIcon />
+              </div>
+            )}
+            {checkbox && (
+              <div
+                className={classes.checkbox}
+                data-hook={dataHooks.tableListItemCheckboxContainer}
+                onClick={onCheckboxChange}
+              >
+                <Checkbox
+                  checked={checked}
+                  disabled={checkboxDisabled}
+                  dataHook={dataHooks.tableListItemCheckbox}
+                />
+              </div>
+            )}
             <div
-              className={st(classes.align, {
-                position: ALIGN[align] || ALIGN.left,
-              })}
-              key={index}
-              data-hook={dataHooks.tableListItemValue}
+              className={classes.optionsContainer}
+              style={{
+                gridTemplateColumns: getWidthStyle(options),
+              }}
+              data-hook={dataHooks.tableListItemOptionsContainer}
             >
-              {value}
+              {options.map(({ value, align }, index) => (
+                <div
+                  className={st(classes.align, {
+                    position: ALIGN[align] || ALIGN.left,
+                  })}
+                  key={index}
+                  data-hook={dataHooks.tableListItemValue}
+                >
+                  {value}
+                </div>
+              ))}
             </div>
-          ))}
-        </Box>
-      </Box>
-    </div>
+          </Box>
+        </div>
+      )}
+    </WixStyleReactContext.Consumer>
   );
 };
 
@@ -129,8 +150,12 @@ TableListItem.propTypes = {
   verticalPadding: PropTypes.oneOf([
     VERTICAL_PADDING.medium,
     VERTICAL_PADDING.small,
+    VERTICAL_PADDING.tiny,
   ]),
-
+  /**
+   *
+   */
+  dragging: PropTypes.bool,
   /**
     Show checkbox
    */
@@ -165,7 +190,18 @@ TableListItem.propTypes = {
     Show divider on the bottom of the list item
    */
   showDivider: PropTypes.bool,
-
+  /**
+   * Called when item is lost focus
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Called when item is focused, and key is pressed and released. Used for dnd via keyboard
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * Forces focus on drag handle
+   */
+  focused: PropTypes.bool,
   /**
     Called when the item is clicked
    */

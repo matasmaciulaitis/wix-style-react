@@ -1,5 +1,9 @@
 import { textUniDriverFactory } from '../Text/Text.uni.driver';
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import {
+  baseUniDriverFactory,
+  getDataAttributeValue,
+} from '../../test/utils/unidriver';
+import { dataAttr, sizes, shapes } from './constants';
 
 export const selectorUniDriverFactory = base => {
   const toggleInput = () => base.$('[data-hook="toggle"] input');
@@ -13,13 +17,21 @@ export const selectorUniDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 
-    isImageTiny: () => image().hasClass('tiny'),
-    isImageSmall: () => image().hasClass('small'),
-    isImagePortrait: () => image().hasClass('portrait'),
-    isImageLarge: () => image().hasClass('large'),
-    isImageCinema: () => image().hasClass('cinema'),
-    isImageCircle: () => image().hasClass('circle'),
-    isImageRectangular: () => image().hasClass('rectangular'),
+    isImageTiny: async () =>
+      (await getDataAttributeValue(base, dataAttr.SIZE)) === sizes.TINY,
+    isImageSmall: async () =>
+      (await getDataAttributeValue(base, dataAttr.SIZE)) === sizes.SMALL,
+    isImagePortrait: async () =>
+      (await getDataAttributeValue(base, dataAttr.SIZE)) === sizes.PORTRAIT,
+    isImageLarge: async () =>
+      (await getDataAttributeValue(base, dataAttr.SIZE)) === sizes.LARGE,
+    isImageCinema: async () =>
+      (await getDataAttributeValue(base, dataAttr.SIZE)) === sizes.CINEMA,
+    isImageCircle: async () =>
+      (await getDataAttributeValue(base, dataAttr.SHAPE)) === shapes.CIRCLE,
+    isImageRectangular: async () =>
+      (await getDataAttributeValue(base, dataAttr.SHAPE)) ===
+      shapes.RECTANGULAR,
     isDisabled: () => toggleInput()._prop('disabled'),
     toggleType: () => toggleInput()._prop('type'),
     isChecked: async () =>

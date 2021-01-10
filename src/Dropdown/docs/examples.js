@@ -8,13 +8,20 @@ export const simple = `
 export const group = `
   <Dropdown
     placeholder="Select an option"
-    options={[
-      { id: 'first title', value: 'title #1', title: true },
-{ id: 1, value: 'Option 1' },
-{ id: 'title', value: 'title #2', title: true },
-{ id: 2, value: 'Option 2' },
-{ id: 4, value: 'Option 3' },
-    ]}
+      options={[
+    listItemSectionBuilder({
+      id: 0,
+      type: 'subheader',
+      title: 'Group 1',
+    }),
+    { id: 1, value: 'Option 1' },
+    { id: 2, value: 'Option 2' },
+    listItemSectionBuilder({
+        id: 3,
+      type: 'divider',
+    }),
+    { id: 4, value: 'Option 3' },
+  ]}
     />
 `;
 
@@ -24,55 +31,79 @@ export const sizes = `
       <Dropdown
         size="small"
         placeholder="Select an option"
-        options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, { id: -99, value: '-' }, {id: 2, value: 'Ambidextrous'}]}
+        options={[
+          {id: 0, value: 'Left'},
+          {id: 1, value: 'Right'},
+          listItemSectionBuilder({type: 'divider', id: 2}),
+          {id: 3, value: 'Ambidextrous'}
+        ]}
         />
   </Cell>
   <Cell>
       <Dropdown
         size="medium"
         placeholder="Select an option"
-        options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, { id: -99, value: '-' }, {id: 2, value: 'Ambidextrous'}]}
-        />
+        options={[
+          {id: 0, value: 'Left'},
+          {id: 1, value: 'Right'},
+          listItemSectionBuilder({type: 'divider', id: 2}),
+          {id: 3, value: 'Ambidextrous'}
+        ]}        />
   </Cell>
   <Cell>
     <Dropdown
       size="large"
       placeholder="Select an option"
-      options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, { id: -99, value: '-' }, {id: 2, value: 'Ambidextrous'}]}
+        options={[
+          {id: 0, value: 'Left'},
+          {id: 1, value: 'Right'},
+          listItemSectionBuilder({type: 'divider', id: 2}),
+          {id: 3, value: 'Ambidextrous'}
+        ]}
       />
   </Cell>
 </Layout>
 `;
 
-export const divider = `
-  <Dropdown
-    placeholder="Select an option"
-    options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, { id: -99, value: '-' }, {id: 2, value: 'Ambidextrous'}]}
-    />
-`;
-
-export const prefix = `
-  <Dropdown
-    placeholder="Select an option"
-    prefix={<Input.Affix>$</Input.Affix>}
-    options={[{id: 0, value: '35'}, {id: 1, value: '40'}, {id: 2, value: '50'}]}
-    />
-`;
-
-export const suffix = `
+export const affix = `
+<Layout>
+<Cell>
   <Dropdown
     placeholder="Select an option"
     suffix={<Input.Affix>%</Input.Affix>}
     options={[{id: 0, value: '35'}, {id: 1, value: '40'}, {id: 2, value: '50'}]}
     />
-`;
-
-export const footer = `
+</Cell>
+<Cell>
   <Dropdown
     placeholder="Select an option"
-    fixedFooter={<div style={{ display: 'flex', justifyContent: 'space-around', padding: '15px 24px', alignItems: 'center'}}><TextButton skin="dark" underline="always">Clear</TextButton><Button>Apply</Button></div>}
-    options={[{id: 0, value: 'Left'}, {id: 1, value: 'Right'}, {id: 2, value: 'Ambidextrous'},{ id: -99, value: '-' }]}
+    prefix={<Input.Affix>$</Input.Affix>}
+    options={[{id: 0, value: '35'}, {id: 1, value: '40'}, {id: 2, value: '50'}]}
     />
+</Cell>
+</Layout>
+`;
+
+export const fixedHeaderFooter = `
+  <Dropdown
+    placeholder="Select an option"
+    fixedHeader={<ListItemAction title="Fixed Header" />}
+    fixedFooter={<ListItemAction title="Fixed Footer" />}
+    options={[
+    { id: 1, value: 'Option 1' },
+    { id: 2, value: 'Option 2' },
+    { id: 3, value: 'Option 3' },
+    { id: 4, value: 'Option 4' },
+    { id: 5, value: 'Option 5' },
+    { id: 6, value: 'Option 6' },
+    { id: 7, value: 'Option 7' },
+    { id: 8, value: 'Option 8' },
+    { id: 9, value: 'Option 9' },
+    { id: 10, value: 'Option 10' },
+        ]}
+          maxHeightPixels="234px"
+
+   />
 `;
 
 export const states = `
@@ -152,46 +183,52 @@ export const native = `
 `;
 
 export const infinite = `
-class ExampleInfiniteScroll extends React.Component {
-  constructor(props) {
-    super(props);
-    this.loadMore = this.loadMore.bind(this);
-    this.itemsPerPage = 15;
-    this.total = 300;
-    this.state = { hasMore: true, data: [] };
+class InfiniteScrollExample extends React.Component {
+  total = 300;
+  itemsPerPage = 15;
+
+  state = { hasMore: true, options: [] };
+
+  componentDidMount() {
+    this.generateData();
   }
 
-  fetchApi = () => {
-    const { data } = this.state;
-     // Simulate fetching data from api
-     const fetchedData = Array.from(Array(this.itemsPerPage).keys()).reduce((prev, curr, index) => {
-       const optionIndex = data.length + index
-       return [...prev, { id: optionIndex, value: 'option' + optionIndex}]}, [])
-    this.setState(({data}) => ({ data: [...data, ...fetchedData] })) ;
+  generateOption = id => ({ id, value: 'Option ' + id });
+
+  generateData = () => {
+    const newOptions = [];
+    const { options } = this.state;
+
+    for (let i = 0; i < this.itemsPerPage; i++) {
+      newOptions.push(this.generateOption(options.length + i));
+    }
+
+    this.setState({ options: options.concat(newOptions) });
   };
 
-  loadMore() {
-    const loadMoreData = () => {
-      if (this.state.data.length >= this.total) {
-        this.setState({ hasMore: false });
-      } else {
-        this.fetchApi();
-      }
-    };
-    setTimeout(loadMoreData, 500);
-  }
+  loadMoreData = () => {
+    const { options } = this.state;
+    if (options.length >= this.total) {
+      this.setState({ hasMore: false });
+    } else {
+      this.generateData();
+    }
+  };
 
-  render = () => {
+  loadMore = () => setTimeout(this.loadMoreData, 1000);
+
+  render() {
+    const { options, hasMore } = this.state;
+
     return (
-        <Dropdown
-          placeholder="Select an option"
-          infiniteScroll
-          hasMore={this.state.hasMore}
-          loadMore={this.loadMore}
-          options={this.state.data}
-        />
+      <Dropdown
+        infiniteScroll
+        hasMore={hasMore}
+        loadMore={this.loadMore}
+        options={options}
+      />
     );
-  };
+  }
 }
 `;
 

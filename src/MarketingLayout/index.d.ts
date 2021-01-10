@@ -4,13 +4,14 @@ export interface MarketingLayoutProps {
   dataHook?: string;
   image?: React.ReactNode;
   imageBackgroundColor?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'tiny' | 'small' | 'medium' | 'large';
   inverted?: boolean;
   actions?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
+  badge?: React.ReactNode;
+  hiddenBadge?: boolean;
+  alignItems?: 'center' | 'stretch';
 }
 
-export default class MarketingLayout extends React.PureComponent<
-  MarketingLayoutProps
-> {}
+export default class MarketingLayout extends React.PureComponent<MarketingLayoutProps> {}

@@ -15,6 +15,4 @@ export interface StatusIndicatorProps {
   tooltipPlacement?: StatusIndicatorTooltipPlacement;
 }
 
-export default class StatusIndicator extends React.PureComponent<
-  StatusIndicatorProps
-> {}
+export default class StatusIndicator extends React.PureComponent<StatusIndicatorProps> {}

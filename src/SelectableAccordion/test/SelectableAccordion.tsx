@@ -24,6 +24,7 @@ function selectableAccordionWithAllProps() {
         },
       ]}
       type="checkbox"
+      verticalPadding='small'
       onSelectionChanged={(ids: number[]) => {}}
     />
   );

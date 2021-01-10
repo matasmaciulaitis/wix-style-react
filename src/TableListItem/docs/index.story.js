@@ -13,15 +13,7 @@ import {
   testkit,
 } from 'wix-storybook-utils/Sections';
 
-import StructureExampleRaw from '!raw-loader!./examples/StructureExample';
-import ColumnsExampleRaw from '!raw-loader!./examples/ColumnsExample';
-import ColumnAlignmentExampleRaw from '!raw-loader!./examples/ColumnAlignmentExample';
-import PaddingExampleRaw from '!raw-loader!./examples/PaddingExample';
-import SelectionExampleRaw from '!raw-loader!./examples/SelectionExample';
-import DraggableExampleRaw from '!raw-loader!./examples/DraggableExample';
-import DividerExampleRaw from '!raw-loader!./examples/DividerExample';
-import TableActionCellExampleRaw from '!raw-loader!./examples/TableActionCellExample';
-
+import * as examples from './examples';
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 
@@ -83,54 +75,54 @@ export default {
             title: 'Structure',
             description:
               'Component consists of a drag grip, checkbox and content area.',
-            source: StructureExampleRaw,
+            source: examples.structureExample,
           }),
 
           example({
             title: 'Columns',
             description:
               'Component content allows to have any number of data columns, which width can be specified either in % or pixels.',
-            source: ColumnsExampleRaw,
+            source: examples.columnsExample,
           }),
 
           example({
             title: 'Column Alignment',
             description:
               'Content within column can be aligned to the left, center or right',
-            source: ColumnAlignmentExampleRaw,
+            source: examples.columnAlignmentExample,
           }),
 
           example({
-            title: 'Padding',
+            title: 'Vertical Padding',
             description:
-              'There are two densities: small and medium. Default is medium.',
-            source: PaddingExampleRaw,
+              'There are three densities: `tiny`, `small` and `medium`. Note- when not using the `Spacing` feature toggle, `tiny` and `small` looks the same. Default value is `medium`.',
+            source: examples.verticalPaddingExample,
           }),
 
           example({
             title: 'Selection',
             description: 'Selection checkbox can be enabled or hidden.',
-            source: SelectionExampleRaw,
+            source: examples.selectionExample,
           }),
 
           example({
             title: 'Draggable',
             description: 'Drag grip can be enabled or restricted.',
-            source: DraggableExampleRaw,
+            source: examples.draggableExample,
           }),
 
           example({
             title: 'Divider',
             description:
               'Item has a bottom divider. The last item in the list should hide it.',
-            source: DividerExampleRaw,
+            source: examples.dividerExample,
           }),
 
           example({
             title: 'Using with TableActionCell',
             description:
               'Component allows to add TableActionCell to the last data column and make the whole item clickable.',
-            source: TableActionCellExampleRaw,
+            source: examples.tableActionCellExample,
           }),
         ],
       }),

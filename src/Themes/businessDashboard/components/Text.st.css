@@ -5,7 +5,7 @@
 
 :import {
   -st-from: '../foundations/colors.st.css';
-  -st-named: D10, D20, D30, D80;
+  -st-named: D10, D10-40, D20, D30, D40, D80, B10, B20;
 }
 
 .root {
@@ -22,6 +22,10 @@
 }
 .root:skin(standard):secondary {
   color: value(D30);
+}
+.root:skin(standard):light:secondary,
+.root:skin(standard):light:secondary:size(tiny) {
+  color: value(D40);
 }
 .root:skin(standard):size(tiny) {
   color: value(D20);
@@ -50,6 +54,21 @@
   line-height: 20px;
 }
 
+/* Primary */
+.root:skin(primary) {
+  color: value(B10);
+}
+
+/******** Link ********/
+.root > a {
+  color: value(B10);
+  text-decoration: none;
+}
+
+.root > a:hover {
+  color: value(B20);
+}
+
 /* Bold */
 .root:weight(bold):size(tiny) {
   line-height: 16px;
@@ -58,7 +77,15 @@
   line-height: 20px;
 }
 
+.root:skin(standard):weight(bold) {
+  color: value(D10);
+}
+
+.root:skin(standard):weight(bold):light {
+  color: value(D80);
+}
+
 /* Disabled */
 .root:skin(disabled) {
-  color: value(D30);
+  color: value(D10-40);
 }

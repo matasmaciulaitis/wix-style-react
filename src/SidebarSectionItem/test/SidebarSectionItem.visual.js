@@ -5,6 +5,7 @@ import Sound from 'wix-ui-icons-common/Sound';
 import SidebarSectionItem from '../SidebarSectionItem';
 import { SidebarContext } from '../../Sidebar/SidebarAPI';
 import Box from '../../Box';
+import Badge from '../../Badge';
 
 const skins = ['dark', 'light'];
 
@@ -17,6 +18,12 @@ const SamplePrefix = () => (
 );
 
 const SampleSuffix = () => <Sound />;
+
+const SampleNewBadgeSuffix = () => (
+  <Badge size="small" skin="warning" type="solid" uppercase>
+    NEW
+  </Badge>
+);
 
 const tests = [
   {
@@ -136,24 +143,41 @@ const tests = [
           suffix: <SampleSuffix />,
         },
       },
+      {
+        it: 'Should display suffix with new badge and multiple lines',
+        props: {
+          children:
+            'This is a very long text which exceeds the maximum width of its container',
+          suffix: <SampleNewBadgeSuffix />,
+        },
+      },
     ],
   },
 ];
 
-tests.forEach(({ describe, its }) =>
-  storiesOf(`SidebarSectionItem`, module).add(describe, () => (
-    <React.Fragment>
-      {its.map(({ props }) => (
-        <Box backgroundColor="D70">
-          {skins.map(skin => (
-            <Box direction="vertical" marginBottom={5} marginRight={5}>
-              <SidebarContext.Provider value={{ getSkin: () => skin }}>
-                <SidebarSectionItem {...props} />
-              </SidebarContext.Provider>
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) =>
+    storiesOf(
+      `${themeName ? `${themeName}|` : ''}SidebarSectionItem`,
+      module,
+    ).add(describe, () =>
+      testWithTheme(
+        <React.Fragment>
+          {its.map(({ props }) => (
+            <Box backgroundColor="D70">
+              {skins.map(skin => (
+                <Box direction="vertical" marginBottom={5} marginRight={5}>
+                  <SidebarContext.Provider value={{ getSkin: () => skin }}>
+                    <SidebarSectionItem {...props} />
+                  </SidebarContext.Provider>
+                </Box>
+              ))}
             </Box>
           ))}
-        </Box>
-      ))}
-    </React.Fragment>
-  )),
-);
+        </React.Fragment>,
+      ),
+    ),
+  );
+};

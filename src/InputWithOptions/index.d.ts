@@ -13,7 +13,8 @@ import { InputProps } from '../Input';
 export interface InputWithOptionsProps<
   ManualInputFn = ManualInputFnSignature,
   OnSelectFn = OnSelectFnSignature
-> extends InputProps, OmitPolyfill<DropdownLayoutProps, 'onSelect'> {
+> extends InputProps,
+    OmitPolyfill<DropdownLayoutProps, 'onSelect'> {
   autocomplete?: string;
   inputElement?: React.ReactElement;
   closeOnSelect?: boolean;

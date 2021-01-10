@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import styles from './Grid.scss';
-import pageStyles from '../Page/Page.public.scss';
 
 const containerProps = {
   children: PropTypes.node,
@@ -17,7 +16,7 @@ const RawContainer = ({ children, fluid, className, stretchVertically }) => (
   <div
     className={classNames(styles.rawContainer, className, {
       [styles.fluidContainer]: fluid,
-      [pageStyles.pageStretchContentVertically]: stretchVertically,
+      [styles.stretchVertically]: stretchVertically,
     })}
     children={children}
   />
@@ -29,7 +28,7 @@ const Container = ({ children, fluid, className, stretchVertically }) => (
   <div
     className={classNames(styles.wixContainer, className, {
       [styles.fluidContainer]: fluid,
-      [pageStyles.pageStretchContentVertically]: stretchVertically,
+      [styles.stretchVertically]: stretchVertically,
     })}
     children={children}
   />

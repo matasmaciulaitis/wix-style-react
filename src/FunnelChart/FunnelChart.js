@@ -73,7 +73,11 @@ const FunnelChart = props => {
         {data.map(item => {
           return (
             <div key={item.label} className={classes.labelWrapper}>
-              <FunnelLabel value={item.value} label={item.label} />
+              <FunnelLabel
+                value={item.value}
+                label={item.label}
+                displayValue={item.displayValue}
+              />
             </div>
           );
         })}
@@ -95,11 +99,13 @@ FunnelChart.propTypes = {
    * Array of Funnel Chart items
    * * `value` - Item's value.
    * * `label` - Short label under the value.
+   * * `displayValue` - Item's value send by the user.
    */
   data: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number.isRequired,
       label: PropTypes.string.isRequired,
+      displayValue: PropTypes.string,
     }),
   ).isRequired,
 

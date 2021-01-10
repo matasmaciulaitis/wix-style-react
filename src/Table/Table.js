@@ -4,6 +4,7 @@ import defaultTo from 'lodash/defaultTo';
 import classNames from 'classnames';
 import { ScrollSync } from 'react-scroll-sync';
 
+import deprecationLog from '../utils/deprecationLog';
 import { st, classes } from './Table.st.css';
 import DataTable from './DataTable';
 import Checkbox from '../Checkbox';
@@ -135,7 +136,15 @@ export class Table extends React.Component {
       onSelectionChanged,
       hasMore,
       horizontalScroll,
+      hideHeader,
     } = this.props;
+
+    if (hideHeader) {
+      deprecationLog(
+        '<Table>\'s "hideHeader" prop is deprecated. To hide the table header, render "<Table.Content titleBarVisible={false}>" in its "children" prop',
+      );
+    }
+
     let hasUnselectables = null;
     let allIds = data.map((rowData, rowIndex) =>
       rowData.unselectable
@@ -294,7 +303,7 @@ Table.propTypes = {
   isRowHighlight: PropTypes.func,
   /** Whether there are more items to be loaded. Event listeners are removed if false. */
   hasMore: PropTypes.bool,
-  /** Should we hide the header of the table. */
+  /** [deprecated] This prop has no affect. To hide the table header, render `<Table.Content titleBarVisible={false}>` in `children`. */
   hideHeader: PropTypes.bool,
   /** An id to pass to the table */
   id: PropTypes.string,
@@ -322,7 +331,7 @@ Table.propTypes = {
   /** Add scroll listeners to specified DOM Object. */
   scrollElement: PropTypes.object,
   /** Table cell vertical padding. should be 'medium' or 'large'  */
-  rowVerticalPadding: PropTypes.oneOf(['medium', 'large']),
+  rowVerticalPadding: PropTypes.oneOf(['small', 'medium', 'large']),
   /** Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` */
   rowDetails: PropTypes.func,
   /** A string data-hook to apply to all table body rows. or a func which calculates the data-hook for each row  - Signature: `(rowData, rowNum) => string` */

@@ -41,12 +41,7 @@ describe('Thumbnail', () => {
       it('should use string as <img/> src', async () => {
         const src = 'john.jpg';
         const driver = createDriver(<Thumbnail image={src} />);
-        expect(
-          await driver
-            .getImage()
-            .$('img')
-            .attr('src'),
-        ).toEqual(src);
+        expect(await driver.getImage().$('img').attr('src')).toEqual(src);
       });
     });
 
@@ -55,10 +50,7 @@ describe('Thumbnail', () => {
         const image = <div data-hook="image-node">catch me</div>;
         const driver = createDriver(<Thumbnail image={image} />);
         expect(
-          await driver
-            .getImage()
-            .$('[data-hook="image-node"]')
-            .text(),
+          await driver.getImage().$('[data-hook="image-node"]').text(),
         ).toEqual('catch me');
       });
     });

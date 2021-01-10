@@ -69,6 +69,12 @@ export const timeInputUniDriverFactory = (base, body) => {
      */
     blur: async () => input.blur(),
     /**
+     * Checks if TimeInput displayed with seconds
+     * @returns {Promise<boolean>}
+     */
+    isShowSeconds: async () =>
+      input.getValue().then(result => result.length === 8),
+    /**
      * Checks if TimeInput has status
      * @param {string} status status to check
      * @returns {Promise<boolean>}

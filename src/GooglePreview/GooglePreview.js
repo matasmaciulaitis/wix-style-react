@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { classes } from './GooglePreview.st.css';
+import { st, classes } from './GooglePreview.st.css';
 
 import Text from '../Text';
 import Box from '../Box';
@@ -8,62 +8,85 @@ import Box from '../Box';
 /**
  *  A preview of a title, link and description of SEO result as it displayed in Google
  */
-class GooglePreview extends React.PureComponent {
-  static displayName = 'GooglePreview';
+const GooglePreview = ({
+  dataHook,
+  previewUrl,
+  title,
+  description,
+  titleMaxLines,
+  descriptionMaxLines,
+  skin,
+}) => (
+  <Box
+    className={st(classes.root, {
+      transparent: skin === 'transparent',
+    })}
+    dataHook={dataHook}
+    direction="vertical"
+  >
+    <Text
+      weight="thin"
+      size="tiny"
+      light={false}
+      className={classes.googlePreviewUrl}
+      dataHook={'googlePreview-previewUrl'}
+      ellipsis
+    >
+      {previewUrl}
+    </Text>
+    <Text
+      className={classes.googlePreviewTitle}
+      dataHook={'googlePreview-title'}
+      weight="bold"
+      size="medium"
+      secondary={false}
+      light={false}
+      ellipsis
+      maxLines={titleMaxLines}
+    >
+      {title}
+    </Text>
+    <Text
+      className={classes.googlePreviewDescription}
+      weight="thin"
+      size="tiny"
+      light={false}
+      dataHook="googlePreview-description"
+      ellipsis
+      maxLines={descriptionMaxLines}
+    >
+      {description}
+    </Text>
+  </Box>
+);
 
-  static propTypes = {
-    dataHook: PropTypes.string,
+GooglePreview.displayName = 'GooglePreview';
 
-    /** A site title */
-    title: PropTypes.string,
-    /** A link for the site */
-    previewUrl: PropTypes.string,
-    /** A short description for the site */
-    description: PropTypes.string,
-  };
+GooglePreview.propTypes = {
+  dataHook: PropTypes.string,
 
-  render() {
-    return (
-      <Box
-        className={classes.root}
-        dataHook={this.props.dataHook}
-        direction="vertical"
-      >
-        <Text
-          className={classes.googlePreviewTitle}
-          dataHook={'googlePreview-title'}
-          weight="bold"
-          size="medium"
-          secondary={false}
-          light={false}
-          ellipsis
-        >
-          {this.props.title}
-        </Text>
-        <Text
-          weight="thin"
-          size="tiny"
-          light={false}
-          className={classes.googlePreviewUrl}
-          dataHook={'googlePreview-previewUrl'}
-          ellipsis
-        >
-          {this.props.previewUrl}
-        </Text>
-        <div className={classes.googlePreviewDescriptionContainer}>
-          <Text
-            className={classes.googlePreviewDescription}
-            weight="thin"
-            size="tiny"
-            light={false}
-            dataHook="googlePreview-description"
-          >
-            {this.props.description}
-          </Text>
-        </div>
-      </Box>
-    );
-  }
-}
+  /** A site title */
+  title: PropTypes.string,
+
+  /** truncates text at a specific number of lines. */
+  titleMaxLines: PropTypes.number,
+
+  /** A link for the site */
+  previewUrl: PropTypes.string,
+
+  /** A short description for the site */
+  description: PropTypes.string,
+
+  /** truncates text at a specific number of lines. */
+  descriptionMaxLines: PropTypes.number,
+
+  /** Widget background color. `transparent` will hide border as well*/
+  skin: PropTypes.oneOf(['light', 'transparent']),
+};
+GooglePreview.defaultProps = {
+  titleMaxLines: 1,
+  descriptionMaxLines: 2,
+  skin: 'light',
+};
 
 export default GooglePreview;

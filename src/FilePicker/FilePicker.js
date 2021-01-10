@@ -23,6 +23,7 @@ class FilePicker extends React.PureComponent {
     this.id = props.id || uniqueId('file_picker_input_');
   }
 
+  /** A callback which is invoked every time a file is chosen */
   onChooseFile(file) {
     const { maxSize, onChange } = this.props;
 

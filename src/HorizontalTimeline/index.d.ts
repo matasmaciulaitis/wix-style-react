@@ -15,9 +15,7 @@ export interface HorizontalTimelineProps {
   items: HorizontalTimelineItem[];
 }
 
-export default class HorizontalTimeline extends React.PureComponent<
-  HorizontalTimelineProps
-> {
+export default class HorizontalTimeline extends React.PureComponent<HorizontalTimelineProps> {
   static DefaultIcon: React.FC;
   static ActiveIcon: React.FC;
   static DestructiveIcon: React.FC;

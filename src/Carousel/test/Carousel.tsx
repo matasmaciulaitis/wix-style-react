@@ -24,6 +24,11 @@ function CarouselWithAllProps() {
       infinite
       initialSlideIndex={1}
       variableWidth
+      controlsPosition="sides"
+      controlsStartEnd="disabled"
+      showControlsShadow={false}
+      imagesPosition="center middle"
+      imagesFit="fill"
     />
   );
 }

@@ -12,8 +12,10 @@ export interface CheckboxUniDriver extends BaseUniDriver {
   isChecked(): Promise<boolean>;
   isDisabled(): Promise<boolean>;
   isIndeterminate(): Promise<boolean>;
+  isTooltipEnabled(): Promise<boolean>;
   hasError(): Promise<boolean>;
   getErrorMessage(): Promise<string>;
+  getTooltipContent(): Promise<string>;
   getLabel(): Promise<string>;
   getLabelSize(): Promise<CheckboxLabelSize>;
 }

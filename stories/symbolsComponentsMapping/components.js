@@ -68,6 +68,7 @@ export const selectionComponentsNames = {
   SegmentedToggle: 'SegmentedToggle',
   Thumbnail: 'Thumbnail',
   Slider: 'Slider',
+  CheckToggle: 'CheckToggle',
   StarsRatingBar: 'StarsRatingBar',
   FacesRatingBar: 'FacesRatingBar',
 };

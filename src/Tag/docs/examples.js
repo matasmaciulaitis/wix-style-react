@@ -43,6 +43,10 @@ export const themes = `
       <Tag theme="light" onClick={(x)=>{}} onRemove={()=>{}}>
           Hello World
       </Tag>
+      <br/><br/>
+      <Tag theme="lightOutlined" onClick={(x)=>{}} onRemove={()=>{}}>
+          Hello World
+      </Tag>
 </React.Fragment>
 `;
 

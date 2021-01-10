@@ -1,5 +1,9 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { buttonDriverFactory } from '../Button/Button.uni.driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
+
+import {
+  buttonDriverFactory,
+  ButtonUniDriver,
+} from '../Button/Button.uni.driver';
 import { dataHooks } from './constants';
 import { getFormattedDataHooks } from '../../test/utils';
 
@@ -11,33 +15,61 @@ export const baseModalLayoutDriverFactory = base => {
 
   return {
     ...baseUniDriverFactory(base),
-
-    /** Returns the modal theme */
+    /**
+     * Gets the modal theme
+     * @returns {Promise<string>}
+     */
     getTheme: async () => base.attr('data-theme'),
 
-    /** Click the modal close-button */
+    /**
+     * Clicks the modal close-button
+     * @returns {Promise<Void>}
+     * */
     clickCloseButton: async () => base.$(fDataHooks.closeButton).click(),
 
-    /** Click the modal help-button */
+    /**
+     * Clicks the modal help-button
+     * @returns {Promise<Void>}
+     * */
     clickHelpButton: async () => base.$(fDataHooks.helpButton).click(),
 
-    /** Checks that a node with the provided dataHook exists */
+    /**
+     * Checks whether a node with the provided dataHook exists
+     * @param {string} dataHook
+     * @returns {Promise<boolean>}
+     * */
     childExists: async dataHook => base.$(`[data-hook="${dataHook}"]`).exists(),
 
-    /** Get the title's text */
+    /**
+     * Gets the title's text
+     * @returns {Promise<string>}
+     * */
     getTitleText: async () => base.$(fDataHooks.headerTitle).text(),
 
-    /** Get the subtitle's text */
+    /**
+     * Gets the subtitle's text
+     * @returns {Promise<string>}
+     * */
     getSubtitleText: async () => base.$(fDataHooks.headerSubtitle).text(),
 
-    /** Return the secondary button driver*/
+    /**
+     * Gets the secondary button driver
+     * @returns {Promise<ButtonUniDriver>}
+     * */
     getSecondaryButtonDriver: async () =>
       getButtonDriver(dataHooks.footerSecondaryButton),
 
-    /** Return the secondary button driver */
+    /**
+     * Gets the primary button driver
+     * @returns {Promise<ButtonUniDriver>}
+     * */
     getPrimaryButtonDriver: async () =>
       getButtonDriver(dataHooks.footerPrimaryButton),
 
+    /**
+     * Gets the illustration source
+     * @returns {Promise<string>}
+     */
     getIllustrationSrc: async () =>
       base.$(fDataHooks.illustrationSrc).attr('src'),
   };

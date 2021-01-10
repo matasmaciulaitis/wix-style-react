@@ -14,10 +14,408 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 9.65.0 - 2021-01-08
+### Added
+- `<Accordion/>` - add bottom shadow to open item [#6509](https://github.com/wix/wix-style-react/pull/6509)
+- `Themes | Business Dashboard` - LinearProgressBar - add standard skin color override [#6504](https://github.com/wix/wix-style-react/pull/6504)
+- `Themes | Business Dashboard` - CloseButton - Add theme style [#6506](https://github.com/wix/wix-style-react/pull/6506)
+
+### Fixed
+- `<Tag/>` - prevent onClick firing when its undefined [#6521](https://github.com/wix/wix-style-react/pull/6521)
+
+### Docs
+- `<AddressInput/>` - move story to components category [#6508](https://github.com/wix/wix-style-react/pull/6508)
+
+## 9.64.0 - 2021-01-07
+### Added
+- `<TableListItem/>`- reduce spacing (feature toggle) and add `tiny` to `verticalPadding` prop [#6470](https://github.com/wix/wix-style-react/pull/6470)
+- `<Card.Subheader/>`- reduce spacing (feature toggle) [#6452](https://github.com/wix/wix-style-react/pull/6452)
+- `<SelectableAccordion/>`- reduce spacing (feature toggle) and adding `verticalPadding` prop [#6479](https://github.com/wix/wix-style-react/pull/6479)
+- `<FormField/>`- reduce spacing and deprecate `labelSize` prop [#6439](https://github.com/wix/wix-style-react/pull/6439)
+
+### Changed
+- `Themes | Business Dashboard` - Badge - add urgent skin color override [#6505](https://github.com/wix/wix-style-react/pull/6505)
+
+### Fixed
+- `<MultiSelectCheckbox/>` - <MultiSelectCheckbox/> - [testkit] fix getLabels and getLabelAt functions [#6482](https://github.com/wix/wix-style-react/pull/6482)
+
+### Changed
+- `<Tag/>` - migrate to stylable [#6432](https://github.com/wix/wix-style-react/pull/6432)
+
+## 9.63.0 - 2021-01-06
+### Added
+- `Themes | Business Dashboard` - add 3 more colors [#6498](https://github.com/wix/wix-style-react/pull/6498)
+- `<ColorPicker/> `- reduce spacing (feature toggle) [#6441](https://github.com/wix/wix-style-react/pull/6441)
+
+### Fixed
+- `<Sidebar/>` - fix inner div scrollbar to be hidden [#6499](https://github.com/wix/wix-style-react/pull/6499)
+- `<Checkbox/>` - fix disabled prop overrides tooltipProps [#6486](https://github.com/wix/wix-style-react/pull/6486)
+
+## 9.62.1 - 2021-01-05
+### Fixed
+- `<StatisticsWidget/>` - fixed padding for size tiny [#6472](https://github.com/wix/wix-style-react/pull/6472)
+- `<Sidebar/>` - show gradient dynamically [#6471](https://github.com/wix/wix-style-react/pull/6471)
+
+### Added
+- `<GooglePreview>` - Add `titleMaxLines`, `descriptionMaxLines` and `skin` props [#6474](https://github.com/wix/wix-style-react/pull/6474)
+
+### Changed
+- `<InputArea>` - move cursor to end on autoFocus [#6483](https://github.com/wix/wix-style-react/pull/6483)
+- `<AtlasAddressInput/>` - export component from subfolder [#6485](https://github.com/wix/wix-style-react/pull/6485)
+
+### Internal
+- Remove Axios [#6497](https://github.com/wix/wix-style-react/pull/6497)
+
+## 9.61.0 - 2021-01-04
+### Added
+- `<Accordion/>` - Add items size prop [#6436](https://github.com/wix/wix-style-react/pull/6436)
+- `<TableActionCell/>` - [Testkit] expose puppeteer testkit [#6476](https://github.com/wix/wix-style-react/pull/6476)
+- `<AtlasAddressInput/>` - add additional props [#6447](https://github.com/wix/wix-style-react/pull/6447)
+
+### Changed
+- Updated typescript version to `^3.9.7` [#6467](https://github.com/wix/wix-style-react/pull/6467)
+- `<AtlasAddressInput/>` - get place details on onSelect [#6481](https://github.com/wix/wix-style-react/pull/6481)
+
+## 9.60.1 - 2020-12-30
+### Fixed
+- `<SelectorList/>` - css fix [#6465](https://github.com/wix/wix-style-react/pull/6465)
+
+## 9.60.0 - 2020-12-30
+### Added
+- `<Accordion/>` - Add a `node` button type [#6459](https://github.com/wix/wix-style-react/pull/6459)
+- `<FunnelChart>` - add `displayValue` prop [#6457](https://github.com/wix/wix-style-react/pull/6457)
+
+### Fixed
+- `<StyledNestableList/>` UI fixes, a11ty [#6416](https://github.com/wix/wix-style-react/pull/6416)
+- `<AnalyticsLayout/>` - fix Cell export [#6456](https://github.com/wix/wix-style-react/pull/6456)
+
+## 9.59.0 - 2020-12-28
+### Fixed
+- `<AtlasAddressInput/>` - remove export from index [#6451](https://github.com/wix/wix-style-react/pull/6451)
+
+### Changed
+- `<AddItem/>` - remove pointer events on disabled [#6449](https://github.com/wix/wix-style-react/pull/6449)
+- `<Input/>` - trigger blur onWheel event when type=number [#6448](https://github.com/wix/wix-style-react/pull/6448)
+
+## 9.58.0 - 2020-12-28
+### Breaking
+-  `<Animate/>`- refactor component to be internal component [#6426](https://github.com/wix/wix-style-react/pull/6426/)
+
+### Added
+- `<AnalyticsLayout/>` - new component [#6368](https://github.com/wix/wix-style-react/pull/6368)
+- `<BounceAnimation/>`- new component [#6426](https://github.com/wix/wix-style-react/pull/6426/)
+- `<AtlasAddressInput/>` - new component [#6428](https://github.com/wix/wix-style-react/pull/6428)
+
+### Changed
+- `<SelectorList>` - change padding when there is no search bar [#6434](https://github.com/wix/wix-style-react/pull/6434)
+- `<Checkbox/>` - errorMessage prop depricated, tooltipContent and tooltipProps was added [#6438](https://github.com/wix/wix-style-react/pull/6438/)
+
+## 9.57.0 - 2020-12-23
+### Added
+- Add Atlas autocomplete client [#6418](https://github.com/wix/wix-style-react/pull/6418)
+- `<Radio/>`- add unidriver [#6420](https://github.com/wix/wix-style-react/pull/6420)
+- `<RadioGroup/>` - add `selectionAreaSkin` and `selectionAreaPadding` props [#6408](https://github.com/wix/wix-style-react/pull/6408)
+- `<Checkbox/>` - add `selectionAreaSkin` and `selectionAreaPadding` props [#6403](https://github.com/wix/wix-style-react/pull/6403)
+
+### Changed
+- `<AddressInput/>` - update to match design spec [#6400](https://github.com/wix/wix-style-react/pull/6400)
+- `Themes | Business Dashboard` - updated circular progress bar colors [#6422](https://github.com/wix/wix-style-react/pull/6422)
+
+### Fixed
+- `<Collapse/>` - skip mount transition [#6424](https://github.com/wix/wix-style-react/pull/6424)
+
+## 9.56.0 - 2020-12-21
+### Added
+- `<AnalyticsSummaryCard/>` - new component [#6312](https://github.com/wix/wix-style-react/pull/6312)
+- `<Heading/>`- new spacing specification [#6360](https://github.com/wix/wix-style-react/pull/6360)
+- `<WixStyleReactProvider/>` - new component and update typography mixins [#6360](https://github.com/wix/wix-style-react/pull/6360)
+- `<StatisticsWidget/>` - add ellipsis to description for size tiny [#6350](https://github.com/wix/wix-style-react/pull/6350)
+
+### Changed
+- `<MarketingLayout/>` - update padding of size tiny with badge [#6390](https://github.com/wix/wix-style-react/pull/6390)
+
+### Fixed
+- `<Input/>` - Fixed onFocus called twice with autoFocus prop [#6409](https://github.com/wix/wix-style-react/pull/6409)
+
+## 9.55.0 - 2020-12-16
+### Changed
+- `<Dropdown/>`- improve story page examples [#6387](https://github.com/wix/wix-style-react/pull/6387)
+
+### Added
+- `<Image/>` - showBorder prop [#6379](https://github.com/wix/wix-style-react/pull/6379)
+- `<Image/>` - borderRadius prop [#6384](https://github.com/wix/wix-style-react/pull/6384)
+- `<Table/>`- add 'small' vertical row padding support [#6399](https://github.com/wix/wix-style-react/pull/6399)
+
+### Docs
+- `<MultiSelect/>` - add onOptionsShow/Hide to prop-types [#6268](https://github.com/wix/wix-style-react/pull/6268)
+
+### Fixed
+- `<FormField/>` - fix label placement [#6392](https://github.com/wix/wix-style-react/pull/6392)
+
+### Removed
+- Revert "Add Atlas autocomplete client" [#6401](https://github.com/wix/wix-style-react/pull/6401)
+
+## 9.54.0 - 2020-12-15
+### Added
+- Add Atlas autocomplete client [#6377](https://github.com/wix/wix-style-react/pull/6377)
+
+### Fixed
+- `<CustomModalLayout/>` - [types] fix subtitle type [#6395](https://github.com/wix/wix-style-react/pull/6395)
+- `<Radio />` - fix stylable warning [#6394] (https://github.com/wix/wix-style-react/pull/6394)
+
+## 9.53.0 - 2020-12-14
+### Added
+- `<CustomModal/>` - Expose title typography [#6380](https://github.com/wix/wix-style-react/pull/6380)
+- `<ToggleButton/>` - add `destructive` and `success` skins [#6372](https://github.com/wix/wix-style-react/pull/6372)
+
+### Fixed
+- `<Search/>` - fixed the condition to update the on change function [#6386](https://github.com/wix/wix-style-react/pull/6386)
+- `<BadgeSelect/>` - [testkit|types] fix missing method types [#6388](https://github.com/wix/wix-style-react/pull/6388)
+
+## 9.52.0 - 2020-12-13
+### Added
+- `<CopyClipboard/>` - new component [#6367](https://github.com/wix/wix-style-react/pull/6367)
+- `<Radio/>` - new component [#6326](https://github.com/wix/wix-style-react/pull/6326)
+- `usePlacesAutocomplete` - new custom hook [#6324](https://github.com/wix/wix-style-react/pull/6324)
+- `<DropdownBase/>` and `<DropdownLayout />` - add "getSelectedOptionId" to testkit [#6115](https://github.com/wix/wix-style-react/pull/6115)
+- `<Card/>` - Expose divider props [#6378](https://github.com/wix/wix-style-react/pull/6378)
+
+### Fixed
+- `<Page/>` - fix broken css due to missing semicolon [#6374](https://github.com/wix/wix-style-react/pull/6374)
+- `<BadgeSelectItem/>` - remove extra margin-right when subtitle is enabled and expose size and suffix props [#6330](https://github.com/wix/wix-style-react/pull/6330)
+
+## 9.51.0 - 2020-12-10
+### Changed
+- `Themes | Business Dashboard` - Set default font weight to regular [#6362](https://github.com/wix/wix-style-react/pull/6362)
+
+### Added
+- `<AddressInputItem/>` - new component [#6191](https://github.com/wix/wix-style-react/pull/6191)
+- `<Page/>` - Add scrollTo function [#6180](https://github.com/wix/wix-style-react/pull/6180)
+
+### Fixed
+- `<DatePicker/>` - Fix locale in TimeInput
+
+
+
+## 9.50.0 - 2020-12-08
+### Fixed
+- `<NestableList/>` - fix issue with position fixed inside parent with transform [#6335](https://github.com/wix/wix-style-react/pull/6335)
+- `<SelectorList/>` - [types] update renderToggleAllCheckbox name in type [#6354](https://github.com/wix/wix-style-react/pull/6354)
+- `<Carousel/>` - Hide slick-track if it's width is undetermined [#6358](https://github.com/wix/wix-style-react/pull/6358)
+- `<ListItemSection/>`- suffix fix [#6092](https://github.com/wix/wix-style-react/pull/6092)
+- `<Page/>` - [types] fix FixedFooter type [#6363](https://github.com/wix/wix-style-react/pull/6363)
+
+
+### Added
+- `<DropdownBase/>` - expose lazy loading props [#6351](https://github.com/wix/wix-style-react/pull/6351)
+
+## 9.49.0 - 2020-12-06
+### Fixed
+- `<Page/>` - fixed page crashing [#6349](https://github.com/wix/wix-style-react/pull/6349)
+
+### Added
+- `<Page/>` - add fixed footer [#6349](https://github.com/wix/wix-style-react/pull/6349)
+
+## 9.48.0 - 2020-12-03
+### Added
+- `<Cell/>` - add rows prop [#6355](https://github.com/wix/wix-style-react/pull/6355)
+
+### Changed
+- `<MessageModalLayout/>` - [types] changed title to be node [#6339](https://github.com/wix/wix-style-react/pull/6339)
+
+### Fixed
+- `<Sidebar/>` - Fix missing scrollbar on inner menus [#6352](https://github.com/wix/wix-style-react/pull/6352)
+- `<SelectorList/>` - [types] Added `selectAllText` and `deselectAllText` props [#6345](https://github.com/wix/wix-style-react/pull/6345)
+- `Themes | Business Dashboard` - fixed PopoverMenu without arrow padding [#6338](https://github.com/wix/wix-style-react/pull/6338)
+- Fix un-needed `import as` syntax to fix compatibility issue with webpack v5 [#6347](https://github.com/wix/wix-style-react/pull/6347)
+- `<Collapse/>` - implement with wix-animations [#6208](https://github.com/wix/wix-style-react/pull/6208)
+
+## 9.47.1 - 2020-12-02
+### Fixed
+`<TimeTable/>`- fix typo with styles [#6346](https://github.com/wix/wix-style-react/pull/6346)
+
+
+## 9.47.0 - 2020-12-01
+### Added
+- `<DatePicker/>` - expose theming capabilities [#6195](https://github.com/wix/wix-style-react/pull/6195)
+- Typography- add medium weight to Madefor typography and update components accordingly [#6256](https://github.com/wix/wix-style-react/pull/6256)
+
+## 9.46.0 - 2020-11-30
+### Added
+- `<Carousel/>` - add `imagesPosition` and `imagesFit` props [#6328](https://github.com/wix/wix-style-react/pull/6328)
+
+### Fixed
+- `Themes | Business Dashboard` - fixed TextButton default skin color override & replace G20 theme color [#6334](https://github.com/wix/wix-style-react/pull/6334)
+
+## 9.45.0 - 2020-11-29
+### Added
+- `<Tag/>` - add lightOutlined theme [#6319](https://github.com/wix/wix-style-react/pull/6319)
+- `Themes | Business Dashboard` - feat(TextButton): add premium theme [#6318](https://github.com/wix/wix-style-react/pull/6318)
+- `Themes | Business Dashboard` - add TrendIndicator component [#6325](https://github.com/wix/wix-style-react/pull/6325)
+- `Themes | Business Dashboard` - Keep color when hovering dark disabled ButtonText [#6323](https://github.com/wix/wix-style-react/pull/6323)
+- `<Box/>` - support space-separated spacing tokens  [#6281](https://github.com/wix/wix-style-react/pull/6281)
+
+### Fixed
+- `<Table/>` - [types] Add `content`to `infoTooltipProps` [#6315](https://github.com/wix/wix-style-react/pull/6315)
+
+### Changed
+- `<BadgeSelectItem />` - refactor storybook page [#6321](https://github.com/wix/wix-style-react/pull/6321)
+
+## 9.44.0 - 2020-11-25
+### Added
+- `<TrendIndicator/>` - Add new component [#6305](https://github.com/wix/wix-style-react/pull/6305)
+- `<Carousel/>` - Add showControlsShadow prop [#6301](https://github.com/wix/wix-style-react/pull/6301)
+- `<Carousel/>` - Add controlsStartEnd prop [#6300](https://github.com/wix/wix-style-react/pull/6300)
+- `<Carousel/>` - [Testkit] Add 'clickNext' and 'clickPrevious' [#6303](https://github.com/wix/wix-style-react/pull/6303)
+- `<RadioGroup/>` - add name prop [#6313](https://github.com/wix/wix-style-react/pull/6313)
+
+### Changed
+- `<StatisticsWidget/>` - use TrendIndicator component [#6316](https://github.com/wix/wix-style-react/pull/6316)
+- `Themes | Business Dashboard` - Adjustments to DropdownLayout & PopoverMenu [#6307](https://github.com/wix/wix-style-react/pull/6307)
+
+## 9.43.0 - 2020-11-23
+### Added
+- `<MarketingLayout/>` - add badge and hiddenBadge props [#6273](https://github.com/wix/wix-style-react/pull/6273)
+- `<MarketingLayout/>` - add size tiny [#6269](https://github.com/wix/wix-style-react/pull/6269)
+
+### Fixed
+- `Themes | Business Dashboard` - Misc Sidebar Fixes [#6295](https://github.com/wix/wix-style-react/pull/6295)
+- `<InputArea/>` - fix rtl css [#6302](https://github.com/wix/wix-style-react/pull/6302)
+
+### Deprecated
+- `<Table/>` - deprecate hideHeader prop [#6255](https://github.com/wix/wix-style-react/pull/6255)
+
+## 9.42.0 - 2020-11-22
+### Added
+- `<MarketingLayout/>` - add alignItems prop [#6275](https://github.com/wix/wix-style-react/pull/6275)
+- `<BadgeSelectItem/>`- adding a uni driver [#6124](https://github.com/wix/wix-style-react/pull/6124)
+
+### Changed
+- `Themes | Business Dashboard` - changed focus ring color of Button, IconButton, TextButton [#6282](https://github.com/wix/wix-style-react/pull/6282)
+- `Themes | Business Dashboard` - changed ListItemSelect color back to D20 [#6288](https://github.com/wix/wix-style-react/pull/6288)
+- `Themes | Business Dashboard` - adjusted TextButton dark disabled color & light hover color [#6291](https://github.com/wix/wix-style-react/pull/6291)
+- `Themes | Business Dashboard` - Changing Carousel icons size and pagination color [#6287](https://github.com/wix/wix-style-react/pull/6287)
+- `<ListItemSelect/>` - implement styling using css instead of js [#6292](https://github.com/wix/wix-style-react/pull/6292)
+
+### Fixed
+- `<NestableList/>` - fix drag and drop with preventChangeDepth [#6286](https://github.com/wix/wix-style-react/pull/6286)
+
+## 9.41.0 - 2020-11-19
+### Added
+- `<Card/>` - add withShadow prop [#6257](https://github.com/wix/wix-style-react/pull/6257)
+- `<Text />` - added tooltipProps as a new prop [#6261](https://github.com/wix/wix-style-react/pull/6261)
+- `Themes | Business Dashboard` - add Input theme [#6265](https://github.com/wix/wix-style-react/pull/6265)
+- `Themes | Business Dashboard` - add EmptyState theme [#6262](https://github.com/wix/wix-style-react/pull/6262)
+- `Themes | Business Dashboard` - add Loader theme [#6277](https://github.com/wix/wix-style-react/pull/6277)
+- `Themes | Business Dashboard` - Modal [#6274](https://github.com/wix/wix-style-react/pull/6274)
+- `Themes | Business Dashboard` - added box-shadow theming [#6263](https://github.com/wix/wix-style-react/pull/6263)
+- `Themes | Business Dashboard` - UX fixes to CircularProgressBar, EmptyState, ListItemSelect, Tooltip, Loader & colors [#6279](https://github.com/wix/wix-style-react/pull/6279)
+
+### Changed
+- `<Modal/>` - migrate to stylable [#6266](https://github.com/wix/wix-style-react/pull/6266)
+- `<Image/>` - Add className prop [#6272](https://github.com/wix/wix-style-react/pull/6272)
+
+### Fixed
+- `<GoogleAddressInput/>`- adding IDs to options recevied from client [#6258](https://github.com/wix/wix-style-react/pull/6258)
+- `<TableListItem/>` - fix width/align not working [#6271](https://github.com/wix/wix-style-react/pull/6271)
+
+## 9.40.0 - 2020-11-17
+### Added
+- `Themes | Business Dashboard` - add ListItemSelect theme [#6235](https://github.com/wix/wix-style-react/pull/6235)
+- `Themes | Business Dashboard` - add Tooltip theme [#6220](https://github.com/wix/wix-style-react/pull/6220)
+- `Themes | Business Dashboard` - add Badge theme [#6259](https://github.com/wix/wix-style-react/pull/6259)
+- `Themes | Business Dashboard` - add ListItemAction, ListItemSection and PopoverMenu theme [#6228](https://github.com/wix/wix-style-react/pull/6228)
+
+### Changed
+- `<Page/>` - migrate to Stylable [#6241](https://github.com/wix/wix-style-react/pull/6241)
+- `<Caption/>` - (internal refactor) - use design tokens instead of Text component [#6250](https://github.com/wix/wix-style-react/pull/6250)
+- `Themes | Business Dashboard` - change the CircularProgressBar success icon [#6251](https://github.com/wix/wix-style-react/pull/6251))
+
+## 9.39.0 - 2020-11-16
+### Added
+- `<PageFooter/>` - new component [#6215](https://github.com/wix/wix-style-react/pull/6215)
+
+### Fixed
+- `<Input/>` - fix overflow (FF only) [#6245](https://github.com/wix/wix-style-react/pull/6245)
+- `<Accordion/>` - remove unwanted color background color [#6248](https://github.com/wix/wix-style-react/pull/6248)
+
+### Changed
+- `<NumberInput/>` - add hideStepper property [#6233](https://github.com/wix/wix-style-react/pull/6233)
+- `Themes | Business Dashboard` - adjust Text & Button styles [#6240](https://github.com/wix/wix-style-react/pull/6240)
+- `<DropdownLayout/>` - convert selectable option to `<ListItemSelect/>` [#6163](https://github.com/wix/wix-style-react/pull/6163)
+
+
+## 9.38.0 - 2020-11-11
+### Added
+- `<AutoCompleteWithLabel/>` - Added maxHeightPixel property [#6217](https://github.com/wix/wix-style-react/pull/6217)
+
+### Fixed
+- `<SparklineChart/>` - fix highlightedAreaEffect issue [#6219](https://github.com/wix/wix-style-react/pull/6219)
+- `<TimeInput/>` - fix hover/focus styles [#6230](https://github.com/wix/wix-style-react/pull/6230)
+- `<Search/>` - fix css for small size [#6236](https://github.com/wix/wix-style-react/pull/6236)
+
+### Changed
+- `<SidebarSectionItem/>` - limit suffix size to 30% to support madeFor font [#6146](https://github.com/wix/wix-style-react/pull/6146)
+
+## 9.37.0 - 2020-11-10
+### Added
+- `<Carousel/>` - Added `controlsSize` prop [#6182](https://github.com/wix/wix-style-react/pull/6182)
+- `Themes | Business Dashboard` - adjust Heading, Text & TextButton styles [#6188](https://github.com/wix/wix-style-react/pull/6188)
+- `Themes | Business Dashboard` - Add Carousel theme [#6194](https://github.com/wix/wix-style-react/pull/6194)
+- `<Text/>` - Added listStyle prop [#6165](https://github.com/wix/wix-style-react/pull/6165)
+
+### Changed
+- `<Popover/>` - Rearrange testkit docs [#6210](https://github.com/wix/wix-style-react/pull/6210)
+- `<CardHeader/>` - remove redundant div [#6209](https://github.com/wix/wix-style-react/pull/6209)
+
+### Fixed
+- `<BadgeOption/>` and `badgeSelectItemBuilder`- builder fixes and adding selected, hovered and disabled styles to the `BadgeOption` itself [#6166](https://github.com/wix/wix-style-react/pull/6166)
+- `Themes | Business Dashboard` - correlate FontUpgrade with the theme active state [#6206](https://github.com/wix/wix-style-react/pull/6206)
+- infra - lower the specific yoshi-stylable-dependencies minor version to a public one [#6211](https://github.com/wix/wix-style-react/pull/6211)
+- Themes | Business Dashboard - adjust Button theme [#6203](https://github.com/wix/wix-style-react/pull/6203)
+
+## 9.36.0 - 2020-11-09
+### Added
+- `Themes | Business Dashboard` - theme the `IconButton` component [#6187](https://github.com/wix/wix-style-react/pull/6187)
+
+### Changed
+- `<DropdownLayout/>`-  align driver and uni driver [#6184](https://github.com/wix/wix-style-react/pull/6184)
+
+## 9.35.0 - 2020-11-08
+### Added
+- `<CircularProgressBar/>` - support custom label label + add Business Dashboard theme [#6192](https://github.com/wix/wix-style-react/pull/6192)
+
+### Fixed
+- `<DatePicker/>` - add the public methods to the index.d.ts file [#6189](https://github.com/wix/wix-style-react/pull/6189)
+- `<CustomModalLayout/>` - fix top and bottom dividers [#6149](https://github.com/wix/wix-style-react/pull/6149)
+- `<RichTextInputArea/>` and `<VariableInput/>` - prevent entering a text into rich text inputs from clearing the previous value [#6168](https://github.com/wix/wix-style-react/pull/6168)
+- `<BadgeOption/>` and `badgeSelectItemBuilder`- adding visuals and fix types [#6196](https://github.com/wix/wix-style-react/pull/6196)
+
+## 9.34.0 - 2020-11-06
+
+### Added
+- `<SparklineChart/>` - add onHover prop [#6178](https://github.com/wix/wix-style-react/pull/6178)
+- `<TimeInput/>` - added showSeconds prop [#6186](https://github.com/wix/wix-style-react/pull/6186)
+
+### Changed
+- `<TimeInput/>` - replace css with stylable [#6177](https://github.com/wix/wix-style-react/pull/6177)
+- `<ModalSelectorLayout/>` - implement using the new `<SelectorList/>` [#6171](https://github.com/wix/wix-style-react/pull/6171)
+
+### Fixed
+- `<SelectableAccordion/>` - Fix testkit types [#6181](https://github.com/wix/wix-style-react/pull/6181)
+- `Themes | Business Dashboard` - fix CircularProgressBar styling [#6179](https://github.com/wix/wix-style-react/pull/6179)
+- `<Search/>` - fix `onBlur` behaviour [#6169](https://github.com/wix/wix-style-react/pull/6169)
+
+## 9.33.0 - 2020-11-04
 ### Added
 - `<SelectorList/>` - new component [#6098](https://github.com/wix/wix-style-react/pull/6098)
+- `<Carousel/>` - Add controlsPosition prop [#6164](https://github.com/wix/wix-style-react/pull/6164)
+- `<Search/>` - Add highlight prop [#6174](https://github.com/wix/wix-style-react/pull/6174)
 - `Themes | Business Dashboard` - Add theme for `LinearProgressBar` [#6136](https://github.com/wix/wix-style-react/pull/6136)
+- `<Range/>` - add unidriver [#6170](https://github.com/wix/wix-style-react/pull/6170)
+
+### Changed
+- `Themes | Business Dashboard` - improve `Text` & `TextButton` [#6173](https://github.com/wix/wix-style-react/pull/6173)
 
 ### Deprecated
 - Deprecated `<MessageBoxFunctionalLayout/>` and `<ModalSelectorLayout/>` modal layouts [#6150](https://github.com/wix/wix-style-react/pull/6150)

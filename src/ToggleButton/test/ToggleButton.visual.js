@@ -10,16 +10,15 @@ const Story = props => (
 );
 
 const options = {
-  props: [
-    'selected',
-    'size',
-    'skin',
-    'disabled',
-    'shape',
-    'border',
-    'labelPlacement',
-  ],
+  props: ['selected', 'size', 'disabled', 'shape', 'border', 'labelPlacement'],
+  skipUndefinedValue: true,
+};
+
+const optionsThemes = {
+  props: ['selected', 'skin', 'border', 'shape', 'labelPlacement'],
+  storyName: 'Props Permutations: skin',
   skipUndefinedValue: true,
 };
 
 storyOfAllPermutations(Story, ToggleButton, options);
+storyOfAllPermutations(Story, ToggleButton, optionsThemes);

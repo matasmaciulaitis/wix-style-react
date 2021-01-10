@@ -7,4 +7,4 @@ export interface FluidColumnsProps {
   children: React.ReactNode;
 }
 
-export default class FluidColumns extends React.PureComponent<FluidColumnsProps>{}
+export default class FluidColumns extends React.PureComponent<FluidColumnsProps> {}

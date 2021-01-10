@@ -1,5 +1,10 @@
 import React from 'react';
-import { removeFromTree, addToTree } from './utils';
+import {
+  addToTree,
+  generateUniqueGroupId,
+  getDropParent,
+  removeFromTree,
+} from './utils';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
@@ -43,8 +48,11 @@ class NestableList extends React.PureComponent {
     isRenderDraggingChildren: false,
     childrenProperty: 'children',
     childrenStyle: {},
+    renderPrefix: () => null,
+    renderAction: () => null,
     onUpdate: () => {},
     useDragHandle: false,
+    preventChangeDepth: false,
     maxDepth: Infinity,
     threshold: 30,
   };
@@ -61,11 +69,23 @@ class NestableList extends React.PureComponent {
 
   state = {
     items: this.props.items,
+    dragging: false,
   };
+  // drag and drop between multiple nestable lists is not supported
+  // according to prevent it for now was created groupName - unique value for every nestable list
+  // somethings similar exists in SortableList component.
+  groupName = generateUniqueGroupId();
 
   moveItem = ({ dragItem, prevPosition, nextPosition }) => {
-    const { childrenProperty } = this.props;
+    const { childrenProperty, preventChangeDepth, items } = this.props;
     let newItems = this.state.items.slice();
+
+    if (preventChangeDepth && nextPosition.length > 1) {
+      const parent = getDropParent(items, nextPosition, childrenProperty);
+      if (!parent) {
+        return prevPosition;
+      }
+    }
 
     // the remove action might affect the next position,
     // so update next coordinates accordingly
@@ -99,10 +119,16 @@ class NestableList extends React.PureComponent {
 
   onDragStart = itemProps => {
     this.props.onDragStart && this.props.onDragStart(itemProps);
+    this.setState({
+      dragging: true,
+    });
   };
 
   onDragEnd = itemProps => {
     this.props.onDragEnd && this.props.onDragEnd(itemProps);
+    this.setState({
+      dragging: false,
+    });
   };
 
   render() {
@@ -110,23 +136,30 @@ class NestableList extends React.PureComponent {
     const {
       dataHook,
       renderItem,
+      readOnly,
       childrenProperty,
       childrenStyle,
+      renderAction,
       isRenderDraggingChildren,
       useDragHandle,
       maxDepth,
+      preventChangeDepth,
       threshold,
       theme,
+      renderPrefix,
     } = this.props;
-
     return (
       <div data-hook={dataHook}>
         <NestableListContext.Provider
           value={{
+            groupName: this.groupName,
             useDragHandle,
             maxDepth,
+            preventChangeDepth,
             threshold,
+            readOnly,
             renderItem,
+            renderPrefix,
             moveItem: this.moveItem,
             dropItem: this.dropItem,
             onDragStart: this.onDragStart,
@@ -135,7 +168,9 @@ class NestableList extends React.PureComponent {
         >
           <div>
             <Container
+              treeDepth={1}
               items={items}
+              renderAction={renderAction}
               parentPosition={[]}
               childrenProperty={childrenProperty}
               childrenStyle={childrenStyle}
@@ -143,13 +178,15 @@ class NestableList extends React.PureComponent {
               topLevel
               theme={theme}
             />
-            <CustomDragLayer
-              isRenderDraggingChildren={isRenderDraggingChildren}
-              renderItem={renderItem}
-              childrenProperty={childrenProperty}
-              childrenStyle={childrenStyle}
-              theme={theme}
-            />
+            {this.state.dragging && (
+              <CustomDragLayer
+                isRenderDraggingChildren={isRenderDraggingChildren}
+                renderItem={renderItem}
+                childrenProperty={childrenProperty}
+                childrenStyle={childrenStyle}
+                theme={theme}
+              />
+            )}
           </div>
         </NestableListContext.Provider>
       </div>

@@ -4,10 +4,12 @@ import { headingAppearance } from './ModalHeading';
 export interface HeaderProps {
   className?: string;
   dataHook?: string;
-  title?: string | React.ReactNode;
+  title?: React.ReactNode;
   titleAppearance?: headingAppearance;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   showHeaderDivider?: boolean;
 }
 
-export const Header: React.FunctionComponent<HeaderProps>;
+export const Header: React.FunctionComponent<HeaderProps> & {
+  Title: React.FunctionComponent;
+};

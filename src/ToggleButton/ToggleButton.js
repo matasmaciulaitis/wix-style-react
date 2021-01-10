@@ -78,7 +78,13 @@ class ToggleButton extends PureComponent {
     /** Used for passing any wix-style-react icon. For external icon make sure to follow ux sizing guidelines */
     children: PropTypes.node,
     /** Button skins */
-    skin: PropTypes.oneOf(['standard', 'dark', 'inverted']),
+    skin: PropTypes.oneOf([
+      'standard',
+      'dark',
+      'inverted',
+      'destructive',
+      'success',
+    ]),
     /** Button size */
     size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
     /** Button shape */

@@ -1,8 +1,7 @@
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-import { dataHooks } from './Tag.helpers';
+import { dataAttr, dataHooks } from './Tag.helpers';
 import textDriverFactory from '../Text/Text.driver';
 import tagDriverFactory from './Tag.driver';
-import { isClassExists } from '../../test/utils';
 
 const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
@@ -25,8 +24,8 @@ const tagPrivateDriverFactory = ({ element }) => {
     isCloseButtonLarge,
     getTextSize: () => getTextDriver(element).getSize(),
     getTextWeight: () => getTextDriver(element).getWeight(),
-    isClickable: () => isClassExists(element, 'clickable'),
-    isHoverable: () => isClassExists(element, 'hoverable'),
+    isClickable: () => element.getAttribute(dataAttr.CLICKABLE) === 'true',
+    isHoverable: () => element.getAttribute(dataAttr.HOVERABLE) === 'true',
   };
 };
 

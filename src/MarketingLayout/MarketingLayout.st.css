@@ -1,6 +1,23 @@
+:import {
+  -st-from: "../Foundation/stylable/typography.st.css";
+  -st-named: text-medium-bold;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/colors.st.css";
+  -st-named: D10;
+}
+
 .root {
-  -st-states: size(enum(small, medium, large)), inverted, withActions, withImageBackground;
+  -st-states: size(enum(tiny, small, medium, large)), alignItems(enum(center, stretch)), badge, hiddenBadge, inverted, withActions, withImageBackground;
   padding: 30px;
+}
+
+.root:size(tiny) {
+  padding: 18px 30px;
+}
+:global([dir="rtl"]) .root:size(tiny) {
+  padding: 18px 30px;
 }
 
 .root:size(small) {
@@ -27,6 +44,13 @@
   padding-right: 60px;
 }
 
+.root:badge,
+.root:hiddenBadge {
+  position: relative;
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
 .root:inverted {
   padding-left: 30px;
 }
@@ -48,9 +72,21 @@
   padding-left: 0;
   padding-right: 30px;
 }
+.root:alignItems(stretch) .contentContainer {
+  justify-content: space-between;
+}
 
 .title {
   padding-bottom: 18px;
+}
+
+.root:size(tiny) .title {
+  padding-bottom: 12px;
+
+  -st-mixin: text-medium-bold;
+
+  font-size: 20px;
+  color: value(D10);
 }
 
 .root:size(small) .title {
@@ -61,8 +97,24 @@
   padding-bottom: 36px;
 }
 
+.root:size(tiny):withActions .description {
+  padding-bottom: 18px;
+}
+
 .root:size(small):withActions .description {
   padding-bottom: 24px;
+}
+
+.badge {
+  position: absolute;
+  top: 9px;
+  left: -3px;
+}
+
+:global(.rtl) .badge ,
+:global([dir='rtl']) .root:inverted .badge {
+  right: -3px;
+  left: auto;
 }
 
 .imageWrapper {

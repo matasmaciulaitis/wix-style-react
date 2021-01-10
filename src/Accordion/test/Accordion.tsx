@@ -1,5 +1,8 @@
 import * as React from 'react';
-import Accordion from '..';
+import Accordion, {
+  accordionItemBuilder,
+  accordionSectionItemBuilder,
+} from '..';
 import { accordionTestkitFactory } from '../../../testkit';
 import { accordionTestkitFactory as accordionEnzymeTestkitFactory } from '../../../testkit/enzyme';
 import { accordionTestkitFactory as accordionPuppeteerTestkitFactory } from '../../../testkit/puppeteer';
@@ -17,6 +20,7 @@ function AccordionWithAllProps() {
       multiple
       skin="light"
       hideShadow
+      size="small"
       items={[
         {
           buttonType: 'button',
@@ -32,9 +36,34 @@ function AccordionWithAllProps() {
           open: true,
           initiallyOpen: true,
           className: 'class',
-          hideShadow: true,
-          skin: 'light',
         },
+      ]}
+    />
+  );
+}
+
+function AccordionWithBuilders() {
+  return (
+    <Accordion
+      items={[
+        accordionItemBuilder({
+          buttonType: 'button',
+          collapseLabel: <div />,
+          children: <div />,
+          expandLabel: <div />,
+          icon: <div />,
+          title: <div />,
+          disabled: true,
+          onToggle: () => {},
+          onMouseEnter: () => {},
+          onMouseLeave: () => {},
+          open: true,
+          initiallyOpen: true,
+          className: 'class',
+        }),
+        accordionSectionItemBuilder({
+          title: 'hello!',
+        }),
       ]}
     />
   );

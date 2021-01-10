@@ -138,11 +138,23 @@ export default {
           description({
             title: 'Using selectionArea',
             text:
-              'A selection area makes is easier to select a radio option, with a background  as an indicator to the click area',
+              'A selection area makes is easier to select a radio option, with a background or a border as an indicator to the click area',
           }),
 
           code({
-            source: examples.selectionArea,
+            source: examples.selectionAreaAlwaysFilled,
+          }),
+
+          code({
+            source: examples.selectionAreaHoverFilled,
+          }),
+
+          code({
+            source: examples.selectionAreaAlwaysOutlined,
+          }),
+
+          code({
+            source: examples.selectionAreaHoverOutlined,
           }),
 
           code({

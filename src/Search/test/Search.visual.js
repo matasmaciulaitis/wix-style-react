@@ -5,6 +5,7 @@ import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import Search from '../Search';
 import { searchUniDriverFactory } from '../Search.uni.driver';
 import { storySettings } from './storySettings';
+import { Cell, Layout } from '../../Layout';
 
 const { dataHook, storyName } = storySettings;
 
@@ -65,7 +66,14 @@ const interactiveTests = [
 tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`${storyName}/${describe}`, module).add(it, () => (
-      <Search {...props} />
+      <Layout>
+        <Cell>
+          <Search {...props} />
+        </Cell>
+        <Cell>
+          <Search {...props} size="small" />
+        </Cell>
+      </Layout>
     ));
   });
 });

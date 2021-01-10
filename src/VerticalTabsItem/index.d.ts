@@ -10,7 +10,5 @@ export interface VerticalTabsItemProps {
   id?: number;
 }
 
-export default class VerticalTabsItem extends React.PureComponent<
-  VerticalTabsItemProps
-> {}
+export default class VerticalTabsItem extends React.PureComponent<VerticalTabsItemProps> {}
 export type VerticalTabsItemType = 'tab' | 'action' | 'title';

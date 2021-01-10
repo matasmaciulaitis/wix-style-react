@@ -7,7 +7,7 @@ import ChevronUp from 'wix-ui-icons-common/ChevronUp';
 import Text from '../../Text';
 import Button from '../../Button';
 import TextButton from '../../TextButton';
-import { buttonTypes, dataHooks } from '../constants';
+import { buttonTypes, SHOW_LABEL, dataHooks } from '../constants';
 
 import { st, classes } from './AccordionItem.st.css';
 
@@ -15,10 +15,11 @@ class AccordionItem extends React.PureComponent {
   static displayName = 'AccordionItem';
 
   static propTypes = {
-    buttonType: PropTypes.oneOf(Object.values(buttonTypes)),
+    buttonType: PropTypes.oneOf(['textButton', 'button', 'node']),
     title: PropTypes.node,
     expandLabel: PropTypes.node,
     collapseLabel: PropTypes.node,
+    showLabel: PropTypes.oneOf(['hover', 'always']),
     children: PropTypes.node,
     icon: PropTypes.node,
     open: PropTypes.bool,
@@ -30,10 +31,11 @@ class AccordionItem extends React.PureComponent {
     skin: PropTypes.oneOf(['standard', 'light']),
     hideShadow: PropTypes.bool,
     className: PropTypes.string,
+    size: PropTypes.oneOf(['small', 'large']),
   };
 
   static defaultProps = {
-    buttonType: buttonTypes.textButton,
+    buttonType: 'textButton',
   };
 
   state = {
@@ -46,6 +48,7 @@ class AccordionItem extends React.PureComponent {
     this.setState({ hover: false });
     !disabled && onMouseLeave && onMouseLeave(e);
   };
+
   _onMouseEnter = e => {
     const { disabled, onMouseEnter } = this.props;
 
@@ -53,65 +56,99 @@ class AccordionItem extends React.PureComponent {
     !disabled && onMouseEnter && onMouseEnter(e);
   };
 
-  _renderOpenButton = () => {
+  _renderOpenButton = show => {
     const { expandLabel, buttonType, disabled } = this.props;
-    const { hover } = this.state;
-
     const commonProps = {
-      dataHook: dataHooks.toggleButton,
       disabled,
+      dataHook: dataHooks.toggleButton,
     };
 
-    const cases = [
-      {
-        when: () => expandLabel && buttonType === buttonTypes.button,
-        make: () => (
-          <Button {...commonProps} size="small" children={expandLabel} />
-        ),
-      },
+    let label;
 
-      {
-        when: () =>
-          hover && expandLabel && buttonType === buttonTypes.textButton,
-        make: () => (
-          <TextButton
-            {...commonProps}
-            suffixIcon={<ChevronDown size="24px" />}
-            children={expandLabel}
-          />
-        ),
-      },
-      {
-        when: () => true,
-        make: () => (
-          <TextButton
-            {...commonProps}
-            suffixIcon={<ChevronDown size="24px" />}
-          />
-        ),
-      },
-    ];
+    if (buttonType === buttonTypes.node) {
+      label = show && expandLabel;
+    }
 
-    return cases.find(({ when }) => when()).make();
+    if (buttonType === buttonTypes.button && expandLabel) {
+      label = show && (
+        <Button {...commonProps} size="small" children={expandLabel} />
+      );
+    }
+
+    if (buttonType === buttonTypes.textButton) {
+      label = (
+        <TextButton
+          {...commonProps}
+          suffixIcon={<ChevronDown size="24px" />}
+          children={show && expandLabel}
+        />
+      );
+    }
+
+    return label;
   };
 
-  _renderCloseButton = () => {
+  _renderCloseButton = show => {
     const { collapseLabel, buttonType, disabled } = this.props;
-
-    const shouldRenderButton =
-      collapseLabel && buttonType === buttonTypes.button;
-
     const commonProps = {
       disabled,
-      children: collapseLabel,
       dataHook: dataHooks.toggleButton,
     };
 
-    return shouldRenderButton ? (
-      <Button {...commonProps} priority="secondary" size="small" />
-    ) : (
-      <TextButton {...commonProps} suffixIcon={<ChevronUp size="24px" />} />
-    );
+    let label;
+
+    if (buttonType === buttonTypes.node) {
+      label = show && collapseLabel;
+    }
+
+    if (buttonType === buttonTypes.button && collapseLabel) {
+      label = show && (
+        <Button
+          {...commonProps}
+          size="small"
+          priority="secondary"
+          children={collapseLabel}
+        />
+      );
+    }
+
+    if (buttonType === buttonTypes.textButton) {
+      label = (
+        <TextButton
+          {...commonProps}
+          suffixIcon={<ChevronUp size="24px" />}
+          children={show && collapseLabel}
+        />
+      );
+    }
+
+    return label;
+  };
+
+  _renderButton = () => {
+    const { showLabel, buttonType, open } = this.props;
+    const { hover } = this.state;
+    let showLabelValue = showLabel;
+
+    // Only for buttonType='button', showLabel should be 'always' by default.
+    if (!showLabelValue) {
+      showLabelValue =
+        buttonType === buttonTypes.button
+          ? SHOW_LABEL.always
+          : SHOW_LABEL.hover;
+    }
+
+    if (showLabelValue === SHOW_LABEL.always) {
+      return open
+        ? this._renderCloseButton(true)
+        : this._renderOpenButton(true);
+    }
+
+    if (showLabelValue === SHOW_LABEL.hover) {
+      return open
+        ? this._renderCloseButton(hover)
+        : this._renderOpenButton(hover);
+    }
   };
 
   render() {
@@ -125,6 +162,7 @@ class AccordionItem extends React.PureComponent {
       skin,
       hideShadow,
       className,
+      size,
     } = this.props;
     const { hover } = this.state;
 
@@ -132,14 +170,14 @@ class AccordionItem extends React.PureComponent {
       <div
         className={st(
           classes.root,
-          { disabled, hover, open, skin, hideShadow },
+          { disabled, hover, open, skin, hideShadow, size },
           className,
         )}
       >
         <div data-hook={dataHooks.item}>
           <div
             onClick={!disabled ? onToggle : null}
-            className={classes.header}
+            className={st(classes.header, { size })}
             data-hook="header"
             onMouseEnter={this._onMouseEnter}
             onMouseLeave={this._onMouseLeave}
@@ -163,9 +201,7 @@ class AccordionItem extends React.PureComponent {
             <div
               className={classes.toggleButton}
               data-hook="toggle-accordion-wrapper"
-              children={
-                open ? this._renderCloseButton() : this._renderOpenButton()
-              }
+              children={this._renderButton()}
             />
           </div>
 

@@ -123,3 +123,46 @@ export const withDifferentAlignments = `
   </Cell>
 </Layout>
 `;
+
+export const controlled = `class ControlledThumbnail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: [],
+      thumbnails: ['first', 'second', 'third'],
+    };
+  }
+
+  setSelected = thumbnail => {
+    this.setState(({ selected }) => ({
+      selected: selected.includes(thumbnail)
+        ? selected.filter(s => s !== thumbnail)
+        : [...selected, thumbnail],
+    }));
+  };
+
+  render() {
+    const { selected, thumbnails } = this.state;
+
+    return (
+      <Box height="200px">
+        <Layout gap="12px">
+          {thumbnails.map(thumbnail => (
+            <Cell key={thumbnail} span={4}>
+              <Thumbnail
+                selected={selected.includes(thumbnail)}
+                title={thumbnail + ' thumbnail'}
+                description={\`This thumbnail is \${
+                  selected.includes(thumbnail) ? '' : 'not '
+                }selected \`}
+                onClick={() => this.setSelected(thumbnail)}
+              />
+            </Cell>
+          ))}
+        </Layout>
+      </Box>
+    );
+  }
+}
+`;

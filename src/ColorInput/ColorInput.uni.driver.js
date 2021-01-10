@@ -1,4 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import inputUniDriverFactory from '../Input/Input.uni.driver.js';
 import { colorPickerUniDriverFactory } from '../ColorPicker/ColorPicker.uni.driver.js';
 import DATA_HOOKS from './DataHooks';
@@ -11,45 +11,73 @@ export const colorInputDriverFactory = (base, body) => {
 
   return {
     ...baseUniDriverFactory(base),
-
-    /** Cancels color selection */
+    /**
+     * Cancels color selection
+     * @returns {Promise<Void>}
+     * */
     cancel: () => colorPickerTestkit.cancel(),
-
-    /** Confirms color selection */
+    /**
+     * Confirms color selection
+     * @returns {Promise<Void>}
+     * */
     confirm: () => colorPickerTestkit.confirm(),
-
-    /** Clicks on color viewer box */
+    /**
+     * Clicks on color viewer box
+     * @returns {Promise<Void>}
+     */
     clickColorViewer: async () =>
       base.$(`[data-hook="${DATA_HOOKS.COLOR_INPUT_VIEWER}"]`).click(),
-
-    /** Enters text to color input */
+    /**
+     * Enters text to color input
+     * @returns {Promise<Void>}
+     * */
     enterText: async text => {
       await inputTestkit.click();
       await inputTestkit.enterText(text);
     },
-
-    /** Returns the input value */
+    /**
+     * Gets the input value
+     * @returns {Promise<string>}
+     * */
     getValue: () => inputTestkit.getValue(),
 
-    /** Returns the placeholder of the input */
+    /**
+     * Gets the placeholder of the input
+     * @returns {Promise<string | null>}
+     * */
     getPlaceholder: () => inputTestkit.getPlaceholder(),
 
-    /** Return whether the input size */
+    /**
+     * Gets the input size
+     * @returns {Promise<string>}
+     * */
     getSize: () => inputTestkit.getSize(),
 
-    /** Returns whether the input is disabled */
+    /**
+     * Checks whether the input is disabled
+     * @returns {Promise<boolean>}
+     * */
     isDisabled: () => inputTestkit.isDisabled(),
 
-    /** Returns whether the color picker is visible  */
+    /**
+     * Checks whether the color picker is visible
+     * @returns {Promise<boolean>}
+     * */
     colorPickerVisible: () => colorPickerTestkit.exists(),
-
-    /** Clicks on input */
+    /**
+     * Clicks on input
+     * @returns {Promise<Void>}
+     * */
     click: () => inputTestkit.click(),
-
-    // Status
-    /** Return true if the given status is displayed */
+    /**
+     * Checks whether the given status is displayed
+     * @returns {Promise<boolean>}
+     * */
     hasStatus: inputTestkit.hasStatus,
-    /** If there's a status message, returns its text value */
+    /**
+     * Gets the status message
+     * @returns {Promise<(string|null)>}
+     * */
     getStatusMessage: inputTestkit.getStatusMessage,
   };
 };

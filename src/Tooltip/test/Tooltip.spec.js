@@ -5,6 +5,7 @@ import Tooltip from '../Tooltip';
 import { tooltipPrivateDriverFactory } from './Tooltip.private.uni.driver';
 
 import Button from '../../Button';
+import { SIZES } from '../constants';
 
 describe('Tooltip', () => {
   const render = createRendererWithUniDriver(tooltipPrivateDriverFactory);
@@ -78,6 +79,35 @@ describe('Tooltip', () => {
       const { driver } = render(tooltip({ children: kiddo, disabled: false }));
       await driver.mouseEnter();
       expect(await driver.tooltipExists()).toBe(true);
+    });
+  });
+
+  describe('`size` prop', () => {
+    describe('hasSize driver', () => {
+      const sizes = Object.values(SIZES);
+
+      it.each(sizes)(
+        'should return true when tooltip has size %s',
+        async size => {
+          const props = {
+            size,
+          };
+
+          const { driver } = await render(tooltip({ ...props }));
+
+          expect(await driver.hasSize(size)).toEqual(true);
+        },
+      );
+
+      it('should return false when tooltip does not have the correct size', async () => {
+        const props = {
+          size: SIZES.medium,
+        };
+
+        const { driver } = await render(tooltip({ ...props }));
+
+        expect(await driver.hasSize(SIZES.small)).toEqual(false);
+      });
     });
   });
 });

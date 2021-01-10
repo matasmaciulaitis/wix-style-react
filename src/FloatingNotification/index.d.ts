@@ -16,9 +16,7 @@ export interface FloatingNotificationProps {
   fullWidth?: boolean;
 }
 
-export default class FloatingNotification extends React.PureComponent<
-  FloatingNotificationProps
-> {}
+export default class FloatingNotification extends React.PureComponent<FloatingNotificationProps> {}
 
 export type FloatingNotificationType =
   | 'standard'

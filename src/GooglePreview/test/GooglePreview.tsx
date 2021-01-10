@@ -13,10 +13,13 @@ function GooglePreviewWithMandatoryProps() {
 function GooglePreviewWithAllProps() {
   return (
     <GooglePreview
+      skin="light"
       dataHook="hook"
       description="desc"
+      descriptionMaxLines={2}
       previewUrl="url"
       title="title"
+      titleMaxLines={1}
     />
   );
 }

@@ -24,6 +24,7 @@ import TableRowDetailsExampleRaw from '!raw-loader!./examples/TableRowDetailsExa
 import TableSkinNeutralExample from '!raw-loader!./examples/TableSkinNeutralExample';
 import TableToolbarExampleRaw from '!raw-loader!./examples/TableToolbarExample';
 import TableSubToolbarExampleRaw from '!raw-loader!./examples/TableSubToolbarExample';
+import TableHideHeaderExampleRaw from '!raw-loader!./examples/TableHideHeaderExample';
 import TableBulkSelectionCheckboxExampleRaw from '!raw-loader!./examples/TableBulkSelectionCheckboxExample';
 import TableWithUnselectableRowsExampleRaw from '!raw-loader!./examples/TableWithUnselectableRowsExample';
 import TableEmptyStateExampleRaw from '!raw-loader!./examples/TableEmptyStateExample';
@@ -148,6 +149,12 @@ export default {
               description:
                 'A Table can contain a sticky sub-toolbar, an area for additional actions such as displaying a tag list of filtered items.',
               source: TableSubToolbarExampleRaw,
+              compact: true,
+            },
+            {
+              title: 'Hidden Header',
+              description: 'A table with hidden header.',
+              source: TableHideHeaderExampleRaw,
               compact: true,
             },
             {

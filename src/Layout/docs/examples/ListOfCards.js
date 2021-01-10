@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '../styles.scss';
+import { style, classes } from '../styles.st.css';
 
 import { Card, Layout, Cell } from 'wix-style-react';
 
 export default () => (
-  <div className={styles.exampleContainer}>
+  <div className={style(classes.exampleContainer)}>
     <Layout>
       <Cell span={4}>{card()}</Cell>
       <Cell span={4}>{card()}</Cell>

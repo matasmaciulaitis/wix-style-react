@@ -118,18 +118,26 @@ class ColorPicker extends React.PureComponent {
       this.setState({ current: _color });
     }
   }
-
+  /**
+   * sets the selected color
+   * @param {object} color - An object that contains data for the selected color, model, and valpha.
+   */
   change = _color => {
     this.setState({ current: _color }, () => {
       this.props.onChange(_color);
     });
   };
-
+  /**
+   * confirms the selected color
+   */
   confirm = () => {
     this.setState({ previous: this.state.current });
     this.props.onConfirm(this.state.current);
   };
 
+  /**
+   * cancels the selected color
+   */
   cancel = () => {
     this.props.onCancel(this.state.previous);
   };

@@ -1,10 +1,10 @@
 import { badgeSelectUniDriverFactory } from './BadgeSelect.uni.driver';
 import { badgeUniDriverFactory } from '../Badge/Badge.uni.driver';
-import popoverUniDriverFactory from '../Popover/Popover.uni.driver';
+import { popoverDriverFactory } from '../Popover/Popover.uni.driver';
 import * as DATA_ATTR from './DataAttr';
 
 export const badgeSelectPrivateUniDriverFactory = (base, body) => {
-  const popoverDriver = popoverUniDriverFactory(base, body);
+  const popoverDriver = popoverDriverFactory(base, body);
   const badgeDriver = badgeUniDriverFactory(
     base.$(`[data-hook="${DATA_ATTR.DATA_BADGE}"]`),
   );

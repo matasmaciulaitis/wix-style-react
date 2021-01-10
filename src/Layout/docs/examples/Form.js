@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../styles.scss';
+import { style, classes } from '../styles.st.css';
 
 import {
   Layout,
@@ -16,7 +16,7 @@ import {
 } from 'wix-style-react';
 
 export default () => (
-  <div className={styles.exampleContainer}>
+  <div className={style(classes.exampleContainer)}>
     <Layout>
       {/* Big area, the main content */}
       <Cell span={8}>

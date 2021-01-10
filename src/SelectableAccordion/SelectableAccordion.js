@@ -32,6 +32,9 @@ class SelectableAccordion extends React.PureComponent {
       }),
     ),
 
+    /** Extra space on top and bottom of selectable accordion item */
+    verticalPadding: PropTypes.oneOf(['medium', 'small', 'tiny']),
+
     /** A callback which is invoked every time the selection is changed */
     onSelectionChanged: PropTypes.func,
   };
@@ -39,6 +42,7 @@ class SelectableAccordion extends React.PureComponent {
   static defaultProps = {
     type: 'radio',
     items: [],
+    verticalPadding: 'medium',
   };
 
   static displayName = 'SelectableAccordion';
@@ -78,7 +82,7 @@ class SelectableAccordion extends React.PureComponent {
   };
 
   render() {
-    const { dataHook, className, items, type } = this.props;
+    const { dataHook, className, items, verticalPadding, type } = this.props;
     const { openIndices } = this.state;
 
     return (
@@ -88,6 +92,7 @@ class SelectableAccordion extends React.PureComponent {
             key={idx}
             idx={idx}
             type={type}
+            verticalPadding={verticalPadding}
             onChange={this._onItemChanged}
             {...item}
             open={openIndices.includes(idx)}

@@ -64,6 +64,15 @@ const tests = [
     ],
   },
   {
+    describe: 'custom label',
+    its: [
+      {
+        it: 'with label',
+        props: { label: '1/5', value: 20 },
+      },
+    ],
+  },
+  {
     describe: 'theme',
     its: [
       {
@@ -155,4 +164,3 @@ export const runTests = (
     });
   });
 };
-runTests();

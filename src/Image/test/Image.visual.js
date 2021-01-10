@@ -164,6 +164,27 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'showBorder',
+    its: [
+      {
+        it: 'should show border if showBorder prop is true',
+        props: { showBorder: true },
+      },
+    ],
+  },
+  {
+    describe: 'border radius',
+    its: [
+      {
+        it:
+          'should show different border radius if a valid borderRadius prop is passed',
+        props: {
+          borderRadius: '10px 20px 30px 40px',
+        },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {

@@ -13,6 +13,11 @@
   -st-named: B50, D60, F00;
 }
 
+:import {
+  -st-from: '../../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
 :vars {
   gap: 30px;
 }
@@ -27,11 +32,11 @@
   flex-direction: column;
   box-sizing: border-box;
   white-space: nowrap;
-  transition: background-color .3s ease-in-out;
+  transition: background-color .3s value(ease-8);
 }
 
 .item:size(tiny) {
-  padding: 24px value(gap);
+  padding: 24px;
 }
 
 .item:size(large) {
@@ -105,22 +110,8 @@
 }
 
 .percentage {
-  -st-states: clickable;
   margin-top: auto;
-}
-
-.percentage:clickable {
-  cursor: pointer;
-}
-
-.percentageInner {
-  height: 12px;
-}
-
-.trendIndicator {
-  display: inline-block;
-  margin-right: 5px;
-  vertical-align: middle;
+  padding: 6px 13px;
 }
 
 .tooltip {

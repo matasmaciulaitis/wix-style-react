@@ -8,6 +8,20 @@ export const description = {
     'Marketing layout is a layout designed to promote new features or display first time visit. Component has title, description, action and illustration areas.',
 };
 
+export const sizeTiny = `
+  <MarketingLayout
+    title="Tiny Size Layout"
+    description="This layout requires less attention. It can promote side features that might add value, but are not mandatory to achieve main goals."
+    actions={<Button size="small">Get Started</Button>}
+    size="tiny"
+    image={
+      <Box width="100%" align="right">
+        <Image width="96px" height="96px" />
+      </Box>
+    }
+  />
+`;
+
 export const sizeSmall = `
   <MarketingLayout
     title="Small Size Layout"
@@ -48,6 +62,17 @@ export const inverted = `
   />
 `;
 
+export const alignItemsStretch = `
+  <MarketingLayout
+    title="Align Items Stretched"
+    description="This layout has its content stretched instead of the default centered alignment."
+    actions={<Button size="medium">Get Started</Button>}
+    size="large"
+    image={<Image/>}
+    alignItems="stretch"
+  />
+`;
+
 export const imageBackgroundColor = `
   <MarketingLayout
     title="Image Background"
@@ -57,6 +82,30 @@ export const imageBackgroundColor = `
     imageBackgroundColor="B50"
     image={<Image/>}
   />
+`;
+
+export const badge = `
+  <Card>
+    <MarketingLayout
+      title="Badge"
+      description="The badge prop is meant to receive a Badge component, and display it at the corner of the layout."
+      actions={<Button size="medium">Get Started</Button>}
+      image={<Image/>}
+      badge={<Badge size="small">badge</Badge>}
+    />
+  </Card>
+`;
+
+export const hiddenBadge = `
+  <Card>
+    <MarketingLayout
+      title="Hidden Badge"
+      description="The hiddenBadge prop is used to align the layout with marketing layouts that do have a badge."
+      actions={<Button size="medium">Get Started</Button>}
+      image={<Image/>}
+      hiddenBadge
+    />
+  </Card>
 `;
 
 export const advanced = `

@@ -20,6 +20,7 @@ describe('MarketingLayout', () => {
     title: <h1>title</h1>,
     description: 'Card description',
     actions: <Button>Card action</Button>,
+    alignItems: 'center',
   };
 
   it('should render', async () => {

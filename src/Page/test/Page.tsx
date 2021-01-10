@@ -38,6 +38,9 @@ function PageWithAllProps() {
         <span>asd</span>
       </Page.Sticky>
       <Page.Sticky>{({ className, style }) => <span>asd</span>}</Page.Sticky>
+      <Page.FixedFooter>
+        <span>asd</span>
+      </Page.FixedFooter>
     </Page>
   );
 }

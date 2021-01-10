@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { snap, story, visualize } from 'storybook-snapper';
 import <%= ComponentName %> from '../<%= ComponentName %>';
 
 const commonProps = {
@@ -20,11 +20,16 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(
-      `${<%= ComponentName %>.displayName}${describe ? '/' + describe : ''}`,
-      module,
-    ).add(it, () => <<%= ComponentName %> {...commonProps} {...props} />);
+export const runTests = () => {
+  visualize(<%= ComponentName %>.displayName, () => {
+    tests.forEach(({ describe, its }) => {
+      story(describe, () => {
+        its.map(({ it, props }) =>
+          snap(it, () => (
+            <<%= ComponentName %> {...commonProps} {...props} />
+          )),
+        );
+      });
+    });
   });
-});
+};

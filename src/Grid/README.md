@@ -1,5 +1,7 @@
 # Grid
+### * Please avoid using Grid,  use \<Layout/\> instead *
 
+### Description:
 A grid is a collection of `<Container/>`, `<Row/>` and `<Col/>` components that help laying out
 content with ease.
 
@@ -20,6 +22,7 @@ export default () =>
   </Container>;
 ```
 
+### Examples:
 <details>
   <summary>Nested grid example</summary>
 
@@ -76,8 +79,8 @@ export default () =>
 
   Use as wrapper for columns. Only `<Col/>`s should be its children.
   One `<Row/>` should not have more than 12 `<Col/>`s.
-  
-  
+
+
   | propName               | propType | defaultValue | isRequired | description                                    |
   | ---                    | ---      | ---          | ---        | ---                                            |
   | stretchViewsVertically | bool     | -            | -          | Make all the views in that row the same height |

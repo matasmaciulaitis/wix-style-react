@@ -25,7 +25,6 @@ const defaultProps = {
   width: '444px',
 };
 
-const placements = Object.values(placementOptions);
 const appearances = Object.values(floatingHelperAppearance);
 
 const tests = [
@@ -37,10 +36,6 @@ const tests = [
         props: {},
       },
     ],
-  },
-  {
-    describe: 'placement',
-    its: placements.map(placement => ({ it: placement, props: { placement } })),
   },
   {
     describe: 'appearance',

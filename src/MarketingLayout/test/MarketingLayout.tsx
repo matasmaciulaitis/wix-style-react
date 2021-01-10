@@ -1,5 +1,6 @@
 import * as React from 'react';
 import MarketingLayout from '..';
+import Badge from '../../Badge';
 import { marketingLayoutTestkitFactory } from '../../../testkit';
 import { marketingLayoutTestkitFactory as marketingLayoutEnzymeTestkitFactory } from '../../../testkit/enzyme';
 import { marketingLayoutTestkitFactory as marketingLayoutPuppeteerTestkitFactory } from '../../../testkit/puppeteer';
@@ -21,6 +22,9 @@ function marketingLayoutWithAllProps() {
       actions={<div />}
       title="title"
       description="description"
+      badge={<Badge size="small">badge</Badge>}
+      hiddenBadge
+      alignItems="center"
     />
   );
 }

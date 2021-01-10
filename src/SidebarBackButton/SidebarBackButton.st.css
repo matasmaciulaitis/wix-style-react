@@ -14,8 +14,13 @@
 }
 
 :import {
-  -st-from: "../Sidebar/main.st.css";
+  -st-from: "../Sidebar/Sidebar.st.css";
   -st-named: sidebarWidth
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
 }
 
 @keyframes backAndForth {
@@ -34,32 +39,36 @@
 }
 
 
-.BackButton {
+.root {
   -st-extends: Focusable;
-  -st-states: lightSkin;
+  -st-states: skin(enum(dark, light));
   cursor: pointer;
   box-sizing: border-box;
   border: none;
- 
+
   width: 100%;
   max-width: value(sidebarWidth);
   padding: 15px 24px 15px 18px;
   display: flex;
   align-items: center;
-  background: value(sidebarBackgroundColor);
 
   /* not supported in IE11 & Edge; 'left' as fallback */
   text-align: left;
   text-align: start;
 }
-.BackButton:lightSkin {
-  background: value(sidebarLightBackgroundColor); 
+
+.root:skin(dark) {
+  background: value(sidebarBackgroundColor);
 }
 
-.BackButton:focus {
+.root:skin(light) {
+  background: value(sidebarLightBackgroundColor);
+}
+
+.root:focus {
   outline: none;
 }
-.BackButton:focus-visible {
+.root:focus-visible {
   box-shadow: inset 0 0 0 3px value(F00);
 }
 
@@ -69,18 +78,18 @@
   position: relative;
   color: value(textColor);
 }
-.BackButton:lightSkin .arrow {
+.root:skin(light) .arrow {
   color: value(lightTextColor)
 }
-.BackButton:hover .arrow, .BackButton:focus-visible .arrow {
+.root:hover .arrow, .root:focus-visible .arrow {
   transition: transform 0.5s;
   transform: translateX(-5px);
 }
 
-.BackButton:not(:hover) .arrow:animated {
+.root:not(:hover) .arrow:animated {
   animation-name: backAndForth;
   animation-duration: 4s;
   animation-delay: 3s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: value(ease-8);
 }

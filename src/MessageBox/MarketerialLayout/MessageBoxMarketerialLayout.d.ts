@@ -21,9 +21,7 @@ export interface MessageBoxMarketerialLayoutProps {
   noBodyPadding?: boolean;
 }
 
-export default class MessageBoxMarketerialLayout extends React.PureComponent<
-  MessageBoxMarketerialLayoutProps
-> {}
+export default class MessageBoxMarketerialLayout extends React.PureComponent<MessageBoxMarketerialLayoutProps> {}
 
 export type MessageBoxMarketerialLayoutTheme = 'blue' | 'purple' | 'white';
 export type MessageBoxMarketerialLayoutThemePrimaryButtonTheme =

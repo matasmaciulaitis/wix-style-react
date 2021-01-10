@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
-import classNames from 'classnames';
 import moment from 'moment';
 import Text from '../Text';
 import Input from '../Input';
 import Box from '../Box';
-
-import styles from './TimeInput.scss';
+import { st, classes } from './TimeInput.st.css';
 import { dataHooks } from './constants';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 /**
  * An uncontrolled time input component with a stepper and am/pm support
@@ -55,6 +54,9 @@ export default class TimeInput extends Component {
 
     /** The status message to display when hovering the status icon, if not given or empty there will be no tooltip */
     statusMessage: PropTypes.node,
+
+    /** Display seconds  */
+    showSeconds: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -66,6 +68,7 @@ export default class TimeInput extends Component {
     dashesWhenDisabled: false,
     minutesStep: 20,
     width: 'auto',
+    showSeconds: false,
   };
 
   constructor(props) {
@@ -75,33 +78,49 @@ export default class TimeInput extends Component {
       focus: false,
       lastCaretIdx: 0,
       hover: false,
-      ...this._getInitTime(this.props.defaultValue),
+      ...this._getInitTime(
+        this.props.defaultValue,
+        this.props.showSeconds,
+        this.props.disableAmPm,
+      ),
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultValue !== this.props.defaultValue) {
-      this.setState(this._getInitTime(nextProps.defaultValue));
+    if (this._shouldUpdateState(nextProps)) {
+      this.setState(
+        this._getInitTime(
+          nextProps.defaultValue,
+          nextProps.showSeconds,
+          nextProps.disableAmPm,
+        ),
+      );
     }
   }
 
-  _isAmPmMode() {
+  _shouldUpdateState(nextProps) {
     return (
-      !this.props.disableAmPm &&
-      moment('2016-04-03 13:14:00')
-        .format('LT')
-        .indexOf('PM') !== -1
+      nextProps.defaultValue !== this.props.defaultValue ||
+      nextProps.showSeconds !== this.props.showSeconds ||
+      nextProps.disableAmPm !== this.props.disableAmPm
     );
   }
 
-  _getInitTime(value) {
+  _isAmPmMode(disableAmPm) {
+    return (
+      !disableAmPm &&
+      moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1
+    );
+  }
+
+  _getInitTime(value, showSeconds, disableAmPm) {
     let time = value || moment(),
       am = time.hours() < 12;
 
-    const ampmMode = this._isAmPmMode();
+    const ampmMode = this._isAmPmMode(disableAmPm);
 
     ({ time, am } = this._normalizeTime(am, time, ampmMode));
-    const text = this._formatTime(time, ampmMode);
+    const text = this._formatTime(time, ampmMode, showSeconds);
 
     return { time, am, text, ampmMode };
   }
@@ -147,8 +166,15 @@ export default class TimeInput extends Component {
     this._updateDate({ am, time });
   }
 
-  _formatTime(time, ampmMode = this.state.ampmMode) {
-    return ampmMode ? time.format('hh:mm') : time.format('HH:mm');
+  _formatTime(
+    time,
+    ampmMode = this.state.ampmMode,
+    showSeconds = this.props.showSeconds,
+  ) {
+    const withSeconds = showSeconds ? ':ss' : '';
+    return ampmMode
+      ? time.format(`hh:mm${withSeconds}`)
+      : time.format(`HH:mm${withSeconds}`);
   }
 
   _getFocusedTimeUnit(caretIdx, currentValue) {
@@ -245,50 +271,56 @@ export default class TimeInput extends Component {
 
     const suffix = (
       <Input.Group>
-        <Box alignItems="center" justifyContent="space-between">
-          <Box verticalAlign="middle" flexGrow={0} marginRight="6px">
-            {this.state.ampmMode && (
-              <Text
-                weight="normal"
-                skin={disabled ? 'disabled' : 'standard'}
-                className={styles.ampm}
-                onClick={this._handleAmPmClick}
-                dataHook={dataHooks.amPmIndicator}
-              >
-                {this.state.am ? 'am' : 'pm'}
-              </Text>
-            )}
-          </Box>
-          <Box
-            align="right"
-            verticalAlign="middle"
-            className={styles.suffixEndWrapper}
-          >
-            {customSuffix && (
-              <Box marginRight="6px" width="max-content">
-                {typeof customSuffix === 'string' ? (
+        <FontUpgradeContext.Consumer>
+          {({ active: isMadefor }) => (
+            <Box alignItems="center" justifyContent="space-between">
+              <Box verticalAlign="middle" flexGrow={0} marginRight="6px">
+                {this.state.ampmMode && (
                   <Text
-                    weight="normal"
-                    light
-                    secondary
-                    dataHook={dataHooks.customSuffix}
+                    weight={isMadefor ? 'thin' : 'normal'}
+                    skin={disabled ? 'disabled' : 'standard'}
+                    className={classes.ampm}
+                    onClick={this._handleAmPmClick}
+                    dataHook={dataHooks.amPmIndicator}
                   >
-                    {customSuffix}
+                    {this.state.am ? 'am' : 'pm'}
                   </Text>
-                ) : (
-                  <span data-hook={dataHooks.customSuffix}>{customSuffix}</span>
                 )}
               </Box>
-            )}
-            <Input.Ticker
-              upDisabled={disabled}
-              downDisabled={disabled}
-              onUp={this._handlePlus}
-              onDown={this._handleMinus}
-              dataHook={dataHooks.ticker}
-            />
-          </Box>
-        </Box>
+              <Box
+                align="right"
+                verticalAlign="middle"
+                className={classes.suffixEndWrapper}
+              >
+                {customSuffix && (
+                  <Box marginRight="6px" width="max-content">
+                    {typeof customSuffix === 'string' ? (
+                      <Text
+                        weight={isMadefor ? 'thin' : 'normal'}
+                        light
+                        secondary
+                        dataHook={dataHooks.customSuffix}
+                      >
+                        {customSuffix}
+                      </Text>
+                    ) : (
+                      <span data-hook={dataHooks.customSuffix}>
+                        {customSuffix}
+                      </span>
+                    )}
+                  </Box>
+                )}
+                <Input.Ticker
+                  upDisabled={disabled}
+                  downDisabled={disabled}
+                  onUp={this._handlePlus}
+                  onDown={this._handleMinus}
+                  dataHook={dataHooks.ticker}
+                />
+              </Box>
+            </Box>
+          )}
+        </FontUpgradeContext.Consumer>
       </Input.Group>
     );
 
@@ -297,9 +329,7 @@ export default class TimeInput extends Component {
         ref="input"
         rtl={rtl}
         value={text}
-        className={classNames({
-          [styles.input]: width === 'auto',
-        })}
+        className={width === 'auto' ? classes.input : undefined}
         onFocus={this._handleFocus}
         onChange={this._handleInputChange}
         onBlur={this._handleInputBlur}
@@ -314,25 +344,35 @@ export default class TimeInput extends Component {
   }
 
   render() {
-    const { className, style, dataHook, rtl, disabled, width } = this.props;
+    const {
+      className,
+      style,
+      dataHook,
+      rtl,
+      disabled,
+      width,
+      showSeconds,
+    } = this.props;
     const { focus, hover } = this.state;
+
     return (
       <div
-        className={classNames(styles.wrapper, className, {
-          [styles.disabled]: disabled,
-        })}
+        className={st(classes.root, { disabled, rtl, showSeconds }, className)}
         style={style}
         data-hook={dataHook}
       >
         <div
           onMouseOver={() => this._handleHover(true)}
           onMouseOut={() => this._handleHover(false)}
-          className={classNames(styles.time, {
-            focus,
-            hover: hover && !focus,
-            rtl,
-            [styles.stretch]: width === '100%',
-          })}
+          className={st(
+            classes.time,
+            {
+              focus,
+              hover: hover && !focus,
+              stretch: width === '100%',
+            },
+            className,
+          )}
         >
           {this._renderTimeTextbox()}
         </div>

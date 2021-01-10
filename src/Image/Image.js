@@ -8,7 +8,17 @@ const placeholderStyle = {
   objectFit: 'cover',
 };
 
-const Image = ({ dataHook, src, fit, position, style, ...otherProps }) => {
+const Image = ({
+  dataHook,
+  src,
+  fit,
+  position,
+  style,
+  className,
+  borderRadius,
+  showBorder,
+  ...otherProps
+}) => {
   const source = src || placeholderSource;
   const isTiled = !!src && fit === 'tile';
   const imgStyle = !src
@@ -26,17 +36,30 @@ const Image = ({ dataHook, src, fit, position, style, ...otherProps }) => {
   return (
     <img
       {...otherProps}
-      className={st(classes.root, { tiled: isTiled })}
+      className={st(classes.root, { tiled: isTiled, showBorder }, className)}
       data-hook={dataHook}
       src={source}
-      style={{ ...style, ...imgStyle }}
+      style={{ ...style, ...imgStyle, borderRadius }}
     />
   );
 };
 
 Image.propTypes = {
-  /** Hook for testing purposes. */
+  /**
+   * Border radius of the image element box.
+   */
+  borderRadius: PropTypes.string,
+
+  /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
+
+  /** A css class to be applied to the component's root element */
+  className: PropTypes.string,
+
+  /**
+   * Set if an image border is shown.
+   */
+  showBorder: PropTypes.bool,
 
   /** Image asset source. A default placeholder image is displayed when source is not provided. */
   src: PropTypes.string,
@@ -67,6 +90,8 @@ Image.defaultProps = {
   width: '100%',
   fit: 'cover',
   position: 'center',
+  showBorder: false,
+  borderRadius: '8px',
 };
 
 Image.displayName = 'Image';

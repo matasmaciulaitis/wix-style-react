@@ -13,6 +13,4 @@ export interface SelectableAccordionItemProps
   onChange?(idx: number, open: boolean): void;
 }
 
-export default class SelectableAccordionItem extends React.Component<
-  SelectableAccordionItemProps
-> {}
+export default class SelectableAccordionItem extends React.Component<SelectableAccordionItemProps> {}

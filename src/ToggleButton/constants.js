@@ -2,6 +2,8 @@ export const SKINS = {
   standard: 'standard',
   dark: 'dark',
   inverted: 'inverted',
+  destructive: 'destructive',
+  success: 'success',
 };
 
 export const PRIORITY = {

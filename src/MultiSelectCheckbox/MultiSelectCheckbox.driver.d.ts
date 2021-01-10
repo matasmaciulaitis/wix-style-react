@@ -5,7 +5,7 @@ export interface MultiSelectCheckboxDriver
   extends OmitPolyfill<InputWithOptionsDriver, 'driver'> {
   driver: {
     getNumOfLabels: () => number;
-    getLabels: () => string[];
-    getLabelAt: (index: number) => string;
+    getLabels: (delimiter:string) => string[];
+    getLabelAt: (index: number, delimiter:string) => string;
   } & Pick<InputWithOptionsDriver, 'driver'>;
 }

@@ -34,6 +34,7 @@ export interface InputAreaUniDriver extends BaseUniDriver {
   getAriaDescribedby: () => Promise<string | null>;
   getTooltipDataHook: () => string;
   getTooltipElement: () => UniDriver;
+  getCursorLocation: () => Promise<number>;
 
   // Status
   hasStatus: (status: StatusIndications) => Promise<boolean>;

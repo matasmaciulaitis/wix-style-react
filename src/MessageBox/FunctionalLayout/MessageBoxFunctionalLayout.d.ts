@@ -33,6 +33,4 @@ export interface MessageBoxFunctionalLayoutProps {
   image?: React.ReactNode;
 }
 
-export default class MessageBoxFunctionalLayout extends React.PureComponent<
-  MessageBoxFunctionalLayoutProps
-> {}
+export default class MessageBoxFunctionalLayout extends React.PureComponent<MessageBoxFunctionalLayoutProps> {}

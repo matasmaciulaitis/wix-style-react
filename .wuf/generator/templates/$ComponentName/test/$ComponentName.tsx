@@ -1,8 +1,8 @@
 import * as React from 'react';
 import <%= ComponentName %> from '..';
-import { <%= componentName %>TestkitFactory } from '../../../testkit';
-import { <%= componentName %>TestkitFactory as <%= componentName %>EnzymeTestkitFactory } from '../../../testkit/enzyme';
-import { <%= componentName %>TestkitFactory as <%= componentName %>PuppeteerTestkitFactory } from '../../../testkit/puppeteer';
+import { <%= ComponentName %>Testkit } from '../../../testkit';
+import { <%= ComponentName %>Testkit as <%= ComponentName %>EnzymeTestkit } from '../../../testkit/enzyme';
+import { <%= ComponentName %>Testkit as <%= ComponentName %>PuppeteerTestkit } from '../../../testkit/puppeteer';
 import * as enzyme from 'enzyme';
 import * as puppeteer from 'puppeteer';
 
@@ -21,19 +21,19 @@ function <%= componentName %>WithAllProps() {
 }
 
 async function testkits() {
-  const testkit = <%= componentName %>TestkitFactory({
+  const testkit = <%= ComponentName %>Testkit({
     dataHook: 'hook',
     wrapper: document.createElement('div'),
   });
 
-  const enzymeTestkit = <%= componentName %>EnzymeTestkitFactory({
+  const enzymeTestkit = <%= ComponentName %>EnzymeTestkit({
     dataHook: 'hook',
     wrapper: enzyme.mount(<div />),
   });
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  const puppeteerTestkit = await <%= componentName %>PuppeteerTestkitFactory({
+  const puppeteerTestkit = await <%= ComponentName %>PuppeteerTestkit({
     dataHook: 'hook',
     page,
   });

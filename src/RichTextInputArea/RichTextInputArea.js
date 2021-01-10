@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EditorState, Editor, CompositeDecorator } from 'draft-js';
 import { convertFromHTML } from 'draft-convert';
-
+import { FontUpgradeContext } from '../FontUpgrade/context';
 import { st, classes, vars } from './RichTextInputArea.st.css';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
@@ -57,6 +57,7 @@ class RichTextInputArea extends React.PureComponent {
 
     // TODO: currently it treats the value as an initial value
     this._updateContentByValue(initialValue);
+    this.editorRef = React.createRef();
   }
 
   render() {
@@ -74,66 +75,71 @@ class RichTextInputArea extends React.PureComponent {
     const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
 
     return (
-      <div
-        data-hook={dataHook}
-        className={st(
-          classes.root,
-          {
-            hidePlaceholder: !isEditorEmpty,
-            disabled,
-            hasError: !disabled && status === 'error',
-            hasWarning: !disabled && status === 'warning',
-          },
-          className,
-        )}
-        // Using CSS variable instead of applying minHeight & maxHeight on each child, down to the editor's content
-        style={{
-          [vars.minHeight]: minHeight,
-          [vars.maxHeight]: maxHeight,
-        }}
-      >
-        <RichTextInputAreaContext.Provider
-          value={{
-            texts: this.state.texts,
-          }}
-        >
-          <RichTextToolbar
-            dataHook="richtextarea-toolbar"
-            className={classes.toolbar}
-            isDisabled={disabled}
-            editorState={this.state.editorState}
-            onBold={this._setEditorState}
-            onItalic={this._setEditorState}
-            onUnderline={this._setEditorState}
-            onLink={newEditorState => {
-              this._setEditorState(newEditorState, () =>
-                this.refs.editor.focus(),
-              );
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            data-hook={dataHook}
+            className={st(
+              classes.root,
+              {
+                isMadefor,
+                hidePlaceholder: !isEditorEmpty,
+                disabled,
+                hasError: !disabled && status === 'error',
+                hasWarning: !disabled && status === 'warning',
+              },
+              className,
+            )}
+            // Using CSS variable instead of applying minHeight & maxHeight on each child, down to the editor's content
+            style={{
+              [vars.minHeight]: minHeight,
+              [vars.maxHeight]: maxHeight,
             }}
-            onBulletedList={this._setEditorState}
-            onNumberedList={this._setEditorState}
-          />
-        </RichTextInputAreaContext.Provider>
-        <div className={classes.editorWrapper}>
-          <Editor
-            ref="editor"
-            editorState={this.state.editorState}
-            onChange={this._setEditorState}
-            placeholder={placeholder}
-            readOnly={disabled}
-            spellCheck={spellCheck}
-          />
-          {!disabled && status && (
-            <span className={classes.statusIndicator}>
-              <StatusIndicator
-                dataHook="richtextarea-status-indicator"
-                status={status}
-                message={statusMessage}
+          >
+            <RichTextInputAreaContext.Provider
+              value={{
+                texts: this.state.texts,
+              }}
+            >
+              <RichTextToolbar
+                dataHook="richtextarea-toolbar"
+                className={classes.toolbar}
+                isDisabled={disabled}
+                editorState={this.state.editorState}
+                onBold={this._setEditorState}
+                onItalic={this._setEditorState}
+                onUnderline={this._setEditorState}
+                onLink={newEditorState => {
+                  this._setEditorState(newEditorState, () =>
+                    this.editorRef.current.focus(),
+                  );
+                }}
+                onBulletedList={this._setEditorState}
+                onNumberedList={this._setEditorState}
               />
-            </span>
-          )}
-        </div>
-      </div>
+            </RichTextInputAreaContext.Provider>
+            <div className={classes.editorWrapper}>
+              <Editor
+                ref={this.editorRef}
+                editorState={this.state.editorState}
+                onChange={this._setEditorState}
+                placeholder={placeholder}
+                readOnly={disabled}
+                spellCheck={spellCheck}
+              />
+              {!disabled && status && (
+                <span className={classes.statusIndicator}>
+                  <StatusIndicator
+                    dataHook="richtextarea-status-indicator"
+                    status={status}
+                    message={statusMessage}
+                  />
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+      </FontUpgradeContext.Consumer>
     );
   }
 

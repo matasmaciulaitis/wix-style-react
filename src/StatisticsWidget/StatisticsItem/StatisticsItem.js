@@ -1,17 +1,14 @@
 import React from 'react';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
-import SortByArrowUp from 'wix-ui-icons-common/system/SortByArrowUp';
-import SortByArrowDown from 'wix-ui-icons-common/system/SortByArrowDown';
 import InfoCircleSmall from 'wix-ui-icons-common/InfoCircleSmall';
 
 import Heading from '../../Heading';
 import Text from '../../Text';
 import Tooltip from '../../Tooltip';
-import Badge from '../../Badge';
+import TrendIndicator from '../../TrendIndicator';
 import AdaptiveHeading from '../../utils/AdaptiveHeading';
 
 import DataHooks from '../dataHooks';
-import DataAttrs from '../dataAttrs';
 
 import { st, classes } from './StatisticsItem.st.css';
 import { SIZES } from '../constants';
@@ -68,7 +65,12 @@ class StatisticsItem extends React.PureComponent {
     return (
       <div className={st(classes.description, { alignItems })}>
         {size === SIZES.tiny ? (
-          <Text size="small" dataHook={DataHooks.description} secondary>
+          <Text
+            ellipsis
+            size="small"
+            dataHook={DataHooks.description}
+            secondary
+          >
             {description}
           </Text>
         ) : (
@@ -93,46 +95,18 @@ class StatisticsItem extends React.PureComponent {
     );
   };
 
-  _renderPercents = (percentage, invertedPercentage = false) => {
-    if (isNaN(Number(percentage))) {
+  _renderPercents = (percentage, invertedPercentage) => {
+    if (percentage == null) {
       return null;
     }
 
-    let skin = 'neutral';
-    let trendIcon = null;
-
-    if (percentage > 0) {
-      trendIcon = <SortByArrowUp data-hook={DataHooks.trendUp} />;
-      skin = !invertedPercentage ? 'success' : 'danger';
-    } else if (percentage < 0) {
-      trendIcon = <SortByArrowDown data-hook={DataHooks.trendDown} />;
-      skin = !invertedPercentage ? 'danger' : 'success';
-    }
-
-    const badgeProps = {
-      type: 'transparent',
-      dataHook: DataHooks.percentage,
-      [DataAttrs.invertedPercentage]: invertedPercentage,
-      skin,
-    };
-
     return (
-      <Badge
-        {...badgeProps}
-        className={st(classes.percentage, { clickable: !!this.props.onClick })}
-      >
-        <div className={classes.percentageInner}>
-          {!!percentage && (
-            <span
-              className={classes.trendIndicator}
-              data-hook={DataHooks.trendIndicator}
-            >
-              {trendIcon}
-            </span>
-          )}
-          {Math.abs(percentage)}%
-        </div>
-      </Badge>
+      <TrendIndicator
+        className={classes.percentage}
+        dataHook={DataHooks.percentage}
+        value={percentage}
+        inverted={invertedPercentage}
+      />
     );
   };
 

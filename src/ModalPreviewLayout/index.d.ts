@@ -24,6 +24,4 @@ export type NextButtonProps = {
   tooltipText?: React.ReactNode;
 };
 
-export default class ModalPreviewLayout extends React.PureComponent<
-  ModalPreviewLayoutProps
-> {}
+export default class ModalPreviewLayout extends React.PureComponent<ModalPreviewLayoutProps> {}

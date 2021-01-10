@@ -11,8 +11,6 @@ export interface SortableListProps extends DraggableProps {
   contentClassName?: string;
 }
 
-export default class SortableList extends React.PureComponent<
-  SortableListProps
-> {}
+export default class SortableList extends React.PureComponent<SortableListProps> {}
 
 export type SortableListInsertPosition = 'start' | 'end' | 'any';

@@ -8,10 +8,7 @@ const autoCompleteDriverFactory = component => ({
       .get(index)
       .getText(),
   getDropdownItemsCount: () =>
-    component
-      .$$(`[data-hook="dropdown-layout-options"] div`)
-      .getText()
-      .count(),
+    component.$$(`[data-hook="dropdown-layout-options"] div`).getText().count(),
   element: () => component,
 });
 

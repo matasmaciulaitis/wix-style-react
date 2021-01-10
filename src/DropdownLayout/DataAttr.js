@@ -4,6 +4,7 @@ export const DATA_HOOKS = {
   INFINITE_SCROLL_CONTAINER: 'infinite-scroll-container',
   LINK_ITEM: 'link-item',
   TOP_ARROW: 'top-arrow',
+  OPTION: 'dropdown-layout-option',
 };
 
 export const OPTION_DATA_HOOKS = {
@@ -15,13 +16,15 @@ export const DATA_SHOWN = 'data-shown';
 
 export const DATA_DIRECTION = 'data-direction';
 
+export const DATA_SELECTED_OPTION_ID = 'data-selected-option-id';
+
+export const DROPDOWN_LAYOUT_LOADER = 'dropdownLayout-loader';
+
 export const DATA_OPTION = {
   SIZE: 'data-option-size',
   HOVERED: 'data-option-hovered',
   SELECTED: 'data-option-selected',
   DISABLED: 'data-option-disabled',
-  HOVERED_GLOBAL: 'data-option-hovered-global',
-  SELECTED_GLOBAL: 'data-option-selected-global',
 };
 
 export const DROPDOWN_LAYOUT_DIRECTIONS = {

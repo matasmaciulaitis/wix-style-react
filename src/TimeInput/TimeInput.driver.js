@@ -1,6 +1,5 @@
 import { tickerTestkitFactory } from '../Input/Ticker/testkit/Ticker';
 import ReactTestUtils from 'react-dom/test-utils';
-import styles from './TimeInput.scss';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import inputDriverFactory from '../Input/Input.driver';
 import { dataHooks } from './constants';
@@ -31,11 +30,12 @@ const timeInputDriverFactory = ({ element }) => {
         return customSuffix.innerHTML;
       }
     },
-    isRtl: () => !!element.querySelector(`.${styles.rtl}`),
+    isRtl: () => input().isRTL(),
     setValue: value => input().enterText(value),
     blur: () => input().blur(),
     hasStatus: status => input().hasStatus(status),
     getStatusMessage: () => input().getStatusMessage(),
+    isShowSeconds: () => input().getValue().length === 8,
   };
 };
 export default timeInputDriverFactory;

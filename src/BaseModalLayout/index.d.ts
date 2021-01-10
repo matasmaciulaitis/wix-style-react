@@ -19,9 +19,7 @@ export interface BaseModalLayoutProps {
 
 export * from './LayoutBlocks';
 
-export default class BaseModalLayout extends React.PureComponent<
-  BaseModalLayoutProps
-> {
+export default class BaseModalLayout extends React.PureComponent<BaseModalLayoutProps> {
   static Header: typeof Header;
   static Content: typeof Content;
   static Footer: typeof Footer;

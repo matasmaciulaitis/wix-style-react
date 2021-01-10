@@ -3,7 +3,7 @@ import { isClassExists } from '../../test/utils';
 import { dataHooks } from './constants';
 
 const titleElement = element =>
-  element.querySelector(`[data-hook="${dataHooks.title}"] h1`);
+  element.querySelector(`[data-hook="${dataHooks.title}"]`);
 const subtitleElement = element =>
   element.querySelector(`[data-hook="${dataHooks.subtitle}"] span`);
 const breadcrumbsElement = element =>

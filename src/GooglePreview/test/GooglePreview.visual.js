@@ -7,14 +7,54 @@ const defaultProps = {
   previewUrl: 'www.site-name.com',
   description: 'A short description for a site',
 };
+const longExampleText =
+  'The meta description is an HTML attribute that provides a brief summary of a web page. Search engines such as Google often display the meta description in search results, which can influence click-through rates.';
 
 const tests = [
   {
-    describe: 'basic',
+    describe: 'skin',
     its: [
       {
-        it: 'default render',
-        props: {},
+        it: 'skin light',
+        props: {
+          skin: 'light',
+        },
+      },
+      {
+        it: 'skin transparent',
+        props: {
+          skin: 'transparent',
+        },
+      },
+    ],
+  },
+  {
+    describe: 'title',
+    its: [
+      {
+        it: 'no title',
+        props: {
+          title: '',
+        },
+      },
+      {
+        it: 'one line',
+        props: {
+          title: longExampleText,
+        },
+        componentWrapper: ({ children }) => (
+          <div style={{ width: '340px' }}>{children}</div>
+        ),
+      },
+      {
+        it: 'multiline',
+        props: {
+          titleMaxLines: 3,
+          title: longExampleText,
+        },
+        componentWrapper: ({ children }) => (
+          <div style={{ width: '340px' }}>{children}</div>
+        ),
       },
     ],
   },
@@ -32,6 +72,16 @@ const tests = [
         props: {
           description:
             'a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site',
+        },
+        componentWrapper: ({ children }) => (
+          <div style={{ width: '340px' }}>{children}</div>
+        ),
+      },
+      {
+        it: 'multiline - 4 lines',
+        props: {
+          descriptionMaxLines: 4,
+          description: longExampleText,
         },
         componentWrapper: ({ children }) => (
           <div style={{ width: '340px' }}>{children}</div>

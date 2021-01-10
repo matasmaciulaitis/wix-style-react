@@ -1,6 +1,6 @@
 :import {
-  -st-from: "../Foundation/stylable/colors.st.css";
-  -st-named: D60,D80;
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D80;
 }
 
 .item {

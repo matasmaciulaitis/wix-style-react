@@ -21,7 +21,7 @@
 }
 
 :import {
-  -st-from: "../Sidebar/main.st.css";
+  -st-from: "../Sidebar/Sidebar.st.css";
   -st-named: sidebarWidth
 }
 
@@ -130,17 +130,22 @@
   margin-right: 12px;
 }
 
+.textWrapper {
+  flex: 1 1 auto;
+}
+
 .text {
   -st-extends: Text;
-
   display: block;
-  flex-grow: 1;
   word-break: break-word;
   margin: 9px 0 9px 0;
 }
 
 .suffix {
   display: flex;
-  justify-content: center;
+  flex: 1 0 auto;
+  justify-content: flex-end;
   min-width: 24px;
+  max-width: 30%;
+  margin-left: 6px;
 }

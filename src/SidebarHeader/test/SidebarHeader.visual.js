@@ -69,27 +69,33 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  visualize('SidebarHeader', () => {
-    snap(describe, () => (
-      <React.Fragment>
-        {its.map(({ props }, id) => (
-          <Box backgroundColor="D70" key={id}>
-            {skins.map(skin => (
-              <Box
-                direction="vertical"
-                marginBottom={5}
-                marginRight={5}
-                key={skin}
-              >
-                <SidebarContext.Provider value={{ getSkin: () => skin }}>
-                  <SidebarHeader {...props} />
-                </SidebarContext.Provider>
-              </Box>
-            ))}
-          </Box>
-        ))}
-      </React.Fragment>
-    ));
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  tests.forEach(({ describe, its }) => {
+    visualize(`${themeName ? `${themeName}|` : ''}SidebarHeader`, () => {
+      snap(describe, () => (
+        <React.Fragment>
+          {its.map(({ props }, id) =>
+            testWithTheme(
+              <Box backgroundColor="D70" key={id}>
+                {skins.map(skin => (
+                  <Box
+                    direction="vertical"
+                    marginBottom={5}
+                    marginRight={5}
+                    key={skin}
+                  >
+                    <SidebarContext.Provider value={{ getSkin: () => skin }}>
+                      <SidebarHeader {...props} />
+                    </SidebarContext.Provider>
+                  </Box>
+                ))}
+              </Box>,
+            ),
+          )}
+        </React.Fragment>
+      ));
+    });
   });
-});
+};

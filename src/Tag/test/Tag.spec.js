@@ -2,7 +2,6 @@ import React from 'react';
 import Tag from '../Tag';
 import tagPrivateDriverFactory from '../Tag.private.driver';
 import { tagPrivateUniDriverFactory } from '../Tag.private.uni.driver';
-import { SIZES, WEIGHTS } from '../../Text/constants';
 import {
   createRendererWithDriver,
   createRendererWithUniDriver,
@@ -21,61 +20,6 @@ describe('Tag', () => {
     const createDriver = jsx => render(jsx).driver;
     const id = 'myId';
     const label = 'Hey';
-
-    describe('size', () => {
-      it('should have a default small size', async () => {
-        const driver = createDriver(<Tag id={id}>{label}</Tag>);
-        expect(await driver.isSmall()).toBe(true);
-      });
-
-      it('should have a tiny size', async () => {
-        const driver = createDriver(
-          <Tag id={id} size="tiny">
-            {label}
-          </Tag>,
-        );
-        expect(await driver.isTiny()).toBe(true);
-        expect(await driver.isCloseButtonSmall()).toBe(true);
-        expect(await driver.getTextSize()).toBe(SIZES.tiny);
-        expect(await driver.getTextWeight()).toBe(WEIGHTS.thin);
-      });
-
-      it('should have a small size', async () => {
-        const driver = createDriver(
-          <Tag id={id} size="small">
-            {label}
-          </Tag>,
-        );
-        expect(await driver.isSmall()).toBe(true);
-        expect(await driver.isCloseButtonSmall()).toBe(true);
-        expect(await driver.getTextSize()).toBe(SIZES.small);
-        expect(await driver.getTextWeight()).toBe(WEIGHTS.normal);
-      });
-
-      it('should have a medium size', async () => {
-        const driver = createDriver(
-          <Tag id={id} size="medium">
-            {label}
-          </Tag>,
-        );
-        expect(await driver.isMedium()).toBe(true);
-        expect(await driver.isCloseButtonSmall()).toBe(true);
-        expect(await driver.getTextSize()).toBe(SIZES.small);
-        expect(await driver.getTextWeight()).toBe(WEIGHTS.normal);
-      });
-
-      it('should have a large size', async () => {
-        const driver = createDriver(
-          <Tag id={id} size="large">
-            {label}
-          </Tag>,
-        );
-        expect(await driver.isLarge()).toBe(true);
-        expect(await driver.isCloseButtonLarge()).toBe(true);
-        expect(await driver.getTextSize()).toBe(SIZES.medium);
-        expect(await driver.getTextWeight()).toBe(WEIGHTS.normal);
-      });
-    });
 
     it('should have a label', async () => {
       const driver = createDriver(<Tag id={id}>{label}</Tag>);
@@ -155,18 +99,28 @@ describe('Tag', () => {
       expect(await driver.isClickable()).toBe(true);
     });
 
-    it('should change color on hover when not disabled', async () => {
-      const driver = createDriver(<Tag id={id}>{label}</Tag>);
+    it('should change color on hover when not disable and have onClick handler', async () => {
+      const driver = createDriver(
+        <Tag id={id} onClick={() => void 0}>
+          {label}
+        </Tag>,
+      );
 
       expect(await driver.isHoverable()).toBe(true);
     });
 
     it('should not change color on hover when disabled', async () => {
       const driver = createDriver(
-        <Tag id={id} disabled>
+        <Tag id={id} onClick={() => void 0} disabled>
           {label}
         </Tag>,
       );
+
+      expect(await driver.isHoverable()).toBe(false);
+    });
+
+    it('should not change color on hover when there is no onClick handler', async () => {
+      const driver = createDriver(<Tag id={id}>{label}</Tag>);
 
       expect(await driver.isHoverable()).toBe(false);
     });

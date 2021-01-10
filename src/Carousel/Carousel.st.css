@@ -4,14 +4,44 @@
 }
 
 :import {
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: shadow30;
+}
+
+:import {
   -st-from: "./Pagination/Pagination.st.css";
   -st-default: Pagination;
 }
 
 :vars {
-  arrowSize: 36px;
   horizontalSpacingSize: 50px;
   verticalSpacingSize: 7px;
+}
+
+.root {
+  -st-states: controlsPosition(enum(sides, overlay, bottom, none)),
+    controlsSize(enum(tiny, small, medium, large)),
+    showControlsShadow;
+}
+
+.root:controlsSize(tiny) {
+  --arrow-size: 24px
+}
+
+.root:controlsSize(small) {
+  --arrow-size: 30px
+}
+
+.root:controlsSize(medium) {
+  --arrow-size: 36px;
+}
+
+.root:controlsSize(large) {
+  --arrow-size: 42px;
+}
+
+.root:showControlsShadow .controls {
+  box-shadow: value(shadow30);
 }
 
 .root[data-is-loading='true'] {
@@ -19,13 +49,36 @@
 }
 
 .root :global(.slick-list) {
-  width: calc(100% - (2 * value(arrowSize)) - value(horizontalSpacingSize));
-  min-height: value(arrowSize);
+  min-height: var(--arrow-size);
   margin: auto;
 }
 
-.root :global(.slick-arrow) {
-  top: calc(50% - value(arrowSize) + value(verticalSpacingSize));
+.root :global(.slick-list .slick-track:not([style*="width"]) .slick-slide) {
+  visibility: hidden;
+}
+
+.root :global(.slick-list .slick-track[style*="width"] .slick-slide) {
+  visibility: visible;
+}
+
+.root:controlsPosition(sides) :global(.slick-list) {
+  width: calc(100% - (2 * var(--arrow-size)) - value(horizontalSpacingSize));
+}
+
+.root:controlsPosition(sides) :global(.slick-arrow) {
+  top: calc(50% - var(--arrow-size) + value(verticalSpacingSize));
+  transform: none;
+}
+
+.root:controlsPosition(overlay) :global(.slick-arrow) {
+  top: calc(50% - var(--arrow-size) + value(verticalSpacingSize));
+  transform: none;
+  margin: 0 12px;
+  z-index: 1;
+}
+
+.root:controlsPosition(bottom) :global(.slick-arrow) {
+  top: calc(100% - var(--arrow-size) / 2 - 2px);
   transform: none;
 }
 
@@ -34,11 +87,16 @@
 }
 
 .root :global(.slick-next) {
-  right: calc(value(arrowSize) / 2 - 2px);
+  right: calc(var(--arrow-size) / 2 - 2px);
 }
 
 .root :global(.slick-prev) {
   left: 0;
+}
+
+.imageContainer {
+  display: flex;
+  height: 100%;
 }
 
 .image {

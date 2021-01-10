@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import WixStyleReactProvider from '../../../WixStyleReactProvider';
 
 import Subheader from '..';
 import Button from '../../../Button';
@@ -44,6 +45,18 @@ tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`Card${describe ? '/' + describe : ''}`, module).add(it, () => (
       <Subheader {...props} />
+    ));
+  });
+});
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(`Layout And Spacing| Card/${describe}`, module).add(it, () => (
+      <WixStyleReactProvider
+        features={{ reducedSpacingAndImprovedLayout: true }}
+      >
+        <Subheader {...props} />
+      </WixStyleReactProvider>
     ));
   });
 });

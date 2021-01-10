@@ -402,11 +402,11 @@ describe('Input', () => {
         rerender(<Input autoFocus />);
         expect(await driver.isFocus()).toBe(false);
       });
-      //
-      // it('Mounting an input element with autoFocus=true, gives it the focus', async () => {
-      //   const { driver } = render(<Input autoFocus />);
-      //   expect(await driver.isFocus()).toBe(true);
-      // });
+
+      it('Mounting an input element with autoFocus=true, gives it the focus', async () => {
+        const { driver } = render(<Input autoFocus />);
+        expect(await driver.isFocus()).toBe(true);
+      });
 
       describe('with value attribute', () => {
         const value = 'this is a string';
@@ -747,6 +747,30 @@ describe('Input', () => {
         const { driver } = render(<Input {...props} />);
         expect(await driver.getSize()).toEqual('' + props.size);
         expect(await driver.isOfSize('large')).toBe(true);
+      });
+    });
+
+    describe('onWheel event', () => {
+      it('should keep focus on wheel for text input', async () => {
+        const { driver } = render(<Input />);
+
+        expect(await driver.isFocus()).toBe(false);
+
+        await driver.focus();
+        await driver.trigger('wheel');
+
+        expect(await driver.isFocus()).toBe(true);
+      });
+
+      it('should lose focus on wheel for number input', async () => {
+        const { driver } = render(<Input type="number" />);
+
+        expect(await driver.isFocus()).toBe(false);
+
+        await driver.focus();
+        await driver.trigger('wheel');
+
+        expect(await driver.isFocus()).toBe(false);
       });
     });
   }

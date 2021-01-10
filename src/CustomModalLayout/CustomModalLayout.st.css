@@ -20,7 +20,7 @@
 /* Extending BaseModalLayout */
 .root {
   -st-extends: BaseModalLayout;
-  -st-states: removeContentPadding;
+  -st-states: removeContentPadding, showHeaderDivider, showFooterDivider;
   width: calc(100% - (value(modalBoxPadding) * 2));
   max-width: 1254px;
   min-width: 510px;
@@ -28,7 +28,16 @@
 
 /* Extending of BaseModalLayout Blocks */
 .root:not(:removeContentPadding)::content::innerContent {
-  padding: 0 value(spacing30);
+  padding-left: value(spacing30);
+  padding-right: value(spacing30);
+}
+
+.root:not(:removeContentPadding):showHeaderDivider::content::innerContent {
+  padding-top: value(spacing24);
+}
+
+.root:not(:removeContentPadding):showFooterDivider::content::innerContent {
+  padding-bottom: value(spacing24);
 }
 
 .root:controlButtonAmount(0)::header::innerContent {

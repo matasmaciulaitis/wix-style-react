@@ -111,13 +111,17 @@ export default {
           example({
             title: 'Selection Area',
             text:
-              'A selection area makes is easier to select the checkbox, with a background  as an indicator to the click area',
+              'A selection area makes is easier to select the checkbox, with a background or a border as an indicator to the click area',
             source: examples.selectionArea,
           }),
 
           example({
             title: 'Controlled checkbox',
             source: examples.controlledCheckbox,
+          }),
+          example({
+            title: 'Checkbox with tooltip props',
+            source: examples.withTooltipProps,
           }),
         ],
       }),

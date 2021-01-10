@@ -27,7 +27,7 @@
 | loader | node | Loading ...| - | The loader to show when loading more items. |
 | useWindow | boolean | true | - | Add scroll listeners to the window, or else, the component's parentNode. |
 | scrollElement | DOM Object | - | - | Add scroll listeners to specified DOM Object. |
-| rowVerticalPadding | string | 'medium' | - | Table cell vertical padding. should be 'medium' or 'large' |
+| rowVerticalPadding | string | 'medium' | - | Table cell vertical padding. should be 'small', 'medium', 'large' |
 | thPadding | string | - | - | *Deprecated* Table headers padding |
 | thHeight | string | - | - | *Deprecated* Table headers height |
 | thFontSize | string | - | - | *Deprecated* Table headers font size |

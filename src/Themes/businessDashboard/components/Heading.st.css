@@ -35,4 +35,5 @@
   -st-mixin: heading-h5;
   color: value(D10);
   text-transform: none;
+  letter-spacing: initial;
 }

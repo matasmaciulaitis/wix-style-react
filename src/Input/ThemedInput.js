@@ -3,6 +3,7 @@ import Input from './Input';
 import { st, classes } from './Input.st.css';
 import DATA_ATTR from './DataAttr';
 import { filterObject } from '../utils/filterObject';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 class ThemedInput extends Input {
   // For testing purposes only
@@ -51,28 +52,33 @@ class ThemedInput extends Input {
 
     const placeholder = this.props.placeholder;
     return (
-      <div
-        className={st(
-          classes.root,
-          {
-            size,
-            hasFocus: forceFocus || this.state.focus,
-            status,
-            forceHover,
-            readOnly,
-            disabled,
-            roundInput,
-            noRightBorderRadius,
-            noLeftBorderRadius,
-          },
-          className,
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            className={st(
+              classes.root,
+              {
+                isMadefor,
+                size,
+                hasFocus: forceFocus || this.state.focus,
+                status,
+                forceHover,
+                readOnly,
+                disabled,
+                roundInput,
+                noRightBorderRadius,
+                noLeftBorderRadius,
+              },
+              className,
+            )}
+            dir={rtl ? 'rtl' : null}
+            data-hook={dataHook}
+            {...this._getDataAttr()}
+          >
+            {super.render({ placeholder })}
+          </div>
         )}
-        dir={rtl ? 'rtl' : null}
-        data-hook={dataHook}
-        {...this._getDataAttr()}
-      >
-        {super.render({ placeholder })}
-      </div>
+      </FontUpgradeContext.Consumer>
     );
   }
 }

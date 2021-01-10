@@ -2,7 +2,7 @@ import {
   buttonTestkitFactory,
   headingTestkitFactory,
 } from '../../../../dist/testkit/puppeteer';
-import axios from 'axios';
+import http from 'http';
 
 describe('React application to be interacted with puppeteer testkit', () => {
   beforeAll(async () => {
@@ -33,7 +33,7 @@ describe('React application to be interacted with puppeteer testkit', () => {
   it('should be imported in node-env', async () => {
     let error;
     try {
-      await axios.get('http://localhost:3105/puppeteer-testkit-require');
+      await http.get('http://localhost:3105/puppeteer-testkit-require');
     } catch (e) {
       error = `${e.response.data.errorMessage} ${e.response.data.errorLog}`;
     }

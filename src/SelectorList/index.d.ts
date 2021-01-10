@@ -18,8 +18,8 @@ export type SelectorListProps = SelectorListCommonProps &
 
 export type SelectorListRenderProp = (args: {
   renderList: () => React.ReactNode;
-  renderToggleAllCheckBox: () => React.ReactNode;
-  selectedItems: Array<SelectorListItem>;
+  renderToggleAllCheckbox: () => React.ReactNode;
+  selectedItems: SelectorListItem[];
 }) => React.ReactNode;
 
 export type SelectorListCommonProps = {
@@ -38,11 +38,12 @@ export type SelectorListCommonProps = {
   onSelect?: (item: SelectorListItem) => void;
   initialAmountToLoad?: number;
   children?: SelectorListRenderProp;
+  subtitle?: React.ReactNode;
+  selectAllText?: string;
+  deselectAllText?: string;
 };
 
-export default class SelectorList extends React.PureComponent<
-  SelectorListProps
-> {}
+export default class SelectorList extends React.PureComponent<SelectorListProps> {}
 
 export type SelectorListDatasourceFn = (
   searchQuery: string,

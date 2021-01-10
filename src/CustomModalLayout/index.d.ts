@@ -5,8 +5,8 @@ import { ButtonProps, ButtonSize } from '../Button';
 
 export interface CustomModalLayoutProps extends BaseModalLayoutProps {
   title?: React.ReactNode;
-  subtitle?: string;
-  content?: string | React.ReactNode;
+  subtitle?: React.ReactNode;
+  content?: React.ReactNode;
   primaryButtonText?: string;
   primaryButtonProps?: OmitPolyfill<ButtonProps, 'dataHook'>;
   primaryButtonOnClick?(): void;
@@ -20,10 +20,12 @@ export interface CustomModalLayoutProps extends BaseModalLayoutProps {
   height?: React.CSSProperties['height'];
   maxHeight?: React.CSSProperties['maxHeight'];
   removeContentPadding?: boolean;
-  showHeaderDivider?: boolean;
-  showFooterDivider?: boolean;
-  contentHideDividers?: boolean;
+  showHeaderDivider?: 'auto' | boolean;
+  showFooterDivider?: 'auto' | boolean;
+  hideContentDividers?: boolean;
 }
 
-declare const CustomModalLayout: React.FC<CustomModalLayoutProps>;
+declare const CustomModalLayout: React.FC<CustomModalLayoutProps> & {
+  Title: React.FunctionComponent;
+};
 export default CustomModalLayout;

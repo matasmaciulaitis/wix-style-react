@@ -5,6 +5,4 @@ export interface HighlighterProps {
   match?: string;
 }
 
-export default class Highlighter extends React.PureComponent<
-  HighlighterProps
-> {}
+export default class Highlighter extends React.PureComponent<HighlighterProps> {}

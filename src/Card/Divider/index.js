@@ -2,7 +2,7 @@ import React from 'react';
 
 import CoreDivider from '../../Divider';
 
-const Divider = () => <CoreDivider />;
+const Divider = props => <CoreDivider {...props} />;
 
 Divider.displayName = 'Divider';
 

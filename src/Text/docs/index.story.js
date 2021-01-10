@@ -160,6 +160,13 @@ export default {
           }),
 
           example({
+            title: `Tooltip size`,
+            text:
+              'Tooltip size can be adjusted with `size` prop that is passed through `tooltipProps`.',
+            source: examples.smallTooltip,
+          }),
+
+          example({
             title: 'TagName',
             text: 'Control the rendered HTML tag.',
             source: examples.custom,
@@ -167,7 +174,8 @@ export default {
 
           example({
             title: 'Lists',
-            text: 'Text component provides a style for HTML based lists.',
+            text:
+              'Text component provides a style for HTML based lists. Using the listStyle prop, an unordered list items can be styled as checkmark (default) or circle .',
             source: examples.list,
           }),
         ],

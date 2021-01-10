@@ -21,8 +21,6 @@ export const carouselPrivateUniDriverFactory = base => {
         .$$('[data-hook="carousel-img"]')
         .map(async img => ReactTestUtils.Simulate.load(await img.getNative()));
     },
-    clickPrevious: () => base.$('[data-hook="prev-button"]').click(),
-    clickNext: () => base.$('[data-hook="next-button"]').click(),
     mouseOver: () => ReactBase(getCurrentSlide())._private.mouseOver(),
     mouseOut: () => ReactBase(getCurrentSlide())._private.mouseOut(),
     clickPageNavigationDot: index => {

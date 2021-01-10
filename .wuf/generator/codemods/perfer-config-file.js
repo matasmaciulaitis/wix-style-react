@@ -20,8 +20,5 @@ module.exports = (file, api, options) => {
   // for js bundles
   pushNewValue('javascriptFiles', `${ComponentName}.bundle.min.js`, 10);
 
-  // for css bundles
-  pushNewValue('cssFiles', `${ComponentName}.min.css`, 1);
-
   return root.toSource({ quote: 'single', trailingComma: true });
 };

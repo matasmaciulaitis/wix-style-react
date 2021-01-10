@@ -194,7 +194,7 @@ class AddItem extends Component {
       <button
         className={st(
           classes.root,
-          { theme, removePadding, borderRadius },
+          { theme, removePadding, borderRadius, disabled },
           className,
         )}
         style={borderRadius && { borderRadius }}

@@ -23,6 +23,4 @@ export interface InputWithLabelProps {
   customInput?: React.ReactNode | Function;
 }
 
-export default class InputWithLabel extends React.Component<
-  InputWithLabelProps
-> {}
+export default class InputWithLabel extends React.Component<InputWithLabelProps> {}

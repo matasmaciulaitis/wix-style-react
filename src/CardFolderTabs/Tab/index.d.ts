@@ -7,6 +7,4 @@ export interface CardFolderTabProps {
   disabled?: boolean;
 }
 
-export default class CardFolderTab extends React.PureComponent<
-  CardFolderTabProps
-> {}
+export default class CardFolderTab extends React.PureComponent<CardFolderTabProps> {}

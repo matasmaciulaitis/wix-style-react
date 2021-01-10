@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Heading, { APPEARANCES } from '..';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const defaultProps = {
   light: false,
@@ -67,4 +68,16 @@ export const runTests = (
   });
 };
 
-runTests();
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props, container }) => {
+    storiesOf('Layout And Spacing| Heading', module).add(it, () => (
+      <WixStyleReactProvider
+        features={{ reducedSpacingAndImprovedLayout: true }}
+      >
+        <div {...container}>
+          <Heading {...defaultProps} {...props} />
+        </div>
+      </WixStyleReactProvider>
+    ));
+  });
+});

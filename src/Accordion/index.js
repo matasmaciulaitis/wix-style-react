@@ -1,1 +1,5 @@
-export { default } from './Accordion.js';
+export {
+  default,
+  accordionItemBuilder,
+  accordionSectionItemBuilder,
+} from './Accordion.js';

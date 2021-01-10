@@ -4,6 +4,7 @@ import Tabs from '../Tabs';
 import ColorPickerConverterHex from './ColorPickerConverterHex';
 import ColorPickerConverterRGB from './ColorPickerConverterRGB';
 import ColorPickerConverterHsb from './ColorPickerConverterHsb';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 const HEX = 'HEX';
 const RGB = 'RGB';
@@ -75,13 +76,18 @@ export default class ColorPickerConverter extends React.PureComponent {
 
     return (
       <div data-hook={dataHook}>
-        <Tabs
-          minWidth={0}
-          items={tabs}
-          activeId={activeTab}
-          type="uniformFull"
-          onClick={this.changeTab}
-        />
+        <WixStyleReactContext.Consumer>
+          {({ reducedSpacingAndImprovedLayout }) => (
+            <Tabs
+              minWidth={0}
+              items={tabs}
+              activeId={activeTab}
+              type="uniformFull"
+              onClick={this.changeTab}
+              size={reducedSpacingAndImprovedLayout ? 'small' : undefined}
+            />
+          )}
+        </WixStyleReactContext.Consumer>
         {activeTab === HEX && (
           <ColorPickerConverterHex
             placeholder={hexPlaceholder}

@@ -4,6 +4,11 @@
 }
 
 :import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9, speed-fast-1;
+}
+
+:import {
   -st-from: '../Foundation/stylable/colors.st.css';
   -st-named: B10, F00, B20,  R10, R20, P10, P20, G10, G20, D80, B50, D40,
   D10, D20, B40, F00, D10-20, D20-48, D20-54, D20-60, D80-30, D80-70, D10-30,
@@ -30,8 +35,8 @@
   -st-mixin: text-medium-normal;
 
   outline: none;
-  transition-duration: 100ms;
-  transition-timing-function: linear;
+  transition-duration: value(speed-fast-1);
+  transition-timing-function: value(ease-9);
   transition-property: background-color, color, border-color;
 
   height: 36px;
@@ -79,25 +84,25 @@
 
 /* Skin: standard - secondary */
 
-.root:priority(secondary) {
+.root:skin(standard):priority(secondary) {
   background-color: transparent;
   border-color: value(THEME-COLOR-10);
   color: value(THEME-COLOR-10);
 }
 
-.root:priority(secondary):hover {
+.root:skin(standard):priority(secondary):hover {
   color: value(D80);
   border-color: transparent;
   background-color: value(THEME-COLOR-20);
 }
 
-.root:priority(secondary):active {
+.root:skin(standard):priority(secondary):active {
   background-color: value(THEME-COLOR-10);
   border-color: value(THEME-COLOR-10);
   color: value(D80);
 }
 
-.root:priority(secondary):disabled {
+.root:skin(standard):priority(secondary):disabled {
   color: value(D10-30);
   background-color: transparent;
   border-color: value(D10-30);

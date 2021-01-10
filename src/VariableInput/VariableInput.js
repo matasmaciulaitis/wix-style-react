@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Editor, EditorState } from 'draft-js';
-
 import EditorUtilities from './EditorUtilities';
 import { sizeTypes, inputToTagsSize, dataHooks } from './constants';
 import { st, classes, vars } from './VariableInput.st.css';
 import StatusIndicator from '../StatusIndicator';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 /** Input with variables as tags */
 class VariableInput extends React.PureComponent {
@@ -23,6 +23,7 @@ class VariableInput extends React.PureComponent {
   componentDidMount() {
     const { initialValue } = this.props;
     this._setStringValue(initialValue);
+    this.editorRef = React.createRef();
   }
 
   render() {
@@ -42,43 +43,49 @@ class VariableInput extends React.PureComponent {
       handlePastedText: this._handlePastedText,
       handleReturn: () => 'handled',
     };
-    return (
-      <div
-        data-hook={dataHook}
-        className={st(
-          classes.root,
-          {
-            disabled,
-            readOnly,
-            size,
-            status,
-            singleLine: !multiline,
-          },
-          className,
-        )}
-        style={{ [vars.rows]: rows }}
-      >
-        <Editor
-          ref="editor"
-          editorState={this.state.editorState}
-          onChange={this._onEditorChange}
-          placeholder={placeholder}
-          readOnly={disabled || readOnly}
-          {...(readOnly && { tabIndex: 0 })}
-          {...(!multiline && singleLineProps)}
-        />
 
-        {/* Status */}
-        {status && (
-          <span className={classes.indicatorWrapper}>
-            <StatusIndicator
-              dataHook={dataHooks.indicator}
-              status={status}
-              message={statusMessage}
+    return (
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            data-hook={dataHook}
+            className={st(
+              classes.root,
+              {
+                isMadefor,
+                disabled,
+                readOnly,
+                size,
+                status,
+                singleLine: !multiline,
+              },
+              className,
+            )}
+            style={{ [vars.rows]: rows }}
+          >
+            <Editor
+              ref={this.editorRef}
+              editorState={this.state.editorState}
+              onChange={this._onEditorChange}
+              placeholder={placeholder}
+              readOnly={disabled || readOnly}
+              {...(readOnly && { tabIndex: 0 })}
+              {...(!multiline && singleLineProps)}
             />
-          </span>
+
+            {/* Status */}
+            {status && (
+              <span className={classes.indicatorWrapper}>
+                <StatusIndicator
+                  dataHook={dataHooks.indicator}
+                  status={status}
+                  message={statusMessage}
+                />
+              </span>
+            )}
+          </div>
         )}
-      </div>
+      </FontUpgradeContext.Consumer>
     );
   }
 

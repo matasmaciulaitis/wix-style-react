@@ -40,10 +40,7 @@ describe('InputWithOptions', () => {
     });
 
   const pressTab = () =>
-    browser
-      .actions()
-      .sendKeys(protractor.Key.TAB)
-      .perform();
+    browser.actions().sendKeys(protractor.Key.TAB).perform();
 
   async function focusOnInputWithOptions() {
     const firstElement = $(`[data-hook="input-for-focus-1"]`);

@@ -1,4 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { textUniDriverFactory } from '../Text/Text.uni.driver';
 import { dataHooks } from './constants';
 
@@ -11,35 +11,63 @@ export const thumbnailDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 
-    /** Get thumbnail title */
+    /**
+     * Gets thumbnail title
+     * @returns {Promise<string>}
+     */
     getTitle: async () =>
       (
         await textUniDriverFactory(await byHook(dataHooks.thumbnailTitle))
       ).getText(),
 
-    /** Get thumbnail description */
+    /**
+     * Gets thumbnail description
+     * @returns {Promise<string>}
+     */
     getDescription: () => byHook(dataHooks.thumbnailDescription).text(),
 
-    /** Get selected icon */
+    /**
+     * Gets selected icon driver
+     * @returns {Promise<UniDriver>}
+     */
     getSelectedIcon: () => byHook(dataHooks.thumbnailSelectedIcon),
 
+    /**
+     * Gets background image driver
+     * @returns {Promise<UniDriver>}
+     */
     getBackgroundImage: () => byHook(dataHooks.thumbnailBackgroundImage),
 
-    /** Is Thumbnail selected */
+    /**
+     * Checks whether Thumbnail is selected
+     * @returns {Promise<boolean>}
+     */
     isSelected: async () =>
       (await getThumbnailWrapper().attr('data-selected')) === 'true',
 
-    /** Is Thumbnail disabled */
+    /**
+     * Checks whether Thumbnail is disabled
+     * @returns {Promise<boolean>}
+     */
     isDisabled: async () =>
       (await getThumbnailWrapper().attr('data-disabled')) === 'true',
 
-    /** Get thumbnail image */
+    /**
+     * Gets thumbnail image driver
+     * @returns {Promise<UniDriver>}
+     */
     getImage: () => byHook(dataHooks.thumbnailImage),
 
-    /** Get thumbnail width, if it's set through `width` prop */
+    /**
+     * Gets thumbnail width, if it's set through `width` prop
+     * @returns {Promise<string>}
+     */
     getWidth: async () => await getStyle(base, 'width'),
 
-    /** Get thumbnail height, if it's set through `height` prop */
+    /**
+     *  Gets thumbnail height, if it's set through `height` prop
+     * @returns {Promise<string>}
+     * */
     getHeight: async () =>
       await getStyle(await getThumbnailWrapper(), 'height'),
   };

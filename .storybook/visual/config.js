@@ -3,13 +3,31 @@ import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withI18n } from 'storybook-addon-i18n';
 import { version } from '../../package.json';
 import { create } from '@storybook/theming';
-
 import './stories.scss';
 
 function loadStories() {
-  const req = require.context('../../src', true, /\.visual\.js$/);
-  req.keys().forEach(filename => req(filename));
+  let req;
+  switch (process.env.STORYBOOK_VISUAL) {
+    // Test only base components
+    case 'base':
+      req = require.context('../../src', true, /^(?!.\/Themes\/).*\.visual\.js$/);
+      break;
+    // Test themes
+    case 'themes':
+      req = require.context('../../src/Themes', true, /\.visual\.js$/);
+      break;
+    default:
+      req = require.context('../../src', true, /\.visual\.js$/);
+  }
+
+  req.keys().forEach(filename => {
+    const file = req(filename);
+    if (typeof file.runTests === 'function') {
+      file.runTests();
+    }
+  });
 }
+
 const theme = create({
   base: 'light',
   brandTitle: `Wix Style React ${version}`,

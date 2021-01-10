@@ -205,7 +205,7 @@ const decoratorFactory = ({ tag: { size, disabled } }) => {
             >
               {text}
             </Tag>
-            <span className={classes.textWrapper}> </span>
+            <span className={classes.textWrapper} />{' '}
           </span>
         );
       },
@@ -216,16 +216,10 @@ const decoratorFactory = ({ tag: { size, disabled } }) => {
 const pushAndKeepSelection = ({ editorState, content }) => {
   const selectionStateBefore = editorState.getSelection();
   const blockIndex = Object.keys(
-    editorState
-      .getCurrentContent()
-      .getBlockMap()
-      .toJS(),
+    editorState.getCurrentContent().getBlockMap().toJS(),
   ).indexOf(selectionStateBefore.getAnchorKey());
   const updatedEditorState = EditorState.push(editorState, content);
-  const blockMap = updatedEditorState
-    .getCurrentContent()
-    .getBlockMap()
-    .toJS();
+  const blockMap = updatedEditorState.getCurrentContent().getBlockMap().toJS();
   const blockKeys = Object.keys(blockMap);
   const blockKey = blockKeys[blockIndex];
   const blockOffset = selectionStateBefore.getAnchorOffset();

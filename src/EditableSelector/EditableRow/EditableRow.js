@@ -6,7 +6,8 @@ import Check from 'wix-ui-icons-common/Check';
 import Input from '../../Input';
 import Tooltip from '../../Tooltip';
 import IconButton from '../../IconButton';
-import styles from '../EditableSelector.scss';
+import { classes } from '../EditableSelector.st.css';
+import { dataHooks } from './constants';
 
 class EditableRow extends Component {
   static propTypes = {
@@ -37,12 +38,12 @@ class EditableRow extends Component {
   render() {
     const { dataHook } = this.props;
     return (
-      <div data-hook={dataHook} className={styles.editableRowContainer}>
-        <div className={styles.editableRowInputWrap}>
+      <div data-hook={dataHook} className={classes.editableRowContainer}>
+        <div className={classes.editableRowInputWrap}>
           <Input
             ref={input => (this.input = input)}
-            className={styles.editableRowInput}
-            dataHook="edit-row-input"
+            className={classes.editableRowInput}
+            dataHook={dataHooks.editRowInput}
             value={this.state.newOption}
             onChange={event => this.setState({ newOption: event.target.value })}
             onEnterPressed={() => this.onApprove()}
@@ -54,13 +55,13 @@ class EditableRow extends Component {
           />
         </div>
 
-        <div className={styles.editableRowButtons}>
+        <div className={classes.editableRowButtons}>
           <Tooltip content="Cancel" timeout={0}>
             <IconButton
               onClick={this.onCancel}
               size="medium"
               priority="secondary"
-              dataHook="edit-row-cancel-button"
+              dataHook={dataHooks.editRowCancelButton}
             >
               <X />
             </IconButton>
@@ -71,7 +72,7 @@ class EditableRow extends Component {
               onClick={this.onApprove}
               size="medium"
               disabled={this.state.newOption.length === 0}
-              dataHook="edit-row-approve-button"
+              dataHook={dataHooks.editRowApproveButton}
             >
               <Check />
             </IconButton>

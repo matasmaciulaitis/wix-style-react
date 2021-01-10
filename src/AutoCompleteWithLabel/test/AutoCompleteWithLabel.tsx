@@ -70,6 +70,7 @@ function AutoCompleteWithLabelWithAllProps() {
       disabled
       className="classy"
       maxLength={100}
+      maxHeightPixels={260}
       placeholder="placeholder"
       onSelect={_ev => {}}
       native

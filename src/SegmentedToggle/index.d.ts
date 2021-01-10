@@ -38,13 +38,9 @@ export type SegmentedToggleIconProps = OmitPolyfill<
   focusableOnFocus?: React.FocusEventHandler<HTMLButtonElement>;
   focusableOnBlur?: React.FocusEventHandler<HTMLButtonElement>;
 };
-export class SegmentedToggleIcon extends React.Component<
-  SegmentedToggleIconProps
-> {}
+export class SegmentedToggleIcon extends React.Component<SegmentedToggleIconProps> {}
 
-export default class SegmentedToggle extends React.Component<
-  SegmentedToggleProps
-> {
+export default class SegmentedToggle extends React.Component<SegmentedToggleProps> {
   static Button: typeof SegmentedToggleButton;
   static Icon: typeof SegmentedToggleIcon;
 }

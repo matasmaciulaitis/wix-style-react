@@ -97,5 +97,3 @@ export const runTests = (
     });
   });
 };
-
-runTests();

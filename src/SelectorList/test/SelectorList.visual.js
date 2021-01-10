@@ -74,6 +74,18 @@ const interactiveTests = [
       },
     ],
   },
+  {
+    describe: 'sanity',
+    its: [
+      {
+        it: 'should render selector list without search bar',
+        props: { multiple: true, withSearch: false },
+        componentDidMount: async () => {
+          await createDriver().toggleSelectorAt(1);
+        },
+      },
+    ],
+  },
 ];
 
 interactiveTests.forEach(({ describe, its }) => {

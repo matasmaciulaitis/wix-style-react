@@ -9,12 +9,17 @@ class Proportion extends React.PureComponent {
   static displayName = 'Proportion';
 
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
-    className: PropTypes.string,
-    /** condition for wrapping content with Proportion or return original  */
 
-    /** predefined Proportion.square (1), Proportion.portrait (3/4), Proportion.cinema (16/9), Proportion.landscape (4/3), or a custom number (width / height) or 'none' for original size */
+    /** Children to render. */
+    children: PropTypes.node.isRequired,
+
+    /** A css class to be applied to the component's root element */
+    className: PropTypes.string,
+
+    /** Condition for wrapping content with Proportion or return original  */
+    /** Predefined Proportion.square (1), Proportion.portrait (3/4), Proportion.cinema (16/9), Proportion.landscape (4/3), or a custom number (width / height) or 'none' for original size */
     aspectRatio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 

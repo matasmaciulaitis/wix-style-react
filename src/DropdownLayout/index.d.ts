@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface DropdownLayoutProps {
   dataHook?: string;
+  className?: string;
   dropDirectionUp?: boolean;
   focusOnSelectedOption?: boolean;
   onClose?: () => void;
@@ -35,9 +36,7 @@ export interface DropdownLayoutProps {
 
 export type Overflow = 'visible' | 'hidden' | 'scroll' | 'auto';
 
-export default class DropdownLayout extends React.PureComponent<
-  DropdownLayoutProps
-> {
+export default class DropdownLayout extends React.PureComponent<DropdownLayoutProps> {
   static NONE_SELECTED_ID: NoneSelectedId;
 }
 
@@ -54,7 +53,7 @@ export type DropdownLayoutValueOption = {
   title?: boolean;
   linkTo?: string;
   overrideStyle?: boolean;
-  overrideOptionStyle? : boolean;
+  overrideOptionStyle?: boolean;
   label?: string;
 };
 

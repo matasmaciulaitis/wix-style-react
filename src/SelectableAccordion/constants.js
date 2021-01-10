@@ -14,3 +14,9 @@ export const TYPES = {
 export const dataAttr = {
   STATE: 'data-state',
 };
+
+export const VERTICAL_PADDING = {
+  medium: 'medium',
+  small: 'small',
+  tiny: 'tiny',
+};

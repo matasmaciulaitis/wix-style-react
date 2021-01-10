@@ -89,40 +89,30 @@ export default {
           }),
 
           example({
-            title: 'Grouping',
-            text: 'Any options list can be grouped to defined categories.',
+            title: 'Grouped Options',
+            text:
+              '`<Dropdown/>` options can be grouped or categorised by having title and divider options. To display a title or a divider, please use `listItemSectionBuilder`.',
             source: examples.group,
           }),
 
           example({
-            title: 'Divider',
-            text: 'An example where divider is used to split the options.',
-            source: examples.divider,
-          }),
-
-          example({
             title: 'Sizes',
-            text: 'Dropdown supporst three sizes: small, medium and large.',
+            text:
+              '`<Dropdown/>` supports three sizes: `small`, `medium` (default) and `large`.',
             source: examples.sizes,
           }),
 
           example({
-            title: 'Input Prefix',
-            text: 'An example where input can contain prefix value.',
-            source: examples.prefix,
+            title: 'Input Affix',
+            text: '`<Dropdown/>` supports suffix and prefix usages.',
+            source: examples.affix,
           }),
 
           example({
-            title: 'Input Suffix',
-            text: 'An example where input can contain suffix value.',
-            source: examples.suffix,
-          }),
-
-          example({
-            title: 'Footer',
+            title: 'Fixed Header And Footer',
             text:
-              'An example where fixed footer is always attached to the bottom of options.',
-            source: examples.footer,
+              '<Dropdown/> supports adding content to fixed header and footer. Use it to add actions like “see all options”.',
+            source: examples.fixedHeaderFooter,
           }),
 
           example({
@@ -139,15 +129,15 @@ export default {
           }),
 
           example({
-            title: 'Infinite scroll',
+            title: 'Lazy Loading',
             text:
-              'An example where loading more options with infinite scroll is presented.',
+              'When scrolled to the bottom of the list, <Dropdown/> can load more items using the infiniteScroll, loadMore and hasMore props.',
             source: examples.infinite,
           }),
 
           example({
             title: 'Handling overflow',
-            text: `Some times we want dropdown to be detached from nearest overflow container. For this we can use popovers feature to set the overflow target to certain element in the DOM. By passing appendTo="window" we say that dropdowns overflow boundary is document.body itself.`,
+            text: `Some times we want dropdown to be detached from nearest overflow container. For this we can use popovers feature to set the overflow target to certain element in the DOM. By passing appendTo="window" we say that dropdown's overflow boundary is document.body itself.`,
             source: examples.overflow,
           }),
 

@@ -6,6 +6,7 @@ import { st, classes } from './Tooltip.st.css';
 import { dataHooks, TIMEOUT } from './constants';
 import { FontUpgradeContext } from '../FontUpgrade/context';
 import FontUpgrade from '../FontUpgrade';
+import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
 
 /**
  * Next Tooltip
@@ -85,17 +86,21 @@ class Tooltip extends React.PureComponent {
   _renderContent = () => {
     const { content, textAlign, size } = this.props;
     const textSize = size === 'small' ? 'tiny' : 'small';
+
     return (
       <FontUpgradeContext.Consumer>
-        {({ active }) => {
+        {({ active: isMadefor }) => {
+          const textWeight =
+            size === 'small' ? 'normal' : isMadefor ? 'thin' : 'normal';
+
           return (
             <div style={{ textAlign }}>
-              <FontUpgrade active={!!active}>
+              <FontUpgrade active={!!isMadefor}>
                 {typeof content === 'string' ? (
                   <RawText
                     dataHook={dataHooks.tooltipText}
                     size={textSize}
-                    weight="normal"
+                    weight={textWeight}
                     light
                   >
                     {content}
@@ -125,23 +130,28 @@ class Tooltip extends React.PureComponent {
     } = this.props;
 
     return (
-      <CoreTooltip
-        {...rest}
-        data-hook={dataHook}
-        className={st(classes.root, { size }, className)}
-        content={this._renderContent()}
-        hideDelay={exitDelay}
-        showDelay={enterDelay}
-        disabled={
-          disabled === undefined
-            ? children.props && children.props.disabled
-            : disabled
-        }
-        showArrow
-        timeout={TIMEOUT}
-      >
-        {children}
-      </CoreTooltip>
+      <ThemeProviderConsumerBackwardCompatible>
+        {({ className: themeClassName }) => (
+          <CoreTooltip
+            {...rest}
+            data-hook={dataHook}
+            data-size={size}
+            className={st(classes.root, { size }, className, themeClassName)}
+            content={this._renderContent()}
+            hideDelay={exitDelay}
+            showDelay={enterDelay}
+            disabled={
+              disabled === undefined
+                ? children.props && children.props.disabled
+                : disabled
+            }
+            showArrow
+            timeout={TIMEOUT}
+          >
+            {children}
+          </CoreTooltip>
+        )}
+      </ThemeProviderConsumerBackwardCompatible>
     );
   }
 }

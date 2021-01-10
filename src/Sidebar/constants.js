@@ -1,6 +1,7 @@
 export const dataHooks = {
   drivenOutChildren: 'driven-out-children',
-  onScreenChildren: 'on-screen-children',
+  onScreenChildrenContainer: 'on-screen-children-container',
+  onScreenChildrenContent: 'on-screen-children-content',
   drivenInChildren: 'driven-in-children',
   scrollBarGradient: 'scroll-bar-gradient',
 };

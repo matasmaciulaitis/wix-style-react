@@ -11,9 +11,7 @@ export interface SectionHelperProps {
   fullWidth?: boolean;
 }
 
-export default class SectionHelper extends React.PureComponent<
-  SectionHelperProps
-> {}
+export default class SectionHelper extends React.PureComponent<SectionHelperProps> {}
 
 export type SectionHelperAppearance =
   | 'warning'

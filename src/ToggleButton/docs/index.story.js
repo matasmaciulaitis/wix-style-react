@@ -84,7 +84,7 @@ export default {
             example({
               title: 'Skin',
               text:
-                'Toggle supports 2 skin styles – `standard` and `inverted`. Skin `dark` is deprecated.',
+                'Toggle supports 4 skin styles – `standard`, `inverted`, `destructive` and `success`. Skin `dark` is deprecated.',
               source: examples.skins,
             }),
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StatisticsWidget from '../StatisticsWidget';
+import { SIZES } from '../constants';
+
+const sizes = Object.values(SIZES);
 
 const tests = [
   {
@@ -375,6 +378,35 @@ const tests = [
         },
       },
     ],
+  },
+  {
+    describe: 'size',
+    its: sizes.map(size => ({
+      it: size,
+      props: {
+        size,
+        items: [
+          {
+            value: '1,500',
+            description: 'Orders',
+            percentage: 21,
+            invertedPercentage: true,
+          },
+          {
+            value: '$2,500',
+            description: 'Outcome',
+            percentage: -11,
+          },
+          {
+            value: '$3,500',
+            description: 'Revenue',
+            percentage: -11,
+            invertedPercentage: true,
+            descriptionInfo: 'Sales on Thursday',
+          },
+        ],
+      },
+    })),
   },
 ];
 

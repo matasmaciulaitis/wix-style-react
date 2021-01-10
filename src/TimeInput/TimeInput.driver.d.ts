@@ -12,6 +12,7 @@ export interface TimeInputDriver extends BaseDriver {
   getAmPmIndicatorText: () => string;
   getCustomSuffix: () => React.ReactNode;
   isRtl: () => boolean;
+  isShowSeconds: () => boolean;
   setValue: (text: string) => void;
   blur: () => void;
 

@@ -1,10 +1,10 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import { findBaseByHook } from '../../test/utils';
 import { tooltipDriverFactory } from '../Tooltip/Tooltip.uni.driver';
+import { trendIndicatorDriverFactory } from '../TrendIndicator/TrendIndicator.uni.driver';
 import { adaptiveHeadingDriverFactory } from '../utils/AdaptiveHeading/AdaptiveHeading.uni.driver';
 
 import DataHooks from './dataHooks';
-import DataAttrs from './dataAttrs';
 
 const statisticsWidgetDriverFactory = (base, body) => {
   const getHookSelector = hook => `[data-hook="${hook}"]`;
@@ -16,6 +16,13 @@ const statisticsWidgetDriverFactory = (base, body) => {
     const tooltip = await item.$(getHookSelector(DataHooks.tooltip));
 
     return tooltipDriverFactory(tooltip, body);
+  };
+
+  const getTrendIndicatorDriver = async index => {
+    const item = await getStatsItem(index);
+    const tooltip = await item.$(getHookSelector(DataHooks.percentage));
+
+    return trendIndicatorDriverFactory(tooltip, body);
   };
 
   const getAdaptiveHeadingDriver = async index => {
@@ -90,20 +97,13 @@ const statisticsWidgetDriverFactory = (base, body) => {
 
     /** Get percentage of the statistic with index */
     getPercentage: async index => {
-      const percents = await getStatsPartText(index, DataHooks.percentage);
+      const trendIndicator = await getTrendIndicatorDriver(index);
 
-      return percents ? Number(percents.split('%')[0]) : percents;
-    },
+      if (!(await trendIndicator.exists())) {
+        return null;
+      }
 
-    /** Returns true if invertedPercentage set to true */
-    isPercentageInverted: async index => {
-      const item = await getStatsItem(index);
-      const percentage = await item
-        .$(getHookSelector(DataHooks.percentage))
-        .attr(DataAttrs.invertedPercentage);
-
-      // Quick way to parse text to boolean
-      return JSON.parse(percentage);
+      return await trendIndicator.getTrendValue();
     },
   };
 };

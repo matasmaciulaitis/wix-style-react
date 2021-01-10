@@ -18,6 +18,4 @@ export interface ComposerSidebarProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default class ComposerSidebar extends React.PureComponent<
-  ComposerSidebarProps
-> {}
+export default class ComposerSidebar extends React.PureComponent<ComposerSidebarProps> {}

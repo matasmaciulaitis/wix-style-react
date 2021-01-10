@@ -6,7 +6,7 @@ import {
 } from '../../../test/utils/unit';
 import BaseModalLayout from '../index';
 import { baseModalLayoutPrivateDriverFactory } from './BaseModalLayout.private.uni.driver';
-import { baseModalLayoutDriverFactory } from '../BaseModalLayout.legacy.driver/';
+import { baseModalLayoutDriverFactory } from '../BaseModalLayout.legacy.driver';
 import Text from '../../Text';
 
 describe('BaseModalLayout', () => {

@@ -6,6 +6,12 @@ export * from './Accordion';
 export { default as AddItem } from './AddItem';
 export * from './AddItem';
 
+export {
+  default as AddressInputItem,
+  addressInputItemBuilder,
+} from './AddressInputItem';
+export * from './AddressInputItem';
+
 export { default as AnnouncementModalLayout } from './AnnouncementModalLayout';
 export * from './AnnouncementModalLayout';
 
@@ -27,8 +33,11 @@ export { BadgeProps, BadgeSize, BadgeSkin, BadgeType } from './Badge';
 export { default as BadgeSelect } from './BadgeSelect';
 export * from './BadgeSelect';
 
-export { badgeSelectItemBuilder } from './BadgeSelectItemBuilder';
-export * from './BadgeSelectItemBuilder';
+export {
+  default as BadgeSelectItem,
+  badgeSelectItemBuilder,
+} from './BadgeSelectItem';
+export * from './BadgeSelectItem';
 
 export { default as BarChart } from './BarChart';
 export * from './BarChart';
@@ -453,9 +462,6 @@ export * from './FileUpload';
 export { default as TableListItem } from './TableListItem';
 export * from './TableListItem';
 
-export { default as Animate } from './Animate';
-export * from './Animate';
-
 export { default as Dropzone } from './Dropzone';
 export * from './Dropzone';
 
@@ -488,4 +494,41 @@ export { default as CardFolderTabs } from './CardFolderTabs';
 export * from './CardFolderTabs';
 
 export { default as StackedBarChart } from './StackedBarChart';
+export * from './StackedBarChart';
+
+export { default as PageFooter } from './PageFooter';
+
+export { default as AnalyticsSummaryCard } from './AnalyticsSummaryCard';
+export * from './AnalyticsSummaryCard';
+
+export * from './PageFooter';
+
+export { default as StyledNestableList } from './StyledNestableList';
+export * from './StyledNestableList';
+
+export { default as TrendIndicator } from './TrendIndicator';
+export * from './TrendIndicator';
+
+export { default as AnalyticsLayout } from './AnalyticsLayout';
+export * from './AnalyticsLayout';
+
+export { default as Radio } from './Radio';
+export * from './Radio';
+
+export { default as CopyClipboard } from './CopyClipboard';
+export * from './CopyClipboard';
+
+export {
+  default as WixStyleReactProvider,
+  FEATURES,
+} from './WixStyleReactProvider';
+export * from './WixStyleReactProvider';
+
+export { default as BounceAnimation } from './BounceAnimation';
+export * from './BounceAnimation';
+
+export * from './TrendIndicator';
+
+export * from './StyledNestableList';
+
 export * from './StackedBarChart';

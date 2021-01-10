@@ -17,6 +17,4 @@ export interface CheckToggleProps {
   tooltipProps?: TooltipCommonProps;
 }
 
-export default class CheckToggle extends React.PureComponent<
-  CheckToggleProps
-> {}
+export default class CheckToggle extends React.PureComponent<CheckToggleProps> {}

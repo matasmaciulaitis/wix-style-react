@@ -3,10 +3,15 @@
   -st-named: B60, D80;
 }
 
-
+:vars {
+  tinyVerticalPadding: 12px;
+  smallVerticalPadding: 15px;
+  newMediumVerticalPadding: 18px;
+  mediumVerticalPadding: 24px;
+}
 
 .item {
-  -st-states: hovered;
+  -st-states: reducedSpacingAndImprovedLayout, hovered, verticalPadding(enum(medium, small, tiny));
   display: grid;
   grid-template-columns: auto 1fr;
 }
@@ -40,7 +45,28 @@
   flex-direction: column;
   overflow: hidden;
   cursor: pointer;
-  padding: 24px 30px 24px 0;
+  padding-right: 30px;
+  padding-left: 0;
+}
+
+.item:verticalPadding(medium) .header {
+  padding-top: value(mediumVerticalPadding);
+  padding-bottom: value(mediumVerticalPadding);
+}
+
+.item:verticalPadding(medium):reducedSpacingAndImprovedLayout .header {
+  padding-top: value(newMediumVerticalPadding);
+  padding-bottom: value(newMediumVerticalPadding);
+}
+
+.item:verticalPadding(small) .header {
+  padding-top: value(smallVerticalPadding);
+  padding-bottom: value(smallVerticalPadding);
+}
+
+.item:verticalPadding(tiny) .header {
+  padding-top: value(tinyVerticalPadding);
+  padding-bottom: value(tinyVerticalPadding);
 }
 
 .content {
@@ -54,4 +80,8 @@
 
 .inner {
   padding: 0 30px 24px 0;
+}
+
+.item:reducedSpacingAndImprovedLayout .inner{
+  padding: 0 30px 18px 0;
 }

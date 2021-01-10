@@ -2,10 +2,10 @@ export const textAndIcon = `
 <Layout>
   <Cell span={6}>
     <SegmentedToggle defaultSelected="option">
-      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option">
+      <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option">
         Option
       </SegmentedToggle.Button>
-      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option2">
+      <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option2">
         Option
       </SegmentedToggle.Button>
     </SegmentedToggle>
@@ -33,10 +33,10 @@ export const icon = `
   <Cell span={3}>
     <SegmentedToggle defaultSelected="option">
       <SegmentedToggle.Icon value="option" tooltipText="Locked">
-        <LockLocked />
+        <Icons.LockLocked />
       </SegmentedToggle.Icon>
       <SegmentedToggle.Icon value="option2" tooltipText="Unlocked">
-        <LockUnlocked />
+        <Icons.LockUnlocked />
       </SegmentedToggle.Icon>
     </SegmentedToggle>
  </Cell>
@@ -47,10 +47,10 @@ export const controlled = `
 <Layout>
 <Cell span={6}>
   <SegmentedToggle selected="option2" >
-    <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option">
+    <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option">
       Option
     </SegmentedToggle.Button>
-    <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option2">
+    <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option2">
       Option
     </SegmentedToggle.Button>
   </SegmentedToggle>
@@ -63,10 +63,10 @@ export const disabled = `
 <Layout>
   <Cell span={6}>
     <SegmentedToggle defaultSelected="option" disabled>
-      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option">
+      <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option">
         Option
       </SegmentedToggle.Button>
-      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option2">
+      <SegmentedToggle.Button prefixIcon={<Icons.LockLocked />} value="option2">
         Option
       </SegmentedToggle.Button>
     </SegmentedToggle>

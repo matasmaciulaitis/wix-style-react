@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EllipsisCommonProps } from '../common/Ellipsis';
-import { OmitPolyfill } from '../common';
+import { OmitPolyfill, TooltipCommonProps } from '../common';
 
 export type TextWithAsProp<T> =
   | TextAsSpanProps<T>
@@ -32,7 +32,7 @@ type TextAsComponentProps<T> = T & {
   [additionalProps: string]: any;
 };
 
-export type TextPropsBase = EllipsisCommonProps & {
+export type TextPropsBase = OmitPolyfill<EllipsisCommonProps, 'size'> & {
   dataHook?: string;
   tagName?: string;
   className?: string;
@@ -41,6 +41,8 @@ export type TextPropsBase = EllipsisCommonProps & {
   skin?: TextSkin;
   light?: boolean;
   weight?: TextWeight;
+  listStyle?: ListStyle;
+  tooltipProps?: TooltipCommonProps;
 };
 
 export type TextProps = TextWithAsProp<TextPropsBase>;
@@ -59,3 +61,5 @@ export type TextSkin =
   | 'primary';
 
 export type TextWeight = 'thin' | 'normal' | 'bold';
+
+export type ListStyle = 'checkmark' | 'circle';

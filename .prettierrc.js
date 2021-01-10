@@ -1,7 +1,10 @@
-let prettierConfig = {
+const prettierBaseConfig = {
   singleQuote: true,
   trailingComma: 'all',
+  arrowParens: "avoid",
 };
+
+let prettierConfig = {};
 
 try {
   prettierConfig = require('eslint-config-yoshi-base').rules[
@@ -9,4 +12,4 @@ try {
   ][1];
 } catch (error) {}
 
-module.exports = prettierConfig;
+module.exports = { ...prettierBaseConfig, ...prettierConfig };

@@ -22,7 +22,14 @@ class PageExample extends React.Component {
         >
           <CustomModalLayout
             width="1254px"
-            title="Title"
+            title={
+              <CustomModalLayout.Title>
+                Custom title
+                <IconButton size="small">
+                  <Icons.More />
+                </IconButton>
+              </CustomModalLayout.Title>
+            }
             removeContentPadding
             primaryButtonText="Save"
             primaryButtonOnClick={this.closeModal}
@@ -30,32 +37,23 @@ class PageExample extends React.Component {
             secondaryButtonOnClick={this.closeModal}
             onCloseButtonClick={this.closeModal}
           >
-            <Page height="40vh" sidePadding={30}>
+            <Page sidePadding={30}>
               <Page.Content>
                 <Box marginTop={5}>
                   <Container>
-                    <Row>
-                      <Col>
-                        <Card>
-                          <Card.Header title="Card 1" />
-                          <Card.Divider />
-                          <Card.Content>
-                            <Text size="medium">Lorem ipsum dolor</Text>
-                          </Card.Content>
-                        </Card>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Card>
-                          <Card.Header title="Card 2" />
-                          <Card.Divider />
-                          <Card.Content>
-                            <Text size="medium">Lorem ipsum dolor</Text>
-                          </Card.Content>
-                        </Card>
-                      </Col>
-                    </Row>
+                    {Array.from({ length: 3 }, (_, index) => (
+                      <Row key={`row-${index}`}>
+                        <Col>
+                          <Card>
+                            <Card.Header title={`Card ${index + 1}`} />
+                            <Card.Divider />
+                            <Card.Content>
+                              <Text size="medium">Lorem ipsum dolor</Text>
+                            </Card.Content>
+                          </Card>
+                        </Col>
+                      </Row>
+                    ))}
                   </Container>
                 </Box>
               </Page.Content>

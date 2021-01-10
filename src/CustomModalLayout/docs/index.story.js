@@ -21,6 +21,7 @@ import BasicExample from '!raw-loader!./examples/BasicExample';
 import FootnoteExample from '!raw-loader!./examples/FootnoteExample';
 import ModalExample from '!raw-loader!./examples/ModalExample';
 import PageExample from '!raw-loader!./examples/PageExample';
+import PersistentDividersExample from '!raw-loader!./examples/PersistentDividersExample';
 import TableExample from '!raw-loader!./examples/TableExample';
 import MarketingExample from '!raw-loader!./examples/MarketingExample';
 import HelpButtonExample from '!raw-loader!./examples/HelpButtonExample';
@@ -104,24 +105,30 @@ export default {
             source: ModalExample,
           }),
           example({
+            title: 'Persistent Dividers Example',
+            text:
+              'If you need the header or footer dividers to always show, you can use the `showHeaderDivider` and `showFooterDivider` props',
+            source: PersistentDividersExample,
+          }),
+          example({
             title: 'Table example - No content padding',
             text:
-              'A simple example with a table as the content and without content padding',
+              'A simple example with a table as the content and without content padding.',
             source: TableExample,
           }),
           example({
             title: 'Help Button Example',
-            text: 'A basic example with a help button shown',
+            text: 'A basic example with a help button shown.',
             source: HelpButtonExample,
           }),
           example({
-            title: 'Marketing Layout example',
-            text: 'A custom modal example with a marketing layout',
+            title: 'Marketing Layout Example',
+            text: 'A custom modal example with a marketing layout.',
             source: MarketingExample,
           }),
           example({
-            title: 'Custom Page Example',
-            text: 'Open a custom page in a modal',
+            title: 'Custom Page & Title Example',
+            text: 'Open a custom page in a modal with a custom title.',
             source: PageExample,
           }),
           example({

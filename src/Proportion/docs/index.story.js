@@ -1,11 +1,25 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  divider,
+  example as baseExample,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
 
 import { storySettings } from './storySettings';
-import Proportion from '..';
+import allComponents from '../../../stories/utils/allComponents';
 
-import ExampleComponent from './ExampleComponent';
-import ExampleComponentRaw from '!raw-loader!./ExampleComponent';
+import Proportion from '..';
+import * as examples from './examples';
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 const IMG_URL =
   'https://upload.wikimedia.org/wikipedia/commons/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg';
@@ -24,7 +38,7 @@ const exampleAspectRatio = [
 ];
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: Proportion,
@@ -45,11 +59,33 @@ export default {
     aspectRatio: exampleAspectRatio,
   },
 
-  examples: (
-    <div style={{ maxWidth: 627, paddingBottom: 60 }}>
-      <CodeExample title="Proportion demo" code={ExampleComponentRaw}>
-        <ExampleComponent />
-      </CodeExample>
-    </div>
-  ),
+  sections: [
+    header(),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description('HOC that enforces proportions on child components'),
+
+          importExample(),
+
+          divider(),
+
+          title('Examples'),
+
+          example({
+            title: 'Simple Usage',
+            source: examples.simple,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

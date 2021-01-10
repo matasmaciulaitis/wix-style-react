@@ -16,10 +16,14 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import MarketingLayout from '..';
 import {
+  sizeTiny,
   sizeSmall,
   sizeMedium,
   sizeLarge,
+  badge,
+  hiddenBadge,
   inverted,
+  alignItemsStretch,
   imageBackgroundColor,
   advanced,
   description as descriptionText,
@@ -69,7 +73,11 @@ export default {
           description({
             title: 'Size',
             text:
-              'Component supports three sizes - small, medium and large. For each size are dedicated illustration sizes. Please note, action button sizes must be adjusted based on marketing layout size.',
+              'Component supports four sizes - tiny, small, medium and large. For each size are dedicated illustration sizes. Please note, action button sizes must be adjusted based on marketing layout size.',
+          }),
+          code({
+            compact: true,
+            source: sizeTiny,
           }),
           code({
             compact: true,
@@ -95,6 +103,16 @@ export default {
           }),
 
           description({
+            title: 'Align Items',
+            text:
+              'The content can be displayed centered or stretched out, using the alignItems prop.',
+          }),
+          code({
+            compact: true,
+            source: alignItemsStretch,
+          }),
+
+          description({
             title: 'Image Area Background',
             text:
               'Use `imageBackgroundColor` prop to set a custom background color for the image area.',
@@ -102,6 +120,20 @@ export default {
           code({
             compact: true,
             source: imageBackgroundColor,
+          }),
+
+          description({
+            title: 'Badge',
+            text:
+              'Marketing layout can contain a `<Badge>` in the `badge` prop, or have the `hiddenBadge` prop enabled. These examples use `<Card>` component as a container for marketing layout.',
+          }),
+          code({
+            compact: true,
+            source: badge,
+          }),
+          code({
+            compact: true,
+            source: hiddenBadge,
           }),
 
           description({

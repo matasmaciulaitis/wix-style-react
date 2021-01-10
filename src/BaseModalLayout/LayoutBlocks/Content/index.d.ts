@@ -5,7 +5,8 @@ export interface ContentProps {
   className?: string;
   dataHook?: string;
   content?: string | React.ReactNode;
-  contentHideDividers?: boolean;
+  hideTopScrollDivider?: boolean;
+  hideBottomScrollDivider?: boolean;
   scrollProps?: ScrollableContainerCommonProps;
 }
 

@@ -49,8 +49,9 @@ class Dropzone extends React.PureComponent {
           child.type.displayName !== 'Dropzone.Overlay'
         ) {
           return new Error(
-            `Invalid children provided, unknown child <${child.type
-              .displayName || child.type} /> supplied`,
+            `Invalid children provided, unknown child <${
+              child.type.displayName || child.type
+            } /> supplied`,
           );
         }
 

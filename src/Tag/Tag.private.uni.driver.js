@@ -1,5 +1,5 @@
 import { tagUniDriverFactory } from './Tag.uni.driver';
-import { dataHooks } from './Tag.helpers';
+import { dataAttr, dataHooks } from './Tag.helpers';
 import { textUniDriverFactory } from '../Text/Text.uni.driver';
 
 export const tagPrivateUniDriverFactory = base => {
@@ -15,7 +15,7 @@ export const tagPrivateUniDriverFactory = base => {
     isCloseButtonLarge,
     getTextSize: () => textDriver.getSize(),
     getTextWeight: () => textDriver.getWeight(),
-    isClickable: () => base.hasClass('clickable'),
-    isHoverable: () => base.hasClass('hoverable'),
+    isClickable: async () => (await base.attr(dataAttr.CLICKABLE)) === 'true',
+    isHoverable: async () => (await base.attr(dataAttr.HOVERABLE)) === 'true',
   };
 };

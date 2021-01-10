@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioGroup/RadioButton/RadioButton';
 import Text from '../Text';
-import styles from './Selector.scss';
+import { st, classes } from './Selector.st.css';
 import ExtraText from './ExtraText';
 import ProgressBar from './ProgressBar';
 
@@ -32,6 +31,7 @@ class Selector extends React.PureComponent {
     showBelowNodeOnSelect: PropTypes.bool,
     belowNode: PropTypes.node,
     subtitleNode: PropTypes.node,
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -43,8 +43,6 @@ class Selector extends React.PureComponent {
     onToggle: i => i,
     showBelowNodeOnSelect: false,
   };
-
-  radioButtonAndImageMargins = '57px';
 
   _onClick = () => !this.props.isDisabled && this.props.onToggle(this.props.id);
 
@@ -63,11 +61,18 @@ class Selector extends React.PureComponent {
       showBelowNodeOnSelect,
       subtitleNode,
       belowNode,
+      className,
     } = this.props;
 
     return (
-      <li data-hook={dataHook} className={styles.root} onClick={this._onClick}>
-        <div className={styles.mainPart}>
+      <li
+        data-hook={dataHook}
+        className={st(classes.root, className)}
+        onClick={this._onClick}
+        data-shape={imageShape}
+        data-size={imageSize}
+      >
+        <div className={classes.mainPart}>
           {toggleType === 'checkbox' ? (
             <Checkbox
               dataHook="toggle"
@@ -85,16 +90,15 @@ class Selector extends React.PureComponent {
           {image && (
             <div
               data-hook="selector-image"
-              className={classNames(
-                styles.image,
-                styles[imageSize],
-                styles[imageShape],
-              )}
+              className={st(classes.image, {
+                size: imageSize,
+                imageShape: imageShape,
+              })}
               children={image}
             />
           )}
 
-          <div className={styles.titles}>
+          <div className={classes.titles}>
             <Text dataHook="selector-title" ellipsis children={title} />
 
             {subtitle && (
@@ -114,7 +118,7 @@ class Selector extends React.PureComponent {
 
           {extraNode && (
             <div
-              className={styles.extra}
+              className={classes.extra}
               data-hook="selector-extra-node"
               children={extraNode}
             />
@@ -122,7 +126,7 @@ class Selector extends React.PureComponent {
         </div>
 
         {showBelowNodeOnSelect && belowNode && isSelected && (
-          <div data-hook="below-section" className={styles.belowSection}>
+          <div data-hook="below-section" className={classes.belowSection}>
             {belowNode}
           </div>
         )}

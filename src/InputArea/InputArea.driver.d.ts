@@ -30,6 +30,7 @@ export interface InputAreaDriver<T> extends BaseDriver {
   getAriaDescribedby: () => string;
   getTooltipDataHook: () => string;
   getTooltipElement: () => T;
+  getCursorLocation: () => number;
 
   // Status
   hasStatus: (status: StatusIndications) => boolean;

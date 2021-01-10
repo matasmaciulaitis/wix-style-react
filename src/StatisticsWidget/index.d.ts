@@ -7,9 +7,7 @@ export interface StatisticsWidgetProps {
   items?: StatisticsWidgetItem[];
 }
 
-export default class StatisticsWidget extends React.PureComponent<
-  StatisticsWidgetProps
-> {}
+export default class StatisticsWidget extends React.PureComponent<StatisticsWidgetProps> {}
 
 export type StatisticsWidgetItem = {
   value: string;

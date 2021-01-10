@@ -148,6 +148,11 @@ $cellHorizontalEdgePadding: 30px;
     padding-bottom: 18px;
   }
 
+  &.smallVerticalPadding {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
   // Cells alignment
   &.alignStart {
     text-align: left;

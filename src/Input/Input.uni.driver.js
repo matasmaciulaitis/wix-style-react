@@ -1,5 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { ReactBase } from '../../test/utils/unidriver';
+import { baseUniDriverFactory, ReactBase } from '../../test/utils/unidriver';
 import DATA_ATTR from './DataAttr';
 import { statusIndicatorDriverFactory } from '../StatusIndicator/StatusIndicator.uni.driver';
 import { dataHooks } from './constants';
@@ -72,6 +71,7 @@ export const testkit = (base, body) => {
     keyUp: async () => await reactBaseInput.keyUp(),
     keyDown: async eventData => await reactBaseInput.keyDown(eventData),
     paste: async () => await reactBaseInput.paste(),
+    wheel: async () => await reactBaseInput.wheel(),
     trigger: async (eventType, event) => {
       if (eventType === 'focus') {
         return await driver.focus();
@@ -91,12 +91,15 @@ export const testkit = (base, body) => {
       if (eventType === 'change') {
         return await driver.enterText(event.target.value);
       }
+      if (eventType === 'wheel') {
+        return await driver.wheel();
+      }
     },
     isFocus: async () => await reactBaseInput.isFocus(),
     clickMenuArrow: async () => await menuArrowNode.click(),
     hasMenuArrow: async () => await menuArrowNode.exists(),
     isRTL: async () => (await base.attr('dir')) === 'rtl',
-    getCursorLocation: async () => await input._prop('selectionStart'),
+    getCursorLocation: () => input._prop('selectionStart'),
     clearText: () => driver.enterText(''),
     clickOutside: () => ReactBase.clickDocument(),
 

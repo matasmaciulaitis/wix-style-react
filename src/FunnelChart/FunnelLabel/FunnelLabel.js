@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 
 import Text from '../../Text';
 import { dataHooks } from '../constants';
-import { formatToCompactNumber } from '../../utils/numberFormatters';
-
 import { classes } from './FunnelLabel.st.css';
 
-export const FunnelLabel = ({ value, label }) => {
-  const compactNumber = value ? formatToCompactNumber(value, 1) : '-';
+export const FunnelLabel = ({ value, label, displayValue }) => {
+  const numberToPresent = displayValue ? displayValue : value;
   return (
     <div className={classes.root}>
       <Text dataHook={dataHooks.labelValue} weight="bold" ellipsis>
-        {compactNumber}
+        {numberToPresent}
       </Text>
       <Text dataHook={dataHooks.labelText} size="small" secondary ellipsis>
         {label}
@@ -27,4 +25,7 @@ FunnelLabel.propTypes = {
 
   /** Label's content */
   label: PropTypes.string.isRequired,
+
+  /** Label's value send by the user */
+  displayValue: PropTypes.string,
 };

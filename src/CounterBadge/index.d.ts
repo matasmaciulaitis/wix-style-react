@@ -18,6 +18,4 @@ export interface CounterBadgeProps {
   size?: CounterBadgeSize;
 }
 
-export default class CounterBadge extends React.PureComponent<
-  CounterBadgeProps
-> {}
+export default class CounterBadge extends React.PureComponent<CounterBadgeProps> {}

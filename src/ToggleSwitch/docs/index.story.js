@@ -75,7 +75,7 @@ export default {
 
           example({
             title: 'Skins',
-            text: `ToggleSwitch has 3 skins: \`${SKINS.standard}\` (default),\`${SIZES.success}\` and \`${SKINS.error}\`.`,
+            text: `ToggleSwitch has 3 skins: \`${SKINS.standard}\` (default),\`${SKINS.success}\` and \`${SKINS.error}\`.`,
             source: examples.skins,
           }),
 

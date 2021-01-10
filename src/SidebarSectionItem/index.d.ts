@@ -13,6 +13,4 @@ export interface SidebarSectionItemProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default class SidebarSectionItem extends React.PureComponent<
-  SidebarSectionItemProps
-> {}
+export default class SidebarSectionItem extends React.PureComponent<SidebarSectionItemProps> {}

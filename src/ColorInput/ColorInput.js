@@ -160,12 +160,18 @@ class ColorInput extends React.Component {
     e.key === 'Enter' && this.confirm();
     e.key === 'Escape' && this.cancel();
   };
-
+  /**
+   * clicks the input element
+   * @returns {Void}
+   */
   click = () => {
     this.input.focus();
     this.setState({ active: true });
   };
-
+  /**
+   * sets the picked color
+   * @returns {Void}
+   */
   confirm = () => {
     const { onConfirm, onChange } = this.props;
     const value = validateHex(this.state.value);
@@ -174,6 +180,10 @@ class ColorInput extends React.Component {
       onChange(value);
     });
   };
+  /**
+   * sets the previous color
+   * @returns {Void}
+   */
 
   cancel = () => {
     const { onCancel, onChange } = this.props;

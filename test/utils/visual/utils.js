@@ -93,23 +93,32 @@ function getPropsPermutations(componentName, options) {
  */
 export const storyOfAllPermutations = (Story, Component, options = {}) => {
   const permutations = getPropsPermutations(Component.displayName, options);
-  const { storyName = 'Props Permutations' } = options;
-  storiesOf(Component.displayName, module).add(storyName, () => (
-    <Container>
-      {permutations.map((props, key) => (
-        <Row key={key}>
-          <Col span={1}>
-            <Tooltip content={JSON.stringify(props)}>
-              <span>{key}</span>
-            </Tooltip>
-          </Col>
-          <Col span={11}>
-            <Story {...props} />
-          </Col>
-        </Row>
-      ))}
-    </Container>
-  ));
+  const {
+    storyName = 'Props Permutations',
+    testWithTheme = i => i,
+    themeName,
+  } = options;
+  storiesOf(
+    `${themeName ? `${themeName}|` : ''}${Component.displayName}`,
+    module,
+  ).add(storyName, () =>
+    testWithTheme(
+      <Container>
+        {permutations.map((props, key) => (
+          <Row key={key}>
+            <Col span={1}>
+              <Tooltip content={JSON.stringify(props)}>
+                <span>{key}</span>
+              </Tooltip>
+            </Col>
+            <Col span={11}>
+              <Story {...props} />
+            </Col>
+          </Row>
+        ))}
+      </Container>,
+    ),
+  );
 };
 
 /** A simple wait function to test components with animations */

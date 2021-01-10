@@ -54,7 +54,15 @@ function customModalLayoutWithAllProps() {
       maxHeight={500}
       showHeaderDivider
       showFooterDivider
-      contentHideDividers
+      hideContentDividers
+    />
+  );
+}
+
+function customModalLayoutWithCustomTitle() {
+  return (
+    <CustomModalLayout
+      title={<CustomModalLayout.Title>Hello</CustomModalLayout.Title>}
     />
   );
 }

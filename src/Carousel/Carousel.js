@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ChevronLeftLarge from 'wix-ui-icons-common/ChevronLeftLarge';
 import ChevronRightLarge from 'wix-ui-icons-common/ChevronRightLarge';
+import ChevronLeftLargeSmall from 'wix-ui-icons-common/ChevronLeftLargeSmall';
+import ChevronRightLargeSmall from 'wix-ui-icons-common/ChevronRightLargeSmall';
+import ChevronLeftSmall from 'wix-ui-icons-common/ChevronLeftSmall';
+import ChevronRightSmall from 'wix-ui-icons-common/ChevronRightSmall';
+
 // This is here and not in the test setup because we don't want consumers to need to run it as well
 import '../common/match-media-register';
 import Slider from 'react-slick';
@@ -34,28 +39,63 @@ class Carousel extends React.Component {
   static propTypes = {
     /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+
     /** A single CSS class name to be appended to the Carousel's wrapper element. */
     className: PropTypes.string,
+
     /** Array of objects where each contains the `src` of an image (in \<img src="your_src" /\>) */
     images: PropTypes.array,
+
+    /** Sets the images position */
+    imagesPosition: PropTypes.string,
+
+    /** Sets the images fit */
+    imagesFit: PropTypes.oneOf([
+      'fill',
+      'contain',
+      'cover',
+      'none',
+      'scale-down',
+    ]),
+
     /** Any element to render inside */
     children: PropTypes.node,
+
     /** Sets the skin of the arrow buttons */
-    buttonSkin: PropTypes.oneOf(['standard', 'inverted']),
+    buttonSkin: PropTypes.oneOf(['standard', 'inverted', 'light']),
+
+    /** Show a shadow for the carousel controls */
+    showControlsShadow: PropTypes.bool,
+
     /** Images loop endlessly */
     infinite: PropTypes.bool,
+
     /** Auto-playing of images */
     autoplay: PropTypes.bool,
+
     /** Show dots */
     dots: PropTypes.bool,
+
     /** Variable width of children */
     variableWidth: PropTypes.bool,
+
     /** An index of the slide to start on */
     initialSlideIndex: PropTypes.number,
+
     /** Index change callback. `index => ...` */
     afterChange: PropTypes.func,
+
     /** Index change callback. `(oldIndex, newIndex) => ...` */
     beforeChange: PropTypes.func,
+
+    /** Sets the arrows position */
+    controlsPosition: PropTypes.oneOf(['sides', 'overlay', 'bottom', 'none']),
+
+    /** Sets the arrows position */
+    controlsSize: PropTypes.oneOf(['tiny', 'small', 'medium']),
+
+    /** Configure the start and end controls to be shown disabled or hidden. Relevant when infinite prop is set to false. */
+    controlsStartEnd: PropTypes.oneOf(['disabled', 'hidden']),
   };
 
   static defaultProps = {
@@ -64,7 +104,13 @@ class Carousel extends React.Component {
     variableWidth: false,
     initialSlideIndex: 0,
     images: [],
+    imagesPosition: 'center top',
+    imagesFit: 'contain',
     buttonSkin: 'standard',
+    controlsPosition: 'sides',
+    controlsSize: 'medium',
+    controlsStartEnd: 'disabled',
+    showControlsShadow: false,
   };
 
   constructor(props) {
@@ -76,12 +122,27 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { dataHook, className, images, children } = this.props;
+    const {
+      dataHook,
+      className,
+      images,
+      children,
+      controlsPosition,
+      controlsSize,
+      showControlsShadow,
+    } = this.props;
     const { sliderSettings } = this.state;
     const hasImages = !children && images.length > 0;
 
     return (
-      <div data-hook={dataHook} className={st(classes.root, className)}>
+      <div
+        data-hook={dataHook}
+        className={st(
+          classes.root,
+          { controlsPosition, controlsSize, showControlsShadow },
+          className,
+        )}
+      >
         <Slider {...sliderSettings}>
           {children}
           {hasImages && this._renderImages(images)}
@@ -89,6 +150,28 @@ class Carousel extends React.Component {
       </div>
     );
   }
+
+  leftIconByControlSize = controlSize => {
+    switch (controlSize) {
+      case 'tiny':
+        return <ChevronLeftSmall />;
+      case 'small':
+        return <ChevronLeftLargeSmall />;
+      default:
+        return <ChevronLeftLarge />;
+    }
+  };
+
+  rightIconByControlSize = controlSize => {
+    switch (controlSize) {
+      case 'tiny':
+        return <ChevronRightSmall />;
+      case 'small':
+        return <ChevronRightLargeSmall />;
+      default:
+        return <ChevronRightLarge />;
+    }
+  };
 
   _resolveSliderSettings = ({
     infinite,
@@ -99,6 +182,9 @@ class Carousel extends React.Component {
     initialSlideIndex,
     afterChange,
     beforeChange,
+    controlsPosition,
+    controlsSize,
+    controlsStartEnd,
   }) => {
     return {
       infinite,
@@ -116,19 +202,30 @@ class Carousel extends React.Component {
         <WrappedSliderArrow
           dataHook={dataHooks.nextButton}
           buttonSkin={buttonSkin}
-          icon={<ChevronRightLarge />}
+          arrowSize={controlsSize}
+          icon={this.rightIconByControlSize(controlsSize)}
+          controlsStartEnd={controlsStartEnd}
         />
       ),
       prevArrow: (
         <WrappedSliderArrow
           dataHook={dataHooks.prevButton}
           buttonSkin={buttonSkin}
-          icon={<ChevronLeftLarge />}
+          arrowSize={controlsSize}
+          icon={this.leftIconByControlSize(controlsSize)}
+          controlsStartEnd={controlsStartEnd}
         />
       ),
-      appendDots: pages => (
-        <Pagination className={classes.pagination} pages={pages} />
-      ),
+      arrows: controlsPosition !== 'none',
+      appendDots: pages => {
+        /*
+         * originalClassName is a workaround for stylable API extend to work and pass an extendable className.
+         * This is because react-slick overrides brutally the className prop with cloneElement().
+         */
+        return (
+          <Pagination originalClassName={classes.pagination} pages={pages} />
+        );
+      },
       customPaging: i => (
         <div
           className={classes.pageNavigation}
@@ -141,13 +238,14 @@ class Carousel extends React.Component {
   };
 
   _renderImages = images => {
+    const { imagesPosition, imagesFit } = this.props;
     return images.map((image, index) => (
       <Proportion
         key={`${index}${image.src}`}
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
       >
         <div
-          style={{ height: '100%' }}
+          className={classes.imageContainer}
           data-hook={dataHooks.imagesContainer}
           data-is-loading={this._isLoading()}
         >
@@ -156,6 +254,11 @@ class Carousel extends React.Component {
             data-hook={dataHooks.carouselImage}
             className={classes.image}
             onLoad={() => this._onImageLoad()}
+            style={{
+              objectPosition: imagesPosition,
+              objectFit: imagesFit,
+              ...image.style,
+            }}
           />
         </div>
         {this._isLoading() && (

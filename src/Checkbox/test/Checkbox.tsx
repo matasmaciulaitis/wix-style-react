@@ -23,9 +23,13 @@ function CheckboxWithAllProps() {
       indeterminate
       onChange={_ev => {}}
       selectionArea="hover"
+      selectionAreaSkin="filled"
+      selectionAreaPadding="10px 5px"
       size="medium"
       vAlign="center"
       className="some-class"
+      tooltipContent="hello world"
+      tooltipProps={{size: 'small'}}
     />
   );
 }

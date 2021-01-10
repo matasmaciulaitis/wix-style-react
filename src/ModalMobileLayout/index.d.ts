@@ -13,6 +13,4 @@ export interface ModalMobileLayoutProps {
   fullscreen?: boolean;
 }
 
-export default class ModalMobileLayout extends React.PureComponent<
-  ModalMobileLayoutProps
-> {}
+export default class ModalMobileLayout extends React.PureComponent<ModalMobileLayoutProps> {}

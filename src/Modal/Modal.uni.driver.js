@@ -1,14 +1,17 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 
 export const modalUniDriverFactory = (base, body) => {
   const getPortal = async () => {
-    const dataHook = await base.attr('data-hook');
-    return dataHook ? body.$(`.portal.portal-${dataHook}`) : body.$('.portal');
+    if (await base.exists()) {
+      const dataHook = !!base.attr && (await base.attr('data-hook'));
+      return dataHook
+        ? body.$(`.portal.portal-${dataHook}`)
+        : body.$('.portal');
+    }
   };
   const getOverlay = () => body.$('.ReactModal__Overlay');
   const getContent = () => body.$('.ReactModal__Content');
   const getCloseButton = () => body.$('[data-hook="modal-close-button"]');
-
   const isOpen = () => getContent().exists();
 
   return {
@@ -19,15 +22,15 @@ export const modalUniDriverFactory = (base, body) => {
 
     /** true when the module is open */
     isOpen,
-    /** true if theme <arg> exists in the modal */
-    isThemeExist: async theme => (await getPortal()).$(`.${theme}`).exists(),
     getChildBySelector: async selector => {
       const portal = await getPortal();
       return (await portal.$(selector).exists()) ? portal.$(selector) : null;
     },
     /** true if the modal is scrollable */
-    isScrollable: async () =>
-      !(await (await getPortal()).hasClass('portalNonScrollable')),
+    isScrollable: async () => {
+      const content = await getPortal();
+      return !!(await content.$('[data-scrollable]').exists());
+    },
     closeButtonExists: () => getCloseButton().exists(),
     /** click on the modal overlay (helpful for testing if the modal is dismissed) */
     clickOnOverlay: () => getOverlay().click(),

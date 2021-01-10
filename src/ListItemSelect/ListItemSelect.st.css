@@ -3,6 +3,11 @@
   -st-named: B10, B20, B30, B50, D10-30, D20, D80;
 }
 
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
 .root {
   -st-states: checkbox, selected, disabled, highlighted;
   background-color: value(D80);
@@ -66,7 +71,7 @@
 }
 
 /* Prefix & Suffix */
-.textsWrapper >:not(.title) {
+.textsWrapper >:not(.titleWrapper) {
   margin-top: auto;
   margin-bottom: auto;
   flex-shrink: 0;
@@ -76,6 +81,22 @@
 
 .prefix {
   -st-states: subtitle;
+}
+
+.titleWrapper {
+  -st-states: subtitle;
+  margin: 6px;
+  display: grid;
+  line-height: initial;
+  font-size: initial;
+}
+
+.titleWrapper:subtitle {
+  margin: 9px 6px;
+}
+
+.title {
+  -st-extends: Text;
 }
 
 .prefix {
@@ -96,4 +117,8 @@
 
 :global([dir="rtl"]) .suffix {
   margin: auto auto auto 0;
+}
+
+.subtitle{
+  -st-extends: Text;
 }

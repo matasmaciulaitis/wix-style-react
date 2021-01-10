@@ -23,20 +23,14 @@ describe('Checkbox', () => {
   function runTests(render) {
     afterEach(() => cleanup());
 
-    it('should be unchecked and not disabled by default', async () => {
+    it('should be unchecked by default', async () => {
       const { driver } = render(<Checkbox />);
       expect(await driver.isChecked()).toBe(false);
-      expect(await driver.isDisabled()).toBe(false);
     });
 
     it('should be checked', async () => {
       const { driver } = render(<Checkbox checked />);
       expect(await driver.isChecked()).toBe(true);
-    });
-
-    it('should be disabled', async () => {
-      const { driver } = render(<Checkbox disabled />);
-      expect(await driver.isDisabled()).toBe(true);
     });
 
     it('should have an error state', async () => {
@@ -54,15 +48,6 @@ describe('Checkbox', () => {
       expect(onChange).toBeCalledWith(
         expect.objectContaining({ target: { checked: true } }),
       );
-    });
-
-    it('should not call onChange when clicking disabled Checkbox', async () => {
-      const onChange = jest.fn();
-
-      const { driver } = render(<Checkbox onChange={onChange} disabled />);
-
-      await driver.click();
-      expect(onChange).not.toBeCalled();
     });
 
     it('should not run in indeterminate mode when not specified', async () => {
@@ -85,14 +70,6 @@ describe('Checkbox', () => {
       expect(await driver.getErrorMessage()).toEqual(errorMessage);
     });
 
-    it('should not show error message when disabled', async () => {
-      const errorMessage = 'Error message';
-      const { driver } = render(
-        <Checkbox hasError errorMessage={errorMessage} disabled />,
-      );
-      await expect(driver.getErrorMessage()).rejects.toThrow(Error);
-    });
-
     it('should not show error message when no error message stated', async () => {
       const { driver } = render(<Checkbox hasError />);
       await expect(driver.getErrorMessage()).rejects.toThrow(Error);
@@ -104,9 +81,92 @@ describe('Checkbox', () => {
       await expect(driver.getErrorMessage()).rejects.toThrow(Error);
     });
 
-    it('should not have error when disabled', async () => {
-      const { driver } = render(<Checkbox hasError disabled />);
-      expect(await driver.hasError()).toEqual(false);
+    it('should show a tooltip message when a tooltipContent prop is passed', async () => {
+      const tooltipContent = 'some content';
+      const { driver } = render(<Checkbox tooltipContent={tooltipContent} />);
+      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+    });
+
+    it('should show tooltipContent message on tooltip when both tooltipContent and errorMessage props are passed', async () => {
+      const tooltipContent = 'tooltip content';
+      const tooltipErrorMessage = 'error message';
+      const { driver } = render(
+        <Checkbox
+          tooltipContent={tooltipContent}
+          hasError
+          errorMessage={tooltipErrorMessage}
+        />,
+      );
+      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+    });
+
+    it('should show tooltip message if tooltipContent and hasError props passed', async () => {
+      const tooltipContent = 'tooltip content';
+      const { driver } = render(
+        <Checkbox tooltipContent={tooltipContent} hasError />,
+      );
+      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+    });
+
+    describe('disabled', () => {
+      it('should be not disabled by default', async () => {
+        const { driver } = render(<Checkbox />);
+        expect(await driver.isDisabled()).toBe(false);
+      });
+
+      it('should be disabled', async () => {
+        const { driver } = render(<Checkbox disabled />);
+        expect(await driver.isDisabled()).toBe(true);
+      });
+
+      it('should not call onChange when clicking disabled Checkbox', async () => {
+        const onChange = jest.fn();
+        const { driver } = render(<Checkbox onChange={onChange} disabled />);
+
+        await driver.click();
+        expect(onChange).not.toBeCalled();
+      });
+
+      it('should not show error message when disabled', async () => {
+        const errorMessage = 'Error message';
+        const { driver } = render(
+          <Checkbox hasError errorMessage={errorMessage} disabled />,
+        );
+
+        expect(await driver.hasError()).toEqual(false);
+        await expect(driver.getErrorMessage()).rejects.toThrow(Error);
+      });
+
+      it('should not show error message when tooltipProps disabled is true', async () => {
+        const tooltipContent = 'tooltip content';
+        const tooltipProps = {
+          disabled: true,
+        };
+        const { driver } = render(
+          <Checkbox
+            tooltipContent={tooltipContent}
+            tooltipProps={tooltipProps}
+          />,
+        );
+
+        expect(await driver.isTooltipEnabled()).toBe(false);
+      });
+
+      it('should show error message when disabled but tooltipProps disabled is false', async () => {
+        const tooltipContent = 'tooltip content';
+        const tooltipProps = {
+          disabled: false,
+        };
+        const { driver } = render(
+          <Checkbox
+            tooltipContent={tooltipContent}
+            tooltipProps={tooltipProps}
+            disabled
+          />,
+        );
+
+        expect(await driver.isTooltipEnabled()).toBe(true);
+      });
     });
 
     describe('Label', () => {

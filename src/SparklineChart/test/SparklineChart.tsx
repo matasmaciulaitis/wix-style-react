@@ -9,7 +9,8 @@ import * as puppeteer from 'puppeteer';
 const data = [
   { label: new Date('Thu Sep 4 2020'), value: 3 },
   { label: new Date('Thu Sep 5 2020'), value: 17 },
-  { label: new Date('Thu Sep 6 2020'), value: 18 }];
+  { label: new Date('Thu Sep 6 2020'), value: 18 },
+];
 
 function sparklineChartWithMandatoryProps() {
   return <SparklineChart data={data} />;
@@ -25,7 +26,11 @@ function sparklineChartWithAllProps() {
       width={400}
       height={80}
       highlightedStartingIndex={1}
-      getTooltipContent={(index:number): React.ReactNode => <div>tool tip content</div>}
+      getTooltipContent={(index: number): React.ReactNode => (
+        <div>tool tip content</div>
+      )}
+      onHover={index => `Point at index ${index} is hovered!`}
+      animationDuration={300}
     />
   );
 }

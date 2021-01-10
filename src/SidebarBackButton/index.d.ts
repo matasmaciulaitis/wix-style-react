@@ -8,6 +8,4 @@ export interface SidebarBackButtonProps {
   animateArrow?: boolean;
 }
 
-export default class SidebarBackButton extends React.PureComponent<
-  SidebarBackButtonProps
-> {}
+export default class SidebarBackButton extends React.PureComponent<SidebarBackButtonProps> {}

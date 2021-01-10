@@ -20,6 +20,4 @@ export interface CardGalleryItemProps {
   dataHook?: string;
 }
 
-export default class CardGalleryItem extends React.PureComponent<
-  CardGalleryItemProps
-> {}
+export default class CardGalleryItem extends React.PureComponent<CardGalleryItemProps> {}

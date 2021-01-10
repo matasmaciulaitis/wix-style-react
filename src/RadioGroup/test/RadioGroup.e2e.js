@@ -32,10 +32,7 @@ describe('RadioGroup', () => {
   eyes.it('should not select disabled option', async () => {
     await loadStory(testStories.disabledRadio);
     expect(radioGroupDriver.isRadioDisabled(3)).toBe(true);
-    browser
-      .actions()
-      .mouseMove(radioGroupDriver.getRadioAtIndex(3))
-      .click();
+    browser.actions().mouseMove(radioGroupDriver.getRadioAtIndex(3)).click();
     expect(radioGroupDriver.isRadioChecked(3)).toBe(false);
   });
 

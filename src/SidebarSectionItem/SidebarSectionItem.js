@@ -84,20 +84,22 @@ class SidebarSectionItem extends React.PureComponent {
                   {prefix}
                 </span>
               )}
-              <FontUpgradeContext.Consumer>
-                {({ active }) => (
-                  <Text
-                    className={classes.text}
-                    size="small"
-                    weight={active ? 'normal' : 'bold'}
-                    secondary={skin === sidebarSkins.light}
-                    light={skin === sidebarSkins.dark}
-                    skin={disabled && 'disabled'}
-                  >
-                    {children}
-                  </Text>
-                )}
-              </FontUpgradeContext.Consumer>
+              <span className={classes.textWrapper}>
+                <FontUpgradeContext.Consumer>
+                  {({ active }) => (
+                    <Text
+                      className={classes.text}
+                      size="small"
+                      weight={active ? 'normal' : 'bold'}
+                      secondary={skin === sidebarSkins.light}
+                      light={skin === sidebarSkins.dark}
+                      skin={disabled && 'disabled'}
+                    >
+                      {children}
+                    </Text>
+                  )}
+                </FontUpgradeContext.Consumer>
+              </span>
               {!disabled && (suffix || drillable) && (
                 <span data-hook={dataHooks.suffix} className={classes.suffix}>
                   {suffix || (

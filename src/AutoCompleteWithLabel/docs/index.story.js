@@ -7,7 +7,7 @@ import {
   importExample,
   title,
   divider,
-  code,
+  example as baseExample,
   playground,
   api,
   testkit,
@@ -15,22 +15,11 @@ import {
 
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
-
 import AutoCompleteWithLabel from '..';
-
 import * as examples from './examples';
 import { createOptions } from '../../../stories/utils/playgroundUtils';
 
-const liveCode = config =>
-  code({
-    previewProps: {
-      style: { backgroundColor: '#f0f4f7' },
-    },
-    components: allComponents,
-    ...config,
-  });
-
-const example = props => liveCode(props);
+const example = config => baseExample({ components: allComponents, ...config });
 
 const options4 = createOptions(4);
 const options10 = createOptions(10);

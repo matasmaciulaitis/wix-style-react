@@ -10,7 +10,7 @@ export const Category = {
   PLAYGROUND: 'Introduction|Playground',
   CHEATSHEET: 'Introduction|Cheatsheet',
   TESTING: 'Introduction|Testing',
-  TROUBLESHOOTING: 'Introduction|Troubleshooting',
+  SUPPORT: 'Introduction|Support',
   FOUNDATION: 'Design Guidelines|Foundation',
   LAYOUT: 'Design Guidelines|Layout',
   BUTTONS: 'Design Guidelines|Buttons',

@@ -9,4 +9,5 @@ export const dataHooks = {
   selector: 'selector-list-selector',
   list: 'selector-list-list',
   toggleAllCheckbox: 'selector-list-toggle-all-checkbox',
+  subtitle: 'selector-list-subtitle',
 };

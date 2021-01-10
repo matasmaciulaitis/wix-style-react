@@ -59,7 +59,10 @@ class GoogleAddressInput extends React.Component {
     const { magnifyingGlass } = this.props;
 
     const options = [
-      ...suggestions.map(({ description, id }) => ({ id, value: description })),
+      ...suggestions.map((suggestion, index) => {
+        const { place_id, description } = suggestion;
+        return { id: place_id || index, value: description };
+      }),
 
       ...(this.props.footer
         ? [
@@ -76,9 +79,7 @@ class GoogleAddressInput extends React.Component {
       <Input.IconAffix>
         <Search data-hook="search-icon" />
       </Input.IconAffix>
-    ) : (
-      undefined
-    );
+    ) : undefined;
 
     return (
       <div>

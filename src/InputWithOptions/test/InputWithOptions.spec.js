@@ -203,7 +203,7 @@ describe('InputWithOptions', () => {
               showOptionsIfEmptyInput={false}
               options={options}
               closeOnSelect
-              onSelect={function(option) {
+              onSelect={function (option) {
                 this.setState({ value: option.value });
               }}
             />,
@@ -221,7 +221,7 @@ describe('InputWithOptions', () => {
               showOptionsIfEmptyInput={false}
               options={options}
               closeOnSelect={false}
-              onSelect={function(option) {
+              onSelect={function (option) {
                 this.setState({ value: option.value });
               }}
             />,

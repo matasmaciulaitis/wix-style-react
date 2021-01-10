@@ -8,6 +8,4 @@ export interface FontUpgradeProps {
   children?: React.ReactNode;
 }
 
-export default class FontUpgrade extends React.PureComponent<
-  FontUpgradeProps
-> {}
+export default class FontUpgrade extends React.PureComponent<FontUpgradeProps> {}

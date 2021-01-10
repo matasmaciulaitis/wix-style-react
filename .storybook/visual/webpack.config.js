@@ -1,16 +1,12 @@
 const merge = require('lodash/merge');
 const path = require('path');
 
-const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
-const commonWebpackConfig = require('../../scripts/webpack-config/common-webpack.config');
+const { decorateStorybookConfig } = require('yoshi-flow-library/storybook');
 
 module.exports = ({ config }) => {
-  config.module.rules = commonWebpackConfig.module.rules;
-  config.plugins.push(new StylableWebpackPlugin());
-
   const srcPath = path.resolve(__dirname, '../..', 'src');
 
-  return merge(config, {
+  return merge(decorateStorybookConfig(config), {
     context: srcPath,
     resolve: {
       alias: {

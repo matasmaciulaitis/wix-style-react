@@ -4,7 +4,7 @@ import { ADDON_ID, ADDON_TITLE } from './shared';
 import { useState } from 'react';
 import { Card, Heading, ThemeProvider, Text } from '../../../src';
 import StylePanel from './StylePanel';
-import { theme } from '../../../src/Themes/floatingPanels';
+import { calcColors } from '../../../src/Themes/floatingPanels/utils';
 
 const ThemeWSR = makeDecorator({
   name: ADDON_TITLE,
@@ -57,9 +57,16 @@ const ThemeWSR = makeDecorator({
       window.removeEventListener('mouseup', stopDragging, false);
     };
 
+    function storybookTheme({ mainColor, ...rest } = {}) {
+      return {
+        ...calcColors(mainColor),
+        ...rest,
+      };
+    }
+
     return (
       <div style={{ position: 'relative' }} ref={ref => (containerRef = ref)}>
-        <ThemeProvider theme={theme(themeData)}>
+        <ThemeProvider theme={storybookTheme(themeData)}>
           {getStory(context)}
         </ThemeProvider>
         <div

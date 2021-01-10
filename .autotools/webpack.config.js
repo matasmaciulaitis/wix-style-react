@@ -1,10 +1,10 @@
-const merge = require('lodash/merge');
 const path = require('path');
-const commonWebpackConfig = require('../scripts/webpack-config/common-webpack.config');
+const { decorateStorybookConfig } = require('yoshi-flow-library/storybook');
 
-const config = {
+module.exports = decorateStorybookConfig({
   context: path.resolve(__dirname, '..'),
   mode: 'development',
-};
-
-module.exports = merge(commonWebpackConfig, config);
+  resolve: {
+    extensions: [],
+  },
+});

@@ -6,7 +6,7 @@ import { classes } from './BadgeSelect.st.css';
 import DropdownLayout from '../DropdownLayout';
 import Popover from '../Popover';
 import Badge from '../Badge';
-import { badgeSelectItemBuilder } from '../BadgeSelectItemBuilder';
+import { badgeSelectItemBuilder } from '../BadgeSelectItem';
 import * as DATA_ATTR from './DataAttr';
 
 import { PopoverCommonProps } from '../common/PropTypes/PopoverCommon';
@@ -89,15 +89,9 @@ class BadgeSelect extends React.Component {
 
   get options() {
     const { options } = this.props;
-    const { selectedBadge } = this.state;
 
     return Array.isArray(options)
-      ? options.map(option =>
-          badgeSelectItemBuilder({
-            ...option,
-            selected: selectedBadge.id === option.id,
-          }),
-        )
+      ? options.map(option => badgeSelectItemBuilder({ ...option }))
       : [];
   }
 

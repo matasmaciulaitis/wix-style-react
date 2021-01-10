@@ -17,8 +17,10 @@ const defaultMomentWithAM = moment('2014-04-25T01:00:00.00Z');
 const defaultMomentWithPM = moment('2014-04-25T13:00:00.00Z');
 
 describe('TimeInput', () => {
-  const format12Hours = time => time.format('hh:mm');
-  const format24Hours = time => time.format('HH:mm');
+  const formatTime = (time, format) => time.format(format);
+  const time12Hours = 'hh:mm';
+  const time24Hours = 'HH:mm';
+  const withSeconds = ':ss';
 
   describe('[sync]', () => {
     runTests(createRendererWithDriver(timeInputDriverFactory));
@@ -37,14 +39,22 @@ describe('TimeInput', () => {
           defaultValue: defaultMoment,
         };
         const { driver } = render(<TimeInput {...props} />);
-        expect(await driver.getValue()).toBe(format12Hours(props.defaultValue));
+        expect(await driver.getValue()).toBe(
+          formatTime(props.defaultValue, time12Hours),
+        );
       });
 
       it(`should render the current time if no default value were passed `, async () => {
         const { driver } = render(<TimeInput />);
         const currentTime = defaultMoment;
-        const currentTimeHours = format12Hours(currentTime).substring(0, 2);
-        const currentTimeMinutes = format12Hours(currentTime).substring(3, 5);
+        const currentTimeHours = formatTime(currentTime, time12Hours).substring(
+          0,
+          2,
+        );
+        const currentTimeMinutes = formatTime(
+          currentTime,
+          time12Hours,
+        ).substring(3, 5);
         const inputTimeHours = (await driver.getValue()).substring(0, 2);
         const inputTimeMinutes = (await driver.getValue()).substring(3, 5);
         const minutesDiff = Math.abs(
@@ -60,7 +70,9 @@ describe('TimeInput', () => {
           disableAmPm: true,
         };
         const { driver } = render(<TimeInput {...props} />);
-        expect(await driver.getValue()).toBe(format24Hours(props.defaultValue));
+        expect(await driver.getValue()).toBe(
+          formatTime(props.defaultValue, time24Hours),
+        );
       });
 
       it(`should display am/pm indicator when in 12 hours mode`, async () => {
@@ -99,6 +111,33 @@ describe('TimeInput', () => {
         const customSuffixNode = await driver.getCustomSuffix();
         expect(customSuffixNode).toBe(customSuffix);
       });
+    });
+
+    it(`should display time format 12 hours With seconds`, async () => {
+      const props = {
+        showSeconds: true,
+        defaultValue: defaultMoment,
+      };
+      const { driver } = render(<TimeInput {...props} />);
+
+      expect(await driver.isShowSeconds()).toBe(true);
+      expect(await driver.getValue()).toBe(
+        formatTime(props.defaultValue, `${time12Hours}${withSeconds}`),
+      );
+    });
+
+    it(`should display time format 24 hours With seconds`, async () => {
+      const props = {
+        showSeconds: true,
+        defaultValue: defaultMoment,
+        disableAmPm: true,
+      };
+      const { driver } = render(<TimeInput {...props} />);
+
+      expect(await driver.isShowSeconds()).toBe(true);
+      expect(await driver.getValue()).toBe(
+        formatTime(props.defaultValue, `${time24Hours}${withSeconds}`),
+      );
     });
 
     describe('onChange & disabled', () => {
@@ -145,7 +184,7 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.clickTickerUp();
         expect(await driver.getValue()).toBe(
-          format12Hours(props.defaultValue.add(20, 'minutes')),
+          formatTime(props.defaultValue.add(20, 'minutes'), time12Hours),
         );
       });
 
@@ -156,7 +195,7 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.clickTickerDown();
         expect(await driver.getValue()).toBe(
-          format12Hours(props.defaultValue.subtract(20, 'minutes')),
+          formatTime(props.defaultValue.subtract(20, 'minutes'), time12Hours),
         );
       });
 
@@ -169,7 +208,10 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.clickTickerUp();
         expect(await driver.getValue()).toBe(
-          format12Hours(props.defaultValue.add(minutesStep, 'minutes')),
+          formatTime(
+            props.defaultValue.add(minutesStep, 'minutes'),
+            time12Hours,
+          ),
         );
       });
 
@@ -182,7 +224,10 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.clickTickerDown();
         expect(await driver.getValue()).toBe(
-          format12Hours(props.defaultValue.subtract(minutesStep, 'minutes')),
+          formatTime(
+            props.defaultValue.subtract(minutesStep, 'minutes'),
+            time12Hours,
+          ),
         );
       });
 
@@ -203,7 +248,9 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.setValue('blabla');
         await driver.blur();
-        expect(await driver.getValue()).toBe(format12Hours(props.defaultValue));
+        expect(await driver.getValue()).toBe(
+          formatTime(props.defaultValue, time12Hours),
+        );
       });
 
       it(`should not allow to enter invalid time using keyboard's input, it should bring back the previous valid value`, async () => {
@@ -213,7 +260,9 @@ describe('TimeInput', () => {
         const { driver } = render(<TimeInput {...props} />);
         await driver.setValue('99:99');
         await driver.blur();
-        expect(await driver.getValue()).toBe(format12Hours(props.defaultValue));
+        expect(await driver.getValue()).toBe(
+          formatTime(props.defaultValue, time12Hours),
+        );
       });
 
       it(`should allow toggling between am/pm when in 12 hours mode`, async () => {

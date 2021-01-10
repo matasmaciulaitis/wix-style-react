@@ -1,9 +1,4 @@
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
-import {
-  EXPANDABLE_CLASS,
-  EXPANDABLE_COLLAPSED,
-  EXPANDABLE_EXPANDED,
-} from './constants';
 
 const searchDriverFactory = args => {
   const { element } = args;
@@ -18,10 +13,8 @@ const searchDriverFactory = args => {
     ...inputWithOptionsDriver,
     driver: {
       ...inputWithOptionsDriver.driver,
-      isExpandable: () => element.className.includes(EXPANDABLE_CLASS),
-      isCollapsed: () =>
-        element.className.includes(EXPANDABLE_COLLAPSED) &&
-        !element.className.includes(EXPANDABLE_EXPANDED),
+      isExpandable: () => element.hasAttribute('data-expandable'),
+      isCollapsed: () => element.hasAttribute('data-collapsed'),
     },
   };
 };

@@ -350,7 +350,9 @@ class DataTable extends React.Component {
       [this.style.largeVerticalPadding]:
         this.props.rowVerticalPadding === 'large',
       [this.style.mediumVerticalPadding]:
-        this.props.rowVerticalPadding !== 'large',
+        this.props.rowVerticalPadding === 'medium',
+      [this.style.smallVerticalPadding]:
+        this.props.rowVerticalPadding === 'small',
 
       [this.style.alignStart]: column.align === 'start',
       [this.style.alignCenter]: column.align === 'center',
@@ -688,7 +690,7 @@ DataTable.propTypes = {
   /** Add scroll listeners to specified DOM Object. */
   scrollElement: PropTypes.object,
   /** Table cell vertical padding. should be 'medium' or 'large'  */
-  rowVerticalPadding: PropTypes.oneOf(['medium', 'large']),
+  rowVerticalPadding: PropTypes.oneOf(['small', 'medium', 'large']),
   /** this prop is deprecated and should not be used
    * @deprecated
    */

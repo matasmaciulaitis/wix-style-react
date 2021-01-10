@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import TextButton from '../TextButton';
 import { st, classes } from './VerticalTabsItem.st.css';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 import VerticalTabsContext from '../VerticalTabs/VerticalTabsContext';
 
 /** Internal Component to be used by VerticalTabs */
@@ -36,12 +37,12 @@ class VerticalTabsItem extends React.PureComponent {
     type: 'tab',
   };
 
-  _renderText() {
+  _renderText({ isMadefor }) {
     const { children, type, disabled } = this.props;
     const { size } = this.context;
     const isTitle = type === 'title';
     const commonProps = {
-      weight: 'normal',
+      weight: isMadefor ? 'thin' : 'normal',
       size: isTitle ? 'small' : size,
       dataHook: 'vertical-tabs-item-text',
     };
@@ -94,25 +95,29 @@ class VerticalTabsItem extends React.PureComponent {
     const selected =
       !!id && !!this.context.activeTabId && id === this.context.activeTabId;
     return (
-      <div
-        className={st(classes.root, {
-          disabled,
-          action: type === 'action',
-          title: type === 'title',
-          suffixIcon: !!suffixIcon,
-          prefixIcon: !!prefixIcon,
-          selected,
-        })}
-        id={id}
-        tabIndex={tabIndex}
-        ref={ref => (this.innerComponentRef = ref)}
-        data-hook={dataHook}
-        onClick={!disabled ? () => this.context.onChange(id) : undefined}
-      >
-        {prefixIcon && this._renderPrefix()}
-        {this._renderText()}
-        {suffixIcon && this._renderSuffix()}
-      </div>
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            className={st(classes.root, {
+              disabled,
+              action: type === 'action',
+              title: type === 'title',
+              suffixIcon: !!suffixIcon,
+              prefixIcon: !!prefixIcon,
+              selected,
+            })}
+            id={id}
+            tabIndex={tabIndex}
+            ref={ref => (this.innerComponentRef = ref)}
+            data-hook={dataHook}
+            onClick={!disabled ? () => this.context.onChange(id) : undefined}
+          >
+            {prefixIcon && this._renderPrefix()}
+            {this._renderText({ isMadefor })}
+            {suffixIcon && this._renderSuffix()}
+          </div>
+        )}
+      </FontUpgradeContext.Consumer>
     );
   }
 }

@@ -15,6 +15,7 @@ function SelectorWithAllProps() {
 
   return (
     <Selector
+      className="cls"
       dataHook="hook"
       extraNode={<div />}
       id="1"

@@ -8,14 +8,29 @@
   "AddressInput": {
     "path": "src/AddressInput"
   },
+  "AddressInputItem": {
+    "path": "src/AddressInputItem"
+  },
+  "AnalyticsLayout": {
+    "path": "src/AnalyticsLayout"
+  },
+  "AnalyticsSummaryCard": {
+    "path": "src/AnalyticsSummaryCard"
+  },
   "Animate": {
-    "path": "src/Animate"
+    "path": "src/Animate",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "AnnouncementModalLayout": {
     "path": "src/AnnouncementModalLayout"
   },
   "AreaChart": {
     "path": "src/AreaChart"
+  },
+  "AtlasAddressInput": {
+    "path": "src/AtlasAddressInput"
   },
   "AudioPlayer": {
     "path": "src/AudioPlayer"
@@ -35,11 +50,8 @@
   "BadgeSelect": {
     "path": "src/BadgeSelect"
   },
-  "BadgeSelectItemBuilder": {
-    "path": "src/BadgeSelectItemBuilder",
-    "missingFiles": [
-      "docs/index.story.js"
-    ]
+  "BadgeSelectItem": {
+    "path": "src/BadgeSelectItem"
   },
   "BarChart": {
     "path": "src/BarChart"
@@ -49,6 +61,9 @@
     "missingFiles": [
       "docs"
     ]
+  },
+  "BounceAnimation": {
+    "path": "src/BounceAnimation"
   },
   "Box": {
     "path": "src/Box"
@@ -115,6 +130,9 @@
     "missingFiles": [
       "docs/index.story.js"
     ]
+  },
+  "CopyClipboard": {
+    "path": "src/CopyClipboard"
   },
   "CounterBadge": {
     "path": "src/CounterBadge"
@@ -323,6 +341,9 @@
   "Page": {
     "path": "src/Page"
   },
+  "PageFooter": {
+    "path": "src/PageFooter"
+  },
   "PageHeader": {
     "path": "src/PageHeader"
   },
@@ -343,6 +364,9 @@
   },
   "Proportion": {
     "path": "src/Proportion"
+  },
+  "Radio": {
+    "path": "src/Radio"
   },
   "RadioGroup": {
     "path": "src/RadioGroup"
@@ -434,6 +458,9 @@
   "Stepper": {
     "path": "src/Stepper"
   },
+  "StyledNestableList": {
+    "path": "src/StyledNestableList"
+  },
   "Swatches": {
     "path": "src/Swatches"
   },
@@ -491,6 +518,9 @@
   "Tooltip": {
     "path": "src/Tooltip"
   },
+  "TrendIndicator": {
+    "path": "src/TrendIndicator"
+  },
   "VariableInput": {
     "path": "src/VariableInput"
   },
@@ -499,5 +529,8 @@
   },
   "VerticalTabsItem": {
     "path": "src/VerticalTabsItem"
+  },
+  "WixStyleReactProvider": {
+    "path": "src/WixStyleReactProvider"
   }
 }

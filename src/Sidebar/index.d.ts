@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SidebarBackButton from "../SidebarBackButton";
+import SidebarBackButton from '../SidebarBackButton';
 
 export interface SidebarProps {
   classNames?: SidebarClassNames;
@@ -7,15 +7,6 @@ export interface SidebarProps {
   isHidden?: boolean;
   skin?: SidebarSkin;
   selectedKey?: string;
-}
-
-export default class Sidebar extends React.Component<SidebarProps> {
-  static Item: typeof SidebarItem;
-  static PersistentHeader: typeof SidebarPersistentHeader;
-  static PersistentFooter: typeof SidebarPersistentFooter;
-  static BackButton: typeof SidebarBackButton;
-
-  setSelectedKey: (setSelectedKey: string) => void;
 }
 
 export type SidebarSkin = 'dark' | 'light';
@@ -37,19 +28,13 @@ interface SidebarItemProps {
   onClick?: (itemKey: string, e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export class SidebarPersistentHeader extends React.Component<
-  SidebarPersistentHeaderProps
-> {}
+export class SidebarPersistentHeader extends React.Component<SidebarPersistentHeaderProps> {}
 interface SidebarPersistentHeaderProps {}
 
-export class SidebarPersistentFooter extends React.Component<
-  SidebarPersistentFooterProps
-> {}
+export class SidebarPersistentFooter extends React.Component<SidebarPersistentFooterProps> {}
 interface SidebarPersistentFooterProps {}
 
-export class SidebarContextConsumer extends React.Component<
-  SidebarContextConsumerProps
-> {}
+export class SidebarContextConsumer extends React.Component<SidebarContextConsumerProps> {}
 interface SidebarContextConsumerProps {
   children(renderProps: {
     itemClicked: (itemKey: string) => void;
@@ -59,9 +44,16 @@ interface SidebarContextConsumerProps {
   }): React.ReactNode;
 }
 
-export class SidebarItemContextConsumer extends React.Component<
-  SidebarItemContextConsumerProps
-> {}
+export class SidebarItemContextConsumer extends React.Component<SidebarItemContextConsumerProps> {}
 interface SidebarItemContextConsumerProps {
   children(renderProps: { selected: () => boolean }): React.ReactNode;
+}
+
+export default class Sidebar extends React.Component<SidebarProps> {
+  static Item: typeof SidebarItem;
+  static PersistentHeader: typeof SidebarPersistentHeader;
+  static PersistentFooter: typeof SidebarPersistentFooter;
+  static BackButton: typeof SidebarBackButton;
+
+  setSelectedKey: (setSelectedKey: string) => void;
 }

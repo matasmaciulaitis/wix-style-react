@@ -50,6 +50,4 @@ export const listItemEditableBuilder: (data: {
   value: (props?: Partial<ListItemEditableProps>) => React.ReactNode;
 };
 
-export default class ListItemEditable extends React.PureComponent<
-  ListItemEditableProps
-> {}
+export default class ListItemEditable extends React.PureComponent<ListItemEditableProps> {}

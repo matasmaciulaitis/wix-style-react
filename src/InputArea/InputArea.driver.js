@@ -1,11 +1,8 @@
 import ReactTestUtils from 'react-dom/test-utils';
-
-import styles from './InputArea.scss';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
-import { dataHooks } from './constants';
+import { dataAttr, dataHooks } from './constants';
 
 const inputAreaDriverFactory = ({ element, eventTrigger }) => {
-  const textAreaElement = element && element.childNodes[0];
   const textArea = () => element.querySelector('textarea');
   const name = () => textArea().getAttribute('name');
   const counterSelector = '[data-hook="counter"]';
@@ -28,18 +25,17 @@ const inputAreaDriverFactory = ({ element, eventTrigger }) => {
     getMaxLength: () => textArea().maxLength,
     getTabIndex: () => textArea().tabIndex,
     getReadOnly: () => textArea().readOnly,
-    getResizable: () => textAreaElement.classList.contains(styles.resizable),
+    getCursorLocation: () => textArea().selectionStart,
+    getResizable: () => element.hasAttribute(dataAttr.RESIZABLE),
     getDisabled: () =>
-      textAreaElement.classList.contains(styles.disabled) &&
-      textArea().disabled,
+      element.hasAttribute(dataAttr.DISABLED) && textArea().disabled,
     getRequired: () => textArea().required,
     getHasCounter: () => !!element.querySelectorAll(counterSelector).length,
     getCounterValue: () => element.querySelector(counterSelector).textContent,
-    hasExclamation: () =>
-      element.querySelectorAll(`.${styles.exclamation}`).length === 1,
-    isFocusedStyle: () => textAreaElement.classList.contains(styles.hasFocus),
-    isSizeSmall: () => textArea().classList.contains(styles.sizeSmall),
-    isHoveredStyle: () => textAreaElement.classList.contains(styles.hasHover),
+    hasExclamation: () => element.hasAttribute(dataAttr.STATUS),
+    isFocusedStyle: () => element.hasAttribute(dataAttr.FOCUS),
+    isSizeSmall: () => element.getAttribute(dataAttr.SIZE) === 'small',
+    isHoveredStyle: () => element.hasAttribute(dataAttr.HOVER),
     isFocus: () => document.activeElement === textArea(),
     exists: () => !!textArea(),
     getStyle: () => textArea().style,

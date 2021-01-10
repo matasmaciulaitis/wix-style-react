@@ -32,9 +32,22 @@ describe('Search', () => {
       REGEXP_SPECIAL_CHARS,
     ].map((value, index) => ({ id: index, value }));
     const createDriver = jsx => render(jsx).driver;
-    afterEach(() => cleanup());
+    afterEach(cleanup);
+
     describe('Controlled', () => {
       const ControlledSearch = makeControlled(Search);
+
+      const ControlledSearchOnBlur = ({ valueOnBlur }) => {
+        const [value, setValue] = React.useState('fox');
+
+        return (
+          <Search
+            expandable
+            value={value}
+            onBlur={() => setValue(valueOnBlur)}
+          />
+        );
+      };
 
       it('should show search options if initial value passed and down-key pressed', async () => {
         const driver = createDriver(
@@ -196,6 +209,38 @@ describe('Search', () => {
         expect(await driver.dropdownLayoutDriver.optionContentAt(0)).toContain(
           'The',
         );
+      });
+
+      it('should collapse when out of focus if value in onBlur() is set to empty', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="" />,
+        );
+        await inputDriver.click();
+        await inputDriver.enterText('fox');
+        await inputDriver.blur();
+        expect(await inputDriver.getText()).toEqual('');
+        expect(await driver.isCollapsed()).toBe(true);
+      });
+
+      it('should not collapse when out of focus if value is set to custom in onBlur()', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="wix" />,
+        );
+        await inputDriver.click();
+        await inputDriver.enterText('');
+        await inputDriver.blur();
+        expect(await inputDriver.getText()).toEqual('wix');
+        expect(await driver.isCollapsed()).toBe(false);
+      });
+
+      it('should not collapse when clicked onClear() if value is set to custom in onBlur()', async () => {
+        const { driver, inputDriver } = createDriver(
+          <ControlledSearchOnBlur valueOnBlur="wix" />,
+        );
+
+        await inputDriver.clickClear();
+        expect(await inputDriver.getText()).toEqual('fox');
+        expect(await driver.isCollapsed()).toBe(false);
       });
 
       describe('Clearing input', () => {
@@ -451,6 +496,26 @@ describe('Search', () => {
         await inputDriver.keyDown('Enter');
 
         expect(onEnterPressed).toHaveBeenCalled();
+      });
+    });
+
+    describe('onChange', () => {
+      it('should update onChange callback', async () => {
+        const onChange1 = jest.fn();
+        const onChange2 = jest.fn();
+        const { driver, rerender } = render(<Search onChange={onChange1} />);
+
+        // Expect to call onChange
+        expect(onChange1).toHaveBeenCalledTimes(0);
+        await driver.inputDriver.enterText('yay');
+        expect(onChange1).toHaveBeenCalledTimes(1);
+
+        rerender(<Search onChange={onChange2} />);
+
+        // Expect to update and call the new onChange
+        expect(onChange2).toHaveBeenCalledTimes(0);
+        await driver.inputDriver.enterText('yay');
+        expect(onChange2).toHaveBeenCalledTimes(1);
       });
     });
   }

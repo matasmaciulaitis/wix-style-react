@@ -32,9 +32,5 @@ export const RawContainer: React.SFC<ContainerProps>;
 export class Columns extends React.Component<ColumnsProps> {}
 export class Row extends React.Component<ColumnsProps> {}
 export class Col extends React.Component<ColProps> {}
-export class AutoAdjustedColumns extends React.Component<
-  AutoAdjustedColumnsProps
-> {}
-export class AutoAdjustedRow extends React.Component<
-  AutoAdjustedColumnsProps
-> {}
+export class AutoAdjustedColumns extends React.Component<AutoAdjustedColumnsProps> {}
+export class AutoAdjustedRow extends React.Component<AutoAdjustedColumnsProps> {}

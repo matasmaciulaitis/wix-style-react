@@ -124,6 +124,20 @@ describe('Calendar', () => {
           monthNames[new Date().getMonth()],
         );
       });
+      it('should have 5 selected dates', async () => {
+        const { driver } = render(
+          <Calendar
+            value={{
+              from: new Date(2018, 10, 5),
+              to: new Date(2018, 10, 9),
+            }}
+            onChange={() => {}}
+            selectionMode={'range'}
+          />,
+        );
+
+        expect(await driver.getNumOfSelectedDays()).toBe(5);
+      });
     });
 
     describe('`filterDate` prop', () => {

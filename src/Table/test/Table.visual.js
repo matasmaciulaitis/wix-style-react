@@ -100,6 +100,17 @@ const horizontalScrollColumns = range(0, horizontalScrollColumnCount).map(
   }),
 );
 
+const rowVerticalPaddingTests = ['large', 'medium', 'small'].map(
+  rowVerticalPadding => ({
+    it: `Should display the table row with "${rowVerticalPadding}" rowVerticalPadding`,
+    props: {
+      data,
+      columns,
+      rowVerticalPadding,
+    },
+  }),
+);
+
 const tests = [
   {
     describe: 'Basic',
@@ -255,6 +266,7 @@ const tests = [
           children: <Table.Content titleBarVisible={false} />,
         },
       },
+      ...rowVerticalPaddingTests,
     ],
   },
   {
