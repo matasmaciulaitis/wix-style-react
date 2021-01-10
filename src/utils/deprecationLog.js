@@ -16,14 +16,14 @@ if (process.env.NODE_ENV !== 'production') {
      * @param {*} message
      * @memberof DeprecationLogger
      */
-    log = (message) => {
+    log = message => {
       if (!this.reportedMessages.has(message)) {
         this.reportedMessages.add(message);
         this.printWarning(message);
       }
     };
 
-    printWarning = (msg) => {
+    printWarning = msg => {
       const message = `${LOG_PREFIX}${msg}`;
       if (console) {
         console.warn(message); // eslint-disable-line
@@ -41,4 +41,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export { depLogger };
-export default (msg) => depLogger.log(msg);
+export default msg => depLogger.log(msg);

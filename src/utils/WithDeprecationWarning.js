@@ -8,7 +8,7 @@ if (!config || !config.deprecationWarnings) {
   };
 }
 
-export const WithDeprecationWarning = (driver) => {
+export const WithDeprecationWarning = driver => {
   if (console && config.deprecationWarnings[driver.name] !== 'mute') {
     // eslint-disable-next-line no-console
     console.warn(`
