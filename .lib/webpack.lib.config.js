@@ -163,18 +163,18 @@ const config = {
     libraryTarget: 'umd',
   },
   externals: {
-    // react: {
-    //   amd: 'react',
-    //   commonjs: 'react',
-    //   commonjs2: 'react',
-    //   root: 'React',
-    // },
-    // 'react-dom': {
-    //   amd: 'reactDOM',
-    //   commonjs: 'react-dom',
-    //   commonjs2: 'react-dom',
-    //   root: 'ReactDOM',
-    // },
+    react: {
+      amd: 'react',
+      commonjs: 'react',
+      commonjs2: 'react',
+      root: 'React',
+    },
+    'react-dom': {
+      amd: 'react-dom',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      root: 'ReactDOM',
+    },
   },
   module: {
     rules: [
