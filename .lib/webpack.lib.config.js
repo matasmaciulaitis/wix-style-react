@@ -4,10 +4,19 @@ const webpack = require('webpack');
 const { sync: rimraf } = require('rimraf');
 
 const path = require('path');
+const fs = require('fs');
 
 const reAssets = /\.(png|jpg|jpeg|gif|woff|woff2|ttf|otf|eot|wav|mp3)$/;
 const staticAssetName = 'media/[name].[hash:8].[ext]';
 const dist = __dirname + '/dist';
+const context = path.join(__dirname, '..', 'src');
+
+// const dirChunks = new Set(
+//   fs
+//     .readdirSync(context, { withFileTypes: true })
+//     .filter(x => x.isDirectory())
+//     .map(({ name }) => name),
+// );
 
 const wsrStylableNamespaceFactory = () => {
   const s = new Set();
@@ -146,7 +155,7 @@ const config = {
   mode: 'production',
   entry: './index.js',
   devtool: false,
-  context: path.join(__dirname, '..', 'src'),
+  context,
   output: {
     path: dist,
     library: 'wsr',
@@ -238,13 +247,24 @@ const config = {
       minChunks: 1,
       maxAsyncRequests: 100,
       maxInitialRequests: 100,
-      enforceSizeThreshold: 1,
+      enforceSizeThreshold: 0,
       cacheGroups: {
         vendors: false,
         defaultVendors: false,
         default: {
+          // name(module, chunks, cacheGroupKey) {
+          //   const match =
+          //     module.resource &&
+          //     module.resource.match(/wix-style-react[\\/]src[\\/](.*?)[\\/]/);
+
+          //   if (match && dirChunks.has(match[1])) {
+          //     return match[1];
+          //   }
+          //   const allChunksNames = chunks.map(item => item.name).join('~');
+          //   return resolveNamespace(cacheGroupKey, allChunksNames);
+          //   // return `${cacheGroupKey}-${allChunksNames}`;
+          // },
           enforce: true,
-          minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
         },
