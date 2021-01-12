@@ -1,4 +1,6 @@
 const { StylableWebpackPlugin } = require('@stylable/webpack-plugin');
+const { resolveNamespace } = require('@stylable/node');
+const webpack = require('webpack');
 const { sync: rimraf } = require('rimraf');
 
 const path = require('path');
@@ -6,6 +8,31 @@ const path = require('path');
 const reAssets = /\.(png|jpg|jpeg|gif|woff|woff2|ttf|otf|eot|wav|mp3)$/;
 const staticAssetName = 'media/[name].[hash:8].[ext]';
 const dist = __dirname + '/dist';
+
+const wsrStylableNamespaceFactory = () => {
+  const s = new Set();
+  return (ns, path) => {
+    let outNS;
+    if (path.includes('wix-ui-core')) {
+      outNS = 'wuc' + ns;
+    } else {
+      outNS = 'wsr' + ns;
+    }
+    if (s.has(outNS)) {
+      const m = path.match(/wix-style-react[\\/]src[\\/](.*?)[\\/]/);
+      if (m) {
+        outNS = 'wsr' + m[1] + ns;
+      }
+      if (s.has(outNS)) {
+        outNS = resolveNamespace(ns, path);
+        console.error(ns, path);
+      }
+    }
+    s.add(outNS);
+    return outNS;
+  };
+};
+
 const getStyleLoaders = (
   isProduction = false,
   isHot = false,
@@ -115,8 +142,8 @@ const webpackClean = folder => ({
 
 /** @type import('webpack').Configuration */
 const config = {
-  mode: 'development',
-  // mode: 'production',
+  // mode: 'development',
+  mode: 'production',
   entry: './index.js',
   devtool: false,
   context: path.join(__dirname, '..', 'src'),
@@ -125,11 +152,13 @@ const config = {
     library: 'wsr',
     libraryTarget: 'umd',
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    // Wix: 'Wix',
-  },
+  externals: [
+    {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      // Wix: 'Wix',
+    },
+  ],
   module: {
     rules: [
       {
@@ -200,8 +229,31 @@ const config = {
       ...getStyleLoaders(),
     ],
   },
+  optimization: {
+    splitChunks: {
+      automaticNameMaxLength: 180,
+      chunks: 'async',
+      minSize: 0,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 100,
+      maxInitialRequests: 100,
+      enforceSizeThreshold: 1,
+      cacheGroups: {
+        vendors: false,
+        defaultVendors: false,
+        default: {
+          enforce: true,
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   plugins: [
-    // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
+    new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new StylableWebpackPlugin({
       outputCSS: false,
       includeCSSInJS: true,
@@ -210,6 +262,7 @@ const config = {
         shortNamespaces: false,
         removeUnusedComponents: false,
       },
+      resolveNamespace: wsrStylableNamespaceFactory(),
     }),
     webpackClean(dist),
   ],
