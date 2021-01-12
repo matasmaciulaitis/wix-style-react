@@ -44,7 +44,7 @@ function createDynamicIndexSource(sourceFile) {
   const exports = findReExports(sourceFile);
   const dynamicExports = [];
   for (const { elements, from } of exports) {
-    const chunkName = getChunkName(elements);
+    const chunkName = getChunkName(elements, from);
     for (const { name, propertyName } of elements) {
       dynamicExports.push(
         `export const ${name} = async ()=> (await import(/* webpackChunkName: "${chunkName ||
