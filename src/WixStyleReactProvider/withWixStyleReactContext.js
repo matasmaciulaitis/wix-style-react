@@ -3,7 +3,7 @@ import { WixStyleReactContext } from './context';
 import { getDisplayName } from '../common/hocUtils';
 
 const withWixStyleReactContext = Component => {
-  class WixStyleReactContext extends React.Component {
+  class WixStyleReactConsumer extends React.Component {
     static displayName = getDisplayName(Component);
     static defaultProps = Component.defaultProps;
 
@@ -20,7 +20,7 @@ const withWixStyleReactContext = Component => {
   }
 
   return React.forwardRef((props, ref) => (
-    <WixStyleReactContext {...props} forwardedRef={ref} />
+    <WixStyleReactConsumer {...props} forwardedRef={ref} />
   ));
 };
 
