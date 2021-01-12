@@ -5,8 +5,7 @@ import Text, { SIZES, SKINS, WEIGHTS } from '../Text';
 import { dataHooks } from './constants';
 import { st, classes } from './FormField.st.css';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
-import { WixStyleReactContext } from '../WixStyleReactProvider/context';
-import deprecationLog from '../utils/deprecationLog';
+import withWixStyleReactContext from '../WixStyleReactProvider/withWixStyleReactContext';
 
 const PLACEMENT = {
   top: 'top',
@@ -27,7 +26,7 @@ const asterisk = (
   />
 );
 
-const charactersLeft = (lengthLeft) => {
+const charactersLeft = lengthLeft => {
   const colorProps =
     lengthLeft >= 0 ? { light: true, secondary: true } : { skin: SKINS.error };
   return (
@@ -118,7 +117,7 @@ class FormField extends React.Component {
   };
 
   childrenRenderPropInterface = {
-    setCharactersLeft: (lengthLeft) => this.setState({ lengthLeft }),
+    setCharactersLeft: lengthLeft => this.setState({ lengthLeft }),
   };
 
   _renderChildren() {
@@ -144,8 +143,17 @@ class FormField extends React.Component {
     );
   };
 
-  _renderInfoIcon = ({ labelSize }) => {
-    const { dataHook, infoContent, infoTooltipProps } = this.props;
+  _renderInfoIcon = () => {
+    const {
+      dataHook,
+      features,
+      labelSize,
+      infoContent,
+      infoTooltipProps,
+    } = this.props;
+    const iconSize =
+      (features?.reducedSpacingAndImprovedLayout && 'small') || labelSize;
+
     return (
       infoContent && (
         <InfoIcon
@@ -153,13 +161,13 @@ class FormField extends React.Component {
           className={classes.infoIcon}
           content={infoContent}
           tooltipProps={infoTooltipProps}
-          size={labelSize}
+          size={iconSize}
         />
       )
     );
   };
 
-  _renderLabelIndicators = ({ labelSize }) => {
+  _renderLabelIndicators = () => {
     const { required, suffix } = this.props;
 
     return (
@@ -169,9 +177,9 @@ class FormField extends React.Component {
           inlineWithSuffix: Boolean(suffix || this._hasCharCounter()),
         })}
       >
-        {this._renderLabel({ trimLongText: false, labelSize })}
+        {this._renderLabel({ trimLongText: false })}
         {required && asterisk}
-        {this._renderInfoIcon({ labelSize })}
+        {this._renderInfoIcon()}
       </div>
     );
   };
@@ -192,14 +200,16 @@ class FormField extends React.Component {
     label &&
     (labelPlacement === PLACEMENT.left || labelPlacement === PLACEMENT.right);
 
-  _renderLabel = ({ trimLongText, labelSize }) => {
-    const { label, id } = this.props;
+  _renderLabel = ({ trimLongText }) => {
+    const { label, id, labelSize, features } = this.props;
+    const textSize =
+      (features?.reducedSpacingAndImprovedLayout && 'small') || labelSize;
 
     return (
       <Text
-        size={labelSize}
+        size={textSize}
         htmlFor={id}
-        tagName={'label'}
+        tagName="label"
         dataHook={dataHooks.label}
         ellipsis={trimLongText}
         style={{ display: 'block' }} // allows the label to middle vertically
@@ -223,10 +233,8 @@ class FormField extends React.Component {
       stretchContent,
     } = this.props;
 
-    let { labelSize } = this.props;
-
     // TODO: should be deprecated. Currently, no deprecation log because we are not sure when is the next major release and we don't want consumers will get lots of warnings
-    // if (labelSize) {
+    // if (this.props.labelSize) {
     //   deprecationLog(
     //     `<FormField/> prop "labelSize" is deprecated and will be removed in the next major version.`,
     //   );
@@ -245,50 +253,39 @@ class FormField extends React.Component {
         };
 
     return (
-      <WixStyleReactContext.Consumer>
-        {({ reducedSpacingAndImprovedLayout }) => {
-          labelSize = (reducedSpacingAndImprovedLayout && 'small') || labelSize;
+      <div
+        data-hook={dataHook}
+        className={st(classes.root, rootStyles, classNames)}
+      >
+        {label && labelPlacement === PLACEMENT.top && (
+          <div className={classes.label}>
+            {this._renderLabel({ trimLongText: true })}
+            {required && asterisk}
+            {this._renderInfoIcon()}
+            {this._renderSuffix()}
+          </div>
+        )}
 
-          return (
-            <div
-              data-hook={dataHook}
-              className={st(classes.root, rootStyles, classNames)}
-            >
-              {label && labelPlacement === PLACEMENT.top && (
-                <div className={classes.label}>
-                  {this._renderLabel({ trimLongText: true, labelSize })}
-                  {required && asterisk}
-                  {this._renderInfoIcon({ labelSize })}
-                  {this._renderSuffix()}
-                </div>
-              )}
+        {children && (
+          <div
+            data-hook={dataHooks.children}
+            className={st(classes.children, {
+              childrenWithInlineLabel:
+                !label || this._hasInlineLabel(label, labelPlacement),
+            })}
+          >
+            {(!label || labelPlacement !== PLACEMENT.top) &&
+              this._renderSuffix()}
+            {this._renderChildren()}
+          </div>
+        )}
 
-              {children && (
-                <div
-                  data-hook={dataHooks.children}
-                  className={st(classes.children, {
-                    childrenWithInlineLabel:
-                      !label || this._hasInlineLabel(label, labelPlacement),
-                  })}
-                >
-                  {(!label || labelPlacement !== PLACEMENT.top) &&
-                    this._renderSuffix()}
-                  {this._renderChildren()}
-                </div>
-              )}
-
-              {!label &&
-                (required || infoContent) &&
-                this._renderLabelIndicators({ labelSize })}
-
-              {this._hasInlineLabel(label, labelPlacement) &&
-                this._renderLabelIndicators({ labelSize })}
-            </div>
-          );
-        }}
-      </WixStyleReactContext.Consumer>
+        {!label && (required || infoContent) && this._renderLabelIndicators()}
+        {this._hasInlineLabel(label, labelPlacement) &&
+          this._renderLabelIndicators()}
+      </div>
     );
   }
 }
 
-export default FormField;
+export default withWixStyleReactContext(FormField);
