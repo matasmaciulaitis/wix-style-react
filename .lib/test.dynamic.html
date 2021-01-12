@@ -16,8 +16,9 @@
       src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
     ></script>
     <script src="dist-dynamic/main.js"></script>
-    <script src="lib.dynamic.context.js"></script>
-    <script>
+
+    <script type="module">
+      import { WSRComponents, WSRProvider } from './lib.dynamic.context.js';
       function App() {
         const {
           Button,
@@ -36,7 +37,7 @@
         ]);
       }
 
-     console.log(Object.keys(wsr))
+      console.log(Object.keys(wsr));
 
       const componentLoaders = {
         Button: wsr.Button,
@@ -48,7 +49,7 @@
 
       ReactDOM.render(
         React.createElement(
-          WSRComponents.Root,
+          WSRProvider,
           { componentLoaders },
           React.createElement(App, {}),
         ),

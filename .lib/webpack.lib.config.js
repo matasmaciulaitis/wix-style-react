@@ -154,7 +154,7 @@ const config = {
   // mode: 'development',
   mode: 'production',
   entry: './index.js',
-  devtool: false,
+  devtool: 'source-map',
   context,
   output: {
     path: dist,

@@ -1,6 +1,6 @@
-const WSRComponents = React.createContext();
+export const WSRComponents = React.createContext();
 
-WSRComponents.Root = function WSR({ componentLoaders, preloaded, children }) {
+export function WSRProvider({ componentLoaders, preloaded, children }) {
   const [components, setComponents] = React.useState(preloaded);
   React.useEffect(() => {
     !preloaded && loadComponents(componentLoaders, setComponents);
@@ -13,7 +13,7 @@ WSRComponents.Root = function WSR({ componentLoaders, preloaded, children }) {
     { value: components },
     children,
   );
-};
+}
 
 function loadComponents(componentLoaders, done) {
   const loaded = {};
