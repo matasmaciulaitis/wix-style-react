@@ -240,7 +240,7 @@ const config = {
   },
   optimization: {
     splitChunks: {
-      automaticNameMaxLength: 180,
+      automaticNameMaxLength: 10,
       chunks: 'async',
       minSize: 0,
       maxSize: 0,
