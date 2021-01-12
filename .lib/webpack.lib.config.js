@@ -272,7 +272,7 @@ const config = {
     },
   },
   plugins: [
-    new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
+    // new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new StylableWebpackPlugin({
       outputCSS: false,
