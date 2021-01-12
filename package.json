@@ -22,7 +22,8 @@
     "es",
     "*.scss",
     "*.js",
-    "*.d.ts"
+    "*.d.ts",
+    ".lib"
   ],
   "scripts": {
     "------shared prebuilds (try to make them in watch mode)": "",
@@ -56,13 +57,15 @@
     "sanity": "autotools-sanity --files './src/**/*.meta.js'",
     "------build steps": "",
     "prebuild": "npm run update-components",
-    "build": "npm run transpile && npm run build-puppeteer-testkit",
+    "build": "npm run transpile && npm run build-puppeteer-testkit && npm run build-standalone-library-bundled",
     "postbuild": "npm run copy-public-styles",
     "update-components": ".wuf/update-components.sh",
     "lint": "eslint \"{src,test,testkit,stories}/**/*.js\" --cache --cache-location target/.eslintcache --fix",
     "copy-public-styles": "cp src/*.scss .",
     "transpile": "node ./scripts/transpile/index.js",
     "build-puppeteer-testkit": "webpack --config ./testkit/webpack.config.js",
+    "build-standalone-library": "webpack --config .lib/webpack.dynamic.config.js",
+    "build-standalone-library-bundled": "webpack --config .lib/webpack.lib.config.js",
     "storybook:build-visual": "build-storybook -c ./.storybook/visual",
     "------publish": "",
     "postpublish": "if [ \"$NPM_BUILD_TYPE\" == \"TAR_PUBLISH\" ]; then npm install && npm run build && npm run storybook:build && npx janet deploy --ci; fi",

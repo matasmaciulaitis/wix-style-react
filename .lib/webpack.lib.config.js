@@ -77,7 +77,8 @@ const getStyleLoaders = (
           loader: 'yoshi-style-dependencies/style-loader',
           options: {
             // Reuses a single `<style></style>` element
-            singleton: true,
+            injectType: 'singletonStyleTag',
+            // singleton: true,
           },
         },
         {
@@ -161,13 +162,20 @@ const config = {
     library: 'wsr',
     libraryTarget: 'umd',
   },
-  externals: [
-    {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      // Wix: 'Wix',
-    },
-  ],
+  externals: {
+    // react: {
+    //   amd: 'react',
+    //   commonjs: 'react',
+    //   commonjs2: 'react',
+    //   root: 'React',
+    // },
+    // 'react-dom': {
+    //   amd: 'reactDOM',
+    //   commonjs: 'react-dom',
+    //   commonjs2: 'react-dom',
+    //   root: 'ReactDOM',
+    // },
+  },
   module: {
     rules: [
       {
