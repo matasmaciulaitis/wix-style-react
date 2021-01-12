@@ -1,0 +1,49 @@
+:import {
+  -st-from: "../../../Thumbnail/Thumbnail.st.css";
+  -st-default: Thumbnail;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D55, B30, B10;
+}
+
+.root {
+  -st-extends: Thumbnail;
+}
+
+.root::thumbnail:size(small){
+  max-height: 138px;
+  max-width: 250px;
+}
+
+.root::thumbnail:size(small) {
+  box-shadow: 0 0 0 1px value(D55) inset;
+  border-radius: 4px;
+}
+
+.root::thumbnail:hover::after {
+  box-shadow: 0 0 0 1px value(B30) inset;
+}
+
+.root::thumbnail:active::after {
+  box-shadow: 0 0 0 1px value(B10) inset;
+}
+
+.root::thumbnail:disabled::after {
+  box-shadow: 0 0 0 1px value(D55) inset;
+}
+
+.root::thumbnail:selected::after,
+.root::thumbnail:selected::after:hover,
+.root::thumbnail:selected::after:active{
+  box-shadow: 0 0 0 1px value(B10) inset;
+}
+
+.root::thumbnail:selected::after:disabled{
+  box-shadow: 0 0 0 1px value(D55) inset;
+}
+
+.root::selectedIcon {
+  display: none;
+}

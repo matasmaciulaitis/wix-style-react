@@ -42,6 +42,7 @@ class Tag extends React.PureComponent {
         ellipsis
         size={tagToTextSize[size]}
         weight={isMadefor || size === 'tiny' ? 'thin' : 'normal'}
+        className={classes.text}
         dataHook={dataHooks.text}
       >
         {children}

@@ -18,7 +18,7 @@ export interface AddressInputProps {
   onClear?: () => void;
   status?: 'loading' | 'error' | 'warning';
   statusMessage?: React.ReactNode;
-  roundInput?: boolean;
+  border?: 'standard' | 'round' | 'bottomLine';
   size?: 'small' | 'medium' | 'large';
   placeholder?: string;
   noResultsText?: React.ReactNode;

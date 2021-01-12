@@ -75,6 +75,12 @@ export const runTests = (
             <WrappedInput key={status} status={status} />
             <WrappedInput key={status} status={status} forceHover />
             <WrappedInput key={status} status={status} forceFocus />
+            <WrappedInput
+              key={status}
+              status={status}
+              border="bottomLine"
+              forceFocus
+            />
           </div>
         ))}
       </div>,
@@ -85,9 +91,11 @@ export const runTests = (
     return testWithTheme(
       <div>
         <WrappedInputAffix />
-        <WrappedInputAffix roundInput />
         <WrappedInputIconAffix />
-        <WrappedInputIconAffix roundInput />
+        <WrappedInputAffix border="round" />
+        <WrappedInputIconAffix border="round" />
+        <WrappedInputAffix border="bottomLine" forceFocus />
+        <WrappedInputIconAffix border="bottomLine" forceFocus />
       </div>,
     );
   });

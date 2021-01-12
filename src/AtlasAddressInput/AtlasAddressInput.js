@@ -8,7 +8,7 @@ import { dataHooks } from './constants';
 
 const AtlasAddressInput = ({
   baseUrl,
-  headers,
+  token,
   debounceMs,
   debounceFn,
   onChange,
@@ -20,7 +20,7 @@ const AtlasAddressInput = ({
   status: statusProp,
   ...props
 }) => {
-  const client = useAtlasClient({ baseUrl, headers });
+  const client = useAtlasClient({ baseUrl, token });
   const {
     predictions,
     updatePredictions,
@@ -85,8 +85,8 @@ AtlasAddressInput.propTypes = {
   /** Custom domain for WixAtlasServiceWeb to retreive predictions from  */
   baseUrl: PropTypes.string,
 
-  /** Headers to pass to Atlas Autocomplete Service */
-  headers: PropTypes.object,
+  /** Authorization token to pass to the Atlas Service */
+  token: PropTypes.string,
 
   /** Fetch predictions debounce in milliseconds (default: 200) */
   debounceMs: PropTypes.number,
@@ -134,8 +134,8 @@ AtlasAddressInput.propTypes = {
   /** The status message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,
 
-  /** The shape of the component input */
-  roundInput: PropTypes.bool,
+  /** Border type */
+  border: PropTypes.oneOf(['standard', 'round', 'bottomLine']),
 
   /** Specifies the size of the input */
   size: PropTypes.oneOf(['small', 'medium', 'large']),

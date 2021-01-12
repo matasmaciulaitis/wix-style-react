@@ -4,7 +4,7 @@
 }
 
 .root {
-  -st-states: size(enum(small, medium, large)), roundInput;
+  -st-states: size(enum(small, medium, large)), border(enum(standard, round, bottomLine));
   user-select: none;
 }
 
@@ -13,11 +13,11 @@
   margin: auto 0;
 }
 
-.root:size(medium):roundInput {
+.root:size(medium):border(round) {
   margin: auto 3px auto 0;
 }
 
-:global([dir="rtl"]) :size(medium):roundInput {
+:global([dir="rtl"]) :size(medium):border(round) {
   margin: auto 0 auto 3px;
 }
 
@@ -29,7 +29,7 @@
   margin: auto 3px auto 0;
 }
 
-.root:size(large):roundInput {
+.root:size(large):border(round) {
   margin: auto 3px;
 }
 

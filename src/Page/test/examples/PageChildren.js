@@ -2,7 +2,7 @@ import React from 'react';
 
 import More from 'wix-ui-icons-common/More';
 
-import SomeContentComponent from './SomeContentComponent';
+import SomeContentComponent2 from './SomeContentComponent2';
 import SomeTailComponent from './SomeTailComponent';
 import Breadcrumbs from './Breadcrumbs';
 
@@ -57,7 +57,7 @@ export const header = props => (
 
 export const content = props => (
   <Page.Content>
-    <SomeContentComponent {...props} />
+    <SomeContentComponent2 {...props} />
   </Page.Content>
 );
 

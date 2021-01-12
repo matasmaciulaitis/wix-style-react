@@ -14,6 +14,35 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+- `Themes | Business Dashboard` - Tag - styling override [#6514](https://github.com/wix/wix-style-react/pull/6514)
+
+### Fixed
+- `<Tabs/>` - fix testing in puppeteer [#6533](https://github.com/wix/wix-style-react/pull/6533)
+
+## 9.66.0 - 2021-01-11
+### Added
+- `<Input/>` - add border prop [#6496](https://github.com/wix/wix-style-react/pull/6496)
+- `<Accordion/>` - Add accordionSectionItem [#6475](https://github.com/wix/wix-style-react/pull/6475)
+- `<DatePicker/>` - New Unidriver testkit [#6466](https://github.com/wix/wix-style-react/pull/6466)
+- `<SidePanel/>` - adding support for noPadding [#6517](https://github.com/wix/wix-style-react/pull/6517)
+- `Themes | Business Dashboard` - Checkbox - Add checkbox to dashboard storybook [#6511](https://github.com/wix/wix-style-react/pull/6511)
+- `Themes | Business Dashboard` - Thumbnail - Style override [#6531](https://github.com/wix/wix-style-react/pull/6531)
+- `<Table/>` - reduce spacing (feature toggle) and add `tiny` to `rowVerticalPadding` prop [#6488](https://github.com/wix/wix-style-react/pull/6488)
+
+### Fixed
+- `<MultiSelectCheckbox/>` - make delimiter parameter optional for getLabel and getLabelAt [#6537](https://github.com/wix/wix-style-react/pull/6537)
+- `<AddressInput/>` - disable browser autofill [#6532](https://github.com/wix/wix-style-react/pull/6532)
+- `<Tabs/>` - fix testing in puppeteer [#6533](https://github.com/wix/wix-style-react/pull/6533)
+
+### Changed
+- `<AtlasAddressInput/>` (WIP) - replace `headers` prop with `token` prop [#6527](https://github.com/wix/wix-style-react/pull/6527)
+
+### Docs
+- `<DatePicker/>` - Update locale example [#6529](https://github.com/wix/wix-style-react/pull/6529)
+
 ## 9.65.0 - 2021-01-08
 ### Added
 - `<Accordion/>` - add bottom shadow to open item [#6509](https://github.com/wix/wix-style-react/pull/6509)

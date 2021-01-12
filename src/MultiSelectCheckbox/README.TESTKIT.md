@@ -15,8 +15,8 @@ The `<MultiSelectCheckbox/>` TestKit is exposing the following drivers:
 | method | returned value | description |
 |--------|----------------|-------------|
 | getNumOfLabels | number | returns the number of displayed labels in the readonly input field |
-| getLabels(delimiter:string) | array | returns an array of the labels that displayed in the readonly input field |
-| getLabelAt(index:number, delimiter:string) | string | returns a label from the displayed labels - by index |
+| getLabels(delimiter?:string = ', ') | array | returns an array of the labels that displayed in the readonly input field |
+| getLabelAt(index:number, delimiter?:string = ', ') | string | returns a label from the displayed labels - by index |
 | setProps(props: object) | element | returns a clone of this element with the new props from the json |
 
 ## Usage Example

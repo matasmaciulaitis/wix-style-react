@@ -3,8 +3,33 @@ export const text = 'This is an accordion item content';
 export const simple = `
 <Accordion
   items={[
-    accordionItemBuilder({ title: 'First Row', children: <Text>${text}</Text> }),
-    accordionItemBuilder({ title: 'Second Row', children: <Text>${text}</Text> }),
+    accordionItemBuilder({
+      title: 'First Row',
+      children: <Text>This is an accordion item content</Text>,
+    }),
+    accordionItemBuilder({
+      title: 'Second Row',
+      children: <Text>This is an accordion item content</Text>,
+    }),
+  ]}
+/>
+`;
+
+export const withSection = `
+<Accordion
+  size="small"
+  items={[
+    accordionSectionItemBuilder({
+      title: 'Accordion Title',
+    }),
+    accordionItemBuilder({
+      title: 'First Row',
+      children: <Text>This is an accordion item content</Text>,
+    }),
+    accordionItemBuilder({
+      title: 'Second Row',
+      children: <Text>This is an accordion item content</Text>,
+    }),
   ]}
 />
 `;

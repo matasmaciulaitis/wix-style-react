@@ -1,0 +1,43 @@
+:import {
+  -st-from: "../../../Tag/Tag.st.css";
+  -st-default: Tag;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D20, D55, B05, D80, B50;
+}
+
+.root {
+  -st-extends: Tag;
+  border-radius: 4px;
+}
+
+.root:size(medium) {
+  max-height: 28px;
+  padding: 4px 12px;
+}
+
+.root:theme(lightOutlined) {
+  border: 1px solid value(D55);
+  background-color: value(D80);
+}
+
+.root:theme(lightOutlined)::text {
+  color: value(D20);
+}
+
+.root:theme(lightOutlined):hover, .root:theme(lightOutlined):active  {
+  border-color: value(B05);
+  background-color: value(D80)!important;
+}
+
+.root:theme(lightOutlined):hover::text,
+.root:theme(lightOutlined):active::text  {
+  color: value(B05);
+}
+
+.root:theme(lightOutlined):focus  {
+  box-shadow: 0px 0px 0px 2px value(B50);
+  outline: none;
+}

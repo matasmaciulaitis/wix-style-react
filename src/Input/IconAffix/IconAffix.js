@@ -5,13 +5,21 @@ import { st, classes } from './IconAffix.st.css';
 
 const IconAffix = ({ children, dataHook }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
-    {({ size, inPrefix, inSuffix, roundInput, disabled, onInputClicked }) => (
+    {({
+      size,
+      inPrefix,
+      inSuffix,
+      border,
+      roundInput,
+      disabled,
+      onInputClicked,
+    }) => (
       <div
         className={st(classes.root, {
           size,
           inPrefix,
           inSuffix,
-          roundInput,
+          border: roundInput ? 'round' : border,
           disabled,
         })}
         onClick={!disabled ? onInputClicked : undefined}

@@ -124,6 +124,10 @@ export default {
 
           example({
             title: 'DatePicker customizations',
+            text:
+              'Default locale is English. It can be changed via `locale` prop by:\n' +
+              '* using one of\n' +
+              "    `'en'`, `'es'`, `'pt'`, `'fr'`, `'de'`, `'pl'`, `'it'`, `'ru'`, `'ja'`, `'ko'`, `'tr'`, `'sv'`, `'no'`, `'nl'`, `'da'`, `'zh'`, `'th'`, `'cs'`, `'uk'`",
             source: examples.customizations,
           }),
 

@@ -1,27 +1,27 @@
 import { useCallback, useMemo } from 'react';
 import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 
-export const BASE_ATLAS_URL = 'https://www.wix.com/wix-atlas-service-web';
+export const BASE_ATLAS_URL = '/wix-atlas-service-web';
 
 // Client for fetching autocomplete predictions from Atlas
 const useAtlasClient = ({
   /** Custom domain to retreive predictions from  */
   baseUrl = BASE_ATLAS_URL,
 
-  /** Headers to pass to Atlas Autocomplete Service */
-  headers,
+  /** Authorization token to pass to the Atlas Service */
+  token,
 } = {}) => {
   const atlas = useMemo(() => WixAtlasServiceWeb(baseUrl), [baseUrl]);
   // Atlas Ambassador autocomplete service (memoized)
   const autocompleteService = useMemo(
-    () => atlas.AutocompleteServiceV2()(headers),
-    [atlas, headers],
+    () => atlas.AutocompleteServiceV2()({ Authorization: token }),
+    [atlas, token],
   );
   // Atlas Ambassador places service (memoized)
-  const placesService = useMemo(() => atlas.PlacesServiceV2()(headers), [
-    atlas,
-    headers,
-  ]);
+  const placesService = useMemo(
+    () => atlas.PlacesServiceV2()({ Authorization: token }),
+    [atlas, token],
+  );
 
   const fetchPredictions = useCallback(
     async (value, requestOptions) => {

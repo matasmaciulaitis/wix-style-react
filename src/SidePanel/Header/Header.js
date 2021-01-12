@@ -16,14 +16,19 @@ class Header extends React.PureComponent {
   static propTypes = {
     /** Define styles through a classname */
     className: PropTypes.string,
+
     /** Title */
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
     /** Tooltip text */
     infoTooltipContent: PropTypes.string,
+
     /** Tooltip props */
     infoTooltipProps: PropTypes.shape(TooltipCommonProps),
+
     /** Show divider */
     showDivider: PropTypes.bool,
+
     /** Any element to be rendered inside under title */
     children: PropTypes.node,
   };

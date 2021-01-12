@@ -1,5 +1,4 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { ReactBase } from '../../test/utils/unidriver';
 
 export const tabsUniDriverFactory = base => {
   const findFirst = async query => {
@@ -7,8 +6,10 @@ export const tabsUniDriverFactory = base => {
     return (await item.exists()) ? item : null;
   };
   const getItemsContainer = async () => findFirst('ul');
-  const getItems = async () =>
-    ReactBase(await getItemsContainer())._DEPRECATED_children();
+  const getItems = async () => {
+    const itemsContainer = await getItemsContainer();
+    return itemsContainer.$$('li').map(child => child);
+  };
 
   const getItemsContainerType = async () => {
     const itemContainer = await getItemsContainer();

@@ -36,6 +36,13 @@ class Input extends Component {
       deprecationLog('<Input/> - change prop size="normal" to size="medium"');
     }
 
+    // TODO - deprecate (in a separate PR)
+    // if (props.roundInput) {
+    //   deprecationLog(
+    //     '<Input/> - roundInput prop is deprecated and will be removed in next major release, please use border prop instead',
+    //   );
+    // }
+
     this.state = {
       focus: false,
     };
@@ -94,7 +101,7 @@ class Input extends Component {
 
   _onFocus = event => {
     const { onFocus } = this.props;
-    this.setState({ focus: true });
+    this._isMounted && this.setState({ focus: true });
 
     onFocus && onFocus(event);
 
@@ -386,25 +393,13 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   autoSelect: true,
   size: 'medium',
+  border: 'standard',
   roundInput: false,
   textOverflow: 'clip',
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
   hideStatusSuffix: false,
-};
-
-const borderRadiusValidator = (props, propName) => {
-  const value = props[propName];
-  if (typeof value === 'string') {
-    throw new Error(
-      'Passing a string (for className) is deprecated. Use new className prop.',
-    );
-  } else if (typeof value === 'undefined' || typeof value === 'boolean') {
-    return null;
-  } else {
-    return new Error('Invalid type. boolean expected.');
-  }
 };
 
 Input.propTypes = {
@@ -468,8 +463,8 @@ Input.propTypes = {
   /** Used to reference element data when a form is submitted. */
   name: PropTypes.string,
 
-  /** Borders type */
-  borders: PropTypes.oneOf(['standard', 'round', 'borderless']),
+  /** Border type */
+  border: PropTypes.oneOf(['standard', 'round', 'bottomLine']),
 
   /**
    * When set to true, this input will be rounded

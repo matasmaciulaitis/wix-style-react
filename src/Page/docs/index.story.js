@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   api,
   tabs,
@@ -14,24 +13,17 @@ import {
   divider,
   example as baseExample,
 } from 'wix-storybook-utils/Sections';
-
 import Page from '..';
-
 import { storySettings } from './storySettings';
 import allComponents from '../../../stories/utils/allComponents';
-
 import {
   header as headerExample,
   tail as tailExample,
   fixedContent as fixedContentExample,
   content as contentExample,
-} from './PageChildren';
-import './PageStory.scss';
-
+} from '../test/examples/PageChildren';
+import '../test/examples/PageStory.scss';
 import ChildrenReadme from './Children.md';
-
-import ExampleStickyTableWithGapRaw from '!raw-loader!./ExampleStickyTableWithGap';
-import ExampleVerticalScrollListenersRaw from '!raw-loader!./ExampleVerticalScrollListeners';
 import * as examples from './examples';
 
 const code = config =>
@@ -103,233 +95,90 @@ export default {
               'The Page component provides a common layout for a page header and content, including scrolling capabilities, sticky nodes and much more',
           }),
 
-          importExample(`import { Page } from 'wix-style-react';`),
+          importExample(),
 
           divider(),
 
-          title('Basic Examples'),
-          ...[
-            {
-              title: 'Basic',
-              description:
-                'Simply compound a <Page/> with <Page.Header/> and <Page.Content/>',
-              source: `
-                <Page>
-                  <Page.Header title="Page Header"/>
-                  <Page.Content>
-                    Page Content
-                  </Page.Content>
-                </Page>
-                `,
-              compact: false,
-            },
-            {
-              title: 'Stretch to full size',
-              description:
-                'A Page stretches according to its container height. use `100vh` for a standalone page or `calc(100vh - 48px)` if top bar exists',
-              source: `
-                <Page height="40vh">
-                  <Page.Header title="Page Header"/>
-                  <Page.Content>
-                    Page Content
-                  </Page.Content>
-                </Page>
-                `,
-              compact: false,
-            },
-            {
-              title: 'Page containing a grid of cards',
-              description:
-                'A common use case will be a Page containing Card components arranged by Grid components',
-              source: `
-                <Page height="40vh">
-                  <Page.Header title="Page Header"/>
-                  <Page.Content>
-                    <Container>
-                      <Row>
-                        <Col span={6}>
-                          <Card>
-                            <Card.Header title="Card"/>
-                            <Card.Divider />
-                            <Card.Content>
-                              Some content
-                            </Card.Content>
-                          </Card>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Page.Content>
-                </Page>
-                `,
-              compact: true,
-            },
-            {
-              title: 'A Powerful Page Header',
-              description:
-                'The `PageHeader` is a standalone component, checkout its docs to see all features',
-              source: `
-                <Page>
-                  <Page.Header title="Page Header" showBackButton onBackClicked={() => alert('cool')} actionsBar={<Button>Click me</Button>}/>
-                  <Page.Content>
-                    Page Content
-                  </Page.Content>
-                </Page>
-                `,
-              compact: true,
-            },
-          ].map(code),
+          title('Examples'),
+
+          example({
+            title: 'Basic',
+            text:
+              'Simply compound a <Page/> with <Page.Header/> and <Page.Content/>',
+            source: examples.simple,
+          }),
+
+          example({
+            title: 'Stretch to full size',
+            text:
+              'A Page stretches according to its container height. use `100vh` for a standalone page or `calc(100vh - 48px)` if top bar exists',
+            source: examples.fullSize,
+          }),
+
+          example({
+            title: 'Page containing a grid of cards',
+            text:
+              'A common use case will be a Page containing Card components arranged by Grid components',
+            source: examples.gridOfCards,
+          }),
+
+          example({
+            title: 'A Powerful Page Header',
+            description:
+              'The `PageHeader` is a standalone component, checkout its docs to see all features',
+            source: examples.header,
+          }),
 
           divider(),
 
           title('Page Layout Features'),
-          ...[
-            {
-              title: 'Minimized header',
-              description:
-                'The Page will automatically adjust its header to a minimized mode when scrolling through the content',
-              source: `
-                <Page height="40vh">
-                  <Page.Header title="Page Header" />
-                  <Page.Content>
-                    <Container>
-                      <Row>
-                        <Col span={8}>
-                          <Card>
-                            <Card.Content>
-                              <h3>Scroll Down</h3>
-                              {Array(20).fill(' ').map((item, i) =>
-                                (<div key={"minimized-header-example-item-"+ i}>
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                  facilisis molestie magna vitae pellentesque. Ut elementum
-                                  accumsan nibh, ut faucibus velit. Vestibulum at mollis justo.
-                                </div>)
-                                )
-                              }
-                            </Card.Content>
-                          </Card>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Page.Content>
-                </Page>
-              `,
-              compact: true,
-            },
-            {
-              title: 'Horizontal Scroll',
-              description: 'Allows for horizontal scrolling without set width',
-              source: `
-                <Page height="40vh" horizontalScroll>
-                  <Page.Header title="Page Header" actionsBar={<Button>Click me</Button>}/>
-                  <Page.Content>
-                    <Box directon="horizontal">
-                      {
-                        Array.from(Array(7)).map((_, idx) =>
-                          <Box key={idx} backgroundColor="lightyellow" marginRight="12px" padding="12px" minWidth="200px" height="1000px">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                          </Box>
-                        )
-                      }
-                    </Box>
-                  </Page.Content>
-                </Page>
-              `,
-              compact: true,
-            },
-            {
-              title: 'Vertical Scroll',
-              description:
-                'Provides easy registration to vertical scroll listeners on the scrollable content, all scroll events are throttled internally (100ms)',
-              source: ExampleVerticalScrollListenersRaw,
-              autoRender: false,
-              compact: true,
-            },
-            {
-              title: 'Header Tail elements',
-              description:
-                'elements can be sticked to the header when scrolled. Tabs are a good example for usage.',
-              source: `
-                <Page height="40vh">
-                  <Page.Header title="Page Header" />
-                  <Page.Tail>
-                    <Tabs
-                      activeId={1}
-                      hasDivider={false}
-                      items={[{id: 1, title: 'item 1'}, {id: 2, title: 'item 2'}]}
-                    />
-                  </Page.Tail>
-                  <Page.Content>
-                    <Container>
-                      <Row>
-                        <Col span={8}>
-                          <Card>
-                            <Card.Content>
-                              {Array(20).fill(' ').map((item,i) =>
-                                (<div key={"header-tail-elements-example-item-"+ i}>
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                  facilisis molestie magna vitae pellentesque. Ut elementum
-                                  accumsan nibh, ut faucibus velit. Vestibulum at mollis justo.
-                                </div>)
-                                )
-                              }
-                            </Card.Content>
-                          </Card>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Page.Content>
-                </Page>
-              `,
-              compact: true,
-            },
-            {
-              title: 'Sticky elements',
-              description:
-                'The Page provides <Page.Sticky/> container to attach elements to the scrolled container.',
-              source: `
-                <Page height="40vh">
-                  <Page.Header title="Page Header" />
-                  <Page.Content>
-                    <Container>
-                      <Row stretchViewsVertically>
-                        <Col span={8}>
-                          <Card>
-                            <Card.Content>
-                              {Array(20).fill(' ').map((item,i) =>
-                                (<div key={"sticky-elements-example-item-"+i}>
-                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                  facilisis molestie magna vitae pellentesque. Ut elementum
-                                  accumsan nibh, ut faucibus velit. Vestibulum at mollis justo.
-                                </div>)
-                                )
-                              }
-                            </Card.Content>
-                          </Card>
-                        </Col>
-                        <Col span={4}>
-                          <Page.Sticky>
-                            <Card>
-                              <Card.Header title="Sticky" />
-                              <Card.Divider />
-                              <Card.Content>Some menu or other content</Card.Content>
-                            </Card>
-                          </Page.Sticky>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Page.Content>
-                </Page>
-              `,
-              compact: true,
-            },
-            {
-              title: 'Complex structures',
-              description: `With Page component you can achieve rich experiences, for example wrapping Table components`,
-              source: ExampleStickyTableWithGapRaw,
-              autoRender: false,
-              compact: true,
-            },
-          ].map(code),
+
+          code({
+            title: 'Minimized header',
+            description:
+              'The Page will automatically adjust its header to a minimized mode when scrolling through the content',
+            compact: true,
+            source: examples.minimizedHeader,
+          }),
+
+          code({
+            title: 'Horizontal Scroll',
+            description: 'Allows for horizontal scrolling without set width',
+            compact: true,
+            source: examples.horizontalScroll,
+          }),
+
+          code({
+            title: 'Vertical Scroll',
+            description:
+              'Provides easy registration to vertical scroll listeners on the scrollable content, all scroll events are throttled internally (100ms)',
+            compact: true,
+            source: examples.verticalScroll,
+          }),
+
+          code({
+            title: 'Header Tail elements',
+            description:
+              'elements can be sticked to the header when scrolled. Tabs are a good example for usage.',
+            compact: true,
+            source: examples.headerTailElements,
+          }),
+
+          code({
+            title: 'Sticky elements',
+            description:
+              'The Page provides <Page.Sticky/> container to attach elements to the scrolled container.',
+            compact: true,
+            source: examples.stickyElements,
+          }),
+
+          code({
+            title: 'Complex structures',
+            description: `With Page component you can achieve rich experiences, for example wrapping Table components`,
+            compact: true,
+            autoRender: false,
+            source: examples.complexStructures,
+          }),
 
           example({
             title: 'Full page - non scrollable',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScrollBar.scss';
-import { LongTextContent } from '../../src/Page/docs/SomeContentComponent';
+import { LongTextContent } from '../../src/Page/test/examples/SomeContentComponent2';
 
 class ExampleStandard extends Component {
   static propTypes = {

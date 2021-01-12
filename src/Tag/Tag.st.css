@@ -4,6 +4,11 @@
     R40, THEME-COLOR-30, THEME-COLOR-40;
 }
 
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
 .root {
   -st-states: withRemoveButton, withThumb, disabled, clickable, hoverable,
     size(enum(tiny, small, medium, large)),
@@ -26,6 +31,10 @@
 
 .root .removeButton {
   flex: 0 0 auto;
+}
+
+.text {
+  -st-extends: Text;
 }
 
 /* Sizes */

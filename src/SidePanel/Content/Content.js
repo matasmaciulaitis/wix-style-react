@@ -9,8 +9,12 @@ class Content extends React.PureComponent {
   static propTypes = {
     /** Define styles through a classname */
     className: PropTypes.string,
+
     /** Any element to be rendered inside under title */
     children: PropTypes.node,
+
+    /** Remove paddings from the content */
+    noPadding: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -18,10 +22,10 @@ class Content extends React.PureComponent {
   };
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, noPadding } = this.props;
     return (
       <div
-        className={st(classes.root, className)}
+        className={st(classes.root, { noPadding }, className)}
         data-hook={dataHooks.sidePanelContent}
       >
         {children}

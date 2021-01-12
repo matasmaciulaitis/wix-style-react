@@ -40,7 +40,7 @@ export default {
 
   componentProps: {
     clearButton: true,
-    roundInput: true,
+    border: 'round',
     disabled: false,
     size: 'medium',
     placeholder: 'Placeholder text...',
@@ -120,7 +120,7 @@ export default {
             title: 'Authorization',
             text: `Requests to Atlas must be authorized using an authorization header.\n
 Check out this [Wix Doc](https://bo.wix.com/wix-docs/rnd/platformization-guidelines/authenticating-as-api-client#platformization-guidelines_authenticating-as-api-client_authenticating-from-a-browser---site-requests) on how to retreive a signed instance in your environment.\n
-You can pass a headers object to \`AtlasAddressInput\` using the \`headers\` prop.`,
+You can pass an authorization token to \`AtlasAddressInput\` using the \`token\` prop.`,
           }),
 
           divider(),

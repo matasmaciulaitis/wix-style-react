@@ -6,8 +6,8 @@ export interface MultiSelectCheckboxUniDriver
   extends OmitPolyfill<InputWithOptionsUniDriver, 'driver'> {
   driver: {
     getNumOfLabels: () => Promise<number>;
-    getLabels: (delimiter: string) => Promise<string[]>;
-    getLabelAt: (index: number, delimiter: string) => Promise<string>;
+    getLabels: (delimiter?: string) => Promise<string[]>;
+    getLabelAt: (index: number, delimiter?: string) => Promise<string>;
   } & Pick<InputWithOptionsUniDriver, 'driver'> &
     BaseUniDriver;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import times from '../../utils/operators/times';
+import times from '../../../utils/operators/times';
 
 export const LongTextContent = props => {
   const pages = times(props.numOfPages, (x, i) => (
@@ -66,7 +66,7 @@ LongTextContent.defaultProps = {
   numOfPages: 5,
 };
 
-export default class SomeContentComponent extends React.Component {
+export default class SomeContentComponent2 extends React.Component {
   static propTypes = {
     shortContent: PropTypes.bool,
     stretchVertically: PropTypes.bool,

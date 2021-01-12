@@ -29,6 +29,7 @@ Render a footer in the `sidePnael`.
 | `infoTooltipContent` | string | | | text for title tooltip |
 | `infoTooltipProps` | node | | | Tooltip props |
 | `showDivider` | boolean | true | | show divider |
+| `noPadding` | boolean | false | | remove padding |
 
 ### `<SidePanel.Divider/>`
 Render a divider in the `sidePnael`.

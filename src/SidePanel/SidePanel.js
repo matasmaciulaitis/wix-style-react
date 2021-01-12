@@ -13,11 +13,14 @@ class SidePanel extends React.PureComponent {
   static propTypes = {
     /** Define styles through a classname */
     className: PropTypes.string,
+
     /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+
     /** Callback for close button */
     onCloseButtonClick: PropTypes.func,
-    /** SidePanel.Header, SidePanel.Content, SidePanel.Footer or Any element to be rendered inside */
+
+    /** SidePanel.Header, SidePanel.Content, SidePanel.Footer, SidePanel.Divider or Any element to be rendered inside */
     children: PropTypes.node,
   };
 

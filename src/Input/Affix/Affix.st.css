@@ -10,7 +10,8 @@
 
 .root {
   -st-states: size(enum(small, medium, large)),
-  isMadefor, inPrefix, inSuffix, roundInput, disabled;
+              border(enum(standard, round, bottomLine)),
+              isMadefor, inPrefix, inSuffix, disabled;
 
   display: flex;
   justify-content: center;
@@ -44,11 +45,11 @@
   margin: auto 6px;
 }
 
-.root:size(large):roundInput:inSuffix {
+.root:size(large):border(round):inSuffix {
   margin: auto 6px auto 3px;
 }
 
-:global([dir="rtl"]) .root:size(large):roundInput:inSuffix {
+:global([dir="rtl"]) .root:size(large):border(round):inSuffix {
   margin: auto 3px auto 6px;
 }
 

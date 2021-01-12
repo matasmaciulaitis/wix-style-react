@@ -2,10 +2,12 @@ import React from 'react';
 import { classes } from './AccordionSectionItem.st.css';
 import Text from '../../Text';
 
-function accordionSectionItem({ title, size }) {
+function accordionSectionItem({ title }) {
   return (
     <div className={classes.root}>
-      <Text>{title}</Text>
+      <Text skin="standard" weight="bold" size="small" ellipsis>
+        {title}
+      </Text>
     </div>
   );
 }

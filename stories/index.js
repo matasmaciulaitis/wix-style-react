@@ -114,7 +114,6 @@ require('../src/NoBorderInput/docs/index.story');
 require('../src/Notification/docs/index.story');
 require('../src/NumberInput/docs/index.story');
 require('../src/PageFooter/docs/index.story');
-require('../src/Page/docs/PageExampleStories');
 require('../src/Page/docs/index.story');
 require('../src/PageHeader/docs/index.story');
 require('../src/Pagination/docs/index.story');

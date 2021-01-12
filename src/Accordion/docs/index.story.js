@@ -96,9 +96,13 @@ export default {
         sections: [
           description('Accordion is a list of expandable/collapsible items.'),
 
-          importExample(
-            `import { Accordion, accordionItemBuilder } from 'wix-style-react';`,
-          ),
+          importExample(`
+import {
+  Accordion,
+  accordionItemBuilder,
+  accordionSectionItemBuilder,
+} from 'wix-style-react';
+          `),
 
           divider(),
 
@@ -111,6 +115,13 @@ Accordion is composed from a list of items that share expand/collapse functional
 As a best practice, we recommend using the builder pattern in order to create accordion items.
             `,
             source: examples.simple,
+          }),
+          example({
+            title: 'Using section item',
+            text: `
+Accordion may have sections to separate and organize lists of items.\n
+            `,
+            source: examples.withSection,
           }),
           example({
             title: 'Multiple with Initially Open',

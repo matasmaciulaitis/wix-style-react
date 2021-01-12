@@ -13,6 +13,7 @@ import {
   EmptyStateExample,
 } from './testExamples';
 import { visualize, snap } from 'storybook-snapper';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const { dataHook } = storySettings;
 
@@ -100,7 +101,7 @@ const horizontalScrollColumns = range(0, horizontalScrollColumnCount).map(
   }),
 );
 
-const rowVerticalPaddingTests = ['large', 'medium', 'small'].map(
+const rowVerticalPaddingTests = ['large', 'medium', 'small', 'tiny'].map(
   rowVerticalPadding => ({
     it: `Should display the table row with "${rowVerticalPadding}" rowVerticalPadding`,
     props: {
@@ -472,5 +473,17 @@ tests.forEach(({ describe, its }) => {
         />
       ));
     });
+  });
+});
+
+rowVerticalPaddingTests.forEach(({ it, props }) => {
+  visualize(`Layout And Spacing| Table/Basic`, () => {
+    snap(it, done => (
+      <WixStyleReactProvider
+        features={{ reducedSpacingAndImprovedLayout: true }}
+      >
+        <TableWrapper props={props} done={done} />
+      </WixStyleReactProvider>
+    ));
   });
 });

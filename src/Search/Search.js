@@ -51,6 +51,7 @@ class Search extends Component {
     debounceMs: 0,
     onChange: () => {},
     highlight: true,
+    border: 'round',
   };
 
   constructor(props) {
@@ -224,7 +225,6 @@ class Search extends Component {
             {...restProps}
             value={inputValue}
             ref={r => (this.searchInput = r)}
-            roundInput
             prefix={
               <Input.IconAffix>
                 <SearchIcon />

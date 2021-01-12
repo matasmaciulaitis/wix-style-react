@@ -17,6 +17,11 @@
 }
 
 :import {
+  -st-from: "../../Checkbox/Checkbox.st.css";
+  -st-default: Checkbox;
+}
+
+:import {
   -st-from: "../../LinearProgressBar/LinearProgressBar.st.css";
   -st-default: LinearProgressBar;
 }
@@ -156,6 +161,16 @@
   -st-default: CloseButton;
 }
 
+:import {
+  -st-from: "../../Tag/Tag.st.css";
+  -st-default: Tag;
+}
+
+:import {
+  -st-from: "../../Thumbnail/Thumbnail.st.css";
+  -st-default: Thumbnail;
+}
+
 /* Overrides */
 :import {
   -st-from: "./components/Button.st.css";
@@ -165,6 +180,11 @@
 :import {
   -st-from: "./components/CircularProgressBar.st.css";
   -st-default: CircularProgressBarOverrides;
+}
+
+:import {
+  -st-from: "./components/Checkbox.st.css";
+  -st-default: CheckboxOverrides;
 }
 
 :import {
@@ -307,6 +327,16 @@
   -st-default: CloseButtonOverrides;
 }
 
+:import {
+  -st-from: "./components/Tag.st.css";
+  -st-default: TagOverrides;
+}
+
+:import {
+  -st-from: "./components/Thumbnail.st.css";
+  -st-default: ThumbnailOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -314,6 +344,11 @@
   CircularProgressBar {
     -st-mixin: CircularProgressBarOverrides();
   }
+
+  Checkbox {
+    -st-mixin: CheckboxOverrides();
+  }
+
   LinearProgressBar {
     -st-mixin: LinearProgressBarOverrides();
   }
@@ -391,6 +426,12 @@
   }
   CloseButton {
     -st-mixin: CloseButtonOverrides();
+  }
+  Tag {
+    -st-mixin: TagOverrides();
+  }
+  Thumbnail {
+    -st-mixin: ThumbnailOverrides();
   }
 }
 

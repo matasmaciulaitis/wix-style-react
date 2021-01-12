@@ -5,31 +5,6 @@ import { storyOfAllPermutations } from '../../../test/utils/visual/utils';
 
 const Story = props => <Tag {...props}>This is a very beautiful tag!</Tag>;
 
-const options = {
-  props: [
-    'size',
-    'disabled',
-    'removable',
-    { name: 'maxWidth', values: [undefined, 150] },
-    {
-      name: 'thumb',
-      values: [
-        undefined,
-        <div
-          style={{
-            backgroundColor: 'green',
-            height: '100%',
-            width: '100%',
-          }}
-        />,
-      ],
-    },
-  ],
-  skipUndefinedValue: true,
-};
-
-storyOfAllPermutations(Story, Tag, options);
-
 const ThemeStory = props => (
   <Box direction={'vertical'}>
     {['tiny', 'small', 'medium', 'large'].map(size => (
@@ -42,10 +17,43 @@ const ThemeStory = props => (
   </Box>
 );
 
-const themeOptions = {
-  props: ['theme'],
-  skipUndefinedValue: true,
-  storyName: 'Themes',
-};
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  const options = {
+    testWithTheme,
+    themeName,
+    props: [
+      'size',
+      'disabled',
+      'removable',
+      { name: 'maxWidth', values: [undefined, 150] },
+      {
+        name: 'thumb',
+        values: [
+          undefined,
+          <div
+            style={{
+              backgroundColor: 'green',
+              height: '100%',
+              width: '100%',
+            }}
+          />,
+        ],
+      },
+    ],
+    skipUndefinedValue: true,
+  };
 
-storyOfAllPermutations(ThemeStory, Tag, themeOptions);
+  storyOfAllPermutations(Story, Tag, options);
+
+  const themeOptions = {
+    testWithTheme,
+    themeName,
+    props: ['theme'],
+    skipUndefinedValue: true,
+    storyName: 'Themes',
+  };
+
+  storyOfAllPermutations(ThemeStory, Tag, themeOptions);
+};

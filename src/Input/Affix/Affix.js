@@ -6,7 +6,15 @@ import { FontUpgradeContext } from '../../FontUpgrade/context';
 
 const Affix = ({ children, value }) => (
   <InputConsumer consumerCompName={Affix.displayName}>
-    {({ size, inPrefix, inSuffix, roundInput, disabled, onInputClicked }) => (
+    {({
+      size,
+      inPrefix,
+      inSuffix,
+      border,
+      roundInput,
+      disabled,
+      onInputClicked,
+    }) => (
       <FontUpgradeContext.Consumer>
         {({ active: isMadefor }) => (
           <div
@@ -15,7 +23,7 @@ const Affix = ({ children, value }) => (
               size,
               inPrefix,
               inSuffix,
-              roundInput,
+              border: roundInput ? 'round' : border,
               disabled,
             })}
             onClick={onInputClicked}

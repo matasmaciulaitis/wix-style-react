@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
 import Input from '../Input';
@@ -134,12 +133,12 @@ class AddressInput extends React.PureComponent {
       dataHook,
       className,
       size,
-      roundInput,
       clearButton,
       placeholder,
       disabled,
       onBlur,
       statusMessage,
+      border,
     } = this.props;
     const value = this._getInputValue();
     const status = this._getStatus();
@@ -155,6 +154,7 @@ class AddressInput extends React.PureComponent {
         onSelect={this._onSelect}
         value={value}
         disabled={disabled}
+        border={border}
         /** <Input /> always shows clear button when `onClear` prop is passed,
         so we only pass handler when clearButton is `true` */
         onClear={clearButton ? this._onClear : undefined}
@@ -168,10 +168,11 @@ class AddressInput extends React.PureComponent {
             <SearchIcon />
           </Input.IconAffix>
         }
-        roundInput={roundInput}
         placeholder={placeholder}
         onOptionsShow={this._setDropdownOpen}
         onOptionsHide={this._setDropdownClosed}
+        // disable browser autofill (including in chrome)
+        autocomplete="off,chrome-off"
       />
     );
   }
@@ -219,8 +220,8 @@ AddressInput.propTypes = {
   /** The status message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,
 
-  /** The shape of the component input */
-  roundInput: PropTypes.bool,
+  /** Border type */
+  border: PropTypes.oneOf(['standard', 'round', 'bottomLine']),
 
   /** Specifies the size of the input */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -235,7 +236,7 @@ AddressInput.propTypes = {
 AddressInput.defaultProps = {
   clearButton: true,
   debounceDuration: 200,
-  roundInput: true,
+  border: 'round',
   optionsLayout: 'single-line',
   showOptionsIcons: true,
   size: 'medium',

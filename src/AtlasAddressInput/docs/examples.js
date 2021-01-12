@@ -1,4 +1,4 @@
-export const simple = `<AtlasAddressInput headers={{ Authorization: 'some_auth_token' }} />`;
+export const simple = `<AtlasAddressInput token="some_auth_token" />`;
 
 export const controlled = `
 () => {
@@ -21,7 +21,7 @@ export const controlled = `
       onClear={_onClear}
       onSelect={_onSelect}
       value={value}
-      headers={{ Authorization: 'some_auth_token' }}
+      token="some_auth_token"
     />
   );
 };

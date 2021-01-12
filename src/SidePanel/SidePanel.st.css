@@ -1,7 +1,8 @@
 :import {
-  -st-from: "../Foundation/stylable/colors.st.css";
+  -st-from: '../Foundation/stylable/colors.st.css';
   -st-named: D80;
 }
+
 .root {
   background: value(D80);
   display: flex;

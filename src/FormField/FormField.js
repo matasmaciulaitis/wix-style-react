@@ -27,7 +27,7 @@ const asterisk = (
   />
 );
 
-const charactersLeft = (lengthLeft) => {
+const charactersLeft = lengthLeft => {
   const colorProps =
     lengthLeft >= 0 ? { light: true, secondary: true } : { skin: SKINS.error };
   return (
@@ -118,7 +118,7 @@ class FormField extends React.Component {
   };
 
   childrenRenderPropInterface = {
-    setCharactersLeft: (lengthLeft) => this.setState({ lengthLeft }),
+    setCharactersLeft: lengthLeft => this.setState({ lengthLeft }),
   };
 
   _renderChildren() {

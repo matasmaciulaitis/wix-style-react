@@ -1,6 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-
+import { visualize, snap, story } from 'storybook-snapper';
 import Thumbnail from '../Thumbnail';
 
 const title = 'Thumbnail title';
@@ -185,15 +184,25 @@ const tests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(`Thumbnail${describe ? '/' + describe : ''}`, module).add(
-      it,
-      () => (
-        <div style={{ width: '300px', padding: '15px' }}>
-          <Thumbnail {...props} />
-        </div>
-      ),
-    );
-  });
-});
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(
+    `${themeName ? `${themeName}|` : ''}${Thumbnail.displayName}`,
+    () => {
+      tests.forEach(({ describe, its }) => {
+        story(describe, () => {
+          its.forEach(({ it, props }) =>
+            snap(it, () =>
+              testWithTheme(
+                <div style={{ width: '300px', padding: '15px' }}>
+                  <Thumbnail {...props} />
+                </div>,
+              ),
+            ),
+          );
+        });
+      });
+    },
+  );
+};

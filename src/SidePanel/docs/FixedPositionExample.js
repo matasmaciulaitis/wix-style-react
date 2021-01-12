@@ -1,10 +1,7 @@
 /* eslint-disable */
-import React from 'react';
-import { Button, Box } from 'wix-style-react';
-
 class SimpleExample extends React.Component {
   state = {
-    right: -440
+    right: -440,
   };
 
   openPanel = () => this.setState({ right: 0 });
@@ -28,8 +25,8 @@ class SimpleExample extends React.Component {
             transition: 'right 0.4s ease 0s',
           }}
         >
-          <SidePanel title="Filters Panel" onCloseButtonClick={this.closePanel}>
-            <SidePanel.Header>
+          <SidePanel onCloseButtonClick={this.closePanel}>
+            <SidePanel.Header title="Filters Panel" infoTooltipContent="Tooltip">
               <Tabs
                 items={[
                   { id: 1, title: 'Selected Tab' },
@@ -40,69 +37,110 @@ class SimpleExample extends React.Component {
                 width="174px"
               />
             </SidePanel.Header>
-            <Accordion
-              items={[
-                {
-                  title: 'Payment Status',
-                  children: (
-                    <RadioGroup value={1}>
-                      <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
-                      <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
-                      <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
-                    </RadioGroup>
-                  ),
-                },
-                {
-                  title: 'Dates',
-                  children: (
-                    <Box>
-                      <DatePicker onChange={e => e} placeholderText="Select Date" />
-                    </Box>
-                  ),
-                },
-                {
-                  title: 'Product',
-                  children: (
-                    <>
-                      <Box direction="vertical" marginBottom={2}>
-                        <Search
-                          value=""
-                          options={[]}
-                          placeholder="Search for products by name"
+            <SidePanel.Content noPadding>
+              <Card>
+                <Card.Content>
+                  <Layout>
+                    <Cell>
+                      <FormField label="Full Name">
+                        <Input />
+                      </FormField>
+                    </Cell>
+                    <Cell>
+                      <FormField label="Title">
+                        <Input />
+                      </FormField>
+                    </Cell>
+                    <Cell>
+                      <FormField label="Age">
+                        <NumberInput />
+                      </FormField>
+                    </Cell>
+                  </Layout>
+                </Card.Content>
+              </Card>
+              <Divider />
+              <Accordion
+                items={[
+                  {
+                    title: 'Payment Status',
+                    children: (
+                      <RadioGroup value={1}>
+                        <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+                        <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+                        <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
+                      </RadioGroup>
+                    ),
+                  },
+                  {
+                    title: 'Dates',
+                    children: (
+                      <Box>
+                        <DatePicker
+                          onChange={e => e}
+                          placeholderText="Select Date"
                         />
                       </Box>
-                      <ListItemSelect
-                        prefix={
-                          <Box>
-                            <Icons.Toolbox />
-                          </Box>
-                        }
-                        title="Product 1"
-                        subtitle="Subtitle"
-                      />{' '}
-                      <ListItemSelect
-                        prefix={
-                          <Box>
-                            <Icons.Toolbox />
-                          </Box>
-                        }
-                        title="Product 2"
-                        subtitle="Subtitle"
-                      />{' '}
-                      <ListItemSelect
-                        prefix={
-                          <Box>
-                            <Icons.Toolbox />
-                          </Box>
-                        }
-                        title="Product 3"
-                        subtitle="Subtitle"
-                      />
-                    </>
-                  ),
-                },
-              ]}
-            />
+                    ),
+                  },
+                  {
+                    title: 'Product',
+                    children: (
+                      <>
+                        <Box direction="vertical" marginBottom={2}>
+                          <Search
+                            value=""
+                            options={[]}
+                            placeholder="Search for products by name"
+                          />
+                        </Box>
+                        <ListItemSelect
+                          prefix={
+                            <Box>
+                              <Icons.Toolbox />
+                            </Box>
+                          }
+                          title="Product 1"
+                          subtitle="Subtitle"
+                        />
+                        <ListItemSelect
+                          prefix={
+                            <Box>
+                              <Icons.Toolbox />
+                            </Box>
+                          }
+                          title="Product 2"
+                          subtitle="Subtitle"
+                        />
+                        <ListItemSelect
+                          prefix={
+                            <Box>
+                              <Icons.Toolbox />
+                            </Box>
+                          }
+                          title="Product 3"
+                          subtitle="Subtitle"
+                        />
+                      </>
+                    ),
+                  },
+                ]}
+              />
+              <Divider />
+              <Card>
+                <Card.Content>
+                  <RadioGroup selectionArea="always" value={1}>
+                    {Array(6)
+                      .fill(0)
+                      .map((_, index) => (
+                        <RadioGroup.Radio value={index}>
+                          Option {index + 1}
+                        </RadioGroup.Radio>
+                      ))}
+                  </RadioGroup>
+                </Card.Content>
+              </Card>
+            </SidePanel.Content>
             <SidePanel.Footer>
               <Box align="right">
                 <Box marginRight={1}>

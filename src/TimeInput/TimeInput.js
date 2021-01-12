@@ -266,6 +266,7 @@ export default class TimeInput extends Component {
       status,
       hideStatusSuffix,
       statusMessage,
+      border,
     } = this.props;
     const text = disabled && dashesWhenDisabled ? '-- : --' : this.state.text;
 
@@ -336,6 +337,7 @@ export default class TimeInput extends Component {
         dataHook={dataHooks.input}
         disabled={disabled}
         suffix={suffix}
+        border={border}
         status={status}
         hideStatusSuffix={hideStatusSuffix}
         statusMessage={statusMessage}

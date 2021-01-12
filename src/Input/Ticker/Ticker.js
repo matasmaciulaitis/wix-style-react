@@ -8,12 +8,15 @@ import { dataHooks } from './constants';
 
 const Ticker = ({ onUp, onDown, upDisabled, downDisabled, dataHook }) => (
   <InputConsumer consumerCompName={Ticker.displayName}>
-    {({ disabled, readOnly, size, roundInput }) => {
+    {({ disabled, readOnly, size, border, roundInput }) => {
       const isUpDisabled = upDisabled || disabled || readOnly;
       const isDownDisabled = downDisabled || disabled || readOnly;
       return (
         <div
-          className={st(classes.root, { size, roundInput })}
+          className={st(classes.root, {
+            size,
+            border: roundInput ? 'round' : border,
+          })}
           data-hook={dataHook}
         >
           <div

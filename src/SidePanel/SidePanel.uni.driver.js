@@ -1,5 +1,5 @@
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { dataHooks } from './constants';
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import { dividerDriverFactory } from '../Divider/Divider.uni.driver';
 import { closeButtonDriverFactory } from '../CloseButton/CloseButton.uni.driver';
 import { headingUniDriverFactory } from '../Heading/Heading.uni.driver';

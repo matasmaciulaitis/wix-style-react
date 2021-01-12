@@ -26,7 +26,7 @@ function addressInputWithAllProps() {
       onBlur={() => {}}
       status="loading"
       statusMessage="error!"
-      roundInput={false}
+      border="round"
       size="small"
       placeholder="write something"
       noResultsText="nothing to see here"

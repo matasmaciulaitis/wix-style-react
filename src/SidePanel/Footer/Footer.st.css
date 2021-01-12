@@ -3,5 +3,11 @@
 }
 
 .footerContainer {
+  -st-states: noPadding;
+
   padding: 24px;
+}
+
+.footerContainer:noPadding {
+  padding: 0;
 }

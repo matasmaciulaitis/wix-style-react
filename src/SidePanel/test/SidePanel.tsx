@@ -31,8 +31,12 @@ async function testkits() {
 function SidePanelTest() {
   return (
     <SidePanel>
-      <SidePanel.Header title="Title" infoTooltipContent="Tooltip" />
-      <SidePanel.Content>
+      <SidePanel.Header
+        showDivider
+        title="Title"
+        infoTooltipContent="Tooltip"
+      />
+      <SidePanel.Content noPadding className="cn">
         <Box
           background="#fafafa"
           height="200px"
@@ -42,7 +46,8 @@ function SidePanelTest() {
           content goes here
         </Box>
       </SidePanel.Content>
-      <SidePanel.Footer>
+      <SidePanel.Divider />
+      <SidePanel.Footer noPadding showDivider>
         <Box align="right">Footer</Box>
       </SidePanel.Footer>
     </SidePanel>

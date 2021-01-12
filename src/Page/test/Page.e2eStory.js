@@ -12,12 +12,12 @@ import IconButton from '../../IconButton';
 import Card from '../../Card';
 import More from 'wix-ui-icons-common/More';
 
-import * as s from '../docs/PageTestStories.scss';
-import '../docs/PageStory.scss';
+import * as s from './examples/PageTestStories.scss';
+import './examples/PageStory.scss';
 import classNames from 'classnames';
-import { header, tail, fixedContent, content } from '../docs/PageChildren';
+import { header, tail, fixedContent, content } from './examples/PageChildren';
 import { storySettings } from '../docs/storySettings';
-import { LongTextContent } from '../docs/SomeContentComponent';
+import { LongTextContent } from './examples/SomeContentComponent2';
 import Button from '../../Button';
 import PageFooter from '../../PageFooter';
 

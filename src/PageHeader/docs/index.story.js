@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PageHeader from '..';
-import Breadcrumbs from '../../Page/docs/Breadcrumbs';
+import Breadcrumbs from '../../Page/test/examples/Breadcrumbs';
 
 import './PageHeader.scss';
 import { storySettings } from './storySettings';
