@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { dataHooks } from './constants';
 import PropTypes from 'prop-types';
 import { ResizeSensor } from 'css-element-queries';
 import { st, classes, stVars } from './Page.st.css';
@@ -11,6 +11,7 @@ import { PageSticky } from './PageSticky';
 import FixedFooter from './FixedFooter';
 import ScrollableContainer from '../common/ScrollableContainer';
 import { ScrollableContainerCommonProps } from '../common/PropTypes/ScrollableContainerCommon';
+import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 
 /*
  * Page structure without mini-header-overlay:
@@ -293,23 +294,27 @@ class Page extends React.PureComponent {
   _renderHeader() {
     const { minimized } = this.state;
     const { PageHeader: PageHeaderChild } = this._getNamedChildren();
-    const dataHook = 'page-header-wrapper';
 
     return (
       PageHeaderChild && (
-        <div
-          data-hook={dataHook}
-          key={dataHook}
-          className={st(classes.headerWrapper, { minimized })}
-          ref={ref => {
-            this.headerWrapperRef = ref;
-          }}
-        >
-          {React.cloneElement(PageHeaderChild, {
-            minimized,
-            hasBackgroundImage: this._hasBackgroundImage(),
-          })}
-        </div>
+        <WixStyleReactContext.Consumer>
+          {({ reducedSpacingAndImprovedLayout }) => (
+            <div
+              data-hook={dataHooks.pageHeaderWrapper}
+              key={dataHooks.pageHeaderWrapper}
+              className={st(classes.headerWrapper, {
+                minimized,
+                reducedSpacingAndImprovedLayout,
+              })}
+              ref={ref => (this.headerWrapperRef = ref)}
+            >
+              {React.cloneElement(PageHeaderChild, {
+                minimized,
+                hasBackgroundImage: this._hasBackgroundImage(),
+              })}
+            </div>
+          )}
+        </WixStyleReactContext.Consumer>
       )
     );
   }
@@ -348,7 +353,7 @@ class Page extends React.PureComponent {
         className={st(classes.scrollableContainer, {
           hasTail: this._hasTail(),
         })}
-        dataHook="page-scrollable-content"
+        dataHook={dataHooks.pageScrollableContent}
         data-class="page-scrollable-content"
         ref={this.scrollableContainerRef}
         onScrollAreaChanged={onScrollAreaChanged}
@@ -384,6 +389,7 @@ class Page extends React.PureComponent {
 
   _renderScrollableBackground() {
     const { headerContainerHeight, tailHeight } = this.state;
+    const { backgroundImageUrl, gradientClassName } = this.props;
 
     const backgroundHeight = `${
       headerContainerHeight -
@@ -396,11 +402,11 @@ class Page extends React.PureComponent {
         <div
           className={classes.imageBackgroundContainer}
           style={{ height: backgroundHeight }}
-          data-hook="page-background-image"
+          data-hook={dataHooks.pageBackgroundImage}
         >
           <div
             className={classes.imageBackground}
-            style={{ backgroundImage: `url(${this.props.backgroundImageUrl})` }}
+            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
           />
         </div>
       );
@@ -409,12 +415,8 @@ class Page extends React.PureComponent {
     if (this._hasGradientClassName()) {
       return (
         <div
-          data-hook="page-gradient-class-name"
-          className={st(
-            classes.gradientBackground,
-            {},
-            this.props.gradientClassName,
-          )}
+          data-hook={dataHooks.pageGradientClassName}
+          className={st(classes.gradientBackground, {}, gradientClassName)}
           style={{ height: backgroundHeight }}
         />
       );
@@ -423,13 +425,12 @@ class Page extends React.PureComponent {
 
   _renderTail() {
     const { PageTail } = this._getNamedChildren();
-    const dataHook = 'page-tail';
 
     return (
       PageTail && (
         <div
-          data-hook={dataHook}
-          key={dataHook}
+          data-hook={dataHooks.pageTail}
+          key={dataHooks.pageTail}
           className={classes.tail}
           ref={r => (this.pageHeaderTailRef = r)}
         >
@@ -440,8 +441,8 @@ class Page extends React.PureComponent {
   }
 
   _renderContentContainer() {
-    const { footerHeight } = this.state;
-    const { children } = this.props;
+    const { footerHeight, tailHeight } = this.state;
+    const { children, horizontalScroll } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageContent, PageFixedContent } = childrenObject;
 
@@ -449,9 +450,7 @@ class Page extends React.PureComponent {
       <PageContext.Provider
         value={{
           stickyStyle: {
-            top: `${
-              this._getMinimizedHeaderWrapperHeight() + this.state.tailHeight
-            }px`,
+            top: `${this._getMinimizedHeaderWrapperHeight() + tailHeight}px`,
           },
         }}
       >
@@ -460,11 +459,11 @@ class Page extends React.PureComponent {
           style: {
             paddingBottom: footerHeight || '48px',
           },
-          horizontalScroll: this.props.horizontalScroll,
+          horizontalScroll,
           children: (
             <div className={classes.contentFloating}>
               {PageFixedContent && (
-                <PageSticky data-hook="page-fixed-content">
+                <PageSticky data-hook={dataHooks.pageFixedContent}>
                   {React.cloneElement(PageFixedContent)}
                 </PageSticky>
               )}
@@ -511,7 +510,7 @@ class Page extends React.PureComponent {
         style={{ zIndex, height }}
       >
         <div
-          data-hook="page"
+          data-hook={dataHooks.page}
           className={classes.page}
           style={{
             minWidth: minWidth + 2 * parseInt(stVars.pageSidePadding, 10),
