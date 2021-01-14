@@ -20,6 +20,11 @@ Types of changes:
 
 ### Added
 - `<AnalyticsLayout/>` - added rowItemsCount [#6548](https://github.com/wix/wix-style-react/pull/6548)
+- `<AtlasAddressInput/>` - add onError prop for error handling [#6553](https://github.com/wix/wix-style-react/pull/6553)
+- `<SkeletonGroup/>` - created new skeleton components [#6141](https://github.com/wix/wix-style-react/pull/6141)
+
+### Docs
+- `<InputWithOptions/>` - expose existing class methods in types [#6549](https://github.com/wix/wix-style-react/pull/6549)
 
 ## 9.67.0 - 2021-01-13
 ### Added

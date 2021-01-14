@@ -257,6 +257,9 @@ class InputWithOptions extends Component {
     );
   }
 
+  /**
+   * Shows dropdown options
+   */
   showOptions() {
     if (!this.state.showOptions) {
       this.setState({ showOptions: true, lastOptionsShow: Date.now() });
@@ -264,6 +267,9 @@ class InputWithOptions extends Component {
     }
   }
 
+  /**
+   * Hides dropdown options
+   */
   hideOptions() {
     if (this.state.showOptions) {
       this.setState({ showOptions: false });
@@ -437,14 +443,24 @@ class InputWithOptions extends Component {
     }
   }
 
+  /**
+   * Sets focus on the input element
+   * @param {FocusOptions} options
+   */
   focus(options = {}) {
     this.input.focus(options);
   }
 
+  /**
+   * Removes focus on the input element
+   */
   blur() {
     this.input.blur();
   }
 
+  /**
+   * Selects all text in the input element
+   */
   select() {
     this.input.select();
   }

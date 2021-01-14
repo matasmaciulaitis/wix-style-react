@@ -11,14 +11,19 @@ export interface UsePlacesAutocompleteReturn<Prediction, RequestOptions> {
   updatePredictions: UpdatePredictions<RequestOptions>;
   clearPredictions: () => void;
 }
-export interface UsePlacesAutocompleteProps<Prediction, RequestOptions> {
-  client: AutocompleteClient<Prediction, RequestOptions>;
+export interface UsePlacesAutocompleteProps<
+  Prediction,
+  PlaceDetails,
+  RequestOptions
+> {
+  client: AutocompleteClient<Prediction, PlaceDetails, RequestOptions>;
   debounceMs?: number;
   debounceFn?: (callback: Function, debounceMs: number) => Function;
+  onError?: (error: Error) => any;
 }
 
-declare const usePlacesAutocomplete: <Prediction, RequestOptions>(
-  props?: UsePlacesAutocompleteProps<Prediction, RequestOptions>,
+declare const usePlacesAutocomplete: <Prediction, PlaceDetails, RequestOptions>(
+  props?: UsePlacesAutocompleteProps<Prediction, PlaceDetails, RequestOptions>,
 ) => UsePlacesAutocompleteReturn<Prediction, RequestOptions>;
 
 export default usePlacesAutocomplete;

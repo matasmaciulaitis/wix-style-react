@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { V2Place } from '@wix/ambassador-wix-atlas-service-web/http';
+import { AmbassadorHTTPError } from '@wix/ambassador/runtime/http';
 import { AddressInputProps } from '../AddressInput';
 import { OmitPolyfill } from '../common';
 import { DropdownLayoutValueOption } from '../DropdownLayout';
@@ -19,6 +20,7 @@ export interface AtlasAddressInputProps
     option: DropdownLayoutValueOption,
     getPlaceDetails: GetPlaceDetails,
   ) => void;
+  onError?: (error: AmbassadorHTTPError) => any;
 }
 
 declare const AtlasAddressInput: React.FC<AtlasAddressInputProps>;

@@ -144,6 +144,23 @@ In this example we want to display a postal code along with the address, try to 
             `,
             source: examples.controlled,
           }),
+
+          example({
+            title: 'Error handling',
+            text: `
+It's important to display errors when failing to fetch predictions.
+
+In this example you can write <b>"Error 401"</b> (or any other status) to mock an error state.
+
+We pass all errors to the \`onError\` handler prop.
+
+Each error object has a \`httpStatus\` that describes which error occurred.
+You can look at these [guidelines](https://bo.wix.com/wix-docs/rnd/platformization-guidelines/errors#platformization-guidelines_errors_errors) to learn about the meaning of each error status.
+
+To show an error, set \`status="error"\` and \`statusMessage\` to the error explanation (displayed when hovering the status icon).
+            `,
+            source: examples.errorHandling,
+          }),
         ],
       }),
 

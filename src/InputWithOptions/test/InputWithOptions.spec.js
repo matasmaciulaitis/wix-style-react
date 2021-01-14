@@ -9,6 +9,7 @@ import { makeControlled } from '../../../test/utils';
 import InputWithOptions from '..';
 import inputWithOptionsDriverFactory from '../InputWithOptions.driver';
 import { inputWithOptionsUniDriverFactory } from './InputWithOptions.private.uni.driver';
+import { inputWithOptionsTestkitFactory as inputWithOptionsEnzymeDriverFactory } from '../../../testkit/enzyme';
 import { mount } from 'enzyme';
 import { enzymeUniTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 import HighlightContext from '../HighlightContext';
@@ -812,6 +813,75 @@ describe('InputWithOptions', () => {
         expect(onOptionsShow).not.toHaveBeenCalled();
         await inputDriver.enterText('some value');
         expect(onOptionsShow).toHaveBeenCalled();
+      });
+    });
+
+    describe('Public methods', () => {
+      describe('InputWithOptions.focus', () => {
+        it('should focus input', () => {
+          const wrapper = mount(<InputWithOptions />);
+          const focusMock = jest.fn();
+          wrapper.instance().input.focus = focusMock;
+          wrapper.instance().focus({ preventScroll: true });
+          expect(focusMock).toHaveBeenCalledWith({ preventScroll: true });
+        });
+      });
+
+      describe('InputWithOptions.blur', () => {
+        it('should blur input', () => {
+          const wrapper = mount(<InputWithOptions />);
+          const blurMock = jest.fn();
+          wrapper.instance().input.blur = blurMock;
+          wrapper.instance().blur();
+          expect(blurMock).toHaveBeenCalledWith();
+        });
+      });
+
+      describe('InputWithOptions.select', () => {
+        it('should select input', () => {
+          const wrapper = mount(<InputWithOptions />);
+          const selectMock = jest.fn();
+          wrapper.instance().input.select = selectMock;
+          wrapper.instance().select();
+          expect(selectMock).toHaveBeenCalledWith();
+        });
+      });
+
+      describe('InputWithOptions.showOptions', () => {
+        it('should show options', async () => {
+          const dataHook = 'test';
+          const wrapper = mount(
+            <InputWithOptions options={options} dataHook={dataHook} />,
+          );
+          const { dropdownLayoutDriver } = inputWithOptionsEnzymeDriverFactory({
+            wrapper,
+            dataHook,
+          });
+          expect(await dropdownLayoutDriver.isShown()).toBe(false);
+          wrapper.instance().showOptions();
+          expect(await dropdownLayoutDriver.isShown()).toBe(true);
+        });
+      });
+
+      describe('InputWithOptions.hideOptions', () => {
+        it('should hide options', async () => {
+          const dataHook = 'test';
+          const wrapper = mount(
+            <InputWithOptions options={options} dataHook={dataHook} />,
+          );
+          const {
+            driver,
+            dropdownLayoutDriver,
+          } = inputWithOptionsEnzymeDriverFactory({
+            wrapper,
+            dataHook,
+          });
+
+          await driver.pressKey('ArrowDown');
+          expect(await dropdownLayoutDriver.isShown()).toBe(true);
+          wrapper.instance().hideOptions();
+          expect(await dropdownLayoutDriver.isShown()).toBe(false);
+        });
       });
     });
   }

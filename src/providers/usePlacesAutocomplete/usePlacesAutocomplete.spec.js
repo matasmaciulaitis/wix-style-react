@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
+import { AmbassadorHTTPError } from '@wix/ambassador/runtime/http';
 import { debounce } from '../../../test/utils/unit';
 import usePlacesAutocomplete from './usePlacesAutocomplete';
 
@@ -93,6 +94,20 @@ describe('usePlacesAutocomplete', () => {
       act(() => result.current.updatePredictions('test', requestOptions));
       await act(() => waitForTimeout(defaultDebounceMs));
       expect(fetchPredictionsFn).toHaveBeenCalledWith('test', requestOptions);
+    });
+    it('should call `onError` prop when a fetch error occurs', async () => {
+      const error = new AmbassadorHTTPError(403);
+      const client = {
+        fetchPredictions: () => {
+          throw error;
+        },
+        ready: true,
+      };
+      const onError = jest.fn();
+      const result = renderHelper({ client, onError });
+      act(() => result.current.updatePredictions('test'));
+      await act(() => waitForTimeout(defaultDebounceMs));
+      expect(onError).toHaveBeenCalledWith(error);
     });
   });
 

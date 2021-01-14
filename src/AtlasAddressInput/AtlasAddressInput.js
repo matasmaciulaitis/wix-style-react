@@ -14,6 +14,7 @@ const AtlasAddressInput = ({
   onChange,
   onClear,
   onSelect,
+  onError,
   optionLayout,
   optionPrefix,
   optionSuffix,
@@ -26,7 +27,7 @@ const AtlasAddressInput = ({
     updatePredictions,
     clearPredictions,
     loading,
-  } = usePlacesAutocomplete({ client, debounceMs, debounceFn });
+  } = usePlacesAutocomplete({ client, debounceMs, debounceFn, onError });
 
   // If not loading, show the status passed from props
   const status = loading ? 'loading' : statusProp;
@@ -127,6 +128,15 @@ AtlasAddressInput.propTypes = {
 
   /** Handler for input blur */
   onBlur: PropTypes.func,
+
+  /** Handler for prediction fetching errors
+   * returns an error object containing: {
+   *  @property {number} httpStatus error http status
+   * }
+   * you can read these [guidelines](https://bo.wix.com/wix-docs/rnd/platformization-guidelines/errors#platformization-guidelines_errors_errors)
+   * to learn about the meaning of each error status
+   */
+  onError: PropTypes.func,
 
   /** Shows a status indication, will mostly be used for “loading” indication upon async request calls. */
   status: PropTypes.oneOf(['loading', 'error', 'warning']),

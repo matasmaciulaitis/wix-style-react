@@ -26,3 +26,34 @@ export const controlled = `
   );
 };
 `;
+
+export const errorHandling = `
+() => {
+  const [error, setError] = React.useState("Auth failed, please login again");
+  const _onError = err => {
+    switch (err.httpStatus) {
+      case 401:
+        return setError("Auth failed, please login again");
+      case 429:
+        return setError("Too many searches! Write a bit slower");
+      case 503:
+        return setError("Our servers appear to be down");
+      default:
+        return setError("Generic errors are bad, try to cover all cases")
+    }
+  };
+  const _onChange = () => {
+    setError(null);
+  };
+
+  return (
+    <AtlasAddressInput
+      onError={_onError}
+      onChange={_onChange}
+      status={error && 'error'}
+      statusMessage={error}
+      initialValue="Error 401"
+    />
+  );
+};
+`;

@@ -44,6 +44,8 @@ export default class InputWithOptions<
   focus: (options?: FocusOptionsPolyfill) => FocusOptionsPolyfill;
   blur: () => void;
   select: () => void;
+  showOptions: () => void;
+  hideOptions: () => void;
 }
 
 export type ManualInputFnSignature = (

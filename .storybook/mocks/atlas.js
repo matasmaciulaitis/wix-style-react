@@ -5,6 +5,7 @@ const {
   aV2Place: aPlace,
   aCommonAddress,
 } = require('@wix/ambassador-wix-atlas-service-web/builders');
+const { AmbassadorHTTPError } = require('@wix/ambassador/runtime/http');
 
 const buildAtlasAutocompleteResponse = input => {
   if (!input) {
@@ -38,8 +39,15 @@ const buildAtlasPlaceResponse = id => {
 
 const WixAtlasServiceWeb = () => ({
   AutocompleteServiceV2: () => () => ({
-    predict: ({ input }) =>
-      Promise.resolve(buildAtlasAutocompleteResponse(input)),
+    predict: ({ input = '' }) =>
+      new Promise((resolve, reject) => {
+        const errorMatchGroup = input.match(/^Error (\d+)$/);
+        if (errorMatchGroup) {
+          const statusCode = Number(errorMatchGroup[1]);
+          reject(new AmbassadorHTTPError(statusCode));
+        }
+        resolve(buildAtlasAutocompleteResponse(input));
+      }),
   }),
   PlacesServiceV2: () => () => ({
     getPlace: ({ searchId }) =>

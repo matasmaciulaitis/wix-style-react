@@ -1,6 +1,7 @@
 import React from 'react';
 import { AmbassadorTestkit } from '@wix/ambassador-testkit';
 import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
+import { AmbassadorHTTPError } from '@wix/ambassador/runtime/http';
 import {
   aPredictResponse,
   aV2Prediction as aPrediction,
@@ -41,6 +42,14 @@ const mockResults = (ambassadorTestkit, amountOfItems) => {
   );
   atlasStub.AutocompleteServiceV2().predict.always().resolve(response);
   return predictions;
+};
+
+const mockAmbassadorError = ambassadorTestkit => {
+  const atlasStub = ambassadorTestkit.createStub(
+    WixAtlasServiceWeb,
+    BASE_ATLAS_URL,
+  );
+  atlasStub.AutocompleteServiceV2().predict.always().reject();
 };
 
 describe(AtlasAddressInput.displayName, () => {
@@ -174,6 +183,21 @@ describe(AtlasAddressInput.displayName, () => {
       eventually(async () => {
         const itemPrefix = await driver.getItemSuffixAt(0);
         expect(await itemPrefix.text()).toBe(optionSuffix);
+      }),
+    );
+  });
+
+  it('should invoke onError when an error occurs', async () => {
+    mockAmbassadorError(ambassadorTestkit);
+    const onError = jest.fn();
+    const props = { ...commonProps, onError };
+
+    const { driver } = render(<AtlasAddressInput {...props} />);
+
+    await driver.enterText('test');
+    await act(async () =>
+      eventually(async () => {
+        expect(onError).toHaveBeenCalledWith(expect.any(AmbassadorHTTPError));
       }),
     );
   });

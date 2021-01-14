@@ -21,6 +21,8 @@ const usePlacesAutocomplete = ({
   /** (callback: Function, debounceMs: number) => Function
    * allow passing a custom debounce function (default: lodash debounce) */
   debounceFn = _debounce,
+  /** method to be called when a fetch error occurs */
+  onError,
 }) => {
   const [
     {
@@ -61,8 +63,11 @@ const usePlacesAutocomplete = ({
       let newPredictions;
       try {
         newPredictions = await fetchPredictions(value, requestOptions);
-      } catch {
+      } catch (error) {
         // failed to fetch predictions
+        if (onError) {
+          onError(error);
+        }
       } finally {
         // check if no new fetch request has been initiated
         const isMostRecentRequest = requestId === predictionsRequestId.current;
@@ -76,7 +81,7 @@ const usePlacesAutocomplete = ({
         }
       }
     },
-    [client],
+    [client, onError],
     debounceMs,
     debounceFn,
   );
