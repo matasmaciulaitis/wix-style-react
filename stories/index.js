@@ -30,6 +30,7 @@ require('../src/Box/docs/index.story');
 require('../src/Breadcrumbs/docs/index.story');
 require('../src/BrowserPreviewWidget/docs/index.story');
 require('../src/Button/docs/index.story');
+require('../src/ButtonX/docs/index.story');
 require('../src/Calendar/docs/index.story');
 require('../src/CalendarPanel/docs/index.story');
 require('../src/CalendarPanelFooter/docs/index.story');

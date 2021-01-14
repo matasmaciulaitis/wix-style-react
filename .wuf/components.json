@@ -77,6 +77,9 @@
   "Button": {
     "path": "src/Button"
   },
+  "ButtonX": {
+    "path": "src/ButtonX"
+  },
   "Calendar": {
     "path": "src/Calendar"
   },

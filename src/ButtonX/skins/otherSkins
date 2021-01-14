@@ -1,0 +1,416 @@
+JUST A PLACEHOLDER FILE
+
+/*
+ * Skin: standard
+ * Priority: primary
+ */
+.root:skin(standard):priority(primary) {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:skin(standard):priority(primary):hover {
+  background-color: value(THEME-COLOR-20);
+  border-color: value(THEME-COLOR-20);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:skin(standard):priority(primary):active {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:skin(standard):priority(primary):disabled {
+  background-color: value(D10-30);
+  border-color: transparent;
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+/*
+ * Skin: standard
+ * Priority: secondary
+ */
+.root:skin(standard):priority(secondary) {
+  background-color: transparent;
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-COLOR-10);
+}
+
+.root:skin(standard):priority(secondary):hover {
+  background-color: value(THEME-COLOR-20);
+  border-color: transparent;
+  color: value(D80);
+}
+
+.root:skin(standard):priority(secondary):active {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(D80);
+}
+
+.root:skin(standard):priority(secondary):disabled {
+  background-color: transparent;
+  border-color: value(D10-30);
+  color: value(D10-30);
+}
+
+/*
+ * Skin: inverted
+ * Priority: *
+ */
+.root:skin(inverted) {
+  background-color: value(D80);
+  border-color: value(D80);
+  color: value(B10);
+}
+
+.root:skin(inverted):hover {
+  background-color: value(B20);
+  border-color: transparent;
+  color: value(D80);
+}
+
+.root:skin(inverted):active {
+  background-color: value(B10);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+.root:skin(inverted):disabled {
+  background-color: transparent;
+  border-color: value(D10-30);
+  color: value(D10-30);
+}
+
+/*
+ * Skin: destructive
+ * Priority: primary
+ */
+.root:skin(destructive):priority(primary) {
+  background-color: value(R10);
+  border-color: value(R10);
+  color: value(D80);
+}
+
+.root:skin(destructive):priority(primary):hover {
+  background-color: value(R20);
+  border-color: value(R20);
+  color: value(D80);
+}
+
+.root:skin(destructive):priority(primary):active {
+  background-color: value(R10);
+  border-color: value(R10);
+  color: value(D80);
+}
+
+.root:skin(destructive):priority(primary):disabled {
+  background-color: value(D10-30);
+  border-color: transparent;
+  color: value(D80);
+}
+
+/*
+ * Skin: destructive
+ * Priority: secondary
+ */
+.root:skin(destructive):priority(secondary) {
+  background-color: transparent;
+  border-color: value(R10);
+  color: value(R10);
+}
+
+.root:skin(destructive):priority(secondary):hover {
+  background-color: value(R20);
+  border-color: value(R20);
+  color: value(D80);
+}
+
+.root:skin(destructive):priority(secondary):active {
+  background-color: value(R10);
+  border-color: value(R10);
+  color: value(D80);
+}
+
+.root:skin(destructive):priority(secondary):disabled {
+  color: value(D10-30);
+  background-color: transparent;
+  border-color: value(D10-30);
+}
+
+/*
+ * Skin: premium
+ * Priority: primary
+ */
+.root:skin(premium):priority(primary) {
+  background-color: value(P10);
+  border-color: value(P10);
+  color: value(D80);
+}
+
+.root:skin(premium):priority(primary):hover {
+  background-color: value(P20);
+  border-color: value(P20);
+  color: value(D80);
+}
+
+.root:skin(premium):priority(primary):active {
+  background-color: value(P10);
+  border-color: value(P10);
+  color: value(D80);
+}
+
+.root:skin(premium):priority(primary):disabled {
+  color: value(D80);
+  background-color: value(D10-30);
+  border-color: transparent;
+}
+
+/*
+ * Skin: premium
+ * Priority: secondary
+ */
+.root:skin(premium):priority(secondary) {
+  border-color: value(P10);
+  background-color: transparent;
+  color: value(P10);
+}
+
+.root:skin(premium):priority(secondary):hover {
+  background-color: value(P20);
+  border-color: value(P20);
+  color: value(D80);
+}
+
+.root:skin(premium):priority(secondary):active {
+  background-color: value(P10);
+  border-color: value(P10);
+  color: value(D80);
+}
+
+.root:skin(premium):priority(secondary):disabled {
+  color: value(D10-30);
+  background-color: transparent;
+  border-color: value(D10-30);
+}
+
+/* premium-light - primary */
+
+.root:skin(premium-light) {
+  background-color: value(P10);
+  border-color: value(P10);
+  color: value(D80);
+}
+
+.root:skin(premium-light):hover {
+  background-color: value(P20);
+  border-color: value(P20);
+  color: value(D80);
+}
+
+.root:skin(premium-light):active {
+  background-color: value(P10);
+  border-color: value(P10);
+  color: value(D80);
+}
+
+.root:skin(premium-light):disabled {
+  color: value(D80);
+  background-color: value(D80-30);
+  border-color: transparent;
+}
+
+/* premium-light - secondary */
+
+.root:skin(premium-light):priority(secondary) {
+  background-color: transparent;
+  border-color: value(D80);
+  color: value(D80);
+}
+
+.root:skin(premium-light):priority(secondary):hover {
+  background-color: value(D80);
+  border-color: value(D80);
+  color: value(P10);
+}
+
+.root:skin(premium-light):priority(secondary):active {
+  background-color: value(D80);
+  border-color: value(D80);
+  color: value(P10);
+}
+
+.root:skin(premium-light):priority(secondary):disabled {
+  color: value(D80-70);
+  background-color: transparent;
+  border-color: value(D80-70);
+}
+
+/*
+ * Skin: light
+ * Priority: primary
+ */
+.root:skin(light):priority(primary) {
+  border-color: value(D80);
+  background-color: value(D80);
+  color: value(B20);
+}
+
+.root:skin(light):priority(primary):hover {
+  background-color: value(B50);
+  color: value(B10);
+  border-color: value(B50);
+}
+
+.root:skin(light):priority(primary):active {
+  background-color: value(B40);
+  color: value(B10);
+}
+
+.root:skin(light):priority(primary):disabled {
+  color: value(D80);
+  background-color: value(D80-30);
+  border-color: transparent;
+}
+
+/*
+ * Skin: light
+ * Priority: secondary
+ */
+.root:skin(light):priority(secondary) {
+  border-color: value(D80);
+  background-color: transparent;
+  color: value(D80);
+}
+
+.root:skin(light):priority(secondary):hover {
+  background-color: value(B50);
+  color: value(B10);
+  border-color: value(B50);
+}
+
+.root:skin(light):priority(secondary):active {
+  background-color: value(B40);
+  border-color: value(B40);
+  color: value(B10);
+}
+
+.root:skin(light):priority(secondary):disabled {
+  color: value(D80-70);
+  background-color: transparent;
+  border-color: value(D80-70);
+}
+
+/*
+ * Skin: dark
+ * Priority: primary
+ */
+.root:skin(dark):priority(primary) {
+  background-color: value(D10);
+  border-color: value(D10);
+  color: value(D80);
+}
+
+.root:skin(dark):priority(primary):hover {
+  color: value(D80);
+  background-color: value(D20);
+  border-color: value(D20);
+}
+
+.root:skin(dark):priority(primary):active {
+  background-color: value(D10);
+  border-color: value(D10);
+  color: value(D80);
+}
+
+.root:skin(dark):priority(primary):disabled {
+  color: value(D80);
+  background-color: value(D10-30);
+  border-color: transparent;
+}
+
+/*
+ * Skin: dark
+ * Priority: secondary
+ */
+.root:skin(dark):priority(secondary) {
+  background-color: transparent;
+  border-color: value(D40);
+  color: value(D10);
+}
+
+.root:skin(dark):priority(secondary):hover {
+  color: value(D80);
+  background-color: value(D20);
+  border-color: value(D20);
+}
+
+.root:skin(dark):priority(secondary):active {
+  background-color: value(D10);
+  border-color: value(D10);
+  color: value(D80);
+}
+
+.root:skin(dark):priority(secondary):disabled {
+  color: value(D10-30);
+  background-color: transparent;
+  border-color: value(D10-30);
+}
+
+/*
+ * Skin: primary
+ * Priority: secondary
+ */
+.root:skin(transparent):priority(primary) {
+  border-color: transparent;
+  background-color: value(D20-48);
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(primary):hover {
+  border-color: transparent;
+  background-color: value(D20-54);
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(primary):active {
+  border-color: transparent;
+  background-color: value(D20-60);
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(primary):disabled {
+  background-color: value(D10-20);
+  border-color: transparent;
+  color: value(D80-70);
+}
+
+/*
+ * Skin: transparent
+ * Priority: secondary
+ */
+.root:skin(transparent):priority(secondary) {
+  border-color: transparent;
+  background-color: transparent;
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(secondary):hover {
+  border-color: transparent;
+  background-color: value(D20-54);
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(secondary):active {
+  border-color: transparent;
+  background-color: value(D20-60);
+  color: value(D80);
+}
+
+.root:skin(transparent):priority(secondary):disabled {
+  background-color: transparent;
+  border-color: transparent;
+  color: value(D80-70);
+}

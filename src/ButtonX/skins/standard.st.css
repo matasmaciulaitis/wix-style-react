@@ -1,0 +1,76 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, THEME-TEXT-COLOR-PRIMARY-LIGHT, THEME-COLOR-20,
+    D10-30, D80;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/typography.st.css';
+  -st-named: text-tiny-normal, text-small-normal, text-medium-normal,
+    text-tiny-bold;
+}
+
+.root {
+  -st-states: priority(enum(primary, secondary)), disabled;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+}
+
+.prefix {
+}
+
+.suffix {
+}
+
+/* Priority: primary */
+.root:priority(primary) {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:priority(primary):hover {
+  background-color: value(THEME-COLOR-20);
+  border-color: value(THEME-COLOR-20);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:priority(primary):active {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+.root:priority(primary):disabled {
+  background-color: value(D10-30);
+  border-color: transparent;
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}
+
+/* Priority: secondary */
+.root:priority(secondary) {
+  background-color: transparent;
+  border-color: value(THEME-COLOR-10);
+  color: value(THEME-COLOR-10);
+}
+
+.root:priority(secondary):hover {
+  background-color: value(THEME-COLOR-20);
+  border-color: transparent;
+  color: value(D80);
+}
+
+.root:priority(secondary):active {
+  background-color: value(THEME-COLOR-10);
+  border-color: value(THEME-COLOR-10);
+  color: value(D80);
+}
+
+.root:priority(secondary):disabled {
+  background-color: transparent;
+  border-color: value(D10-30);
+  color: value(D10-30);
+}

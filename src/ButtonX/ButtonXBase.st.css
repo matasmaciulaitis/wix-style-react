@@ -1,0 +1,24 @@
+.root {
+  -st-states: stretch, disabled;
+
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  border-style: none;
+
+  cursor: pointer;
+}
+
+.root:stretch {
+  width: 100%;
+}
+
+.root:disabled {
+  cursor: initial;
+  pointer-events: none;
+}
+
+.prefix {}
+
+.suffix {}

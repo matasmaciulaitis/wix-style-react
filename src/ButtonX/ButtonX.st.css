@@ -1,0 +1,76 @@
+:import {
+  -st-from: './ButtonXBase.st.css';
+  -st-default: ButtonXBase;
+  -st-named: prefix, suffix;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10, F00, B20, R10, R20, P10, P20, G10, G20, D80, B50, D40, D10,
+    D20, B40, F00, D10-20, D20-48, D20-54, D20-60, D80-30, D80-70, D10-30,
+    THEME-TEXT-COLOR-PRIMARY-LIGHT, THEME-COLOR-10, THEME-COLOR-20;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-tiny-normal, text-small-normal, text-medium-normal,
+    text-tiny-bold;
+}
+
+.root {
+  -st-extends: ButtonXBase;
+  -st-states: size(enum(tiny, small, medium, large)),
+    priority(enum(primary, secondary));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+}
+
+.root .prefix {
+  display: flex;
+  margin-inline-end: 6px;
+}
+
+.root .suffix {
+  display: flex;
+  margin-inline-start: 6px;
+}
+
+/* Sizes */
+.root:size(tiny) {
+  -st-mixin: text-tiny-normal;
+
+  height: 24px;
+  padding: 0 11px;
+  min-width: 60px;
+  border-radius: var(--wsr-button-border-radius, 12px);
+}
+
+.root:size(small) {
+  -st-mixin: text-small-normal;
+
+  height: 30px;
+  padding: 0 17px;
+  min-width: 72px;
+  border-radius: var(--wsr-button-border-radius, 15px);
+}
+
+.root:size(medium) {
+  -st-mixin: text-medium-normal;
+
+  height: 36px;
+  padding: 0 23px;
+  min-width: 84px;
+  border-radius: var(--wsr-button-border-radius, 18px);
+}
+
+.root:size(large) {
+  -st-mixin: text-medium-normal;
+
+  height: 42px;
+  padding: 0 29px;
+  min-width: 102px;
+  border-radius: var(--wsr-button-border-radius, 21px);
+}
