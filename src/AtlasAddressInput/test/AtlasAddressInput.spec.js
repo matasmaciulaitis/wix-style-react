@@ -6,6 +6,7 @@ import {
   aCommonAddress,
   aPredictResponse,
   aSearchResponse,
+  aSearchResult,
   aV2Prediction as aPrediction,
 } from '@wix/ambassador-wix-atlas-service-web/builders';
 import {
@@ -53,7 +54,10 @@ const mockSearchAddresses = (ambassadorTestkit, amountOfItems = 5) => {
     const formattedAddress = `${mainText}, ${secondaryText}`;
     return aCommonAddress().withFormattedAddress(formattedAddress).build();
   });
-  const response = aSearchResponse().withAddresses(addresses).build();
+  const searchResults = addresses.map(address =>
+    aSearchResult().withAddress(address).build(),
+  );
+  const response = aSearchResponse().withSearchResults(searchResults).build();
   const atlasStub = ambassadorTestkit.createStub(
     WixAtlasServiceWeb,
     BASE_ATLAS_URL,

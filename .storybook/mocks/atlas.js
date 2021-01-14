@@ -5,6 +5,7 @@ const {
   aV2Place: aPlace,
   aCommonAddress,
   aSearchResponse,
+  aSearchResult,
 } = require('@wix/ambassador-wix-atlas-service-web/builders');
 const { AmbassadorHTTPError } = require('@wix/ambassador/runtime/http');
 
@@ -39,13 +40,12 @@ const buildAtlasPlaceResponse = id => {
 };
 
 const buildAtlasSearchResponse = query => {
-  const addresses = [
-    aCommonAddress()
-      .withFormattedAddress(query)
-      .withPostalCode('06510')
-      .build(),
-  ];
-  const response = aSearchResponse().withAddresses(addresses).build();
+  const address = aCommonAddress()
+    .withFormattedAddress(query)
+    .withPostalCode('06510')
+    .build();
+  const searchResults = [aSearchResult().withAddress(address)];
+  const response = aSearchResponse().withSearchResults(searchResults).build();
   return response;
 };
 

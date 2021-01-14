@@ -51,9 +51,10 @@ const useAtlasClient = ({
 
   const searchAddresses = useCallback(
     async query => {
-      const { addresses } = await locationService.search({
+      const { searchResults } = await locationService.search({
         query,
       });
+      const addresses = searchResults.map(({ address }) => address);
       return addresses;
     },
     [locationService],

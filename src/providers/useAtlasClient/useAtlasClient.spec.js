@@ -8,6 +8,7 @@ import {
   aV2Place as aPlace,
   aV2Prediction as aPrediction,
   aCommonAddress,
+  aSearchResult,
 } from '@wix/ambassador-wix-atlas-service-web/builders';
 import useAtlasClient, { BASE_ATLAS_URL } from './useAtlasClient';
 
@@ -46,7 +47,10 @@ describe('useAtlasClient', () => {
   });
   it('should search addresses using Atlas location service', async () => {
     const addresses = Array.from({ length: 5 }, () => aCommonAddress().build());
-    const response = aSearchResponse().withAddresses(addresses).build();
+    const searchResults = addresses.map(address =>
+      aSearchResult().withAddress(address).build(),
+    );
+    const response = aSearchResponse().withSearchResults(searchResults).build();
     const atlasStub = ambassadorTestkit.createStub(
       WixAtlasServiceWeb,
       BASE_ATLAS_URL,
