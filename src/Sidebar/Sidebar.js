@@ -7,7 +7,7 @@ import { SidebarPersistentFooter } from './SidebarPersistentFooter';
 import { SidebarBackButton } from './SidebarBackButton';
 import { SidebarContext } from './SidebarAPI';
 import { dataHooks, sidebarSkins } from './constants';
-
+import { SidebarContentWrapper } from './SidebarContentWrapper';
 /** A sidebar navigation component  */
 class Sidebar extends Component {
   static displayName = 'Sidebar';
@@ -52,8 +52,6 @@ class Sidebar extends Component {
 
     this.itemKey2Children = {};
     this.itemKey2ParentKey = {};
-    this.childrenContainerRef = React.createRef();
-    this.childrenContentRef = React.createRef();
     this.state = {
       persistentTopChildren: [],
       drivenOutChildren: [],
@@ -62,49 +60,7 @@ class Sidebar extends Component {
       persistentBottomChildren: [],
       selectedKey: '',
       lastSelectedKey: '',
-      isScrollbarDisplayed: false,
     };
-    this.childrenResizeObserver =
-      'ResizeObserver' in window &&
-      new ResizeObserver(this._handleChildrenResize);
-  }
-
-  _handleChildrenResize = () => {
-    this._shouldAddGradient();
-  };
-
-  componentDidMount() {
-    this._shouldAddGradient();
-
-    const {
-      childrenResizeObserver,
-      childrenContainerRef,
-      childrenContentRef,
-    } = this;
-
-    if (childrenResizeObserver && childrenContainerRef.current) {
-      childrenResizeObserver.observe(childrenContainerRef.current);
-    }
-
-    if (childrenResizeObserver && childrenContentRef.current) {
-      childrenResizeObserver.observe(childrenContentRef.current);
-    }
-  }
-
-  componentWillUnmount() {
-    const {
-      childrenResizeObserver,
-      childrenContainerRef,
-      childrenContentRef,
-    } = this;
-
-    if (childrenResizeObserver && childrenContainerRef.current) {
-      childrenResizeObserver.unobserve(childrenContainerRef.current);
-    }
-
-    if (childrenResizeObserver && childrenContentRef.current) {
-      childrenResizeObserver.unobserve(childrenContentRef.current);
-    }
   }
 
   _navigateTo = itemKey => {
@@ -154,11 +110,6 @@ class Sidebar extends Component {
       getSkin: () => this.props.skin,
     };
   };
-
-  _shouldAddGradient() {
-    const { scrollHeight, clientHeight } = this.childrenContainerRef.current;
-    this.setState({ isScrollbarDisplayed: scrollHeight > clientHeight });
-  }
 
   sidebarContext = this._getSidebarContext();
 
@@ -279,10 +230,6 @@ class Sidebar extends Component {
       skin,
     });
 
-    const gradientClasses = st(classes.gradient, {
-      skin,
-    });
-
     return (
       <SidebarContext.Provider value={this.sidebarContext}>
         <div className={rootClasses} data-hook={this.props.dataHook}>
@@ -299,32 +246,18 @@ class Sidebar extends Component {
                 </div>
               )}
 
-            <div
-              className={sliderClasses}
-              ref={this.childrenContainerRef}
-              data-hook={dataHooks.childrenContainer}
-            >
-              <div
-                className={st(css.childrenContent)}
-                ref={this.childrenContentRef}
-              >
-                {this.state.onScreenChildren}
-              </div>
-              {this.state.isScrollbarDisplayed && (
-                <div
-                  className={gradientClasses}
-                  data-hook={dataHooks.scrollBarGradient}
-                />
-              )}
-            </div>
+            <SidebarContentWrapper
+              containerClasses={sliderClasses}
+              containerDataHook={''}
+              children={this.state.onScreenChildren}
+            />
 
             {this.state.drivenInChildren.length !== 0 && (
-              <div
-                className={sliderInFromRightClasses}
-                data-hook={dataHooks.drivenInChildren}
-              >
-                {this.state.drivenInChildren}
-              </div>
+              <SidebarContentWrapper
+                containerClasses={sliderInFromRightClasses}
+                containerDataHook={dataHooks.drivenInChildren}
+                children={this.state.drivenInChildren}
+              />
             )}
           </div>
 

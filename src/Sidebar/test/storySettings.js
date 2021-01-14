@@ -6,6 +6,7 @@ export const storySettings = {
   dataHooks: {
     sidebar: 'story-sidebar',
     addItemButton: 'add-item-button',
+    innerMenuItem: 'inner-menu-item',
     boxContainer: 'box-container',
     setBoxHeightButton: 'set-box-height-button',
   },
