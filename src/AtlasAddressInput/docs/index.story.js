@@ -140,6 +140,7 @@ This is a mock example, type anything to see suggestions that match your input.
             title: 'Display custom address',
             text: `
 In order to custom the address displayed, the \`onSelect\` callback provides a \`getPlaceDetails\` function to get all meta-data from Atlas.\n
+If you want to search for address on submit, the \`onManualSubmit\` callback provides a \`searchAddresses\` function to retreive addresses matching input value.\n
 In this example we want to display a postal code along with the address, try to type anything and select any suggestion.
             `,
             source: examples.controlled,

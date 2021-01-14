@@ -20,6 +20,7 @@ function addressInputWithAllProps() {
       value="address"
       disabled
       onSelect={option => {}}
+      onManuallyInput={(inputValue, suggestedOption) => {}}
       onChange={value => {}}
       options={[{ id: 0, value: 'value' }]}
       onClear={() => {}}

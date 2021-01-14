@@ -22,6 +22,11 @@ const useAtlasClient = ({
     () => atlas.PlacesServiceV2()({ Authorization: token }),
     [atlas, token],
   );
+  // Atlas Ambassador location service (memoized)
+  const locationService = useMemo(
+    () => atlas.LocationServiceV2()({ Authorization: token }),
+    [atlas, token],
+  );
 
   const fetchPredictions = useCallback(
     async (value, requestOptions) => {
@@ -44,6 +49,16 @@ const useAtlasClient = ({
     [placesService],
   );
 
+  const searchAddresses = useCallback(
+    async query => {
+      const { addresses } = await locationService.search({
+        query,
+      });
+      return addresses;
+    },
+    [locationService],
+  );
+
   return {
     /** callback that fetches predictions from Atlas
    * @param {string} value Input text we want predictions for.
@@ -58,10 +73,18 @@ const useAtlasClient = ({
    * }
    * @returns {Promise<Prediction[]>} */
     fetchPredictions,
+
     /** callback that fetches details for a place given its atlas `searchId`
      * @param {string} searchId identifier for atlas prediction result we want to get additional details for
      * @returns {Promise<V2Place>} */
     getPlaceDetails,
+
+    /** callback that searches for addresses matching given value
+     * @param {string} query Input text to search address for
+     * @returns {Promise<Address[]>}
+     */
+    searchAddresses,
+
     /** whether component is ready */
     ready: true,
   };

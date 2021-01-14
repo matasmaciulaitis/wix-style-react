@@ -3,7 +3,9 @@ import { AmbassadorTestkit } from '@wix/ambassador-testkit';
 import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 import { AmbassadorHTTPError } from '@wix/ambassador/runtime/http';
 import {
+  aCommonAddress,
   aPredictResponse,
+  aSearchResponse,
   aV2Prediction as aPrediction,
 } from '@wix/ambassador-wix-atlas-service-web/builders';
 import {
@@ -42,6 +44,22 @@ const mockResults = (ambassadorTestkit, amountOfItems) => {
   );
   atlasStub.AutocompleteServiceV2().predict.always().resolve(response);
   return predictions;
+};
+
+const mockSearchAddresses = (ambassadorTestkit, amountOfItems = 5) => {
+  const addresses = Array.from({ length: amountOfItems }, (_, index) => {
+    const mainText = `Address ${index + 1}`;
+    const secondaryText = 'Country';
+    const formattedAddress = `${mainText}, ${secondaryText}`;
+    return aCommonAddress().withFormattedAddress(formattedAddress).build();
+  });
+  const response = aSearchResponse().withAddresses(addresses).build();
+  const atlasStub = ambassadorTestkit.createStub(
+    WixAtlasServiceWeb,
+    BASE_ATLAS_URL,
+  );
+  atlasStub.LocationServiceV2().search.always().resolve(response);
+  return addresses;
 };
 
 const mockAmbassadorError = ambassadorTestkit => {
@@ -139,6 +157,29 @@ describe(AtlasAddressInput.displayName, () => {
         await driver.clickAtOption(0);
         expect(props.onSelect).toHaveBeenCalledWith(
           expect.objectContaining({ id: predictions[0].searchId }),
+          expect.any(Function),
+        );
+      }),
+    );
+  });
+
+  it('should invoke onManualSubmit', async () => {
+    mockSearchAddresses(ambassadorTestkit);
+    const props = {
+      ...commonProps,
+      onManualSubmit: jest.fn((inputValue, searchAddresses) => {}),
+    };
+    const { driver } = render(<AtlasAddressInput {...props} />);
+
+    const testValue = 'test';
+    await driver.enterText(testValue);
+    expect(props.onManualSubmit).not.toHaveBeenCalled();
+    await driver.submit();
+
+    await act(async () =>
+      eventually(async () => {
+        expect(props.onManualSubmit).toHaveBeenCalledWith(
+          testValue,
           expect.any(Function),
         );
       }),

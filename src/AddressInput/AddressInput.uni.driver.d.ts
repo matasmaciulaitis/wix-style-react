@@ -12,4 +12,5 @@ export interface AddressInputUniDriver extends BaseUniDriver {
   getAmountOfItems: () => Promise<number>;
   getItemMainLabelAt: () => Promise<string>;
   getItemSecondaryLabelAt: () => Promise<string>;
+  submit: () => Promise<void>;
 }

@@ -14,6 +14,7 @@ const AtlasAddressInput = ({
   onChange,
   onClear,
   onSelect,
+  onManualSubmit,
   onError,
   optionLayout,
   optionPrefix,
@@ -70,6 +71,18 @@ const AtlasAddressInput = ({
     [client, onSelect],
   );
 
+  // A callback which is called when the user performs a Submit-Action
+  const _onManualSubmit = useCallback(
+    inputValue => {
+      if (onManualSubmit && inputValue) {
+        const searchAddressesCallback = () =>
+          client.searchAddresses(inputValue);
+        onManualSubmit(inputValue, searchAddressesCallback);
+      }
+    },
+    [onManualSubmit, client],
+  );
+
   return (
     <AddressInput
       {...props}
@@ -77,6 +90,7 @@ const AtlasAddressInput = ({
       onChange={_onChange}
       onClear={_onClear}
       onSelect={_onSelect}
+      onManuallyInput={_onManualSubmit}
       status={status}
     />
   );
@@ -128,6 +142,13 @@ AtlasAddressInput.propTypes = {
 
   /** Handler for input blur */
   onBlur: PropTypes.func,
+
+  /** A callback which is called when the user performs a Submit-Action.
+   * Submit-Action triggers are: "Enter", "Tab"
+   * Receives two arguments:
+   * @param {string} inputValue value of the input on submission
+   * @param {() => Promise<Address[]>} searchAddresses a function for searching addresses given the input value */
+  onManualSubmit: PropTypes.func,
 
   /** Handler for prediction fetching errors
    * returns an error object containing: {

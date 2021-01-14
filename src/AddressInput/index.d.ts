@@ -3,6 +3,7 @@ import {
   DropdownLayoutOption,
   DropdownLayoutValueOption,
 } from '../DropdownLayout';
+import { ManualInputFnSignature } from '../InputWithOptions';
 
 export interface AddressInputProps {
   dataHook?: string;
@@ -12,10 +13,11 @@ export interface AddressInputProps {
   value?: string;
   disabled?: boolean;
   onSelect?: (option: DropdownLayoutValueOption) => void;
+  onManuallyInput?: ManualInputFnSignature;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  options?: DropdownLayoutOption[];
   onClear?: () => void;
+  options?: DropdownLayoutOption[];
   status?: 'loading' | 'error' | 'warning';
   statusMessage?: React.ReactNode;
   border?: 'standard' | 'round' | 'bottomLine';

@@ -139,6 +139,7 @@ class AddressInput extends React.PureComponent {
       onBlur,
       statusMessage,
       border,
+      onManuallyInput,
     } = this.props;
     const value = this._getInputValue();
     const status = this._getStatus();
@@ -152,6 +153,7 @@ class AddressInput extends React.PureComponent {
         size={size}
         options={this._renderOptions()}
         onSelect={this._onSelect}
+        onManuallyInput={onManuallyInput}
         value={value}
         disabled={disabled}
         border={border}
@@ -213,6 +215,10 @@ AddressInput.propTypes = {
 
   /** Handler for input blur */
   onBlur: PropTypes.func,
+
+  /** A callback which is called when the user performs a Submit-Action.
+   * Submit-Action triggers are: "Enter", "Tab" */
+  onManuallyInput: PropTypes.func,
 
   /** Shows a status indication, will mostly be used for “loading” indication upon async request calls. */
   status: PropTypes.oneOf(['loading', 'error', 'warning']),

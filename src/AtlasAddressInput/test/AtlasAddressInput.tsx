@@ -20,6 +20,7 @@ function addressInputWithAllProps() {
       value="address"
       disabled
       onSelect={(option, getPlaceDetails) => {}}
+      onManualSubmit={(inputValue, searchAddresses) => {}}
       onChange={value => {}}
       onClear={() => {}}
       border="round"

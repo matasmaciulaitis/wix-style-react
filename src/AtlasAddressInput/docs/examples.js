@@ -13,13 +13,22 @@ export const controlled = `
     getPlaceDetails().then(placeDetails => {
       setValue(\`\${option.label} - \${placeDetails.address.postalCode}\`);
     });
-  }
+  };
+
+  // Search for address on submit, display result
+  const _onManualSubmit = (inputValue, searchAddresses) => {
+    searchAddresses().then((addresses) => {
+      const address = addresses[0];
+      setValue(\`\${address.formattedAddress} - \${address.postalCode}\`);
+    });
+  };
 
   return (
     <AtlasAddressInput
       onChange={_onChange}
       onClear={_onClear}
       onSelect={_onSelect}
+      onManualSubmit={_onManualSubmit}
       value={value}
       token="some_auth_token"
     />
