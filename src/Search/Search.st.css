@@ -1,5 +1,5 @@
 .root {
-  -st-states: expandable, expanded, size(enum(small, medium, large));
+  -st-states: expandable, expanded, size(enum(small, medium, large)), filled;
 }
 
 .root:expandable {
