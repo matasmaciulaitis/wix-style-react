@@ -1,0 +1,65 @@
+:import {
+  -st-from: "../../../Search/Search.st.css";
+  -st-default: Search;
+}
+
+:import {
+  -st-from: "../../../Input/Input.st.css";
+  -st-default: Input;
+}
+
+:import {
+  -st-from: "../../../Input/IconAffix/IconAffix.st.css";
+  -st-default: IconAffix;
+}
+
+:import {
+  -st-from: '../../../Input/Input.mixins.js';
+  -st-named: placeholderMixin;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D10, D40, D80, B60, B10;
+}
+
+.root {
+  -st-extends: Search;
+}
+
+.root:size(large) Input{
+  background-color: value(D80);
+  border: none;
+}
+
+.root:size(large) Input:border(bottomLine)::before{
+  width: 100%;
+  background-color: value(D10);
+}
+
+.root:size(large) Input:hover{
+  background-color: value(B60);
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.root:size(large) Input:border(bottomLine):hover::before{
+  background-color: value(D10);
+}
+
+.root:size(large) Input:active{
+  background-color: value(D80);
+}
+
+.root:size(large) Input:border(bottomLine):active::before{
+  background-color: value(B10);
+}
+
+.root:size(large) IconAffix{
+  color: value(D10);
+  font-size: 24px;
+}
+
+.root:size(large) Input::input{
+  -st-mixin: placeholderMixin(value(D40));
+}

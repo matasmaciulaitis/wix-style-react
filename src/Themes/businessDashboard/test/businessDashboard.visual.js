@@ -27,6 +27,7 @@ import { runTests as TagTests } from '../../../Tag/test/Tag.visual';
 import { runTests as CheckboxTests } from '../../../Checkbox/test/Checkbox.visual';
 import { runTests as ThumbnailTests } from '../../../Thumbnail/test/Thumbnail.visual';
 import { runTests as VerticalTabsItemTests } from '../../../VerticalTabsItem/test/VerticalTabsItem.visual';
+import { runTests as SearchTests } from '../../../Search/test/Search.visual';
 
 import { ThemeProvider } from '../../..';
 
@@ -66,3 +67,4 @@ TagTests({ themeName, testWithTheme });
 CheckboxTests({ themeName, testWithTheme });
 ThumbnailTests({ themeName, testWithTheme });
 VerticalTabsItemTests({ themeName, testWithTheme });
+SearchTests({ themeName, testWithTheme });

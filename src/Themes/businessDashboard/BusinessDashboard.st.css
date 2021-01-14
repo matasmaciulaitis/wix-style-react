@@ -176,6 +176,11 @@
   -st-default: VerticalTabsItem;
 }
 
+:import {
+  -st-from: "../../Search/Search.st.css";
+  -st-default: Search;
+}
+
 /* Overrides */
 :import {
   -st-from: "./components/Button.st.css";
@@ -347,6 +352,11 @@
   -st-default: VerticalTabsItemOverrides;
 }
 
+:import {
+  -st-from: "./components/Search.st.css";
+  -st-default: SearchOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -445,6 +455,9 @@
   }
   VerticalTabsItem {
     -st-mixin: VerticalTabsItemOverrides();
+  }
+  Search {
+    -st-mixin: SearchOverrides();
   }
 }
 

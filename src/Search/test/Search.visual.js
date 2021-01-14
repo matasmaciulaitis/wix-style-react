@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { storiesOf } from '@storybook/react';
 import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-
+import { visualize, snap } from 'storybook-snapper';
 import Search from '../Search';
 import { searchUniDriverFactory } from '../Search.uni.driver';
 import { storySettings } from './storySettings';
 import { Cell, Layout } from '../../Layout';
 
-const { dataHook, storyName } = storySettings;
+const { dataHook } = storySettings;
 
 const createDriver = () =>
   uniTestkitFactoryCreator(searchUniDriverFactory)({
@@ -63,21 +62,6 @@ const interactiveTests = [
   },
 ];
 
-tests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props }) => {
-    storiesOf(`${storyName}/${describe}`, module).add(it, () => (
-      <Layout>
-        <Cell>
-          <Search {...props} />
-        </Cell>
-        <Cell>
-          <Search {...props} size="small" />
-        </Cell>
-      </Layout>
-    ));
-  });
-});
-
 const InteractiveSearchWrapper = ({ componentDidMount, ...props }) => {
   useEffect(() => {
     componentDidMount && componentDidMount();
@@ -86,14 +70,39 @@ const InteractiveSearchWrapper = ({ componentDidMount, ...props }) => {
   return <Search {...props} />;
 };
 
-interactiveTests.forEach(({ describe, its }) => {
-  its.forEach(({ it, props, componentDidMount }) => {
-    storiesOf(`${storyName}/${describe}`, module).add(it, () => (
-      <InteractiveSearchWrapper
-        dataHook={dataHook}
-        {...props}
-        componentDidMount={componentDidMount}
-      />
-    ));
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(`${themeName ? `${themeName}|` : ''}Search`, () => {
+    tests.forEach(({ describe, its }) => {
+      its.forEach(({ it, props }) =>
+        snap(it, () =>
+          testWithTheme(
+            <Layout>
+              <Cell>
+                <Search {...props} />
+              </Cell>
+              <Cell>
+                <Search {...props} size="small" />
+              </Cell>
+            </Layout>,
+          ),
+        ),
+      );
+    });
+
+    interactiveTests.forEach(({ describe, its }) => {
+      its.forEach(({ it, props, componentDidMount }) => {
+        snap(it, () =>
+          testWithTheme(
+            <InteractiveSearchWrapper
+              dataHook={dataHook}
+              {...props}
+              componentDidMount={componentDidMount}
+            />,
+          ),
+        );
+      });
+    });
   });
-});
+};

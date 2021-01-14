@@ -2,6 +2,9 @@ export const playground = `
 <ThemeProvider theme={theme()}>
   <Layout>
     <Cell>
+      <Search size="large" border="bottomLine" />
+    </Cell>
+    <Cell>
       <Search
         size="small"
         value="Option a"
