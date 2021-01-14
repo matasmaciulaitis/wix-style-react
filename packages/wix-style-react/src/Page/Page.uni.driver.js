@@ -1,4 +1,5 @@
-import { baseUniDriverFactory } from '../../test/utils/unidriver';
+import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
+import { dataHooks } from './constants';
 
 export const pageUniDriverFactory = base => {
   return {
@@ -7,21 +8,22 @@ export const pageUniDriverFactory = base => {
 
     /** true if header background image exist */
     backgroundImageExists: () =>
-      base.$('[data-hook="page-background-image"]').exists(),
+      findByHook(base, dataHooks.pageBackgroundImage).exists(),
 
     /** true if gradient class name exist */
     gradientClassNameExists: () =>
-      base.$('[data-hook="page-gradient-class-name"]').exists(),
+      findByHook(base, dataHooks.pageGradientClassName).exists(),
 
     /** true if tail exist in DOM */
-    tailExists: () => base.$('[data-hook="page-tail"]').exists(),
+    tailExists: () => findByHook(base, dataHooks.pageTail).exists(),
 
     /** return container height */
     gradientContainerHeight: async () => {
-      const style = await base
-        .$('[data-hook="page-gradient-class-name"]')
-        ._prop('style');
-      return style.height;
+      const pageGradient = await findByHook(
+        base,
+        dataHooks.pageGradientClassName,
+      );
+      return pageGradient._prop('style').then(style => style.height);
     },
 
     /** returns html in a string form */
