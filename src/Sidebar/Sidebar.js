@@ -248,7 +248,6 @@ class Sidebar extends Component {
 
             <SidebarContentWrapper
               containerClasses={sliderClasses}
-              containerDataHook={''}
               children={this.state.onScreenChildren}
             />
 

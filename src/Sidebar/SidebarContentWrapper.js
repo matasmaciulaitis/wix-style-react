@@ -7,6 +7,9 @@ import { dataHooks, sidebarSkins } from './constants';
 export class SidebarContentWrapper extends Component {
   static propTypes = {
     skin: PropTypes.oneOf(['dark', 'light']),
+    containerDataHook: PropTypes.string,
+    containerClasses: PropTypes.arrayOf(PropTypes.string),
+    children: PropTypes.node,
   };
 
   static defaultProps = {
@@ -71,7 +74,7 @@ export class SidebarContentWrapper extends Component {
 
   render() {
     const { skin, containerClasses, children, containerDataHook } = this.props;
-    const css = { ...classes, ...this.props.classNames };
+    const css = { ...classes, containerClasses };
 
     const gradientClasses = st(classes.gradient, {
       skin,
@@ -79,7 +82,7 @@ export class SidebarContentWrapper extends Component {
 
     return (
       <div
-        className={containerClasses}
+        className={css.containerClasses}
         ref={this.childrenContainerRef}
         data-hook={containerDataHook}
       >
