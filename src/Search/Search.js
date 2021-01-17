@@ -213,12 +213,10 @@ class Search extends Component {
     return (
       <div
         data-hook={dataHook}
-        data-test={inputValue}
         className={st(classes.root, {
           expandable,
           expanded: expandable && collapsed,
           size,
-          filled: !!inputValue.length,
         })}
         onClick={this._onWrapperClick}
         onMouseDown={this._onWrapperMouseDown}

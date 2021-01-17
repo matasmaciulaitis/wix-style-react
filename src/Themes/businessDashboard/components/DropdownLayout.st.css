@@ -22,8 +22,11 @@
 }
 
 .root:visible::contentContainer {
-  padding: 8px 0;
   border-radius: 8px;
+}
+
+.root:visible::options {
+  padding: 8px 0;
 }
 
 .root::options::-webkit-scrollbar {

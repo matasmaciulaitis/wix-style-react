@@ -70,7 +70,6 @@
 }
 
 .root:size(large) IconAffix:inSuffix{
-  display: none;
   color: value(B10);
   padding: 8px 4px;
 }
@@ -79,12 +78,3 @@
   color: value(D10);
   padding: 8px 8px;
 }
-
-.root:size(large):filled IconAffix:inPrefix{
-  display: none;
-}
-
-.root:size(large):filled IconAffix:inSuffix{
-  display: block;
-}
-

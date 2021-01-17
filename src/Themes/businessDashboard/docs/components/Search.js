@@ -2,7 +2,15 @@ export const playground = `
 <ThemeProvider theme={theme()}>
   <Layout>
     <Cell>
-      <Search size="large" border="bottomLine" />
+      <Search
+        size="large"
+        border="bottomLine"
+        options={Array(10)
+          .fill(10)
+          .map((_, id) => ({
+            id,
+            value: 'Option ' + String.fromCharCode(97 + id),
+          }))} />
     </Cell>
     <Cell>
       <Search
