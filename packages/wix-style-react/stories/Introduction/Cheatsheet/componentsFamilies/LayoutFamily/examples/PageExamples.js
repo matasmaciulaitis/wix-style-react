@@ -27,6 +27,7 @@ import {
   PopoverMenu,
   IconButton,
   EmptyState,
+  Layout,
 } from 'wix-style-react';
 
 class ExamplePageWithCard extends Component {
@@ -166,9 +167,10 @@ const PageExamples = () => {
 
   return (
     <SingleComponentStacked {...singleComponentProps}>
-      <ExamplePageWithCard />
-      <Box height="30px" backgroundColor="D80" />
-      <ExamplePageEmptyState />
+      <Layout cols={1}>
+        <ExamplePageWithCard />
+        <ExamplePageEmptyState />
+      </Layout>
     </SingleComponentStacked>
   );
 };

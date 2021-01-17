@@ -256,11 +256,13 @@ class Page extends React.PureComponent {
   }
 
   _hasBackgroundImage() {
-    return !!this.props.backgroundImageUrl;
+    const { backgroundImageUrl } = this.props;
+    return !!backgroundImageUrl;
   }
 
   _hasGradientClassName() {
-    return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
+    const { gradientClassName, backgroundImageUrl } = this.props;
+    return !!gradientClassName && !backgroundImageUrl;
   }
 
   _renderContentHorizontalLayout(props) {
@@ -324,7 +326,8 @@ class Page extends React.PureComponent {
 
     return (
       <div
-        data-hook="page-header-container"
+        data-hook={dataHooks.pageHeaderContainer}
+        data-hook={dataHooks.pageHeaderContainer}
         className={st(classes.pageHeaderContainer, {
           minimized,
           hasTail: this._hasTail(),

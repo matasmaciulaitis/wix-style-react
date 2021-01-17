@@ -6,4 +6,5 @@ export const dataHooks = {
   pageGradientClassName: 'page-gradient-class-name',
   pageTail: 'page-tail',
   pageFixedContent: 'page-fixed-content',
+  pageHeaderContainer: 'page-header-container',
 };
