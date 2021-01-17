@@ -6,6 +6,7 @@
 
 require('./Introduction');
 require('./Playground/Playground.story');
+require('./dynamicLoadingBundling');
 
 // Components API
 require('../src/Accordion/docs/index.story');

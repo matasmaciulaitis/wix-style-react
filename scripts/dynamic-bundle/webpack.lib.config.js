@@ -4,37 +4,29 @@ const webpack = require('webpack');
 const { sync: rimraf } = require('rimraf');
 
 const path = require('path');
-const fs = require('fs');
 
 const reAssets = /\.(png|jpg|jpeg|gif|woff|woff2|ttf|otf|eot|wav|mp3)$/;
 const staticAssetName = 'media/[name].[hash:8].[ext]';
-const dist = __dirname + '/dist';
-const context = path.join(__dirname, '..', 'src');
-
-// const dirChunks = new Set(
-//   fs
-//     .readdirSync(context, { withFileTypes: true })
-//     .filter(x => x.isDirectory())
-//     .map(({ name }) => name),
-// );
+const dist = path.join(__dirname, '../../', '.lib/dist');
+const context = path.join(__dirname, '../../', 'src');
 
 const wsrStylableNamespaceFactory = () => {
   const s = new Set();
-  return (ns, path) => {
+  return (ns, pth) => {
     let outNS;
-    if (path.includes('wix-ui-core')) {
+    if (pth.includes('wix-ui-core')) {
       outNS = 'wuc' + ns;
     } else {
       outNS = 'wsr' + ns;
     }
     if (s.has(outNS)) {
-      const m = path.match(/wix-style-react[\\/]src[\\/](.*?)[\\/]/);
+      const m = pth.match(/wix-style-react[\\/]src[\\/](.*?)[\\/]/);
       if (m) {
         outNS = 'wsr' + m[1] + ns;
       }
       if (s.has(outNS)) {
-        outNS = resolveNamespace(ns, path);
-        console.error(ns, path);
+        outNS = resolveNamespace(ns, pth);
+        throw new Error('Error in dynamic import bundling', ns, pth);
       }
     }
     s.add(outNS);
@@ -181,7 +173,7 @@ const config = {
       {
         test: /\.m?js$/,
         loader: require.resolve('babel-loader'),
-        options: require('../babel.config')({
+        options: require('../../babel.config')({
           env() {
             return false;
           },

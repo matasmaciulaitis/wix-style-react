@@ -1,6 +1,11 @@
-export const WSRComponents = React.createContext();
+import React from 'react';
+import { WSRComponentsContext } from './context';
 
-export function WSRProvider({ componentLoaders, preloaded, children }) {
+export function WSRDynamicLoadingProvider({
+  componentLoaders,
+  preloaded,
+  children,
+}) {
   const [components, setComponents] = React.useState(preloaded);
   React.useEffect(() => {
     !preloaded && loadComponents(componentLoaders, setComponents);
@@ -9,7 +14,7 @@ export function WSRProvider({ componentLoaders, preloaded, children }) {
     return null;
   }
   return React.createElement(
-    WSRComponents.Provider,
+    WSRComponentsContext.Provider,
     { value: components },
     children,
   );

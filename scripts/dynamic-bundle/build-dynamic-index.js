@@ -1,12 +1,13 @@
 const ts = require('typescript');
 const prettier = require('prettier');
 const { basename } = require('path');
+
 const { isExportDeclaration, createSourceFile, sys } = ts;
 
 createDynamicIndexFile();
 
 async function createDynamicIndexFile() {
-  const indexSource = sys.readFile('./src/index.js', 'utf8');
+  const indexSource = sys.readFile('../../src/index.js', 'utf8');
 
   const sourceFile = createSourceFile(
     'index.js',
@@ -17,7 +18,7 @@ async function createDynamicIndexFile() {
   const prettierConfig = await prettier.resolveConfig();
 
   sys.writeFile(
-    './src/index.dynamic.js',
+    '../../src/index.dynamic.js',
     prettier.format(createDynamicIndexSource(sourceFile), {
       parser: 'babel',
       ...prettierConfig,
