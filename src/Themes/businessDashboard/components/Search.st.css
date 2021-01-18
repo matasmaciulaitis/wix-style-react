@@ -80,5 +80,5 @@
 }
 
 .root:size(large) Input::suffixes {
-  padding-right: 12px;
+  padding-right: 8px;
 }
