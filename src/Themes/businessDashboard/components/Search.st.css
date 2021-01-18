@@ -76,7 +76,7 @@
 
 .root:size(large) IconAffix:inPrefix{
   color: value(D10);
-  padding: 8px 7px;
+  padding: 8px;
 }
 
 .root:size(large) Input::suffixes{
