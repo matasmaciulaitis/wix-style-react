@@ -1,0 +1,66 @@
+:import {
+  -st-from: "../Foundation/stylable/colors.st.css";
+  -st-named: G30, R30, D60, D20, D10-10;
+}
+
+.root {
+  -st-states: divider, type(enum(stretched, condensed));
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avatar {
+  cursor: default;
+}
+
+.moreItemAvatar {
+  @extend .avatar;
+  color: value(D20);
+  border-radius: 50%;
+}
+
+.moreItemAvatar :global([data-hook*='avatar-core']) {
+  background-color: white !important;
+  border: 2px solid value(D10-10);
+  border-radius: 50% !important;
+}
+
+.moreItemAvatar :global([data-hook*='avatar-core']) > div {
+  color: value(D20) !important;
+}
+
+.root:type(stretched) > .avatar {
+  margin-right: 6px;
+}
+
+.root:type(condensed) > .avatar {
+  margin-right: -6px;
+  z-index: 100;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.divider {
+  -st-states: size(enum(small, medium)), type(enum(stretched, condensed));
+  margin-right: 12px;
+  background-color: value(D60);
+}
+
+.divider:type(stretched) {
+  margin-left: 6px;
+}
+
+.divider:type(condensed) {
+  margin-left: 18px;
+}
+
+.divider:size(small) {
+  height: 24px;
+}
+
+.divider:size(medium) {
+  height: 30px;
+}
+
