@@ -6,14 +6,18 @@ import {
   tabs,
   tab,
   api,
+  description,
   example as baseExample,
   importExample,
   playground,
   testkit,
 } from 'wix-storybook-utils/Sections';
+import LinkTo from '@storybook/addon-links/react';
 import { storySettings } from './storySettings';
+import SectionHelper from '../../SectionHelper';
 import GoogleAddressInput from '..';
 import allComponents from '../../../stories/utils/allComponents';
+import { Category } from '../../../stories/storiesHierarchy';
 
 import clients from '../../clients';
 import GoogleAPILoader from '../../../stories/utils/GoogleAPILoader';
@@ -62,6 +66,17 @@ export default {
       tab({
         title: 'Description',
         sections: [
+          description({
+            text: (
+              <SectionHelper title="Deprecated">
+                {`Wix projects should now use the new `}
+                <LinkTo kind={Category.COMPONENTS} story="AtlasAddressInput">
+                  {`<AtlasAddressInput/>`}
+                </LinkTo>
+                {` component`}
+              </SectionHelper>
+            ),
+          }),
           importExample(`
 import { GoogleAddressInput, clients } from 'wix-style-react';
 const client = clients.GoogleMapsClient;
