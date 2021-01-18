@@ -549,6 +549,9 @@ export * from './BounceAnimation';
 export { default as PulseAnimation } from './PulseAnimation';
 export * from './PulseAnimation';
 
+export { default as AvatarGroup } from './AvatarGroup';
+export * from './AvatarGroup';
+
 export { default as TimeInputWip } from './TimeInputWip';
 export * from './TimeInputWip';
 

@@ -173,6 +173,7 @@ const javascriptFiles = [
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
   ['WixStyleReactProvider.bundle.min.js', 10],
+  ['AvatarGroup.bundle.min.js', 10],
   ['PulseAnimation.bundle.min.js', 10],
 ];
 
