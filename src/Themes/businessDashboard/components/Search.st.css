@@ -27,58 +27,58 @@
   -st-extends: Search;
 }
 
-.root:size(large) Input{
+.root:size(large) Input {
   color: value(D20)
   background-color: value(D80);
   border: none;
 }
 
-.root:size(large) Input:border(bottomLine)::before{
+.root:size(large) Input:border(bottomLine)::before {
   width: 100%;
   background-color: value(D10);
 }
 
-.root:size(large) Input:hover{
+.root:size(large) Input:hover {
   background-color: value(B60);
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
 }
 
-.root:size(large) Input:border(bottomLine):hover::before{
+.root:size(large) Input:border(bottomLine):hover::before {
   background-color: value(D10);
 }
 
-.root:size(large) Input:active{
+.root:size(large) Input:active {
   background-color: value(D80);
 }
 
-.root:size(large) Input:border(bottomLine):active::before{
+.root:size(large) Input:border(bottomLine):active::before {
   background-color: value(B10);
 }
 
-.root:size(large) Input::input{
+.root:size(large) Input::input {
   -st-mixin: placeholderMixin(value(D40));
   padding: 8px 4px;
 }
 
-.root:size(large) Input::wrapper{
+.root:size(large) Input::wrapper {
   padding: 0px;
 }
 
-.root:size(large) IconAffix{
+.root:size(large) IconAffix {
   font-size: 24px;
 }
 
-.root:size(large) IconAffix:inSuffix{
+.root:size(large) IconAffix:inSuffix {
   color: value(B10);
   padding: 8px 4px;
 }
 
-.root:size(large) IconAffix:inPrefix{
+.root:size(large) IconAffix:inPrefix {
   color: value(D10);
   padding: 8px;
 }
 
-.root:size(large) Input::suffixes{
+.root:size(large) Input::suffixes {
   padding-right: 12px;
 }
