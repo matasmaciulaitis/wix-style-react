@@ -78,3 +78,7 @@
   color: value(D10);
   padding: 8px 7px;
 }
+
+.root:size(large) Input::suffixes{
+  padding-right: 12px;
+}

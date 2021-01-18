@@ -29,6 +29,10 @@
   padding: 8px 0;
 }
 
+.root:visible::options:empty {
+  padding: 0;
+}
+
 .root::options::-webkit-scrollbar {
   width: 12px;
 }
