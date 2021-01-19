@@ -7,15 +7,19 @@ import * as enzyme from 'enzyme';
 import * as puppeteer from 'puppeteer';
 
 function avatarGroupWithMandatoryProps() {
-  return <AvatarGroup />;
+  return <AvatarGroup items={[{name: 'first user', color: 'A1'}, {name: 'second user', color: 'A2'}, {name: 'third avatar', color: 'A3'}]}/>;
 }
 
 function avatarGroupWithAllProps() {
   return (
     <AvatarGroup
-      dataHook="dataHook"
+      items={[{name: 'first user', color: 'A1'}, {name: 'second user', color: 'A2'}, {name: 'third avatar', color: 'A3'},{name: 'forth avatar', color: 'A4'},{name: 'fifth avatar', color: 'A5'},{name: 'sixth avatar', color: 'A6'}]}
+      dataHook="avatar-dataHook"
       className="className"
-      buttonText="buttonText"
+      type="stretched"
+      size="small"
+      showDivider={true}
+      maxItems={4}
     />
   );
 }
