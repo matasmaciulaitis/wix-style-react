@@ -4,104 +4,38 @@ import { st, classes } from './AvatarGroup.st.css';
 import Avatar from '../Avatar';
 import Divider from '../Divider';
 import Button from '../Button';
+import { serializeItems, limitItemsLength } from './utils';
 
 /** AvatarGroup */
 class AvatarGroup extends React.PureComponent {
-  componentDidMount() {
-    console.log('did mount');
-  }
-
   render() {
-    let {
+    const {
       dataHook,
       className,
       type,
       items,
       maxItems,
       moreItemRenderProp,
+      size,
     } = this.props;
-    const size = this.props.size === 'small' ? 'small' : 'medium';
 
-    const patternColor = [
-      'A1',
-      'A2',
-      'A3',
-      'A4',
-      'A5',
-      'A6',
-      'A1',
-      'A2',
-      'A3',
-      'A4',
-      'A5',
-      'A6',
-    ];
-    const getRandomColorPattern = () => {
-      const firstIndex = Math.floor(Math.random() * 6);
-      const lastIndex = firstIndex + 6;
-      return patternColor.slice(firstIndex, lastIndex);
-    };
-    const myPatternColors = getRandomColorPattern();
-    const serializeItems = items =>
-      items.map((item, index) => {
-        const size = this.props.size === 'small' ? 'size24' : 'size30';
-        const shape = 'circle';
-        const {
-          ariaLabel,
-          color,
-          imgProps,
-          name,
-          text,
-          placeholder,
-          dataHook,
-          title,
-          onClick = () => {},
-        } = item;
-        const myColor = () => {
-          let colorIndex = index;
-          if (color) {
-            return color;
-          } else {
-            while (colorIndex > 5) {
-              colorIndex = colorIndex - 6;
-            }
-            return myPatternColors[colorIndex];
-          }
-        };
-        const my = myColor();
-        return {
-          size,
-          shape,
-          ariaLabel,
-          color: my,
-          imgProps,
-          name,
-          text,
-          placeholder,
-          dataHook,
-          title,
-          onClick
-        };
-      });
-    maxItems = maxItems < 2 ? 2 : maxItems;
-    const moreItemAvatar = {
-      text: `${items.length - maxItems + 1}+`,
-      size: this.props.size === 'small' ? 'size24' : 'size30',
-      className: classes.moreItemAvatar,
-      isMoreItem: true,
-    };
-    const serializedItems = serializeItems(items);
+    const avatarSize = size === 'small' ? 'small' : 'medium';
+    const itemsMaxLength = maxItems < 2 ? 2 : maxItems;
+    const serializedItems = serializeItems(items, avatarSize);
+    const avatars = limitItemsLength(
+      serializedItems,
+      items.length,
+      itemsMaxLength,
+      avatarSize,
+      classes.moreItemAvatar,
+    );
 
-    if (items.length > maxItems && maxItems >= 2) {
-      serializedItems.length = maxItems;
-      serializedItems[maxItems - 1] = moreItemAvatar;
-    }
     return (
       <div
-        className={st(classes.root, { size, type }, className)}
+        className={st(classes.root, { size: avatarSize, type }, className)}
         data-hook={dataHook}
       >
-        {serializedItems.map((item, index) => {
+        {avatars.map((item, index) => {
           if (index === 0 && this.props.showDivider && items.length > 1) {
             return [
               <Avatar
@@ -112,7 +46,7 @@ class AvatarGroup extends React.PureComponent {
               <Divider
                 key={index + index}
                 direction={'vertical'}
-                className={st(classes.divider, { size, type })}
+                className={st(classes.divider, { size: avatarSize, type })}
               />,
             ];
           }
@@ -175,7 +109,6 @@ const tempAvatarGroupItems = [
     name: 'Roi Bendet',
     // name: "",
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -186,7 +119,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -197,7 +129,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -208,7 +139,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -219,7 +149,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -230,7 +159,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -241,7 +169,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
@@ -252,7 +179,6 @@ const tempAvatarGroupItems = [
     imgProps: undefined,
     name: 'Roi Bendet',
     placeholder: undefined,
-    presence: undefined,
     text: undefined,
     title: 'Wix Account: John Doe (johndoe@gmail.com)',
   },
