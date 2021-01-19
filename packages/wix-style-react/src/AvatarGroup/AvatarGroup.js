@@ -52,6 +52,9 @@ class AvatarGroup extends React.PureComponent {
           imgProps,
           name,
           text,
+          placeholder,
+          dataHook,
+          title,
           onClick = () => {},
         } = item;
         const myColor = () => {
@@ -66,7 +69,6 @@ class AvatarGroup extends React.PureComponent {
           }
         };
         const my = myColor();
-        // console.log('my', my);
         return {
           size,
           shape,
@@ -75,6 +77,10 @@ class AvatarGroup extends React.PureComponent {
           imgProps,
           name,
           text,
+          placeholder,
+          dataHook,
+          title,
+          onClick
         };
       });
     maxItems = maxItems < 2 ? 2 : maxItems;

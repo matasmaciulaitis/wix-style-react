@@ -1,12 +1,19 @@
 import * as React from 'react';
 
-export interface AvatarProps {
+export interface CommonAvatarProps {
+  ariaLabel?: string;
+  color?: 'A1' | 'A2' | 'A3' | 'A4' | 'A5' | 'A6';
+  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   name?: string;
   text?: string;
+  onClick?(): void;
   placeholder?: React.ReactNode;
-  imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
-  ariaLabel?: string;
   title?: string;
+  dataHook?: string;
+}
+
+
+export interface AvatarProps extends CommonAvatarProps{
   shape?: 'circle' | 'square';
   size?:
     | 'size90'
@@ -17,15 +24,12 @@ export interface AvatarProps {
     | 'size30'
     | 'size24'
     | 'size18';
-  color?: 'A1' | 'A2' | 'A3' | 'A4' | 'A5' | 'A6';
   className?: string;
-  dataHook?: string;
   presence?: 'online' | 'offline' | 'busy';
   indication?: React.ReactNode;
   customIndication?: React.ReactNode;
   showIndicationOnHover?: boolean;
   onIndicationClick?(): void;
-  onClick?(): void;
   loading?: boolean;
 }
 
