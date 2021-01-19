@@ -11,6 +11,7 @@ const javascriptFiles = [
   ['AutoComplete.bundle.min.js', 71],
   ['AutoCompleteWithLabel.bundle.min.js', 74],
   ['Avatar.bundle.min.js', 55],
+  ['AvatarGroup.bundle.min.js', 57],
   ['Badge.bundle.min.js', 40],
   ['BadgeSelect.bundle.min.js', 63],
   ['BadgeSelectItemBuilder.bundle.min.js', 42],
@@ -173,7 +174,6 @@ const javascriptFiles = [
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
   ['WixStyleReactProvider.bundle.min.js', 10],
-  ['AvatarGroup.bundle.min.js', 10],
   ['PulseAnimation.bundle.min.js', 10],
 ];
 
