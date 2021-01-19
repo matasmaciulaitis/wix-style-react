@@ -1,5 +1,5 @@
 export const groupType = `
-<Box direction="vertical" height={'60px'} justifyContent="space-between">
+<Box direction="vertical">
 <AvatarGroup type="stretched" items={[{name: 'first user'}, {name: 'second user'}, {name: 'third avatar'}]}/>
 <AvatarGroup type="condensed" items={[{name: 'first user'}, {name: 'second user'}, {name: 'third avatar'}]}/>
 </Box>
