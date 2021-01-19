@@ -282,6 +282,9 @@ const config = {
         shortNamespaces: false,
         removeUnusedComponents: false,
       },
+      bootstrap: {
+        autoInit: false,
+      },
       resolveNamespace: wsrStylableNamespaceFactory(),
     }),
     webpackClean(dist),

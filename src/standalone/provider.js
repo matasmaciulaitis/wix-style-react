@@ -28,5 +28,11 @@ function loadComponents(componentLoaders, done) {
         loaded[component] = Component;
       }),
     ),
-  ).then(() => done(loaded));
+  ).then(() => {
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line no-undef
+      __webpack_require__.stylable.$.init(window);
+    }
+    done(loaded);
+  });
 }

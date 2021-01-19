@@ -65,7 +65,7 @@
     "transpile": "node ./scripts/transpile/index.js",
     "build-puppeteer-testkit": "webpack --config ./testkit/webpack.config.js",
     "storybook:build-visual": "build-storybook -c ./.storybook/visual",
-    "build-dynamic-bundle":"webpack --config ./scripts/dynamic-bundle/webpack.dynamic.config.js",
+    "build-dynamic-bundle": "webpack --config ./scripts/dynamic-bundle/webpack.dynamic.config.js",
     "------publish": "",
     "postpublish": "if [ \"$NPM_BUILD_TYPE\" == \"TAR_PUBLISH\" ]; then npm install && npm run build && npm run storybook:build && npx janet deploy --ci; fi",
     "pr-storybook:publish": "if [  \"$agentType\" = \"pullrequest\" ]; then npm run storybook:build && npx janet deploy --ci; fi;",

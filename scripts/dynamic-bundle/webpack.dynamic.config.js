@@ -1,6 +1,6 @@
 const config = require('./webpack.lib.config');
 
-config.entry = './index.dynamic.js';
+config.entry = './standalone/index.js';
 config.output.publicPath = './dist-dynamic/';
 config.output.path += '-dynamic';
 
