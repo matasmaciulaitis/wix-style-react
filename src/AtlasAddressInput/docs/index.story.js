@@ -15,6 +15,7 @@ import {
 import LinkTo from '@storybook/addon-links/react';
 
 import * as examples from './examples';
+import migrationMarkdown from './MIGRATION.md';
 import SectionHelper from '../../SectionHelper';
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
@@ -24,10 +25,7 @@ import AtlasAddressInput from '..';
 
 const example = config =>
   baseExample({
-    components: {
-      ...allComponents,
-      AtlasAddressInput,
-    },
+    components: allComponents,
     ...config,
   });
 
@@ -149,6 +147,11 @@ To show an error, set \`status="error"\` and \`statusMessage\` to the error expl
             source: examples.errorHandling,
           }),
         ],
+      }),
+
+      tab({
+        title: 'Migration',
+        sections: [description(migrationMarkdown)],
       }),
 
       ...[

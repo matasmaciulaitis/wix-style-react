@@ -4,6 +4,12 @@ import * as wsr from '../../src/index';
 import * as editorX from '../../src/Themes/editorX';
 import * as businessDashboard from '../../src/Themes/businessDashboard';
 import * as floatingPanels from '../../src/Themes/floatingPanels';
+import AtlasAddressInput from '../../AtlasAddressInput';
+
+// Internal Wix components which depend on private Wix dependencies
+const privateComponents = {
+  AtlasAddressInput,
+};
 
 /*
  * This object contains all wix-style-react components including icons
@@ -11,6 +17,7 @@ import * as floatingPanels from '../../src/Themes/floatingPanels';
  */
 const defaultComponents = {
   ...wsr,
+  ...privateComponents,
   Icons,
   SystemIcons,
 };

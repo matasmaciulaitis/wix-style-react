@@ -73,7 +73,8 @@ export default {
                 <LinkTo kind={Category.COMPONENTS} story="AtlasAddressInput">
                   {`<AtlasAddressInput/>`}
                 </LinkTo>
-                {` component`}
+                {` component.\n`}
+                {`Check the migration tab for more details.`}
               </SectionHelper>
             ),
           }),
