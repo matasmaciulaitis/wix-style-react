@@ -13,8 +13,13 @@ const tests = [
       {
         it: 'default', // prop variation (e.g. small)
         props: {
-          // the simulation (e.g. {size: "small"})
+          items: [
+            { name: 'first user', color: 'A1' },
+            { name: 'second user', color: 'A2' },
+            { name: 'third avatar', color: 'A3' },
+          ],
         },
+        // the simulation (e.g. {size: "small"})
       },
     ],
   },
@@ -25,9 +30,7 @@ export const runTests = () => {
     tests.forEach(({ describe, its }) => {
       story(describe, () => {
         its.map(({ it, props }) =>
-          snap(it, () => (
-            <AvatarGroup {...commonProps} {...props} />
-          )),
+          snap(it, () => <AvatarGroup {...commonProps} {...props} />),
         );
       });
     });
