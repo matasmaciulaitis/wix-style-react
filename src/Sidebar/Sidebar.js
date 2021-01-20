@@ -249,6 +249,7 @@ class Sidebar extends Component {
             <SidebarContentWrapper
               containerClasses={sliderClasses}
               children={this.state.onScreenChildren}
+              skin={skin}
             />
 
             {this.state.drivenInChildren.length !== 0 && (
@@ -256,6 +257,7 @@ class Sidebar extends Component {
                 containerClasses={sliderInFromRightClasses}
                 containerDataHook={dataHooks.drivenInChildren}
                 children={this.state.drivenInChildren}
+                skin={skin}
               />
             )}
           </div>
