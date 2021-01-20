@@ -86,7 +86,7 @@ export class SidebarContentWrapper extends Component {
         ref={this.childrenContainerRef}
         data-hook={containerDataHook}
       >
-        <div className={st(css.childrenContent)} ref={this.childrenContentRef}>
+        <div className={css.childrenContent} ref={this.childrenContentRef}>
           {children}
         </div>
         {this.state.isScrollbarDisplayed && (
