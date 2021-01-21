@@ -31,6 +31,13 @@ export default (base, body) => {
         await page.$eval('.public-DraftEditor-content', e => e.blur());
       }
     },
+    focus: async () => {
+      if (base.type === 'react') {
+        return ReactBase(getContent(base)).focus();
+      } else if (base.type === 'puppeteer') {
+        await page.$eval('.public-DraftEditor-content', e => e.focus());
+      }
+    },
 
     // Status
     /** Return true if there's a status */
