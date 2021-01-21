@@ -1,4 +1,4 @@
-export const standard = `<TimeInput />`;
+export const standard = `<TimeInput defaultValue={new Date()} formatOptions={{ timeZone: 'AET' }}/>;`;
 
 export const disabled = `<TimeInput disabled />`;
 
