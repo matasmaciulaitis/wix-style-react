@@ -56,6 +56,7 @@ class StatisticsItem extends React.PureComponent {
         : reducedSpacingAndImprovedLayout
         ? 'H2'
         : 'H1';
+
     return (
       <AdaptiveHeading
         text={value || '-'}
