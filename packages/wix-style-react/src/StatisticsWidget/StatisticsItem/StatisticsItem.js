@@ -80,7 +80,7 @@ class StatisticsItem extends React.PureComponent {
 
     return (
       <div className={st(classes.description, { alignItems })}>
-        {size === SIZES.large && reducedSpacingAndImprovedLayout ? (
+        {size === SIZES.large && !reducedSpacingAndImprovedLayout ? (
           <Heading dataHook={DataHooks.description} ellipsis appearance="H5">
             {description}
           </Heading>
