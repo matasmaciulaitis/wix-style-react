@@ -14,11 +14,6 @@ import DataHooks from '../dataHooks';
 import { st, classes } from './StatisticsItem.st.css';
 import { SIZES } from '../constants';
 
-const sizeToAppearance = {
-  [SIZES.tiny]: 'tiny',
-  [SIZES.large]: 'H1',
-};
-
 class StatisticsItem extends React.PureComponent {
   static displayName = 'StatisticsItem';
   static defaultProps = {
@@ -49,14 +44,27 @@ class StatisticsItem extends React.PureComponent {
     }
   };
 
-  _renderValue = (value, valueInShort, size) => (
-    <AdaptiveHeading
-      text={value || '-'}
-      appearance={sizeToAppearance[size]}
-      textInShort={valueInShort}
-      dataHook={DataHooks.value}
-    />
-  );
+  _renderValue = ({
+    value,
+    valueInShort,
+    size,
+    reducedSpacingAndImprovedLayout,
+  }) => {
+    const appearance =
+      size === SIZES.tiny
+        ? 'tiny'
+        : reducedSpacingAndImprovedLayout
+        ? 'H2'
+        : 'H1';
+    return (
+      <AdaptiveHeading
+        text={value || '-'}
+        appearance={appearance}
+        textInShort={valueInShort}
+        dataHook={DataHooks.value}
+      />
+    );
+  };
 
   _renderDescription = ({
     description,
@@ -159,7 +167,12 @@ class StatisticsItem extends React.PureComponent {
               className,
             )}
           >
-            {this._renderValue(value, valueInShort, size)}
+            {this._renderValue({
+              value,
+              valueInShort,
+              size,
+              reducedSpacingAndImprovedLayout,
+            })}
             {this._renderDescription({
               description,
               descriptionInfo,
