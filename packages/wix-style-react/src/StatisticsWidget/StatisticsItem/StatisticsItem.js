@@ -19,17 +19,6 @@ const sizeToAppearance = {
   [SIZES.large]: 'H1',
 };
 
-const sizeToComponent = {
-  [SIZES.tiny]: {
-    reducedSpacing: Text,
-    regular: Text,
-  },
-  [SIZES.large]: {
-    reducedSpacing: Heading,
-    regular: Text,
-  },
-};
-
 class StatisticsItem extends React.PureComponent {
   static displayName = 'StatisticsItem';
   static defaultProps = {
