@@ -78,19 +78,19 @@ class StatisticsItem extends React.PureComponent {
       return null;
     }
 
-    const descriptionProps = {
-      dataHook: DataHooks.description,
-      ellipsis: true,
-    };
-
     return (
       <div className={st(classes.description, { alignItems })}>
         {size === SIZES.large && reducedSpacingAndImprovedLayout ? (
-          <Heading {...descriptionProps} appearance="H5">
+          <Heading dataHook={DataHooks.description} ellipsis appearance="H5">
             {description}
           </Heading>
         ) : (
-          <Text {...descriptionProps} size="small" secondary>
+          <Text
+            dataHook={DataHooks.description}
+            ellipsis
+            size="small"
+            secondary
+          >
             {description}
           </Text>
         )}
