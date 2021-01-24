@@ -18,13 +18,9 @@
   -st-named: ease-8;
 }
 
-:vars {
-  gap: 30px;
-}
-
 .item {
   -st-extends: Focusable;
-  -st-states: clickable, size(enum(tiny, large)), alignItems(enum(start, center, end));
+  -st-states: reducedSpacingAndImprovedLayout, clickable, size(enum(tiny, large)), alignItems(enum(start, center, end));
   position: relative;
   display: flex;
   overflow: hidden;
@@ -39,8 +35,16 @@
   padding: 24px;
 }
 
+.item:size(tiny):reducedSpacingAndImprovedLayout{
+  padding: 12px 24px;
+}
+
 .item:size(large) {
-  padding: value(gap);
+  padding: 30px;
+}
+
+.item:size(large):reducedSpacingAndImprovedLayout{
+  padding: 18px 30px;
 }
 
 .item:clickable {
@@ -61,9 +65,9 @@
 
 .item:not(:first-child)::before {
   position: absolute;
-  top: value(gap);
+  top: 30px;
   left: 0;
-  bottom: value(gap);
+  bottom: 30px;
   width: 1px;
   content: '';
   background-color: value(D60);

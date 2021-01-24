@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Heading from '../../Heading';
 import Text from '../../Text';
 import Tooltip from '../../Tooltip';
-
+import { WixStyleReactContext } from '../../WixStyleReactProvider/context';
 import DataHooks from './dataHooks';
 import { st, classes } from './AdaptiveHeading.st.css';
 

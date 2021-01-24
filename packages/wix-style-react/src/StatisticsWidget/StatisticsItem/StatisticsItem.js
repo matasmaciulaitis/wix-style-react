@@ -7,6 +7,7 @@ import Text from '../../Text';
 import Tooltip from '../../Tooltip';
 import TrendIndicator from '../../TrendIndicator';
 import AdaptiveHeading from '../../utils/AdaptiveHeading';
+import { WixStyleReactContext } from '../../WixStyleReactProvider/context';
 
 import DataHooks from '../dataHooks';
 
@@ -16,6 +17,17 @@ import { SIZES } from '../constants';
 const sizeToAppearance = {
   [SIZES.tiny]: 'tiny',
   [SIZES.large]: 'H1',
+};
+
+const sizeToComponent = {
+  [SIZES.tiny]: {
+    reducedSpacing: Text,
+    regular: Text,
+  },
+  [SIZES.large]: {
+    reducedSpacing: Heading,
+    regular: Text,
+  },
 };
 
 class StatisticsItem extends React.PureComponent {
@@ -57,26 +69,32 @@ class StatisticsItem extends React.PureComponent {
     />
   );
 
-  _renderDescription = (description, subtitleContentInfo, size, alignItems) => {
+  _renderDescription = ({
+    description,
+    subtitleContentInfo,
+    size,
+    alignItems,
+    reducedSpacingAndImprovedLayout,
+  }) => {
     if (!description) {
       return null;
     }
 
+    const descriptionProps = {
+      dataHook: DataHooks.description,
+      ellipsis: true,
+    };
+
     return (
       <div className={st(classes.description, { alignItems })}>
-        {size === SIZES.tiny ? (
-          <Text
-            ellipsis
-            size="small"
-            dataHook={DataHooks.description}
-            secondary
-          >
-            {description}
-          </Text>
-        ) : (
-          <Heading ellipsis dataHook={DataHooks.description} appearance="H5">
+        {size === SIZES.large && reducedSpacingAndImprovedLayout ? (
+          <Heading {...descriptionProps} appearance="H5">
             {description}
           </Heading>
+        ) : (
+          <Text {...descriptionProps} size="small" secondary>
+            {description}
+          </Text>
         )}
         {subtitleContentInfo && (
           <Tooltip
@@ -134,25 +152,37 @@ class StatisticsItem extends React.PureComponent {
       onKeyDown: onClick ? this._getSpaceOrEnterHandler(onClick) : undefined,
       onClick,
       ...rest,
-      className: st(
-        classes.item,
-        { clickable: !!onClick, size, alignItems },
-        this.props.className,
-      ),
     };
 
     return (
-      <div {...attrs}>
-        {this._renderValue(value, valueInShort, size)}
-        {this._renderDescription(
-          description,
-          descriptionInfo,
-          size,
-          alignItems,
+      <WixStyleReactContext.Consumer>
+        {({ reducedSpacingAndImprovedLayout }) => (
+          <div
+            {...attrs}
+            className={st(
+              classes.item,
+              {
+                clickable: !!onClick,
+                size,
+                alignItems,
+                reducedSpacingAndImprovedLayout,
+              },
+              className,
+            )}
+          >
+            {this._renderValue(value, valueInShort, size)}
+            {this._renderDescription({
+              description,
+              descriptionInfo,
+              size,
+              alignItems,
+              reducedSpacingAndImprovedLayout,
+            })}
+            {this._renderPercents(percentage, invertedPercentage)}
+            {children}
+          </div>
         )}
-        {this._renderPercents(percentage, invertedPercentage)}
-        {children}
-      </div>
+      </WixStyleReactContext.Consumer>
     );
   }
 }
