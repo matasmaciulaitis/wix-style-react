@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StatisticsWidget from '../StatisticsWidget';
 import { SIZES } from '../constants';
+import WixStyleReactProvider from '../../WixStyleReactProvider';
 
 const sizes = Object.values(SIZES);
 
@@ -421,4 +422,41 @@ tests.forEach(({ describe, its }) => {
       ),
     );
   });
+});
+
+sizes.forEach(size => {
+  storiesOf(`Layout And Spacing| StatisticsWidget/sanity`, module).add(
+    size,
+    () => (
+      <WixStyleReactProvider
+        features={{ reducedSpacingAndImprovedLayout: true }}
+      >
+        <div style={{ marginLeft: 100, marginTop: 100 }}>
+          <StatisticsWidget
+            size={size}
+            items={[
+              {
+                value: '1,500',
+                description: 'Orders',
+                percentage: 21,
+                invertedPercentage: true,
+              },
+              {
+                value: '$2,500',
+                description: 'Outcome',
+                percentage: -11,
+              },
+              {
+                value: '$3,500',
+                description: 'Revenue',
+                percentage: -11,
+                invertedPercentage: true,
+                descriptionInfo: 'Sales on Thursday',
+              },
+            ]}
+          />
+        </div>
+      </WixStyleReactProvider>
+    ),
+  );
 });
