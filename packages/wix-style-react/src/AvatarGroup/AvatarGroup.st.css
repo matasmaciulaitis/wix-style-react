@@ -1,6 +1,6 @@
 :import {
   -st-from: "../Foundation/stylable/colors.st.css";
-  -st-named: G30, R30, D60, D20, D10-10;
+  -st-named: G30, R30, D60, D20, D10-10, B50, B40;
 }
 
 .root {
@@ -26,6 +26,16 @@
   border: 2px solid value(D10-10);
   border-radius: 50% !important;
 }
+
+.moreItemAvatar :global([data-hook*='avatar-core']):hover {
+  background-color: value(B50) !important;
+}
+
+.moreItemAvatar :global([data-hook*='avatar-core']):active {
+  background-color: value(B40) !important;
+}
+
+
 
 .moreItemAvatar :global([data-hook*='avatar-core']) > div {
   color: value(D20) !important;

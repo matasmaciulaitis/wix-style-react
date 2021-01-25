@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { st, classes } from './AvatarGroup.st.css';
 import Avatar from '../Avatar';
 import Divider from '../Divider';
-import Button from '../Button';
 import { serializeItems, limitItemsLength } from './utils';
+import MoreItemAvatar from './moreItemAvatar/MoreItemAvatar';
 
 /** AvatarGroup */
 class AvatarGroup extends React.PureComponent {
@@ -15,7 +15,7 @@ class AvatarGroup extends React.PureComponent {
       type,
       items,
       maxItems,
-      moreItemRenderProp,
+      moreItemContent,
       size,
     } = this.props;
 
@@ -36,32 +36,28 @@ class AvatarGroup extends React.PureComponent {
         data-hook={dataHook}
       >
         {avatars.map((item, index) => {
+          const key = `${Object.values(item)}`;
           if (index === 0 && this.props.showDivider && items.length > 1) {
             return [
-              <Avatar
-                key={index * 10 + 1}
-                {...item}
-                className={classes.avatar}
-              />,
+              <Avatar key={key} {...item} className={classes.avatar} />,
               <Divider
-                key={index + index}
+                key={key + 'divider'}
                 direction={'vertical'}
                 className={st(classes.divider, { size: avatarSize, type })}
               />,
             ];
           }
-          return (
-            <Avatar
-              key={index}
-              {...item}
-              className={
-                item.isMoreItem
-                  ? st(classes.avatar, classes.moreItemAvatar)
-                  : classes.avatar
-              }
-              onClick={item.isMoreItem ? moreItemRenderProp : null}
-            />
-          );
+          if (item.isMoreItem) {
+            return (
+              <MoreItemAvatar
+                {...item}
+                key={key}
+                className={st(classes.avatar, classes.moreItemAvatar)}
+                render={content => <div>{content(moreItemContent)}</div>}
+              />
+            );
+          }
+          return <Avatar key={key} {...item} className={classes.avatar} />;
         })}
       </div>
     );
@@ -190,11 +186,6 @@ AvatarGroup.defaultProps = {
   showDivider: false,
   maxItems: 5,
   items: tempAvatarGroupItems,
-  moreItemRenderProp: ({ open, close, selectedOption = {} }) => (
-    <Button onMouseEnter={open} onMouseLeave={close}>
-      {selectedOption.value || 'Hover me'}
-    </Button>
-  ),
 };
 
 export default AvatarGroup;
