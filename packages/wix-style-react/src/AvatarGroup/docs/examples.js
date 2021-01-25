@@ -10,5 +10,5 @@ export const divider = `
 `;
 
 export const moreIndicator = `
-<AvatarGroup maxItems={2} items={[{name: 'first avatar'}, {name: 'second avatar'}, {name: 'third avatar'}]}/>
+<AvatarGroup maxItems={2} items={[{name: 'first avatar'}, {name: 'second avatar'}, {name: 'third avatar'}]} moreItemContent={<div>Hello World!</div>}/>
 `;
