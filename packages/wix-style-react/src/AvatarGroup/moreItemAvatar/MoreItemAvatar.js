@@ -1,7 +1,8 @@
 import Popover from '../../Popover';
-import Box from '../../Box';
 import React from 'react';
 import Avatar from '../../Avatar';
+import { dataHooks } from '../constants';
+import { classes, st } from '../AvatarGroup.st.css';
 
 class MoreItemAvatar extends React.Component {
   constructor() {
@@ -20,11 +21,18 @@ class MoreItemAvatar extends React.Component {
     if (shouldBeWithOnClick) {
       return (
         <Avatar
+          dataHook={
+            shouldBeWithOnClick
+              ? dataHooks.avatarGroupMoreItem
+              : dataHooks.avatarGroupItem
+          }
           key={key}
-          className={className}
+          className={st(classes.moreItemAvatar, {
+            clickable: shouldBeWithOnClick,
+          })}
           size={size}
           text={text}
-          onClick={this.toggle}
+          onClick={shouldBeWithOnClick ? this.toggle : null}
         />
       );
     }
@@ -47,7 +55,7 @@ class MoreItemAvatar extends React.Component {
   };
 
   render() {
-    return <Box>{this.props.render(this.renderPopover)}</Box>;
+    return this.props.render(this.renderPopover);
   }
 }
 

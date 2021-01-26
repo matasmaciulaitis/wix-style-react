@@ -17,28 +17,51 @@
 
 .moreItemAvatar {
   @extend .avatar;
+  -st-states: clickable(boolean);
   color: value(D20);
+  border-radius: 50%;
+  user-select: none;
+}
+
+
+.moreItemAvatar :global([data-hook*='avatar-core']) > div {
+  color: value(D20) !important;
+}
+
+.moreItemAvatar :global([class*="externalContainer"]) {
+  z-index: 10000;
+}
+
+.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core']):before {
+  content: " ";
+  position: absolute;
+  z-index: 15000;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 2px solid value(D10-10);
   border-radius: 50%;
 }
 
-.moreItemAvatar :global([data-hook*='avatar-core']) {
+.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core']) {
+  background-color: white !important;
+  border: 2px solid white;
+  border-radius: 50% !important;
+}
+
+.root:type(stretched) .moreItemAvatar :global([data-hook*='avatar-core']) {
   background-color: white !important;
   border: 2px solid value(D10-10);
   border-radius: 50% !important;
 }
 
-.moreItemAvatar :global([data-hook*='avatar-core']):hover {
+.moreItemAvatar:clickable :global([data-hook*='avatar-core']):hover {
   background-color: value(B50) !important;
 }
 
-.moreItemAvatar :global([data-hook*='avatar-core']):active {
+.moreItemAvatar:clickable :global([data-hook*='avatar-core']):active {
   background-color: value(B40) !important;
-}
-
-
-
-.moreItemAvatar :global([data-hook*='avatar-core']) > div {
-  color: value(D20) !important;
 }
 
 .root:type(stretched) > .avatar {
@@ -47,7 +70,6 @@
 
 .root:type(condensed) > .avatar {
   margin-right: -6px;
-  z-index: 100;
   border-radius: 50%;
   border: 2px solid white;
 }

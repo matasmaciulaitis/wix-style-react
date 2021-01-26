@@ -5,6 +5,7 @@ import Avatar from '../Avatar';
 import Divider from '../Divider';
 import { serializeItems, limitItemsLength } from './utils';
 import MoreItemAvatar from './moreItemAvatar/MoreItemAvatar';
+import { dataHooks } from './constants';
 
 /** AvatarGroup */
 class AvatarGroup extends React.PureComponent {
@@ -21,9 +22,9 @@ class AvatarGroup extends React.PureComponent {
 
     const avatarSize = size === 'small' ? 'small' : 'medium';
     const itemsMaxLength = maxItems < 2 ? 2 : maxItems;
-    const serializedItems = serializeItems(items, avatarSize);
+    const normalizedItems = serializeItems(items, avatarSize);
     const avatars = limitItemsLength(
-      serializedItems,
+      normalizedItems,
       items.length,
       itemsMaxLength,
       avatarSize,
@@ -39,7 +40,12 @@ class AvatarGroup extends React.PureComponent {
           const key = `${Object.values(item)}`;
           if (index === 0 && this.props.showDivider && items.length > 1) {
             return [
-              <Avatar key={key} {...item} className={classes.avatar} />,
+              <Avatar
+                dataHook={dataHooks.avatarGroupItem}
+                key={key}
+                {...item}
+                className={classes.avatar}
+              />,
               <Divider
                 key={key + 'divider'}
                 direction={'vertical'}
@@ -52,12 +58,19 @@ class AvatarGroup extends React.PureComponent {
               <MoreItemAvatar
                 {...item}
                 key={key}
-                className={st(classes.avatar, classes.moreItemAvatar)}
-                render={content => <div>{content(moreItemContent)}</div>}
+                render={content => content(moreItemContent)}
+              />
+            );
+          } else {
+            return (
+              <Avatar
+                dataHook={dataHooks.avatarGroupItem}
+                key={key}
+                {...item}
+                className={classes.avatar}
               />
             );
           }
-          return <Avatar key={key} {...item} className={classes.avatar} />;
         })}
       </div>
     );
@@ -96,96 +109,11 @@ AvatarGroup.propTypes = {
   avatars: PropTypes.arrayOf(Avatar),
 };
 
-const tempAvatarGroupItems = [
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    // name: "",
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    // color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    // color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    // color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    // color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-  {
-    ariaLabel: 'Avatar for Roi Bendet',
-    color: 'A1',
-    // imgProps: {src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Mao-the-dachshund-wikipedia.png"},
-    imgProps: undefined,
-    name: 'Roi Bendet',
-    placeholder: undefined,
-    text: undefined,
-    title: 'Wix Account: John Doe (johndoe@gmail.com)',
-  },
-];
-
 AvatarGroup.defaultProps = {
   type: 'stretched',
   size: 'medium',
   showDivider: false,
   maxItems: 5,
-  items: tempAvatarGroupItems,
 };
 
 export default AvatarGroup;
