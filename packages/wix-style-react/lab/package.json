@@ -1,0 +1,6 @@
+{
+  "name": "lab",
+  "main": "../dist/src/indexLab.js",
+  "module": "../dist/es/src/indexLab.js",
+  "typings": "../dist/es/src/indexLab.d.ts"
+}
