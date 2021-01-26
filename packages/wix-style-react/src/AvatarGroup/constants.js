@@ -1,4 +1,4 @@
 export const dataHooks = {
-  avatarGroupCount: 'avatarGroup-count',
-  avatarGroupButton: 'avatarGroup-button',
+  avatarGroupItem: 'avatar-core',
+  avatarGroupMoreItem: 'avatar-more-item',
 };

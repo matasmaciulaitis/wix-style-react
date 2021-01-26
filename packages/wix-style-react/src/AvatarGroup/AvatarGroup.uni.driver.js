@@ -1,4 +1,9 @@
-import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
+import {
+  baseUniDriverFactory,
+  findByHook,
+  countByHook,
+  findByHookAtIndex,
+} from '../../test/utils/unidriver';
 import { dataHooks } from './constants';
 
 export const avatarGroupDriverFactory = (base, body) => {
@@ -6,27 +11,17 @@ export const avatarGroupDriverFactory = (base, body) => {
     ...baseUniDriverFactory(base, body),
 
     /**
-     * Gets the current count
-     * @returns {Promise<string>}
+     * Gets the number Of displayed Avatars
+     * @returns {Promise<number>}
      */
-    getCountText: () => findByHook(base, dataHooks.avatarGroupCount).text(),
+    getAvatarsCount: () => countByHook(base, dataHooks.avatarGroupItem),
 
     /**
-     * Clicks the button
-     * @param {number} times Times to click
-     * @returns {Promise<void>}
-     */
-    clickButtonTimes: async times => {
-      const buttonElement = findByHook(base, dataHooks.avatarGroupButton);
-      for (let i = 0; i < times; i++) {
-        await buttonElement.click();
-      }
-    },
-
-    /**
-     * Gets the button text
+     * Gets the text content
+     * @param {number} Avatar index
      * @returns {Promise<string>}
      */
-    getButtonText: () => findByHook(base, dataHooks.avatarGroupButton).text(),
+    getAvatarContentByIndex: async n =>
+      await findByHookAtIndex(base, dataHooks.avatarGroupItem, n).text(),
   };
 };
