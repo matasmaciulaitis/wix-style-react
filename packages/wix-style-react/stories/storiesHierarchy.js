@@ -28,4 +28,6 @@ export const Category = {
   DEPRECATED: 'Deprecated',
   EDITOR_X_THEME: 'Themes|EditorX',
   BUSINESS_DASHBOARD_THERE: 'Themes|Business Dashboard',
+  LAB: 'Lab🧪|Lab',
+  LAB_COMPONENTS: 'Lab🧪|Components',
 };

@@ -183,6 +183,7 @@ require('../src/DragAndDrop/docs/index');
 
 require('./WIP');
 require('./Internal');
+require('./Lab');
 
 // Styling
 require('../src/Typography/docs/cssClasses.story');
