@@ -43,7 +43,11 @@ class MoreItemAvatar extends React.Component {
     const { className, size, text } = this.props;
     if (!!content) {
       return (
-        <Popover placement={'top'} shown={this.state.shouldRender}>
+        <Popover
+          placement={'top'}
+          shown={this.state.shouldRender}
+          className={classes.popover}
+        >
           <Popover.Element>
             {this.renderAvatar({ className, size, text }, true)}
           </Popover.Element>

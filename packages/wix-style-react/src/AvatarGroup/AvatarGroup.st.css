@@ -32,7 +32,7 @@
   z-index: 10000;
 }
 
-.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core']):before {
+.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core'])::before {
   content: " ";
   position: absolute;
   z-index: 15000;
@@ -72,6 +72,7 @@
   margin-right: -6px;
   border-radius: 50%;
   border: 2px solid white;
+  z-index: 1;
 }
 
 .divider {
@@ -94,5 +95,8 @@
 
 .divider:size(medium) {
   height: 30px;
+}
+.popover {
+  z-index: 100;
 }
 
