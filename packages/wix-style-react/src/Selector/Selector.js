@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox';
-import RadioButton from '../RadioGroup/RadioButton/RadioButton';
 import Text from '../Text';
 import { st, classes } from './Selector.st.css';
 import ExtraText from './ExtraText';
 import ProgressBar from './ProgressBar';
+import Radio from '../Radio/Radio';
 
 class Selector extends React.PureComponent {
   static propTypes = {
@@ -80,7 +80,7 @@ class Selector extends React.PureComponent {
               disabled={isDisabled}
             />
           ) : (
-            <RadioButton
+            <Radio
               dataHook="toggle"
               checked={isSelected}
               disabled={isDisabled}
