@@ -1,5 +1,9 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { findBaseByHook } from '../../test/utils';
+import {
+  baseUniDriverFactory,
+  findByHook,
+  findByHookAtIndex,
+  countByHook,
+} from '../../test/utils/unidriver';
 import { tooltipDriverFactory } from '../Tooltip/Tooltip.uni.driver';
 import { trendIndicatorDriverFactory } from '../TrendIndicator/TrendIndicator.uni.driver';
 import { adaptiveHeadingDriverFactory } from '../utils/AdaptiveHeading/AdaptiveHeading.uni.driver';
@@ -7,33 +11,33 @@ import { adaptiveHeadingDriverFactory } from '../utils/AdaptiveHeading/AdaptiveH
 import DataHooks from './dataHooks';
 
 const statisticsWidgetDriverFactory = (base, body) => {
-  const getHookSelector = hook => `[data-hook="${hook}"]`;
   const getStatsItem = async index =>
-    base.$$(getHookSelector(DataHooks.stat)).get(index);
+    findByHookAtIndex(base, DataHooks.stat, index);
 
   const getTooltipDriver = async index => {
     const item = await getStatsItem(index);
-    const tooltip = await item.$(getHookSelector(DataHooks.tooltip));
+    const tooltip = await findByHook(item, DataHooks.tooltip);
 
     return tooltipDriverFactory(tooltip, body);
   };
 
   const getTrendIndicatorDriver = async index => {
     const item = await getStatsItem(index);
-    const tooltip = await item.$(getHookSelector(DataHooks.percentage));
+    const tooltip = await findByHook(item, DataHooks.percentage);
 
     return trendIndicatorDriverFactory(tooltip, body);
   };
 
   const getAdaptiveHeadingDriver = async index => {
     const item = await getStatsItem(index);
-    const heading = await item.$(getHookSelector(DataHooks.value));
+    const heading = await findByHook(item, DataHooks.value);
 
     return adaptiveHeadingDriverFactory(heading);
   };
 
   const getStatsPartText = async (index, hook) => {
-    const node = findBaseByHook(await getStatsItem(index), hook);
+    const item = await getStatsItem(index);
+    const node = await findByHook(item, hook);
 
     if (!(await node.exists())) {
       return null;
@@ -45,8 +49,7 @@ const statisticsWidgetDriverFactory = (base, body) => {
   return {
     ...baseUniDriverFactory(base),
     /** Get number of items */
-    getItemsCount: async () =>
-      await base.$$(getHookSelector(DataHooks.stat)).count(),
+    getItemsCount: async () => await countByHook(base, DataHooks.stat),
 
     /** Click on the statistic with index */
     clickStatistics: async index => {
@@ -92,7 +95,8 @@ const statisticsWidgetDriverFactory = (base, body) => {
 
     /** Get children in section by hook */
     getChildren: async (index, hook) => {
-      return findBaseByHook(await getStatsItem(index), hook);
+      const item = await getStatsItem(index);
+      return findByHook(item, hook);
     },
 
     /** Get percentage of the statistic with index */

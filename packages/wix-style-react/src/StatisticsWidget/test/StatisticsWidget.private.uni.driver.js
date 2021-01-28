@@ -1,22 +1,25 @@
 import publicDriverFactory from '../StatisticsWidget.uni.driver';
-import { findBaseByHook } from '../../../test/utils';
+import {
+  baseUniDriverFactory,
+  findByHook,
+  findByHookAtIndex,
+  countByHook,
+} from '../../../test/utils/unidriver';
+
 import DataHooks from '../dataHooks';
 
 export const statisticsWidgetPrivateDriverFactory = (base, body) => {
-  const getHookSelector = hook => `[data-hook="${hook}"]`;
-
   const getStatsItem = async index =>
-    base.$$(getHookSelector(DataHooks.stat)).get(index);
+    findByHookAtIndex(base, DataHooks.stat, index);
 
   return {
     ...publicDriverFactory(base, body),
 
     /** Get info icon of the stat with index */
-    isInfoExists: async index =>
-      await findBaseByHook(
-        await base.$$(getHookSelector(DataHooks.stat)).get(index),
-        DataHooks.info,
-      ).exists(),
+    isInfoExists: async index => {
+      const stat = await getStatsItem(index);
+      return findByHook(stat, DataHooks.info).exists();
+    },
 
     pressEnterKey: async index => {
       if (index === undefined) {

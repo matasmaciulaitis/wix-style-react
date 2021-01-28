@@ -10,9 +10,7 @@ describe('StatisticsWidget', () => {
     statisticsWidgetPrivateDriverFactory,
   );
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 
   it('should render', async () => {
     const { driver } = render(<StatisticsWidget />);
