@@ -440,7 +440,7 @@ class DropdownLayout extends React.PureComponent {
 
   _isBuilderOption({ option }) {
     const { value } = option;
-    return typeof value === 'function';
+    return typeof value === 'function' || React.isValidElement(value);
   }
 
   _isCustomOption({ option }) {
