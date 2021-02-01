@@ -37,12 +37,16 @@
   -st-default: Text;
 }
 
+.base,
+.root {
+  width: 100%;
+  height: 100%;
+}
+
 .root {
   -st-extends: Focusable;
   -st-states: theme(enum(dashes, plain, filled, image)), removePadding, disabled;
   display: flex;
-  height: 100%;
-  width: 100%;
   cursor: pointer;
   outline: none;
   box-sizing: border-box;
