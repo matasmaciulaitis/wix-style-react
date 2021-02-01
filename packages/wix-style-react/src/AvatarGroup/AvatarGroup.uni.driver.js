@@ -18,10 +18,10 @@ export const avatarGroupDriverFactory = (base, body) => {
 
     /**
      * Gets the text content
-     * @param {number} Avatar index
+     * @param {number} index Avatar index
      * @returns {Promise<string>}
      */
-    getAvatarContentByIndex: async n =>
-      await findByHookAtIndex(base, dataHooks.avatarGroupItem, n).text(),
+    getAvatarContentByIndex: async index =>
+      await findByHookAtIndex(base, dataHooks.avatarGroupItem, index).text(),
   };
 };

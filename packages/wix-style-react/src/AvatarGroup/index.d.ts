@@ -1,5 +1,8 @@
 import * as React from 'react';
-import {CommonAvatarProps} from '../Avatar'
+import {CommonAvatarProps} from '../Avatar';
+
+export type GroupType = 'stretched' | 'condensed';
+export type AvatarGroupSize = 'medium' | 'small';
 export interface AvatarGroupProps {
   dataHook?: string;
   className?: string;
@@ -9,7 +12,5 @@ export interface AvatarGroupProps {
   maxItems?: number;
   items: CommonAvatarProps[];
 }
-export type GroupType = 'stretched' | 'condensed';
-export type AvatarGroupSize = 'medium' | 'small';
 
 export default class AvatarGroup extends React.PureComponent<AvatarGroupProps>{}

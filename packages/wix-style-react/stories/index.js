@@ -21,6 +21,7 @@ require('../src/AudioPlayer/docs/index.story');
 require('../src/AutoComplete/docs/index.story');
 require('../src/AutoCompleteWithLabel/docs/index.story');
 require('../src/Avatar/docs/index.story');
+require('../src/AvatarGroup/docs/index.story');
 require('../src/Badge/docs/index.story');
 require('../src/BadgeSelect/docs/index.story');
 require('../src/BadgeSelectItem/docs/index.story');
@@ -232,6 +233,3 @@ require('../src/Themes/editorX/docs');
 
 // BusinessDashboard
 require('../src/Themes/businessDashboard/docs');
-
-// TODO: move to correct position
-require('../src/AvatarGroup/docs/index.story');

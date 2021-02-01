@@ -20,6 +20,8 @@ class AvatarGroup extends React.PureComponent {
       size,
     } = this.props;
 
+    if (items === undefined) return null;
+
     const avatarSize = size === 'small' ? 'small' : 'medium';
     const itemsMaxLength = maxItems < 2 ? 2 : maxItems;
     const normalizedItems = serializeItems(items, avatarSize);
@@ -99,14 +101,17 @@ AvatarGroup.propTypes = {
   /**
    * Show divider on the side of the first Avatar
    */
-  divider: PropTypes.bool,
+  showDivider: PropTypes.bool,
 
   /**
    * Sets the number of Avatars to display
    */
-  maxAvatarLimit: PropTypes.number,
+  maxItems: PropTypes.number,
 
-  avatars: PropTypes.arrayOf(Avatar),
+  /**
+   * An array of Avatars
+   */
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 AvatarGroup.defaultProps = {
