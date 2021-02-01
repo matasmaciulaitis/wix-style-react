@@ -35,7 +35,22 @@ export default {
       children: <div />,
     },
   },
-
+  AvatarGroup: {
+    props: {
+      items: [
+        {
+          ariaLabel: 'Avatar for John Doe',
+          name: 'John Doe',
+          title: 'Wix Account: John Doe (johndoe@gmail.com)',
+        },
+        {
+          ariaLabel: 'Avatar for John Doe',
+          name: 'John Doe',
+          title: 'Wix Account: John Doe (johndoe@gmail.com)',
+        },
+      ],
+    },
+  },
   BounceAnimation: {
     props: {
       children: <div />,
