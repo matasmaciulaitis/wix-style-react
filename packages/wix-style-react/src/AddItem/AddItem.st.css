@@ -211,6 +211,7 @@
 
 .content:size(tiny) .icon {
   flex-shrink: 0;
+  margin: 0px 6px;
 }
 
 /* Text */
