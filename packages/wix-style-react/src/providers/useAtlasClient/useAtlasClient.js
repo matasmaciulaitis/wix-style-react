@@ -3,6 +3,21 @@ import { WixAtlasServiceWeb } from '@wix/ambassador-wix-atlas-service-web/http';
 
 export const BASE_ATLAS_URL = '/wix-atlas-service-web';
 
+// TODO: remove once Atlas v2 is implemented
+// Removes attributes containing empty strings from address result
+const formatAddress = address => ({
+  ...address,
+  addressLine: address.addressLine || undefined,
+  addressLine_2: address.addressLine_2 || undefined,
+  city: address.city || undefined,
+  country: address.country || undefined,
+  countryFullname: address.countryFullname || undefined,
+  formattedAddress: address.formattedAddress || undefined,
+  hint: address.hint || undefined,
+  postalCode: address.postalCode || undefined,
+  subdivision: address.subdivision || undefined,
+});
+
 // Client for fetching autocomplete predictions from Atlas
 const useAtlasClient = ({
   /** Custom domain to retreive predictions from  */
@@ -46,7 +61,7 @@ const useAtlasClient = ({
       const {
         place: { address },
       } = await placesService.getPlace({ searchId });
-      return address;
+      return formatAddress(address);
     },
     [placesService],
   );
@@ -56,7 +71,9 @@ const useAtlasClient = ({
       const { searchResults } = await locationService.search({
         query,
       });
-      const addresses = searchResults.map(({ address }) => address);
+      const addresses = searchResults.map(({ address }) =>
+        formatAddress(address),
+      );
       return addresses;
     },
     [locationService],
