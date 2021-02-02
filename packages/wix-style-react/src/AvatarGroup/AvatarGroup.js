@@ -46,7 +46,7 @@ class AvatarGroup extends React.PureComponent {
                 dataHook={dataHooks.avatarGroupItem}
                 key={key}
                 {...item}
-                className={classes.avatar}
+                className={classes.avatarItem}
               />,
               <Divider
                 key={key + 'divider'}
@@ -69,7 +69,7 @@ class AvatarGroup extends React.PureComponent {
                 dataHook={dataHooks.avatarGroupItem}
                 key={key}
                 {...item}
-                className={classes.avatar}
+                className={classes.avatarItem}
               />
             );
           }

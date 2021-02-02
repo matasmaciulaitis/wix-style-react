@@ -3,6 +3,11 @@
   -st-named: G30, R30, D60, D20, D10-10, B50, B40;
 }
 
+:import {
+  -st-from: "../Avatar/Avatar.st.css";
+  -st-named: avatar, externalContainer;
+}
+
 .root {
   -st-states: divider, type(enum(stretched, condensed));
   text-align: center;
@@ -11,12 +16,12 @@
   align-items: center;
 }
 
-.avatar {
+.avatarItem {
   cursor: default;
 }
 
 .moreItemAvatar {
-  @extend .avatar;
+  @extend .avatarItem;
   -st-states: clickable(boolean);
   color: value(D20);
   border-radius: 50%;
@@ -25,15 +30,15 @@
 }
 
 
-.moreItemAvatar :global([data-hook*='avatar-core']) > div {
+.moreItemAvatar .avatar > div {
   color: value(D20) !important;
 }
 
-.moreItemAvatar :global([class*="externalContainer"]) {
-  z-index: 10000;
+.moreItemAvatar .externalContainer {
+  z-index: 100;
 }
 
-.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core'])::before {
+.root:type(condensed) .moreItemAvatar .avatar::before {
   content: " ";
   position: absolute;
   z-index: 15000;
@@ -45,31 +50,31 @@
   border-radius: 50%;
 }
 
-.root:type(condensed) .moreItemAvatar :global([data-hook*='avatar-core']) {
-  background-color: white !important;
+.root:type(condensed) .moreItemAvatar .avatar {
+  background-color: white;
   border: 2px solid white;
-  border-radius: 50% !important;
+  border-radius: 50%;
 }
 
-.root:type(stretched) .moreItemAvatar :global([data-hook*='avatar-core']) {
-  background-color: white !important;
+.root:type(stretched) .moreItemAvatar .avatar {
+  background-color: white;
   border: 2px solid value(D10-10);
-  border-radius: 50% !important;
+  border-radius: 50%;
 }
 
-.moreItemAvatar:clickable :global([data-hook*='avatar-core']):hover {
-  background-color: value(B50) !important;
+.moreItemAvatar:clickable .avatar:hover {
+  background-color: value(B50);
 }
 
-.moreItemAvatar:clickable :global([data-hook*='avatar-core']):active {
-  background-color: value(B40) !important;
+.moreItemAvatar:clickable .avatar:active {
+  background-color: value(B40);
 }
 
-.root:type(stretched) > .avatar {
+.root:type(stretched) > .avatarItem {
   margin-right: 6px;
 }
 
-.root:type(condensed) > .avatar {
+.root:type(condensed) > .avatarItem {
   margin-right: -6px;
   border-radius: 50%;
   border: 2px solid white;
