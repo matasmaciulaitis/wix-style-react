@@ -8,6 +8,11 @@
   -st-named: avatar, externalContainer;
 }
 
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/avatar/avatar.st.css';
+  -st-named: content;
+}
+
 .root {
   -st-states: divider, type(enum(stretched, condensed));
   text-align: center;
@@ -16,19 +21,33 @@
   align-items: center;
 }
 
-.avatarItem {
-  cursor: default;
+/* Avatar Item */
+
+.avatarItem .avatar {
+  cursor: initial !important;
+  user-select: none;
 }
 
+.root:type(stretched) > .avatarItem {
+  margin-right: 6px;
+}
+
+.root:type(condensed) > .avatarItem {
+  margin-right: -6px;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 1;
+}
+
+/* moreItemAvatar */
+
 .moreItemAvatar {
-  @extend .avatarItem;
   -st-states: clickable(boolean);
   color: value(D20);
   border-radius: 50%;
   user-select: none;
   z-index: 1;
 }
-
 
 .moreItemAvatar .avatar > div {
   color: value(D20) !important;
@@ -62,6 +81,14 @@
   border-radius: 50%;
 }
 
+.moreItemAvatar .avatar .content {
+  visibility: visible !important;
+}
+
+.moreItemAvatar:clickable {
+  cursor: pointer;
+}
+
 .moreItemAvatar:clickable .avatar:hover {
   background-color: value(B50);
 }
@@ -70,16 +97,7 @@
   background-color: value(B40);
 }
 
-.root:type(stretched) > .avatarItem {
-  margin-right: 6px;
-}
-
-.root:type(condensed) > .avatarItem {
-  margin-right: -6px;
-  border-radius: 50%;
-  border: 2px solid white;
-  z-index: 1;
-}
+/* Divider */
 
 .divider {
   -st-states: size(enum(small, medium)), type(enum(stretched, condensed));
@@ -102,6 +120,8 @@
 .divider:size(medium) {
   height: 30px;
 }
+
+/* Popover */
 .popover {
   z-index: 100;
 }

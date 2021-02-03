@@ -43,6 +43,7 @@ class AvatarGroup extends React.PureComponent {
           if (index === 0 && this.props.showDivider && items.length > 1) {
             return [
               <Avatar
+                tabIndex={-1}
                 dataHook={dataHooks.avatarGroupItem}
                 key={key}
                 {...item}
@@ -66,6 +67,7 @@ class AvatarGroup extends React.PureComponent {
           } else {
             return (
               <Avatar
+                tabIndex={-1}
                 dataHook={dataHooks.avatarGroupItem}
                 key={key}
                 {...item}

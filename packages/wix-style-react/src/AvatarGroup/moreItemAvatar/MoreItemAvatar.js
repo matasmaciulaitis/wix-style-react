@@ -33,6 +33,7 @@ class MoreItemAvatar extends React.Component {
           size={size}
           text={text}
           onClick={shouldBeWithOnClick ? this.toggle : null}
+          tabIndex={0}
         />
       );
     }
