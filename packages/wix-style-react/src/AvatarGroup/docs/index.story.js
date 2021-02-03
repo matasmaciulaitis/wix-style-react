@@ -17,7 +17,6 @@ import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import * as examples from './examples';
 
-
 import AvatarGroup from '..';
 
 const example = config => baseExample({ components: allComponents, ...config });
@@ -61,24 +60,34 @@ export default {
 
           example({
             title: 'Group type',
-            text: "The grouping appearance of the avatars can be 'stretched' or 'condensed'",
+            text:
+              "The grouping appearance of the avatars can be 'stretched' or 'condensed'",
             source: examples.groupType,
           }),
           example({
             title: 'Divider',
-            text: 'A divider can be applied between the first and the rest of the avatars',
-            source: examples.divider
+            text:
+              'A divider can be applied between the first and the rest of the avatars',
+            source: examples.divider,
           }),
+
+          example({
+            title: 'Size',
+            text:
+              'AvatarGroup component supports two sizes – `medium` and `small`',
+            source: examples.size,
+          }),
+
           example({
             title: 'More indicator',
-            text: "Enable the consumer to define the maximum number of items to show, before collapsing them into the ‘More’ indication.\n" +
-              "\n" +
-              "Minimum number of items to display is 2.\n" +
-              "\n" +
-              "(See more description under Behaviours section)\n",
-            source: examples.moreIndicator
-          })
-
+            text:
+              'Enable the consumer to define the maximum number of items to show, before collapsing them into the ‘More’ indication.\n' +
+              '\n' +
+              'Minimum number of items to display is 2.\n' +
+              '\n' +
+              '(See more description under Behaviours section)\n',
+            source: examples.moreIndicator,
+          }),
         ],
       }),
 
