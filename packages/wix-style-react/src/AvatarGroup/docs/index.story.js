@@ -83,9 +83,7 @@ export default {
             text:
               'Enable the consumer to define the maximum number of items to show, before collapsing them into the ‘More’ indication.\n' +
               '\n' +
-              'Minimum number of items to display is 2.\n' +
-              '\n' +
-              '(See more description under Behaviours section)\n',
+              'Minimum number of items to display is 2.',
             source: examples.moreIndicator,
           }),
         ],

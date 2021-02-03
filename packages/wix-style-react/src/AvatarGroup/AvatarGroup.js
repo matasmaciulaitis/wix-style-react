@@ -114,6 +114,11 @@ AvatarGroup.propTypes = {
    * An array of Avatars
    */
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+
+  /**
+   * A Node which renders in the popover at the more indicator element
+   */
+  moreItemContent: PropTypes.node,
 };
 
 AvatarGroup.defaultProps = {
