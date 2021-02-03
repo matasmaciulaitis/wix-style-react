@@ -20,6 +20,7 @@ function avatarGroupWithAllProps() {
       size="small"
       showDivider={true}
       maxItems={4}
+      moreItemContent={<div>Hello World!</div>}
     />
   );
 }
