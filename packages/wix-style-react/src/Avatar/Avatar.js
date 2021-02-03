@@ -192,6 +192,10 @@ const CoreAvatarPropTypes = {
    * on hover and will have a pointer cursor).
    */
   onClick: PropTypes.func,
+  /**
+   * Sets the tabIndex order
+   */
+  tabIndex: PropTypes.number,
 };
 
 Avatar.displayName = 'Avatar';
@@ -238,6 +242,7 @@ Avatar.defaultProps = {
   size: 'size48',
   shape: 'circle',
   showIndicationOnHover: false,
+  tabIndex: 0,
 };
 
 export default Avatar;
