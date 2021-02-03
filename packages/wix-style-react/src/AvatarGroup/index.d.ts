@@ -11,7 +11,7 @@ export interface AvatarGroupProps {
   showDivider?: boolean;
   maxItems?: number;
   items: CommonAvatarProps[];
-  moreItemContent: HTMLElement
+  moreItemContent: React.ReactNode
 }
 
 export default class AvatarGroup extends React.PureComponent<AvatarGroupProps>{}
