@@ -146,6 +146,15 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'subtitle',
+    its: [
+      {
+        it: 'enabled',
+        props: { subtitle: 'Add Item subtitle' },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {
