@@ -7,7 +7,7 @@ import { chainEventHandlers } from '../utils/ChainEventHandlers';
 import { classes } from './InputWithOptions.st.css';
 import uniqueId from 'lodash/uniqueId';
 import Popover from '../Popover';
-import HighlightContext from './HighlightContext';
+import HighlightContext, { HighlightContextProvider } from './HighlightContext';
 
 export const DEFAULT_VALUE_PARSER = option => option.value;
 
@@ -173,7 +173,7 @@ class InputWithOptions extends Component {
         style={customStyle}
         data-hook="dropdown-layout-wrapper"
       >
-        <HighlightContext.Provider value={{ highlight, match: inputValue }}>
+        <HighlightContextProvider highlight={highlight} match={inputValue}>
           <DropdownLayout
             ref={dropdownLayout => (this.dropdownLayout = dropdownLayout)}
             {...dropdownProps}
@@ -185,7 +185,7 @@ class InputWithOptions extends Component {
             inContainer
             tabIndex={-1}
           />
-        </HighlightContext.Provider>
+        </HighlightContextProvider>
       </div>
     );
   }

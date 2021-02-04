@@ -19,24 +19,50 @@ class AutoComplete extends InputWithOptions {
     predicate: () => true,
   };
 
-  dropdownAdditionalProps() {
-    const { options, predicate, emptyStateMessage } = this.props;
-    const filterFunc = this.state.isEditing ? predicate : () => true;
-    const filtered = options.filter(filterFunc);
-
-    if (emptyStateMessage && filtered.length === 0) {
-      return {
-        options: [
-          {
-            id: 'empty-state-message',
-            value: emptyStateMessage,
-            disabled: true,
-          },
-        ],
-      };
-    } else {
-      return { options: filtered };
+  static getDerivedStateFromProps(props, state) {
+    const { options, predicate, emptyStateMessage } = props;
+    const {
+      isEditing,
+      prevOptions,
+      prevPredicate,
+      prevIsEditing,
+      prevFilteredOptions,
+    } = state;
+    let filteredOptions = prevFilteredOptions;
+    if (
+      options !== prevOptions ||
+      predicate !== prevPredicate ||
+      isEditing !== prevIsEditing
+    ) {
+      const filterFunc = isEditing ? predicate : () => true;
+      filteredOptions = options.filter(filterFunc);
     }
+
+    const additionalProps =
+      emptyStateMessage && filteredOptions.length === 0
+        ? {
+            options: [
+              {
+                id: 'empty-state-message',
+                value: emptyStateMessage,
+                disabled: true,
+              },
+            ],
+          }
+        : { options: filteredOptions };
+
+    return {
+      additionalProps,
+      prevOptions: options,
+      prevPredicate: predicate,
+      prevIsEditing: isEditing,
+      prevFilteredOptions: filteredOptions,
+    };
+  }
+
+  dropdownAdditionalProps() {
+    const { additionalProps } = this.state;
+    return additionalProps;
   }
 }
 
