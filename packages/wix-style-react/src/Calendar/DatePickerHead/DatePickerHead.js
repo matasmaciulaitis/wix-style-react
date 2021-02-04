@@ -79,6 +79,7 @@ const DatePickerHead = ({
             onChange={onChange}
             ariaLabel={yearDropdownAriaLabel}
             ariaLabelledBy={yearDropdownAriaLabelledBy}
+            localeUtils={localeUtils}
           />
         ) : (
           <Text

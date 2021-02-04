@@ -26,6 +26,20 @@ import { convertTokens } from '@date-fns/upgrade/v2';
 
 const MONTHS_INDEXES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
+// Add a symbol indicating number is year in certain languages
+export const YEAR_INDICATORS = {
+  ja: '年',
+  zh: '年',
+  ko: '년',
+};
+const addYearIndicator = (year, locale) => {
+  const yearIndicator = YEAR_INDICATORS[locale];
+  if (yearIndicator) {
+    return `${year}${yearIndicator}`;
+  }
+  return year;
+};
+
 const locales = {
   en,
   es,
@@ -81,6 +95,8 @@ export default locale => ({
     format(date, 'iii	PP', {
       locale: getLocale(locale),
     }),
+
+  formatYear: year => addYearIndicator(year, locale),
 
   getMonths: () =>
     MONTHS_INDEXES.map(i =>

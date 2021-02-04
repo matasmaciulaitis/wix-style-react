@@ -15,6 +15,7 @@ const YearDropdown = ({
   onChange,
   ariaLabel,
   ariaLabelledBy,
+  localeUtils,
 }) => {
   const year = date.getFullYear();
   const [lowerLimit, upperLimit] = [1899, 2028];
@@ -28,7 +29,7 @@ const YearDropdown = ({
     <DatePickerDropdown
       dataHook="datepicker-year-dropdown"
       className={st(classes.root, className)}
-      caption={selectedYear.value}
+      caption={localeUtils.formatYear(selectedYear.value)}
       options={years}
       selectedId={selectedYear.id}
       onChange={({ value }) => onChange(setYear(date, value))}
@@ -44,6 +45,7 @@ YearDropdown.propTypes = {
   onChange: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string,
   ariaLabelledBy: PropTypes.string,
+  localeUtils: PropTypes.object.isRequired,
 };
 
 export default YearDropdown;

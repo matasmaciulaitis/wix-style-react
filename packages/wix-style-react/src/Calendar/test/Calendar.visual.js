@@ -4,6 +4,7 @@ import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 
 import Calendar from '..';
 import { calendarUniDriverFactory } from '../Calendar.uni.driver.js';
+import { YEAR_INDICATORS } from '../../LocaleUtils';
 
 const dataHook = 'calendar';
 const calendarTestkitFactory = uniTestkitFactoryCreator(
@@ -140,6 +141,14 @@ const tests = [
           showYearDropdown: true,
         },
       },
+      ...Object.keys(YEAR_INDICATORS).map(locale => ({
+        it: `Adds a symbol indicating number is year in ${locale}`,
+        props: {
+          placeholderText: 'Select Date',
+          value: new Date('2020/10/10'),
+          locale: locale,
+        },
+      })),
       {
         it: 'Date Indication',
         props: {
