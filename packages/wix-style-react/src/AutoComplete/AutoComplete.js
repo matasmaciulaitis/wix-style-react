@@ -29,6 +29,7 @@ class AutoComplete extends InputWithOptions {
       prevFilteredOptions,
     } = state;
     let filteredOptions = prevFilteredOptions;
+    // Only filter options when options or predicate change
     if (
       options !== prevOptions ||
       predicate !== prevPredicate ||
@@ -53,6 +54,7 @@ class AutoComplete extends InputWithOptions {
 
     return {
       additionalProps,
+      // Pass current props as previous props for next iteration
       prevOptions: options,
       prevPredicate: predicate,
       prevIsEditing: isEditing,
