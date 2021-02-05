@@ -108,7 +108,7 @@ class AddItem extends Component {
 
     return (
       <Image
-        className={st(classes.illustration, { size })}
+        className={classes.illustration}
         fit="contain"
         src={illustration}
         {...illustrationDimensionsBySize[size]}

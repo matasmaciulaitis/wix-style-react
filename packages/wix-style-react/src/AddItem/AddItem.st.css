@@ -208,7 +208,7 @@
   align-items: flex-end;
 }
 
-/* Content body */
+/* Content */
 
 .content {
   -st-states: size(enum(tiny));
@@ -224,6 +224,14 @@
 .content:size(tiny) .icon {
   flex-shrink: 0;
   margin: 0px 6px;
+}
+
+.content:size(tiny) .illustration {
+  margin: 0px 6px;
+}
+
+.illustration {
+  background-color: initial;
 }
 
 /* Text */
@@ -283,14 +291,6 @@
 
 .subtitle:skin(standard) {
   color: value(D20);
-}
-
-.illustration {
-  -st-states: size(enum(tiny));
-}
-
-.illustration:size(tiny) {
-  margin: 0px 6px;
 }
 
 .tooltip {

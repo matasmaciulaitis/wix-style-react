@@ -81,10 +81,10 @@ export const content = `
 
 export const illustration = `
   <Layout gap={10} cols={1}>
-    <AddItem illustration="generic_post.svg" size="large">
+    <AddItem illustration="generic_add_item_illustration.svg" size="large">
       Drag here to upload
     </AddItem>
-      <AddItem illustration="generic_post.svg">
+      <AddItem illustration="generic_add_item_illustration.svg">
       Drag here to upload
     </AddItem>
   </Layout>;
