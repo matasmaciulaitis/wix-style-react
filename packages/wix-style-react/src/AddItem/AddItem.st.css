@@ -39,7 +39,7 @@
 
 .root {
   -st-extends: Focusable;
-  -st-states: theme(enum(dashes, plain, filled, image)), removePadding, disabled;
+  -st-states: theme(enum(dashes, plain, filled, image)), size(enum(tiny, small, medium, large)), removePadding, disabled;
   display: flex;
   height: 100%;
   width: 100%;
@@ -50,6 +50,18 @@
   justify-content: center;
   padding: 12px 30px;
   color: value(THEME-COLOR-10);
+}
+
+.root:size(small) {
+  padding: 18px 30px;
+}
+
+.root:size(medium) {
+  padding: 24px 30px;
+}
+
+.root:size(large) {
+  padding: 30px 30px;
 }
 
 .root:removePadding {
@@ -271,6 +283,14 @@
 
 .subtitle:skin(standard) {
   color: value(D20);
+}
+
+.illustration {
+  -st-states: size(enum(tiny));
+}
+
+.illustration:size(tiny) {
+  margin: 0px 6px;
 }
 
 .tooltip {
