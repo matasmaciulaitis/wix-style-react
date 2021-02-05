@@ -3,7 +3,7 @@ import { snap, story, visualize } from 'storybook-snapper';
 import TimeInputWip from '../TimeInputWip';
 
 const commonProps = {
-  value: new Date(1993, 5, 31, 20, 15, 12),
+  value: new Date('1995-05-31T20:24:00.000'),
 };
 
 const tests = [

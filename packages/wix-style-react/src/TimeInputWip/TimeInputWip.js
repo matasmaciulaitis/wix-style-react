@@ -23,6 +23,7 @@ class TimeInputWip extends React.PureComponent {
       isDropdownOpen: false,
       options: this._getOptions(value, step, dateFormatter),
       selectedId: value ? value.getTime() : undefined,
+      focusOnOption: undefined,
     };
   }
 
@@ -53,14 +54,34 @@ class TimeInputWip extends React.PureComponent {
         value: this._getFormattedDate(i, dateFormatter),
       });
     }
-
     return timeLabels;
   };
 
+  _getFirstOptionToFocusId = value => {
+    const firstOptionToMark = this.state.options.find(option =>
+      option.value.startsWith(value),
+    );
+
+    const secondOptionToMark = this.state.options.find(
+      option =>
+        option.value.length > 1 && option.value.substring(1).startsWith(value),
+    );
+    return (
+      (firstOptionToMark && firstOptionToMark.id) ||
+      (secondOptionToMark && secondOptionToMark.id)
+    );
+  };
+
   _onChange = e => {
+    const { value } = e.target;
     this.setState({
-      inputValue: e.target.value,
+      inputValue: value,
     });
+    if (value) {
+      this.setState({
+        focusOnOption: this._getFirstOptionToFocusId(value),
+      });
+    }
   };
 
   _onKeyDown = (e, delegateKeyDown) => {
@@ -112,7 +133,13 @@ class TimeInputWip extends React.PureComponent {
       placeholder,
       width,
     } = this.props;
-    const { isDropdownOpen, options, selectedId, inputValue } = this.state;
+    const {
+      isDropdownOpen,
+      options,
+      selectedId,
+      inputValue,
+      focusOnOption,
+    } = this.state;
 
     return (
       <div className={st(classes.root, className)} style={{ width }}>
@@ -124,6 +151,7 @@ class TimeInputWip extends React.PureComponent {
           onSelect={this._onSelect}
           selectedId={selectedId}
           focusOnSelectedOption
+          focusOnOption={focusOnOption}
         >
           {({ delegateKeyDown }) => {
             return (
