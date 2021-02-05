@@ -136,6 +136,13 @@ export default {
           }),
 
           example({
+            title: 'Illustration',
+            text:
+              'When illustration src is provided it is shown instead of icon',
+            source: examples.illustration,
+          }),
+
+          example({
             title: 'Show Icon',
             text: 'When set to false, icon is removed.',
             source: examples.showIcon,

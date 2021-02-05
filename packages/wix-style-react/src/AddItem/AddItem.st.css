@@ -208,7 +208,7 @@
   align-items: flex-end;
 }
 
-/* Content */
+/* Content body */
 
 .content {
   -st-states: size(enum(tiny));
