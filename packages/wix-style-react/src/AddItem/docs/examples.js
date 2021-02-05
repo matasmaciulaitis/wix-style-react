@@ -79,6 +79,17 @@ export const content = `
   </Layout>
 `;
 
+export const illustration = `
+  <Layout gap={10} cols={1}>
+    <AddItem illustration="generic_post.svg" size="large">
+      Drag here to upload
+    </AddItem>
+      <AddItem illustration="generic_post.svg">
+      Drag here to upload
+    </AddItem>
+  </Layout>;
+`;
+
 export const showIcon = `<AddItem showIcon={false}>Add Item</AddItem>`;
 
 export const removePadding = `<AddItem showIcon={false} removePadding={true}>Add Item</AddItem>`;

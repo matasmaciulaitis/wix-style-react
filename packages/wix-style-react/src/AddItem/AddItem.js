@@ -33,6 +33,13 @@ const tooltipPlacementByAlignment = {
   right: 'top-end',
 };
 
+const illustrationDimensionsBySize = {
+  tiny: { height: 24, width: 24 },
+  small: { height: 60, width: 60 },
+  medium: { height: 120, width: 120 },
+  large: { height: 120, width: 120 },
+};
+
 class AddItem extends Component {
   static displayName = 'AddItem';
   static propTypes = {
@@ -96,40 +103,37 @@ class AddItem extends Component {
     removePadding: false,
   };
 
-  _renderIcon = () => {
-    const { size, theme } = this.props;
+  _renderIllustration = () => {
+    const { size, illustration } = this.props;
+
+    return (
+      <Image
+        className={st(classes.illustration, { size })}
+        fit="contain"
+        src={illustration}
+        {...illustrationDimensionsBySize[size]}
+      />
+    );
+  };
+
+  _renderAddIcon = () => {
+    const { size, theme, showIcon } = this.props;
 
     const isImageIcon = theme === 'image';
 
-    const illustrationDimensionsBySize = {
-      tiny: { height: 24, width: 24 },
-      small: { height: 60, width: 60 },
-      medium: { height: 120, width: 120 },
-      large: { height: 120, width: 120 },
-    };
-
-    if (true) {
-      return (
-        <Image
-          className={st(classes.illustration, { size })}
-          fit="contain"
-          src="generic_post.svg"
-          {...illustrationDimensionsBySize[size]}
-        />
-      );
-    }
-
     return (
-      <ThemeProviderConsumerBackwardCompatible
-        defaultIcons={{
-          AddItemButton: AddItemButtonIcons,
-        }}
-      >
-        {({ icons }) => {
-          const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
-          return <Icon className={classes.icon} />;
-        }}
-      </ThemeProviderConsumerBackwardCompatible>
+      showIcon && (
+        <ThemeProviderConsumerBackwardCompatible
+          defaultIcons={{
+            AddItemButton: AddItemButtonIcons,
+          }}
+        >
+          {({ icons }) => {
+            const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
+            return <Icon className={classes.icon} />;
+          }}
+        </ThemeProviderConsumerBackwardCompatible>
+      )
     );
   };
 
@@ -179,7 +183,7 @@ class AddItem extends Component {
   };
 
   _renderContent = () => {
-    const { theme, alignItems, size, disabled, showIcon } = this.props;
+    const { theme, alignItems, size, disabled, illustration } = this.props;
 
     return (
       <div
@@ -191,7 +195,7 @@ class AddItem extends Component {
         })}
       >
         <div className={st(classes.content, { size })}>
-          {showIcon && this._renderIcon()}
+          {illustration ? this._renderIllustration() : this._renderAddIcon()}
           {this._renderText()}
         </div>
         {this._renderSubtitle()}
