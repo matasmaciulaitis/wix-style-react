@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 import { ThemeProviderConsumerBackwardCompatible } from '../ThemeProvider/ThemeProviderConsumerBackwardCompatible';
+import Image from '../Image';
 
 import AddItemLarge from 'wix-ui-icons-common/system/AddItemLarge';
 import AddItemMedium from 'wix-ui-icons-common/system/AddItemMedium';
@@ -82,6 +83,9 @@ class AddItem extends Component {
 
     /** Subtitle of the component */
     subtitle: PropTypes.node,
+
+    /** The illustration src */
+    illustration: PropTypes.string,
   };
 
   static defaultProps = {
@@ -96,6 +100,24 @@ class AddItem extends Component {
     const { size, theme } = this.props;
 
     const isImageIcon = theme === 'image';
+
+    const illustrationDimensionsBySize = {
+      tiny: { height: 24, width: 24 },
+      small: { height: 60, width: 60 },
+      medium: { height: 120, width: 120 },
+      large: { height: 120, width: 120 },
+    };
+
+    if (true) {
+      return (
+        <Image
+          className={st(classes.illustration, { size })}
+          fit="contain"
+          src="generic_post.svg"
+          {...illustrationDimensionsBySize[size]}
+        />
+      );
+    }
 
     return (
       <ThemeProviderConsumerBackwardCompatible
@@ -205,6 +227,7 @@ class AddItem extends Component {
       className,
       ariaLabel,
       ariaLabelledBy,
+      size,
     } = this.props;
 
     return (
@@ -216,7 +239,7 @@ class AddItem extends Component {
         <button
           className={st(
             classes.root,
-            { theme, removePadding, borderRadius, disabled },
+            { theme, size, removePadding, borderRadius, disabled },
             className,
           )}
           style={borderRadius && { borderRadius }}
