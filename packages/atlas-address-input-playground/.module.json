@@ -1,0 +1,8 @@
+{
+  "moduleId": "ATLAS_ADDRESS_INPUT_PLAYGROUND",
+  "isCoreService": true,
+  "routeNamespace": "atlas-address-input-playground",
+  "translations": {
+    "enabled": false
+  }
+}

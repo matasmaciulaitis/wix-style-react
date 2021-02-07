@@ -1,0 +1,49 @@
+{
+  "name": "@wix/atlas-address-input-playground",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Daniel Gendelman",
+    "email": "danielge@wix.com"
+  },
+  "scripts": {
+    "start": "yoshi-bm start",
+    "lint": "yoshi-bm lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,scss,less}": "npm run lint"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0",
+    "@types/react": "^16.9.0",
+    "husky": "~4.2.1",
+    "jest-yoshi-preset": "^4.1.0",
+    "lint-staged": "^10.0.7",
+    "react": "16.13.1",
+    "typescript": "~3.9.0",
+    "yoshi-flow-bm": "^4.1.0"
+  },
+  "dependencies": {
+    "@wix/ambassador": "^4.0.491",
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.158",
+    "wix-storybook-utils": "^3.0.140",
+    "wix-style-react": "^9.78.0",
+    "yoshi-flow-bm-runtime": "^4.1.0",
+    "yoshi-stylable-dependencies": "^4.167.0"
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  },
+  "eslintConfig": {
+    "extends": "yoshi"
+  },
+  "wallaby": {
+    "autoDetect": true
+  }
+}
