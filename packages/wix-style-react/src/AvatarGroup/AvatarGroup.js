@@ -84,39 +84,43 @@ class AvatarGroup extends React.PureComponent {
 AvatarGroup.displayName = 'AvatarGroup';
 
 AvatarGroup.propTypes = {
-  /** Applied as data-hook HTML attribute that can be used in the tests */
+  /**
+   * Applies a data-hook HTML attribute that can be used in the tests
+   */
   dataHook: PropTypes.string,
 
-  /** A css class to be applied to the component's root element */
+  /**
+   * Allows to apply a CSS class to the component’s root element
+   */
   className: PropTypes.string,
 
   /**
-   * Sets the appearance of the Avatars
+   * Changes the way avatars are displayed inside the group.
    */
   type: PropTypes.oneOf(['stretched', 'condensed']),
 
   /**
-   * Sets the size of the Avatar
+   * Changes the size of avatars in the group
    */
   size: PropTypes.oneOf(['medium', 'small']),
 
   /**
-   * Show divider on the side of the first Avatar
+   * Separates the first avatar with a divider  from the rest of the group
    */
   showDivider: PropTypes.bool,
 
   /**
-   * Sets the number of Avatars to display
+   * Sets the maximum number of avatars to be displayed. Number which exceeds this limit will be hidden under the “N+” item.
    */
   maxItems: PropTypes.number,
 
   /**
-   * An array of Avatars
+   * Use to pass an array of avatars
    */
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
 
   /**
-   * A Node which renders in the popover at the more indicator element
+   * Use to make the ‘N+’ indication clickable.
    */
   moreItemContent: PropTypes.node,
 };
