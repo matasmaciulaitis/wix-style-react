@@ -27,7 +27,7 @@ class MoreItemAvatar extends React.Component {
               : dataHooks.avatarGroupItem
           }
           key={key}
-          className={st(classes.moreItemAvatar, {
+          className={st(className, {
             clickable: shouldBeWithOnClick,
           })}
           size={size}

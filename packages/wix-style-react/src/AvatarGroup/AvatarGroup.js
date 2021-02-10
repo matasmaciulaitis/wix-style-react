@@ -62,6 +62,7 @@ class AvatarGroup extends React.PureComponent {
                 {...item}
                 key={key}
                 render={content => content(moreItemContent)}
+                className={st(classes.moreItemAvatar)}
               />
             );
           } else {

@@ -44,7 +44,7 @@ export const serializeItems = (items, avatarSize) =>
       placeholder,
       dataHook,
       title,
-      onClick = () => {},
+      onClick = undefined,
     } = item;
 
     const size = avatarSize === 'small' ? 'size24' : 'size30';

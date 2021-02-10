@@ -5,12 +5,7 @@
 
 :import {
   -st-from: "../Avatar/Avatar.st.css";
-  -st-named: avatar, externalContainer;
-}
-
-:import {
-  -st-from: 'wix-ui-core/dist/src/components/avatar/avatar.st.css';
-  -st-named: content;
+  -st-default: Avatar;
 }
 
 .root {
@@ -22,9 +17,11 @@
 }
 
 /* Avatar Item */
-
-.avatarItem .avatar {
-  cursor: initial !important;
+.avatarItem {
+  -st-extends: Avatar;
+}
+.avatarItem ::avatar ::content {
+  cursor: initial;
   user-select: none;
 }
 
@@ -42,22 +39,25 @@
 /* moreItemAvatar */
 
 .moreItemAvatar {
+  -st-extends: Avatar;
   -st-states: clickable(boolean);
-  color: value(D20);
   border-radius: 50%;
   user-select: none;
   z-index: 1;
 }
-
-.moreItemAvatar .avatar > div {
-  color: value(D20) !important;
+.root .moreItemAvatar ::avatar {
+  background-color: white;
+}
+.root .moreItemAvatar ::avatar ::content {
+  color: value(D20);
+  visibility: visible !important;
 }
 
-.moreItemAvatar .externalContainer {
+.moreItemAvatar .root {
   z-index: 100;
 }
 
-.root:type(condensed) .moreItemAvatar .avatar::before {
+.root:type(condensed) .moreItemAvatar ::avatar::before {
   content: " ";
   position: absolute;
   z-index: 15000;
@@ -69,31 +69,28 @@
   border-radius: 50%;
 }
 
-.root:type(condensed) .moreItemAvatar .avatar {
+.root:type(condensed) .moreItemAvatar ::avatar {
   background-color: white;
   border: 2px solid white;
   border-radius: 50%;
 }
 
-.root:type(stretched) .moreItemAvatar .avatar {
+.root:type(stretched) .moreItemAvatar ::avatar {
   background-color: white;
   border: 2px solid value(D10-10);
   border-radius: 50%;
 }
 
-.moreItemAvatar .avatar .content {
-  visibility: visible !important;
-}
 
 .moreItemAvatar:clickable {
   cursor: pointer;
 }
 
-.moreItemAvatar:clickable .avatar:hover {
+.moreItemAvatar:clickable ::avatar:hover {
   background-color: value(B50);
 }
 
-.moreItemAvatar:clickable .avatar:active {
+.moreItemAvatar:clickable ::avatar:active {
   background-color: value(B40);
 }
 

@@ -73,10 +73,7 @@ class Avatar extends React.PureComponent {
     const renderCustomIndication = indicationConstraints && customIndication;
     const renderLoader = loading && sizeNumber >= defaultSize;
     return (
-      <div
-        data-hook={dataHook}
-        className={st(className, classes.externalContainer)}
-      >
+      <div data-hook={dataHook} className={st(className, classes.root)}>
         <FontUpgradeContext.Consumer>
           {({ active }) => (
             <div

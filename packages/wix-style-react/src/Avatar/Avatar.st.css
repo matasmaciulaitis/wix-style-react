@@ -40,7 +40,7 @@
 /**
   in order to fix the gap underneath the avatar, when render with image.
 */
-.externalContainer{
+.root{
   line-height: 0;
 }
 
