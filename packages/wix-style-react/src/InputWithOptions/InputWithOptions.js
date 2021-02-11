@@ -191,13 +191,14 @@ class InputWithOptions extends Component {
   }
 
   _renderNativeSelect() {
-    const { options, onSelect } = this.props;
+    const { options, onSelect, name } = this.props;
     return (
       <div className={classes.nativeSelectWrapper}>
         {this.renderInput()}
         <select
           data-hook="native-select"
           className={classes.nativeSelect}
+          name={name}
           onChange={event => {
             this._onChange(event);
 
