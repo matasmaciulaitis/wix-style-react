@@ -12,9 +12,16 @@ import IconButton from '../../IconButton';
 
 const getMonthName = (months, month) => months[month] || months[0];
 
+// Reverse display order of month/year in certain languages
+export const REVERSE_MONTH_YEAR_LANGUAGES = ['ja', 'zh', 'ko'];
+const getShouldReverseOrder = locale => {
+  return REVERSE_MONTH_YEAR_LANGUAGES.includes(locale);
+};
+
 const DatePickerHead = ({
   className,
   date,
+  locale,
   localeUtils,
   onChange,
   onLeftArrowClick,
@@ -30,6 +37,64 @@ const DatePickerHead = ({
   yearDropdownAriaLabel,
   yearDropdownAriaLabelledBy,
 }) => {
+  const renderMonth = () =>
+    showMonthDropdown ? (
+      <MonthDropdown
+        className={classes.monthDropdown}
+        date={date}
+        onChange={onChange}
+        months={localeUtils.getMonths()}
+        ariaLabel={monthDropdownAriaLabel}
+        ariaLabelledBy={monthDropdownAriaLabelledBy}
+      />
+    ) : (
+      <Text
+        className={classes.caption}
+        weight="normal"
+        dataHook={'datepicker-month-caption'}
+      >
+        {getMonthName(localeUtils.getMonths(), date.getMonth())}
+      </Text>
+    );
+
+  const renderYear = () =>
+    showYearDropdown ? (
+      <YearDropdown
+        className={classes.yearDropdown}
+        date={date}
+        onChange={onChange}
+        ariaLabel={yearDropdownAriaLabel}
+        ariaLabelledBy={yearDropdownAriaLabelledBy}
+        localeUtils={localeUtils}
+      />
+    ) : (
+      <Text
+        className={classes.caption}
+        weight="normal"
+        dataHook={'datepicker-year-caption'}
+      >
+        {localeUtils.formatYear(date.getFullYear())}
+      </Text>
+    );
+
+  const renderYearAndMonth = () => {
+    const shouldReverseOrder = getShouldReverseOrder(locale);
+    if (shouldReverseOrder) {
+      return (
+        <>
+          {renderYear()}
+          {renderMonth()}
+        </>
+      );
+    }
+    return (
+      <>
+        {renderMonth()}
+        {renderYear()}
+      </>
+    );
+  };
+
   return (
     <div data-hook="datepicker-head" className={st(classes.root, className)}>
       <IconButton
@@ -53,43 +118,7 @@ const DatePickerHead = ({
         <ChevronRightLarge className={classes.arrowIcon} />
       </IconButton>
       <div className={classes.yearAndMonthWrapper} role="alert">
-        {showMonthDropdown ? (
-          <MonthDropdown
-            className={classes.monthDropdown}
-            date={date}
-            onChange={onChange}
-            months={localeUtils.getMonths()}
-            ariaLabel={monthDropdownAriaLabel}
-            ariaLabelledBy={monthDropdownAriaLabelledBy}
-          />
-        ) : (
-          <Text
-            className={classes.caption}
-            weight="normal"
-            dataHook={'datepicker-month-caption'}
-          >
-            {getMonthName(localeUtils.getMonths(), date.getMonth())}
-          </Text>
-        )}
-
-        {showYearDropdown ? (
-          <YearDropdown
-            className={classes.yearDropdown}
-            date={date}
-            onChange={onChange}
-            ariaLabel={yearDropdownAriaLabel}
-            ariaLabelledBy={yearDropdownAriaLabelledBy}
-            localeUtils={localeUtils}
-          />
-        ) : (
-          <Text
-            className={classes.caption}
-            weight="normal"
-            dataHook={'datepicker-year-caption'}
-          >
-            {date.getFullYear()}
-          </Text>
-        )}
+        {renderYearAndMonth()}
       </div>
     </div>
   );
@@ -97,6 +126,7 @@ const DatePickerHead = ({
 
 DatePickerHead.propTypes = {
   date: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
   localeUtils: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onLeftArrowClick: PropTypes.func.isRequired,

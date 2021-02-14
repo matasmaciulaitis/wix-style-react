@@ -245,6 +245,20 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'focusOnOption',
+    its: [
+      {
+        it: 'Should mark the option 12',
+        props: {
+          options: Array(20)
+            .fill(0)
+            .map((_, id) => ({ id, value: `Option ${id}` })),
+          focusOnOption: 12,
+        },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {

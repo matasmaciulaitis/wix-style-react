@@ -20,13 +20,14 @@ class <%= ComponentName %> extends React.PureComponent {
 
   render() {
     const { count } = this.state;
-    const { dataHook, buttonText, className } = this.props;
+    const { dataHook, className, id, buttonText } = this.props;
     const isEven = count % 2 === 0;
 
     return (
       <div
-        className={st(classes.root, { even: isEven, odd: !isEven }, className)}
         data-hook={dataHook}
+        className={st(classes.root, { even: isEven, odd: !isEven }, className)}
+        id={id}
       >
         <Text dataHook={dataHooks.<%= componentName %>Count}>
           You clicked this button {isEven ? 'even' : 'odd'} number (
@@ -57,6 +58,9 @@ class <%= ComponentName %> extends React.PureComponent {
 
   /** A css class to be applied to the component's root element */
   className: PropTypes.string,
+
+  /** A Unique identifier for the root element. */
+  id: PropTypes.string,
 
   /** Text for the button */
   buttonText: PropTypes.string,

@@ -4,7 +4,7 @@ import { WixStyleReactContext } from '../WixStyleReactProvider/context';
 import Content from './components/Content';
 import { Layout, Cell } from '../Layout';
 import Proportion from '../Proportion';
-import { SIZES } from './constants';
+import { SIZES, DIRECTIONS } from './constants';
 import { st, classes } from './MarketingLayout.st.css';
 import { stVars as colorsStVars } from '../Foundation/stylable/colors.st.css';
 import deprecationLog from '../utils/deprecationLog';
@@ -15,9 +15,9 @@ const cellSpansBySize = {
     content: 8,
   },
   [SIZES.small]: {
-    image: 2,
+    image: 3,
     spacer: 1,
-    content: 9,
+    content: 8,
   },
   [SIZES.medium]: {
     image: 4,
@@ -52,6 +52,8 @@ class MarketingLayout extends React.PureComponent {
     imageBackgroundColor: PropTypes.string,
     /** Size of the marketing layout. Large size will be deprecated in the next major version. */
     size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
+    /** Direction of the parts of the marketing layout (top to bottom or left to right). */
+    direction: PropTypes.oneOf(['horizontal', 'vertical']),
     /** Alignment of the content of the marketing layout. */
     alignItems: PropTypes.oneOf(['center', 'stretch']),
     /** Invert marketing layout (with image displayed on the left). */
@@ -70,9 +72,10 @@ class MarketingLayout extends React.PureComponent {
   };
 
   static defaultProps = {
-    size: SIZES.small,
+    size: 'small',
     alignItems: 'center',
     inverted: false,
+    direction: 'horizontal',
     hiddenBadge: false,
   };
 
@@ -89,6 +92,7 @@ class MarketingLayout extends React.PureComponent {
 
   _renderImageCell = span => {
     const { image, imageBackgroundColor } = this.props;
+
     return (
       <Cell key="image" span={span}>
         <div className={classes.imageWrapper}>
@@ -137,24 +141,38 @@ class MarketingLayout extends React.PureComponent {
   };
 
   _renderContent = () => {
-    const { inverted, size } = this.props;
-    const cellSpans = cellSpansBySize[size];
-    const spacerCell = this._renderSpacerCell(cellSpans.spacer);
-    const imageCell = this._renderImageCell(cellSpans.image);
-    const contentCell = this._renderContentCell(cellSpans.content);
+    const { direction, size } = this.props;
+    const { content } = cellSpansBySize[size];
+    const isVertical = direction === DIRECTIONS.vertical;
 
-    return size === SIZES.tiny ? (
-      <Layout gap="24px">
-        {inverted ? [imageCell, contentCell] : [contentCell, imageCell]}
-      </Layout>
-    ) : (
-      <Layout>
-        {inverted
-          ? [imageCell, contentCell, spacerCell]
-          : [contentCell, spacerCell, imageCell]}
+    const contentCell = this._renderContentCell(content);
+
+    return (
+      <Layout gap={size === SIZES.tiny ? '24px' : '30px'}>
+        {isVertical
+          ? this._renderVerticalCells({ contentCell })
+          : this._renderHorizontalCells({ contentCell })}
       </Layout>
     );
   };
+
+  _renderHorizontalCells({ contentCell }) {
+    const { inverted, size } = this.props;
+    const { image, spacer } = cellSpansBySize[size];
+
+    const spacerCell = size !== SIZES.tiny && this._renderSpacerCell(spacer);
+    const imageCell = this._renderImageCell(image);
+
+    return inverted
+      ? [imageCell, contentCell, spacerCell]
+      : [contentCell, spacerCell, imageCell];
+  }
+
+  _renderVerticalCells({ contentCell }) {
+    const { inverted, image } = this.props;
+    const imageCell = image && this._renderImageCell(12);
+    return inverted ? [contentCell, imageCell] : [imageCell, contentCell];
+  }
 
   render() {
     const {

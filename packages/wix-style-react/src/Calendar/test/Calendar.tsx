@@ -49,6 +49,9 @@ function CalendarWithAllProps() {
       monthDropdownAriaLabelBy="months_dropdown_labelledby"
       yearDropdownAriaLabel="years dropdown label"
       yearDropdownAriaLabelBy="years_dropdown_labelledby"
+      onMonthChange={d => {
+        d.getDate();
+      }}
     />
   );
 }

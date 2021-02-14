@@ -780,14 +780,14 @@ describe('DatePicker', () => {
 
       it('should display translated month in caption', async () => {
         const { calendarDriver } = await setup();
-        expect(await calendarDriver.getMonthCaption()).toEqual('octobre');
+        expect(await calendarDriver.getMonthCaption()).toEqual('Octobre');
       });
 
       it('should display translated month in dropdown label', async () => {
         const { calendarDriver } = await setup({
           showMonthDropdown: true,
         });
-        expect(await calendarDriver.getMonthDropdownLabel()).toEqual('octobre');
+        expect(await calendarDriver.getMonthDropdownLabel()).toEqual('Octobre');
       });
 
       it('should display translated months in dropdown options', async () => {
@@ -798,7 +798,7 @@ describe('DatePicker', () => {
           await (await calendarDriver.getMonthDropdownDriver()).optionContentAt(
             0,
           ),
-        ).toEqual('janvier');
+        ).toEqual('Janvier');
       });
 
       it('should display translated weekdays', async () => {

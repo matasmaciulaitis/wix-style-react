@@ -40,6 +40,7 @@ function DropdownLayoutWithAllProps() {
       visible
       withArrow
       overflow="scroll"
+      focusOnOption={1}
       options={[
         {
           value: 'a',

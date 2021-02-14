@@ -402,6 +402,15 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  /** Applied as data-hook HTML attribute that can be used in the tests */
+  dataHook: PropTypes.string,
+
+  /** A css class to be applied to the component's root element */
+  className: PropTypes.string,
+
+  /** A Unique identifier for the root element. */
+  id: PropTypes.string,
+
   /** used to associate a control with the regions that it controls. */
   ariaControls: PropTypes.string,
 
@@ -419,9 +428,6 @@ Input.propTypes = {
 
   /** Sets value of native autocomplete attribute (consult the [HTML spec](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete) for possible values  */
   autocomplete: PropTypes.string,
-
-  /** Specifies a data-hook for tests */
-  dataHook: PropTypes.string,
 
   /** Default value for those who wants to use this component un-controlled */
   defaultValue: PropTypes.string,
@@ -444,9 +450,6 @@ Input.propTypes = {
   /** USED FOR TESTING - forces hover state on the input */
   forceHover: PropTypes.bool,
 
-  /** Applied as id HTML attribute. */
-  id: PropTypes.string,
-
   /** Input max length */
   maxLength: PropTypes.number,
 
@@ -455,9 +458,6 @@ Input.propTypes = {
 
   /** Displays clear button (X) on a non-empty input */
   clearButton: PropTypes.bool,
-
-  /** A single CSS class name to be appended to the Input's wrapper element. */
-  className: PropTypes.string,
 
   /** Used to reference element data when a form is submitted. */
   name: PropTypes.string,

@@ -1,0 +1,17 @@
+:import {
+  -st-from: "../../../CounterBadge/CounterBadge.st.css";
+  -st-default: CounterBadge;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: generalCounterBadgeBackgroundColor;
+}
+
+.root {
+  -st-extends: CounterBadge;
+}
+
+.root:skin(general) {
+  background-color: value(generalCounterBadgeBackgroundColor);
+}

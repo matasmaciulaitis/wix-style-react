@@ -79,9 +79,14 @@ class DropdownLayout extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.focusOnSelectedOption) {
+    const { focusOnSelectedOption } = this.props;
+
+    if (focusOnSelectedOption) {
       this._focusOnSelectedOption();
+    } else if (this.props.hasOwnProperty('focusOnOption')) {
+      this._focusOnOption();
     }
+
     this._markOptionByProperty(this.props);
 
     // Deprecated
@@ -101,6 +106,14 @@ class DropdownLayout extends React.PureComponent {
           true,
         );
       });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { focusOnOption } = this.props;
+
+    if (prevProps.focusOnOption !== focusOnOption) {
+      this._focusOnOption();
     }
   }
 
@@ -282,13 +295,37 @@ class DropdownLayout extends React.PureComponent {
         modulu(Math.max(markedIndex + step, -1), options.length),
       );
     } while (!this._isSelectableOption(options[markedIndex]));
+
+    this._markOptionAtIndex(markedIndex);
+  }
+
+  _focusOnOption = () => {
+    const { focusOnOption, options } = this.props;
+
+    const markedIndex = options.findIndex(
+      option => option.id === focusOnOption,
+    );
+
+    if (markedIndex !== -1) {
+      this._markOptionAtIndex(markedIndex);
+    } else {
+      // Remove focus
+      this._markOption(markedIndex);
+    }
+  };
+
+  _markOptionAtIndex = markedIndex => {
+    const { infiniteScroll } = this.props;
+
     this._markOption(markedIndex);
+
     const menuElement = this.options;
-    const hoveredElement = this.props.infiniteScroll
+    const hoveredElement = infiniteScroll
       ? this.options.childNodes[0].childNodes[markedIndex]
       : this.options.childNodes[markedIndex];
+
     scrollIntoView(menuElement, hoveredElement);
-  }
+  };
 
   /**
    * Handle keydown events for the DropdownLayout, mostly for accessibility
@@ -709,7 +746,7 @@ DropdownLayout.propTypes = {
   className: PropTypes.string,
   /** @deprecated */
   dropDirectionUp: PropTypes.bool,
-  /** Scroll to the selected option on opening the dropdown */
+  /** Scroll view to the selected option on opening the dropdown */
   focusOnSelectedOption: PropTypes.bool,
   /** Callback function called whenever the user press the `Escape` keyboard.*/
   onClose: PropTypes.func,
@@ -776,6 +813,8 @@ DropdownLayout.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  /** Marks (not selects) and scrolls view to the option on opening the dropdown by option id */
+  focusOnOption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 DropdownLayout.defaultProps = {

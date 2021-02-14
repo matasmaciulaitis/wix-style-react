@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { st, classes } from './BounceAnimation.st.css';
 import Animate from '../Animate';
 import { childSize, childWidthRange } from './constants';
-
-const isValueInRange = (x, min, max) => x >= min && x <= max;
+import { isValueInRange } from '../Animate/utils';
 
 /** Bounce Animation*/
 class BounceAnimation extends React.PureComponent {
@@ -47,7 +46,7 @@ class BounceAnimation extends React.PureComponent {
       <Animate
         dataHook={dataHook}
         delay={delay}
-        className={st(classes.root, { active, loop, size: animationSize })}
+        animateClasses={st(classes.root, { active, loop, size: animationSize })}
         onEnd={onEnd}
         onStart={onStart}
         ref={this.rootRef}

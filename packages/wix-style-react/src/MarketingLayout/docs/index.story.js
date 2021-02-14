@@ -15,21 +15,8 @@ import {
 import { storySettings } from '../test/storySettings';
 import allComponents from '../../../stories/utils/allComponents';
 import MarketingLayout from '..';
-import {
-  sizeTiny,
-  sizeSmall,
-  sizeMedium,
-  sizeLarge,
-  badge,
-  hiddenBadge,
-  inverted,
-  alignItemsStretch,
-  imageBackgroundColor,
-  advanced,
-  description as descriptionText,
-  actions,
-  images,
-} from './examples';
+
+import * as examples from './examples';
 
 const code = config => baseCode({ components: allComponents, ...config });
 
@@ -44,15 +31,15 @@ export default {
     title: 'Marketing Layout Title',
     description:
       'Connect to Google and get indexed in seconds so people can easily find your site.',
-    actions: actions[0].value,
-    image: images[0].value,
+    actions: examples.actions[0].value,
+    image: examples.images[0].value,
     size: 'small',
     inverted: false,
   },
 
   exampleProps: {
-    image: images,
-    actions,
+    image: examples.images,
+    actions: examples.actions,
   },
 
   sections: [
@@ -62,7 +49,7 @@ export default {
       tab({
         title: 'Description',
         sections: [
-          columns([description(descriptionText)]),
+          columns([description(examples.description)]),
 
           importExample("import { MarketingLayout } from 'wix-style-react';"),
 
@@ -73,23 +60,29 @@ export default {
           description({
             title: 'Size',
             text:
-              'Component supports four sizes - tiny, small, medium and large. For each size are dedicated illustration sizes. Please note, action button sizes must be adjusted based on marketing layout size.',
+              'Component supports four sizes - `tiny`, `small`, `medium` and `large` (which will be deprecated in the next major version). For each size are dedicated illustration sizes. Please note, action button sizes must be adjusted based on marketing layout size.',
           }),
           code({
             compact: true,
-            source: sizeTiny,
+            source: examples.sizeTiny,
           }),
           code({
             compact: true,
-            source: sizeSmall,
+            source: examples.sizeSmall,
           }),
           code({
             compact: true,
-            source: sizeMedium,
+            source: examples.sizeMedium,
+          }),
+
+          description({
+            title: 'Direction',
+            text:
+              'The direction of the layout can be `horizontal` (default) or `vertical`.',
           }),
           code({
             compact: true,
-            source: sizeLarge,
+            source: examples.directions,
           }),
 
           description({
@@ -99,7 +92,7 @@ export default {
           }),
           code({
             compact: true,
-            source: inverted,
+            source: examples.inverted,
           }),
 
           description({
@@ -109,7 +102,7 @@ export default {
           }),
           code({
             compact: true,
-            source: alignItemsStretch,
+            source: examples.alignItemsStretch,
           }),
 
           description({
@@ -119,7 +112,7 @@ export default {
           }),
           code({
             compact: true,
-            source: imageBackgroundColor,
+            source: examples.imageBackgroundColor,
           }),
 
           description({
@@ -129,11 +122,11 @@ export default {
           }),
           code({
             compact: true,
-            source: badge,
+            source: examples.badge,
           }),
           code({
             compact: true,
-            source: hiddenBadge,
+            source: examples.hiddenBadge,
           }),
 
           description({
@@ -143,7 +136,7 @@ export default {
           }),
           code({
             compact: true,
-            source: advanced,
+            source: examples.advanced,
           }),
         ],
       }),

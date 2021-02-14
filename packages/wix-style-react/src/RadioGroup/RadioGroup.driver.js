@@ -1,56 +1,53 @@
 import toArray from 'lodash/toArray';
-import { fireEvent } from '@testing-library/react';
-import radioDriverFactory from '../Radio/Radio.driver';
-import { dataHooks, dataAttr } from './constants';
+import { isClassExists } from '../../test/utils';
+import radioButtonDriverFactory from './RadioButton/RadioButton.driver';
+import { dataHooks } from './constants';
+import { dataHooks as radioButtonDataHooks } from './RadioButton/constants';
+import { classes } from './RadioGroup.st.css';
 
 const radioGroupDriverFactory = ({ element }) => {
-  const getOptionContainer = () =>
-    element.querySelector(`[data-hook="${dataHooks.RadioOptionContainer}"]`);
-
   const getRadios = () =>
     toArray(
-      element.querySelectorAll(`[data-hook^="${dataHooks.RadioItem}-"]`),
+      element.querySelectorAll(
+        `[data-hook="${dataHooks.RadioGroupRadioContainer}"]`,
+      ),
     ).map(radio =>
-      radioButtonDriverFactory({
-        element: radio,
-        eventTrigger: fireEvent,
-        container: getOptionContainer,
-      }),
+      Object.assign(radio, radioButtonDriverFactory({ element: radio })),
     );
 
-  const getRadioByIndex = index => getRadios()[index];
-
-  const getRadioByValue = value =>
-    radioButtonDriverFactory({
-      element: element.querySelector(
-        `[data-hook="${dataHooks.RadioItem}-${value}"]`,
-      ),
-      eventTrigger: fireEvent,
-      container: getOptionContainer,
-    });
-
-  const getRadioContainerAt = index =>
-    element.querySelectorAll(`[data-hook="${dataHooks.RadioOptionContainer}"]`)[
-      index
-    ];
+  const getRadioInputAt = index => {
+    const radio = getRadios()[index];
+    return radio.querySelector(
+      `[data-hook="${radioButtonDataHooks.RadioButtonInput}"]`,
+    );
+  };
 
   const getLabelElements = () =>
     getRadios().map(radio => radio.getLabelElement());
 
   const getSelectedRadio = () => getRadios().find(radio => radio.isChecked());
 
+  const getRadioByValue = value =>
+    getRadios().find(radio => radio.getValue() === value.toString());
+
   return {
     /** Checks that the element exists */
     exists: () => !!element,
 
-    /** Selects the radio that matches the provided value */
-    selectByValue: value => getRadioByValue(value).click(),
+    /** Selects the radio that matches the provided value*/
+    selectByValue: value => getRadioByValue(value).check(),
 
     /** Selects the radio at the provided index */
-    selectByIndex: index => getRadioByIndex(index).click(),
+    selectByIndex: index => getRadios()[index].check(),
 
     /** Get the radio value at the provided index */
-    getRadioValueAt: index => getRadioByIndex(index).getValue(),
+    getRadioValueAt: index => {
+      const radio = getRadios()[index];
+      if (radio) return radio.getValue();
+
+      // Throws an error in case there is no RadioButton at the given index
+      throw new Error(`No RadioButton at index ${index}`);
+    },
 
     /** Get the radio element in the provided index */
     getRadioAtIndex: index => getRadios()[index],
@@ -69,53 +66,31 @@ const radioGroupDriverFactory = ({ element }) => {
     getClassOfLabelAt: index => getLabelElements()[index].className,
 
     /** Checks if the display is set to vertical */
-    isVerticalDisplay: () =>
-      element.getAttribute(dataAttr.DISPLAY) === 'vertical',
+    isVerticalDisplay: () => isClassExists(element, classes.vertical),
 
     /** Checks if the display is set to horizontal */
-    isHorizontalDisplay: () =>
-      element.getAttribute(dataAttr.DISPLAY) === 'horizontal',
+    isHorizontalDisplay: () => isClassExists(element, classes.horizontal),
 
     /** Get the value of applied spacing between radios */
-    spacing: () => getRadioContainerAt(1).style._values['margin-top'],
+    spacing: () => getRadios()[1].style._values['margin-top'],
 
     /** Get the value of applied line-height on the radio's labels */
-    lineHeight: () => element.getAttribute(dataAttr.LINEHEIGHT),
+    lineHeight: () => getLabelElements()[0].style._values['line-height'],
 
     /** Get the number of rendered radios */
     getNumberOfRadios: () => getRadios().length,
 
     /** Get the value of radio button id at the provided index */
-    getRadioIdAt: index => getRadioByIndex(index).getId(),
+    getRadioIdAt: index => {
+      const radioButtonInput = getRadioInputAt(index);
+      return radioButtonInput.id;
+    },
 
     /** Get the value of radio button name at the provided index */
-    getRadioName: () => getRadioByIndex(0).getName(),
-  };
-};
-
-const radioButtonDriverFactory = ({ element, eventTrigger, container }) => {
-  const getByDataHook = dataHook =>
-    element.querySelector(`[data-hook="${dataHook}"]`);
-  const label = () => getByDataHook('label');
-
-  return {
-    ...radioDriverFactory({ element, eventTrigger }),
-    /** Simulating a check action by clicking the input element */
-    check: () => element.click(),
-
-    /** Getting the component's label text value */
-    getLabel: () => label().textContent,
-
-    /** Getting the component's label element */
-    getLabelElement: () => label(),
-
-    /** Getting the component's tab-index value */
-    // This method is deprecated and this solution is in order not to break users
-    getTabIndex: () => '1',
-
-    /** Getting the component's content element */
-    getContent: () =>
-      container().querySelector(`[data-hook="${dataHooks.RadioContent}"]`),
+    getRadioName: () => {
+      const radioButtonInput = getRadioInputAt(0);
+      return radioButtonInput.name;
+    },
   };
 };
 

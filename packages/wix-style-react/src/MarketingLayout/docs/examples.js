@@ -41,23 +41,13 @@ export const sizeMedium = `
   />
 `;
 
-export const sizeLarge = `
-  <MarketingLayout
-    title="Large Size Layout"
-    description="This layout is very prominent, use it to promote apps or things like staff featured templates."
-    actions={<Button size="large">Get Started</Button>}
-    size="large"
-    image={<Image/>}
-  />
-`;
-
 export const inverted = `
   <MarketingLayout
     inverted
     title="Inverted Layout"
     description="This layout has an image on the left side."
     actions={<Button size="medium">Get Started</Button>}
-    size="medium"
+    size="small"
     image={<Image/>}
   />
 `;
@@ -164,3 +154,38 @@ export const actions = [
     ),
   },
 ];
+
+export const directions = `
+<Layout>
+  <Cell>
+    <Card>
+      <MarketingLayout
+        direction="horizontal"
+        title="Horizontal Layout"
+        description="In this layout example, the direction of the content is aligned horizontally, from left to right."
+        actions={<Button size="medium">Get Started</Button>}
+        image={
+          <Box width="100%" align="right">
+            <Image width="180px" height="120px" />
+          </Box>
+        }
+      />
+    </Card>
+  </Cell>
+  <Cell>
+    <Card>
+      <MarketingLayout
+        direction="vertical"
+        title="Vertical Layout"
+        description="In this layout example, the direction of the content is aligned vertically, from top to bottom."
+        actions={<Button size="medium">Get Started</Button>}
+        image={
+          <Box width="100%" align="left">
+            <Image width="180px" height="120px" />
+          </Box>
+        }
+      />
+    </Card>
+  </Cell>
+</Layout>
+`;

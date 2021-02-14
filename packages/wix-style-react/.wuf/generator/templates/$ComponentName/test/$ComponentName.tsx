@@ -15,6 +15,7 @@ function <%= componentName %>WithAllProps() {
     <<%= ComponentName %>
       dataHook="dataHook"
       className="className"
+      id="id"
       buttonText="buttonText"
     />
   );

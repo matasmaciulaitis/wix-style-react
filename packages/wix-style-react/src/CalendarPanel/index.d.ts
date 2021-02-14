@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Locale } from 'date-fns';
 
 export interface CalendarPanelProps {
   dataHook?: string;
@@ -13,7 +14,7 @@ export interface CalendarPanelProps {
   showYearDropdown?: boolean;
   showMonthDropdown?: boolean;
   shouldCloseOnSelect?: boolean;
-  locale?: LanguageType | { distanceInWords?: object; format?: object };
+  locale?: LanguageType | Locale;
   presets?:
     | PresetType[]
     | { selectedDays?: SelectedDaysType; id?: string | number };

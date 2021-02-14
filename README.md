@@ -14,3 +14,4 @@ This repository is a monorepo managed by lerna.
 It contains the following UI libraries:
 
 * [`wix-style-react`](packages/wix-style-react/README.md)
+* [`wix-ui-tpa`](packages/wix-ui-tpa/README.md)

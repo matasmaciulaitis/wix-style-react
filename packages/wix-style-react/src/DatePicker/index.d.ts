@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Locale } from 'date-fns';
 import { CalendarProps } from '../Calendar';
 import { PopoverCommonProps } from '../common';
 
@@ -9,7 +10,7 @@ export interface DatePickerProps extends CalendarProps {
   inputProps?: {};
   dateFormat?: string | Function;
   dateFormatV2?: string | Function;
-  locale?: string | { distanceInWords?: {}; format?: {} };
+  locale?: string | Locale;
   disabled?: boolean;
   inputDataHook?: string;
   calendarDataHook?: string;

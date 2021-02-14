@@ -4,7 +4,7 @@ import MarketingLayout from '../MarketingLayout';
 import Button from '../../Button';
 import Box from '../../Box';
 import Badge from '../../Badge';
-import { SIZES } from '../constants';
+import { SIZES, DIRECTIONS } from '../constants';
 
 const customImageNode = (
   <Box backgroundColor="R00" width="100%" height="200px" />
@@ -13,6 +13,7 @@ const customImageUrl =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM8Exv7FAAF8AJtZv8v8wAAAABJRU5ErkJggg==';
 
 const sizes = Object.values(SIZES);
+const directions = Object.values(DIRECTIONS);
 
 const commonProps = {
   title: 'Marketing Card Title',
@@ -93,6 +94,13 @@ const tests = [
         },
       },
     ],
+  },
+  {
+    describe: 'Direction',
+    its: directions.map(direction => ({
+      it: direction,
+      props: { direction, image: customImageNode },
+    })),
   },
   {
     describe: 'Inverted Layout',

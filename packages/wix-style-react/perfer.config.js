@@ -22,7 +22,7 @@ const javascriptFiles = [
   ['Breadcrumbs.bundle.min.js', 38],
   ['BrowserPreviewWidget.bundle.min.js', 8],
   ['Button.bundle.min.js', 40],
-  ['Calendar.bundle.min.js', 121],
+  ['Calendar.bundle.min.js', 125],
   ['CalendarPanel.bundle.min.js', 125],
   ['CalendarPanelFooter.bundle.min.js', 127],
   ['Card.bundle.min.js', 42],
@@ -173,6 +173,7 @@ const javascriptFiles = [
   ['VerticalTabsItem.bundle.min.js', 40],
   ['WarningIndicator.bundle.min.js', 40],
   ['WixStyleReactProvider.bundle.min.js', 10],
+  ['PulseAnimation.bundle.min.js', 10],
 ];
 
 const cssFiles = [

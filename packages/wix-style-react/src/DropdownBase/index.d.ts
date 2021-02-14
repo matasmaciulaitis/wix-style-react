@@ -37,6 +37,7 @@ export interface DropdownBaseProps {
   infiniteScroll?: boolean;
   loadMore?: (page: number) => void;
   hasMore?: boolean;
+  focusOnOption?: DropdownLayoutProps['focusOnOption'];
 }
 
 export default class DropdownBase extends React.PureComponent<DropdownBaseProps> {}

@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface <%= ComponentName %>Props {
   dataHook?: string;
   className?: string;
+  id?: string;
   buttonText?: string;
 }
 

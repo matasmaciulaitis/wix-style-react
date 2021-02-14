@@ -32,6 +32,7 @@ export interface DropdownLayoutProps {
   hasMore?: boolean;
   markedOption?: boolean | string | number;
   overflow?: Overflow;
+  focusOnOption?: string | number;
 }
 
 export type Overflow = 'visible' | 'hidden' | 'scroll' | 'auto';

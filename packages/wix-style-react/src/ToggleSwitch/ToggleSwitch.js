@@ -26,8 +26,14 @@ class ToggleSwitch extends React.PureComponent {
   static displayName = 'ToggleSwitch';
 
   static propTypes = {
-    /** Applied as data-hook HTML attribute that can be used in the tests*/
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+
+    /** A css class to be applied to the component's root element */
+    className: PropTypes.string,
+
+    /** A Unique identifier for the root element. */
+    id: PropTypes.string,
 
     /** ToggleSwitch skin */
     skin: PropTypes.oneOf(['standard', 'success', 'error']),
@@ -40,9 +46,6 @@ class ToggleSwitch extends React.PureComponent {
 
     /** is Toggle Switch disabled */
     disabled: PropTypes.bool,
-
-    /** Toggle Switch id */
-    id: PropTypes.string,
 
     /** onChange event */
     onChange: PropTypes.func,
@@ -57,11 +60,10 @@ class ToggleSwitch extends React.PureComponent {
   };
 
   render() {
-    // Should not allow inline styles
     const {
       size,
       skin,
-      styles: stylesProp,
+      styles: stylesProp, // Should not allow inline styles (applied in core component)
       dataHook,
       className,
       ...rest

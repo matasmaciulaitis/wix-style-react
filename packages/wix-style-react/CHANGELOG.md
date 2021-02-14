@@ -14,7 +14,37 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+
 ## Next
+
+### Fixed
+- `<PulseAnimation/>` - fix click on children [#6742](https://github.com/wix/wix-style-react/pull/6742)
+
+## 9.80.0 - 2021-02-10
+### Added
+- `Themes | Business Dashboard` - add `<CounterBadge/>` stylable rule to the theme  [#6721](https://github.com/wix/wix-style-react/pull/6721)
+- `<MarketingLayout/>` - adding `direction` prop [#6691](https://github.com/wix/wix-style-react/pull/6691)
+- `<PulseAnimation/>` - add new component [#6656](https://github.com/wix/wix-style-react/pull/6656)
+
+### Fixed
+- `<Animate/>` - rename prop (internal component) [#6730](https://github.com/wix/wix-style-react/pull/6730)
+
+## 9.79.0 - 2021-02-08
+### Added
+- `<CounterBadge/>` - Add style for newDashboard theme [#6710](https://github.com/wix/wix-style-react/pull/6710)
+- `<Calendar/>` - add an onMonthChange prop (register a listener to setMonth event) [#6716](https://github.com/wix/wix-style-react/pull/6716)
+
+### Fixed
+- `<RadioGroup>` - reverting changes from previous version [#6719](https://github.com/wix/wix-style-react/pull/6719)
+
+## 9.78.1 - 2021-02-07
+### Fixed
+- `<RadioGroup/>` - [testkit] - fix legacy testkit [#6712](https://github.com/wix/wix-style-react/pull/6712)
+- Readme - fix link to Storybook [#6711](https://github.com/wix/wix-style-react/pull/6711)
+
+## 9.78.0 - 2021-02-04
+### Changed
+- `<DatePicker/>` - implement localization fixes [#6684](https://github.com/wix/wix-style-react/pull/6684)
 
 ### Fixed
 - `<Tooltip/>` - scope classnames targeting to immediate child [#6700](https://github.com/wix/wix-style-react/pull/6700)

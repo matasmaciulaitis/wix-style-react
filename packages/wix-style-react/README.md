@@ -1,6 +1,6 @@
 <p align="center">
 
-  <a href="https://wix.github.com/wix-style-react">
+  <a href="www.wix-style-react.com">
       <img
       src="https://raw.githubusercontent.com/wix/wix-style-react/master/packages/wix-style-react/.storybook/logo.svg?sanitize=true" alt="Wix Style React" width="400">
   </a>

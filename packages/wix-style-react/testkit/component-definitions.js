@@ -860,4 +860,11 @@ export default {
       children: () => null,
     },
   },
+
+  PulseAnimation: {
+    props: {
+      children: <div />,
+      color: 'B10',
+    },
+  },
 };

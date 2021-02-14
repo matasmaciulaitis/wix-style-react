@@ -14,7 +14,7 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
   contributor:
     name: Label contributors
-    if: ${{ !contains('EgoziE, shlomitc, argshook, mykas, TalZa1810, gendeld, sivanharel, bamai, Zivilekin, egidijusja, roibWix, daugerdas, shahata, mosheKenshoo, jonathanadler', github.actor) }}
+    if: ${{ !contains('EgoziE, shlomitc, argshook, mykas, TalZa1810, gendeld, sivanharel, bamai, Zivilekin, egidijusja, roibWix, daugerdas, shahata, mosheKenshoo, jonathanadler, nitayneeman', github.actor) }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/labeler@main

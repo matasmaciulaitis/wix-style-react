@@ -6,7 +6,6 @@ import { dataHooks } from './constants';
 import { st, classes } from './FormField.st.css';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 import { WixStyleReactContext } from '../WixStyleReactProvider/context';
-import deprecationLog from '../utils/deprecationLog';
 
 const PLACEMENT = {
   top: 'top',

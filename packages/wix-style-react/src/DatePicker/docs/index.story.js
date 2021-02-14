@@ -11,28 +11,23 @@ import {
   importExample,
   divider,
   title,
-  description,
-  code as baseCode,
   example as baseExample,
 } from 'wix-storybook-utils/dist/src/Sections';
 import * as examples from './examples';
 import allComponents from '../../../stories/utils/allComponents';
-import { columns } from 'wix-storybook-utils/Sections';
 import { commonPopoverPropsExample } from '../../../stories/utils/playgroundUtils';
 import { convertTokens } from '@date-fns/upgrade/v2';
 
-const example = config => baseExample({ components: allComponents, ...config });
+const example = config =>
+  baseExample({
+    components: allComponents,
+    ...config,
+  });
 
 const defaultValue = new Date('2017/05/01');
 const today = new Date();
 const tomorrow = new Date();
 tomorrow.setDate(today.getDate() + 1);
-
-const code = config =>
-  baseCode({
-    components: allComponents,
-    ...config,
-  });
 
 export default {
   category: storySettings.category,
@@ -145,7 +140,7 @@ export default {
           }),
 
           // TODO - disabled until https://github.com/wix/wix-style-react/issues/4157 is fixed
-          // code({
+          // example({
           //   title: 'Range Selection',
           //   source: examples.rangeSelection,
           // }),

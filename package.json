@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "experimentalMonorepoPublish": true,
   "scripts": {
+    "clean": "lerna clean",
     "postinstall": "lerna bootstrap --no-ci",
     "build": "lerna run build --scope wix-style-react",
     "test1:unit": "lerna run --scope wix-style-react test1:unit",
@@ -14,14 +15,17 @@
     "test6:sanity": "lerna run --scope wix-style-react test6:sanity",
     "test7:performance": "lerna run --scope wix-style-react test7:performance",
     "test8:chromatic": "lerna run --scope wix-style-react-test-runtime test",
-    "test9": "#",
-    "test10": "#",
+    "test9": "lerna run build --scope wix-ui-tpa && lerna run storybook:release --scope wix-ui-tpa && lerna run test --scope wix-ui-tpa",
+    "test10": "lerna run build --scope wix-ui-tpa && lerna run test:eyes-storybook",
     "test11": "#",
     "test12": "#",
     "test13": "#",
     "test14": "#",
     "test15": "#",
-    "test16": "#"
+    "test16": "#",
+    "start:wut": "lerna run --scope wix-ui-tpa start --stream",
+    "test:wut": "lerna run test --scope wix-ui-tpa --stream && lerna run --scope wix-ui-tpa test:eyes-storybook --stream",
+    "wut": "lerna run --scope wix-ui-tpa --stream"
   },
   "devDependencies": {
     "lerna": "^3.22.1"

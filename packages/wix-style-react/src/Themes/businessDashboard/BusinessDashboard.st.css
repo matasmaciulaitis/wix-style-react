@@ -22,6 +22,11 @@
 }
 
 :import {
+  -st-from: "../../CounterBadge/CounterBadge.st.css";
+  -st-default: CounterBadge;
+}
+
+:import {
   -st-from: "../../LinearProgressBar/LinearProgressBar.st.css";
   -st-default: LinearProgressBar;
 }
@@ -357,6 +362,11 @@
   -st-default: CustomModalLayoutOverrides;
 }
 
+:import {
+  -st-from: "./components/CounterBadge.st.css";
+  -st-default: CounterBadgeOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -458,6 +468,9 @@
   }
   CustomModalLayout {
     -st-mixin: CustomModalLayoutOverrides();
+  }
+  CounterBadge {
+    -st-mixin: CounterBadgeOverrides();
   }
 }
 

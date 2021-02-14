@@ -135,6 +135,9 @@ class DropdownBase extends React.PureComponent {
 
     /** Whether there are more items to be loaded. */
     hasMore: PropTypes.bool,
+
+    /** Scroll to the option on opening the dropdown */
+    focusOnOption: PropTypes.number,
   };
 
   static defaultProps = {
@@ -353,6 +356,7 @@ class DropdownBase extends React.PureComponent {
       infiniteScroll,
       loadMore,
       hasMore,
+      focusOnOption,
     } = this.props;
 
     const { open, selectedId } = this.state;
@@ -411,6 +415,7 @@ class DropdownBase extends React.PureComponent {
               infiniteScroll={infiniteScroll}
               loadMore={loadMore}
               hasMore={hasMore}
+              focusOnOption={focusOnOption}
             />
           </div>
         </Popover.Content>

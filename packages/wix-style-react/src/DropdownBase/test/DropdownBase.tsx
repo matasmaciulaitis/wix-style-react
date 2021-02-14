@@ -48,8 +48,9 @@ function DropdownBaseWithAllProps() {
       fluid
       focusOnSelectedOption
       infiniteScroll
-      loadMore={()=>{}}
+      loadMore={() => {}}
       hasMore
+      focusOnOption={2}
     />
   );
 }

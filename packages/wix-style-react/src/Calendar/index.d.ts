@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Locale } from 'date-fns';
 
 export interface dateIndicationProps {
   date: Date;
@@ -11,6 +12,7 @@ export interface CalendarProps {
   numOfMonths?: 1 | 2;
   className?: string;
   onChange: Function;
+  onMonthChange?: (monthStart: Date) => void;
   onClose?: Function;
   excludePastDates?: boolean;
   filterDate?: Function;
@@ -25,7 +27,7 @@ export interface CalendarProps {
   showYearDropdown?: boolean;
   showMonthDropdown?: boolean;
   shouldCloseOnSelect?: boolean;
-  locale?: string | { distanceInWords?: {}; format?: {} };
+  locale?: string | Locale;
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   rtl?: boolean;
   dateIndication?: React.FC<dateIndicationProps>;

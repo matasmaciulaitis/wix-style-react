@@ -2,11 +2,12 @@ import * as React from 'react';
 
 export interface ToggleSwitchProps {
   dataHook?: string;
+  className?: string;
+  id?: string;
   skin?: ToggleSwitchSkin;
   size?: ToggleSwitchSize;
   checked?: boolean;
   disabled?: boolean;
-  id?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   tabIndex?: number;
 }

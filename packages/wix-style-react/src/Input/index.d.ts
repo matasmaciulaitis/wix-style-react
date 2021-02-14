@@ -2,13 +2,15 @@ import * as React from 'react';
 import { TooltipProps } from '../Tooltip';
 
 export interface InputProps {
+  dataHook?: string;
+  className?: string;
+  id?: string;
   ariaControls?: string;
   ariaDescribedby?: string;
   ariaLabel?: string;
   autoFocus?: boolean;
   autoSelect?: boolean;
   autocomplete?: string;
-  dataHook?: string;
   defaultValue?: string;
   disabled?: boolean;
   status?: InputStatus;
@@ -16,11 +18,9 @@ export interface InputProps {
   hideStatusSuffix?: boolean;
   forceFocus?: boolean;
   forceHover?: boolean;
-  id?: string;
   maxLength?: number;
   menuArrow?: boolean;
   clearButton?: boolean;
-  className?: string;
   name?: string;
   border?: 'standard' | 'round' | 'bottomLine';
   noLeftBorderRadius?: boolean;

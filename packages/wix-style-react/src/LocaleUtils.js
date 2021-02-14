@@ -25,6 +25,37 @@ import no from 'date-fns/locale/nb';
 import { convertTokens } from '@date-fns/upgrade/v2';
 
 const MONTHS_INDEXES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+export const CAPITALIZED_MONTH_LANGUAGES = [
+  'es',
+  'de',
+  'fr',
+  'ru',
+  'it',
+  'uk',
+  'nl',
+  'tr',
+  'pl',
+  'cs',
+  'no',
+  'pt',
+];
+
+export function capitalizeFirstLetter(str) {
+  if (!str) {
+    return undefined;
+  }
+  return str[0].toLocaleUpperCase() + str.substring(1);
+}
+
+// Capitalize first letter of month in certain languages
+const capitalizeMonth = (month, locale) => {
+  const shouldCapitalizeMonth = CAPITALIZED_MONTH_LANGUAGES.includes(locale);
+
+  if (shouldCapitalizeMonth) {
+    return capitalizeFirstLetter(month);
+  }
+  return month;
+};
 
 // Add a symbol indicating number is year in certain languages
 export const YEAR_INDICATORS = {
@@ -77,9 +108,12 @@ export const formatDateV2 = (date, dateFormatV2, locale) =>
 
 export default locale => ({
   formatMonthTitle: date =>
-    format(date, 'LLLL yyyy', {
-      locale: getLocale(locale),
-    }),
+    capitalizeMonth(
+      format(date, 'LLLL yyyy', {
+        locale: getLocale(locale),
+      }),
+      locale,
+    ),
 
   formatWeekdayShort: index =>
     format(setDay(new Date(), index), 'iiiiii', {
@@ -100,8 +134,11 @@ export default locale => ({
 
   getMonths: () =>
     MONTHS_INDEXES.map(i =>
-      format(new Date(2018, i), 'LLLL', {
-        locale: getLocale(locale),
-      }),
+      capitalizeMonth(
+        format(new Date(2018, i), 'LLLL', {
+          locale: getLocale(locale),
+        }),
+        locale,
+      ),
     ),
 });

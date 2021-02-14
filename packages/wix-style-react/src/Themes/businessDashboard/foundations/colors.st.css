@@ -69,4 +69,7 @@
   /* Shadows */
   S4: calc_rgba(value(D10), 0.2);
   S5: calc_rgba(value(D10), 0.16);
+
+  /* Counter Badge */
+  generalCounterBadgeBackgroundColor: #42454C;
 }

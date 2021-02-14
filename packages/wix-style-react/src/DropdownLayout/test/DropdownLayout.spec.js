@@ -987,6 +987,62 @@ describe('DropdownLayout', () => {
         expect(spyOnOptionMarked).toHaveBeenLastCalledWith(initialOptions[0]);
       });
     });
+
+    describe('option focusOnOption', () => {
+      const initialOptions = [
+        { id: 0, value: 'a 1' },
+        { id: 1, value: 'a 2' },
+        { id: 2, value: 'a 3' },
+        { id: 3, value: 'a 4' },
+      ];
+
+      const component = props => (
+        <DropdownLayout options={initialOptions} {...props} />
+      );
+
+      it('should not mark any option by default', async () => {
+        const { driver } = render(component());
+        expect(await driver.markedOption()).toBe(null);
+      });
+
+      it('should mark fourth option when providing id', async () => {
+        const { driver, rerender } = render(component({ focusOnOption: 1 }));
+
+        expect(await driver.markedOption()).toBe('a 2');
+
+        const setProps = props => rerender(component(props));
+        setProps({ focusOnOption: 3 });
+
+        expect(await driver.markedOption()).toBe('a 4');
+      });
+
+      it('should call onOptionMarked when focusing an option', async () => {
+        const spyOnOptionMarked = jest.fn();
+        const initialProps = {
+          focusOnOption: 1,
+          onOptionMarked: spyOnOptionMarked,
+        };
+        const { driver, rerender } = render(component(initialProps));
+        const setProps = props => rerender(component(props));
+        setProps({ ...initialProps, focusOnOption: 3 });
+
+        expect(await driver.markedOption()).toBe('a 4');
+        expect(spyOnOptionMarked).toHaveBeenLastCalledWith(initialOptions[3]);
+      });
+
+      it('should not mark any option when providing id is null', async () => {
+        const spyOnOptionMarked = jest.fn();
+        const { driver, rerender } = render(
+          component({ focusOnOption: 1, onOptionMarked: spyOnOptionMarked }),
+        );
+        const setProps = props => rerender(component(props));
+        setProps({ focusOnOption: undefined });
+
+        expect(await driver.markedOption()).toBe(null);
+        // Should be called only once and not a second time after removing the focus.
+        expect(spyOnOptionMarked).toHaveBeenCalledTimes(1);
+      });
+    });
   }
 
   // These tests are not driver related, so no need to test them both sync and async

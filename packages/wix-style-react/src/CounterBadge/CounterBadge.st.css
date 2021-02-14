@@ -10,14 +10,13 @@
 
 .root {
   -st-states: longNumber, custom, showShadow,
-    skin(enum(standard, danger, warning, urgent, success, neutralStandard, light)),
+    skin(enum(general, standard, danger, warning, urgent, success, neutralStandard, light)),
     size(enum(small,medium));
   border-radius: 18px;
   color: value(D80);
   display: flex;
   width: fit-content;
   text-align: center;
-  background-color: value(D20);
   box-sizing: content-box;
 }
 
@@ -35,6 +34,10 @@
 
 .root:size(medium):longNumber {
   padding: 0 6px 0 8px;
+}
+
+.root:skin(general) {
+  background-color: value(D20);
 }
 
 .root:skin(standard) {

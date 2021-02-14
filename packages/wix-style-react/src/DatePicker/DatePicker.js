@@ -322,10 +322,16 @@ DatePicker.propTypes = {
       'zh',
       'th',
       'cs',
+      'uk',
     ]),
     PropTypes.shape({
-      distanceInWords: PropTypes.object,
-      format: PropTypes.object,
+      code: PropTypes.string,
+      formatDistance: PropTypes.func,
+      formatRelative: PropTypes.func,
+      localize: PropTypes.object,
+      formatLong: PropTypes.object,
+      match: PropTypes.object,
+      options: PropTypes.object,
     }),
   ]),
 
