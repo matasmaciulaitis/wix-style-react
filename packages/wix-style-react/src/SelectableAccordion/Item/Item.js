@@ -163,12 +163,12 @@ export default class SelectableAccordionItem extends React.PureComponent {
               {this._renderTitle({ reducedSpacingAndImprovedLayout })}
               {this._renderSubtitle()}
             </div>
-            <div className={classes.content}>
+            {this.props.content && <div className={classes.content}>
               <Collapse open={open}>
                 <div className={classes.inner}>{this._renderContent()}</div>
               </Collapse>
               <Divider className={classes.divider} />
-            </div>
+            </div>}
           </div>
         )}
       </WixStyleReactContext.Consumer>
