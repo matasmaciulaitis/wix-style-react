@@ -131,7 +131,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
 
   render() {
     const { hovered } = this.state;
-    const { open, verticalPadding } = this.props;
+    const { content, open, verticalPadding } = this.props;
 
     return (
       <WixStyleReactContext.Consumer>
@@ -163,7 +163,7 @@ export default class SelectableAccordionItem extends React.PureComponent {
               {this._renderTitle({ reducedSpacingAndImprovedLayout })}
               {this._renderSubtitle()}
             </div>
-            {this.props.content && <div className={classes.content}>
+            {content && <div className={classes.content}>
               <Collapse open={open}>
                 <div className={classes.inner}>{this._renderContent()}</div>
               </Collapse>
