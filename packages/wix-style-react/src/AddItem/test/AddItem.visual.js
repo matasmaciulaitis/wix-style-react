@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import AddItem from '../index';
 import { Cell, Layout } from '../../Layout';
 import Box from '../../Box';
+import addItemIllustration from '../../assets/generic_add_item_illustration.svg';
 
 const defaultProps = {
   label: 'String',
@@ -152,6 +153,15 @@ const tests = [
       {
         it: 'enabled',
         props: { subtitle: 'Add Item subtitle' },
+      },
+    ],
+  },
+  {
+    describe: 'illustration',
+    its: [
+      {
+        it: 'enabled',
+        props: { illustration: addItemIllustration, size: 'large' },
       },
     ],
   },
