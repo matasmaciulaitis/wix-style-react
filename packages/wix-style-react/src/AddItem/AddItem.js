@@ -17,6 +17,7 @@ import { dataHooks } from './constants';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 
 import { st, classes } from './AddItem.st.css';
+import { isString } from '../utils/StringUtils';
 
 const AddItemButtonIcons = {
   tiny: ({ className }) => <Add className={className} width="26" height="26" />,
@@ -91,8 +92,8 @@ class AddItem extends Component {
     /** Subtitle of the component */
     subtitle: PropTypes.node,
 
-    /** The illustration src */
-    illustration: PropTypes.string,
+    /** The icon image src or node */
+    icon: PropTypes.node,
   };
 
   static defaultProps = {
@@ -103,37 +104,41 @@ class AddItem extends Component {
     removePadding: false,
   };
 
-  _renderIllustration = () => {
-    const { size, illustration } = this.props;
-
-    return (
-      <Image
-        className={classes.illustration}
-        fit="contain"
-        src={illustration}
-        {...illustrationDimensionsBySize[size]}
-      />
-    );
-  };
-
-  _renderAddIcon = () => {
-    const { size, theme, showIcon } = this.props;
+  _renderDefaultIcon = () => {
+    const { size, theme } = this.props;
 
     const isImageIcon = theme === 'image';
 
     return (
-      showIcon && (
-        <ThemeProviderConsumerBackwardCompatible
-          defaultIcons={{
-            AddItemButton: AddItemButtonIcons,
-          }}
-        >
-          {({ icons }) => {
-            const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
-            return <Icon className={classes.icon} />;
-          }}
-        </ThemeProviderConsumerBackwardCompatible>
-      )
+      <ThemeProviderConsumerBackwardCompatible
+        defaultIcons={{
+          AddItemButton: AddItemButtonIcons,
+        }}
+      >
+        {({ icons }) => {
+          const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
+          return <Icon className={classes.icon} />;
+        }}
+      </ThemeProviderConsumerBackwardCompatible>
+    );
+  };
+
+  _renderIcon = () => {
+    const { size, icon } = this.props;
+
+    if (!icon) {
+      return this._renderDefaultIcon();
+    }
+
+    return isString(icon) ? (
+      <Image
+        className={classes.illustration}
+        fit="contain"
+        src={icon}
+        {...illustrationDimensionsBySize[size]}
+      />
+    ) : (
+      icon
     );
   };
 
@@ -183,7 +188,7 @@ class AddItem extends Component {
   };
 
   _renderContent = () => {
-    const { theme, alignItems, size, disabled, illustration } = this.props;
+    const { theme, alignItems, size, disabled, showIcon } = this.props;
 
     return (
       <div
@@ -195,7 +200,7 @@ class AddItem extends Component {
         })}
       >
         <div className={st(classes.content, { size })}>
-          {illustration ? this._renderIllustration() : this._renderAddIcon()}
+          {showIcon && this._renderIcon()}
           {this._renderText()}
         </div>
         {this._renderSubtitle()}
