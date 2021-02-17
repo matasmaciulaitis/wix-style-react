@@ -54,7 +54,9 @@ class RadioGroup extends React.PureComponent {
           const disabled =
             this.props.disabled ||
             disabledRadios.indexOf(radio.props.value) !== -1;
-          const radioDataHook = `${dataHooks.RadioItem}-${radio.props.value}`;
+          const radioDataHook = `${
+            radio.props.dataHook ? radio.props.dataHook : dataHooks.RadioItem
+          }-${radio.props.value}`;
           return (
             <div
               className={st(classes.optionContainer, {
@@ -64,6 +66,7 @@ class RadioGroup extends React.PureComponent {
                 disabled,
               })}
               data-hook={dataHooks.RadioOptionContainer}
+              data-custom-hook={radio.props.dataHook}
               style={this._getSpacing(index)}
             >
               <div
@@ -76,7 +79,7 @@ class RadioGroup extends React.PureComponent {
                     padding: selectionAreaPadding,
                   }}
                   className={classes.radio}
-                  dataHook={radio.props.dataHook || radioDataHook}
+                  dataHook={radioDataHook}
                   value={radio.props.value}
                   name={radioName}
                   id={uniqueId(`${radioName}_`)}

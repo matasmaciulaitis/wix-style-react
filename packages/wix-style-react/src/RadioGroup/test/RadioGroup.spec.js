@@ -168,6 +168,26 @@ describe(RadioGroup.displayName, () => {
       });
     });
 
+    describe('RadioGroup.Radio', () => {
+      it('selectByValue should work with custom dataHook applied', async () => {
+        const CustomRadioGroup = () => (
+          <RadioGroup>
+            <RadioGroup.Radio dataHook="custom-12" value="1">
+              Option 1
+            </RadioGroup.Radio>
+            <RadioGroup.Radio dataHook="custom-13" value="2">
+              Option 2
+            </RadioGroup.Radio>
+          </RadioGroup>
+        );
+
+        const { driver } = createDriver(<CustomRadioGroup />);
+
+        await driver.selectByValue('1');
+        expect(await driver.getSelectedValue()).toBe(null);
+      });
+    });
+
     describe('radio legacy drivers', () => {
       const RenderRadioGroup = ({ label, ...props }) => (
         <RadioGroup>
