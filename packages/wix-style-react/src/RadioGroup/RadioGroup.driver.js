@@ -1,9 +1,8 @@
 import toArray from 'lodash/toArray';
-import { fireEvent } from '@testing-library/react';
 import radioDriverFactory from '../Radio/Radio.driver';
 import { dataHooks, dataAttr } from './constants';
 
-const radioGroupDriverFactory = ({ element }) => {
+const radioGroupDriverFactory = ({ element, eventTrigger }) => {
   const getOptionContainer = () =>
     element.querySelector(`[data-hook="${dataHooks.RadioOptionContainer}"]`);
 
@@ -25,7 +24,7 @@ const radioGroupDriverFactory = ({ element }) => {
     ).map(radio =>
       radioButtonDriverFactory({
         element: radio,
-        eventTrigger: fireEvent,
+        eventTrigger,
         container: getOptionContainer,
       }),
     );
@@ -37,7 +36,7 @@ const radioGroupDriverFactory = ({ element }) => {
       element: element.querySelector(
         `[data-hook="${getRadioDataHookBase()}-${value}"]`,
       ),
-      eventTrigger: fireEvent,
+      eventTrigger,
       container: getOptionContainer,
     });
 
