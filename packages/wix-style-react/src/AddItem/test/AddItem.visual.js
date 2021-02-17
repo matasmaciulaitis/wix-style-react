@@ -161,7 +161,7 @@ const tests = [
     its: [
       {
         it: 'enabled',
-        props: { illustration: addItemIllustration, size: 'large' },
+        props: { icon: addItemIllustration, size: 'large' },
       },
     ],
   },
