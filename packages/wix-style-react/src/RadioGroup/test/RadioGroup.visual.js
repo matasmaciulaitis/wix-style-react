@@ -55,6 +55,14 @@ const tests = [
           display: 'horizontal',
         },
       },
+      {
+        it: 'selectionArea horizontal with spacing',
+        props: {
+          selectionArea: 'always',
+          display: 'horizontal',
+          selectionAreaPadding: '20px',
+        },
+      },
     ],
   },
   {
@@ -102,6 +110,21 @@ const tests = [
           },
           3: {
             content: '3rd content',
+          },
+        },
+      },
+      {
+        it: 'Horizontal content with margin',
+        props: {
+          selectionArea: 'always',
+          display: 'horizontal',
+        },
+        radioButtonProps: {
+          1: {
+            content: <Box margin="15px">Details for option 1</Box>,
+          },
+          2: {
+            content: <Box margin="15px">Details for option 2</Box>,
           },
         },
       },

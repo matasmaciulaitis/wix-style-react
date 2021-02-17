@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
-import classNames from 'classnames';
-import RadioButton from './RadioButton/RadioButton';
-import { classes } from './RadioGroup.st.css';
+import Radio from '../Radio/Radio';
+import { st, classes } from './RadioGroup.st.css';
 import { dataHooks } from './constants';
 
 /**
@@ -12,21 +11,25 @@ import { dataHooks } from './constants';
  * similar to HTML `<input type="radio"/>` except you don't need to handle `name` or click handlers
  */
 class RadioGroup extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.name = props.name || uniqueId('RadioGroup_');
+  _getSpacing(index) {
+    const { display: orientation, spacing } = this.props;
+    return orientation === 'vertical' && index > 0
+      ? { marginTop: spacing }
+      : orientation === 'horizontal' && index > 0
+      ? { marginInlineStart: spacing }
+      : {};
   }
 
   render() {
     const {
       dataHook,
+      className,
+      name,
       onChange,
-      disabled,
       disabledRadios,
       value,
       vAlign,
-      display,
-      spacing,
+      display: orientation,
       lineHeight,
       selectionArea,
       selectionAreaSkin,
@@ -35,44 +38,67 @@ class RadioGroup extends React.PureComponent {
     return (
       <div
         data-hook={dataHook}
-        className={classNames(classes[display], {
-          [classes.selectionAreaAlways]: selectionArea === 'always',
-          [classes.selectionAreaHover]: selectionArea === 'hover',
-          [classes.selectionAreaFilled]: selectionAreaSkin === 'filled',
-          [classes.selectionAreaOutlined]: selectionAreaSkin === 'outlined',
-          [classes.vertical]: display === 'vertical',
-        })}
-        data-display={display}
+        className={st(
+          classes.root,
+          {
+            orientation,
+          },
+          className,
+        )}
+        data-display={orientation}
+        data-lineheight={lineHeight}
       >
-        {React.Children.map(this.props.children, (radio, index) => (
-          <div
-            className={classNames(classes.optionWrapper)}
-            data-hook={dataHooks.RadioGroupRadioContainer}
-            style={
-              display === 'vertical' && index > 0 ? { marginTop: spacing } : {}
-            }
-          >
-            <RadioGroup.Radio
-              dataHook={radio.props.dataHook}
-              value={radio.props.value}
-              name={this.name}
-              onChange={onChange}
-              vAlign={vAlign}
-              disabled={
-                disabled || disabledRadios.indexOf(radio.props.value) !== -1
-              }
-              checked={radio.props.value === value}
-              selectionArea={selectionArea}
-              selectionAreaSkin={selectionAreaSkin}
-              selectionAreaPadding={selectionAreaPadding}
-              icon={radio.props.icon}
-              lineHeight={lineHeight}
-              content={radio.props.content}
+        {React.Children.map(this.props.children, (radio, index) => {
+          const checked = radio.props.value === value;
+          const radioName = radio.props.name || name;
+          const disabled =
+            this.props.disabled ||
+            disabledRadios.indexOf(radio.props.value) !== -1;
+          const radioDataHook = `${dataHooks.RadioItem}-${radio.props.value}`;
+          return (
+            <div
+              className={st(classes.optionContainer, {
+                selectionArea,
+                selectionAreaSkin,
+                checked,
+                disabled,
+              })}
+              data-hook={dataHooks.RadioOptionContainer}
+              style={this._getSpacing(index)}
             >
-              {radio.props.children}
-            </RadioGroup.Radio>
-          </div>
-        ))}
+              <div
+                className={classes.radioContainer}
+                data-hook={dataHooks.RadioContainer}
+              >
+                <Radio
+                  style={{
+                    minHeight: lineHeight,
+                    padding: selectionAreaPadding,
+                  }}
+                  className={classes.radio}
+                  dataHook={radio.props.dataHook || radioDataHook}
+                  value={radio.props.value}
+                  name={radioName}
+                  id={uniqueId(`${radioName}_`)}
+                  onChange={() => onChange(radio.props.value)}
+                  alignItems={vAlign}
+                  disabled={disabled}
+                  checked={checked}
+                  label={radio.props.children}
+                />
+              </div>
+
+              {radio.props.content && (
+                <div
+                  className={classes.content}
+                  data-hook={dataHooks.RadioContent}
+                >
+                  {radio.props.content}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -81,6 +107,9 @@ class RadioGroup extends React.PureComponent {
 RadioGroup.propTypes = {
   /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
+
+  /** A css class to be applied to the component's root element */
+  className: PropTypes.string,
 
   /** Callback function when user selects a different value */
   onChange: PropTypes.func,
@@ -111,13 +140,8 @@ RadioGroup.propTypes = {
   /** Selection area padding emphasises the padding of the clickable area, empty means default padding, not empty overrides the default padding*/
   selectionAreaPadding: PropTypes.string,
 
-  children: PropTypes.arrayOf((propValue, key) => {
-    if (propValue[key].type.displayName !== RadioButton.displayName) {
-      return new Error(
-        `RadioGroup: Invalid Prop children was given. Validation failed on child number ${key}`,
-      );
-    }
-  }),
+  /** Sets RadioGroup items. Recommended to use with RadioGroup.Radio */
+  children: PropTypes.node,
 
   /** Vertical spacing between radio buttons */
   spacing: PropTypes.string,
@@ -138,9 +162,10 @@ RadioGroup.defaultProps = {
   lineHeight: '24px',
   selectionArea: 'none',
   selectionAreaSkin: 'filled',
+  name: uniqueId('RadioGroup_'),
 };
 
-RadioGroup.Radio = RadioButton;
+RadioGroup.Radio = Radio;
 
 RadioGroup.displayName = 'RadioGroup';
 

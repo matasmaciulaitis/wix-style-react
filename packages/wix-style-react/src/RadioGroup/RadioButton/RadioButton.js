@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
-import { st, classes } from '../RadioGroup.st.css';
+import { st, classes } from './RadioButton.st.css';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 import Text from '../../Text';
 import { dataHooks } from './constants';

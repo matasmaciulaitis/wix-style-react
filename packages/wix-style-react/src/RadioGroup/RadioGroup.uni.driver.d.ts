@@ -1,11 +1,6 @@
 import { BaseUniDriver } from 'wix-ui-test-utils/unidriver';
 import { RadioButtonUniDriver } from './RadioButton/RadioButton.uni.driver';
 
-export function createRadioButtonsGetter(
-  base: BaseUniDriver,
-  body: HTMLElement,
-): Function;
-
 export interface RadioGroupUniDriver extends BaseUniDriver {
   selectByValue: (value: string | number) => Promise<void>;
   selectByIndex: (index: number) => Promise<void>;

@@ -1,52 +1,49 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { createRadioButtonsGetter } from './sharedDriverMethods';
-import { dataHooks as radioButtonDataHooks } from './RadioButton/constants';
+import { radioUniDriverFactory } from '../Radio/Radio.uni.driver';
+import { dataHooks } from './constants';
 
 export const radioGroupUniDriverFactory = (base, body) => {
-  const getRadioButtons = createRadioButtonsGetter(base, body);
+  const getOptionContainer = () =>
+    base.$(`[data-hook="${dataHooks.RadioOptionContainer}"]`);
+
+  const getRadios = async () =>
+    await base
+      .$$(`[data-hook^="${dataHooks.RadioItem}-"]`)
+      .map(radio =>
+        radioButtonUniDriverFactory(radio, body, getOptionContainer),
+      );
+
+  const getRadioByValue = async value =>
+    radioButtonUniDriverFactory(
+      base.$(`[data-hook="${dataHooks.RadioItem}-${value}"]`),
+      body,
+      getOptionContainer,
+    );
+
+  const getRadioByIndex = async index => (await getRadios())[index];
 
   const getSelectedRadio = async () => {
-    for (const radio of await getRadioButtons()) {
+    for (const radio of await getRadios()) {
       if (await radio.isChecked()) {
         return radio;
       }
     }
   };
 
-  const getRadioByValue = async value => {
-    const stringValue = value.toString();
-    for (const radio of await getRadioButtons()) {
-      if ((await radio.getValue()) === stringValue) {
-        return radio;
-      }
-    }
-  };
-
-  const getRadioInputAt = async index => {
-    const radio = (await getRadioButtons())[index];
-    return radio.$(`[data-hook="${radioButtonDataHooks.RadioButtonInput}"]`);
-  };
-
   return {
     ...baseUniDriverFactory(base, body),
 
     /** Selects the radio that matches the provided value */
-    selectByValue: async value => (await getRadioByValue(value)).check(),
+    selectByValue: async value => (await getRadioByValue(value)).click(),
 
     /** Selects the radio in the provided index */
-    selectByIndex: async index => (await getRadioButtons())[index].check(),
+    selectByIndex: async index => (await getRadioByIndex(index)).click(),
 
     /** Get the radio value in the provided index */
-    getRadioValueAt: async index => {
-      const radio = (await getRadioButtons())[index];
-      if (radio) return radio.getValue();
-
-      // Throws an error in case there is no RadioButton at the given index
-      throw new Error(`No RadioButton at index ${index}`);
-    },
+    getRadioValueAt: async index => (await getRadioByIndex(index)).getValue(),
 
     /** Get the radio element in the provided index, returns an element merged with the RadioButton driver methods */
-    getRadioAtIndex: async index => (await getRadioButtons())[index],
+    getRadioAtIndex: async index => await getRadioByIndex(index),
 
     /** Get the value of the selected radio */
     getSelectedValue: async () => {
@@ -55,24 +52,43 @@ export const radioGroupUniDriverFactory = (base, body) => {
     },
 
     /** Checks if the radio in the provided index is disabled */
-    isRadioDisabled: async index =>
-      (await getRadioButtons())[index].isDisabled(),
+    isRadioDisabled: async index => (await getRadioByIndex(index)).isDisabled(),
 
     /** Get the number of rendered radios */
-    getNumberOfRadios: async () => (await getRadioButtons()).length,
+    getNumberOfRadios: async () => (await getRadios()).length,
 
     /** Get the value of radio button id at the provided index */
-    getRadioIdAt: async index => {
-      const radioButtonInput = await getRadioInputAt(index);
-      const id = await radioButtonInput._prop('id');
-      return id;
-    },
+    getRadioIdAt: async index => (await getRadioByIndex(index)).getId(),
 
     /** Get the value of radio button name at the provided index */
-    getRadioName: async () => {
-      const radioButtonInput = await getRadioInputAt(0);
-      const name = await radioButtonInput._prop('name');
-      return name;
-    },
+    getRadioName: async () => (await getRadioByIndex(0)).getName(),
+  };
+};
+
+const radioButtonUniDriverFactory = (base, body, container) => {
+  const getByDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
+  const radioLabel = () => getByDataHook('label');
+
+  return {
+    ...radioUniDriverFactory(base, body),
+
+    /** Simulating a check action by clicking the input element */
+    check: () => base.click(),
+
+    /** Getting the component's label text value */
+    getLabel: () => radioLabel().text(),
+
+    /** Getting the component's label element */
+    // eslint-disable-next-line no-restricted-properties
+    getLabelElement: () => radioLabel().getNative(),
+
+    /** Getting the component's tab-index value */
+    // This method is deprecated and this solution is in order not to break users
+    getTabIndex: () => '1',
+
+    /** Getting the component's content element */
+    getContent: () =>
+      // eslint-disable-next-line no-restricted-properties
+      container().$(`[data-hook="${dataHooks.RadioContent}"]`).getNative(),
   };
 };
