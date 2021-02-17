@@ -81,7 +81,7 @@ export const content = `
 
 export const illustration = `
   <Layout gap={10} cols={1}>
-    <AddItem illustration="generic_add_item_illustration.svg" size="large">
+    <AddItem icon="generic_add_item_illustration.svg" size="large">
       Drag here to upload
     </AddItem>
       <AddItem icon="generic_add_item_illustration.svg">

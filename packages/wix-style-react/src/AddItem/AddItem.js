@@ -34,7 +34,7 @@ const tooltipPlacementByAlignment = {
   right: 'top-end',
 };
 
-const illustrationDimensionsBySize = {
+const imageDimensionsBySize = {
   tiny: { height: 24, width: 24 },
   small: { height: 60, width: 60 },
   medium: { height: 120, width: 120 },
@@ -132,10 +132,10 @@ class AddItem extends Component {
 
     return isString(icon) ? (
       <Image
-        className={classes.illustration}
+        className={classes.iconImage}
         fit="contain"
         src={icon}
-        {...illustrationDimensionsBySize[size]}
+        {...imageDimensionsBySize[size]}
       />
     ) : (
       icon

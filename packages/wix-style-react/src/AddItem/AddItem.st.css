@@ -226,11 +226,11 @@
   margin: 0px 6px;
 }
 
-.content:size(tiny) .illustration {
+.content:size(tiny) .iconImage {
   margin: 0px 6px;
 }
 
-.illustration {
+.iconImage {
   background-color: initial;
 }
 
