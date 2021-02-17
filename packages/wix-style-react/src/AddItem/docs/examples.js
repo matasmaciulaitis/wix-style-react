@@ -84,7 +84,7 @@ export const illustration = `
     <AddItem illustration="generic_add_item_illustration.svg" size="large">
       Drag here to upload
     </AddItem>
-      <AddItem illustration="generic_add_item_illustration.svg">
+      <AddItem icon="generic_add_item_illustration.svg">
       Drag here to upload
     </AddItem>
   </Layout>;

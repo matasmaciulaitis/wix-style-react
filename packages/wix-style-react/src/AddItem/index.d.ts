@@ -18,7 +18,7 @@ export interface AddItemProps {
   ariaLabel?: string;
   ariaLabelledBy?: string;
   subtitle?: React.ReactNode;
-  illustration?: string;
+  icon?: React.ReactNode;
 }
 
 export default class AddItem extends React.Component<AddItemProps> {}
