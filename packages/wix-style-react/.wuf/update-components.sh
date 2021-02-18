@@ -3,7 +3,7 @@
 rm .wuf/components.json || true
 
 # create components list
-wuf update \
+npx --no-install wuf update \
   --shape .wuf/required-component-files.json \
   --components src \
   --max-mismatch 1 \
@@ -12,14 +12,14 @@ wuf update \
 
 
 # vanilla testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/vanilla.template.ejs \
   --output testkit/index.js
 
 # vanilla testkits typescript definitions
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/vanilla-typescript.template.ejs \
@@ -27,14 +27,14 @@ wuf export-testkits \
 
 
 # enzyme testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/enzyme.template.ejs \
   --output testkit/enzyme.js
 
 # enzyme testkits typescript definitions
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/enzyme-typescript.template.ejs \
@@ -42,14 +42,14 @@ wuf export-testkits \
 
 
 # protractor testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/protractor.template.ejs \
   --output testkit/protractor.js
 
 # protractor testkits typescript definitions
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/protractor-typescript.template.ejs \
@@ -57,14 +57,14 @@ wuf export-testkits \
 
 
 # puppeteer testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/puppeteer.template.ejs \
   --output testkit/puppeteer.js
 
 # puppeteer testkits typescript definitions
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/puppeteer-typescript.template.ejs \

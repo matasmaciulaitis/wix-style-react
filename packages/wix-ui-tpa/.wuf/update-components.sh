@@ -4,7 +4,7 @@
 rm .wuf/components.json || true
 
 # create components list
-wuf update \
+npx --no-install wuf update \
   --shape .wuf/required-component-files.json \
   --components src/components \
   --exclude "(TPAComponentsConfig|ErrorMessageWrapper)" \
@@ -16,28 +16,28 @@ wuf update \
 mkdir -p src/testkit
 
 # vanilla testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/vanilla.template.ejs \
   --output src/testkit/index.ts
 
 # enzyme testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/enzyme.template.ejs \
   --output src/testkit/enzyme.ts
 
 # protractor testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/protractor.template.ejs \
   --output src/testkit/protractor.ts
 
 # puppeteer testkits
-wuf export-testkits \
+npx --no-install wuf export-testkits \
   --components .wuf/components.json \
   --definitions .wuf/testkits/definitions.js \
   --template .wuf/testkits/puppeteer.template.ejs \
