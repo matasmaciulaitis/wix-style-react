@@ -29,16 +29,16 @@ const AddItemButtonIcons = {
   ),
 };
 
-const tooltipPlacementByAlignment = {
-  left: 'top-start',
-  right: 'top-end',
-};
-
-const imageDimensionsBySize = {
+const illustrationDimensions = {
   tiny: { height: 24, width: 24 },
   small: { height: 60, width: 60 },
   medium: { height: 120, width: 120 },
   large: { height: 120, width: 120 },
+};
+
+const tooltipPlacementByAlignment = {
+  left: 'top-start',
+  right: 'top-end',
 };
 
 class AddItem extends Component {
@@ -92,7 +92,7 @@ class AddItem extends Component {
     /** Subtitle of the component */
     subtitle: PropTypes.node,
 
-    /** The icon image src or node */
+    /** The illustraion icon src or node */
     icon: PropTypes.node,
   };
 
@@ -123,23 +123,27 @@ class AddItem extends Component {
     );
   };
 
+  _renderIllustration = () => {
+    const { icon, size } = this.props;
+
+    return (
+      <Image
+        className={classes.illustration}
+        fit="contain"
+        src={icon}
+        {...illustrationDimensions[size]}
+      />
+    );
+  };
+
   _renderIcon = () => {
-    const { size, icon } = this.props;
+    const { icon } = this.props;
 
     if (!icon) {
       return this._renderDefaultIcon();
     }
 
-    return isString(icon) ? (
-      <Image
-        className={classes.iconImage}
-        fit="contain"
-        src={icon}
-        {...imageDimensionsBySize[size]}
-      />
-    ) : (
-      icon
-    );
+    return isString(icon) ? this._renderIllustration() : icon;
   };
 
   _renderText = () => {
