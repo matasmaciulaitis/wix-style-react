@@ -5,4 +5,5 @@ export interface AddItemUniDriver extends BaseUniDriver {
   textExists: () => Promise<boolean>;
   getTooltipContent: () => Promise<string>;
   getSubtitle: () => Promise<string>;
+  getIcon: () => Promise<string>;
 }

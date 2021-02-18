@@ -83,6 +83,14 @@ describe('AddItem', () => {
           expect(onClick).not.toHaveBeenCalled();
         });
       });
+      describe('`icon` prop ', () => {
+        it('should get icon src', async () => {
+          const illustrationSrc = './illustrationSrc.svg';
+          const { driver } = render(renderAddItem({ icon: illustrationSrc }));
+
+          expect(await driver.getIcon()).toEqual(illustrationSrc);
+        });
+      });
 
       describe('`subtitle` prop ', () => {
         it('should render [when] string is given', async () => {

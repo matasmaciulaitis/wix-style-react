@@ -40,5 +40,12 @@ export const addItemUniDriverFactory = (base, body) => {
      * @return {Promise<string>}
      */
     getSubtitle: () => subtitleTextDriver.getText(),
+
+    /**
+     * Gets AddItem icon
+     * @return {Promise<string>}
+     */
+    getIcon: () =>
+      base.$(`[data-hook="${dataHooks.itemIllustration}"]`).attr('src'),
   };
 };

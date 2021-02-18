@@ -2,6 +2,7 @@ export const dataHooks = {
   itemText: 'additem-text',
   itemSubtitle: 'additem-subtitle',
   itemTooltip: 'additem-tooltip',
+  itemIllustration: 'additem-illustration',
   addItem: 'additem',
 };
 

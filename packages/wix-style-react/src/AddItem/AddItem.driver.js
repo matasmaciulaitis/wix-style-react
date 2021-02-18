@@ -14,9 +14,7 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
   const subtitleTextDriver = () =>
     textDriverFactory({ element: byHook(dataHooks.itemSubtitle) });
 
-  const baseElement = element.querySelector(
-    `[data-hook="${dataHooks.addItem}"]`,
-  );
+  const baseElement = byHook(dataHooks.addItem);
 
   return {
     /** returns true if element in the DOM */
@@ -43,6 +41,12 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
 
     /** returns value of subtitle */
     getSubtitle: () => subtitleTextDriver().getText(),
+
+    /** returns src of icon */
+    getIcon: () =>
+      element
+        .querySelector(`[data-hook="${dataHooks.itemIllustration}"]`)
+        .getAttribute('src'),
   };
 };
 

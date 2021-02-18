@@ -7,4 +7,5 @@ export interface AddItemDriver<T> extends BaseDriver {
   getTooltipContent: () => string;
   click: () => void;
   getSubtitle: () => string;
+  getIcon: () => string;
 }
