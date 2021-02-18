@@ -128,6 +128,7 @@ class AddItem extends Component {
 
     return (
       <Image
+        dataHook={dataHooks.itemIllustration}
         className={classes.illustration}
         fit="contain"
         src={icon}
