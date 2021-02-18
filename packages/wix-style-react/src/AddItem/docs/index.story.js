@@ -137,8 +137,7 @@ export default {
 
           example({
             title: 'Illustration',
-            text:
-              'When illustration src is provided it is shown instead of icon',
+            text: "AddItem can have illustration by providing its' src",
             source: examples.illustration,
           }),
 
