@@ -47,8 +47,8 @@
   minimizedHeaderContainerZIndex: calc(value(stickyZIndex) + value(zIndexLayerStep));
 
   /* Grid constants are also defined in '../Grid/GridConstants.scss'; */
-  mainContainerMinWidth: 894px;
-  mainContainerMaxWidth: 1254px;
+  mainContainerMinWidth: 864px;
+  mainContainerMaxWidth: 1248px;
 }
 
 @keyframes entrance {
