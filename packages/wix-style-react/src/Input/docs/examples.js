@@ -1,3 +1,70 @@
+export const size = `
+<Layout cols={1}>
+  <Input size="large" placeholder="Small" />
+  <Input size="medium" placeholder="Medium" />
+  <Input size="small" placeholder="Large" />
+</Layout>;
+`;
+
+export const border = `
+<Layout cols={1}>
+  <Input border="default" placeholder="Default" />
+  <Input border="round" placeholder="Round" />
+  <Input border="bottomLine" placeholder="Bottom line" />
+</Layout>;
+`;
+
+export const status = `
+<Layout cols={1}>
+  <Input status="error" placeholder="Error" />
+  <Input status="warning" placeholder="Warning" />
+  <Input status="loading" placeholder="Loading" />
+</Layout>;
+`;
+
+export const statusMessage = `
+<Input
+  placeholder="Hover the mouse on status icon"
+  status="error"
+  statusMessage="Please fill the required field"
+tooltipPlacement="top-end" 
+/>;
+`;
+
+export const readOnlyAndDisabled = `
+<Layout cols={1}>
+  <Input readOnly defaultValue="Read Only" />
+  <Input disabled defaultValue="Disabled" />
+</Layout>;
+`;
+
+export const affix = `
+<Layout cols={1}>
+  <Input
+    prefix={<Input.Affix>Prefix</Input.Affix>}
+    suffix={<Input.Affix>Suffix</Input.Affix>}
+    defaultValue="Value"
+  />
+  <Input
+    prefix={
+      <Input.IconAffix>
+        <Icons.GitHub />
+      </Input.IconAffix>
+    }
+    suffix={
+      <Input.IconAffix>
+        <TextButton>
+          <Box>
+            <Icons.Link />
+          </Box>
+        </TextButton>
+      </Input.IconAffix>
+    }
+    defaultValue="Value"
+  />
+</Layout>;
+`;
+
 export const standard = `
 <Layout>
   <Cell>
@@ -123,126 +190,102 @@ export const loader = `
 </Layout>
 `;
 
-export const affix = `
-<Layout>
-  <Cell>
-    <Input prefix={<Input.Affix>https://</Input.Affix>} />
-  </Cell>
-  <Cell>
-    <Input suffix={<Input.Affix>$</Input.Affix>} />
-  </Cell>
-  <Cell>
+export const clearButton = `
+() => {
+  const [inputText, setInputText] = React.useState('Click clear button to erase this value');
+
+  return (
     <Input
-      prefix={<Input.Affix>https://</Input.Affix>}
-      suffix={<Input.Affix>.com</Input.Affix>}
+      value={inputText}
+      clearButton
+      onChange={e => {
+        setInputText(e.target.value);
+      }}
+      onClear={() => {
+        setInputText('');
+      }}
     />
-  </Cell>
-  <Cell>
-    <Input
-      prefix={<Input.Affix>@</Input.Affix>}
-      suffix={<Input.Affix>$</Input.Affix>}
-      status="error"
-    />
-  </Cell>
-</Layout>
+  );
+}
 `;
 
-export const iconAffix = `
-<Layout>
-  <Cell>
-    <Input
-    size="small"
-      prefix={
-        <Input.IconAffix>
-          <Icons.DateSmall />
-        </Input.IconAffix>
-      }
-    />
-  </Cell>
-  <Cell>
-    <Input
-      size="small"
-      suffix={
-        <Input.IconAffix>
-          <Icons.SearchSmall />
-        </Input.IconAffix>
-      }
-    />
-  </Cell>
-  <Cell>
-    <Input
-      prefix={
-        <Input.IconAffix>
-          <Icons.Date />
-        </Input.IconAffix>
-      }
-      suffix={
-        <Input.IconAffix>
-          <Icons.Search />
-        </Input.IconAffix>
-      }
-    />
-  </Cell>
-  <Cell>
-    <Input
-      size="large"
-      prefix={
-        <Input.IconAffix>
-          <Icons.ChevronRightLarge/>
-        </Input.IconAffix>
-      }
-      suffix={
-        <Input.IconAffix>
-          <Icons.ChevronRightLarge/>
-        </Input.IconAffix>
-      }
-      status="error"
-    />
-  </Cell>
-</Layout>
+export const textOverflow = `
+<Input
+  textOverflow="ellipsis"
+  border="bottomLine"
+  defaultValue="The Life and Strange Surprizing Adventures of Robinson Crusoe, Of York, Mariner: Who lived Eight and Twenty Years, all alone in an un-inhabited Island on the Coast of America, near the Mouth of the Great River of Oroonoque; Having been cast on Shore by Shipwreck, wherein all the Men perished but himself. With An Account how he was at last as strangely deliver'd by Pyrates."
+/>;
 `;
 
-export const sizes = `
+export const layouting1 = `
 <Layout>
-  <Cell>
-    <Input
-      size="small"
-      placeholder="They did not know it was impossible, so they did it!"
-    />
+  <Cell span={6}>
+    <Card >
+      <Box direction="vertical" padding="SP1 SP1 SP2">
+        <Layout gap={12}>
+          <Cell>
+            <Box padding="6px 6px 0px">
+              <Image borderRadius="4px" height="180px" />
+            </Box>
+          </Cell>
+
+          <Cell>
+            <Input
+              border="bottomLine"
+              textOverflow="ellipsis"
+              defaultValue="Empty photo album"
+            />
+          </Cell>
+        </Layout>
+      </Box>
+    </Card>
   </Cell>
-  <Cell>
-    <Input
-      size="medium"
-      placeholder="They did not know it was impossible, so they did it!"
-    />
+  <Cell span={6}>
+    <Card>
+      <Box direction="vertical" padding="SP1 SP1 SP2">
+        <Layout gap={12}>
+          <Cell>
+            <Box padding="6px 6px 0px">
+              <Image borderRadius="4px" height="180px" src="example.jpg" />
+            </Box>
+          </Cell>
+
+          <Cell>
+            <Input
+              border="bottomLine"
+              textOverflow="ellipsis"
+              defaultValue="Empty photo album"
+            />
+          </Cell>
+        </Layout>
+      </Box>
+    </Card>
   </Cell>
-  <Cell>
-    <Input
-      size="large"
-      placeholder="They did not know it was impossible, so they did it!"
-    />
-  </Cell>
-</Layout>
+</Layout>;
 `;
 
-export const border = `
-<Layout>
-  <Cell>
-    <Input
-      placeholder="They did not know it was impossible, so they did it!"
-      border="default"
-    />
-  </Cell>
-  <Cell>
-    <Input
-      placeholder="They did not know it was impossible, so they did it!"
-      border="round"
-    />
-  </Cell>
-  <Cell>
-    <Input
-      placeholder="They did not know it was impossible, so they did it!"
-      border="bottomLine"
-    />
-  </Cell>
-</Layout>`;
+export const layouting2 = `
+<Card>
+  <Card.Header title="Personal Info" />
+  <Divider />
+  <Card.Content>
+    <Layout>
+      <Cell span={6}>
+        <FormField label="First Name">
+          <Input defaultValue="John" />
+        </FormField>
+      </Cell>
+      <Cell span={6}>
+        <FormField label="Last Name">
+          <Input defaultValue="Bigfoot" />
+        </FormField>
+      </Cell>
+      <Cell span={12}>
+        <FormField label="About Yourself (Optional)">
+          <InputArea />
+        </FormField>
+      </Cell>
+    </Layout>
+  </Card.Content>
+</Card>;
+`;
