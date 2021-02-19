@@ -18,6 +18,13 @@ export const subtitle = `
   </Layout>;
 `;
 
+export const textSize = `
+  <Layout gap={10} cols={1}>
+    <AddItem size="small" textSize="medium">Add Item</AddItem>
+    <AddItem size="tiny" textSize="small">Add Item</AddItem>
+  </Layout>;
+`;
+
 export const themes = `
 <Layout gap={10} cols={1}>
   <div style={{ height: '55px'}}>

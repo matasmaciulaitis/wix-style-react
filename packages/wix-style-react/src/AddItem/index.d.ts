@@ -19,6 +19,7 @@ export interface AddItemProps {
   ariaLabelledBy?: string;
   subtitle?: React.ReactNode;
   icon?: React.ReactNode;
+  textSize?: AddItemTextSize;
 }
 
 export default class AddItem extends React.Component<AddItemProps> {}
@@ -26,3 +27,4 @@ export default class AddItem extends React.Component<AddItemProps> {}
 export type AddItemTheme = 'dashes' | 'plain' | 'filled' | 'image';
 export type AddItemAlignItems = 'center' | 'right' | 'left';
 export type AddItemSize = 'large' | 'medium' | 'small' | 'tiny';
+export type AddItemTextSize = 'medium' | 'small';

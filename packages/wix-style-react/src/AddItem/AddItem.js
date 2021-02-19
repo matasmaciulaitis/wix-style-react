@@ -94,6 +94,9 @@ class AddItem extends Component {
 
     /** The illustraion icon src or node */
     icon: PropTypes.node,
+
+    /** The text size for small and tiny add item sizes */
+    textSize: PropTypes.oneOf(['medium', 'small']),
   };
 
   static defaultProps = {
@@ -102,6 +105,7 @@ class AddItem extends Component {
     alignItems: 'center',
     showIcon: true,
     removePadding: false,
+    textSize: 'medium',
   };
 
   _renderDefaultIcon = () => {
