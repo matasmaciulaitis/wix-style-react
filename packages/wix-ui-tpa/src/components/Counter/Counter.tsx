@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 import { Input } from 'wix-ui-core/input';
 import { Button } from 'wix-ui-core/button';
 import { st, classes } from './Counter.st.css';
@@ -83,12 +84,17 @@ export class Counter extends React.Component<CounterProps> {
       className,
       size,
     } = this.props;
-
     const shouldShowErrorMessageTooltip = error && errorMessage;
-    const sizeClass = size === CounterSize.xSmall ? classes.xsmall : '';
+
     return (
       <div
-        className={st(classes.root, { disabled, error }, sizeClass, className)}
+        className={st(
+          classes.root,
+          { disabled, error },
+          classnames(className, {
+            [classes.xSmall]: size === CounterSize.xSmall,
+          }),
+        )}
         dir="ltr"
         role="region"
         aria-labelledby={this.props['aria-labelledby']}
@@ -102,7 +108,7 @@ export class Counter extends React.Component<CounterProps> {
           name="increment"
           disabled={disabled || (max && value + step > max)}
         >
-          <Plus />
+          <Plus className={classes.btnIcon} />
         </Button>
         {shouldShowErrorMessageTooltip && (
           <Tooltip
@@ -136,7 +142,7 @@ export class Counter extends React.Component<CounterProps> {
           name="decrement"
           disabled={disabled || value - step < min}
         >
-          <Minus />
+          <Minus className={classes.btnIcon} />
         </Button>
       </div>
     );

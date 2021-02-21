@@ -1,6 +1,6 @@
 :import {
     -st-from: "../../common/formatters.st";
-    -st-named: applyUnit, color, fallback, font, value;
+    -st-named: applyUnit, color, fallback, font, value, applyOpacity;
 }
 
 :import {
@@ -8,25 +8,52 @@
     -st-named: errorColor;
 }
 
+/*Defaults*/
 :vars {
-    /*Defaults*/
     DefaultColor: color-5;
     DefaultDisabledColor: color-3;
     DefaultErrorColor: value(errorColor);
+    DefaultFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5'}";
+    DefaultXSmallFont: "{theme: 'Body-M', size: '12px', lineHeight: '1'}";
     DefaultBackgroundColor: color-1;
     DefaultWidth: 104px;
     DefaultWidthXsmall: 80px;
 }
 
+/*Overrides*/
 :vars {
-    /*Overrides*/
-    MainColor: --overridable;
+    /*
+        counter's font
+        @default Default "{theme: 'Body-M', size: '16px', lineHeight: '1.5em'}", XSmall "{theme: 'Body-M', size: '12px', lineHeight: '1em'}"
+    */
+    MainFont: --overridable;
+    /*
+        The counter's background color
+        @default color-1
+    */
+    MainBackgroundColor: --overridable;
+    /*
+        The counter's text and buttons color
+        @default color-5
+    */
+    TextColor: --overridable;
+    /*
+        The counter's disabled color
+        @default color-3
+    */
     DisabledColor: --overridable;
+    /*
+        The counter's width
+        @default Default size: 104px, XSmall size: 80px
+    */
     MainWidth: --overridable;
 }
 
 :vars {
-    counterColor: color(fallback(value(MainColor), value(DefaultColor)));
+    counterFont: fallback(font(value(MainFont)), font(value(DefaultFont)));
+    counterXSmallFont: fallback(font(value(MainFont)), font(value(DefaultXSmallFont)));
+    counterColor: color(fallback(value(TextColor), value(DefaultColor)));
+    counterBackgroundColor: color(fallback(value(MainBackgroundColor), value(DefaultBackgroundColor)));
     counterDisabledColor: color(fallback(value(DisabledColor), value(DefaultDisabledColor)));
     counterWidth: fallback(value(MainWidth), value(DefaultWidth));
     counterWidthXsmall: fallback(value(MainWidth), value(DefaultWidthXsmall));
@@ -39,23 +66,31 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    background: color(value(DefaultBackgroundColor));
+    background: color(value(counterBackgroundColor));
     border-width: 1px;
     border-style: solid;
-    border-color: color(value(counterColor));
+    border-color: applyOpacity(color(value(counterColor)), 0.6);
 }
 
-.root:not(.xsmall) {
+.root:focus-within,
+.root:hover {
+    border-color: applyOpacity(color(value(counterColor)), 1);
+}
+
+.root:not(.xSmall) {
+    font: value(counterFont);
     width: value(counterWidth);
-    height: 40px;
+    height: calc((40 / 16) * 1em);
     padding: 0 6px;
 }
 
-.root.xsmall {
+.root.xSmall {
+    font: value(counterXSmallFont);
     padding: 0 4px;
     width: value(counterWidthXsmall);
-    height: 28px;
+    height: calc((28 / 12) * 1em);
 }
+
 .root:error {
     border-color: value(DefaultErrorColor);
 }
@@ -66,13 +101,14 @@
 
 .btn {
     background: none;
-    padding: 6px;
+    padding: calc((6 / 16) * 1em);
     border: none;
     cursor: pointer;
+    font: inherit;
 }
 
-.xsmall .btn {
-    padding: 4px;
+.xSmall .btn {
+    padding: calc((4 / 12) * 1em);
 }
 
 .btn path {
@@ -87,12 +123,33 @@
     fill: color(value(counterDisabledColor));
 }
 
-.root:disabled .btn {
-    color: color(value(counterDisabledColor));
+.btnIcon {
+    width: calc((12 / 16) * 1em);
+    height: calc((12 / 16) * 1em);
+    font: inherit;
 }
 
-.root:error svg {
+.xSmall .btnIcon,
+.xSmall .error {
+    width: calc((8 / 12) * 1em);
+    height: calc((8 / 12) * 1em);
+}
+
+.error {
     color: value(DefaultErrorColor);
+    width: calc((20.5 / 16) * 1em);
+    height: calc((20.5 / 16) * 1em);
+    font: inherit;
+    display: block;
+}
+
+.xSmall .error {
+    width: calc((14 / 12) * 1em);
+    height: calc((14 / 12) * 1em);
+}
+
+.root:disabled .btn {
+    color: color(value(counterDisabledColor));
 }
 
 .root .inputWrapper {
@@ -100,39 +157,18 @@
 }
 
 .root input {
-    background: color(value(DefaultBackgroundColor));
+    background: color(value(counterBackgroundColor));
     padding: 0;
     border: none;
     text-align: center;
     width: 100%;
     color: value(counterColor);
-}
-
-.root:not(.xsmall) input{
-    font: font("{theme: 'Body-M', size: '16px', lineHeight: '1.5em'}");
-}
-
-.xsmall input {
-    font: font("{theme: 'Body-M', size: '12px', lineHeight: '1em'}");
-}
-
-.xsmall svg {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-}
-
-.xsmall .error {
-    width: 16px;
-    height: 16px;
-    padding: 2px 0 0 0;
+    font: inherit;
 }
 
 .root:disabled input {
     color: color(value(counterDisabledColor));
 }
-
-
 
 /* Removing browser-specific default buttons inside input element */
 .root input::-webkit-outer-spin-button,
@@ -148,10 +184,3 @@
 .root input::-ms-clear {
     display: none;
 }
-
-
-
-
-
-
-

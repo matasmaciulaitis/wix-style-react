@@ -15,8 +15,16 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 ## Next
+### Fixed
+- `DraftJsUtils` - FocusOnRichEditor extract page from unidriver [#6799](https://github.com/wix/wix-style-react/pull/6799)
+
+## 9.84.0 - 2021-02-21
 ### Added
 - `<AddItem/>`- add `subtitle` prop [#6699](https://github.com/wix/wix-style-react/pull/6699)
+- `<VariableInput/>` - add onFocus callback and focus to driver [#6797](https://github.com/wix/wix-style-react/pull/6797)
+
+### Changed
+- `<Calendar/>` - adjusting the date indication size [#6787](https://github.com/wix/wix-style-react/pull/6787)
 
 ### Fixed
 - `<AddItem/>` - fixed `disabled` button background colour for `plain` theme [#6792](https://github.com/wix/wix-style-react/pull/6792)

@@ -12,6 +12,8 @@ export interface VariableInputUniDriver extends BaseUniDriver {
   enterText(value: string): Promise<void>;
   /** Simulate blur event */
   blur(): Promise<void>;
+  /** Simulate focus event */
+  focus(): Promise<void>;
   /** Returns true if error indication exists */
   hasError(): Promise<boolean>;
   /** Get the error message content */

@@ -38,7 +38,7 @@ export default (base, body) => {
         await page.$eval('.public-DraftEditor-content', e => e.blur());
       }
     },
-
+    focus: () => focusOnRichEditor(base),
     // Status
     /** Return true if there's a status */
     hasStatus: async status => {

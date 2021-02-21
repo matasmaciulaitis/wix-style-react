@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Badge } from '../';
 
-export const BadgePerfer = () => {
+export const BadgePerf = () => {
   return <Badge>text</Badge>;
 };

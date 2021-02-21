@@ -22,11 +22,12 @@ export const enterRichTextValue = async (base, value) => {
   }
 };
 
-export const focusOnRichEditor = base => {
+export const focusOnRichEditor = async base => {
   switch (base.type) {
     case 'react':
       return ReactBase(getContent(base)).focus();
     case 'puppeteer':
+      const { page } = await getContent(base).getNative();
       return page.$eval('.public-DraftEditor-content', e => e.focus());
     default:
       throw new Error('unsupported adapter');

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ActionsMenuLayout } from '../';
 import { st, classes } from './ActionsMenuLayoutExtended.st.css';
 
-export const ActionsMenuLayoutPerfer = () => {
+export const ActionsMenuLayoutPerf = () => {
   return (
     <ActionsMenuLayout className={st(classes.root)}>
       <ActionsMenuLayout.Item onClick={() => {}} key={1} content="item 1" />

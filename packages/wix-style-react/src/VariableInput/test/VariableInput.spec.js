@@ -303,4 +303,19 @@ describe('VariableInput', () => {
       expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
     });
   });
+
+  describe('onFocus', () => {
+    it('should invoke `onFocus` with string while focus', async () => {
+      const callback = jest.fn();
+      const expectedHtmlValue = `{{${variableEntity.value}}} `;
+      const driver = createDriver(
+        <VariableInput onBlur={callback} variableParser={variableParser} />,
+      );
+      await driver.focus();
+      await driver.enterText(expectedHtmlValue);
+      await driver.blur();
+      await driver.focus();
+      expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
+    });
+  });
 });

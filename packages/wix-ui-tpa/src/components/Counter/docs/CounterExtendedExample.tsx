@@ -52,6 +52,20 @@ export class CounterExtendedExample extends React.Component<{}, State> {
         {...this.props}
         className={classes.root}
       />
+      <h3>Counter with errors</h3>
+      <Counter
+        inputAriaLabel={'amount'}
+        incrementAriaLabel={'increment'}
+        decrementAriaLabel={'decrement'}
+        onChange={this.handleChange}
+        value={this.state.value}
+        max={999}
+        min={-999}
+        {...this.props}
+        error
+        errorMessage={'This is an error message'}
+        className={classes.root}
+      />
       <h3>xSmall Counter</h3>
       <Counter
         inputAriaLabel={'amount'}

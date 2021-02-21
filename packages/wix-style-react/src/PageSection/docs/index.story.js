@@ -82,7 +82,7 @@ export default {
           example({
             title: 'Structure',
             text:
-              'PageSection consists of a title area and actions bar (optional). Actions bar can contain any number of actions.',
+              'Component consists of a title area and actions bar (optional). Actions bar can contain any number of actions.',
             source: examples.structure,
           }),
 
