@@ -82,13 +82,13 @@ Once you're absolutely sure the issue is ours, please let us know through the ch
 
 ### Reporting an issue ![github-mark](/GitHub-Mark-32px.png)
 
-We use GitHub issues as bugs and feature requests tracker.
-If you think you have found a bug, or have a new feature idea- please start by making sure it hasn't already been [reported or fixed](https://github.com/wix/wix-style-react/issues).
+We use Jira as bugs and feature requests tracker.
+If you think you have found a bug, or have a new feature idea- please start by making sure it hasn't already been [reported or fixed](http://wix.to/i0DYB4w).
 You can search through existing issues and pull requests to see if someone has reported a similar issue to yours.
 
 If it does not exist, please follow the following guidelines:
 
-*   Click [here](https://github.com/wix/wix-style-react/issues/new/choose) to choose the relevant issue template.
+*   Click [here](http://wix.to/i0DYB4w) to get the relevant issue template.
 
 *   Please begin the title with `<ComponentName/>` where appropriate, and use a succinct description that helps others find similar issues.
     *   `<FilePicker/>`- `<some feature>` doesn't work ❌ [(Example)](https://github.com/wix/wix-style-react/issues/6202)
