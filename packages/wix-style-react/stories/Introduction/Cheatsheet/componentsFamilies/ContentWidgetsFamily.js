@@ -52,6 +52,13 @@ import {
   SelectableAccordion,
   StackedBarChart,
   SparklineChart,
+  AudioPlayer,
+  HorizontalTimeline,
+  TestimonialList,
+  Avatar,
+  FeatureList,
+  Image,
+  AnalyticsSummaryCard,
 } from 'wix-style-react';
 
 const groupSymbol = symbolsGroup.contentWidgets;
@@ -826,6 +833,180 @@ const StackedBarChartExample = () => {
   );
 };
 
+const VoicePlayerExample = () => {
+  const symbol = contentWidgetsSymbols.voicePlayer;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <AudioPlayer src="https://music.wixstatic.com/preview/84770f_29a80480c24f4946a477c8ad03b92cbc-128.mp3" />
+    </SingleComponentStacked>
+  );
+};
+
+const HorizontalTimelineExample = () => {
+  const symbol = contentWidgetsSymbols.horizontalTimeline;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview wrapWithCardContent>
+        <HorizontalTimeline
+          items={[
+            {
+              label: 'Complete',
+              skin: 'dark',
+              icon: <HorizontalTimeline.CompleteIcon />,
+            },
+            {
+              label: 'Active',
+              skin: 'dark',
+              icon: <HorizontalTimeline.ActiveIcon />,
+            },
+            {
+              label: 'Blank',
+              icon: <HorizontalTimeline.DefaultIcon />,
+            },
+            {
+              label: 'Destructive',
+              icon: <HorizontalTimeline.DestructiveIcon />,
+            },
+          ]}
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
+const TestimonialListExample = () => {
+  const symbol = contentWidgetsSymbols.testimonialList;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview wrapWithCardContent>
+        <TestimonialList
+          testimonials={[
+            {
+              avatar: <Avatar name="Guy in glasses" size="size60" />,
+              text: 'I love it! This product is exactly what I needed.',
+              authorName: 'Guy in glasses',
+            },
+            {
+              avatar: <Avatar name="Person with a hat" size="size60" />,
+              text: 'Amazing! It helped me to solve my problems.',
+              authorName: 'Person with a hat',
+            },
+            {
+              avatar: <Avatar name="Smiling lady" size="size60" />,
+              text: 'A perfect tool for my every day tasks.',
+              authorName: 'Smiling lady',
+            },
+          ]}
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
+const FeatureListExample = () => {
+  const symbol = contentWidgetsSymbols.featureList;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview wrapWithCardContent>
+        <FeatureList
+          features={[
+            {
+              image: <Image width={60} height={60} />,
+              title: 'Remove Wix Ads',
+              text:
+                "Enjoy a website that's completely your own brand by removing Wix ads.",
+            },
+            {
+              image: <Image width={60} height={60} />,
+              title: 'Connect a Custom Domain',
+              text: 'Get your business found with a custom domain.',
+            },
+            {
+              image: <Image width={60} height={60} />,
+              title: 'Accept Online Payment',
+              text:
+                'Let your customers and clients pay you online at checkout.',
+            },
+          ]}
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
+const AnalyticsSummaryCardExample = () => {
+  const symbol = contentWidgetsSymbols.analyticsSummaryCard;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview>
+        <AnalyticsSummaryCard
+          chartColorHex="#3899ec"
+          chartData={[
+            {
+              label: new Date('2020-09-03T21:00:00.000Z'),
+              value: 100,
+            },
+            {
+              label: new Date('2020-09-04T21:00:00.000Z'),
+              value: 17,
+            },
+            {
+              label: new Date('2020-09-05T21:00:00.000Z'),
+              value: 18,
+            },
+          ]}
+          chartWidth={169}
+          onChartHover={() => {}}
+          trend={12}
+          isTrendVisible
+          title="Sessions"
+          getChartTooltipContent={index => (
+            <span style={{ color: '#ffffff' }}>{index}</span>
+          )}
+          value="1,9K"
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
 const ContentWidgetsFamily = () => (
   <FamilyStructure title={groupSymbol}>
     <ImageWidgetExample />
@@ -844,6 +1025,11 @@ const ContentWidgetsFamily = () => (
     <FunnelChartExample />
     <SelectableAccordionExample />
     <StackedBarChartExample />
+    <VoicePlayerExample />
+    <HorizontalTimelineExample />
+    <TestimonialListExample />
+    <FeatureListExample />
+    <AnalyticsSummaryCardExample />
   </FamilyStructure>
 );
 
