@@ -203,4 +203,5 @@ export const internalComponentsNames = {
   ListItemEditable: 'ListItemEditable',
   ListItemSection: 'ListItemSection',
   ListItemSelect: 'ListItemSelect',
+  CardFolderTabs: 'CardFolderTabs',
 };

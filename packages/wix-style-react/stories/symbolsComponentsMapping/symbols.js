@@ -196,4 +196,5 @@ export const internalComponentsSymbols = {
   listItemSelect: 'IC. ListItemSelect',
   listItemAction: 'IC. ListItemAction',
   listItemEditable: 'IC. ListItemEditable',
+  cardFolderTabs: 'IC. Card Folder Tabs',
 };

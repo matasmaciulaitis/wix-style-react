@@ -24,8 +24,13 @@ import {
   ListItemSelect,
   DropdownLayout,
   listItemSelectBuilder,
+  CardFolderTabs,
+  EmptyState,
+  Card,
+  TextButton,
 } from 'wix-style-react';
 import Edit from 'wix-ui-icons-common/Edit';
+import Add from 'wix-ui-icons-common/Add';
 
 const groupSymbol = symbolsGroup.internalComponents;
 
@@ -266,6 +271,72 @@ const ListItemSelectExample = () => {
   );
 };
 
+const CardFolderTabsExample = () => {
+  const symbol = internalComponentsSymbols.cardFolderTabs;
+  const components = internalComponentsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  const [activeTabId, setActiveTabId] = React.useState('1');
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Preview stretch>
+        <CardFolderTabs
+          activeId={activeTabId}
+          onTabChange={activeTabId => setActiveTabId(activeTabId)}
+        >
+          <CardFolderTabs.Tab id="1" name="Selected Tab">
+            <Card>
+              <Card.Content>
+                <EmptyState
+                  title="This is a nice tab"
+                  subtitle="Create your own tabs and try them!"
+                  theme="section"
+                >
+                  <TextButton prefixIcon={<Add />}>Pointless button</TextButton>
+                </EmptyState>
+              </Card.Content>
+            </Card>
+          </CardFolderTabs.Tab>
+          <CardFolderTabs.Tab id="2" name="Second Tab">
+            <Card>
+              <Card.Content>
+                <EmptyState
+                  title="This is a nice tab"
+                  subtitle="Create your own tabs and try them!"
+                  theme="section"
+                >
+                  <TextButton prefixIcon={<Add />}>Pointless button</TextButton>
+                </EmptyState>
+              </Card.Content>
+            </Card>
+          </CardFolderTabs.Tab>
+          <CardFolderTabs.Tab id="3" name="Disabled tab" disabled>
+            <div>This tab has no real content, it's disabled anyway</div>
+          </CardFolderTabs.Tab>
+          <CardFolderTabs.Tab id="4" name="Fourth Tab">
+            <Card>
+              <Card.Content>
+                <EmptyState
+                  title="This is a nice tab"
+                  subtitle="Create your own tabs and try them!"
+                  theme="section"
+                >
+                  <TextButton prefixIcon={<Add />}>Pointless button</TextButton>
+                </EmptyState>
+              </Card.Content>
+            </Card>
+          </CardFolderTabs.Tab>
+        </CardFolderTabs>
+      </Preview>
+    </SingleComponentSideBySide>
+  );
+};
+
 const InternalFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <DropdownLayoutExample />
@@ -274,6 +345,7 @@ const InternalFamily = () => (
     <ListItemSectionExample />
     <ListItemSelectExample />
     <TagListExample />
+    <CardFolderTabsExample />
   </FamilyStructure>
 );
 
