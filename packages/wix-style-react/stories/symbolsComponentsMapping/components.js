@@ -181,11 +181,16 @@ export const contentWidgetsComponentsNames = {
   MarketingLayout: 'MarketingLayout',
   BarChart: 'BarChart',
   Timeline: 'Timeline',
+  HorizontalTimeline: 'HorizontalTimeline',
   SparklineChart: 'SparklineChart',
   SelectableAccordion: 'SelectableAccordion',
   StackedBarChart: 'StackedBarChart',
   FunnelChart: 'FunnelChart',
   AreaChart: 'AreaChart',
+  AudioPlayer: 'AudioPlayer',
+  FeatureList: 'FeatureList',
+  TestimonialList: 'TestimonialList',
+  AnalyticsSummaryCard: 'AnalyticsSummaryCard',
 };
 
 /**
