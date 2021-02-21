@@ -174,11 +174,16 @@ export const contentWidgetsSymbols = {
   marketingCardLayout: '12.9 Marketing Card Layout',
   barChart: '12.10 Bar Chart',
   areaChart: '12.11 Area Chart',
-  timeline: '12.12 Timeline',
-  sparklineChart: '12.17 Sparkline Chart',
-  funnelChart: '12.18 Funnel Chart',
-  stackedBarChart: '12.x Stacked Bar Chart',
-  selectableAccordion: '12.x Selectable Accordion',
+  voicePlayer: '12.13 Voice Player',
+  timeline: '12.14 Timeline',
+  horizontalTimeline: '12.15 Horizontal Timeline',
+  testimonialList: '12.16 Testimonial List',
+  featureList: '12.17 Feature List',
+  sparklineChart: '12.18 Sparkline Chart',
+  funnelChart: '12.19 Funnel Chart',
+  stackedBarChart: '12.20 Stacked Bar Chart',
+  selectableAccordion: '12.21 Selectable Accordion',
+  analyticsSummaryCard: '12.22 Analytics Summary Card',
 };
 
 /**
