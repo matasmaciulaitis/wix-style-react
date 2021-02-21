@@ -7,6 +7,7 @@ interface RelativeMediaImageProps extends Omit<ImageProps, 'width' | 'height'> {
   sourceDimensions: Dimensions;
   containerDimensions: Dimensions;
   isPlaceholderDisplayed?: boolean;
+  nativeRef?: React.Ref<HTMLImageElement>;
 }
 
 const Placeholder = ({

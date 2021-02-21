@@ -28,6 +28,7 @@ export class Image extends React.Component<ImageProps> {
   state = { isLoaded: false, boundingRectDimensions: null };
 
   containerRef = React.createRef<HTMLDivElement>();
+  imageRef = React.createRef<HTMLImageElement>();
 
   _onLoad = (event) => {
     const { onLoad } = this.props;
@@ -41,6 +42,12 @@ export class Image extends React.Component<ImageProps> {
 
   componentDidMount() {
     const { width, height, aspectRatio } = this.props;
+    const { current: imageElement } = this.imageRef;
+
+    // Updating the state in case it's rendered with SSR and the image is loaded on the client even before registering the `onLoad` event
+    if (!this.state.isLoaded && imageElement?.complete) {
+      this.setState({ isLoaded: true });
+    }
 
     // Updating the state only if we don't have enough information to calculate the dimensions
     if (!(width && height) && !((width || height) && aspectRatio)) {
@@ -136,6 +143,7 @@ export class Image extends React.Component<ImageProps> {
                 }),
               },
             })}
+            nativeRef={this.imageRef}
             onLoad={this._onLoad}
             {...imageProps}
           />
@@ -147,6 +155,7 @@ export class Image extends React.Component<ImageProps> {
             containerDimensions={calculatedDimensions}
             focalPoint={focalPointCoordinates}
             isPlaceholderDisplayed={hasLoadingBehavior && !isLoaded}
+            nativeRef={this.imageRef}
             onLoad={this._onLoad}
             {...imageProps}
           />
