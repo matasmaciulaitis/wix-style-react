@@ -28,4 +28,6 @@ export const navigationSymbolsToComponents = {
   [navigationSymbols.stepper]: [componentsNames.Stepper],
 
   [navigationSymbols.composerHeader]: [componentsNames.ComposerHeader],
+
+  [navigationSymbols.composerSidebar]: [componentsNames.ComposerSidebar],
 };

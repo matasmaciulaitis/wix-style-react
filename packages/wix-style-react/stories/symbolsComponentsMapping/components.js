@@ -102,6 +102,7 @@ export const navigationComponentsNames = {
   VerticalTabs: 'VerticalTabs',
   VerticalTabsItem: 'VerticalTabsItem',
   ComposerHeader: 'ComposerHeader',
+  ComposerSidebar: 'ComposerSidebar',
 };
 
 /**

@@ -3,7 +3,6 @@ import {
   FamilyStructure,
   SingleComponentSideBySide,
   NotDefined,
-  NotDeveloped,
   Preview,
   singleComponentSizes,
 } from '../sharedComponents';
@@ -26,6 +25,11 @@ import CircleSmallFilled from 'wix-ui-icons-common/CircleSmallFilled';
 import Check from 'wix-ui-icons-common/Check';
 import Undo from 'wix-ui-icons-common/Undo';
 import Redo from 'wix-ui-icons-common/Redo';
+import CropRotate from 'wix-ui-icons-common/CropRotate';
+import MagicWand from 'wix-ui-icons-common/MagicWand';
+import CutOut from 'wix-ui-icons-common/CutOut';
+import Adjust from 'wix-ui-icons-common/Adjust';
+import Rename from 'wix-ui-icons-common/Rename';
 import FormFieldErrorSmall from 'wix-ui-icons-common/system/FormFieldErrorSmall';
 
 import { Category } from '../../../storiesHierarchy';
@@ -46,6 +50,7 @@ import {
   Stepper,
   VerticalTabs,
   ComposerHeader,
+  ComposerSidebar,
 } from 'wix-style-react';
 
 const groupSymbol = symbolsGroup.navigation;
@@ -335,18 +340,49 @@ const ComposerHeaderExample = () => {
   );
 };
 
-const ComposerSidebar = () => {
+const ComposerSidebarExample = () => {
   const symbol = navigationSymbols.composerSidebar;
   const components = navigationSymbolsToComponents[symbol];
 
   const singleComponentProps = {
     name: symbol,
-    componentsNames: components,
+    componentsNames: createLinkedComponentsNames(components),
   };
+
+  const items = [
+    {
+      id: 0,
+      label: 'Crop & Rotate',
+      icon: <CropRotate />,
+    },
+    {
+      id: 1,
+      label: 'Enhance',
+      icon: <MagicWand />,
+    },
+    {
+      id: 2,
+      label: 'Adjust',
+      icon: <Adjust />,
+      disabled: true,
+    },
+    {
+      id: 3,
+      label: 'Cut Out',
+      icon: <CutOut />,
+    },
+    {
+      id: 4,
+      label: 'Text',
+      icon: <Rename />,
+    },
+  ];
 
   return (
     <SingleComponentSideBySide {...singleComponentProps}>
-      <NotDeveloped />
+      <Preview>
+        <ComposerSidebar size="medium" items={items} selectedId={1} />
+      </Preview>
     </SingleComponentSideBySide>
   );
 };
@@ -360,7 +396,7 @@ const NavigationFamily = () => (
     <TopBarExample />
     <StepperExample />
     <ComposerHeaderExample />
-    <ComposerSidebar />
+    <ComposerSidebarExample />
   </FamilyStructure>
 );
 
