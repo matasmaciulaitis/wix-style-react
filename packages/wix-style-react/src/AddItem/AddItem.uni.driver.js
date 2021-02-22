@@ -9,6 +9,10 @@ export const addItemUniDriverFactory = (base, body) => {
     findByHook(base, dataHooks.itemText),
     body,
   );
+  const subtitleTextDriver = textUniDriverFactory(
+    findByHook(base, dataHooks.itemSubtitle),
+    body,
+  );
 
   return {
     ...baseUniDriverFactory(findByHook(base, dataHooks.addItem), body),
@@ -30,5 +34,11 @@ export const addItemUniDriverFactory = (base, body) => {
      * @return {Promise<string>}
      */
     getTooltipContent: () => tooltipDriver.getTooltipText(),
+
+    /**
+     * Gets AddItem subtitle
+     * @return {Promise<string>}
+     */
+    getSubtitle: () => subtitleTextDriver.getText(),
   };
 };

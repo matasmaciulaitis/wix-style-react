@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import BreadcrumbsChevronRight from 'wix-ui-icons-common/system/BreadcrumbsChevronRight';
 import { DATA_HOOKS, DATA_ATTRIBUTES, THEMES } from './constnats';
-import { FontUpgradeContext } from '../FontUpgrade/context';
 import { st, classes } from './Breadcrumbs.st.css';
 
 /**
@@ -58,20 +57,15 @@ class Breadcrumbs extends React.PureComponent {
       const isSmallSize = size === 'medium';
 
       return (
-        <FontUpgradeContext.Consumer>
-          {({ active }) => (
-            <Text
-              dataHook={DATA_HOOKS.BREADCRUMBS_ITEM}
-              weight={isActive ? 'normal' : 'thin'}
-              light={theme === THEMES.onDarkBackground}
-              size={isSmallSize ? 'small' : 'medium'}
-              secondary={active && !isActive}
-              ellipsis
-            >
-              {value}
-            </Text>
-          )}
-        </FontUpgradeContext.Consumer>
+        <Text
+          dataHook={DATA_HOOKS.BREADCRUMBS_ITEM}
+          weight={isActive ? 'normal' : 'thin'}
+          light={theme === THEMES.onDarkBackground}
+          size={isSmallSize ? 'small' : 'medium'}
+          ellipsis
+        >
+          {value}
+        </Text>
       );
     };
 

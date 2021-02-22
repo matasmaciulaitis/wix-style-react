@@ -1,4 +1,5 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { ReactBase } from './ReactBase';
 
 /** Receives a unidriver of container that wraps a DraftJS input
  * and returns the input content element */
@@ -18,5 +19,17 @@ export const enterRichTextValue = async (base, value) => {
     await contentElement.enterValue(value, { shouldClear: false });
   } else {
     throw new Error('unsupported adapter');
+  }
+};
+
+export const focusOnRichEditor = async base => {
+  switch (base.type) {
+    case 'react':
+      return ReactBase(getContent(base)).focus();
+    case 'puppeteer':
+      const { element } = await getContent(base).getNative();
+      return element.focus();
+    default:
+      throw new Error('unsupported adapter');
   }
 };

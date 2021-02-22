@@ -24,9 +24,10 @@ So what happens when we create a release?
 So how does a contributor make a release.  
 It's pretty simple actually:
 
-1. First make sure that you're on the master branch
-2. Also, make sure the branch is clean and aligned to the `origin`
-3. run `npm run wut release-candidate <option>`, where `option` is the new version type:
+1. Enable the "merge freeze" for the repo by reopening this [issue](https://github.com/wix/wix-style-react/issues/6591).
+2. First make sure that you're on the master branch
+3. Also, make sure the branch is clean and aligned to the `origin`
+4. run `npm run wut release-candidate <option>`, where `option` is the new version type:
 `patch`, `minor` or `major` (for more see [here](https://git-scm.com/book/en/v2/Git-Basics-Tagging)).  
 If `option` is not passed then `patch` is used as a default
 4. This will create a new branch `release/<version_number>`.  
@@ -34,6 +35,7 @@ Go over the differences to see that all went well.
 Push and open a PR.
 5. Wait for the PR to pass all checks.
 6. Merge PR with the title: `release: version <version_number>`
+7. Disable the "merge freeze" for the repo by closing this [issue](https://github.com/wix/wix-style-react/issues/6591)
 
 ## CHANGELOG
 The `CHANGELOG.md` file is generated using the [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) tool, which is used by Angular, among others.

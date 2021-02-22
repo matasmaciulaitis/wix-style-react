@@ -5,8 +5,10 @@
 
 .root {
     -st-mixin: TPACounter(
-            MainColor '"--mainColor"',
-            DisabledColor '"--disabledColor"',
-            MainWidth '"unit(--mainWidth, px)"'
+        TextColor '"--textColor"',
+        MainFont '"--mainFont"',
+        MainBackgroundColor '"--mainBackgroundColor"',
+        DisabledColor '"--disabledColor"',
+        MainWidth '"unit(--mainWidth, px)"'
     );
 }

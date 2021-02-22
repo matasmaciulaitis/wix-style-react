@@ -2,6 +2,7 @@ import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import { ReactBase } from '../../test/utils/unidriver';
 import {
   enterRichTextValue,
+  focusOnRichEditor,
   getContent,
 } from '../../test/utils/unidriver/DraftJS';
 import { statusIndicatorDriverFactory } from '../StatusIndicator/StatusIndicator.uni.driver';
@@ -17,8 +18,14 @@ export default (base, body) => {
       body,
     );
 
+  const baseUniDriver = baseUniDriverFactory(base);
+
   return {
-    ...baseUniDriverFactory(base),
+    ...baseUniDriver,
+    click: async () => {
+      await baseUniDriver.click();
+      await focusOnRichEditor(base);
+    },
     isDisabled: async () =>
       (await getContent(base).attr('contenteditable')) === 'false',
     getContent: () => getContent(base).text(),
@@ -31,7 +38,7 @@ export default (base, body) => {
         await page.$eval('.public-DraftEditor-content', e => e.blur());
       }
     },
-
+    focus: () => focusOnRichEditor(base),
     // Status
     /** Return true if there's a status */
     hasStatus: async status => {

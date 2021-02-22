@@ -97,13 +97,16 @@ export default {
           example({
             title: 'Content Outline',
             text:
-              'PreviewWidget supports `shadow` (default) and `border` content outline.',
+              'PreviewWidget supports `shadow` (default), `border` or `none` content outline.',
             source: `<Layout>
                 <Cell>
                     <PreviewWidget skin="custom" backgroundColor="D80">${childNodeString}</PreviewWidget>
                 </Cell>
                 <Cell>
                     <PreviewWidget skin="custom" backgroundColor="D80" contentOutline='border'>${childNodeString}</PreviewWidget>
+                </Cell>
+                <Cell>
+                    <PreviewWidget skin="custom" backgroundColor="D80" contentOutline='none'>${childNodeString}</PreviewWidget>
                 </Cell>
               </Layout>`,
           }),

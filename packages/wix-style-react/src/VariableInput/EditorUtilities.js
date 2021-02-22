@@ -68,11 +68,13 @@ const getMatchesInString = (str, prefix, suffix) => {
   const escSuffix = _escapeRegExp(suffix);
   const pattern = `(?:${escPrefixFirstChar})*(${escPrefix}(.*?)${escSuffix})`;
   const regex = new RegExp(pattern, 'g');
+
   let part;
   const parts = [];
   while ((part = regex.exec(str)) !== null) {
     parts.push(part);
   }
+
   return parts;
 };
 /** Check if editor has unparsed entities */
@@ -88,10 +90,11 @@ const hasUnparsedEntity = (editorState, prefix, suffix) => {
 /** Convert editor content state, to string with placeholders instead of entities */
 const convertToString = ({ editorState, prefix, suffix }) => {
   const rawJS = convertToRaw(editorState.getCurrentContent());
-  return rawJS.blocks
+  const rawString = rawJS.blocks
     .map(block => {
-      const baseString = block.text.split('');
+      const baseString = Array.from(block.text);
       let indexOffset = 0;
+
       block.entityRanges.forEach(entityRange => {
         const entity = rawJS.entityMap[entityRange.key.toString()].data;
         const placeholder = prefix + entity.value + suffix;
@@ -105,6 +108,8 @@ const convertToString = ({ editorState, prefix, suffix }) => {
       return baseString.join('');
     })
     .join('\n');
+
+  return rawString;
 };
 /** Convert string to editor content state */
 const stringToContentState = ({
@@ -119,15 +124,20 @@ const stringToContentState = ({
     let rowStr = row;
     let indexOffset = 0;
     const entityRanges = [];
+
     getMatchesInString(row, prefix, suffix).forEach(match => {
       const [wholeMatch, placeholder, value] = match;
       const matchIndex = match.index + wholeMatch.indexOf(placeholder);
       const text = variableParser(value) || false;
+
       if (text) {
+        const utfOffset = getUtfOffsetValue(row.substr(0, matchIndex));
         const contentPlaceholder = ` ${text} `;
+        const offset = matchIndex + indexOffset - utfOffset;
+
         rowStr = rowStr.replace(placeholder, contentPlaceholder);
         entityRanges.push({
-          offset: matchIndex + indexOffset,
+          offset,
           length: contentPlaceholder.length,
           key: entityIndex,
         });
@@ -140,6 +150,7 @@ const stringToContentState = ({
         indexOffset += contentPlaceholder.length - placeholder.length;
       }
     });
+
     return {
       key: genKey(),
       text: rowStr,
@@ -153,7 +164,7 @@ const stringToContentState = ({
 
   return convertFromRaw({
     blocks,
-    entityMap: entityMap,
+    entityMap,
   });
 };
 const decoratorFactory = ({ tag: { size, disabled } }) => {
@@ -218,6 +229,7 @@ const pushAndKeepSelection = ({ editorState, content }) => {
   const blockIndex = Object.keys(
     editorState.getCurrentContent().getBlockMap().toJS(),
   ).indexOf(selectionStateBefore.getAnchorKey());
+
   const updatedEditorState = EditorState.push(editorState, content);
   const blockMap = updatedEditorState.getCurrentContent().getBlockMap().toJS();
   const blockKeys = Object.keys(blockMap);
@@ -304,6 +316,10 @@ const isContentChanged = (editorStateBefore, editorStateAfter) =>
 const isBlured = (editorStateBefore, editorStateAfter) =>
   editorStateBefore.getSelection().getHasFocus() &&
   !editorStateAfter.getSelection().getHasFocus();
+
+const getUtfOffsetValue = aString =>
+  aString.split('').length - Array.from(aString).length;
+
 export default {
   insertText,
   insertEntity,

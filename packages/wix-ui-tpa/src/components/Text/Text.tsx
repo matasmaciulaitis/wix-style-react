@@ -7,7 +7,7 @@ import {
 } from '../TPAComponentsConfig';
 import { TPAComponentProps } from '../../types';
 
-export interface TextProps extends TPAComponentProps {
+export interface TextProps extends React.AriaAttributes, TPAComponentProps {
   /**
    * Set typography preset to be used
    */
@@ -42,6 +42,7 @@ export class Text extends React.Component<TextProps> {
       className,
       role,
       id,
+      ...rest
     } = this.props;
 
     return (
@@ -62,6 +63,7 @@ export class Text extends React.Component<TextProps> {
               'data-hook': this.props['data-hook'],
               role,
               id,
+              ...rest,
             },
             children,
           )

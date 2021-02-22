@@ -11,6 +11,7 @@ export interface VariableInputProps {
   onChange?: (value: string) => void;
   onSubmit?: (value: string) => void;
   onBlur?: (value: string) => void;
+  onFocus?: (value: string) => void;
   status?: StatusIndicatorState;
   statusMessage?: React.ReactNode;
   placeholder?: string;

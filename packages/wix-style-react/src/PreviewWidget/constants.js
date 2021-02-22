@@ -1,6 +1,7 @@
 export const contentOutlines = {
   shadow: 'shadow',
   border: 'border',
+  none: 'none',
 };
 
 export const skins = {

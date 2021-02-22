@@ -48,7 +48,8 @@
 }
 
 .event:not(:last-child) .label{
-  margin-bottom: 30px;
+  --marginBottom: 30px;
+  margin-bottom: var(--marginBottom);
 }
 
 .event .labelText{

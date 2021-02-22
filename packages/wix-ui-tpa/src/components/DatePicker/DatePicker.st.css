@@ -255,21 +255,19 @@
 /* todo: remove the important after removing the WSR important (https://jira.wixpress.com/browse/DSM-1585) */
 .calendar::day:selected:not(:outside):last-of-type,
 .calendar::day:lastOfMonth:not(:outside) {
-    border-top-right-radius: value(CurrentSelectedDayBorderRadius) !important;
-    border-bottom-right-radius: value(CurrentSelectedDayBorderRadius) !important;
+    border-radius: value(CurrentSelectedDayBorderRadius) !important;
 }
 
 .calendar::day:selected:not(:outside):first-of-type,
 .calendar::day:firstOfMonth:not(:outside) {
-    border-top-left-radius: value(CurrentSelectedDayBorderRadius) !important;
-    border-bottom-left-radius: value(CurrentSelectedDayBorderRadius) !important;
+    border-radius: value(CurrentSelectedDayBorderRadius) !important;
 }
 /*********/
 
 /* todo: need to check if it's really override the viewer focus ring and if we should remove it..  */
 .calendar::day:focus::after {
     border-radius: value(CurrentSelectedDayBorderRadius);
-    -st-mixin: focusRing();
+    box-shadow: none;
 }
 
 .calendar::day:singleDay:not(:outside) .dayWrapper {

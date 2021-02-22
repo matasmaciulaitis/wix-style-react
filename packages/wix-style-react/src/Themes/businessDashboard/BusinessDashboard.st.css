@@ -362,11 +362,6 @@
   -st-default: CustomModalLayoutOverrides;
 }
 
-:import {
-  -st-from: "./components/CounterBadge.st.css";
-  -st-default: CounterBadgeOverrides;
-}
-
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -468,9 +463,6 @@
   }
   CustomModalLayout {
     -st-mixin: CustomModalLayoutOverrides();
-  }
-  CounterBadge {
-    -st-mixin: CounterBadgeOverrides();
   }
 }
 

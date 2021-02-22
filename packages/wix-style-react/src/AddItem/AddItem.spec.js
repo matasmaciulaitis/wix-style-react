@@ -83,6 +83,25 @@ describe('AddItem', () => {
           expect(onClick).not.toHaveBeenCalled();
         });
       });
+
+      describe('`subtitle` prop ', () => {
+        it('should render [when] string is given', async () => {
+          const subtitle =
+            'You can upload jpeg, png and gif files up to 5 mb size';
+          const { driver } = render(renderAddItem({ subtitle }));
+          expect(await driver.getSubtitle()).toEqual(subtitle);
+        });
+
+        it('should render [when] node is given', async () => {
+          const node = <div data-hook="node-child"></div>;
+          const { driver } = render(renderAddItem({ children: node }));
+          expect(
+            !!(await driver.element()).querySelector(
+              '[data-hook="node-child"]',
+            ),
+          ).toBe(true);
+        });
+      });
     });
 
     describe('Tooltip', () => {

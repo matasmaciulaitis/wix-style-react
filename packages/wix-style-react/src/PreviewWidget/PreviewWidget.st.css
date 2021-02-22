@@ -13,7 +13,7 @@
 }
 
 .root{
-  -st-states: skin(enum(neutral, gradient, custom)), contentOutline(enum(shadow, border)), scrollable;
+  -st-states: skin(enum(neutral, gradient, custom)), contentOutline(enum(shadow, border, none)), scrollable;
   padding: 30px;
   display: flex;
   justify-content: center;

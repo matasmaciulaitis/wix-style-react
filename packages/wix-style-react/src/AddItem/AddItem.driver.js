@@ -11,6 +11,9 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
   const textDriver = () =>
     textDriverFactory({ element: byHook(dataHooks.itemText) });
 
+  const subtitleTextDriver = () =>
+    textDriverFactory({ element: byHook(dataHooks.itemSubtitle) });
+
   const baseElement = element.querySelector(
     `[data-hook="${dataHooks.addItem}"]`,
   );
@@ -37,6 +40,9 @@ const addItemDriverFactory = ({ element, eventTrigger }) => {
     },
     /** clicks on element */
     click: () => eventTrigger.click(baseElement),
+
+    /** returns value of subtitle */
+    getSubtitle: () => subtitleTextDriver().getText(),
   };
 };
 

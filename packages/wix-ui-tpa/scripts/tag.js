@@ -1,5 +1,4 @@
 const { execute } = require('./utils');
-const logger = require('./logger');
 
 const TAG_PREFIX = 'WUT-v'
 
@@ -12,10 +11,10 @@ function run() {
       execute(`git tag -a ${tagName} -m "wix-ui-tpa version ${tagName}"`, true);
       execute(`git push origin ${tagName}`, true);
     } catch (e) {
-      logger.error("Couldn't add a tag", e);
+      console.error("Couldn't add a tag", e);
     }
   } else {
-    logger.warn('Not in a CI agent. Git tagging is skipped.');
+    console.warn('Not in a CI agent. Git tagging is skipped.');
   }
 }
 

@@ -47,27 +47,27 @@ export function getGridStyle({
   -ms-grid-columns: ${gridTemplateColumns};
 }
 
-#${gridId}[${cssStateDivider}] {
+#${gridId}.${cssStateDivider} {
   padding: calc((${rowGap}px / 2) + ${dividerWidth}) 0;
 }
 
-#${gridId}[${cssStateDivider}] li::before {
+#${gridId}.${cssStateDivider} li::before {
   top: calc((${rowGap}px / -2) - ${dividerWidth});
 }
 
-#${gridId}[${cssStateDivider}] li::after {
+#${gridId}.${cssStateDivider} li::after {
 bottom: calc((${rowGap}px / -2) - ${dividerWidth});
 }
 
-#${gridId}[${cssStateDivider}] li::before,
-#${gridId}[${cssStateDivider}] li::after,
-#${gridId}[${cssStateDivider}] .${listWrapperClass}::before,
-#${gridId}[${cssStateDivider}] .${listWrapperClass}::after {
+#${gridId}.${cssStateDivider} li::before,
+#${gridId}.${cssStateDivider} li::after,
+#${gridId}.${cssStateDivider} .${listWrapperClass}::before,
+#${gridId}.${cssStateDivider} .${listWrapperClass}::after {
   height: ${dividerWidth};
 }
 
-#${gridId}[${cssStateDivider}] li::after,
-#${gridId}[${cssStateDivider}] li::before {
+#${gridId}.${cssStateDivider} li::after,
+#${gridId}.${cssStateDivider} li::before {
   left: -${rowGap}px;
 }`;
 }

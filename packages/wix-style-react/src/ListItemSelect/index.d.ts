@@ -33,10 +33,12 @@ export const listItemSelectBuilder: (data: {
   size?: ListItemSelectSizes;
   ellipsis?: boolean;
   dataHook?: string;
+  label?: string;
 }) => {
   id: string | number;
   disabled: boolean | undefined;
   overrideOptionStyle: true;
+  label: string | undefined;
   value: (props?: Partial<ListItemSelectProps>) => React.ReactNode;
 };
 

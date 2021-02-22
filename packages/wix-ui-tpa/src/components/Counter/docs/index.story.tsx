@@ -99,6 +99,14 @@ export default {
               rawCSSSource: ExtendedCSSRawSource,
               title: 'Counter extended',
               params: {
+                fonts: [
+                  {
+                    label: 'Counter font',
+                    wixParam: 'mainFont',
+                    defaultFont: 'arial',
+                    fixedSize: false,
+                  },
+                ],
                 numbers: [
                   {
                     label: 'Counter Width',
@@ -111,14 +119,19 @@ export default {
                 ],
                 colors: [
                   {
-                    label: 'Main Color',
-                    wixParam: 'mainColor',
+                    label: 'Text Color',
+                    wixParam: 'textColor',
                     defaultColor: 'color-5',
                   },
                   {
                     label: 'Disabled Color',
                     wixParam: 'disabledColor',
                     defaultColor: 'color-3',
+                  },
+                  {
+                    label: 'Background Color',
+                    wixParam: 'mainBackgroundColor',
+                    defaultColor: 'color-1',
                   },
                 ],
               },

@@ -15,6 +15,7 @@ function timelineWithAllProps() {
     <Timeline
       dataHook="dataHook"
       className="className"
+      gap="30px"
       items={[
         {
           label: <div>label</div>,

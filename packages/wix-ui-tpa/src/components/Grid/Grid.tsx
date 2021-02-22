@@ -121,7 +121,8 @@ export class Grid extends React.PureComponent<GridProps> {
             : `repeat(${itemsPerRow}, minmax(${itemMinWidth}, ${itemMaxWidth}))`;
 
           const gridId = generateKey();
-          const cssStateDivider = Object.keys(cssStates({ dividers: true }))[0];
+          const cssStateDivider = cssStates({ dividers: true });
+
           return (
             <div
               className={st(

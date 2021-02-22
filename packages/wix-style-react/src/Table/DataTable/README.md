@@ -51,4 +51,4 @@
 | sortable | bool | false | - | Enables sorting by column |
 | sortDescending | bool | - | - | Pass false - for ascending sort, true - for descending|
 | style | object or function | - | - | Sets the column inline style. Vertical padding cannot be set here, please use table rowVerticalPadding  |
-| infoTooltipProps | object | - | - | Props object for [tooltip](https://wix-wix-style-react.surge.sh/?selectedKind=7.%20Tooltips&selectedStory=7.1.%20Tooltip&full=0&addons=0&stories=1&panelRight=0). Note: dataHook, moveBy and children will not be passed to tooltip. |
+| infoTooltipProps | object | - | - | Props object for [&lt;Tooltip>](/?path=/story/design-guidelines-tooltips-popovers--7-1-tooltip). Note: dataHook, moveBy and children will not be passed to tooltip. |

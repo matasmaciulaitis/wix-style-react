@@ -79,6 +79,9 @@ class AddItem extends Component {
 
     /** Identifies the element that labels the add item element */
     ariaLabelledby: PropTypes.string,
+
+    /** Subtitle of the component */
+    subtitle: PropTypes.node,
   };
 
   static defaultProps = {
@@ -137,20 +140,39 @@ class AddItem extends Component {
     );
   };
 
+  _renderSubtitle = () => {
+    const { size, subtitle } = this.props;
+
+    return (
+      subtitle && (
+        <Text
+          className={st(classes.subtitle, { size })}
+          size="small"
+          dataHook={dataHooks.itemSubtitle}
+        >
+          {subtitle}
+        </Text>
+      )
+    );
+  };
+
   _renderContent = () => {
     const { theme, alignItems, size, disabled, showIcon } = this.props;
 
     return (
       <div
-        className={st(classes.content, {
+        className={st(classes.contentContainer, {
           theme,
           size,
           alignItems,
           disabled,
         })}
       >
-        {showIcon && this._renderIcon()}
-        {this._renderText()}
+        <div className={st(classes.content, { size })}>
+          {showIcon && this._renderIcon()}
+          {this._renderText()}
+        </div>
+        {this._renderSubtitle()}
       </div>
     );
   };

@@ -81,6 +81,24 @@ describe('VariableInput', () => {
       myRef.insertVariable(text);
       expect(await driver.getContent()).toBe(` ${text}  `);
     });
+
+    it('should have same displayed content as the state', async () => {
+      let stateValue;
+      const expectedHtmlValue = `/🤔{{${variableEntity.value}}}/🤔{{${variableEntity.value}}}`;
+      const driver = createDriver(
+        <VariableInput
+          variableParser={variableParser}
+          onChange={value => (stateValue = value)}
+        />,
+      );
+
+      await driver.click();
+      await driver.enterText(expectedHtmlValue);
+      await driver.blur();
+
+      expect(await driver.getContent()).toBe('/🤔 Page name /🤔 Page name ');
+      expect(stateValue).toEqual('/🤔{{page.name}}/🤔{{page.name}}');
+    });
   });
   describe('setValue', () => {
     it('should update text while using `setValue`', async () => {
@@ -282,6 +300,21 @@ describe('VariableInput', () => {
       await driver.focus();
       await driver.enterText(expectedHtmlValue);
       await driver.blur();
+      expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
+    });
+  });
+
+  describe('onFocus', () => {
+    it('should invoke `onFocus` with string while focus', async () => {
+      const callback = jest.fn();
+      const expectedHtmlValue = `{{${variableEntity.value}}} `;
+      const driver = createDriver(
+        <VariableInput onBlur={callback} variableParser={variableParser} />,
+      );
+      await driver.focus();
+      await driver.enterText(expectedHtmlValue);
+      await driver.blur();
+      await driver.focus();
       expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
     });
   });

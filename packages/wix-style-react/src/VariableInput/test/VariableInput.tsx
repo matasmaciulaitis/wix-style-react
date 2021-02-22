@@ -31,6 +31,7 @@ function VariableInputWithAllProps() {
       onChange={(value: string) => {}}
       onSubmit={(value: string) => {}}
       onBlur={(value: string) => {}}
+      onFocus={(value: string) => {}}
       status="error"
       statusMessage="message"
       placeholder="placeholder"

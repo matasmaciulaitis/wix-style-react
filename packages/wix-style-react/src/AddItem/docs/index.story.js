@@ -97,6 +97,13 @@ export default {
           }),
 
           example({
+            title: 'Subtitle',
+            text:
+              'Component has a subtitle prop, it\'s meant to explain how "add" action works. This is especially useful when AddItem is used together with Dropzone component and it\'s important to list supported file formats.',
+            source: examples.subtitle,
+          }),
+
+          example({
             title: 'Themes',
             text: themes,
             source: examples.themes,

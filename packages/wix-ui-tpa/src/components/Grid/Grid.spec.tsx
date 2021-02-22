@@ -204,9 +204,7 @@ describe('Grid', () => {
     const expectedRowGap = 47;
     const expectedDividerWidth = '34px';
     const expectedGridId = 'someID';
-    const expectedCSSStateDivider = Object.keys(
-      cssStates({ dividers: true }),
-    )[0];
+    const expectedCSSStateDivider = cssStates({ dividers: true });
     spyOn(GridUtils, 'getGridStyle');
     spyOn(RandomUtils, 'generateKey').and.returnValue(expectedGridId);
 

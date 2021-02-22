@@ -1,3 +1,4 @@
+import React from 'react';
 import { storySettings } from './storySettings';
 import {
   tab,
@@ -6,11 +7,13 @@ import {
   api,
   testkit,
   playground,
+  description,
 } from 'wix-storybook-utils/Sections';
 import allComponents from '../../../../stories/utils/allComponents';
 import * as examples from './examples';
 
 import MessageBoxFunctionalLayout from '../MessageBoxFunctionalLayout';
+import SectionHelper from '../../../SectionHelper';
 
 const code = config => baseCode({ components: allComponents, ...config });
 
@@ -32,6 +35,16 @@ export default {
     tab({
       title: 'Description',
       sections: [
+        description({
+          text: (
+            <SectionHelper appearance="danger" title="WARNING">
+              This component is deprecated! Instead, we advise you to use the
+              newer &lt;MessageModalLayout/&gt; component in combination with
+              &lt;Modal/&gt;
+            </SectionHelper>
+          ),
+        }),
+
         importExample({
           source:
             "import { MessageBoxFunctionalLayout } from 'wix-style-react';",

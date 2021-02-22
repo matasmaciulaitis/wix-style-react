@@ -23,7 +23,7 @@ class PreviewWidget extends React.PureComponent {
     backgroundColor: PropTypes.string,
 
     /** Content area outline*/
-    contentOutline: PropTypes.oneOf(['shadow', 'border']),
+    contentOutline: PropTypes.oneOf(['shadow', 'border', 'none']),
 
     /** Sets the height of the component */
     height: PropTypes.string,

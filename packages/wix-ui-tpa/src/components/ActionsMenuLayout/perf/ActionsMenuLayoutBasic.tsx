@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ActionsMenuLayout } from '../';
 
-export const ActionsMenuLayoutPerfer = () => {
+export const ActionsMenuLayoutPerf = () => {
   return (
     <ActionsMenuLayout>
       <ActionsMenuLayout.Item onClick={() => {}} key={1} content="item 1" />

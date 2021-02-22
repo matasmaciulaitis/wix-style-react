@@ -5,7 +5,7 @@
   "experimentalMonorepoPublish": true,
   "scripts": {
     "clean": "lerna clean",
-    "postinstall": "lerna bootstrap --no-ci",
+    "postinstall": "./scripts/post-install.sh",
     "build": "lerna run build",
     "test1:unit": "lerna run --scope wix-style-react test1:unit --stream",
     "test2:visual": "lerna run --scope wix-style-react test2:visual --stream",
@@ -23,12 +23,14 @@
     "test14": "#",
     "test15": "#",
     "test16": "#",
-    "wut": "./run-package-command.sh wix-ui-tpa",
+    "wut": "./scripts/run-package-command.sh wix-ui-tpa",
+    "wsr": "./scripts/run-package-command.sh wix-style-react",
     "postpublish": "lerna run postpublish",
     "pr-postbuild": "lerna run pr-postbuild",
     "pr-release": "lerna run pr-release"
   },
   "devDependencies": {
+    "is-ci": "^2.0.0",
     "lerna": "^3.22.1"
   }
 }

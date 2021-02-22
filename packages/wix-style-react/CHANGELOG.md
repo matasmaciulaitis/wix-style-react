@@ -14,8 +14,41 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-
 ## Next
+
+## 9.84.2 - 2021-02-21
+### Added
+- `Themes | Business Dashboard` - Updating list actions item disabled state [#6803](https://github.com/wix/wix-style-react/pull/6803)
+
+### Fixed
+- `DraftJsUtils` - FocusOnRichEditor extract element from unidriver [#6799](https://github.com/wix/wix-style-react/pull/6799), [#6804](https://github.com/wix/wix-style-react/pull/6804)
+
+## 9.84.0 - 2021-02-21
+### Added
+- `<AddItem/>`- add `subtitle` prop [#6699](https://github.com/wix/wix-style-react/pull/6699)
+- `<VariableInput/>` - add onFocus callback and focus to driver [#6797](https://github.com/wix/wix-style-react/pull/6797)
+
+### Changed
+- `<Calendar/>` - adjusting the date indication size [#6787](https://github.com/wix/wix-style-react/pull/6787)
+
+### Fixed
+- `<AddItem/>` - fixed `disabled` button background colour for `plain` theme [#6792](https://github.com/wix/wix-style-react/pull/6792)
+- `<VariableInput/>` - Use regex.exec instead of matchAll [#6791](https://github.com/wix/wix-style-react/pull/6791)
+
+## 9.83.0 - 2021-02-18
+### Added
+- `<PreviewWidget/>`- add `none` option for contentOutline [#6777](https://github.com/wix/wix-style-react/pull/6777)
+- `<Timeline/>` - add `gap` prop [#6739](https://github.com/wix/wix-style-react/pull/6739)
+
+### Fixed
+- `<VariableInput />` - Fix emoji utf splitting issue [#6768](https://github.com/wix/wix-style-react/pull/6768)
+- `<Modal/>` - Added screen prop typings [#6775](https://github.com/wix/wix-style-react/pull/6775)
+- `<ListItemSelect/>` - fix type [#6778](https://github.com/wix/wix-style-react/pull/6778)
+
+### Changed
+- `Themes | Business Dashboard` -`<CounterBadge />` - revert newDashboard theme changes [#6743](https://github.com/wix/wix-style-react/pull/6743)
+
+## 9.82.0 - 2021-02-17
 ### Fixed
 - `<DatePicker/>` - fix types typo [#6740](https://github.com/wix/wix-style-react/pull/6740)
 

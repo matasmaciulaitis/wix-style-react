@@ -2,8 +2,19 @@ export const plain = `<AddItem>Add Item</AddItem>`;
 
 export const title = `
   <Layout gap={10} cols={2}>
-      <AddItem>Add Item</AddItem>
-      <AddItem tooltipContent="Add Item"></AddItem>
+    <AddItem>Add Item</AddItem>
+    <AddItem tooltipContent="Add Item"></AddItem>
+  </Layout>
+`;
+
+export const subtitle = `
+  <Layout gap={10} cols={1}>
+    <AddItem
+      size="large"
+      subtitle="You can upload jpeg, png and gif files up to 5 mb size"
+    >
+      Drag here to upload
+    </AddItem>
   </Layout>;
 `;
 

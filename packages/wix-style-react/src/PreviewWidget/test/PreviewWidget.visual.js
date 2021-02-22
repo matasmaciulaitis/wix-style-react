@@ -80,6 +80,10 @@ const tests = [
           backgroundColor: 'D80',
         },
       },
+      {
+        it: contentOutlines.none,
+        props: { contentOutline: contentOutlines.none },
+      },
     ],
   },
   {

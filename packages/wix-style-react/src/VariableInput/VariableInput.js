@@ -67,6 +67,7 @@ class VariableInput extends React.PureComponent {
               ref={this.editorRef}
               editorState={this.state.editorState}
               onChange={this._onEditorChange}
+              onFocus={this._onFocus}
               placeholder={placeholder}
               readOnly={disabled || readOnly}
               {...(readOnly && { tabIndex: 0 })}
@@ -122,6 +123,11 @@ class VariableInput extends React.PureComponent {
   _onBlur = () => {
     const { onBlur = () => {} } = this.props;
     onBlur(this._toString());
+  };
+
+  _onFocus = () => {
+    const { onFocus = () => {} } = this.props;
+    onFocus(this._toString());
   };
 
   _onSubmit = () => {
@@ -246,9 +252,13 @@ VariableInput.propTypes = {
    * `onSubmit(value: String): void` */
   onSubmit: PropTypes.func,
 
-  /** Callback function when focusing out.`
+  /** Callback function when focusing out.
    * `onBlur(value: String): void` */
   onBlur: PropTypes.func,
+
+  /** Callback function when focusing in.
+   * `onFocus(value: String): void` */
+  onFocus: PropTypes.func,
 
   /** Use to display a status indication for the user.*/
   status: PropTypes.oneOf(['error', 'warning', 'loading']),

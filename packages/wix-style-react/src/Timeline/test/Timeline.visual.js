@@ -82,6 +82,20 @@ const tests = [
           ],
         },
       },
+      {
+        it: 'gap between items', // prop variation (e.g. small)
+        props: {
+          gap: '12px',
+          items: [
+            {
+              label: 'simple text',
+            },
+            {
+              label: 'simple text',
+            },
+          ],
+        },
+      },
     ],
   },
 ];

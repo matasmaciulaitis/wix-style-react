@@ -21,6 +21,7 @@ export interface ModalProps {
   parentSelector?: () => HTMLElement;
   appElement?: string;
   onOk?: () => void;
+  screen?: ModalScreen;
 }
 
 export default class Modal extends React.PureComponent<ModalProps> {}
@@ -33,3 +34,4 @@ export type ModalOverlayPosition =
   | 'absolute'
   | 'fixed'
   | 'sticky';
+export type ModalScreen = 'full' | 'desktop' | 'mobile';

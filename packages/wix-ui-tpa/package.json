@@ -4,7 +4,7 @@
   "sideEffects": [
     "./stories/**/*.*"
   ],
-  "version": "2.22.0",
+  "version": "2.24.0",
   "module": "./dist/es/src/index.js",
   "description": "Components for Wix Tpa applications",
   "author": {
@@ -48,7 +48,7 @@
     "test:e2e": "yoshi test --protractor",
     "test:visual": "if test \"$EYES_API_KEY\"; then npm run test:visual:local ; fi",
     "test:visual:local": "eyes-storybook -c ./.storybook-test -s ./.storybook-test/public",
-    "test:perfer-bundles": "npm run build:perfer-bundles && perfer --verbose",
+    "test:perfer-bundles": "npm run build:perfer-bundles && perfer --verbose --chunked --json",
     "autotools": "npm run autotools:sanity && npm run autotools:a11y",
     "autotools:sanity": "autotools-sanity",
     "autotools:a11y": "autotools-a11y",

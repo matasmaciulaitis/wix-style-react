@@ -17,6 +17,7 @@ export interface AddItemProps {
   borderRadius?: React.CSSProperties['borderRadius'];
   ariaLabel?: string;
   ariaLabelledBy?: string;
+  subtitle?: React.ReactNode;
 }
 
 export default class AddItem extends React.Component<AddItemProps> {}

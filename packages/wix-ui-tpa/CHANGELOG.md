@@ -1,3 +1,29 @@
+# 2.24.0 (2021-02-18)
+
+
+### Bug Fixes
+
+* **Card & Grid:** Fix stylable issues ([a3ac0aa](https://github.com/wix/wix-style-react/commit/a3ac0aad1447e0793cdfff474454134c571670a5))
+
+
+
+# 2.23.0 (2021-02-18)
+
+
+### Bug Fixes
+
+* **DatePicker:** add aria props and some adjustments for the WSR fixes ([#6740](https://github.com/wix/wix-style-react/issues/6740)) ([c6030fc](https://github.com/wix/wix-style-react/commit/c6030fc31fd4cad4df52495641d787d435064cee)), closes [#6750](https://github.com/wix/wix-style-react/issues/6750) [#6758](https://github.com/wix/wix-style-react/issues/6758)
+* **DatePicker:** fix border radius issue ([#6772](https://github.com/wix/wix-style-react/issues/6772)) ([39da7d2](https://github.com/wix/wix-style-react/commit/39da7d20d15dd2a2635d2dd85eb5f743bfcd309a))
+* **DatePicker:** style fixes ([#6759](https://github.com/wix/wix-style-react/issues/6759)) ([b24edee](https://github.com/wix/wix-style-react/commit/b24edeee4f454aff4772ece59a69df14cde11662))
+
+
+### Features
+
+* **Dropdown:** Fix style overrides affecting Dropdown button ([468dda4](https://github.com/wix/wix-style-react/commit/468dda4cfe0ed042d537f96f7e3b626bd889de39))
+* **Image:** implement `focalPoint` prop ([#6738](https://github.com/wix/wix-style-react/issues/6738)) ([65b2a4c](https://github.com/wix/wix-style-react/commit/65b2a4ce9e68cea1e7e658ec26b26b0fd0559f7a))
+
+
+
 # 2.22.0 (2021-02-11)
 
 

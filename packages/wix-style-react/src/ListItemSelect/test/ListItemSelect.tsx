@@ -23,9 +23,16 @@ function ListItemSelectWithMandatoryProps() {
 }
 
 function listItemSelectBuilderWithAllProps() {
-  const { disabled, id, overrideOptionStyle, value } = listItemSelectBuilder({
+  const {
+    disabled,
+    id,
+    overrideOptionStyle,
+    value,
+    label,
+  } = listItemSelectBuilder({
     id: '1',
     checkbox: true,
+    dataHook: 'data-hook',
     className: 'cls',
     disabled: true,
     ellipsis: true,
@@ -35,6 +42,7 @@ function listItemSelectBuilderWithAllProps() {
     subtitle: 'subtitle',
     suffix: <div />,
     title: 'title',
+    label: 'label',
   });
 }
 
@@ -53,6 +61,7 @@ function ListItemSelectWithAllProps() {
       subtitle=""
       suffix=""
       title=""
+      highlighted
     />
   );
 }

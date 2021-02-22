@@ -7,8 +7,8 @@
 ### Exposed Drivers
 The `<MultiSelectCheckbox/>` TestKit is exposing the following drivers:
 * Its own driver (see examples below).
-* [inputDriver](https://wix-wix-style-react.surge.sh/?selectedKind=Core&selectedStory=Input&full=0&down=0&left=1&panelRight=0)
-* [dropdownLayoutDriver](https://wix-wix-style-react.surge.sh/?selectedKind=Core&selectedStory=DropdownLayout&full=0&down=0&left=1&panelRight=0)
+* `inputDriver` -  [&lt;Input>](/?path=/story/components-api-components--input) testkit
+* `dropdownLayoutDriver` - [&lt;DropdownLayout>](/?path=/story/components-api-components--dropdownlayout) testkit
 
 
 ### Enzyme / ReactTestUtils

@@ -1,11 +1,15 @@
 ---
 name: Bug Report
-about: If you're part of wix organization, please open a Jira issue.
+about: If you're part of wix organization, please open a Jira issue through this link
+  - http://wix.to/i0DYB4w
 title: ''
 labels: ''
-assignees: ''
+assignees: EgoziE
 
 ---
+
+If you're part of wix organization, please open a Jira issue through [this link](http://wix.to/i0DYB4w)
+
 
 <!--
   Thanks for reporting an issue 😄  to `wix-style-react`!

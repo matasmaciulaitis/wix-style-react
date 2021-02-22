@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export type PreviewWidgetSkin = 'neutral' | 'gradient' | 'custom';
-export type PreviewWidgetContentOutline = 'shadow' | 'border';
+export type PreviewWidgetContentOutline = 'shadow' | 'border' | 'none';
 
 export interface PreviewWidgetProps {
   dataHook?: string;

@@ -1,11 +1,10 @@
 const child_process = require('child_process');
-const logger = require('./logger');
 
 const spawnSync = child_process.spawnSync;
 const CMD_SPLITTER = /(?:[^\s"']+|"[^"]*"|'[^']*')+/g;
 
 function eject(msg, code = 1) {
-  logger.error(msg, '\n');
+  console.error(msg, '\n');
   process.exit(code);
 }
 

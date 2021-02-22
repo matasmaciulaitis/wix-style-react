@@ -122,27 +122,27 @@ describe('GridUtils', () => {
   -ms-grid-columns: ${expectedTemplateColumns};
 }
 
-#${expectedGridId}[${expectedStateDivider}] {
+#${expectedGridId}.${expectedStateDivider} {
   padding: calc((${expectedRowGap}px / 2) + ${expectedDividerWidth}) 0;
 }
 
-#${expectedGridId}[${expectedStateDivider}] li::before {
+#${expectedGridId}.${expectedStateDivider} li::before {
   top: calc((${expectedRowGap}px / -2) - ${expectedDividerWidth});
 }
 
-#${expectedGridId}[${expectedStateDivider}] li::after {
+#${expectedGridId}.${expectedStateDivider} li::after {
 bottom: calc((${expectedRowGap}px / -2) - ${expectedDividerWidth});
 }
 
-#${expectedGridId}[${expectedStateDivider}] li::before,
-#${expectedGridId}[${expectedStateDivider}] li::after,
-#${expectedGridId}[${expectedStateDivider}] .${expectedListWrapperClass}::before,
-#${expectedGridId}[${expectedStateDivider}] .${expectedListWrapperClass}::after {
+#${expectedGridId}.${expectedStateDivider} li::before,
+#${expectedGridId}.${expectedStateDivider} li::after,
+#${expectedGridId}.${expectedStateDivider} .${expectedListWrapperClass}::before,
+#${expectedGridId}.${expectedStateDivider} .${expectedListWrapperClass}::after {
   height: ${expectedDividerWidth};
 }
 
-#${expectedGridId}[${expectedStateDivider}] li::after,
-#${expectedGridId}[${expectedStateDivider}] li::before {
+#${expectedGridId}.${expectedStateDivider} li::after,
+#${expectedGridId}.${expectedStateDivider} li::before {
   left: -${expectedRowGap}px;
 }`;
 

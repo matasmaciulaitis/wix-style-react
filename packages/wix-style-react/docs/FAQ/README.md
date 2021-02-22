@@ -138,14 +138,14 @@ Check out the documentation of the component you're using for more info.
 ### How can I get colors and fonts to use in my project?
 
 We recommend using the [Typography
-components](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.2%20Typography&full=0&addons=0&stories=1&panelRight=0)
+components](/?path=/story/design-guidelines-foundation--1-2-typography)
 in order to get the right colors and fonts. Alternatively, if these components does not suit your
 needs, you can use the [Typography
-classes](https://wix-wix-style-react.surge.sh/?selectedKind=Styling&selectedStory=1.2%20Typography%20Classes&full=0&addons=0&stories=1&panelRight=0)
+classes](/?path=/story/components-api-styling--1-2-typography-classes)
 instead.
 
 Also check out the
-[`<Box/>`](https://wix-wix-style-react.surge.sh/?selectedKind=Components&selectedStory=Box&full=0&addons=0&stories=1&panelRight=0)
+[&lt;Box>](/?path=/story/components-api-components--box)
 component for using correct colors and fonts.
 
 ### How does look the Dropdown family?

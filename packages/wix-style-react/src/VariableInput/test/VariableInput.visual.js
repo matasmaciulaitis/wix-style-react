@@ -25,6 +25,12 @@ const tests = [
         },
       },
       {
+        it: 'Variables and emojis',
+        props: {
+          initialValue: '/🤔{{page.name}}/🤔{{page.name}}',
+        },
+      },
+      {
         it: 'Error indication',
         props: {
           initialValue: 'Welcome to my {{page.name}} ',

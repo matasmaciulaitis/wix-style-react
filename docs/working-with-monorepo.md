@@ -2,27 +2,19 @@
 
 This repository is a monorepo managed by [lerna](https://github.com/lerna/lerna).
 
-Monorepo is a term depicting a repository with many managed packages inside.
+Monorepo means a repository with many managed packages.
 
 A package is a folder with `package.json` file which is inside `packages` directory.
 
 Packages can be:
 
-* public - meant to be released and consumed by other users outside of
-  this monorepo (for example `wix-style-react`)
-* private - not meant to be released and is consumed only by packages
-  within this monorepo (for example `wix-style-react-test-runtime`)
+* public - released and used by other users outside of this monorepo (like `wix-style-react`)
+* private - not released and used only by packages in this monorepo (like `wix-style-react-test-runtime`)
 
-# How to manage packages
+## How to setup
 
-Each package has its own `package.json` which defines `dependencies`
-and/or `devDependencies`. Usually those are installed with `npm install`.
-
-However, because there are many packages and they might share
-dependencies or use inter-packages, a tool - lerna - is used to manage
-`node_modules` of each package.
-
-# How to setup
+Because there are many packages that may share dependencies or use
+inter-packages, a tool (`lerna`) is used to manage them.
 
 From root of the monorepo:
 
@@ -30,20 +22,39 @@ From root of the monorepo:
 npm install
 ```
 
-This will install lerna and run [`lerna bootstrap`](https://github.com/lerna/lerna/tree/main/commands/bootstrap) automatically.
+This will:
+* install all dependencies
+* link them (where needed)
+* build packages (only locally)*
 
-After it runs, all packages will have their `node_modules` installed and
-linked as necessary.
+> \* Because `wix-ui-tpa` has `wix-style-react` as dependency, it will be linked and not downloaded from npm.
+> This means `wix-style-react` also must be built, so that `wix-ui-tpa` could work locally.
 
-For example, because `wix-ui-tpa` has `wix-style-react` as dependency,
-it will be linked to local package and not installed from npm. This
-allows to work on multiple libraries at once, while maintaining a single
-test and build phase.
+## How to contribute
+
+Run all commands from the root of the monorepo.  
+There should be no need to go into folders and run commands there.
+
+* for `wix-ui-tpa`
+  ```
+  npm run wut $command
+  ```
+
+* for `wix-style-react`
+  ```
+  npm run wsr $command
+  ```
+
+`$command` is any command that is available in the package.
+
+For example,
+
+`npm run wut start` will run `npm run start` of `packages/wix-ui-tpa` package.
 
 ## How to work on a single package
 
-Not every change requires all packages to be set up, it is sometimes
-enough to setup only the part that's needed.
+Not every change requires all packages to be set up. Sometimes it's
+enough to run only some small part.
 
 For example, to work only on wix-style-react:
 
@@ -53,15 +64,16 @@ npm install
 npm start
 ```
 
-A simple `cd` and `npm install` will setup single package. This is
-faster than bootstrapping the whole monorepo but essentially disables
-the ability to work on multiple packages at once.
+But Beware of dragons!
+
+This might work but there's no guarantee. You should really run commands
+from the root of the monorepo, unless you know what you're doing.
 
 # How to commit
 
 All code changes should be submitted through a pull request (PR).
-Once PR is open on github, there will be many test instances running
-code changes to ensure everything is valid.
+
+Once PR is open on github, there will be many test instances to validate code change.
 
 ## Commit messages
 
@@ -82,5 +94,6 @@ Some PRs involve code changes of more than one package. In such case it
 is mandatory to use github labels and mark the PR appropriately.
 
 For example, a PR which changes code in `wix-style-react` and
-`wix-ui-tpa` packages, should have labels of `wix-style-react` and
-`wix-ui-tpa`
+`wix-ui-tpa` packages, should have labels of `WSR` and `WUT`.
+
+Thankfully, this is done automatically.

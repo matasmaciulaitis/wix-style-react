@@ -1,7 +1,7 @@
 export const playground = `
   <ThemeProvider theme={theme()}>
     <PopoverMenu
-      textSize="small"   
+      textSize="small"
       triggerElement={
         <IconButton priority="secondary">
           <Icons.More />
@@ -10,7 +10,7 @@ export const playground = `
     >
       <PopoverMenu.MenuItem text="Add" prefixIcon={<Icons.Edit />} />
       <PopoverMenu.Divider />
-      <PopoverMenu.MenuItem text="Edit" />
+      <PopoverMenu.MenuItem text="Edit" disabled />
       <PopoverMenu.Divider />
       <PopoverMenu.MenuItem text="Delete" />
     </PopoverMenu>

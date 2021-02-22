@@ -1,13 +1,13 @@
-import styles from './dnd-styles.scss';
+import { classes } from './dnd-styles.st.css';
 
 export default {
-  item: styles.item,
-  itemPlaceholder: styles.itemPlaceholder,
-  itemPreview: styles.itemPreview,
-  list: styles.list,
-  gridItemPlaceholder: styles.gridItemPlaceholder,
-  isInitialPositionToDrop: styles.isInitialPositionToDrop,
-  gridItemPreview: styles.gridItemPreview,
-  withGridItemStrip: styles.withGridItemStrip,
-  withGridItemStripRight: styles.withGridItemStripRight,
+  item: classes.item,
+  itemPlaceholder: classes.itemPlaceholder,
+  itemPreview: classes.itemPreview,
+  list: classes.list,
+  gridItemPlaceholder: classes.gridItemPlaceholder,
+  isInitialPositionToDrop: classes.isInitialPositionToDrop,
+  gridItemPreview: classes.gridItemPreview,
+  withGridItemStrip: classes.withGridItemStrip,
+  withGridItemStripRight: classes.withGridItemStripRight,
 };
