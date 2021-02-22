@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import { classes, st } from './HorizontalTimeline.st.css';
 import { classes as iconsClasses } from './HorizontalTimelineIcons.st.css';
+import { dataHooks } from './constants';
 import StatusCompleteFilled from 'wix-ui-icons-common/StatusCompleteFilled';
 import StatusAlertFilled from 'wix-ui-icons-common/StatusAlertFilled';
 import Box from '../Box';
@@ -41,7 +42,12 @@ class HorizontalTimeline extends React.PureComponent {
                 </div>
 
                 <Box className={classes.label}>
-                  <Text size="tiny" ellipsis {...textPropsBySkinMap[skin]}>
+                  <Text
+                    size="tiny"
+                    ellipsis
+                    {...textPropsBySkinMap[skin]}
+                    dataHook={`${dataHooks.horizontalTimelineLabel}-${i}`}
+                  >
                     {label}
                   </Text>
                 </Box>

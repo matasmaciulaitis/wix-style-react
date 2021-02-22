@@ -8,34 +8,42 @@ describe(HorizontalTimeline.displayName, () => {
   const render = createRendererWithUniDriver(
     horizontalTimelinePrivateDriverFactory,
   );
+  const items = [
+    {
+      label: 'active-icon',
+      skin: 'dark',
+      icon: <HorizontalTimeline.ActiveIcon />,
+    },
+    {
+      label: 'default-icon',
+      skin: 'dark',
+      icon: <HorizontalTimeline.DefaultIcon />,
+    },
+    {
+      label: 'complete-icon',
+      skin: 'dark',
+      icon: <HorizontalTimeline.CompleteIcon />,
+    },
+    {
+      label: 'destructive-icon',
+      skin: 'dark',
+      icon: <HorizontalTimeline.DestructiveIcon />,
+    },
+  ];
 
   afterEach(() => {
     cleanup();
   });
 
   it('should render', async () => {
-    const { driver } = render(
-      <HorizontalTimeline
-        items={[
-          {
-            label: 'Instructions completed',
-            skin: 'dark',
-            icon: <HorizontalTimeline.CompleteIcon />,
-          },
-          {
-            label: 'Domain check',
-            skin: 'dark',
-            icon: <HorizontalTimeline.ActiveIcon />,
-          },
-          { label: 'Domain connecting' },
-          {
-            label: 'Site is live worldwide',
-            icon: <HorizontalTimeline.DestructiveIcon />,
-          },
-        ]}
-      />,
-    );
+    const { driver } = render(<HorizontalTimeline items={items} />);
 
     expect(await driver.exists()).toBe(true);
+  });
+
+  it('should render timeline with basic item', async () => {
+    const { driver } = render(<HorizontalTimeline items={items} />);
+
+    expect(await driver.getLabelText(0)).toEqual(items[0].label);
   });
 });
