@@ -22,7 +22,7 @@ import Print from 'wix-ui-icons-common/Print';
 import { Category } from '../../../storiesHierarchy';
 
 import {
-  MessageBoxFunctionalLayout,
+  MessageModalLayout,
   Modal,
   ModalPreviewLayout,
   ModalMobileLayout,
@@ -48,7 +48,7 @@ import {
 const groupSymbol = symbolsGroup.modals;
 
 const AlertExamples = () => {
-  const symbol = modalsSymbols.alert;
+  const symbol = modalsSymbols.messageModal;
   const components = modalsSymbolsToComponents[symbol];
 
   const singleComponentProps = {
@@ -58,30 +58,27 @@ const AlertExamples = () => {
 
   const renderMessageBoxFunctionalLayout = props => {
     const {
+      primaryButtonText,
+      secondaryButtonText,
       title,
-      confirmText,
-      cancelText,
-      theme,
-      image,
-      maxHeight,
       sideActions,
-      footerBottomChildren,
+      illustration,
+      theme,
       children,
     } = props;
 
     return (
-      <MessageBoxFunctionalLayout
-        title={title}
-        confirmText={confirmText}
-        cancelText={cancelText}
+      <MessageModalLayout
         theme={theme}
-        image={image}
-        maxHeight={maxHeight}
-        footerBottomChildren={footerBottomChildren}
+        onCloseButtonClick={() => {}}
+        primaryButtonText={primaryButtonText}
+        secondaryButtonText={secondaryButtonText}
+        title={title}
         sideActions={sideActions}
+        illustration={illustration}
       >
         {children}
-      </MessageBoxFunctionalLayout>
+      </MessageModalLayout>
     );
   };
 
@@ -90,51 +87,46 @@ const AlertExamples = () => {
       <Layout>
         <Cell>
           {renderMessageBoxFunctionalLayout({
-            title: 'More Info',
-            confirmText: 'Main',
-            cancelText: 'Cancel',
-            theme: 'blue',
-            sideActions: (
-              <FormField
-                label="Please don't show me this again"
-                labelPlacement="right"
-              >
-                <Checkbox />
-              </FormField>
+            primaryButtonText: 'Report',
+            secondaryButtonText: 'Cancel',
+            title: 'Report as Spam',
+            sideActions: <Checkbox>Don't show this again</Checkbox>,
+            illustration: 'generic_report.svg',
+            children: (
+              <Text>
+                Are you sure you want to report this conversation as spam? We
+                will block messages like this.
+              </Text>
             ),
-            children:
-              'This is a generic message. No harm done, but really needed to interrupt you.',
           })}
         </Cell>
         <Cell>
           {renderMessageBoxFunctionalLayout({
-            title: 'System Crashed!',
-            confirmText: 'Action',
-            theme: 'red',
-            cancelText: 'Secondary',
-            image: (
-              <Box
-                height="120px"
-                width="120px"
-                backgroundColor="D60"
-                borderRadius="50%"
-              />
+            theme: 'destructive',
+            primaryButtonText: 'Move To Trash',
+            secondaryButtonText: 'Cancel',
+            title: 'Move Site to Trash',
+            illustration: 'generic_trash.svg',
+            children: (
+              <Text>
+                Are you sure you want to move mysite-14 to Trash? <br />
+                Your site will become unpublished and can't be edited.
+              </Text>
             ),
-            children: 'Something terribly bad happened, that cannot be undone.',
           })}
         </Cell>
         <Cell>
           {renderMessageBoxFunctionalLayout({
-            title: 'Premium modal',
-            confirmText: 'Upgrade',
-            cancelText: 'Cancel',
-            theme: 'purple',
-            children: 'I am a premium modal!',
-            footerBottomChildren: (
-              <div>
-                <Text size="small">By upgrading, you agree to the </Text>
-                <TextButton size="small">Wix Terms of Use.</TextButton>
-              </div>
+            theme: 'premium',
+            primaryButtonText: 'Upgrade',
+            secondaryButtonText: 'Not Now',
+            title: 'Start Accepting Online Payments',
+            illustration: 'generic_upgrade.svg',
+            children: (
+              <Text>
+                Upgrade your site with a business and ecommerce premium plan to
+                start accepting payments.
+              </Text>
             ),
           })}
         </Cell>

@@ -130,7 +130,7 @@ export const notificationsComponentsNames = {
  * Components Family 9
  */
 export const modalsComponentsNames = {
-  MessageBoxFunctionalLayout: 'MessageBoxFunctionalLayout',
+  MessageModalLayout: 'MessageModalLayout',
   Modal: 'Modal',
   CustomModalLayout: 'CustomModalLayout',
   AnnouncementModalLayout: 'AnnouncementModalLayout',

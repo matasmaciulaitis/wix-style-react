@@ -124,10 +124,10 @@ export const notificationsSymbols = {
  * Symbols Family 9
  */
 export const modalsSymbols = {
-  alert: '9.1 Alert',
-  announcement: '9.2 Announcement',
+  messageModal: '9.1 Message Modal',
+  announcement: '9.2 Announcement Modal',
   custom: '9.3 Custom Modal',
-  preview: '9.4 Preview',
+  preview: '9.4 Preview Modal',
   mobile: '9.5 Mobile Modal',
 };
 
