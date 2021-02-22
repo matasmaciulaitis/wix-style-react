@@ -25,7 +25,7 @@ export interface CheckboxProps extends TPAComponentProps {
   error?: boolean;
   name?: string;
   theme?: CheckboxTheme;
-  suffix?: string;
+  suffix?: React.ReactNode | string;
 }
 
 interface DefaultProps {

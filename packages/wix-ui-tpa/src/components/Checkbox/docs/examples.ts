@@ -45,3 +45,9 @@ export const exampleWithSmallBoxAndSuffix = `
   <Checkbox theme="box" suffix="$10" onChange={val => console.log(val)} label="A lot of text, relatively." />
 </div>
 `;
+
+export const exampleWithSmallBoxAndReactNodeSuffix = `
+<div style={{ width: '250px' }}>
+  <Checkbox theme="box" suffix={<span style={{backgroundColor: 'red', padding: '3px'}}>$10</span>} onChange={val => console.log(val)} label="A lot of text, relatively." />
+</div>
+`;

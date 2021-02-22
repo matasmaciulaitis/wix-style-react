@@ -64,6 +64,10 @@ const codeExamples = [
     title: 'With small box and suffix',
     source: examples.exampleWithSmallBoxAndSuffix,
   },
+  {
+    title: 'With small box and custom suffix',
+    source: examples.exampleWithSmallBoxAndReactNodeSuffix,
+  },
 ];
 
 export default {

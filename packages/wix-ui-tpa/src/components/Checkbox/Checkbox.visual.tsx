@@ -58,8 +58,17 @@ visualize('Checkbox', () => {
 
   story('suffix', () => {
     snap(
-      `${CheckboxTheme.Box} / suffix`,
+      `${CheckboxTheme.Box} / suffix (string)`,
       <CheckboxVisual theme={CheckboxTheme.Box} suffix="$50,000" />,
+    );
+    snap(
+      `${CheckboxTheme.Box} / suffix (reactNode)`,
+      <CheckboxVisual
+        theme={CheckboxTheme.Box}
+        suffix={
+          <span style={{ backgroundColor: 'red', padding: '3px' }}>$10</span>
+        }
+      />,
     );
   });
 

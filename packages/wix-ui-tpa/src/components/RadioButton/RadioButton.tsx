@@ -32,7 +32,7 @@ export interface RadioButtonProps {
   label?: string;
   error?: boolean;
   theme?: RadioButtonTheme;
-  suffix?: string;
+  suffix?: React.ReactNode | string;
   withFocusRing?: boolean;
   children?: React.ReactNode;
   onChange?: CoreRadioButtonProps['onChange'];
@@ -165,7 +165,11 @@ export class RadioButton extends React.Component<
     return this.props['aria-label'] ? this.props['aria-label'] : label;
   };
 
-  _getContent = (suffix: string, label: string, children: React.ReactNode) => {
+  _getContent = (
+    suffix: React.ReactNode | string,
+    label: string,
+    children: React.ReactNode,
+  ) => {
     if (children) {
       return children;
     }
