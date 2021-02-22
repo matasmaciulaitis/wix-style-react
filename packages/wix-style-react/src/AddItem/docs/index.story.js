@@ -137,7 +137,8 @@ export default {
 
           example({
             title: 'Illustration',
-            text: "AddItem can have illustration by providing its' src",
+            text:
+              'Component allows to override the icon with an illustration. It’s useful when add item contains important functionality that needs emphasis. For example drag and drop file uploading.',
             source: examples.illustration,
           }),
 
