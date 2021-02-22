@@ -51,6 +51,7 @@ import {
   VerticalTabs,
   ComposerHeader,
   ComposerSidebar,
+  Pagination,
 } from 'wix-style-react';
 
 const groupSymbol = symbolsGroup.navigation;
@@ -387,6 +388,22 @@ const ComposerSidebarExample = () => {
   );
 };
 
+const PaginationExample = () => {
+  const symbol = navigationSymbols.pagination;
+  const components = navigationSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Pagination currentPage={8} totalPages={15} />
+    </SingleComponentSideBySide>
+  );
+};
+
 const NavigationFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <SidebarExample />
@@ -397,6 +414,7 @@ const NavigationFamily = () => (
     <StepperExample />
     <ComposerHeaderExample />
     <ComposerSidebarExample />
+    <PaginationExample />
   </FamilyStructure>
 );
 

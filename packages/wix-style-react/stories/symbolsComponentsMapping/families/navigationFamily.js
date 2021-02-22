@@ -30,4 +30,6 @@ export const navigationSymbolsToComponents = {
   [navigationSymbols.composerHeader]: [componentsNames.ComposerHeader],
 
   [navigationSymbols.composerSidebar]: [componentsNames.ComposerSidebar],
+
+  [navigationSymbols.pagination]: [componentsNames.Pagination],
 };

@@ -98,6 +98,7 @@ export const navigationSymbols = {
   stepper: '6.6 Stepper',
   composerHeader: '6.7 Composer Header',
   composerSidebar: '6.8 Composer Sidebar',
+  pagination: '6.9 Pagination',
 };
 
 /**
