@@ -30,6 +30,7 @@ import {
   TextButton,
   FillButton,
   FillPreview,
+  Radio,
 } from 'wix-style-react';
 import Edit from 'wix-ui-icons-common/Edit';
 import Add from 'wix-ui-icons-common/Add';
@@ -375,6 +376,29 @@ const FillButtonExample = () => {
   );
 };
 
+const RadioExample = () => {
+  const [state, setState] = React.useState({ selectedId: null });
+  const toggleSelection = selectedId => setState({ selectedId });
+
+  const symbol = internalComponentsSymbols.radio;
+  const components = internalComponentsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Radio
+        label="Radio Label"
+        checked={state.selectedId === 1}
+        onChange={() => toggleSelection(1)}
+      />
+    </SingleComponentSideBySide>
+  );
+};
+
 const InternalFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <DropdownLayoutExample />
@@ -386,6 +410,7 @@ const InternalFamily = () => (
     <CardFolderTabsExample />
     <FillPreviewExample />
     <FillButtonExample />
+    <RadioExample />
   </FamilyStructure>
 );
 

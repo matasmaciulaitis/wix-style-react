@@ -39,4 +39,6 @@ export const internalComponentsSymbolsToComponents = {
   [internalComponentsSymbols.fillPreview]: [
     internalComponentsNames.FillPreview,
   ],
+
+  [internalComponentsSymbols.radio]: [internalComponentsNames.Radio],
 };

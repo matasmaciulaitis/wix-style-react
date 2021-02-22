@@ -211,4 +211,5 @@ export const internalComponentsNames = {
   CardFolderTabs: 'CardFolderTabs',
   FillPreview: 'FillPreview',
   FillButton: 'FillButton',
+  Radio: 'Radio',
 };

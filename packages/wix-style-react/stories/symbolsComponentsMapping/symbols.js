@@ -202,4 +202,5 @@ export const internalComponentsSymbols = {
   cardFolderTabs: 'IC. Card Folder Tabs',
   fillPreview: 'IC. FillPreview',
   fillButton: 'IC. FillButton',
+  radio: 'IC. Radio',
 };
