@@ -40,6 +40,7 @@ export const layoutComponentsNames = {
   Page: 'Page',
   PageHeader: 'Page.Header',
   PageSection: 'Page.Section',
+  PageFooter: 'PageFooter',
   Grid: 'Grid',
   Layout: 'Layout',
   MarketingPageLayout: 'MarketingPageLayout',

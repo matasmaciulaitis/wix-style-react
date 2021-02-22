@@ -15,6 +15,8 @@ import More from 'wix-ui-icons-common/More';
 import { Category } from '../../../../../storiesHierarchy';
 
 import {
+  Cell,
+  Layout,
   Card,
   Page,
   Box,
@@ -166,9 +168,14 @@ const PageExamples = () => {
 
   return (
     <SingleComponentStacked {...singleComponentProps}>
-      <ExamplePageWithCard />
-      <Box height="30px" backgroundColor="D80" />
-      <ExamplePageEmptyState />
+      <Layout>
+        <Cell>
+          <ExamplePageWithCard />
+        </Cell>
+        <Cell>
+          <ExamplePageEmptyState />
+        </Cell>
+      </Layout>
     </SingleComponentStacked>
   );
 };

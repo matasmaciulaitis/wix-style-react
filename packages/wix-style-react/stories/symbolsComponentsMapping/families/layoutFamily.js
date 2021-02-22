@@ -11,6 +11,7 @@ export const layoutSymbolsToComponents = {
   [layoutSymbols.pageLayout]: [
     componentsNames.Page,
     componentsNames.PageHeader,
+    componentsNames.PageFooter,
     componentsNames.PageSection,
     componentsNames.Grid,
     componentsNames.Card,
