@@ -30,6 +30,8 @@ import {
   CalendarPanelFooter,
   Swatches,
   Layout,
+  SelectorList,
+  CustomModalLayout,
 } from 'wix-style-react';
 
 const colors = ['#EE5951', '#FDB10C', '#60BC57'];
@@ -165,26 +167,36 @@ const EditableSelectorExamples = () => {
 };
 
 const ModalSelectorExample = () => {
-  const modalItems = times(50, i => ({
-    id: i,
-    title: `Title ${i}`,
-    subtitle: `Subtitle ${i}`,
-    extraText: `Extra Text ${i}`,
-    disabled: !(i % 2),
-    image: (
-      <img
-        width="100%"
-        height="100%"
-        src="http://via.placeholder.com/100x100"
-      />
-    ),
-  }));
+  const symbol = pickerSymbols.modalSelector;
+  const components = pickerSymbolsToComponents[symbol];
 
-  const dataSourceFunc = (searchQuery, offset, limit) =>
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  const DATA_SOURCE = (searchQuery, offset, limit) =>
     new Promise(resolve =>
       setTimeout(() => {
-        const filtered = modalItems.filter(({ title }) =>
-          title.toLowerCase().startsWith(searchQuery.toLowerCase()),
+        const items = Array(50)
+          .fill(0)
+          .map((_, i) => ({
+            id: i,
+            title: `Title ${i}`,
+            subtitle: `Subtitle ${i}`,
+            extraText: `Extra Text ${i}`,
+            disabled: !(i % 2),
+            image: (
+              <img
+                width="100%"
+                height="100%"
+                src="http://via.placeholder.com/100x100"
+              />
+            ),
+          }));
+
+        const filtered = items.filter(({ title }) =>
+          title.toLowerCase().includes(searchQuery.toLowerCase()),
         );
 
         resolve({
@@ -194,23 +206,33 @@ const ModalSelectorExample = () => {
       }, 2000),
     );
 
-  const symbol = pickerSymbols.modalSelector;
-  const components = pickerSymbolsToComponents[symbol];
-
-  const singleComponentProps = {
-    name: symbol,
-    componentsNames: createLinkedComponentsNames(components),
-  };
-
   return (
     <SingleComponentSideBySide {...singleComponentProps}>
-      <ModalSelectorLayout
-        dataSource={dataSourceFunc}
-        height="540px"
-        itemsPerPage={4}
+      <SelectorList
         multiple
+        itemsPerPage={8}
         searchDebounceMs={150}
-      />
+        dataSource={DATA_SOURCE}
+      >
+        {({ renderList, renderToggleAllCheckbox, selectedItems }) => (
+          <CustomModalLayout
+            width="600px"
+            height="540px"
+            title="Choose Your Items"
+            primaryButtonText="Select"
+            primaryButtonProps={{
+              disabled: !selectedItems.length,
+            }}
+            secondaryButtonText="Cancel"
+            onCloseButtonClick={() => {}}
+            sideActions={renderToggleAllCheckbox()}
+            removeContentPadding
+            showHeaderDivider
+          >
+            {renderList()}
+          </CustomModalLayout>
+        )}
+      </SelectorList>
     </SingleComponentSideBySide>
   );
 };

@@ -1,5 +1,8 @@
 import { pickerSymbols } from '../symbols';
-import { pickerComponentsNames as componentsNames } from '../components';
+import {
+  pickerComponentsNames as componentsNames,
+  modalsComponentsNames,
+} from '../components';
 
 /**
  * Symbol => Component 10
@@ -7,9 +10,10 @@ import { pickerComponentsNames as componentsNames } from '../components';
 export const pickerSymbolsToComponents = {
   [pickerSymbols.editableSelector]: [componentsNames.EditableSelector],
 
-  [pickerSymbols.modalSelector]: [componentsNames.ModalSelectorLayout],
-
-  [pickerSymbols.selectorList]: [componentsNames.SelectorList],
+  [pickerSymbols.modalSelector]: [
+    componentsNames.SelectorList,
+    modalsComponentsNames.CustomModalLayout,
+  ],
 
   [pickerSymbols.colorPicker]: [
     componentsNames.ColorPicker,
