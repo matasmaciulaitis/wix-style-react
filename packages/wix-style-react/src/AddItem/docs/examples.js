@@ -80,14 +80,9 @@ export const content = `
 `;
 
 export const illustration = `
-  <Layout gap={10} cols={1}>
-    <AddItem icon="generic_add_item_illustration.svg" size="large">
-      Drag here to upload
-    </AddItem>
-      <AddItem icon="generic_add_item_illustration.svg">
-      Drag here to upload
-    </AddItem>
-  </Layout>;
+  <AddItem icon="generic_add_item_illustration.svg" size="large">
+    Drag here to upload
+  </AddItem>
 `;
 
 export const showIcon = `<AddItem showIcon={false}>Add Item</AddItem>`;
