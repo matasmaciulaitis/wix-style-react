@@ -29,6 +29,7 @@ export const BulkSelectionContextPropTypes = {
   selectAll: PropTypes.func,
   deselectAll: PropTypes.func,
   setSelectedIds: PropTypes.func,
+  selectionDisabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
 };
 
 /**
@@ -70,7 +71,7 @@ export class BulkSelection extends React.Component {
       );
       this.setSelectedIds(selectedIds, undefined, nextProps);
     } else if (
-      this.props.disabled !== nextProps.disabled ||
+      this.props.selectionDisabled !== nextProps.selectionDisabled ||
       !this.areSelectedIdsEqual(this.props.allIds, nextProps.allIds)
     ) {
       const { selectedIds, notSelectedIds } = this.state;
@@ -202,7 +203,7 @@ export class BulkSelection extends React.Component {
     selectedIds,
     notSelectedIds,
     allIds,
-    disabled,
+    selectionDisabled,
     deselectRowsByDefault,
     totalCount = 0,
   }) {
@@ -249,8 +250,13 @@ export class BulkSelection extends React.Component {
       bulkSelectionState,
       /** Indicates the `toggleAll` behaviour when some rows are selected. `true` means SOME -> NONE, `false` means SOME -> ALL  */
       deselectRowsByDefault,
-      /** Indicates whether selection checkboxes (including <TableBulkSelectionCheckbox>) are disabled */
-      disabled: disabled || allIds.length === 0,
+      /** Can be either a boolean or a function.
+       * A boolean affects selection of all table rows.
+       * A function will be called for every row in `data` to specify if its checkbox should be disabled. */
+      selectionDisabled:
+        selectionDisabled === true ||
+        allIds.length === 0 ||
+        (typeof selectionDisabled === 'function' && selectionDisabled),
       // Modifiers
       /** Toggle the selection state (selected/not-selected) of an item by id */
       toggleSelectionById: this.toggleSelectionById,
@@ -297,8 +303,10 @@ BulkSelection.propTypes = {
    * In case `totalSelectableCount` is set and the list is not fully loaded, and the user did bulk selection ("Select All"), the first parameter (selectedIds) will be null.
    * You can use the selection context's getNotSelectedIds() method to get the items that the user unselected after selecting all items. */
   onSelectionChanged: PropTypes.func,
-  /** Are checkboxes disabled */
-  disabled: PropTypes.bool,
+  /** Can be either a boolean or a function.
+   * If passed a boolean, affects selection for all table rows.
+   * If passed a function, it will be called for every row in `data` to specify if its checkbox should be disabled. Example: `isRowSelectionDisabled={(rowData) => !rowData.isSelectable}` */
+  selectionDisabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   /** Indicates whether the table is in infinite bulk selection mode (`infiniteScroll` and `totalSelectableCount` props are set) and there are more items to load (`hasMore` prop is `true`) */
   hasMoreInBulkSelection: PropTypes.bool,
   /** The table's `totalSelectableCount` prop  */

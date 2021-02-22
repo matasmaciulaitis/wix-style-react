@@ -4,7 +4,7 @@
   "sideEffects": [
     "./stories/**/*.*"
   ],
-  "version": "2.24.0",
+  "version": "2.25.0",
   "module": "./dist/es/src/index.js",
   "description": "Components for Wix Tpa applications",
   "author": {

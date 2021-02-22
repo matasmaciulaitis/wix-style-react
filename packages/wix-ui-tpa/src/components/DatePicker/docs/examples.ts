@@ -24,7 +24,6 @@ export const basicExample = buildExample(
     <div style={{ width: '280px' }}>
           <DatePicker
               value={value}
-              placeholderText="Select A Date"
               onChange={this._onChange} 
           />
     </div>
@@ -37,7 +36,6 @@ export const responsiveExample = buildExample(
     <div style={{ width: '600px' }}>
           <DatePicker
               value={value}
-              placeholderText="Select A Date"
               onChange={this._onChange} 
           />
     </div>
@@ -63,7 +61,6 @@ export const yearsAndMonthDropdowns = buildExample(
     <div style={{ width: '280px' }}>
           <DatePicker
               value={value}
-              placeholderText="Select A Date"
               showMonthDropdown
               showYearDropdown
               onChange={this._onChange} 
@@ -78,7 +75,6 @@ export const dateIndication = buildExample(
     <div style={{ width: '280px' }}>
           <DatePicker
               value={value}
-              placeholderText="Select A Date"
               onChange={this._onChange}
               dateIndication={({ date, isSelected }) => (
                   date <= new Date() && !isSelected ? (
@@ -98,14 +94,10 @@ export const a11y = buildExample(
     <div style={{ width: '280px' }}>
           <DatePicker
               value={value}
-              placeholderText="Select A Date"
-              showMonthDropdown
-              showYearDropdown
               onChange={this._onChange}
+              aria-label="My DatePicker"
               leftArrowAriaLabel="previous month"
               rightArrowAriaLabel="next month"
-              monthDropdownAriaLabel="month"
-              yearDropdownAriaLabel="year"
           />
     </div>
 `,

@@ -140,6 +140,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
             data-hook={this.props['data-hook']}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
+            role="region"
           >
             <WSRCalendar
               className={classes.calendar}

@@ -35,6 +35,7 @@ require('../src/components/HeroImage/docs/index.story');
 require('../src/components/ThumbnailImage/docs/index.story');
 require('../src/components/Input/docs/index.story');
 require('../src/components/LikeButton/docs/index.story');
+require('../src/components/MobileDrawer/docs/index.story');
 require('../src/components/OverlappingCard/docs/index.story');
 require('../src/components/Pagination/docs/index.story');
 require('../src/components/Picker/docs/index.story');

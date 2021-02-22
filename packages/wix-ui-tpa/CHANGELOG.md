@@ -1,3 +1,13 @@
+# 2.25.0 (2021-02-22)
+
+
+### Features
+
+* **DatePicker:** Add role region ([#6798](https://github.com/wix/wix-style-react/issues/6798)) ([c6c4139](https://github.com/wix/wix-style-react/commit/c6c4139f2e659480ced648eb24d6a45b449149b8))
+* **MobileDrawer:** New Component ([#6751](https://github.com/wix/wix-style-react/issues/6751)) ([a4584dc](https://github.com/wix/wix-style-react/commit/a4584dc7af88013c68388c74f32ba636a3c5820e))
+
+
+
 # 2.24.0 (2021-02-18)
 
 
@@ -21,7 +31,8 @@
 
 * **Dropdown:** Fix style overrides affecting Dropdown button ([468dda4](https://github.com/wix/wix-style-react/commit/468dda4cfe0ed042d537f96f7e3b626bd889de39))
 * **Image:** implement `focalPoint` prop ([#6738](https://github.com/wix/wix-style-react/issues/6738)) ([65b2a4c](https://github.com/wix/wix-style-react/commit/65b2a4ce9e68cea1e7e658ec26b26b0fd0559f7a))
-
+* **Checkbox:** add custom node suffix ([1acbbc0](https://github.com/wix/wix-style-react/commit/1acbbc0968ce890210a132166252acab0ce98cf0))
+* **Counter:** add backgorund and font style params ([43b81de](https://github.com/wix/wix-style-react/commit/43b81de75ff4bf37221c7440540ce940eb4101b7))
 
 
 # 2.22.0 (2021-02-11)

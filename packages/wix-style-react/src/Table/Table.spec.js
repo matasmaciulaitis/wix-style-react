@@ -211,11 +211,65 @@ describe('Table', () => {
         );
         expect(await driver.isBulkSelectionDisabled()).toBe(true);
       });
+
+      it(`should disable bulk selection when no item is selectable`, async () => {
+        const { driver } = render(
+          <Table {...defaultProps} selectionDisabled={() => true} />,
+        );
+        expect(await driver.isBulkSelectionDisabled()).toBe(true);
+      });
+
+      it(`should not disable bulk selection when some items are selectable`, async () => {
+        const { driver } = render(
+          <Table
+            {...defaultProps}
+            selectionDisabled={rowData => rowData.id === ID_1}
+          />,
+        );
+        expect(await driver.isBulkSelectionDisabled()).toBe(false);
+      });
+
       it(`should disable row selection when passed 'selectionDisabled' prop`, async () => {
         const { driver } = render(
           <Table {...defaultProps} selectionDisabled />,
         );
         expect(await driver.isRowSelectionDisabled(0)).toBe(true);
+      });
+      it(`should disable row selection when passed selectionDisabled true`, async () => {
+        const { driver } = render(
+          <Table {...defaultProps} selectedIds={[]} selectionDisabled />,
+        );
+        await driver.clickRowCheckbox(0);
+        expect(await driver.isRowSelected(0)).toBe(false);
+      });
+
+      describe('when passed selectionDisabled prop as function', () => {
+        let tableProps;
+        const selectionDisabled = rowData => rowData.id === ID_1;
+        beforeEach(() => {
+          tableProps = {
+            ...defaultProps,
+            selectionDisabled: selectionDisabled,
+          };
+        });
+        it(`should disable checkboxes that match 'selectionDisabled' prop`, async () => {
+          const { driver } = render(<Table {...tableProps} />);
+
+          expect(await driver.isRowSelectionDisabled(0)).toBe(true);
+          expect(await driver.isRowSelectionDisabled(1)).toBe(false);
+        });
+        it(`should disable row selection when it matches 'selectionDisabled' prop`, async () => {
+          const { driver } = render(<Table {...tableProps} />);
+
+          await driver.clickRowCheckbox(0);
+          expect(await driver.isRowSelected(0)).toBe(false);
+        });
+        it(`should not disable row selection when it does not match 'selectionDisabled' prop`, async () => {
+          const { driver } = render(<Table {...tableProps} />);
+
+          await driver.clickRowCheckbox(1);
+          expect(await driver.isRowSelected(1)).toBe(true);
+        });
       });
     });
 

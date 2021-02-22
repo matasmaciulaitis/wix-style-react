@@ -10,6 +10,7 @@ export * from './components/CheckboxGroup';
 export * from './components/RadioButtonGroup';
 export * from './components/Counter';
 export * from './components/CounterBadge';
+export * from './components/MobileDrawer';
 export * from './components/Divider';
 export * from './components/Grid';
 export * from './components/Input';

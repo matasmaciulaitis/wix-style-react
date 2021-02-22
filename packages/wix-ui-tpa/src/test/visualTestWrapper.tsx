@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TPAComponentsProvider } from '../components/TPAComponentsConfig';
 import { MobileExample } from '../../stories/utils/MobileExample';
 
-const TIMEOUT_DEFAULT = 2000;
+const TIMEOUT_DEFAULT = 3000;
 export class AsyncVisualTestWrapper extends React.Component<{
   isMobile: boolean;
   isRtl: boolean;

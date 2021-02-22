@@ -27,8 +27,8 @@ export const focusOnRichEditor = async base => {
     case 'react':
       return ReactBase(getContent(base)).focus();
     case 'puppeteer':
-      const { page } = await getContent(base).getNative();
-      return page.$eval('.public-DraftEditor-content', e => e.focus());
+      const { element } = await getContent(base).getNative();
+      return element.focus();
     default:
       throw new Error('unsupported adapter');
   }

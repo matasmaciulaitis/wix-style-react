@@ -31,7 +31,7 @@ const code = (config) =>
 const dataHook = 'storybook-HeroImage';
 
 export default {
-  category: StoryCategory.WIP,
+  category: StoryCategory.COMPONENTS,
   storyName: 'HeroImage',
   component: HeroImage,
   componentPath: '../HeroImage.tsx',
