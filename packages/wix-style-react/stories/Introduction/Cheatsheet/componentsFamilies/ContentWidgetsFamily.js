@@ -23,6 +23,7 @@ import ChevronDown from 'wix-ui-icons-common/ChevronDown';
 
 import {
   Layout,
+  AnalyticsLayout,
   Input,
   FormField,
   Dropdown,
@@ -1007,6 +1008,32 @@ const AnalyticsSummaryCardExample = () => {
   );
 };
 
+const AnalyticsLayoutExample = () => {
+  const symbol = contentWidgetsSymbols.analyticsLayouter;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview>
+        <AnalyticsLayout items={[1, 2, 3, 4, 5, 6, 7, 8]}>
+          {(item, index, rowItemsCount) => (
+            <AnalyticsLayout.Cell>
+              <Box margin="SP4">
+                item {item} ({index + 1} / {rowItemsCount})
+              </Box>
+            </AnalyticsLayout.Cell>
+          )}
+        </AnalyticsLayout>
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
 const ContentWidgetsFamily = () => (
   <FamilyStructure title={groupSymbol}>
     <ImageWidgetExample />
@@ -1030,6 +1057,7 @@ const ContentWidgetsFamily = () => (
     <TestimonialListExample />
     <FeatureListExample />
     <AnalyticsSummaryCardExample />
+    <AnalyticsLayoutExample />
   </FamilyStructure>
 );
 

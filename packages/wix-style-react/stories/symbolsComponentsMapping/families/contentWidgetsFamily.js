@@ -83,4 +83,8 @@ export const contentWidgetsSymbolsToComponents = {
   [contentWidgetsSymbols.analyticsSummaryCard]: [
     contentWidgetsComponentsNames.AnalyticsSummaryCard,
   ],
+
+  [contentWidgetsSymbols.analyticsLayouter]: [
+    contentWidgetsComponentsNames.AnalyticsLayout,
+  ],
 };

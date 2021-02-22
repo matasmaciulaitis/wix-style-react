@@ -185,6 +185,8 @@ export const contentWidgetsSymbols = {
   stackedBarChart: '12.20 Stacked Bar Chart',
   selectableAccordion: '12.21 Selectable Accordion',
   analyticsSummaryCard: '12.22 Analytics Summary Card',
+  analyticsLayouter: '12.23 Analytics Layouter',
+  googlePreview: '12.24 Google Preview',
 };
 
 /**

@@ -194,6 +194,7 @@ export const contentWidgetsComponentsNames = {
   FeatureList: 'FeatureList',
   TestimonialList: 'TestimonialList',
   AnalyticsSummaryCard: 'AnalyticsSummaryCard',
+  AnalyticsLayout: 'AnalyticsLayout',
 };
 
 /**
