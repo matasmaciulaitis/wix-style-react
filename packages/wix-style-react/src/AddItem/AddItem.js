@@ -19,22 +19,33 @@ import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 import { st, classes } from './AddItem.st.css';
 import { isString } from '../utils/StringUtils';
 
-const AddItemButtonIcons = {
-  tiny: ({ className }) => <Add className={className} width="26" height="26" />,
-  small: AddItemSmall,
-  medium: AddItemMedium,
-  large: AddItemLarge,
-  image: ({ className }) => (
-    <AddMedia className={className} width="31" height="31" />
-  ),
+const tinySizeDimensionsByTextSize = {
+  small: { height: 18, width: 18 },
+  medium: { height: 24, width: 24 },
 };
 
-const illustrationDimensions = {
-  tiny: { height: 24, width: 24 },
-  small: { height: 60, width: 60 },
-  medium: { height: 120, width: 120 },
-  large: { height: 120, width: 120 },
+const IconsBySize = {
+  tiny: {
+    small: {
+      component: ({ className }) => (
+        <Add className={className} {...tinySizeDimensionsByTextSize.small} />
+      ),
+      dimensions: tinySizeDimensionsByTextSize.small,
+    },
+    medium: {
+      component: ({ className }) => (
+        <Add className={className} {...tinySizeDimensionsByTextSize.medium} />
+      ),
+      dimensions: tinySizeDimensionsByTextSize.medium,
+    },
+  },
+  small: { component: AddItemSmall, dimensions: { height: 60, width: 60 } },
+  medium: { component: AddItemMedium, dimensions: { height: 120, width: 120 } },
+  large: { component: AddItemLarge, dimensions: { height: 120, width: 120 } },
 };
+
+const getIcon = (icons, size, textSize) =>
+  size === 'tiny' ? icons[size][textSize] : icons[size];
 
 const tooltipPlacementByAlignment = {
   left: 'top-start',
@@ -95,7 +106,7 @@ class AddItem extends Component {
     /** The illustraion icon src or node */
     icon: PropTypes.node,
 
-    /** The text size for small and tiny add item sizes */
+    /** The text size of the component */
     textSize: PropTypes.oneOf(['medium', 'small']),
   };
 
@@ -109,18 +120,23 @@ class AddItem extends Component {
   };
 
   _renderDefaultIcon = () => {
-    const { size, theme } = this.props;
+    const { size, theme, textSize } = this.props;
 
     const isImageIcon = theme === 'image';
 
     return (
       <ThemeProviderConsumerBackwardCompatible
         defaultIcons={{
-          AddItemButton: AddItemButtonIcons,
+          AddItemButton: IconsBySize,
         }}
       >
         {({ icons }) => {
-          const Icon = icons.AddItemButton[isImageIcon ? 'image' : size];
+          if (isImageIcon) {
+            return <AddMedia className={classes.icon} width="31" height="31" />;
+          }
+
+          const Icon = getIcon(icons.AddItemButton, size, textSize).component;
+
           return <Icon className={classes.icon} />;
         }}
       </ThemeProviderConsumerBackwardCompatible>
@@ -128,7 +144,8 @@ class AddItem extends Component {
   };
 
   _renderIllustration = () => {
-    const { icon, size } = this.props;
+    const { icon, size, textSize } = this.props;
+    const { dimensions } = getIcon(IconsBySize, size, textSize);
 
     return (
       <Image
@@ -136,7 +153,7 @@ class AddItem extends Component {
         className={classes.illustration}
         fit="contain"
         src={icon}
-        {...illustrationDimensions[size]}
+        {...dimensions}
       />
     );
   };
@@ -152,13 +169,11 @@ class AddItem extends Component {
   };
 
   _renderText = () => {
-    const { children, theme, size } = this.props;
+    const { children, theme, size, textSize } = this.props;
 
     if (!children || theme === 'image') {
       return null;
     }
-
-    const textSize = size === 'tiny' ? 'small' : 'medium';
 
     return (
       <div className={st(classes.textWrapper, { size })}>

@@ -105,7 +105,7 @@ export default {
 
           example({
             title: 'Text size',
-            text: 'Text size can be set for Add Item "small" and "tiny" sizes',
+            text: 'Text size can be set for Add Item',
             source: examples.textSize,
           }),
 
