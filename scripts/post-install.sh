@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-lerna bootstrap --no-ci
+lerna bootstrap --hoist --no-ci
 
 if ! is-ci; then
   echo "Welcome to the Unified Library!"
