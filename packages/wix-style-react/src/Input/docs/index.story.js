@@ -75,13 +75,11 @@ export default {
             `,
           }),
 
-          divider(),
-
           importExample("import { Input } from 'wix-style-react';"),
 
           divider(),
 
-          title('Property Examples'),
+          title('Examples'),
 
           example({
             title: 'Size',
@@ -117,7 +115,7 @@ export default {
           }),
 
           example({
-            title: 'StatusMessage',
+            title: 'Status Message',
             text: `
               Explain the status with \`statusMessage\` prop. The message is revealed when a user mouse hovers the status icon.
               The placement of a tooltip is controlled with \`tooltipPlacement\` prop.
@@ -126,7 +124,7 @@ export default {
           }),
 
           example({
-            title: 'ReadOnly and Disabled',
+            title: 'Read-Only and Disabled',
             text: `
               Control input interaction with:<br/>
               &emsp;- \`readOnly\` - disables writing new values, but allows to copy the current value. Use to display urls, codes and similar text.<br/>
@@ -138,13 +136,14 @@ export default {
           example({
             title: 'Affix',
             text: `
-              Boost input value with additional information added to \`prefix\` and \`suffix\` props.
+              Support input value with additional information added to \`prefix\` and \`suffix\` props. 
+              Props can contain text, icons and even buttons.
             `,
             source: examples.affix,
           }),
 
           example({
-            title: 'ClearButton',
+            title: 'Clear Button',
             text: `
               Enable a button that clears input value by using \`clearButton\` prop.
               Show it when input’s value is optional or often has to be clear, for example date and search inputs.
@@ -153,7 +152,7 @@ export default {
           }),
 
           example({
-            title: 'textOverflow',
+            title: 'Text Overflow',
             text: `
               Control long text value truncation with \`textOverflow\` prop. It has 2 options:<br/>
               &emsp;- \`clip\`(default) - ends the text  with a sharp cut.<br/>
@@ -167,16 +166,19 @@ export default {
           title('Common Use Cases'),
 
           example({
-            title: 'Layouting',
-            text: 'asd',
-            source: examples.layouting1,
+            title: 'Compound Input',
+            text:
+              'When multiple inputs represent the same data, like phone number or address input, fields can be stacked together using `Layout` component.',
+            source: examples.compoundInput,
           }),
 
-          example({
-            title: 'Layouting',
-            text: 'asd',
-            source: examples.layouting2,
-          }),
+          divider(),
+
+          title('Feedback'),
+
+          description(
+            'You can help us improve this component by providing feedback, asking questions or leaving any  other comments via #wix-style-ux or #wix-style-react Slack channels or GitHub.',
+          ),
         ],
       }),
 

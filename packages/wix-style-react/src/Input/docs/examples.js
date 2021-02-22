@@ -54,9 +54,7 @@ export const affix = `
     suffix={
       <Input.IconAffix>
         <TextButton>
-          <Box>
-            <Icons.Link />
-          </Box>
+          Button
         </TextButton>
       </Input.IconAffix>
     }
@@ -92,75 +90,23 @@ export const textOverflow = `
 />;
 `;
 
-export const layouting1 = `
-<Layout>
-  <Cell span={6}>
-    <Card >
-      <Box direction="vertical" padding="SP1 SP1 SP2">
-        <Layout gap={12}>
-          <Cell>
-            <Box padding="6px 6px 0px">
-              <Image borderRadius="4px" height="180px" />
-            </Box>
-          </Cell>
-
-          <Cell>
-            <Input
-              border="bottomLine"
-              textOverflow="ellipsis"
-              defaultValue="Empty photo album"
-            />
-          </Cell>
-        </Layout>
-      </Box>
-    </Card>
-  </Cell>
-  <Cell span={6}>
-    <Card>
-      <Box direction="vertical" padding="SP1 SP1 SP2">
-        <Layout gap={12}>
-          <Cell>
-            <Box padding="6px 6px 0px">
-              <Image borderRadius="4px" height="180px" src="example.jpg" />
-            </Box>
-          </Cell>
-
-          <Cell>
-            <Input
-              border="bottomLine"
-              textOverflow="ellipsis"
-              defaultValue="Empty photo album"
-            />
-          </Cell>
-        </Layout>
-      </Box>
-    </Card>
-  </Cell>
-</Layout>;
-`;
-
-export const layouting2 = `
-<Card>
-  <Card.Header title="Personal Info" />
-  <Divider />
-  <Card.Content>
-    <Layout>
-      <Cell span={6}>
-        <FormField label="First Name">
-          <Input defaultValue="John" />
-        </FormField>
-      </Cell>
-      <Cell span={6}>
-        <FormField label="Last Name">
-          <Input defaultValue="Bigfoot" />
-        </FormField>
-      </Cell>
-      <Cell span={12}>
-        <FormField label="About Yourself (Optional)">
-          <InputArea />
-        </FormField>
-      </Cell>
-    </Layout>
-  </Card.Content>
-</Card>;
+export const compoundInput = `
+<FormField label="Phone number">
+  <Layout gap={6}>
+    <Cell span={2}>    
+      <AutoComplete
+            popoverProps={{ placement: 'bottom-start' }}
+            value="+972"
+            options={[
+              listItemSelectBuilder({ id: 0, title: 'Israel', suffix: '+972' }),
+              listItemSelectBuilder({ id: 1, title: 'Japan', suffix: '+81' }),
+              listItemSelectBuilder({ id: 2, title: 'Australia', suffix: '+61' }),
+            ]}
+          />
+    </Cell>
+    <Cell span={10}>
+      <Input placeholder="00 000-0000" />
+    </Cell>
+  </Layout>
+</FormField>;
 `;
