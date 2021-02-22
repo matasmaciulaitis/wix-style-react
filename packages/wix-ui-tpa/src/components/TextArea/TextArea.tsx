@@ -8,6 +8,7 @@ import {
   TEXT_AREA_ERROR,
   TEXT_AREA_SUCCESS,
   TEXT_AREA_THEME,
+  TEXT_AREA_FOCUS,
 } from './dataKeys';
 import { TooltipSkin } from '../Tooltip/TooltipEnums';
 import { TextAreaTheme } from './TextAreaEnums';
@@ -40,8 +41,12 @@ interface DefaultProps {
   errorDescription: string;
 }
 
+export interface TextAreaState {
+  focused: boolean;
+}
+
 /** TextArea component */
-export class TextArea extends React.Component<TextAreaProps> {
+export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
   static displayName = 'TextArea';
   static defaultProps: DefaultProps = {
     error: false,
@@ -52,16 +57,31 @@ export class TextArea extends React.Component<TextAreaProps> {
     theme: TextAreaTheme.Box,
   };
 
+  state = {
+    focused: false,
+  };
+
   _getDataAttributes() {
     const { disabled, success, theme, error } = this.props;
+    const { focused } = this.state;
 
     return {
       [TEXT_AREA_DISABLED]: disabled,
       [TEXT_AREA_THEME]: theme,
       [TEXT_AREA_ERROR]: error,
       [TEXT_AREA_SUCCESS]: success,
+      [TEXT_AREA_FOCUS]: focused,
     };
   }
+
+  _onFocus = () => {
+    this.setState({ focused: true });
+  };
+
+  _onBlur = () => {
+    this.props.onBlur && this.props.onBlur();
+    this.setState({ focused: false });
+  };
 
   render() {
     const {
@@ -81,6 +101,13 @@ export class TextArea extends React.Component<TextAreaProps> {
     } = this.props;
     const dataObject = this._getDataAttributes();
     const showErrorIcon = error && errorDescription;
+    const { mobile: isMobile } = this.context;
+
+    const focusedBox =
+      !isMobile &&
+      this.state.focused &&
+      theme === TextAreaTheme.Box;
+
     return (
       <TPAComponentsConsumer>
         {({ rtl }) => {
@@ -98,6 +125,7 @@ export class TextArea extends React.Component<TextAreaProps> {
                   success,
                   disabled,
                 },
+                focusedBox ? classes.focused : '',
                 className,
               )}
             >
@@ -112,7 +140,8 @@ export class TextArea extends React.Component<TextAreaProps> {
                 id={id}
                 maxLength={maxLength}
                 autoFocus={autoFocus}
-                onBlur={onBlur}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
                 placeholder={placeholder}
                 className={classes.textArea}
                 data-hook={TEXT_AREA_DATA_HOOK}

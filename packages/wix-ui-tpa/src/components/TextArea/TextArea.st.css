@@ -5,7 +5,7 @@
 
 :import {
     -st-from: "../../common/palette.st.css";
-    -st-named: errorColor, successColor;
+    -st-named: errorColor, successColor, focusRing;
 }
 
 /*Defaults*/
@@ -73,6 +73,7 @@
     box-sizing: border-box;
     display: flex;
     position: relative;
+    padding: 8px 0;
     width: 280px;
     height: 92px;
 }
@@ -91,7 +92,7 @@
     width:  100%;
     box-sizing: border-box;
     color: value(textColor);
-    padding: 8px 12px;
+    padding: 0 12px;
     overflow: hidden;
     background-color: inherit;
     font: fallback(font(value(TextFont)), font(value(DefaultTextFont)));
@@ -108,6 +109,10 @@
 .textArea::-webkit-input-placeholder
 {
     color: value(placeholderColor);
+}
+
+.focused {
+    -st-mixin: focusRing();
 }
 
 .errorIconWrapper {
