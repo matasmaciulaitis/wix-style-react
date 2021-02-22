@@ -400,6 +400,81 @@
   );
 }
 
+/* override text color */
+.root:type(transparent):skin(general) .text,
+.root:type(outlined):skin(general) .text,
+.root:type(solid):skin(neutralStandard) .text,
+.root:type(outlined):skin(neutralStandard) .text,
+.root:type(solid):skin(neutralSuccess) .text,
+.root:type(outlined):skin(neutralSuccess) .text,
+.root:type(solid):skin(neutralDanger) .text,
+.root:type(outlined):skin(neutralDanger) .text,
+.root:type(solid):skin(neutralLight) .text,
+.root:type(outlined):skin(neutralLight) .text,
+.root:type(solid):skin(warningLight) .text,
+.root:type(outlined):skin(warningLight) .text {
+  color: value(D20);
+}
+
+.root:type(transparent):skin(standard) .text,
+.root:type(outlined):skin(standard) .text{
+  color: value(THEME-COLOR-20);
+}
+
+.root:type(transparent):skin(danger) .text,
+.root:type(outlined):skin(danger) .text {
+  color: value(R10);
+}
+
+.root:type(transparent):skin(success) .text,
+.root:type(outlined):skin(success) .text {
+  color: value(G10);
+}
+
+.root:type(transparent):skin(neutral) .text,
+.root:type(outlined):skin(neutral) .text {
+  color: value(D40);
+}
+
+.root:type(transparent):skin(warning) .text,
+.root:type(outlined):skin(warning) .text {
+  color: value(Y10);
+}
+
+.root:type(transparent):skin(urgent) .text,
+.root:type(outlined):skin(urgent) .text {
+  color: value(O10);
+}
+
+.root:type(transparent):skin(neutralStandard) .text {
+  color: value(THEME-COLOR-30);
+}
+
+.root:type(transparent):skin(neutralSuccess) .text {
+  color: value(G30);
+}
+
+.root:type(transparent):skin(neutralDanger) .text {
+  color: value(R30);
+}
+
+.root:type(transparent):skin(premium) .text,
+.root:type(outlined):skin(premium) .text {
+  color: value(P10);
+}
+
+.root:type(solid):skin(premium) .text {
+  color: value(D80);
+}
+
+.root:type(transparent):skin(neutralLight) .text{
+  color: value(D70);
+}
+
+.root:type(transparent):skin(warningLight) .text {
+  color: value(Y30);
+}
+
 /* size = medium */
 .root:size(medium) {
   padding: value(medium);
