@@ -1,10 +1,10 @@
 :import {
-  -st-from: "../Foundation/stylable/colors.st.css";
+  -st-from: '../Foundation/stylable/colors.st.css';
   -st-named: D60, B50;
 }
 
 :import {
-  -st-from: "../TableActionCell/TableActionCell.st.css";
+  -st-from: '../TableActionCell/TableActionCell.st.css';
   -st-default: TableActionCell;
   -st-named: onHover, notOnHover;
 }

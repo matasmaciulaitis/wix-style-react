@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../Tag/Tag';
 import Input from '../Input';
-import styles from './InputWithTags.scss';
+import { classes } from './InputWithTags.st.css';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import SortableList from '../SortableList/SortableList';
@@ -63,16 +63,16 @@ class InputWithTags extends React.Component {
     const { inputHasFocus: hasFocus } = this.state;
     const isSelectMode = mode === 'select';
 
-    const className = classNames(styles.inputWithTagsContainer, {
-      [styles.disabled]: disabled,
-      [styles[status]]: status,
-      [styles.readOnly]: isSelectMode,
-      [styles.hasFocus]: hasFocus && !disabled,
-      [styles.hasMaxHeight]:
+    const className = classNames(classes.inputWithTagsContainer, {
+      [classes.disabled]: disabled,
+      [classes[status]]: status,
+      [classes.readOnly]: isSelectMode,
+      [classes.hasFocus]: hasFocus && !disabled,
+      [classes.hasMaxHeight]:
         !isUndefined(this.props.maxHeight) ||
         !isUndefined(this.props.maxNumRows),
-      [styles.sizeSmall]: size === 'small',
-      [styles.sizeLarge]: size === 'large',
+      [classes.sizeSmall]: size === 'small',
+      [classes.sizeLarge]: size === 'large',
     });
 
     /* eslint-disable no-unused-vars */
@@ -113,7 +113,7 @@ class InputWithTags extends React.Component {
       >
         {onReorder ? (
           <SortableList
-            contentClassName={styles.tagsContainer}
+            contentClassName={classes.tagsContainer}
             items={tags}
             onDrop={onReorder}
             renderItem={this.renderReorderableTag}
@@ -125,7 +125,7 @@ class InputWithTags extends React.Component {
               dataHook="tag"
               disabled={disabled}
               onRemove={onRemoveTag}
-              className={styles.tag}
+              className={classes.tag}
               {...rest}
             >
               {label}
@@ -133,12 +133,12 @@ class InputWithTags extends React.Component {
           ))
         )}
         <span
-          className={classNames(styles.input, !tags.length)}
+          className={classNames(classes.input, !tags.length)}
           data-hook="inner-input-with-tags"
         >
           <div
-            className={classNames(styles.hiddenDiv, {
-              [styles.smallFont]: size === 'small',
+            className={classNames(classes.hiddenDiv, {
+              [classes.smallFont]: size === 'small',
             })}
           >
             {this.state.inputValue}
@@ -166,7 +166,10 @@ class InputWithTags extends React.Component {
               this.props.customSuffix &&
               !this.props.hideCustomSuffix &&
               !this.state.inputHasFocus && (
-                <span data-hook="custom-suffix" className={styles.customSuffix}>
+                <span
+                  data-hook="custom-suffix"
+                  className={classes.customSuffix}
+                >
                   {this.props.customSuffix}
                 </span>
               )
@@ -175,10 +178,10 @@ class InputWithTags extends React.Component {
         </span>
 
         {/* Suffixes */}
-        <div className={styles.inputSuffix}>
+        <div className={classes.inputSuffix}>
           {/* Status Indicator */}
           {!disabled && ['error', 'warning', 'loading'].includes(status) && (
-            <div className={styles.statusIndicator}>
+            <div className={classes.statusIndicator}>
               <StatusIndicator
                 status={status}
                 message={statusMessage}
@@ -189,7 +192,7 @@ class InputWithTags extends React.Component {
 
           {/* Arrow */}
           {isSelectMode && (
-            <div className={styles.menuArrow} data-hook="input-menu-arrow">
+            <div className={classes.menuArrow} data-hook="input-menu-arrow">
               <DropDownArrow />
             </div>
           )}
@@ -206,11 +209,11 @@ class InputWithTags extends React.Component {
     ...rest
   }) {
     const { onRemoveTag, disabled } = this.props;
-    const classes = classNames(styles.tag, {
+    const _classes = classNames(classes.tag, {
       [defaultDndStyles.itemPlaceholder]: isPlaceholder,
-      [styles.draggedTagPlaceholder]: isPlaceholder,
+      [classes.draggedTagPlaceholder]: isPlaceholder,
       [defaultDndStyles.itemPreview]: isPreview,
-      [styles.draggedTag]: isPreview,
+      [classes.draggedTag]: isPreview,
     });
 
     return (
@@ -219,7 +222,7 @@ class InputWithTags extends React.Component {
           id={id}
           dataHook="tag"
           disabled={disabled}
-          className={classes}
+          className={_classes}
           onRemove={onRemoveTag}
           {...itemProps}
           {...rest}

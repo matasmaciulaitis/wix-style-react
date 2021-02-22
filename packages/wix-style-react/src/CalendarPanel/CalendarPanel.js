@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './CalendarPanel.scss';
+import { classes } from './CalendarPanel.st.css';
 import DropdownLayout from '../DropdownLayout';
 import Calendar from '../Calendar';
 import { DIVIDER_OPTION_VALUE } from '../DropdownLayout/DropdownLayout';
@@ -156,10 +156,10 @@ class CalendarPanel extends React.Component {
     const { dataHook, presets, footer, ...calendarProps } = this.props;
 
     return (
-      <div className={styles.root} data-hook={dataHook}>
-        <div className={styles.calendarWithPresets}>
+      <div className={classes.root} data-hook={dataHook}>
+        <div className={classes.calendarWithPresets}>
           {Boolean(presets && presets.length) && (
-            <div className={styles.presets}>
+            <div className={classes.presets}>
               <DropdownLayout
                 visible
                 inContainer
@@ -174,11 +174,11 @@ class CalendarPanel extends React.Component {
           <Calendar
             {...calendarProps}
             dataHook={'calendar'}
-            className={styles.calendar}
+            className={classes.calendar}
           />
         </div>
         {footer && (
-          <div className={styles.footer}>
+          <div className={classes.footer}>
             {footer({
               selectedDays: calendarProps.value,
               submitDisabled: this.isSubmitDisabled(),

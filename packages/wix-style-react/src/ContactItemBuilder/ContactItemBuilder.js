@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ContactItemBuilder.scss';
+import { classes } from './ContactItemBuilder.st.css';
 import Avatar from '../Avatar/Avatar';
 import Text from '../Text';
 import { dataHooks } from './ContactItemBuilderDataHooks';
@@ -12,8 +12,8 @@ export const ContactItem = props => {
   );
 
   return (
-    <div className={styles.contactItemOption}>
-      <div className={styles.avatar}>
+    <div className={classes.contactItemOption}>
+      <div className={classes.avatar}>
         <Avatar
           name={props.title}
           size="size30"
@@ -21,7 +21,7 @@ export const ContactItem = props => {
           data-hook={dataHooks.pickerOptionAvatar}
         />
       </div>
-      <div className={styles.contactItemTitles}>
+      <div className={classes.contactItemTitles}>
         <Text
           ellipsis
           size="medium"
