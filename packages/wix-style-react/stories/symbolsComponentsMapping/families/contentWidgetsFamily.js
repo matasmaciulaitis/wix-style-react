@@ -87,4 +87,8 @@ export const contentWidgetsSymbolsToComponents = {
   [contentWidgetsSymbols.analyticsLayouter]: [
     contentWidgetsComponentsNames.AnalyticsLayout,
   ],
+
+  [contentWidgetsSymbols.googlePreview]: [
+    contentWidgetsComponentsNames.GooglePreview,
+  ],
 };

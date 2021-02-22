@@ -60,6 +60,7 @@ import {
   FeatureList,
   Image,
   AnalyticsSummaryCard,
+  GooglePreview,
 } from 'wix-style-react';
 
 const groupSymbol = symbolsGroup.contentWidgets;
@@ -1034,6 +1035,29 @@ const AnalyticsLayoutExample = () => {
   );
 };
 
+const GooglePreviewExample = () => {
+  const symbol = contentWidgetsSymbols.googlePreview;
+  const components = contentWidgetsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+
+  return (
+    <SingleComponentStacked {...singleComponentProps}>
+      <Preview>
+        <GooglePreview
+          title="Site Name | a title of your site Site Name | a title of your site "
+          previewUrl="www.site-name.com"
+          description="a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site a short description for a site"
+        />
+      </Preview>
+    </SingleComponentStacked>
+  );
+};
+
 const ContentWidgetsFamily = () => (
   <FamilyStructure title={groupSymbol}>
     <ImageWidgetExample />
@@ -1058,6 +1082,7 @@ const ContentWidgetsFamily = () => (
     <FeatureListExample />
     <AnalyticsSummaryCardExample />
     <AnalyticsLayoutExample />
+    <GooglePreviewExample />
   </FamilyStructure>
 );
 
