@@ -81,6 +81,18 @@
     background-color: value(CurrentBackgroundColor);
 }
 
+.wsrAddItemRoot:size(small) {
+  padding: 12px 30px;
+}
+
+.wsrAddItemRoot:size(medium) {
+  padding: 12px 30px;
+}
+
+.wsrAddItemRoot:size(large) {
+  padding: 12px 30px;
+}
+
 .wsrAddItemRoot:hasError {
     background-color: #FFFFFF;
     border-color: value(errorColor);
