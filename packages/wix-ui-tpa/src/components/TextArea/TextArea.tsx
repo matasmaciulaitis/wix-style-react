@@ -104,9 +104,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     const { mobile: isMobile } = this.context;
 
     const focusedBox =
-      !isMobile &&
-      this.state.focused &&
-      theme === TextAreaTheme.Box;
+      !isMobile && this.state.focused && theme === TextAreaTheme.Box;
 
     return (
       <TPAComponentsConsumer>
