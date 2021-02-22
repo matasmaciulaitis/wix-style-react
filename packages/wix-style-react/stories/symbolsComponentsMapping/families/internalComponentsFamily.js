@@ -33,4 +33,10 @@ export const internalComponentsSymbolsToComponents = {
     layoutComponentsNames.CardContent,
     sharedComponentsNames.EmptyState,
   ],
+
+  [internalComponentsSymbols.fillButton]: [internalComponentsNames.FillButton],
+
+  [internalComponentsSymbols.fillPreview]: [
+    internalComponentsNames.FillPreview,
+  ],
 };

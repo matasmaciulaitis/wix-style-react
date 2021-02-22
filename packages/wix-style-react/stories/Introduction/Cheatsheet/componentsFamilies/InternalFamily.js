@@ -28,6 +28,8 @@ import {
   EmptyState,
   Card,
   TextButton,
+  FillButton,
+  FillPreview,
 } from 'wix-style-react';
 import Edit from 'wix-ui-icons-common/Edit';
 import Add from 'wix-ui-icons-common/Add';
@@ -337,6 +339,42 @@ const CardFolderTabsExample = () => {
   );
 };
 
+const FillPreviewExample = () => {
+  const symbol = internalComponentsSymbols.fillPreview;
+  const components = internalComponentsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Preview>
+        <FillPreview fill="#3399ff" selected />
+      </Preview>
+    </SingleComponentSideBySide>
+  );
+};
+
+const FillButtonExample = () => {
+  const symbol = internalComponentsSymbols.fillButton;
+  const components = internalComponentsSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Preview>
+        <FillButton tooltipContent="hello there" />
+      </Preview>
+    </SingleComponentSideBySide>
+  );
+};
+
 const InternalFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <DropdownLayoutExample />
@@ -346,6 +384,8 @@ const InternalFamily = () => (
     <ListItemSelectExample />
     <TagListExample />
     <CardFolderTabsExample />
+    <FillPreviewExample />
+    <FillButtonExample />
   </FamilyStructure>
 );
 

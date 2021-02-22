@@ -209,4 +209,6 @@ export const internalComponentsNames = {
   ListItemSection: 'ListItemSection',
   ListItemSelect: 'ListItemSelect',
   CardFolderTabs: 'CardFolderTabs',
+  FillPreview: 'FillPreview',
+  FillButton: 'FillButton',
 };

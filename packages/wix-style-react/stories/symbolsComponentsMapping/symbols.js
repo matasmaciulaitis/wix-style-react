@@ -200,4 +200,6 @@ export const internalComponentsSymbols = {
   listItemAction: 'IC. ListItemAction',
   listItemEditable: 'IC. ListItemEditable',
   cardFolderTabs: 'IC. Card Folder Tabs',
+  fillPreview: 'IC. FillPreview',
+  fillButton: 'IC. FillButton',
 };
