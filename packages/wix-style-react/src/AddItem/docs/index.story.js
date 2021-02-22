@@ -136,7 +136,7 @@ export default {
           }),
 
           example({
-            title: 'Illustration',
+            title: 'Overriding Icon',
             text:
               'Component allows to override the icon with an illustration. It’s useful when add item contains important functionality that needs emphasis. For example drag and drop file uploading.',
             source: examples.illustration,
