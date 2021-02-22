@@ -246,7 +246,7 @@
     "wix-ui-core": "^3.0.183",
     "wix-ui-icons-common": "^2.0.308",
     "wix-ui-test-utils": "^1.0.178",
-    "yoshi-stylable-dependencies": "^4.0.0"
+    "yoshi-stylable-dependencies": "^4.86.0"
   },
   "eslintConfig": {
     "extends": [
