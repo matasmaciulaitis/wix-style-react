@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Locale } from 'date-fns';
+import { LanguageType as CalendarLanguageType } from '../Calendar';
 
 export interface CalendarPanelProps {
   dataHook?: string;
@@ -14,7 +15,7 @@ export interface CalendarPanelProps {
   showYearDropdown?: boolean;
   showMonthDropdown?: boolean;
   shouldCloseOnSelect?: boolean;
-  locale?: LanguageType | Locale;
+  locale?: CalendarLanguageType | Locale;
   presets?:
     | PresetType[]
     | { selectedDays?: SelectedDaysType; id?: string | number };
@@ -31,25 +32,7 @@ type OptionType = {
   selectedDays: SelectedDaysType;
 };
 
-export type LanguageType =
-  | 'en'
-  | 'es'
-  | 'pt'
-  | 'fr'
-  | 'de'
-  | 'pl'
-  | 'it'
-  | 'ru'
-  | 'ja'
-  | 'ko'
-  | 'tr'
-  | 'sv'
-  | 'no'
-  | 'nl'
-  | 'da'
-  | 'zh'
-  | 'th'
-  | 'cs';
+export type LanguageType = CalendarLanguageType;
 
 export type SelectedDaysType = string | Date | DateRangeType;
 

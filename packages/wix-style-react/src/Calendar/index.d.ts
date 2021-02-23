@@ -6,6 +6,39 @@ export interface dateIndicationProps {
   isSelected: boolean;
 }
 
+export type LanguageType =
+  | 'en'
+  | 'es'
+  | 'pt'
+  | 'fr'
+  | 'de'
+  | 'pl'
+  | 'it'
+  | 'ru'
+  | 'ja'
+  | 'ko'
+  | 'tr'
+  | 'sv'
+  | 'no'
+  | 'nl'
+  | 'da'
+  | 'zh'
+  | 'th'
+  | 'uk'
+  | 'cs'
+  | 'ar'
+  | 'bg'
+  | 'el'
+  | 'fi'
+  | 'he'
+  | 'hi'
+  | 'hu'
+  | 'id'
+  | 'ms'
+  | 'ro'
+  | 'lt'
+  | 'vi';
+
 export interface CalendarProps {
   dataHook?: string;
   autoFocus?: boolean;
@@ -27,7 +60,7 @@ export interface CalendarProps {
   showYearDropdown?: boolean;
   showMonthDropdown?: boolean;
   shouldCloseOnSelect?: boolean;
-  locale?: string | Locale;
+  locale?: LanguageType | Locale;
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   rtl?: boolean;
   dateIndication?: React.FC<dateIndicationProps>;

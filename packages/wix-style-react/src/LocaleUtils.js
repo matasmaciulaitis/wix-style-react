@@ -20,6 +20,18 @@ import cs from 'date-fns/locale/cs';
 import zh from 'date-fns/locale/zh-CN';
 import uk from 'date-fns/locale/uk';
 import no from 'date-fns/locale/nb';
+import ar from 'date-fns/locale/ar-MA';
+import bg from 'date-fns/locale/bg';
+import el from 'date-fns/locale/el';
+import fi from 'date-fns/locale/fi';
+import he from 'date-fns/locale/he';
+import hi from 'date-fns/locale/hi';
+import hu from 'date-fns/locale/hu';
+import id from 'date-fns/locale/id';
+import ms from 'date-fns/locale/ms';
+import ro from 'date-fns/locale/ro';
+import lt from 'date-fns/locale/lt';
+import vi from 'date-fns/locale/vi';
 /** ***************/
 
 import { convertTokens } from '@date-fns/upgrade/v2';
@@ -77,6 +89,18 @@ const locales = {
   cs,
   zh,
   uk,
+  ar,
+  bg,
+  el,
+  fi,
+  he,
+  hi,
+  hu,
+  id,
+  ms,
+  ro,
+  lt,
+  vi,
 };
 
 const getLocale = locale =>

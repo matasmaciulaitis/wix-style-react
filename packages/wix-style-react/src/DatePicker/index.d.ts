@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { Locale } from 'date-fns';
-import { CalendarProps } from '../Calendar';
+import { CalendarProps, LanguageType as CalendarLanguageType } from '../Calendar';
 import { PopoverCommonProps } from '../common';
 
 export type DatePickerStatus = 'error' | 'warning' | 'loading';
+export type LanguageType = CalendarLanguageType;
+
 export interface DatePickerProps extends CalendarProps {
   className?: string;
   customInput?: React.ReactNode;
   inputProps?: {};
   dateFormat?: string | Function;
   dateFormatV2?: string | Function;
-  locale?: string | Locale;
+  locale?: CalendarLanguageType | Locale;
   disabled?: boolean;
   inputDataHook?: string;
   calendarDataHook?: string;
