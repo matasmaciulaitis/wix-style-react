@@ -8,16 +8,21 @@
   -st-named: B50;
 }
 
+:import {
+  -st-from: '../foundations/spacing.st.css';
+  -st-named: SP3;
+}
+
 .root {
   -st-extends: TableListItem;
 }
 
 .root:verticalPadding(small) {
-  padding: 0 0 12px 0;
+  padding: 0 0 value(SP3) 0;
 }
 
 .root:verticalPadding(small):not(:first-child) {
-  padding-top: 12px;
+  padding-top: value(SP3);
 }
 
 .root:verticalPadding(small).align:not(:last-child) {
