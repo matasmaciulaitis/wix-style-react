@@ -34,6 +34,17 @@ export const DropdownExtendedExample: React.FC = () => {
           options={optionsWithSections}
         />
       </div>
+
+      <div>
+        <h3>Dropdown with error</h3>
+        <Dropdown
+          className={classes.root}
+          initialSelectedId="0"
+          error
+          errorMessage={'There was an error'}
+          options={optionsWithSections}
+        />
+      </div>
     </>
   );
 };

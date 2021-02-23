@@ -71,7 +71,7 @@
 .root:error,
 .root:error:focus,
 .root:error:hover {
-    border-color: value(errorColor);
+    border-color: color(value(errorColor)) !important;
 }
 
 

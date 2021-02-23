@@ -4,6 +4,11 @@
 }
 
 :import {
+    -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+    -st-named: popoverContent;
+}
+
+:import {
     -st-from: "../Input/Input.st.css";
     -st-named: colorPlaceholder;
 }
@@ -154,7 +159,7 @@
 
 
 .root {
-    -st-states: alignment(enum(center)), mobile;
+    -st-states: alignment(enum(center)), mobile, error;
 }
 
 .root:mobile .label {
@@ -216,18 +221,24 @@
 
 .dropdown .dropdownBase {
     color: value(DefaultButtonTextColor) !important;
-    border-color: value(DefaultButtonBorderColor) !important;
     border-width: value(DefaultBorderWidth) !important;
     background: value(DefaultBackgroundColor) !important;
     font: font(value(DefaultTextFont)) !important;
 }
 
+.dropdown .dropdownBase:not(:error) {
+    border-color: value(DefaultButtonBorderColor) !important;
+}
+
 .root.overrideStyleParams .dropdown .dropdownBase {
     color: value(CurrentButtonTextColor) !important;
-    border-color: value(CurrentButtonBorderColor) !important;
     border-width: value(CurrentBorderWidth) !important;
     background: value(CurrentBackgroundColor) !important;
     font: value(CurrentTextFont) !important;
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase:not(:error) {
+    border-color: value(CurrentButtonBorderColor) !important;
 }
 
 .dropdown .dropdownBase::arrowIcon {
@@ -286,7 +297,7 @@
     border: 1px solid applyOpacity(color(color-5), 0.4);
 }
 
-.root.overrideStyleParams .dropdown::popoverContent {
+.root.overrideStyleParams .dropdown > .popoverContent {
     border: 1px solid applyOpacity(value(CurrentItemTextColor), 0.4);
     background-color: value(CurrentDropdownBackgroundColor);
 }

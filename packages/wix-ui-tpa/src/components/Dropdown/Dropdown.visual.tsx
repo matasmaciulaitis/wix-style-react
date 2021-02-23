@@ -5,6 +5,7 @@ import { VisualTestContainer } from '../../../test/visual/VisualTestContainer';
 import { Dropdown } from './';
 import { optionsWithSections, simpleOptions } from './helpers';
 import { ReactComponent as Heart } from '../../assets/icons/Heart.svg';
+import { classes } from './Dropdown.visual.st.css';
 
 const optionsWithIconAndSubtitles = [
   {
@@ -32,11 +33,11 @@ class DropdownVisual extends React.Component<any> {
     const { mobile } = this.props;
 
     return (
-      <TPAComponentsProvider value={{ mobile }}>
-        <VisualTestContainer>
-          <Dropdown {...this.props} />
-        </VisualTestContainer>
-      </TPAComponentsProvider>
+        <TPAComponentsProvider value={{ mobile }}>
+          <VisualTestContainer>
+            <Dropdown {...this.props} />
+          </VisualTestContainer>
+        </TPAComponentsProvider>
     );
   }
 }
@@ -101,4 +102,13 @@ visualize('Dropdown', () => {
       snap(testConfig.it, <DropdownVisual {...testConfig.props} />);
     });
   });
+
+  story('wired', () => {
+    snap('error should always show red border', () => (
+        <DropdownVisual error
+                        errorMessage={'Error message'}
+                        options={simpleOptions}
+                        className={classes.root}/>
+    ))
+  })
 });
