@@ -30,6 +30,7 @@ export interface TextAreaProps extends TPAComponentProps {
   onChange(event: React.ChangeEvent<HTMLTextAreaElement>): void;
   onBlur?(): void;
   maxLength?: number;
+  withFocusRing?: boolean;
 }
 
 interface DefaultProps {
@@ -39,6 +40,7 @@ interface DefaultProps {
   placeholder: string;
   theme: TextAreaTheme;
   errorDescription: string;
+  withFocusRing: boolean;
 }
 
 export interface TextAreaState {
@@ -55,6 +57,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     placeholder: '',
     errorDescription: '',
     theme: TextAreaTheme.Box,
+    withFocusRing: false,
   };
 
   state = {
@@ -98,13 +101,17 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
       autoFocus,
       className,
       maxLength,
+      withFocusRing,
     } = this.props;
     const dataObject = this._getDataAttributes();
     const showErrorIcon = error && errorDescription;
     const { mobile: isMobile } = this.context;
 
     const focusedBox =
-      !isMobile && this.state.focused && theme === TextAreaTheme.Box;
+      !isMobile &&
+      withFocusRing &&
+      this.state.focused &&
+      theme === TextAreaTheme.Box;
 
     return (
       <TPAComponentsConsumer>
@@ -124,7 +131,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                   disabled,
                 },
                 focusedBox ? classes.focused : '',
-                className,
+                className
               )}
             >
               <textarea
