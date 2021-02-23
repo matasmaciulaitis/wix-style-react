@@ -152,7 +152,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,scss,less}": [
-      "yoshi lint --fix"
+      "yoshi lint --fix",
+      "git add"
     ]
   },
   "license": "MIT",
