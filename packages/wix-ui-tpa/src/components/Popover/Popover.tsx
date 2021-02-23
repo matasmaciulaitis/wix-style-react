@@ -28,7 +28,7 @@ export const Popover: React.FC<PopoverProps> & {
     shown,
     ...rest
   } = props;
-  const [isShown, setIsShown] = React.useState<boolean>(shown);
+  const [isShown, setIsShown] = React.useState<boolean>(false);
   const isControlled = React.useRef(
     typeof shown !== 'undefined' || triggerAction === TriggerAction.click,
   );
@@ -54,7 +54,7 @@ export const Popover: React.FC<PopoverProps> & {
   return (
     <CorePopover
       showArrow
-      shown={shown || isShown}
+      shown={shown ?? isShown}
       moveBy={isVertical ? { y: 8 } : { x: 8 }}
       className={st(classes.root, { wired: wiredToSiteColors }, className)}
       {..._getCoreProps(isControlled)}
