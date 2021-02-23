@@ -23,6 +23,8 @@ export type TableActionCellPrimaryAction = {
   onClick: () => void;
   skin?: 'standard' | 'inverted';
   disabled?: boolean;
+  prefixIcon?: IconElement;
+  suffixIcon?: IconElement;
 };
 
 export type TableActionCellSecondaryAction = {

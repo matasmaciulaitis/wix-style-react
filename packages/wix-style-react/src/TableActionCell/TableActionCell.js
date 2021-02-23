@@ -12,12 +12,14 @@ import { classes } from './TableActionCell.st.css';
 import { TooltipCommonProps } from '../common/PropTypes/TooltipCommon';
 
 /* eslint-disable react/prop-types */
-const renderPrimaryAction = ({ text, skin, onClick, disabled }, size) => (
+const renderPrimaryAction = ({ text, skin, onClick, disabled, prefixIcon, suffixIcon }, size) => (
   <Button
     disabled={disabled}
     skin={skin}
     dataHook={dataHooks.primaryAction}
     size={size}
+    prefixIcon={prefixIcon}
+    suffixIcon={suffixIcon}
     onClick={event => {
       onClick();
       // Making sure we don't also trigger onRowClick
@@ -173,12 +175,16 @@ TableActionCell.propTypes = {
    * `onClick` is the callback function for the action, whose signature is
    * `onClick(rowData, rowNum)`.
    * `disabled` is an optional prop for the primary action to be disabled
+   * `prefixIcon` is an optional prefix for adding a prefix icon to the primary action button
+   * `suffixIcon` is an optional prefix for adding a suffix icon to the primary action button
    */
   primaryAction: PropTypes.shape({
     text: PropTypes.string.isRequired,
     skin: PropTypes.oneOf(['standard', 'inverted']),
     onClick: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
+    prefixIcon: PropTypes.element,
+    suffixIcon: PropTypes.element,
   }),
 
   /**

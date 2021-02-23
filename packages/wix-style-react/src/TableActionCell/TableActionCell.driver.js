@@ -56,6 +56,12 @@ const tableActionCellDriverFactory = ({ element, wrapper, eventTrigger }) => {
     /** Get whether the primary action button is disabled */
     getIsPrimaryActionButtonDisabled: () =>
       getPrimaryActionButtonDriver().isButtonDisabled(),
+    /** Get whether the primary action button prefix icon exists */
+    getIsPrimaryActionButtonPrefixIconExists: () =>
+      getPrimaryActionButtonDriver().isPrefixIconExists(),
+    /** Get whether the primary action button suffix icon exists */
+    getIsPrimaryActionButtonSuffixIconExists: () =>
+      getPrimaryActionButtonDriver().isSuffixIconExists(),
     /** Get the number of the visible secondary actions */
     getVisibleActionsCount: () => visibleActions().length,
     /** Get the number of hidden secondary actions (in the <PopoverMenu/>, requires it to be open) */
