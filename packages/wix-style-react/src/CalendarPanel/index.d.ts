@@ -32,7 +32,7 @@ type OptionType = {
   selectedDays: SelectedDaysType;
 };
 
-export type LanguageType = CalendarLanguageType;
+export { LanguageType } from '../Calendar';
 
 export type SelectedDaysType = string | Date | DateRangeType;
 

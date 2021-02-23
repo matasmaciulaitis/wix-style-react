@@ -4,7 +4,7 @@ import { CalendarProps, LanguageType as CalendarLanguageType } from '../Calendar
 import { PopoverCommonProps } from '../common';
 
 export type DatePickerStatus = 'error' | 'warning' | 'loading';
-export type LanguageType = CalendarLanguageType;
+export { LanguageType } from '../Calendar';
 
 export interface DatePickerProps extends CalendarProps {
   className?: string;
