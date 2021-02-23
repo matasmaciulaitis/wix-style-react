@@ -33,11 +33,11 @@ class DropdownVisual extends React.Component<any> {
     const { mobile } = this.props;
 
     return (
-        <TPAComponentsProvider value={{ mobile }}>
-          <VisualTestContainer>
-            <Dropdown {...this.props} />
-          </VisualTestContainer>
-        </TPAComponentsProvider>
+      <TPAComponentsProvider value={{ mobile }}>
+        <VisualTestContainer>
+          <Dropdown {...this.props} />
+        </VisualTestContainer>
+      </TPAComponentsProvider>
     );
   }
 }
@@ -105,10 +105,12 @@ visualize('Dropdown', () => {
 
   story('wired', () => {
     snap('error should always show red border', () => (
-        <DropdownVisual error
-                        errorMessage={'Error message'}
-                        options={simpleOptions}
-                        className={classes.root}/>
-    ))
-  })
+      <DropdownVisual
+        error
+        errorMessage={'Error message'}
+        options={simpleOptions}
+        className={classes.root}
+      />
+    ));
+  });
 });
