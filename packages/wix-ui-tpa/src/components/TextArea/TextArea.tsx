@@ -131,7 +131,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                   disabled,
                 },
                 focusedBox ? classes.focused : '',
-                className
+                className,
               )}
             >
               <textarea
