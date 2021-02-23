@@ -20,7 +20,7 @@
   padding-top: 12px;
 }
 
-.root:verticalPadding(small).align:not(:last-child) {
+.root:verticalPadding(small).align {
   margin: 0;
 }
 
