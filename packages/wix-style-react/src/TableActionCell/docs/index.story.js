@@ -47,6 +47,9 @@ import DisabledSecondaryExampleRaw from '!raw-loader!./examples/DisabledSecondar
 import DisabledPrimaryExample from './examples/DisabledPrimaryExample';
 import DisabledPrimaryExampleRaw from '!raw-loader!./examples/DisabledPrimaryExample';
 
+import PrimaryWithIconAffixExample from './examples/PrimaryWithIconAffixExample';
+import PrimaryWithIconAffixExampleRaw from '!raw-loader!./examples/PrimaryWithIconAffixExample';
+
 import SecondaryWithDividerExample from './examples/SecondaryWithDividerExample';
 import SecondaryWithDividerExampleRaw from '!raw-loader!./examples/SecondaryWithDividerExample';
 
@@ -218,6 +221,15 @@ export default {
           code={DisabledPrimaryExampleRaw}
         >
           <DisabledPrimaryExample />
+        </CodeExample>
+      </div>
+
+      <div className={classes.example}>
+        <CodeExample
+          title="Primary actions with an icon affix"
+          code={PrimaryWithIconAffixExampleRaw}
+        >
+          <PrimaryWithIconAffixExample />
         </CodeExample>
       </div>
 
