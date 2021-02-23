@@ -110,3 +110,50 @@ export const compoundInput = `
   </Layout>
 </FormField>;
 `;
+
+export const inputAsTitle = `
+<Layout>
+  <Cell span={6}>
+    <Card >
+      <Box direction="vertical" padding="SP1 SP1 SP2">
+        <Layout gap={12}>
+          <Cell>
+            <Box padding="6px 6px 0px">
+              <Image borderRadius="4px" height="180px" />
+            </Box>
+          </Cell>
+
+          <Cell>
+            <Input
+              border="bottomLine"
+              textOverflow="ellipsis"
+              defaultValue="Empty photo album"
+            />
+          </Cell>
+        </Layout>
+      </Box>
+    </Card>
+  </Cell>
+  <Cell span={6}>
+    <Card>
+      <Box direction="vertical" padding="SP1 SP1 SP2">
+        <Layout gap={12}>
+          <Cell>
+            <Box padding="6px 6px 0px">
+              <Image borderRadius="4px" height="180px" src="example.jpg" />
+            </Box>
+          </Cell>
+
+          <Cell>
+            <Input
+              border="bottomLine"
+              textOverflow="ellipsis"
+              defaultValue="Empty photo album"
+            />
+          </Cell>
+        </Layout>
+      </Box>
+    </Card>
+  </Cell>
+</Layout>;
+`;

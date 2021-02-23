@@ -172,6 +172,13 @@ export default {
             source: examples.compoundInput,
           }),
 
+          example({
+            title: 'Input as a title',
+            text:
+              'Input can be used as a card title when its border is set to bottomLine. This pattern is great when it’s needed to give a control to quickly organize groups and files.',
+            source: examples.inputAsTitle,
+          }),
+
           divider(),
 
           title('Feedback'),

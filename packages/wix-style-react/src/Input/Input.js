@@ -408,16 +408,16 @@ Input.propTypes = {
   /** A css class to be applied to the component's root element */
   className: PropTypes.string,
 
-  /** A Unique identifier for the root element. */
+  /** A Unique identifier for the root element */
   id: PropTypes.string,
 
-  /** used to associate a control with the regions that it controls. */
+  /** Used to associate a control with the regions that it controls */
   ariaControls: PropTypes.string,
 
-  /** used to associate a region with its descriptions, similar to aria-controls but instead associating descriptions to the region and description identifiers are separated with a space. */
+  /** Used to associate a region with its descriptions, similar to aria-controls but instead associating descriptions to the region and description identifiers are separated with a space */
   ariaDescribedby: PropTypes.string,
 
-  /** Used to define a string that labels the current element in case where a text label is not visible on the screen. */
+  /** Used to define a string that labels the current element in case where a text label is not visible on the screen */
   ariaLabel: PropTypes.string,
 
   /** Standard React Input autoFocus (focus the element on mount) */
@@ -432,7 +432,7 @@ Input.propTypes = {
   /** Default value for those who wants to use this component un-controlled */
   defaultValue: PropTypes.string,
 
-  /** when set to true this component is disabled */
+  /** When set to true this component is disabled */
   disabled: PropTypes.bool,
 
   /** Sets UI to indicate a status */
@@ -450,7 +450,7 @@ Input.propTypes = {
   /** USED FOR TESTING - forces hover state on the input */
   forceHover: PropTypes.bool,
 
-  /** Input max length */
+  /** Sets the maximum number of characters can be inserted */
   maxLength: PropTypes.number,
 
   /** Should the component include a menu arrow */
@@ -459,10 +459,10 @@ Input.propTypes = {
   /** Displays clear button (X) on a non-empty input */
   clearButton: PropTypes.bool,
 
-  /** Used to reference element data when a form is submitted. */
+  /** Used to reference element data when a form is submitted */
   name: PropTypes.string,
 
-  /** Border type */
+  /** Changes the border style of input */
   border: PropTypes.oneOf(['standard', 'round', 'bottomLine']),
 
   /**
@@ -503,9 +503,11 @@ Input.propTypes = {
 
   /** Standard input onKeyDown callback */
   onKeyDown: PropTypes.func,
+
+  /** Standard input onKeyUp callback */
   onKeyUp: PropTypes.func,
 
-  /** called when user pastes text from clipboard (using mouse or keyboard shortcut) */
+  /** Called when user pastes text from clipboard (using mouse or keyboard shortcut) */
   onPaste: PropTypes.func,
 
   /** Placeholder to display */
@@ -542,12 +544,13 @@ Input.propTypes = {
   /** Placement of status tooltips */
   tooltipPlacement: PropTypes.string,
 
-  /** Specifies the type of `<input/>` element to display.default is text. */
+  /** Specifies the type of `<input/>` element to display.default is text */
   type: PropTypes.string,
 
-  /** Inputs value */
+  /** Specifies the value of the element */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
+  /** When present, it specifies that an input field must be filled out before submitting the form */
   required: PropTypes.bool,
 
   /** Minimum value input can have - similar to html5 min attribute */
@@ -556,7 +559,7 @@ Input.propTypes = {
   /** Maximum value input can have - similar to html5 max attribute */
   max: PropTypes.number,
 
-  /** Step steps to increment/decrement - similar to html5 step attribute */
+  /** Specifies the interval between the allowed number values */
   step: PropTypes.number,
 
   /** Use a customized input component instead of the default html input tag */
