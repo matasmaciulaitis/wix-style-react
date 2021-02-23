@@ -58,10 +58,6 @@
   smallHeight: 18px;
 }
 
-.root >:not(:last-child) {
-  margin-inline-end: 6px;
-}
-
 .prefix, .suffix {
   fill: currentColor;
   flex-shrink: 0;
@@ -81,6 +77,10 @@
   color: currentColor;
   letter-spacing: 1px;
   margin: auto 0px;
+}
+
+.root >:not(:last-child) {
+  margin-inline-end: 6px;
 }
 
 .root:uppercase .text {

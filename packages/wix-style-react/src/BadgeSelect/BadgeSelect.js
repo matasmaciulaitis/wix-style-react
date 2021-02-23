@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ChevronDown from 'wix-ui-icons-common/ChevronDown';
+import ChevronDownSmall from 'wix-ui-icons-common/ChevronDownSmall';
 import { classes } from './BadgeSelect.st.css';
 
 import DropdownLayout from '../DropdownLayout';
@@ -123,7 +123,7 @@ class BadgeSelect extends React.Component {
             type={type}
             size={size}
             uppercase={uppercase}
-            suffixIcon={<ChevronDown viewBox="6 6 12 12" />}
+            suffixIcon={<ChevronDownSmall />}
             skin={this.state.selectedBadge.skin}
             onClick={this.toggleDropdown}
             dataHook={DATA_ATTR.DATA_BADGE}
