@@ -42,7 +42,7 @@ const sampleSources = [
 const dataHook = 'storybook-Image';
 
 export default {
-  category: StoryCategory.WIP,
+  category: StoryCategory.COMPONENTS,
   storyName: 'Image',
   component: Image,
   componentPath: '../Image.tsx',

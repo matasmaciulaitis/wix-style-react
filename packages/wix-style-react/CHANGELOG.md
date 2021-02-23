@@ -16,6 +16,16 @@ Types of changes:
 
 ## Next
 
+### Added
+- `<Table/>`-  introduce predicate function for selectionDisabled for disabling certain rows from selecting [#6753](https://github.com/wix/wix-style-react/pull/6753)
+- `<AvatarGroup/>`- new component [#6584](https://github.com/wix/wix-style-react/pull/6584)
+
+### Changed
+- `<Thumbnail/>` - change tiny text to bold [#6807](https://github.com/wix/wix-style-react/pull/6807)
+
+### Fixed
+- `<Input/>` - Fix styles for FireFox [#6808](https://github.com/wix/wix-style-react/pull/6808)
+
 ## 9.84.2 - 2021-02-21
 ### Added
 - `Themes | Business Dashboard` - Updating list actions item disabled state [#6803](https://github.com/wix/wix-style-react/pull/6803)

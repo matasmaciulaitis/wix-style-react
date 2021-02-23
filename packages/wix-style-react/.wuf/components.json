@@ -44,6 +44,9 @@
   "Avatar": {
     "path": "src/Avatar"
   },
+  "AvatarGroup": {
+    "path": "src/AvatarGroup"
+  },
   "Badge": {
     "path": "src/Badge"
   },

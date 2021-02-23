@@ -31,7 +31,7 @@ const code = (config) =>
 const dataHook = 'storybook-ThumbnailImage';
 
 export default {
-  category: StoryCategory.WIP,
+  category: StoryCategory.COMPONENTS,
   storyName: 'ThumbnailImage',
   component: ThumbnailImage,
   componentPath: '../ThumbnailImage.tsx',

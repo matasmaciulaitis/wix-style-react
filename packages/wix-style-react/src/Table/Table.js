@@ -27,8 +27,12 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
   const createCheckboxColumn = ({
     toggleSelectionById,
     isSelected,
-    disabled,
+    selectionDisabled,
   }) => {
+    const isRowSelectionDisabled = rowData =>
+      selectionDisabled === true ||
+      (typeof selectionDisabled === 'function' && selectionDisabled(rowData));
+
     return {
       title: tableProps.hideBulkSelectionCheckbox ? (
         ''
@@ -36,7 +40,7 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
         <TableBulkSelectionCheckbox dataHook="table-select" />
       ),
       onCellClick: (column, row, rowNum, event) => {
-        if (row.unselectable) {
+        if (row.unselectable || isRowSelectionDisabled(row)) {
           return;
         }
 
@@ -50,7 +54,7 @@ export function createColumns({ tableProps, bulkSelectionContext }) {
         return row.unselectable ? null : (
           <div>
             <Checkbox
-              disabled={disabled}
+              disabled={isRowSelectionDisabled(row)}
               dataHook="row-select"
               checked={isSelected(id)}
             />
@@ -130,13 +134,13 @@ export class Table extends React.Component {
       selectedIds,
       showSelection,
       deselectRowsByDefault,
-      selectionDisabled,
       infiniteScroll,
       totalSelectableCount,
       onSelectionChanged,
       hasMore,
       horizontalScroll,
       hideHeader,
+      selectionDisabled,
     } = this.props;
 
     if (hideHeader) {
@@ -147,7 +151,8 @@ export class Table extends React.Component {
 
     let hasUnselectables = null;
     let allIds = data.map((rowData, rowIndex) =>
-      rowData.unselectable
+      rowData.unselectable ||
+      (typeof selectionDisabled === 'function' && selectionDisabled(rowData))
         ? (hasUnselectables = hasUnselectablesSymbol)
         : defaultTo(rowData.id, rowIndex),
     );
@@ -171,7 +176,7 @@ export class Table extends React.Component {
             ref={_ref => (this.bulkSelection = _ref)}
             selectedIds={selectedIds}
             deselectRowsByDefault={deselectRowsByDefault}
-            disabled={selectionDisabled}
+            selectionDisabled={selectionDisabled}
             hasMoreInBulkSelection={
               infiniteScroll && Boolean(totalSelectableCount) && hasMore
             }
@@ -243,8 +248,10 @@ Table.propTypes = {
     PropTypes.arrayOf(PropTypes.number),
   ]),
 
-  /** Is selection disabled for the table */
-  selectionDisabled: PropTypes.bool,
+  /** Can be either a boolean or a function.
+   * If passed a boolean, disables selection for all table rows.
+   * If passed a function, it will be called for every row in `data` to specify if its checkbox should be disabled. Example: `selectionDisabled={(rowData) => !rowData.isSelectable}` */
+  selectionDisabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
 
   /** Indicates the `SelectionContext.toggleAll` behaviour when some rows are selected. `true` means SOME -> NONE, `false` means SOME -> ALL */
   deselectRowsByDefault: PropTypes.bool,

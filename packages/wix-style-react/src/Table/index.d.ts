@@ -14,7 +14,7 @@ export interface TableProps<RowData = RowDataDefaultType>
   showSelection?: boolean;
   hideBulkSelectionCheckbox?: boolean;
   selectedIds?: string[] | number[];
-  selectionDisabled?: boolean;
+  selectionDisabled?: boolean | SelectionDisabledFn<RowData>;
   deselectRowsByDefault?: boolean;
   withWrapper?: boolean;
   onSortClick?(colData: TableColumn, colNum: number): void;
@@ -49,6 +49,8 @@ export type OnSelectionChangedFn = (
         origin: string;
       },
 ) => void;
+
+export type SelectionDisabledFn<RowData = RowDataDefaultType> = (rowData: RowData) => void;
 
 export type UsedDataTableProps<RowData = RowDataDefaultType> = Pick<
   DataTableProps<RowData>,

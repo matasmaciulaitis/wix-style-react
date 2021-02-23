@@ -10,7 +10,7 @@
 
 :import {
     -st-from: "../../common/palette.st.css";
-    -st-named: errorColor;
+    -st-named: errorColor, focusRing;
 }
 
 /*Defaults*/
@@ -156,6 +156,10 @@
 
 .suffix {
     flex: 0;
+}
+
+.focused {
+    -st-mixin: focusRing();
 }
 
 /* STATES */

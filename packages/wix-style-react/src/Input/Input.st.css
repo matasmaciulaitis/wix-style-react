@@ -72,13 +72,19 @@
 
 /* Size */
 .root:size(small),
-.root:size(small) .input,
+.root:size(small) .input {
+  -st-mixin: text-small-normal;
+}
+
 .root:size(small) .input:-webkit-autofill::first-line {
   -st-mixin: text-small-normal;
 }
 
 .root:size(small):isMadefor,
-.root:size(small):isMadefor .input,
+.root:size(small):isMadefor .input {
+  -st-mixin: text-small-thin;
+}
+
 .root:size(small):isMadefor .input:-webkit-autofill::first-line {
   -st-mixin: text-small-thin;
 }
@@ -88,13 +94,19 @@
 }
 
 .root:size(medium),
-.root:size(medium) .input,
+.root:size(medium) .input {
+  -st-mixin: text-medium-normal;
+}
+
 .root:size(medium) .input:-webkit-autofill::first-line {
   -st-mixin: text-medium-normal;
 }
 
 .root:size(medium):isMadefor,
-.root:size(medium):isMadefor .input,
+.root:size(medium):isMadefor .input {
+  -st-mixin: text-medium-thin;
+}
+
 .root:size(medium):isMadefor .input:-webkit-autofill::first-line {
   -st-mixin: text-medium-thin;
 }
@@ -104,13 +116,19 @@
 }
 
 .root:size(large),
-.root:size(large) .input,
+.root:size(large) .input {
+  -st-mixin: text-medium-normal;
+}
+
 .root:size(large) .input:-webkit-autofill::first-line  {
   -st-mixin: text-medium-normal;
 }
 
 .root:size(large):isMadefor,
-.root:size(large):isMadefor .input,
+.root:size(large):isMadefor .input {
+  -st-mixin: text-medium-thin;
+}
+
 .root:size(large):isMadefor .input:-webkit-autofill::first-line {
   -st-mixin: text-medium-thin;
 }
@@ -342,7 +360,7 @@
 }
 
 .input:-webkit-autofill,
-.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px value(D80) inset;
   box-shadow: 0 0 0px 1000px value(D80) inset;

@@ -9,4 +9,5 @@ export enum CHEKCBOX_DATA_KEYS {
   Disabled = 'data-disabled',
   Checked = 'data-checked',
   Indeterminate = 'data-indeterminate',
+  Focused = 'data-focused',
 }

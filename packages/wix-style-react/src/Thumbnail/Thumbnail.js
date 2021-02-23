@@ -6,6 +6,7 @@ import Text from '../Text';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 import { dataHooks } from './constants';
 import Box from '../Box';
+import { FontUpgradeContext } from '../FontUpgrade/context';
 
 const isString = a => typeof a === 'string';
 
@@ -121,14 +122,18 @@ class Thumbnail extends React.PureComponent {
         )}
 
         {title && (
-          <Text
-            className={classes.title}
-            dataHook={dataHooks.thumbnailTitle}
-            size={size}
-            tagName="div"
-            weight="normal"
-            children={title}
-          />
+          <FontUpgradeContext.Consumer>
+            {({ active }) => (
+              <Text
+                className={classes.title}
+                dataHook={dataHooks.thumbnailTitle}
+                size={size}
+                tagName="div"
+                weight={active && size === 'tiny' ? 'bold' : 'normal'}
+                children={title}
+              />
+            )}
+          </FontUpgradeContext.Consumer>
         )}
 
         {description && (

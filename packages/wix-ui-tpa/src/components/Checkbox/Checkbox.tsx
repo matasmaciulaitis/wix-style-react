@@ -16,6 +16,10 @@ export enum CheckboxTheme {
   Box = 'box',
 }
 
+export interface CheckboxState {
+  focused: boolean;
+}
+
 export interface CheckboxProps extends TPAComponentProps {
   onChange(event: OnChangeEvent): void;
   label: React.ReactNode | string;
@@ -25,6 +29,7 @@ export interface CheckboxProps extends TPAComponentProps {
   error?: boolean;
   name?: string;
   theme?: CheckboxTheme;
+  withFocusRing?: boolean;
   suffix?: React.ReactNode | string;
 }
 
@@ -36,10 +41,11 @@ interface DefaultProps {
   indeterminate: boolean;
   theme: CheckboxTheme;
   'data-hook': string;
+  withFocusRing: boolean;
 }
 
 /** An implementation of Checkbox for TPAs */
-export class Checkbox extends React.Component<CheckboxProps> {
+export class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
   static displayName = 'Checkbox';
   static defaultProps: DefaultProps = {
     checked: false,
@@ -49,25 +55,34 @@ export class Checkbox extends React.Component<CheckboxProps> {
     indeterminate: false,
     theme: CheckboxTheme.Default,
     'data-hook': CHECKBOX_DATA_HOOKS.CheckboxWrapper,
+    withFocusRing: false,
+  };
+
+  state = {
+    focused: false,
   };
 
   getDataAttributes() {
     const { disabled, error, indeterminate, checked } = this.props;
+    const { focused } = this.state;
 
     return {
       [CHEKCBOX_DATA_KEYS.Disabled]: disabled,
       [CHEKCBOX_DATA_KEYS.Error]: error,
       [CHEKCBOX_DATA_KEYS.Indeterminate]: indeterminate,
       [CHEKCBOX_DATA_KEYS.Checked]: checked,
+      [CHEKCBOX_DATA_KEYS.Focused]: focused,
     };
   }
 
-  _renderIcon = () => {
+  _renderIcon = (isFocused: boolean) => {
     const { checked, indeterminate, error } = this.props;
 
     return (
       <span
-        className={classes.icon}
+        className={classnames(classes.icon, {
+          [classes.focused]: isFocused,
+        })}
         data-hook={CHECKBOX_DATA_HOOKS.IconWrapper}
       >
         {checked && !error ? (
@@ -79,6 +94,14 @@ export class Checkbox extends React.Component<CheckboxProps> {
         )}
       </span>
     );
+  };
+
+  _onFocus = () => {
+    this.setState({ focused: true });
+  };
+
+  _onBlur = () => {
+    this.setState({ focused: false });
   };
 
   render() {
@@ -93,14 +116,30 @@ export class Checkbox extends React.Component<CheckboxProps> {
       name,
       suffix,
       className,
+      withFocusRing,
     } = this.props;
-    const iconContent = this._renderIcon();
+    const { mobile: isMobile } = this.context;
+
+    const focusedBox =
+      !isMobile &&
+      withFocusRing &&
+      this.state.focused &&
+      theme === CheckboxTheme.Box;
+
+    const focusedIcon =
+      !isMobile &&
+      withFocusRing &&
+      this.state.focused &&
+      theme === CheckboxTheme.Default;
+
+    const iconContent = this._renderIcon(focusedIcon);
 
     return (
       <div
         className={st(
           classes.root,
           { box: theme === 'box', checked, disabled, error },
+          focusedBox ? classes.focused : '',
           className,
         )}
         data-hook={this.props['data-hook']}
@@ -116,6 +155,8 @@ export class Checkbox extends React.Component<CheckboxProps> {
           onChange={onChange}
           name={name}
           disabled={disabled}
+          onFocusByKeyboard={this._onFocus}
+          onBlur={this._onBlur}
         >
           <div
             data-hook={CHECKBOX_DATA_HOOKS.LabelWrapper}

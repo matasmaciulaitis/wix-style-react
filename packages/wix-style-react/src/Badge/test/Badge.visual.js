@@ -2,13 +2,28 @@ import React from 'react';
 import Badge, { SIZE, SKIN, TYPE } from '../index';
 import Box from '../../Box';
 import { visualize, snap } from 'storybook-snapper';
+import ChevronDown from 'wix-ui-icons-common/ChevronDown';
+import CalendarIcon from 'wix-ui-icons-common/Date';
 
 export const runTests = (
   { themeName, testWithTheme } = { testWithTheme: i => i },
 ) => {
   visualize(`${themeName ? `${themeName}|` : ''}Badge`, () => {
-    snap('base', () => testWithTheme(<BasicBadges />));
-    snap('skins', () => testWithTheme(<BadgesVariations />));
+    snap('base', () =>
+      testWithTheme(<BadgesVariations children="Some Badge" />),
+    );
+    snap('ellipsis', () =>
+      testWithTheme(<BadgesVariations children="I'm a Badge with ellipsis!" />),
+    );
+    snap('Affixes', () =>
+      testWithTheme(
+        <BadgesVariations
+          prefixIcon={<CalendarIcon />}
+          suffixIcon={<ChevronDown />}
+          children="Some Badge"
+        />,
+      ),
+    );
     snap('focus', () => testWithTheme(<FocusBadgeTest />));
   });
 
@@ -17,8 +32,8 @@ export const runTests = (
   const types = Object.keys(TYPE);
 
   const renderBadge = props => (
-    <span style={{ padding: '5px' }}>
-      <Badge {...props}>Some Badge</Badge>
+    <span style={{ padding: '5px', maxWidth: '150px' }}>
+      <Badge {...props}></Badge>
     </span>
   );
 
@@ -26,19 +41,6 @@ export const runTests = (
     types.map(type => renderBadge({ type, ...props }));
   const renderSizes = props =>
     sizes.map(size => renderTypes({ size, ...props }));
-
-  class BasicBadges extends React.Component {
-    render() {
-      return (
-        <div>
-          <Badge>I'M A BADGE!</Badge>
-          <Box maxWidth="60px" marginTop={1}>
-            <Badge>I'M A BADGE WITH ELLIPSIS!</Badge>
-          </Box>
-        </div>
-      );
-    }
-  }
 
   class BadgesVariations extends React.Component {
     render() {
@@ -54,8 +56,8 @@ export const runTests = (
                 }}
                 key={skin}
               >
-                {renderSizes({ skin })}
-                {renderBadge({ uppercase: false, skin })}
+                {renderSizes({ skin, ...this.props })}
+                {renderBadge({ uppercase: false, skin, ...this.props })}
               </div>
             </div>
           ))}
