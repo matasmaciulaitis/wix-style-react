@@ -25,7 +25,7 @@
   padding-top: value(SP3);
 }
 
-.root:verticalPadding(small).align:not(:last-child) {
+.root:verticalPadding(small).align {
   margin: 0;
 }
 
