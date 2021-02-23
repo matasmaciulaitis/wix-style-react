@@ -10,6 +10,7 @@ import {
  */
 export const otherSymbolsToComponents = {
   [otherSymbols.avatar]: [componentsNames.Avatar],
+  [otherSymbols.avatarGroup]: [componentsNames.AvatarGroup],
 
   [otherSymbols.badge]: [componentsNames.Badge, sharedComponentsNames.Icon],
 

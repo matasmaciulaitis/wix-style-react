@@ -22,6 +22,7 @@ import { TYPE } from '../../../../src/Badge/constants';
 
 import {
   Avatar,
+  AvatarGroup,
   Badge,
   BadgeSelect,
   CounterBadge,
@@ -87,6 +88,65 @@ const AvatarExample = () => {
           shape: 'square',
           onClick: () => 'Clicked!',
         })}
+      </Layout>
+    </SingleComponentSideBySide>
+  );
+};
+
+const AvatarGroupExample = () => {
+  const avatarItems = [
+    {
+      ariaLabel: 'Avatar for John Doe',
+      color: 'A1',
+      name: 'John Doe',
+      title: 'Wix Account: John Doe (johndoe@gmail.com)',
+    },
+    {
+      ariaLabel: 'Avatar for Snoop Dogg',
+      name: 'Snoop Dogg',
+      title: 'Wix Account: Snoop Dogg (dog@gmail.com)',
+    },
+    {
+      ariaLabel: 'Avatar for Sia Kate',
+      imgProps: {
+        src:
+          'https://lh3.googleusercontent.com/proxy/EI3faU3-0hCPyjBKktiVuPKfZTMXx6BsDFE0f7UBr_8CKSMRWL28dLZJrWGWExcTRgWI2v3pcuBT19YpJ-xdmxla4mmqWw',
+      },
+      name: 'Sia Kate',
+    },
+    {
+      ariaLabel: 'Avatar for Steven Tyler',
+      title: 'Wix Account: Steven Tyler (steventyler@gmail.com)',
+    },
+    {
+      ariaLabel: 'Avatar for Karen Carpenter',
+      name: 'Karen Carpenter',
+      title: 'Wix Account: Karen Carpenter (karencarpenter@gmail.com)',
+    },
+    {
+      name: 'Levon Helm',
+      title: 'Wix Account: Levon Helm (levonhelm@gmail.com)',
+    },
+    {
+      ariaLabel: 'Avatar for Willie Nelson',
+      name: 'Willie Nelson',
+      title: 'Wix Account: Willie Nelson (willienelson@gmail.com)',
+    },
+    {
+      ariaLabel: 'Avatar for Patti Smith',
+      name: 'Patti Smith',
+    },
+  ];
+  const symbol = otherSymbols.avatarGroup;
+  const components = otherSymbolsToComponents[symbol];
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+  };
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Layout cols={7} justifyItems="center" alignItems="center">
+        <AvatarGroup items={avatarItems} />
       </Layout>
     </SingleComponentSideBySide>
   );
@@ -462,6 +522,7 @@ const PaletteExample = () => {
 const OtherFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <AvatarExample />
+    <AvatarGroupExample />
     <BadgeExample />
     <BadgeSelectExample />
     <CounterBadgeExample />

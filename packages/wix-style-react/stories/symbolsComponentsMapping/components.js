@@ -156,6 +156,7 @@ export const pickerComponentsNames = {
  */
 export const otherComponentsNames = {
   Avatar: 'Avatar',
+  AvatarGroup: 'AvatarGroup',
   Badge: 'Badge',
   BadgeSelect: 'BadgeSelect',
   CounterBadge: 'CounterBadge',

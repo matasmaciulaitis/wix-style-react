@@ -147,16 +147,17 @@ export const pickerSymbols = {
  */
 export const otherSymbols = {
   avatar: '11.1 Avatar',
-  badge: '11.2 Badge',
-  badgeSelect: '11.3 Badge Select',
-  counterBadge: '11.4 Counter Badge',
-  tag: '11.5 Tag',
-  loader: '11.6 Loader',
-  linearProgressBar: '11.7 Linear Progress Bar',
-  circularProgressBar: '11.8 Circular Progress Bar',
-  skeleton: '11.9 Skeleton',
-  image: '11.10 Image',
-  palette: '11.11 Palette',
+  avatarGroup: '11.2 AvatarGroup',
+  badge: '11.3 Badge',
+  badgeSelect: '11.4 Badge Select',
+  counterBadge: '11.5 Counter Badge',
+  tag: '11.6 Tag',
+  loader: '11.7 Loader',
+  linearProgressBar: '11.8 Linear Progress Bar',
+  circularProgressBar: '11.9 Circular Progress Bar',
+  skeleton: '11.10 Skeleton',
+  image: '11.11 Image',
+  palette: '11.12 Palette',
 };
 
 /**
