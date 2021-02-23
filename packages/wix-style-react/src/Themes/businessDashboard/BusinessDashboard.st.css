@@ -186,6 +186,11 @@
   -st-default: CustomModalLayout;
 }
 
+:import {
+  -st-from: "../../TableListItem/TableListItem.st.css";
+  -st-default: TableListItem;
+}
+
 /* Overrides */
 :import {
   -st-from: "./components/Button.st.css";
@@ -362,6 +367,11 @@
   -st-default: CustomModalLayoutOverrides;
 }
 
+:import {
+  -st-from: "./components/TableListItem.st.css";
+  -st-default: TableListItemOverrides;
+}
+
 @st-scope .root {
   Button {
     -st-mixin: ButtonOverrides();
@@ -463,6 +473,9 @@
   }
   CustomModalLayout {
     -st-mixin: CustomModalLayoutOverrides();
+  }
+  TableListItem {
+    -st-mixin: TableListItemOverrides();
   }
 }
 

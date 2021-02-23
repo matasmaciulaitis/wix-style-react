@@ -40,6 +40,7 @@ import * as checkbox from './components/Checkbox';
 import * as thumbnail from './components/Thumbnail';
 import * as verticalTabsItem from './components/VerticalTabsItem';
 import * as customModalLayout from './components/CustomModalLayout';
+import * as tableListItem from './components/TableListItem';
 
 import { Category } from '../../../../stories/storiesHierarchy';
 import Box from '../../../Box';
@@ -197,6 +198,10 @@ import { theme } from 'wix-style-react/themes/businessDashboard';
           example({
             text: TextComponent('CustomModalLayout'),
             source: customModalLayout.playground,
+          }),
+          example({
+            text: TextComponent('TableListItem'),
+            source: tableListItem.playground,
           }),
         ],
       }),

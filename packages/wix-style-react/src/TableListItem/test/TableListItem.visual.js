@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, visualize } from '@storybook/react';
 import TableListItem, { VERTICAL_PADDING } from '../TableListItem';
 import WixStyleReactProvider from '../../WixStyleReactProvider';
 
@@ -76,3 +76,40 @@ tests.forEach(({ describe, its }) => {
     ));
   });
 });
+
+export const runTests = (
+  { themeName, testWithTheme } = { testWithTheme: i => i },
+) => {
+  visualize(
+    `${themeName ? `${themeName}|` : ''}${TableListItem.displayName}`,
+    () => {
+      tests.forEach(({ describe, its }) => {
+        its.forEach(({ it, props }) => {
+          storiesOf(
+            `${TableListItem.displayName}${describe ? '/' + describe : ''}`,
+            module,
+          ).add(it, () =>
+            testWithTheme(<TableListItem {...commonProps} {...props} />),
+          );
+        });
+      });
+
+      tests.forEach(({ describe, its }) => {
+        its.forEach(({ it, props }) => {
+          storiesOf(
+            `Layout And Spacing| ${TableListItem.displayName}/${describe}`,
+            module,
+          ).add(it, () =>
+            testWithTheme(
+              <WixStyleReactProvider
+                features={{ reducedSpacingAndImprovedLayout: true }}
+              >
+                <TableListItem {...commonProps} {...props} />
+              </WixStyleReactProvider>,
+            ),
+          );
+        });
+      });
+    },
+  );
+};

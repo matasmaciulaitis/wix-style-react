@@ -28,6 +28,7 @@ import { runTests as CheckboxTests } from '../../../Checkbox/test/Checkbox.visua
 import { runTests as ThumbnailTests } from '../../../Thumbnail/test/Thumbnail.visual';
 import { runTests as VerticalTabsItemTests } from '../../../VerticalTabsItem/test/VerticalTabsItem.visual';
 import { runTests as CustomModalLayoutTests } from '../../../CustomModalLayout/test/CustomModalLayout.visual';
+import { runTests as TableListItemTests } from '../../../TableListItem/test/TableListItem.visual';
 
 import { ThemeProvider } from '../../..';
 
@@ -68,3 +69,4 @@ CheckboxTests({ themeName, testWithTheme });
 ThumbnailTests({ themeName, testWithTheme });
 VerticalTabsItemTests({ themeName, testWithTheme });
 CustomModalLayoutTests({ themeName, testWithTheme });
+TableListItemTests({ themeName, testWithTheme });

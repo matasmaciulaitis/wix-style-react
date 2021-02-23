@@ -1,0 +1,30 @@
+:import {
+  -st-from: "../../../TableListItem/TableListItem.st.css";
+  -st-default: TableListItem;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: B50;
+}
+
+.root {
+  -st-extends: TableListItem;
+}
+
+.root:verticalPadding(small) {
+  padding: 0 0 12px 0;
+}
+
+.root:verticalPadding(small):not(:first-child) {
+  padding-top: 12px;
+}
+
+.root:verticalPadding(small).align:not(:last-child) {
+  margin: 0;
+}
+
+.root:verticalPadding(small):clickable:hover{
+  background-color: value(B50);
+  cursor: pointer;
+}
