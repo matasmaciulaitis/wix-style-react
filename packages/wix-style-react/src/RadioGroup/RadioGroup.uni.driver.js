@@ -1,6 +1,7 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import { radioUniDriverFactory } from '../Radio/Radio.uni.driver';
 import { dataHooks } from './constants';
+import { dataHooks as radioDataHooks } from '../Radio/constants';
 
 export const radioGroupUniDriverFactory = (base, body) => {
   const getOptionContainer = () =>
@@ -77,7 +78,7 @@ export const radioGroupUniDriverFactory = (base, body) => {
 
 const radioButtonUniDriverFactory = (base, body, container) => {
   const getByDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
-  const radioLabel = () => getByDataHook('label');
+  const radioLabel = () => getByDataHook(radioDataHooks.label);
 
   return {
     ...radioUniDriverFactory(base, body),

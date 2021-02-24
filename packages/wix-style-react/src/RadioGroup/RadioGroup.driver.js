@@ -1,6 +1,7 @@
 import toArray from 'lodash/toArray';
 import radioDriverFactory from '../Radio/Radio.driver';
 import { dataHooks, dataAttr } from './constants';
+import { dataHooks as radioDataHooks } from '../Radio/constants';
 
 const radioGroupDriverFactory = ({ element, eventTrigger }) => {
   const getOptionContainer = () =>
@@ -107,7 +108,7 @@ const radioGroupDriverFactory = ({ element, eventTrigger }) => {
 const radioButtonDriverFactory = ({ element, eventTrigger, container }) => {
   const getByDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
-  const label = () => getByDataHook('label');
+  const label = () => getByDataHook(radioDataHooks.label);
 
   return {
     ...radioDriverFactory({ element, eventTrigger }),
